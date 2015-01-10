@@ -1,7 +1,7 @@
-﻿<Window x:Class="Bloom.Player.MainWindow"
+﻿<Window x:Class="Bloom.Analytics.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Bloom - Music Analytics" Height="350" Width="525">
     <Grid>
         
     </Grid>
