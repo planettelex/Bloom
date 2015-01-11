@@ -3,6 +3,8 @@
         
         <!-- Default control styles -->
         <ResourceDictionary Source="Styles/Default.xaml" />
+        <ResourceDictionary Source="Styles/System.Windows.xaml" />
+        <ResourceDictionary Source="Styles/Telerik.Windows.Controls.xaml" />
         
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
