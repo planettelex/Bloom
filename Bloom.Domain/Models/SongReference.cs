@@ -2,9 +2,9 @@
 
 namespace Bloom.Domain.Models
 {
-    public class ArtistReference
+    public class SongReference
     {
-        public Guid ArtistId { get; set; }
+        public Guid SongId { get; set; }
 
         public Guid ReferenceId { get; set; }
 

@@ -9,11 +9,7 @@ namespace Bloom.Domain.Models
 
         public string Url { get; set; }
 
-        public string Caption { get; set; }
-
-        public List<PersonPhoto> People { get; set; }
-
-        public List<ArtistPhoto> Artists { get; set; } 
+        public string Caption { get; set; } 
 
         public DateTime Taken { get; set; }
     }

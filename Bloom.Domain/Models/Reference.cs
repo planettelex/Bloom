@@ -13,10 +13,6 @@ namespace Bloom.Domain.Models
 
         public string Url { get; set; }
 
-        public string Title { get; set; }
-
-        public List<PersonReference> People { get; set; }
-
-        public List<ArtistReference> Artists { get; set; } 
+        public string Title { get; set; } 
     }
 }

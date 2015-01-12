@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bloom.Domain.Models.SongSegment">
+    <Position X="3.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACABAAQAAAAAAAAAAAAABAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Models\SongSegment.cs</FileName>
+      <NewMemberFileName>Models\Song.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Artist">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAACEACAAAAAQAAAIwACAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Artist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Genre">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="ParentGenre" Type="Bloom.Domain.Models.Genre" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.25" Y="0.938" />
+        <Point X="0.604" Y="0.938" />
+        <Point X="0.604" Y="1.812" />
+        <Point X="1.25" Y="1.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAIAAAAAAAAQAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Genre.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParentGenre" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.RecordingSession">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RecordingSession.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Holiday">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAgAAAAAAAAAESAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Holiday.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongCollaborator">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAABAAAAAAAAEAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SongCollaborator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Artist" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Song">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <AssociationLine Name="OriginalSong" Type="Bloom.Domain.Models.Song" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="2.625" />
+        <Point X="6.146" Y="2.625" />
+        <Point X="6.146" Y="3.562" />
+        <Point X="6.75" Y="3.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.004" Y="-0.397" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <FileName>Models\Song.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Holiday" />
+      <Property Name="Genre" />
+      <Property Name="Artist" />
+      <Property Name="OriginalSong" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="RecordingSessions" />
+      <Property Name="Collaborators" />
+      <Property Name="Segments" />
+      <Property Name="Credits" />
+      <Property Name="References" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongCredit">
+    <Position X="10" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAACAAAABAAAEAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SongCredit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Person" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Roles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Person">
+    <Position X="13" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAADAICAAAAAQAAAAQACAAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Reference">
+    <Position X="1.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAACAAAAQAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongReference">
+    <Position X="7" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SongReference.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Reference" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Role">
+    <Position X="13" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongCreditRole">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SongCreditRole.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

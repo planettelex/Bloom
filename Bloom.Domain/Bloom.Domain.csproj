@@ -42,11 +42,32 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Holiday.cs" />
+    <Compile Include="Models\ArtistPhoto.cs" />
+    <Compile Include="Models\ArtistReference.cs" />
+    <Compile Include="Models\ArtistMemberRole.cs" />
+    <Compile Include="Models\ArtistMember.cs" />
+    <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonPhoto.cs" />
     <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\PersonReference.cs" />
+    <Compile Include="Enums\MusicalKeys.cs" />
+    <Compile Include="Enums\Month.cs" />
+    <Compile Include="Enums\NoteLength.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reference.cs" />
+    <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RecordingSession.cs" />
+    <Compile Include="Models\Song.cs" />
+    <Compile Include="Models\SongSegment.cs" />
+    <Compile Include="Enums\TimeOfYear.cs" />
+    <Compile Include="Models\SongCollaborator.cs" />
+    <Compile Include="Models\SongCredit.cs" />
+    <Compile Include="Models\TimeSignature.cs" />
+    <Compile Include="Models\SongReference.cs" />
+    <Compile Include="Models\SongCreditRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
@@ -56,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Diagrams\Artist.cd" />
+    <None Include="Diagrams\Song.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
