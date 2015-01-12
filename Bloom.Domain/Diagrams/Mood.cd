@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bloom.Domain.Models.Mood">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Mood.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Album">
+    <Position X="0.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>pAAGABQAAEBjAAEAAAAAEAxAAIgwAUEAAQACwAABAAA=</HashCode>
+      <FileName>Models\Album.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Song">
+    <Position X="7.25" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <FileName>Models\Song.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Playlist">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAGAgAAEAAAAAAARAAAASAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Models\Playlist.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.PlaylistTrack">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAABAAgAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PlaylistTrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Song" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.AlbumTrack">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AlbumTrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Song" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.AlbumMood">
+    <Position X="0.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAg=</HashCode>
+      <FileName>Models\AlbumMood.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Album" />
+      <Property Name="Mood" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongMood">
+    <Position X="7.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\SongMood.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mood" />
+      <Property Name="Song" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.PlaylistMood">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAEAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\PlaylistMood.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mood" />
+      <Property Name="Playlist" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
