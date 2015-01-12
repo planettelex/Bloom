@@ -42,6 +42,18 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\AlbumCollaborator.cs" />
+    <Compile Include="Enums\DigitalFormat.cs" />
+    <Compile Include="Enums\MediaTypes.cs" />
+    <Compile Include="Models\Label.cs" />
+    <Compile Include="Models\AlbumCreditRole.cs" />
+    <Compile Include="Enums\LengthType.cs" />
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\AlbumArtwork.cs" />
+    <Compile Include="Models\AlbumCredit.cs" />
+    <Compile Include="Models\AlbumReference.cs" />
+    <Compile Include="Models\AlbumRelease.cs" />
+    <Compile Include="Models\AlbumTrack.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Holiday.cs" />
     <Compile Include="Models\ArtistPhoto.cs" />
@@ -76,7 +88,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Diagrams\Album.cd" />
     <None Include="Diagrams\Artist.cd" />
+    <None Include="Diagrams\Label.cd" />
     <None Include="Diagrams\Song.cd" />
   </ItemGroup>
   <ItemGroup />

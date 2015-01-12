@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.SongSegment">
-    <Position X="3.75" Y="5" Width="1.5" />
+    <Position X="7" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAACABAAQAAAAAAAAAAAAABAAAIAAAAAAAAAA=</HashCode>
       <FileName>Models\SongSegment.cs</FileName>
@@ -75,15 +75,15 @@
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Holiday" />
-      <Property Name="Genre" />
       <Property Name="Artist" />
+      <Property Name="Genre" />
       <Property Name="OriginalSong" />
+      <Property Name="Holiday" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
+      <Property Name="Segments" />
       <Property Name="RecordingSessions" />
       <Property Name="Collaborators" />
-      <Property Name="Segments" />
       <Property Name="Credits" />
       <Property Name="References" />
     </ShowAsCollectionAssociation>
@@ -109,14 +109,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Reference">
-    <Position X="1.25" Y="7.25" Width="1.5" />
+    <Position X="3.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAEAAACAAAAQAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Models\Reference.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.SongReference">
-    <Position X="7" Y="7.5" Width="1.5" />
+    <Position X="3.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\SongReference.cs</FileName>
