@@ -42,6 +42,13 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Enums\Condition.cs" />
+    <Compile Include="Models\LibrarySongMedia.cs" />
+    <Compile Include="Models\LibrarySong.cs" />
+    <Compile Include="Models\LibraryAlbumMedia.cs" />
+    <Compile Include="Models\LibraryAlbum.cs" />
+    <Compile Include="Models\LibraryArtist.cs" />
+    <Compile Include="Models\Library.cs" />
     <Compile Include="Models\LabelPersonelRole.cs" />
     <Compile Include="Models\LabelPersonel.cs" />
     <Compile Include="Models\AlbumCollaborator.cs" />
@@ -93,6 +100,7 @@
     <None Include="Diagrams\Album.cd" />
     <None Include="Diagrams\Artist.cd" />
     <None Include="Diagrams\Label.cd" />
+    <None Include="Diagrams\Library.cd" />
     <None Include="Diagrams\Song.cd" />
   </ItemGroup>
   <ItemGroup />
