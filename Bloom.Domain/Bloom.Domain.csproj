@@ -42,6 +42,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\AlbumReview.cs" />
     <Compile Include="Models\AlbumTag.cs" />
     <Compile Include="Models\AlbumActivity.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -106,6 +107,9 @@
     <Compile Include="Models\SongActivity.cs" />
     <Compile Include="Models\SongTag.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\SongReview.cs" />
+    <Compile Include="Models\Publication.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
@@ -121,6 +125,7 @@
     <None Include="Diagrams\Library.cd" />
     <None Include="Diagrams\Mood.cd" />
     <None Include="Diagrams\Playlist.cd" />
+    <None Include="Diagrams\Review.cd" />
     <None Include="Diagrams\Song.cd" />
     <None Include="Diagrams\Tag.cd" />
   </ItemGroup>

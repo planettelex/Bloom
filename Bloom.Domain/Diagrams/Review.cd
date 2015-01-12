@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bloom.Domain.Models.Review">
+    <Position X="7.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAgAABAAAAAEAAAAAACBEAAEAAAAA=</HashCode>
+      <FileName>Models\Review.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Author" />
+      <Property Name="Publication" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.AlbumReview">
+    <Position X="0.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAEACACAAAAAA=</HashCode>
+      <FileName>Models\AlbumReview.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Album" />
+      <Property Name="Review" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongReview">
+    <Position X="7.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAEACAAAAAAAA=</HashCode>
+      <FileName>Models\SongReview.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Song" />
+      <Property Name="Review" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Person">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAADAICAAAAAQAAAAQACAAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Album">
+    <Position X="0.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>pAAGABQAAEBjAAEAAAAAEAxAAIgwAUEAAQACwAABAAA=</HashCode>
+      <FileName>Models\Album.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.AlbumTrack">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AlbumTrack.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Song" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Song">
+    <Position X="7.25" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <FileName>Models\Song.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Publication">
+    <Position X="11" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Publication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
