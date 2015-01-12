@@ -72,5 +72,12 @@
       <FileName>Models\LibrarySongMedia.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Bloom.Domain.Models.LibraryPlaylist">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LibraryPlaylist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
