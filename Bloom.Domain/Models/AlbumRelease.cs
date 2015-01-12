@@ -9,6 +9,8 @@ namespace Bloom.Domain.Models
 
         public Guid AlbumId { get; set; }
 
+        public Album Album { get; set; }
+
         public MediaTypes MediaTypes { get; set; }
 
         public DigitalFormat? DigitalFormat { get; set; }

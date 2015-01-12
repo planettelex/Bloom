@@ -42,6 +42,8 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Models\LabelPersonelRole.cs" />
+    <Compile Include="Models\LabelPersonel.cs" />
     <Compile Include="Models\AlbumCollaborator.cs" />
     <Compile Include="Enums\DigitalFormat.cs" />
     <Compile Include="Enums\MediaTypes.cs" />
