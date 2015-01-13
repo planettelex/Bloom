@@ -42,6 +42,14 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Enums\Comparison.cs" />
+    <Compile Include="Enums\FiltersetItemScope.cs" />
+    <Compile Include="Interfaces\IOrder.cs" />
+    <Compile Include="Models\Filterset.cs" />
+    <Compile Include="Models\FiltersetElement.cs" />
+    <Compile Include="Enums\FiltersetElementType.cs" />
+    <Compile Include="Models\FiltersetStatement.cs" />
+    <Compile Include="Interfaces\IFilter.cs" />
     <Compile Include="Models\AlbumReview.cs" />
     <Compile Include="Models\AlbumTag.cs" />
     <Compile Include="Models\AlbumActivity.cs" />
@@ -91,6 +99,8 @@
     <Compile Include="Models\PlaylistMood.cs" />
     <Compile Include="Models\PlaylistActivity.cs" />
     <Compile Include="Models\PlaylistTag.cs" />
+    <Compile Include="Models\FiltersetOrdering.cs" />
+    <Compile Include="Enums\OrderDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Reference.cs" />
     <Compile Include="Models\Role.cs" />
@@ -121,6 +131,7 @@
     <None Include="Diagrams\Activity.cd" />
     <None Include="Diagrams\Album.cd" />
     <None Include="Diagrams\Artist.cd" />
+    <None Include="Diagrams\Filterset.cd" />
     <None Include="Diagrams\Label.cd" />
     <None Include="Diagrams\Library.cd" />
     <None Include="Diagrams\Mood.cd" />

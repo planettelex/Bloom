@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bloom.Domain.Models.Filterset">
+    <Position X="6.5" Y="0.5" Width="1.75" />
+    <AssociationLine Name="Elements" Type="Bloom.Domain.Models.FiltersetElement" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.25" Y="1.125" />
+        <Point X="10.625" Y="1.125" />
+        <Point X="10.625" Y="3" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Ordering" Type="Bloom.Domain.Models.FiltersetOrdering" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="1.125" />
+        <Point X="3.75" Y="1.125" />
+        <Point X="3.75" Y="3" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAAAAAAAAAQAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Filterset.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Elements" />
+      <Property Name="Ordering" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.FiltersetStatement">
+    <Position X="9.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAAAAiAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FiltersetStatement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Filter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.FiltersetElement">
+    <Position X="9.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEABAAAAAAAAAAAAAgAAAACAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FiltersetElement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Statement" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.FiltersetOrdering">
+    <Position X="3" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAACAEAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FiltersetOrdering.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Order" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="Bloom.Domain.Interfaces.IFilter">
+    <Position X="13.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Bloom.Domain.Interfaces.IOrder">
+    <Position X="3" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAABAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOrder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
