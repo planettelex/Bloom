@@ -10,10 +10,10 @@ namespace Bloom.Domain.Models
 
         public Guid FilterId { get; set; }
 
-        public IFilter Filter { get; set; }
+        public IFiltersetFilter Filter { get; set; }
 
         public FiltersetItemScope Scope { get; set; }
 
-        public Comparison Comparison { get; set; }
+        public FilterComparison Comparison { get; set; }
     }
 }

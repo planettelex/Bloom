@@ -10,8 +10,10 @@ namespace Bloom.Domain.Models
 
         public int Priority { get; set; }
 
-        public IOrder Order { get; set; }
+        public IFiltersetOrder Order { get; set; }
 
         public FiltersetItemScope Scope { get; set; }
+
+        public OrderDirection Direction { get; set; }
     }
 }

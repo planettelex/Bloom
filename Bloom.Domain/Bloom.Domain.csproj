@@ -42,14 +42,14 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Enums\Comparison.cs" />
+    <Compile Include="Enums\FilterComparison.cs" />
     <Compile Include="Enums\FiltersetItemScope.cs" />
-    <Compile Include="Interfaces\IOrder.cs" />
+    <Compile Include="Interfaces\IFiltersetOrder.cs" />
     <Compile Include="Models\Filterset.cs" />
     <Compile Include="Models\FiltersetElement.cs" />
     <Compile Include="Enums\FiltersetElementType.cs" />
     <Compile Include="Models\FiltersetStatement.cs" />
-    <Compile Include="Interfaces\IFilter.cs" />
+    <Compile Include="Interfaces\IFiltersetFilter.cs" />
     <Compile Include="Models\AlbumReview.cs" />
     <Compile Include="Models\AlbumTag.cs" />
     <Compile Include="Models\AlbumActivity.cs" />

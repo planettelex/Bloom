@@ -1,12 +1,14 @@
 ﻿namespace Bloom.Domain.Enums
 {
-    public enum Comparison
+    public enum FilterComparison
     {
         Is,
         IsNot,
         BeginsWith,
         EndsWith,
         IsBefore,
-        IsAfter
+        IsAfter,
+        IsInTheLast,
+        IsNotInTheLast
     }
 }

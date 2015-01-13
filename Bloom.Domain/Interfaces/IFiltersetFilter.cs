@@ -5,16 +5,12 @@ using Bloom.Domain.Models;
 
 namespace Bloom.Domain.Interfaces
 {
-    public interface IOrder
+    public interface IFiltersetFilter
     {
         Guid Id { get; set; }
 
         string Name { get; set; }
 
-        OrderDirection Direction { get; set; }
-
-        List<Song> Apply(List<Song> songs);
-
-        List<Album> Apply(List<Album> albums);
+        List<Song> Apply(FiltersetItemScope scope, List<Song> songs, FilterComparison comparison);
     }
 }

@@ -48,25 +48,25 @@
   <Class Name="Bloom.Domain.Models.FiltersetOrdering">
     <Position X="3" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAACAEAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAAACAEACgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetOrdering.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Order" />
     </ShowAsAssociation>
   </Class>
-  <Interface Name="Bloom.Domain.Interfaces.IFilter">
-    <Position X="13.5" Y="5.75" Width="1.5" />
+  <Interface Name="Bloom.Domain.Interfaces.IFiltersetFilter">
+    <Position X="6.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IFilter.cs</FileName>
+      <FileName>Interfaces\IFiltersetFilter.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Bloom.Domain.Interfaces.IOrder">
+  <Interface Name="Bloom.Domain.Interfaces.IFiltersetOrder">
     <Position X="3" Y="5.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAABAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IOrder.cs</FileName>
+      <HashCode>AAACAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFiltersetOrder.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
