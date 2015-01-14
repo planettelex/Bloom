@@ -4,16 +4,19 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="Bloom - Music Browser">
     <Grid>
-        <telerik:RadDocking x:Name="Dock">
+        <!-- There is a known issue (#61) with AllowDragReorder on Retina displays. -->
+        <telerik:RadDocking x:Name="Dock" AllowDragReorder="True">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup>
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>
-                <telerik:RadPaneGroup>
-                    <telerik:RadPane Header="Library" CanFloat="False" />
-                </telerik:RadPaneGroup>
+                <telerik:RadSplitContainer>
+                    <telerik:RadPaneGroup>
+                        <telerik:RadPane Header="Library" />
+                    </telerik:RadPaneGroup>
+                </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>
     </Grid>
