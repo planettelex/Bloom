@@ -66,6 +66,8 @@ namespace Bloom.Domain.Models
 
         public List<SongCredit> Credits { get; set; }
 
-        public List<SongReference> References { get; set; } 
+        public List<SongReference> References { get; set; }
+
+        public List<AlbumTrack> AlbumTracks { get; set; } 
     }
 }

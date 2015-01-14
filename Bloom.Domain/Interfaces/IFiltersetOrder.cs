@@ -11,6 +11,8 @@ namespace Bloom.Domain.Interfaces
 
         string Name { get; set; }
 
-        List<Song> Apply(FiltersetItemScope scope, List<Song> songs, OrderDirection direction);
+        string Label { get; set; }
+
+        void Apply(FiltersetItemScope scope, ref List<Song> songs, OrderDirection direction);
     }
 }

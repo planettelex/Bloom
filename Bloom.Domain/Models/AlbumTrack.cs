@@ -6,6 +6,8 @@ namespace Bloom.Domain.Models
     {
         public Guid AlbumId { get; set; }
 
+        public Album Album { get; set; }
+
         public Guid SongId { get; set; }
 
         public Song Song { get; set; }

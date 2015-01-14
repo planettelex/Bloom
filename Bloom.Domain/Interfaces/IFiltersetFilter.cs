@@ -11,6 +11,12 @@ namespace Bloom.Domain.Interfaces
 
         string Name { get; set; }
 
+        string Label { get; set; }
+
+        Guid FollowupFilterId { get; set; }
+
+        IFiltersetFilter FollowupFilter { get; set; }
+
         List<Song> Apply(FiltersetItemScope scope, List<Song> songs, FilterComparison comparison);
     }
 }

@@ -19,12 +19,12 @@
       <Property Name="Holiday" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
+      <Property Name="Tracks" />
       <Property Name="Artwork" />
       <Property Name="Credits" />
       <Property Name="Releases" />
       <Property Name="Collaborators" />
       <Property Name="References" />
-      <Property Name="Tracks" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.AlbumArtwork">
@@ -45,13 +45,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumTrack">
-    <Position X="7" Y="6.5" Width="1.5" />
+    <Position X="6.75" Y="6.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Song" />
+      <Property Name="Album" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumRelease">
@@ -135,9 +136,12 @@
   <Class Name="Bloom.Domain.Models.Song">
     <Position X="6.75" Y="9.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>ogAGAAQAAIAhMA4AAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="OnAlbums" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

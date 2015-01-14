@@ -6,6 +6,8 @@
         IsNot,
         BeginsWith,
         EndsWith,
+        Contains,
+        DoesNotContain, 
         IsBefore,
         IsAfter,
         IsInTheLast,

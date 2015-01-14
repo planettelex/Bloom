@@ -58,14 +58,14 @@
   <Interface Name="Bloom.Domain.Interfaces.IFiltersetFilter">
     <Position X="6.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACACAAAAEBAAAAAAAAAAAAQAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>Interfaces\IFiltersetFilter.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Bloom.Domain.Interfaces.IFiltersetOrder">
     <Position X="3" Y="5.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAEBAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IFiltersetOrder.cs</FileName>
     </TypeIdentifier>
   </Interface>
