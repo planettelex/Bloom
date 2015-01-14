@@ -1,8 +1,23 @@
 ﻿<Window x:Class="Bloom.Analytics.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Bloom - Music Analytics" Height="350" Width="525">
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="Bloom - Music Analytics">
     <Grid>
-        
+        <!-- There is a known issue (#61) with AllowDragReorder on Retina displays. -->
+        <telerik:RadDocking x:Name="Dock" AllowDragReorder="True">
+            <telerik:RadSplitContainer>
+                <telerik:RadPaneGroup>
+                    <telerik:RadPane PaneHeaderVisibility="Collapsed" />
+                </telerik:RadPaneGroup>
+            </telerik:RadSplitContainer>
+            <telerik:RadDocking.DocumentHost>
+                <telerik:RadSplitContainer>
+                    <telerik:RadPaneGroup>
+                        <telerik:RadPane Header="Library" />
+                    </telerik:RadPaneGroup>
+                </telerik:RadSplitContainer>
+            </telerik:RadDocking.DocumentHost>
+        </telerik:RadDocking>
     </Grid>
 </Window>
