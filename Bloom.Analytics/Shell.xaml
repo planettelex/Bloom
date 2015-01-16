@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Bloom.Analytics.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://www.codeplex.com/prism"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="Bloom - Music Analytics">
     <Grid>
@@ -9,45 +10,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <telerik:RadMenu x:Name="MainMenu" Grid.Row="0">
-            <telerik:RadMenuItem Header="File">
-                <telerik:RadMenuItem Header="Connected Libraries..." />
-                <telerik:RadMenuItem Header="Exit Analytics" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Edit">
-                <telerik:RadMenuItem Header="Preferences..." />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Analytics">
-                <telerik:RadMenuItem Header="Duplicate Tab" />
-                <telerik:RadMenuItem Header="Close Other Tabs" />
-                <telerik:RadMenuItem Header="Close All Tabs" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Browser">
-                <telerik:RadMenuItem Header="Go to Browser" />
-                <telerik:RadMenuItem Header="Open in Browser" IsEnabled="False" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Player">
-                <telerik:RadMenuItem Header="Go to Player" />
-                <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="View">
-                <telerik:RadMenuItem Header="Full Screen" />
-                <telerik:RadMenuItem Header="Hide Sidebar" />
-                <telerik:RadMenuItem Header="Configure Sidebar..." />
-                <telerik:RadMenuItem Header="Skins">
-                    <telerik:RadMenuItem Header="Rock" />
-                    <telerik:RadMenuItem Header="Pop" />
-                    <telerik:RadMenuItem Header="Goth" />
-                </telerik:RadMenuItem>
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Help">
-                <telerik:RadMenuItem Header="About" />
-                <telerik:RadMenuItem Header="Topics" />
-                <telerik:RadMenuItem Header="Video Tutorials" />
-                <telerik:RadMenuItem Header="Online Help" />
-                <telerik:RadMenuItem Header="Get Involved" />
-            </telerik:RadMenuItem>
-        </telerik:RadMenu>
+        <ItemsControl Name="MenuRegion" Grid.Row="0"
+                      prism:RegionManager.RegionName="MenuRegion" 
+                      prism:RegionManager.RegionContext="{Binding}" />
         
         <!-- There is a known issue (#61) with AllowDragReorder on Retina displays. -->
         <telerik:RadDocking x:Name="Dock" Grid.Row="1" AllowDragReorder="True">
