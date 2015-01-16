@@ -4,8 +4,66 @@
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="Bloom - Music Browser">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <telerik:RadMenu x:Name="MainMenu" Grid.Row="0">
+            <telerik:RadMenuItem Header="File">
+                <telerik:RadMenuItem Header="New">
+                    <telerik:RadMenuItem Header="Playlist" />
+                    <telerik:RadMenuItem Header="Folder" />
+                    <telerik:RadMenuItem Header="Library" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Open Library..." />
+                <telerik:RadMenuItem Header="Save Library As..." />
+                <telerik:RadMenuItem Header="Add To Library..." />
+                <telerik:RadMenuItem Header="Library Operations..." />
+                <telerik:RadMenuItem Header="Close Library" />
+                <telerik:RadMenuItem Header="Exit Browser" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Edit">
+                <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Copy" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Paste" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Delete" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Preferences..." />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Browser">
+                <telerik:RadMenuItem Header="Duplicate Tab" />
+                <telerik:RadMenuItem Header="Close Other Tabs" />
+                <telerik:RadMenuItem Header="Close All Tabs" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Player">
+                <telerik:RadMenuItem Header="Go to Player" />
+                <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Analytics">
+                <telerik:RadMenuItem Header="Go to Analytics" />
+                <telerik:RadMenuItem Header="Send to Analytics" IsEnabled="False" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="View">
+                <telerik:RadMenuItem Header="Full Screen" />
+                <telerik:RadMenuItem Header="Hide Sidebar" />
+                <telerik:RadMenuItem Header="Configure Sidebar..." />
+                <telerik:RadMenuItem Header="Skins">
+                    <telerik:RadMenuItem Header="Rock" />
+                    <telerik:RadMenuItem Header="Pop" />
+                    <telerik:RadMenuItem Header="Goth" />
+                </telerik:RadMenuItem>
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Help">
+                <telerik:RadMenuItem Header="About" />
+                <telerik:RadMenuItem Header="Topics" />
+                <telerik:RadMenuItem Header="Video Tutorials" />
+                <telerik:RadMenuItem Header="Online Help" />
+                <telerik:RadMenuItem Header="Get Involved" />
+            </telerik:RadMenuItem>
+        </telerik:RadMenu>
+        
         <!-- There is a known issue (#61) with AllowDragReorder on Retina displays. -->
-        <telerik:RadDocking x:Name="Dock" AllowDragReorder="True">
+        <telerik:RadDocking x:Name="Dock" Grid.Row="1" AllowDragReorder="True">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup>
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
@@ -19,5 +77,6 @@
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>
+        
     </Grid>
 </Window>
