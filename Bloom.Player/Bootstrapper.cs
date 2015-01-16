@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Bloom.Services;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
 
@@ -24,6 +25,7 @@ namespace Bloom.Player
         /// </remarks>
         protected override DependencyObject CreateShell()
         {
+            InjectServices();
             return Container.Resolve<Shell>();
         }
 
@@ -36,6 +38,12 @@ namespace Bloom.Player
 
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
+        }
+
+        private void InjectServices()
+        {
+            Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ISkinningService>();
         }
     }
 }
