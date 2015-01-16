@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using Bloom.Browser.Menu;
 using Bloom.Services;
+using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
 
@@ -40,11 +42,24 @@ namespace Bloom.Browser
             Application.Current.MainWindow.Show();
         }
 
-        private void InjectServices()
+        /// <summary>
+        /// Configures the <see cref="T:Microsoft.Practices.Prism.Modularity.IModuleCatalog" /> used by Prism.
+        /// </summary>
+        protected override void ConfigureModuleCatalog()
+        {
+            base.ConfigureModuleCatalog();
+
+            var moduleCatalog = (ModuleCatalog) ModuleCatalog;
+            moduleCatalog.AddModule(typeof (MenuModule));
+        }
+
+        /// <summary>
+        /// Injects the services into the DI container.
+        /// </summary>
+        protected void InjectServices()
         {
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
-
         }
     }
 }

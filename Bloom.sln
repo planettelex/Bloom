@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Resources", "Bloom.Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Services", "Bloom.Services\Bloom.Services.csproj", "{B14EDEA5-4480-49CA-9A2C-7F38946F7D5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.Menu", "Bloom.Browser.Menu\Bloom.Browser.Menu.csproj", "{AF3C8883-0666-4244-BC71-F23D6E5585DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{B14EDEA5-4480-49CA-9A2C-7F38946F7D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B14EDEA5-4480-49CA-9A2C-7F38946F7D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B14EDEA5-4480-49CA-9A2C-7F38946F7D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF3C8883-0666-4244-BC71-F23D6E5585DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF3C8883-0666-4244-BC71-F23D6E5585DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF3C8883-0666-4244-BC71-F23D6E5585DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF3C8883-0666-4244-BC71-F23D6E5585DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,5 +96,6 @@ Global
 		{5904468A-1DF3-400F-BF35-E975C2CA9F6B} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{8D643812-F61A-41E0-BDE1-B81B3BD80794} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{B14EDEA5-4480-49CA-9A2C-7F38946F7D5E} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
+		{AF3C8883-0666-4244-BC71-F23D6E5585DB} = {F76A0826-655A-4EF7-BA15-F6BBE1EA6AA0}
 	EndGlobalSection
 EndGlobal
