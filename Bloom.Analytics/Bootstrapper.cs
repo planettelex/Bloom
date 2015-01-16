@@ -49,8 +49,8 @@ namespace Bloom.Analytics
         {
             base.ConfigureModuleCatalog();
 
-            var moduleCatalog = (ModuleCatalog)ModuleCatalog;
-            moduleCatalog.AddModule(typeof(MenuModule));
+            var moduleCatalog = (ModuleCatalog) ModuleCatalog;
+            moduleCatalog.AddModule(typeof (MenuModule));
         }
 
         /// <summary>

@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="Bloom.Player.Menu.Views.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <telerik:RadMenu x:Name="MainMenu">
+        <telerik:RadMenuItem Header="File">
+            <telerik:RadMenuItem Header="Connected Libraries..." />
+            <telerik:RadMenuItem Header="Open Sources..." />
+            <telerik:RadMenuItem Header="Save Sources" />
+            <telerik:RadMenuItem Header="Save Sources As..." />
+            <telerik:RadMenuItem Header="Save Selection As Playlist..." IsEnabled="False" />
+            <telerik:RadMenuItem Header="Clear All Sources" />
+            <telerik:RadMenuItem Header="Exit Player" />
+        </telerik:RadMenuItem>
+        <telerik:RadMenuItem Header="Edit">
+            <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
+            <telerik:RadMenuItem Header="Copy" IsEnabled="False" />
+            <telerik:RadMenuItem Header="Paste" IsEnabled="False" />
+            <telerik:RadMenuItem Header="Remove" IsEnabled="False" />
+            <telerik:RadMenuItem Header="Preferences..." />
+        </telerik:RadMenuItem>
+        <telerik:RadMenuItem Header="Player">
+            <telerik:RadMenuItem Header="Pause" />
+            <telerik:RadMenuItem Header="Pause At End Of">
+                <telerik:RadMenuItem Header="Song" />
+                <telerik:RadMenuItem Header="Album" />
+                <telerik:RadMenuItem Header="Playlist" IsEnabled="False" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Next" />
+            <telerik:RadMenuItem Header="Previous" />
+            <telerik:RadMenuItem Header="Increase Volume" />
+            <telerik:RadMenuItem Header="Decrease Volume" />
+            <telerik:RadMenuItem Header="Shuffle Upcoming" />
+            <telerik:RadMenuItem Header="Recycle Played" />
+            <telerik:RadMenuItem Header="Auto Order" />
+            <telerik:RadMenuItem Header="Auto Crossfade" />
+            <telerik:RadMenuItem Header="Auto Share" />
+            <telerik:RadMenuItem Header="Configure Sources..." />
+            <telerik:RadMenuItem Header="Configure Social..." />
+        </telerik:RadMenuItem>
+        <telerik:RadMenuItem Header="Browser">
+            <telerik:RadMenuItem Header="Go to Browser" />
+            <telerik:RadMenuItem Header="Open in Browser" IsEnabled="False" />
+        </telerik:RadMenuItem>
+        <telerik:RadMenuItem Header="Analytics">
+            <telerik:RadMenuItem Header="Go to Analytics" />
+            <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
+        </telerik:RadMenuItem>
+        <telerik:RadMenuItem Header="View">
+            <telerik:RadMenuItem Header="Full Screen" />
+            <telerik:RadMenuItem Header="Hide Upcoming" />
+            <telerik:RadMenuItem Header="Hide Played" />
+            <telerik:RadMenuItem Header="Hide Waveforms" />
+            <telerik:RadMenuItem Header="Hide Visuals" />
+            <telerik:RadMenuItem Header="Configure Sidebar..." />
+            <telerik:RadMenuItem Header="Skins">
+                <telerik:RadMenuItem Header="Rock" />
+                <telerik:RadMenuItem Header="Pop" />
+                <telerik:RadMenuItem Header="Goth" />
+            </telerik:RadMenuItem>
+        </telerik:RadMenuItem>
+        <telerik:RadMenuItem Header="Help">
+            <telerik:RadMenuItem Header="About" />
+            <telerik:RadMenuItem Header="Topics" />
+            <telerik:RadMenuItem Header="Video Tutorials" />
+            <telerik:RadMenuItem Header="Online Help" />
+            <telerik:RadMenuItem Header="Get Involved" />
+        </telerik:RadMenuItem>
+    </telerik:RadMenu>
+    
+</UserControl>
