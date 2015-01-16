@@ -20,5 +20,15 @@ namespace Bloom.Browser
 
             skinningService.SetSkin(state.Skin);
         }
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs" /> that contains the event data.</param>
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            Properties.Settings.Default.Save();
+        }
     }
 }
