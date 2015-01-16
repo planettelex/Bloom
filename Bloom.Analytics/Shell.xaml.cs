@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Bloom.Services;
 
 namespace Bloom.Analytics
 {
@@ -8,11 +9,16 @@ namespace Bloom.Analytics
     public partial class Shell : Window
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Shell"/> class.
+        /// Initializes a new instance of the <see cref="Shell" /> class.
         /// </summary>
-        public Shell()
+        /// <param name="skinningService">The skinning service.</param>
+        public Shell(ISkinningService skinningService)
         {
             InitializeComponent();
+            var state = new State();
+            DataContext = state;
+
+            skinningService.SetSkin(state.Skin);
         }
     }
 }

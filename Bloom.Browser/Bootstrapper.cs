@@ -36,7 +36,7 @@ namespace Bloom.Browser
         {
             base.InitializeShell();
 
-            Application.Current.MainWindow = (Window)Shell;
+            Application.Current.MainWindow = (Window) Shell;
             Application.Current.MainWindow.Show();
         }
 
@@ -44,6 +44,7 @@ namespace Bloom.Browser
         {
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
+
         }
     }
 }
