@@ -41,7 +41,7 @@
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Analytics">
                 <telerik:RadMenuItem Header="Go to Analytics" />
-                <telerik:RadMenuItem Header="Send to Analytics" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="View">
                 <telerik:RadMenuItem Header="Full Screen" />
