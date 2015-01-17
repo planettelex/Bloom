@@ -2,9 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
     
-	<Style TargetType="{x:Type telerik:RadMenuItem}">
-        <Setter Property="Padding" Value="6,3"/>
-        <Setter Property="Background" Value="{DynamicResource NormalForegroundBrush}" />
+    <Style TargetType="{x:Type telerik:RadMenu}">
+        <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
+    </Style>
+
+    <Style TargetType="{x:Type telerik:RadMenuItem}">
+        <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource NormalForegroundBrush}" />
         <Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type telerik:RadMenuItem}">
@@ -16,33 +20,22 @@
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFFFDCAB" Offset="0"/>
-														<GradientStop Color="#FFFFD18F" Offset="0.5"/>
-														<GradientStop Color="#FFFE9227" Offset="0.5"/>
-														<GradientStop Color="#FFFFBA74" Offset="0"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FF282828"/>
-														<GradientStop Color="#FF5F5F5F" Offset="1"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightInnerBorderVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFB69A78"/>
-														<GradientStop Color="#FFFFE17A" Offset="0.126"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightVisual"/>
@@ -185,14 +178,11 @@
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
-							<Border x:Name="HighlightVisual" BorderBrush="#FFFFC92B" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="1" Opacity="0">
-								<Border.Background>
-									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-										<GradientStop Color="#FFFFFBDA" Offset="0"/>
-										<GradientStop Color="#FFFFFBA3" Offset="1"/>
-									</LinearGradientBrush>
-								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="1" CornerRadius="0"/>
+                            <Border x:Name="HighlightVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" Grid.ColumnSpan="4" CornerRadius="0" Opacity="0">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                </Border.Background>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -210,9 +200,9 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-									<Border BorderBrush="#FF848484" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
 										<Grid>
-											<Border x:Name="IconSeparatorBackground" BorderBrush="#FF848484" BorderThickness="0,0,1,0" Background="#FFF0F0F0" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
 												<ScrollViewer.Style>
 													<Style TargetType="{x:Type ScrollViewer}">
@@ -286,7 +276,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -367,7 +357,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -417,32 +407,21 @@
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFFFDCAB" Offset="0"/>
-														<GradientStop Color="#FFFFD18F" Offset="0.5"/>
-														<GradientStop Color="#FFFE9227" Offset="0.5"/>
-														<GradientStop Color="#FFFFBA74" Offset="0"/>
-													</LinearGradientBrush>
+                                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 												</DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FF282828"/>
-														<GradientStop Color="#FF5F5F5F" Offset="1"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightInnerBorderVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFB69A78"/>
-														<GradientStop Color="#FFFFE17A" Offset="0.126"/>
-													</LinearGradientBrush>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
 												</DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
@@ -586,14 +565,11 @@
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
-							<Border x:Name="HighlightVisual" BorderBrush="#FFFFC92B" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="1" Opacity="0">
+                            <Border x:Name="HighlightVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" Grid.ColumnSpan="4" CornerRadius="0" Opacity="0">
 								<Border.Background>
-									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-										<GradientStop Color="#FFFFFBDA" Offset="0"/>
-										<GradientStop Color="#FFFFFBA3" Offset="1"/>
-									</LinearGradientBrush>
+                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="1" CornerRadius="0"/>
+								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -611,9 +587,9 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-									<Border BorderBrush="#FF848484" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
 										<Grid>
-											<Border x:Name="IconSeparatorBackground" BorderBrush="#FF848484" BorderThickness="0,0,1,0" Background="#FFF0F0F0" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
 												<ScrollViewer.Style>
 													<Style TargetType="{x:Type ScrollViewer}">
@@ -687,7 +663,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+																							<Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -768,7 +744,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+																							<Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -818,33 +794,22 @@
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFFFDCAB" Offset="0"/>
-														<GradientStop Color="#FFFFD18F" Offset="0.5"/>
-														<GradientStop Color="#FFFE9227" Offset="0.5"/>
-														<GradientStop Color="#FFFFBA74" Offset="0"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FF282828"/>
-														<GradientStop Color="#FF5F5F5F" Offset="1"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightInnerBorderVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFB69A78"/>
-														<GradientStop Color="#FFFFE17A" Offset="0.126"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightVisual"/>
@@ -987,14 +952,11 @@
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
-							<Border x:Name="HighlightVisual" BorderBrush="#FFFFC92B" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="1" Opacity="0">
+                            <Border x:Name="HighlightVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" Grid.ColumnSpan="4" CornerRadius="0" Opacity="0">
 								<Border.Background>
-									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-										<GradientStop Color="#FFFFFBDA" Offset="0"/>
-										<GradientStop Color="#FFFFFBA3" Offset="1"/>
-									</LinearGradientBrush>
+                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="1" CornerRadius="0"/>
+								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -1012,9 +974,9 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-									<Border BorderBrush="#FF848484" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
 										<Grid>
-											<Border x:Name="IconSeparatorBackground" BorderBrush="#FF848484" BorderThickness="0,0,1,0" Background="#FFF0F0F0" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
 												<ScrollViewer.Style>
 													<Style TargetType="{x:Type ScrollViewer}">
@@ -1088,7 +1050,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -1169,7 +1131,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -1219,33 +1181,22 @@
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFFFDCAB" Offset="0"/>
-														<GradientStop Color="#FFFFD18F" Offset="0.5"/>
-														<GradientStop Color="#FFFE9227" Offset="0.5"/>
-														<GradientStop Color="#FFFFBA74" Offset="0"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FF282828"/>
-														<GradientStop Color="#FF5F5F5F" Offset="1"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightInnerBorderVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFB69A78"/>
-														<GradientStop Color="#FFFFE17A" Offset="0.126"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightVisual"/>
@@ -1388,14 +1339,11 @@
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
-							<Border x:Name="HighlightVisual" BorderBrush="#FFFFC92B" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="1" Opacity="0">
-								<Border.Background>
-									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-										<GradientStop Color="#FFFFFBDA" Offset="0"/>
-										<GradientStop Color="#FFFFFBA3" Offset="1"/>
-									</LinearGradientBrush>
-								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="1" CornerRadius="0"/>
+                            <Border x:Name="HighlightVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" Grid.ColumnSpan="4" CornerRadius="0" Opacity="0">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                </Border.Background>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -1413,9 +1361,9 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-									<Border BorderBrush="#FF848484" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
 										<Grid>
-											<Border x:Name="IconSeparatorBackground" BorderBrush="#FF848484" BorderThickness="0,0,1,0" Background="#FFF0F0F0" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
 												<ScrollViewer.Style>
 													<Style TargetType="{x:Type ScrollViewer}">
@@ -1489,7 +1437,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+																							<Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -1570,7 +1518,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -1620,33 +1568,22 @@
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFFFDCAB" Offset="0"/>
-														<GradientStop Color="#FFFFD18F" Offset="0.5"/>
-														<GradientStop Color="#FFFE9227" Offset="0.5"/>
-														<GradientStop Color="#FFFFBA74" Offset="0"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FF282828"/>
-														<GradientStop Color="#FF5F5F5F" Offset="1"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="HighlightInnerBorderVisual">
 											<DiscreteObjectKeyFrame KeyTime="0">
 												<DiscreteObjectKeyFrame.Value>
-													<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-														<GradientStop Color="#FFB69A78"/>
-														<GradientStop Color="#FFFFE17A" Offset="0.126"/>
-													</LinearGradientBrush>
-												</DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
 											</DiscreteObjectKeyFrame>
 										</ObjectAnimationUsingKeyFrames>
 										<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="HighlightVisual"/>
@@ -1789,14 +1726,11 @@
 								<ColumnDefinition Width="Auto"/>
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
-							<Border x:Name="HighlightVisual" BorderBrush="#FFFFC92B" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="1" Opacity="0">
+                            <Border x:Name="HighlightVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" Grid.ColumnSpan="4" CornerRadius="0" Opacity="0">
 								<Border.Background>
-									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-										<GradientStop Color="#FFFFFBDA" Offset="0"/>
-										<GradientStop Color="#FFFFFBA3" Offset="1"/>
-									</LinearGradientBrush>
+                                    <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="1" CornerRadius="0"/>
+								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -1814,9 +1748,9 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-									<Border BorderBrush="#FF848484" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
 										<Grid>
-											<Border x:Name="IconSeparatorBackground" BorderBrush="#FF848484" BorderThickness="0,0,1,0" Background="#FFF0F0F0" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                            <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
 												<ScrollViewer.Style>
 													<Style TargetType="{x:Type ScrollViewer}">
@@ -1890,7 +1824,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -1971,7 +1905,7 @@
 																							<Setter Property="IsTabStop" Value="False"/>
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
-																							<Setter Property="Background" Value="#FFDEDEDE"/>
+                                                                                            <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
 																							<Setter Property="BorderBrush" Value="White"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
@@ -2044,12 +1978,12 @@
 							</Grid.ColumnDefinitions>
 							<Grid Grid.Column="0" HorizontalAlignment="Left" Width="{TemplateBinding IconColumnWidth}"/>
 							<Grid Grid.Column="1" Height="2" Margin="4,4,4,3">
-								<Rectangle Fill="#FF848484" Height="1" VerticalAlignment="Top"/>
+                                <Rectangle Fill="{DynamicResource MenuBorderBrush}" Height="1" VerticalAlignment="Top"/>
 								<Rectangle Fill="Transparent" Height="1" VerticalAlignment="Bottom"/>
 							</Grid>
 						</Grid>
 						<Grid x:Name="VerticalSeparator" Margin="2" Visibility="Collapsed" Width="2">
-							<Rectangle Fill="#FF848484" HorizontalAlignment="Left" Width="1"/>
+                            <Rectangle Fill="{DynamicResource MenuBorderBrush}" HorizontalAlignment="Left" Width="1"/>
 							<Rectangle Fill="Transparent" HorizontalAlignment="Right" Width="1"/>
 						</Grid>
 					</Grid>
@@ -2060,7 +1994,7 @@
 		<Style.BasedOn>
 			<Style TargetType="{x:Type telerik:RadMenuItem}">
 				<Setter Property="Background" Value="Transparent"/>
-				<Setter Property="BorderBrush" Value="#FF848484"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 				<Setter Property="BorderThickness" Value="0"/>
 				<Setter Property="HorizontalContentAlignment" Value="Left"/>
 				<Setter Property="VerticalContentAlignment" Value="Center"/>

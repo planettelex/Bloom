@@ -50,9 +50,9 @@
             <telerik:RadMenuItem Header="Hide Sidebar" />
             <telerik:RadMenuItem Header="Configure Sidebar..." />
             <telerik:RadMenuItem Header="Skins">
-                <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
-                <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
-                <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
+                <telerik:RadMenuItem Header="Rock" IsCheckable="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
+                <telerik:RadMenuItem Header="Pop" IsCheckable="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
+                <telerik:RadMenuItem Header="Goth" IsCheckable="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
             </telerik:RadMenuItem>
         </telerik:RadMenuItem>
         <telerik:RadMenuItem Header="Help">
