@@ -1,4 +1,4 @@
-﻿namespace Bloom.Browser
+﻿namespace Bloom.Browser.Common
 {
     /// <summary>
     /// Encapsulates the state of the player application.
@@ -29,5 +29,13 @@
             }
         }
         private string _skin;
+
+        /// <summary>
+        /// Saves the state to the default user settings.
+        /// </summary>
+        public void Save()
+        {
+            Properties.Settings.Default.Save();
+        }
     }
 }

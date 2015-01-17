@@ -5,13 +5,13 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="25" d:DesignWidth="800">
     
     <UserControl.Resources>
         <ResourceDictionary Source="../Resources/Styles.xaml" />
     </UserControl.Resources>
 
-    <telerik:RadMenu x:Name="Menu">
+    <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
         <telerik:RadMenuItem Header="File">
             <telerik:RadMenuItem Header="New">
                 <telerik:RadMenuItem Header="Playlist" />
@@ -50,9 +50,9 @@
             <telerik:RadMenuItem Header="Hide Sidebar" />
             <telerik:RadMenuItem Header="Configure Sidebar..." />
             <telerik:RadMenuItem Header="Skins">
-                <telerik:RadMenuItem Header="Rock" />
-                <telerik:RadMenuItem Header="Pop" />
-                <telerik:RadMenuItem Header="Goth" />
+                <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
+                <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
+                <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
             </telerik:RadMenuItem>
         </telerik:RadMenuItem>
         <telerik:RadMenuItem Header="Help">

@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿using Bloom.Browser.Common;
 using Bloom.Services;
 
 namespace Bloom.Browser
@@ -6,7 +6,7 @@ namespace Bloom.Browser
     /// <summary>
     /// Interaction logic for Shell.xaml
     /// </summary>
-    public partial class Shell : Window
+    public partial class Shell
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Shell"/> class.
@@ -28,7 +28,8 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            Properties.Settings.Default.Save();
+            var state = (State) DataContext;
+            state.Save();
         }
     }
 }
