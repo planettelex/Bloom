@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using Bloom.Browser.Common;
+using Bloom.Services;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 
@@ -14,13 +15,23 @@ namespace Bloom.Browser.Menu.ViewModels
         /// Initializes a new instance of the <see cref="MenuViewModel" /> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public MenuViewModel(IRegionManager regionManager)
+        /// <param name="skinningService">The skinning service.</param>
+        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService)
         {
             State = (State) regionManager.Regions["MenuRegion"].Context;
+            SkinningService = skinningService;
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
         }
 
+        /// <summary>
+        /// Gets the application state.
+        /// </summary>
         public State State { get; private set; }
+
+        /// <summary>
+        /// Gets the skinning service.
+        /// </summary>
+        public ISkinningService SkinningService { get; private set; }
 
         /// <summary>
         /// Gets or sets the set skin command.
@@ -34,7 +45,8 @@ namespace Bloom.Browser.Menu.ViewModels
 
         private void SetSkin(string skinName)
         {
-            
+            State.Skin = skinName;
+            SkinningService.SetSkin(skinName);
         }
     }
 }
