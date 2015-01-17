@@ -3,9 +3,9 @@
     
     <ResourceDictionary.MergedDictionaries>
 
-        <!-- Define Colors  -->
+        <ResourceDictionary Source="Brushes.xaml" />
 
-        <!-- Reference Icons  -->
+        <!-- Icons  -->
         <ResourceDictionary Source="Icons/WindowCloseIcon.xaml" />
         <ResourceDictionary Source="Icons/WindowMaximizeIcon.xaml" />
         <ResourceDictionary Source="Icons/WindowMinimizeIcon.xaml" />

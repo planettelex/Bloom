@@ -4,6 +4,11 @@
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="Bloom - Music Browser">
+    
+    <Window.Resources>
+        <ResourceDictionary Source="Resources/Styles.xaml" />
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -15,7 +20,7 @@
                       prism:RegionManager.RegionContext="{Binding}" />
         
         <!-- There is a known issue (#61) with AllowDragReorder on Retina displays. -->
-        <telerik:RadDocking x:Name="Dock" Grid.Row="1" AllowDragReorder="True">
+        <telerik:RadDocking x:Name="Dock" Grid.Row="1" Style="{StaticResource DockStyle}">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup>
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />

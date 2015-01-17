@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Brushes for the Rock skin -->
+
+    <SolidColorBrush x:Key="NormalForegroundBrush" Color="#FEFEFE" />
+
+    <LinearGradientBrush x:Key="MenuBackgroundBrush">
+        <GradientStop Color="#333333" />
+        <GradientStop Color="#282828" />
+    </LinearGradientBrush>
+    
+    <SolidColorBrush x:Key="ShellBackgroundBrush" Color="#282828" />
+
+</ResourceDictionary>
