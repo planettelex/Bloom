@@ -11,7 +11,7 @@
         <ResourceDictionary Source="../Resources/Styles.xaml" />
     </UserControl.Resources>
 
-    <telerik:RadMenu x:Name="Menu" Style="{StaticResource MenuStyle}">
+    <telerik:RadMenu x:Name="Menu">
         <telerik:RadMenuItem Header="File">
             <telerik:RadMenuItem Header="New">
                 <telerik:RadMenuItem Header="Playlist" />
