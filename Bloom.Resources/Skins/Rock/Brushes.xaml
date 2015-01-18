@@ -8,15 +8,19 @@
     <Color x:Key="MenuBackgroundColor">#FF1330EB</Color>
     <Color x:Key="MenuBorderColor">#FF222222</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FF76C2F5</Color>
-    <Color x:Key="ShellBackgroundColor">#FF282828</Color>
+    
+    <Color x:Key="ShellBackgroundColor">#FF610585</Color>
+    <Color x:Key="SidebarBackgroundColor">#FF033E91</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
+    
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuBorderBrush" Color="{StaticResource MenuBorderColor}" />
     <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemSelectedBackgroundBrush" Color="{StaticResource MenuItemSelectedBackgroundColor}" />
     
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
 
 </ResourceDictionary>

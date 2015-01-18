@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bloom.Browser.Common;
 using Bloom.Browser.Menu.ViewModels;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
@@ -29,6 +30,14 @@ namespace Bloom.Browser.Menu.Views
         }
 
         /// <summary>
+        /// Gets the application state.
+        /// </summary>
+        public State State
+        {
+            get { return ((MenuViewModel) DataContext).State; }
+        }
+
+        /// <summary>
         /// Called when a menu item is clicked.
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -36,8 +45,15 @@ namespace Bloom.Browser.Menu.Views
         private void OnItemClick(object sender, RadRoutedEventArgs e)
         {
             var currentItem = e.OriginalSource as RadMenuItem;
+            
             if (currentItem != null && currentItem.IsCheckable && currentItem.Tag != null)
             {
+                if ((string) currentItem.CommandParameter == State.Skin)
+                {
+                    currentItem.IsChecked = true;
+                    return;
+                }
+
                 var siblingItems = GetSiblingGroupItems(currentItem);
                 if (siblingItems == null) 
                     return;
@@ -48,6 +64,7 @@ namespace Bloom.Browser.Menu.Views
                         item.IsChecked = false;
                 }
             }
+            
         }
 
         /// <summary>

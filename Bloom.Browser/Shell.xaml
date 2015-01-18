@@ -19,10 +19,9 @@
                       prism:RegionManager.RegionName="MenuRegion" 
                       prism:RegionManager.RegionContext="{Binding}" />
         
-        <!-- There is a known issue (#61) with AllowDragReorder on Retina displays. -->
-        <telerik:RadDocking x:Name="Dock" Grid.Row="1" Style="{StaticResource DockStyle}">
+        <telerik:RadDocking x:Name="Dock" Grid.Row="1">
             <telerik:RadSplitContainer>
-                <telerik:RadPaneGroup>
+                <telerik:RadPaneGroup Style="{StaticResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>

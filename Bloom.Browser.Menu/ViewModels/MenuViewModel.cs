@@ -45,6 +45,9 @@ namespace Bloom.Browser.Menu.ViewModels
 
         private void SetSkin(string skinName)
         {
+            if (State.Skin == skinName)
+                return;
+
             State.Skin = skinName;
             SkinningService.SetSkin(skinName);
         }

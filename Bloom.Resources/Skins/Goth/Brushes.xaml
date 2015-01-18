@@ -4,19 +4,23 @@
     <!-- Goth -->
 
     <!-- Colors -->
-    <Color x:Key="NormalForegroundColor">#FF121212</Color>
+    <Color x:Key="NormalForegroundColor">#FF232323</Color>
     <Color x:Key="MenuBackgroundColor">#FFFADD1E</Color>
     <Color x:Key="MenuBorderColor">#FF222222</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FFFAF79B</Color>
-    <Color x:Key="ShellBackgroundColor">#FF282828</Color>
+    
+    <Color x:Key="ShellBackgroundColor">#FFA19C0E</Color>
+    <Color x:Key="SidebarBackgroundColor">#FF666653</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
+    
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuBorderBrush" Color="{StaticResource MenuBorderColor}" />
     <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemSelectedBackgroundBrush" Color="{StaticResource MenuItemSelectedBackgroundColor}" />
 
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
 
 </ResourceDictionary>

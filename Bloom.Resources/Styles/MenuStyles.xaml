@@ -9,6 +9,7 @@
     <Style TargetType="{x:Type telerik:RadMenuItem}">
         <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource NormalForegroundBrush}" />
+        <Setter Property="Padding" Value="16, 4" />
         <Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type telerik:RadMenuItem}">
@@ -782,7 +783,7 @@
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
-		</Setter>
+		</Setter> 
 		<Setter Property="TopLevelItemTemplateKey">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type telerik:RadMenuItem}">
