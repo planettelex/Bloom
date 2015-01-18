@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bloom.Browser.Menu.ViewModels;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
@@ -18,6 +19,13 @@ namespace Bloom.Browser.Menu.Views
         {
             InitializeComponent();
             DataContext = viewModel;
+
+            // Check the current skin.
+            foreach (RadMenuItem menuItem in Skins.Items)
+            {
+                var skinName = (string) menuItem.CommandParameter;
+                menuItem.IsChecked = skinName.Equals(viewModel.State.Skin, StringComparison.InvariantCultureIgnoreCase);
+            }
         }
 
         /// <summary>
@@ -45,10 +53,10 @@ namespace Bloom.Browser.Menu.Views
         /// <summary>
         /// Gets the sibling group items of the provided current item.
         /// </summary>
-        /// <param name="currentItem">The current item.</param>
-        private IEnumerable<RadMenuItem> GetSiblingGroupItems(RadMenuItem currentItem)
+        /// <param name="menuItem">The current item.</param>
+        private IEnumerable<RadMenuItem> GetSiblingGroupItems(RadMenuItem menuItem)
         {
-            var parentItem = currentItem.ParentOfType<RadMenuItem>();
+            var parentItem = menuItem.ParentOfType<RadMenuItem>();
             if (parentItem == null)
                 return null;
             
@@ -59,10 +67,11 @@ namespace Bloom.Browser.Menu.Views
                 if (container == null || container.Tag == null)
                     continue;
                 
-                if (container.Tag.Equals(currentItem.Tag))
+                if (container.Tag.Equals(menuItem.Tag))
                     items.Add(container);
             }
             return items;
         }
+
     }
 }

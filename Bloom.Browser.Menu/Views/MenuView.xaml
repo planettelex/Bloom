@@ -49,7 +49,7 @@
             <telerik:RadMenuItem Header="Full Screen" />
             <telerik:RadMenuItem Header="Hide Sidebar" />
             <telerik:RadMenuItem Header="Configure Sidebar..." />
-            <telerik:RadMenuItem Header="Skins">
+            <telerik:RadMenuItem x:Name="Skins" Tag="Skin" Header="Skins">
                 <telerik:RadMenuItem Header="Rock" IsCheckable="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
                 <telerik:RadMenuItem Header="Pop" IsCheckable="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
                 <telerik:RadMenuItem Header="Goth" IsCheckable="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
