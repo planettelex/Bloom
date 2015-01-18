@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        Title="Bloom - Music Browser">
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        Title="Bloom Music Browser">
     
     <Window.Resources>
         <ResourceDictionary Source="Resources/Styles.xaml" />
@@ -12,14 +15,38 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" MouseLeftButtonDown="DragWindow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" Text="Bloom Music Browser" />
+            <Button x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButtonClick">
+                <Image Style="{StaticResource MinimizeIconStyle}" />
+            </Button>
+            <Button x:Name="MaximizeButton" Grid.Column="2" Click="MaximizeButtonClick">
+                <Image Style="{StaticResource MaximizeIconStyle}" />
+            </Button>
+            <Button x:Name="RestoreButton" Grid.Column="2" Click="RestoreButtonClick">
+                <Image Style="{StaticResource RestoreIconStyle}" />
+            </Button>
+            <Button x:Name="CloseButton" Grid.Column="3" Click="CloseButtonClick">
+                <Image Style="{StaticResource CloseIconStyle}" />
+            </Button>
+        </Grid>
         
-        <ItemsControl Name="MenuRegion" Grid.Row="0"
+        <ItemsControl Name="MenuRegion" Grid.Row="1"
                       prism:RegionManager.RegionName="MenuRegion" 
                       prism:RegionManager.RegionContext="{Binding}" />
         
-        <telerik:RadDocking x:Name="Dock" Grid.Row="1">
+        <telerik:RadDocking x:Name="Dock" Grid.Row="2">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup Style="{StaticResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />

@@ -12,5 +12,21 @@
     <Style x:Key="SidebarStyle" TargetType="{x:Type telerik:RadPaneGroup}">
         <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}" />
     </Style>
+
+    <Style x:Key="MinimizeIconStyle" TargetType="Image">
+        <Setter Property="Source" Value="{DynamicResource WindowMinimizeIcon}" />
+    </Style>
+
+    <Style x:Key="MaximizeIconStyle" TargetType="Image">
+        <Setter Property="Source" Value="{DynamicResource WindowMaximizeIcon}" />
+    </Style>
+
+    <Style x:Key="RestoreIconStyle" TargetType="Image">
+        <Setter Property="Source" Value="{DynamicResource WindowRestoreIcon}" />
+    </Style>
+
+    <Style x:Key="CloseIconStyle" TargetType="Image">
+        <Setter Property="Source" Value="{DynamicResource WindowCloseIcon}" />
+    </Style>
     
 </ResourceDictionary>
