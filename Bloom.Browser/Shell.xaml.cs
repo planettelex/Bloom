@@ -29,6 +29,11 @@ namespace Bloom.Browser
         }
 
         /// <summary>
+        /// The toggle window state command.
+        /// </summary>
+        public static RoutedCommand ToggleWindowStateCommand = new RoutedCommand();
+
+        /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
         /// </summary>
         /// <param name="e">A <see cref="T:System.ComponentModel.CancelEventArgs" /> that contains the event data.</param>
@@ -39,33 +44,66 @@ namespace Bloom.Browser
             state.Save();
         }
 
+        private void ToggleWindowState(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
+                RestoreWindow();
+            else
+                MaximizeWindow();
+        }
+
+        private void CanToggleWindowState(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
         private void MinimizeButtonClick(object sender, RoutedEventArgs e)
+        {
+            MinimizeWindow();
+        }
+
+        private void MaximizeButtonClick(object sender, RoutedEventArgs e)
+        {
+            MaximizeWindow();
+        }
+
+        private void RestoreButtonClick(object sender, RoutedEventArgs e)
+        {
+            RestoreWindow();
+        }
+
+        private void CloseButtonClick(object sender, RoutedEventArgs e)
+        {
+            ExitApplication();
+        }
+
+        private void DragWindow(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void MinimizeWindow()
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
-        private void MaximizeButtonClick(object sender, RoutedEventArgs e)
+        private void MaximizeWindow()
         {
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
             MaximizeButton.Visibility = Visibility.Collapsed;
             RestoreButton.Visibility = Visibility.Visible;
         }
 
-        private void RestoreButtonClick(object sender, RoutedEventArgs e)
+        private void RestoreWindow()
         {
             Application.Current.MainWindow.WindowState = WindowState.Normal;
             MaximizeButton.Visibility = Visibility.Visible;
             RestoreButton.Visibility = Visibility.Collapsed;
         }
 
-        private void CloseButtonClick(object sender, RoutedEventArgs e)
+        private void ExitApplication()
         {
             Application.Current.Shutdown();
-        }
-
-        private void DragWindow(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
         }
     }
 }

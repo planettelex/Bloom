@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:app="clr-namespace:Bloom.Browser"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
@@ -11,6 +12,9 @@
     <Window.Resources>
         <ResourceDictionary Source="Resources/Styles.xaml" />
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static app:Shell.ToggleWindowStateCommand}" Executed="ToggleWindowState" CanExecute="CanToggleWindowState" />
+    </Window.CommandBindings>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -26,6 +30,9 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <Grid.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static app:Shell.ToggleWindowStateCommand}" />
+            </Grid.InputBindings>
             
             <TextBlock Grid.Column="0" Text="Bloom Music Browser" />
             <Button x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButtonClick">
