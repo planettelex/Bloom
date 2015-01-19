@@ -17,6 +17,7 @@
         xmlns:telerikShapes="clr-namespace:Telerik.Windows.Shapes;assembly=Telerik.Windows.Controls"
         xmlns:touch="clr-namespace:Telerik.Windows.Input.Touch;assembly=Telerik.Windows.Controls"
         xmlns:legend="clr-namespace:Telerik.Windows.Controls.Legend;assembly=Telerik.Windows.Controls">
+    
     <telerik:DragDropBooleanToVisibilityConverter x:Key="DragDropBooleanToVisibilityConverter"/>
     <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <SolidColorBrush x:Key="TileBorderBrushSelected" Color="#FF707070"/>
