@@ -13,79 +13,79 @@
     </LinearGradientBrush>
     <SolidColorBrush x:Key="CheckBoxBackground" Color="#FF575859"/>
     <SolidColorBrush x:Key="CheckBoxForeground" Color="#FFDDDDDD"/>
-    <LinearGradientBrush x:Key="CheckBoxBorder_MouseOver" EndPoint="1,0.5" StartPoint="0,0.5">
+    <LinearGradientBrush x:Key="CheckBoxBorderMouseOver" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FFB0B0B0" Offset="0"/>
         <GradientStop Color="#FFB0B0B0" Offset="1"/>
         <GradientStop Color="#FFE0E1E2" Offset="0.5"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="CheckBoxBackground_MouseOver" Color="#FF878787"/>
-    <LinearGradientBrush x:Key="CheckBoxBackground_Pressed" EndPoint="0.5,1" StartPoint="0.5,0">
+    <SolidColorBrush x:Key="CheckBoxBackgroundMouseOver" Color="#FF878787"/>
+    <LinearGradientBrush x:Key="CheckBoxBackgroundPressed" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FF616060" Offset="0"/>
         <GradientStop Color="#FFCDCDCD" Offset="1"/>
         <GradientStop Color="#FFCDCDCD" Offset="0.14"/>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="CheckBoxBorder_Pressed" EndPoint="1,0.5" StartPoint="0,0.5">
+    <LinearGradientBrush x:Key="CheckBoxBorderPressed" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FF595959" Offset="0"/>
         <GradientStop Color="#FF595959" Offset="1"/>
         <GradientStop Color="#FFA3A3A3" Offset="0.5"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="CheckBoxBorder_Disabled" Color="#FF5D5C5C"/>
-    <SolidColorBrush x:Key="CheckBoxBackground_Disabled" Color="#FF666666"/>
-    <SolidColorBrush x:Key="CheckBoxBorder_Focused" Color="#FF789FC3"/>
+    <SolidColorBrush x:Key="CheckBoxBorderDisabled" Color="#FF5D5C5C"/>
+    <SolidColorBrush x:Key="CheckBoxBackgroundDisabled" Color="#FF666666"/>
+    <SolidColorBrush x:Key="CheckBoxBorderFocused" Color="#FF789FC3"/>
     <SolidColorBrush x:Key="CheckBoxTick" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="CheckBoxTick_MouseOver" Color="#FF262626"/>
-    <SolidColorBrush x:Key="CheckBoxTick_Disabled" Color="#FF868686"/>
-    <LinearGradientBrush x:Key="StatusBar_BorderBrush" EndPoint="1,0.5" StartPoint="0,0.5">
+    <SolidColorBrush x:Key="CheckBoxTickMouseOver" Color="#FF262626"/>
+    <SolidColorBrush x:Key="CheckBoxTickDisabled" Color="#FF868686"/>
+    <LinearGradientBrush x:Key="StatusBarBorderBrush" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FF707070" Offset="0"/>
         <GradientStop Color="#FF707070" Offset="1"/>
         <GradientStop Color="#FFA3A3A3" Offset="0.5"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="StatusBar_Background" Color="#FF494A4D"/>
-    <SolidColorBrush x:Key="Separator_Background" Color="#FF707070"/>
-    <SolidColorBrush x:Key="Separator_BorderBrush" Color="#FF3D3D3D"/>
-    <SolidColorBrush x:Key="ToolTip_Background" Color="#FF3D3D3D"/>
-    <SolidColorBrush x:Key="ToolTip_InnerBorder" Color="Transparent"/>
-    <SolidColorBrush x:Key="ToolTip_OuterBorder" Color="#FF595959"/>
-    <SolidColorBrush x:Key="ToolTip_Foreground" Color="#FFDDDDDD"/>
-    <CornerRadius x:Key="ToolTip_CornerRadius">3</CornerRadius>
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#FF494A4D"/>
+    <SolidColorBrush x:Key="SeparatorBackground" Color="#FF707070"/>
+    <SolidColorBrush x:Key="SeparatorBorderBrush" Color="#FF3D3D3D"/>
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#FF3D3D3D"/>
+    <SolidColorBrush x:Key="ToolTipInnerBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="ToolTipOuterBorder" Color="#FF595959"/>
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#FFDDDDDD"/>
+    <CornerRadius x:Key="ToolTipCornerRadius">3</CornerRadius>
     <SolidColorBrush x:Key="TextBoxBackground" Color="#FF333333"/>
-    <SolidColorBrush x:Key="TextBoxBackground_ReadOnly" Color="#5EC9C9C9"/>
-    <CornerRadius x:Key="ControlOuterBorder_CornerRadius">3</CornerRadius>
+    <SolidColorBrush x:Key="TextBoxBackgroundReadOnly" Color="#5EC9C9C9"/>
+    <CornerRadius x:Key="ControlOuterBorderCornerRadius">3</CornerRadius>
     <SolidColorBrush x:Key="ControlOuterBorder" Color="#FF595959"/>
     <SolidColorBrush x:Key="ControlBackground" Color="#FF3D3D3D"/>
-    <SolidColorBrush x:Key="ControlOuterBorder_Disabled" Color="#FF5D5C5C"/>
-    <SolidColorBrush x:Key="ControlBackground_Disabled" Color="#FF666666"/>
-    <SolidColorBrush x:Key="ControlForeground_Normal" Color="#FFDDDDDD"/>
-    <LinearGradientBrush x:Key="ControlOuterBorder_Normal" EndPoint="1,0.5" StartPoint="0,0.5">
+    <SolidColorBrush x:Key="ControlOuterBorderDisabled" Color="#FF5D5C5C"/>
+    <SolidColorBrush x:Key="ControlBackgroundDisabled" Color="#FF666666"/>
+    <SolidColorBrush x:Key="ControlForegroundNormal" Color="#FFDDDDDD"/>
+    <LinearGradientBrush x:Key="ControlOuterBorderNormal" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FF707070" Offset="0"/>
         <GradientStop Color="#FFA3A3A3" Offset="0.5"/>
         <GradientStop Color="#FF707070" Offset="1"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="ControlBackground_Normal" Color="#FF575859"/>
-    <LinearGradientBrush x:Key="ControlOuterBorder_MouseOver" EndPoint="1,0.5" StartPoint="0,0.5">
+    <SolidColorBrush x:Key="ControlBackgroundNormal" Color="#FF575859"/>
+    <LinearGradientBrush x:Key="ControlOuterBorderMouseOver" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FFB0B0B0" Offset="0"/>
         <GradientStop Color="#FFB0B0B0" Offset="1"/>
         <GradientStop Color="#FFE0E1E2" Offset="0.5"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="ControlBackground_MouseOver" Color="#FF878787"/>
-    <SolidColorBrush x:Key="ControlForeground_Pressed" Color="#FFC5C2C2"/>
-    <SolidColorBrush x:Key="ControlOuterBorder_Pressed" Color="#FF1A1A1A"/>
-    <LinearGradientBrush x:Key="ControlBackground_Pressed" EndPoint="0.5,1" StartPoint="0.5,0">
+    <SolidColorBrush x:Key="ControlBackgroundMouseOver" Color="#FF878787"/>
+    <SolidColorBrush x:Key="ControlForegroundPressed" Color="#FFC5C2C2"/>
+    <SolidColorBrush x:Key="ControlOuterBorderPressed" Color="#FF1A1A1A"/>
+    <LinearGradientBrush x:Key="ControlBackgroundPressed" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FF2E2D2D" Offset="0"/>
         <GradientStop Color="#FF424242" Offset="1"/>
         <GradientStop Color="#FF424242" Offset="0.14"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="ControlForeground_Active" Color="#FF262626"/>
-    <SolidColorBrush x:Key="ControlOuterBorder_Focused" Color="#FF789FC3"/>
-    <SolidColorBrush x:Key="ControlSubItem_Background_MouseOver" Color="#FF878787"/>
-    <LinearGradientBrush x:Key="ControlSubItem_Background_Selected" EndPoint="0.5,1" StartPoint="0.5,0">
+    <SolidColorBrush x:Key="ControlForegroundActive" Color="#FF262626"/>
+    <SolidColorBrush x:Key="ControlOuterBorderFocused" Color="#FF789FC3"/>
+    <SolidColorBrush x:Key="ControlSubItemBackgroundMouseOver" Color="#FF878787"/>
+    <LinearGradientBrush x:Key="ControlSubItemBackgroundSelected" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FF616060" Offset="0"/>
         <GradientStop Color="#FFCDCDCD" Offset="1"/>
         <GradientStop Color="#FFCDCDCD" Offset="0.14"/>
     </LinearGradientBrush>
-    <CornerRadius x:Key="ControlSubItem_OuterCornerRadius">0</CornerRadius>
+    <CornerRadius x:Key="ControlSubItemOuterCornerRadius">0</CornerRadius>
     <CornerRadius x:Key="ValidationTooltipCornerRadius">3</CornerRadius>
-    <CornerRadius x:Key="ValidationTooltip_CornerRadius">2.5</CornerRadius>
+    <CornerRadius x:Key="ValidationTooltipCornerRadiusSmall">2.5</CornerRadius>
     <SolidColorBrush x:Key="ValidationTooltipForeground" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="ValidationTooltipOuterBorder" Color="#FFDC000C"/>
     <SolidColorBrush x:Key="ValidationTooltipBorder" Color="#FF9A0000"/>
@@ -141,7 +141,7 @@
         <Grid SnapsToDevicePixels="True" VerticalAlignment="Top">
             <Border Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Width="3" Height="3"/>
             <AdornedElementPlaceholder x:Name="Holder"/>
-            <Border BorderBrush="{StaticResource ValidationTooltipOuterBorder}" BorderThickness="1" CornerRadius="{StaticResource ValidationTooltip_CornerRadius}"/>
+            <Border BorderBrush="{StaticResource ValidationTooltipOuterBorder}" BorderThickness="1" CornerRadius="{StaticResource ValidationTooltipCornerRadiusSmall}"/>
             <Path Data="M0,1 L6,1 6,7 Z" Fill="{StaticResource ValidationTooltipBorder}" Width="7" Height="7" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <Path x:Name="InvisibleHitArea" Data="M0,0 9,0 9,9 8,9 0,1 Z" Fill="Blue" Opacity="0" Margin="-1" Width="9" Height="9" HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <ToolTipService.ToolTip>
@@ -160,33 +160,33 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorder_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorderMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackground_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackgroundMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorder_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorderPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackground_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackgroundPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="(TextBlock.Foreground)">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForeground_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForegroundPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorder_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorderDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackground_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackgroundDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0"/>
                         </Storyboard>
@@ -205,7 +205,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     Background="{TemplateBinding Background}"
-                    CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"/>
+                    CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"/>
             <ContentPresenter x:Name="ContentElement"
                     TextBlock.Foreground="{TemplateBinding Foreground}"
                     Margin="{TemplateBinding Padding}"
@@ -218,18 +218,18 @@
                     RecognizesAccessKey="True"/>
             <Border
                     BorderThickness="1"
-                    CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"
+                    CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"
                     Opacity="0"
                     x:Name="FocusState"
-                    BorderBrush="{StaticResource ControlOuterBorder_Focused}"/>
+                    BorderBrush="{StaticResource ControlOuterBorderFocused}"/>
         </Grid>
     </ControlTemplate>
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Template" Value="{StaticResource ButtonTemplate}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorder_Normal}"/>
-        <Setter Property="Background" Value="{StaticResource ControlBackground_Normal}"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="3"/>
@@ -240,8 +240,8 @@
     <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"/>
     <SolidColorBrush x:Key="ScrollBarBackground" Color="#FF3D3D3D"/>
     <SolidColorBrush x:Key="ScrollButton" Color="#FF808080"/>
-    <SolidColorBrush x:Key="ScrollButton_MouseOver" Color="#FFAAAAAA"/>
-    <SolidColorBrush x:Key="ScrollButton_Pressed" Color="#FFCDCDCD"/>
+    <SolidColorBrush x:Key="ScrollButtonMouseOver" Color="#FFAAAAAA"/>
+    <SolidColorBrush x:Key="ScrollButtonPressed" Color="#FFCDCDCD"/>
     <ControlTemplate x:Key="ScrollThumbTemplate" TargetType="Thumb">
         <Border Background="Transparent">
             <VisualStateManager.VisualStateGroups>
@@ -261,14 +261,14 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Background">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -288,14 +288,14 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -323,14 +323,14 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -358,14 +358,14 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -393,14 +393,14 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonIcon" Storyboard.TargetProperty="Fill">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButton_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ScrollButtonMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -562,7 +562,6 @@
                 <Rectangle Grid.Column="1" Fill="{StaticResource ScrollBarBackground}" Grid.Row="1"/>
                 <ScrollBar x:Name="PART_VerticalScrollBar"
                         Grid.Column="1"
-                        IsTabStop="False"
                         Maximum="{TemplateBinding ScrollableHeight}"
                         Minimum="0"
                         Orientation="Vertical"
@@ -573,7 +572,6 @@
                         Style="{StaticResource ScrollBarStyle}"/>
                 <ScrollBar x:Name="PART_HorizontalScrollBar"
                         Grid.Column="0"
-                        IsTabStop="False"
                         Maximum="{TemplateBinding ScrollableWidth}"
                         Minimum="0"
                         Orientation="Horizontal"
@@ -588,8 +586,8 @@
     <Style x:Key="ScrollViewerStyle" TargetType="ScrollViewer">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -612,16 +610,16 @@
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackground_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackgroundDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorder_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorderDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="IndeterminateVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="CheckedVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0" To="0.27" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentVisual"/>
                         </Storyboard>
@@ -638,10 +636,10 @@
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusStatesVisual"/>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="Stroke">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndeterminateVisual" Storyboard.TargetProperty="Stroke">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -656,10 +654,10 @@
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusStatesVisual"/>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackground_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackgroundPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorder_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorderPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -712,10 +710,10 @@
                 <Border x:Name="BackgroundVisual" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
                 <Border x:Name="MouseStatesVisual"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{StaticResource CheckBoxBackground_MouseOver}"
-                        BorderBrush="{StaticResource CheckBoxBorder_MouseOver}"
+                        Background="{StaticResource CheckBoxBackgroundMouseOver}"
+                        BorderBrush="{StaticResource CheckBoxBorderMouseOver}"
                         Visibility="Collapsed"/>
-                <Border x:Name="FocusStatesVisual" BorderThickness="1" BorderBrush="{StaticResource CheckBoxBorder_Focused}" Visibility="Collapsed"/>
+                <Border x:Name="FocusStatesVisual" BorderThickness="1" BorderBrush="{StaticResource CheckBoxBorderFocused}" Visibility="Collapsed"/>
                 <Border BorderThickness="{TemplateBinding BorderThickness}" FlowDirection="LeftToRight">
                     <Grid x:Name="CheckMarks" Width="10" Height="10">
                         <Path x:Name="CheckedVisual" Visibility="Collapsed" Stroke="{StaticResource CheckBoxTick}" Data="M2,5 L4,7 7.5,2" StrokeThickness="1.5" Stretch="None"/>
@@ -745,8 +743,8 @@
     <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}"/>
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
         <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorder_Normal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -780,7 +778,7 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ControlOuterBorder_Disabled}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ControlOuterBorderDisabled}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Duration="0" Storyboard.TargetName="PART_ContentHost" Storyboard.TargetProperty="Opacity" To="0.3"/>
                                     </Storyboard>
@@ -845,13 +843,13 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}">
+                                CornerRadius="{StaticResource ControlOuterBorderCornerRadius}">
                             <Grid>
                                 <Border x:Name="ReadOnlyVisualElement"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"
-                                        Background="{StaticResource TextBoxBackground_ReadOnly}"
+                                        CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"
+                                        Background="{StaticResource TextBoxBackgroundReadOnly}"
                                         Opacity="0"/>
                                 <ScrollViewer x:Name="PART_ContentHost"
                                         Padding="{TemplateBinding Padding}"
@@ -863,18 +861,18 @@
                         </Border>
                         <Border x:Name="Hover"
                                 Background="Transparent"
-                                BorderBrush="{StaticResource ControlOuterBorder_MouseOver}"
+                                BorderBrush="{StaticResource ControlOuterBorderMouseOver}"
                                 Opacity="0"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 IsHitTestVisible="False"
-                                CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"/>
+                                CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"/>
                         <Border x:Name="FocusedVisual"
                                 Background="Transparent"
-                                BorderBrush="{StaticResource ControlOuterBorder_Focused}"
+                                BorderBrush="{StaticResource ControlOuterBorderFocused}"
                                 Visibility="Collapsed"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 IsHitTestVisible="False"
-                                CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"/>
+                                CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -895,16 +893,16 @@
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackground_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackgroundDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorder_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorderDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="IndeterminateVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="CheckedVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0" To="0.27" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentVisual"/>
                         </Storyboard>
@@ -921,10 +919,10 @@
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusStatesVisual"/>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CheckedVisual" Storyboard.TargetProperty="Stroke">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IndeterminateVisual" Storyboard.TargetProperty="Stroke">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTick_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxTickMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -939,10 +937,10 @@
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusStatesVisual"/>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackground_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBackgroundPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="MouseStatesVisual">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorder_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxBorderPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -1000,13 +998,13 @@
                 <Border x:Name="MouseStatesVisual"
                         CornerRadius="6"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{StaticResource CheckBoxBackground_MouseOver}"
-                        BorderBrush="{StaticResource CheckBoxBorder_MouseOver}"
+                        Background="{StaticResource CheckBoxBackgroundMouseOver}"
+                        BorderBrush="{StaticResource CheckBoxBorderMouseOver}"
                         Visibility="Collapsed"/>
                 <Border x:Name="FocusStatesVisual"
                         CornerRadius="6"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        BorderBrush="{StaticResource CheckBoxBorder_Focused}"
+                        BorderBrush="{StaticResource CheckBoxBorderFocused}"
                         Visibility="Collapsed"/>
                 <Border BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid x:Name="CheckMarks" Width="10" Height="10">
@@ -1042,7 +1040,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -1055,7 +1053,7 @@
                                     <Storyboard>
                                         <DoubleAnimation BeginTime="0" Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MouseOverState"/>
                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForeground_Active}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForegroundActive}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1075,7 +1073,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" BeginTime="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedState"/>
                                         <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
-                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForeground_Active}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForegroundActive}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1090,7 +1088,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border
-                                CornerRadius="{StaticResource ControlSubItem_OuterCornerRadius}"
+                                CornerRadius="{StaticResource ControlSubItemOuterCornerRadius}"
                                 Margin="1,0"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -1098,13 +1096,13 @@
                         <Border x:Name="MouseOverState"
                                 Opacity="0"
                                 Margin="1,0"
-                                CornerRadius="{StaticResource ControlSubItem_OuterCornerRadius}"
-                                Background="{StaticResource ControlSubItem_Background_MouseOver}"/>
+                                CornerRadius="{StaticResource ControlSubItemOuterCornerRadius}"
+                                Background="{StaticResource ControlSubItemBackgroundMouseOver}"/>
                         <Border x:Name="SelectedState"
                                 Opacity="0"
                                 Margin="1,0"
-                                CornerRadius="{StaticResource ControlSubItem_OuterCornerRadius}"
-                                Background="{StaticResource ControlSubItem_Background_Selected}"/>
+                                CornerRadius="{StaticResource ControlSubItemOuterCornerRadius}"
+                                Background="{StaticResource ControlSubItemBackgroundSelected}"/>
                         <ContentControl x:Name="contentPresenter"
                                 Margin="{TemplateBinding Padding}"
                                 IsTabStop="False"
@@ -1117,8 +1115,8 @@
                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
                         <Border x:Name="FocusVisual"
-                                BorderBrush="{StaticResource ControlOuterBorder_Focused}"
-                                CornerRadius="{StaticResource ControlSubItem_OuterCornerRadius}"
+                                BorderBrush="{StaticResource ControlOuterBorderFocused}"
+                                CornerRadius="{StaticResource ControlSubItemOuterCornerRadius}"
                                 Opacity="0"
                                 Margin="1 0"
                                 BorderThickness="1"/>
@@ -1130,8 +1128,7 @@
     <Style x:Key="ListBoxStyle" TargetType="ListBox">
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Background" Value="{StaticResource ControlBackground}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorder_Normal}"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="IsTabStop" Value="False"/>
@@ -1145,8 +1142,8 @@
                 <ControlTemplate TargetType="ListBox">
                     <ScrollViewer x:Name="ScrollViewer"
                             Margin="0"
-                            ScrollViewer.HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                            ScrollViewer.VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                            HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                            VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
                             Padding="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -1161,8 +1158,8 @@
     <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}"/>
     <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
         <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorder_Normal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -1196,7 +1193,7 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder" Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ControlOuterBorder_Disabled}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ControlOuterBorderDisabled}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <DoubleAnimation Duration="0" Storyboard.TargetName="PART_ContentHost" Storyboard.TargetProperty="Opacity" To="0.3"/>
                                     </Storyboard>
@@ -1235,7 +1232,7 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}">
+                                CornerRadius="{StaticResource ControlOuterBorderCornerRadius}">
                             <ScrollViewer x:Name="PART_ContentHost"
                                     Padding="{TemplateBinding Padding}"
                                     BorderThickness="0"
@@ -1246,25 +1243,25 @@
                         </Border>
                         <Border x:Name="Hover"
                                 Background="Transparent"
-                                BorderBrush="{StaticResource ControlOuterBorder_MouseOver}"
+                                BorderBrush="{StaticResource ControlOuterBorderMouseOver}"
                                 Opacity="0"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 IsHitTestVisible="False"
-                                CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"/>
+                                CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"/>
                         <Border x:Name="FocusedVisual"
                                 Background="Transparent"
-                                BorderBrush="{StaticResource ControlOuterBorder_Focused}"
+                                BorderBrush="{StaticResource ControlOuterBorderFocused}"
                                 Visibility="Collapsed"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 IsHitTestVisible="False"
-                                CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"/>
+                                CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
-    <ControlTemplate x:Key="RepeatButton_Template" TargetType="RepeatButton">
+    <ControlTemplate x:Key="RepeatButtonTemplate" TargetType="RepeatButton">
         <Grid x:Name="root" UseLayoutRounding="True">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
@@ -1272,33 +1269,33 @@
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorder_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorderMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackground_MouseOver}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackgroundMouseOver}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorder_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorderPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackground_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackgroundPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Foreground" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForeground_Pressed}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlForegroundPressed}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">
                         <Storyboard>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorder_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlOuterBorderDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0:0:0">
-                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackground_Disabled}"/>
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ControlBackgroundDisabled}"/>
                             </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0"/>
                         </Storyboard>
@@ -1317,7 +1314,7 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     Background="{TemplateBinding Background}"
-                    CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"/>
+                    CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"/>
             <ContentControl x:Name="ContentElement"
                     IsTabStop="False"
                     Content="{TemplateBinding Content}"
@@ -1328,18 +1325,18 @@
                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             <Border
                     BorderThickness="1"
-                    CornerRadius="{StaticResource ControlOuterBorder_CornerRadius}"
+                    CornerRadius="{StaticResource ControlOuterBorderCornerRadius}"
                     Opacity="0"
                     x:Name="FocusState"
-                    BorderBrush="{StaticResource ControlOuterBorder_Focused}"/>
+                    BorderBrush="{StaticResource ControlOuterBorderFocused}"/>
         </Grid>
     </ControlTemplate>
     <Style x:Key="RepeatButtonStyle" TargetType="RepeatButton">
-        <Setter Property="Template" Value="{StaticResource RepeatButton_Template}"/>
-        <Setter Property="Background" Value="{StaticResource ControlBackground_Normal}"/>
+        <Setter Property="Template" Value="{StaticResource RepeatButtonTemplate}"/>
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundNormal}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorder_Normal}"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="3"/>
@@ -1349,9 +1346,9 @@
     </Style>
     <Style TargetType="RepeatButton" BasedOn="{StaticResource RepeatButtonStyle}"/>
     <Style x:Key="ToolTipStyle" TargetType="ToolTip">
-        <Setter Property="Background" Value="{StaticResource ToolTip_Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ToolTip_OuterBorder}"/>
-        <Setter Property="Foreground" Value="{StaticResource ToolTip_Foreground}"/>
+        <Setter Property="Background" Value="{StaticResource ToolTipBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ToolTipOuterBorder}"/>
+        <Setter Property="Foreground" Value="{StaticResource ToolTipForeground}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="5 1"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -1366,7 +1363,7 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Margin="0 0 2 2"
-                                CornerRadius="{StaticResource ToolTip_CornerRadius}">
+                                CornerRadius="{StaticResource ToolTipCornerRadius}">
                             <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                     </Grid>
@@ -1378,8 +1375,8 @@
     <Style x:Key="SeparatorStyle" TargetType="Separator">
         <Setter Property="Margin" Value="0 2"/>
         <Setter Property="Focusable" Value="false"/>
-        <Setter Property="Background" Value="{StaticResource Separator_Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Separator_BorderBrush}"/>
+        <Setter Property="Background" Value="{StaticResource SeparatorBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SeparatorBorderBrush}"/>
         <Setter Property="BorderThickness" Value="0 0 0 1"/>
         <Setter Property="MinHeight" Value="2"/>
         <Setter Property="Template">
@@ -1400,8 +1397,8 @@
         <Setter Property="Margin" Value="3 2"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Separator_BorderBrush}"/>
-        <Setter Property="Background" Value="{StaticResource Separator_Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SeparatorBorderBrush}"/>
+        <Setter Property="Background" Value="{StaticResource SeparatorBackground}"/>
         <Setter Property="BorderThickness" Value="0 0 1 0"/>
         <Setter Property="MinWidth" Value="2"/>
         <Setter Property="Focusable" Value="false"/>
@@ -1441,9 +1438,9 @@
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="BorderThickness" Value="0 1 0 0"/>
-        <Setter Property="BorderBrush" Value="{StaticResource StatusBar_BorderBrush}"/>
-        <Setter Property="Background" Value="{StaticResource StatusBar_Background}"/>
-        <Setter Property="Foreground" Value="{StaticResource ControlForeground_Normal}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource StatusBarBorderBrush}"/>
+        <Setter Property="Background" Value="{StaticResource StatusBarBackground}"/>
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="StatusBar">
