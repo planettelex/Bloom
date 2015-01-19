@@ -1,16 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Rock -->
+    <!-- Rock Skin -->
     
     <!-- Colors -->
-    <Color x:Key="NormalForegroundColor">#FFFEFEFE</Color>
-    <Color x:Key="MenuBackgroundColor">#FF1330EB</Color>
-    <Color x:Key="MenuBorderColor">#FF222222</Color>
-    <Color x:Key="MenuItemSelectedBackgroundColor">#FF76C2F5</Color>
-    
-    <Color x:Key="ShellBackgroundColor">#FF610585</Color>
-    <Color x:Key="SidebarBackgroundColor">#FF033E91</Color>
+    <Color x:Key="NormalForegroundColor">#FF000104</Color>
+
+    <Color x:Key="MenuBackgroundColor">#FFCFD3DA</Color>
+    <Color x:Key="MenuBorderColor">#FF545D6E</Color>
+    <Color x:Key="MenuItemSelectedBackgroundColor">#FFF0F1F3</Color>
+
+    <Color x:Key="ShellBackgroundColor">#FF222834</Color>
+    <Color x:Key="SidebarBackgroundColor">#FF545D6E</Color>
+    <Color x:Key="TitlebarBackgroundColor">#FFCFD3DA</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
@@ -22,5 +24,6 @@
     
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
+    <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
 
 </ResourceDictionary>

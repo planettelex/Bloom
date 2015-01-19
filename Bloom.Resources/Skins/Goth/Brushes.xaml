@@ -1,16 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Goth -->
+    <!-- Goth Skin -->
 
     <!-- Colors -->
-    <Color x:Key="NormalForegroundColor">#FF232323</Color>
-    <Color x:Key="MenuBackgroundColor">#FFFADD1E</Color>
-    <Color x:Key="MenuBorderColor">#FF222222</Color>
-    <Color x:Key="MenuItemSelectedBackgroundColor">#FFFAF79B</Color>
+    <Color x:Key="NormalForegroundColor">#FFF6F6F6</Color>
+
+    <Color x:Key="MenuBackgroundColor">#FF0D1525</Color>
+    <Color x:Key="MenuBorderColor">#FF000104</Color>
+    <Color x:Key="MenuItemSelectedBackgroundColor">#FF222834</Color>
     
-    <Color x:Key="ShellBackgroundColor">#FFA19C0E</Color>
-    <Color x:Key="SidebarBackgroundColor">#FF666653</Color>
+    <Color x:Key="ShellBackgroundColor">#FF000000</Color>
+    <Color x:Key="SidebarBackgroundColor">#FF0D1525</Color>
+    <Color x:Key="TitlebarBackgroundColor">#FF0D1525</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
@@ -22,5 +24,6 @@
 
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
+    <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
 
 </ResourceDictionary>

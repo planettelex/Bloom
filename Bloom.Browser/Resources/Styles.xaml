@@ -12,6 +12,11 @@
     <Style x:Key="SidebarStyle" TargetType="{x:Type telerik:RadPaneGroup}">
         <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}" />
     </Style>
+    
+    <Style x:Key="TitlebarStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{DynamicResource TitlebarBackgroundBrush}" />
+        <Setter Property="Height" Value="35" />
+    </Style>
 
     <Style x:Key="MinimizeIconStyle" TargetType="Image">
         <Setter Property="Source" Value="{DynamicResource WindowMinimizeIcon}" />
@@ -27,6 +32,40 @@
 
     <Style x:Key="CloseIconStyle" TargetType="Image">
         <Setter Property="Source" Value="{DynamicResource WindowCloseIcon}" />
+    </Style>
+    
+    <Style x:Key="TitlebarBorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource ShellBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="1 1 1 0" />
+    </Style>
+    
+    <Style x:Key="TitlebarButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Margin" Value="0 1 5 0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="TitlebarTextStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource NormalForegroundBrush}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Margin" Value="19 8 0 0" />
     </Style>
     
 </ResourceDictionary>

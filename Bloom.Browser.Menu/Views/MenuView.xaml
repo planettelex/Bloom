@@ -11,57 +11,59 @@
         <ResourceDictionary Source="../Resources/Styles.xaml" />
     </UserControl.Resources>
 
-    <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
-        <telerik:RadMenuItem Header="File">
-            <telerik:RadMenuItem Header="New">
-                <telerik:RadMenuItem Header="Playlist" />
-                <telerik:RadMenuItem Header="Folder" />
-                <telerik:RadMenuItem Header="Library" />
+    <Border Style="{StaticResource MenuBorderStyle}">
+        <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
+            <telerik:RadMenuItem Header="File">
+                <telerik:RadMenuItem Header="New">
+                    <telerik:RadMenuItem Header="Playlist" />
+                    <telerik:RadMenuItem Header="Folder" />
+                    <telerik:RadMenuItem Header="Library" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Open Library..." />
+                <telerik:RadMenuItem Header="Save Library As..." />
+                <telerik:RadMenuItem Header="Add To Library..." />
+                <telerik:RadMenuItem Header="Library Operations..." />
+                <telerik:RadMenuItem Header="Close Library" />
+                <telerik:RadMenuItem Header="Exit Browser" />
             </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Open Library..." />
-            <telerik:RadMenuItem Header="Save Library As..." />
-            <telerik:RadMenuItem Header="Add To Library..." />
-            <telerik:RadMenuItem Header="Library Operations..." />
-            <telerik:RadMenuItem Header="Close Library" />
-            <telerik:RadMenuItem Header="Exit Browser" />
-        </telerik:RadMenuItem>
-        <telerik:RadMenuItem Header="Edit">
-            <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
-            <telerik:RadMenuItem Header="Copy" IsEnabled="False" />
-            <telerik:RadMenuItem Header="Paste" IsEnabled="False" />
-            <telerik:RadMenuItem Header="Delete" IsEnabled="False" />
-            <telerik:RadMenuItem Header="Preferences..." />
-        </telerik:RadMenuItem>
-        <telerik:RadMenuItem Header="Browser">
-            <telerik:RadMenuItem Header="Duplicate Tab" />
-            <telerik:RadMenuItem Header="Close Other Tabs" />
-            <telerik:RadMenuItem Header="Close All Tabs" />
-        </telerik:RadMenuItem>
-        <telerik:RadMenuItem Header="Player">
-            <telerik:RadMenuItem Header="Go to Player" />
-            <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
-        </telerik:RadMenuItem>
-        <telerik:RadMenuItem Header="Analytics">
-            <telerik:RadMenuItem Header="Go to Analytics" />
-            <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
-        </telerik:RadMenuItem>
-        <telerik:RadMenuItem Header="View">
-            <telerik:RadMenuItem Header="Full Screen" />
-            <telerik:RadMenuItem Header="Hide Sidebar" />
-            <telerik:RadMenuItem Header="Configure Sidebar..." />
-            <telerik:RadMenuItem x:Name="Skins" Header="Skins">
-                <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
-                <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
-                <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
+            <telerik:RadMenuItem Header="Edit">
+                <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Copy" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Paste" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Delete" IsEnabled="False" />
+                <telerik:RadMenuItem Header="Preferences..." />
             </telerik:RadMenuItem>
-        </telerik:RadMenuItem>
-        <telerik:RadMenuItem Header="Help">
-            <telerik:RadMenuItem Header="About" />
-            <telerik:RadMenuItem Header="Topics" />
-            <telerik:RadMenuItem Header="Video Tutorials" />
-            <telerik:RadMenuItem Header="Online Help" />
-            <telerik:RadMenuItem Header="Get Involved" />
-        </telerik:RadMenuItem>
-    </telerik:RadMenu>
+            <telerik:RadMenuItem Header="Browser">
+                <telerik:RadMenuItem Header="Duplicate Tab" />
+                <telerik:RadMenuItem Header="Close Other Tabs" />
+                <telerik:RadMenuItem Header="Close All Tabs" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Player">
+                <telerik:RadMenuItem Header="Go to Player" />
+                <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Analytics">
+                <telerik:RadMenuItem Header="Go to Analytics" />
+                <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="View">
+                <telerik:RadMenuItem Header="Full Screen" />
+                <telerik:RadMenuItem Header="Hide Sidebar" />
+                <telerik:RadMenuItem Header="Configure Sidebar..." />
+                <telerik:RadMenuItem x:Name="Skins" Header="Skins">
+                    <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
+                    <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
+                    <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
+                </telerik:RadMenuItem>
+            </telerik:RadMenuItem>
+            <telerik:RadMenuItem Header="Help">
+                <telerik:RadMenuItem Header="About" />
+                <telerik:RadMenuItem Header="Topics" />
+                <telerik:RadMenuItem Header="Video Tutorials" />
+                <telerik:RadMenuItem Header="Online Help" />
+                <telerik:RadMenuItem Header="Get Involved" />
+            </telerik:RadMenuItem>
+        </telerik:RadMenu>
+    </Border>
 
 </UserControl>

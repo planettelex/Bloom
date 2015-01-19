@@ -23,36 +23,41 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" MouseLeftButtonDown="DragWindow">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.InputBindings>
-                <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static app:Shell.ToggleWindowStateCommand}" />
-            </Grid.InputBindings>
+        <!-- Title Bar -->
+        <Border Grid.Row="0" Style="{StaticResource TitlebarBorderStyle}">
+            <Grid MouseLeftButtonDown="DragWindow" Style="{StaticResource TitlebarStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.InputBindings>
+                    <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static app:Shell.ToggleWindowStateCommand}" />
+                </Grid.InputBindings>
             
-            <TextBlock Grid.Column="0" Text="Bloom Music Browser" />
-            <Button x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButtonClick">
-                <Image Style="{StaticResource MinimizeIconStyle}" />
-            </Button>
-            <Button x:Name="MaximizeButton" Grid.Column="2" Click="MaximizeButtonClick">
-                <Image Style="{StaticResource MaximizeIconStyle}" />
-            </Button>
-            <Button x:Name="RestoreButton" Grid.Column="2" Click="RestoreButtonClick">
-                <Image Style="{StaticResource RestoreIconStyle}" />
-            </Button>
-            <Button x:Name="CloseButton" Grid.Column="3" Click="CloseButtonClick">
-                <Image Style="{StaticResource CloseIconStyle}" />
-            </Button>
-        </Grid>
-        
+                <TextBlock Grid.Column="0" Text="Bloom Music Browser" Style="{StaticResource TitlebarTextStyle}" />
+                <Button x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButtonClick" ToolTip="Minimize" Style="{StaticResource TitlebarButtonStyle}">
+                    <Image Style="{StaticResource MinimizeIconStyle}" />
+                </Button>
+                <Button x:Name="MaximizeButton" Grid.Column="2" Click="MaximizeButtonClick" ToolTip="Maximize" Style="{StaticResource TitlebarButtonStyle}">
+                    <Image Style="{StaticResource MaximizeIconStyle}" />
+                </Button>
+                <Button x:Name="RestoreButton" Grid.Column="2" Click="RestoreButtonClick" ToolTip="Restore Down" Style="{StaticResource TitlebarButtonStyle}">
+                    <Image Style="{StaticResource RestoreIconStyle}" />
+                </Button>
+                <Button x:Name="CloseButton" Grid.Column="3" Click="CloseButtonClick" ToolTip="Close" Style="{StaticResource TitlebarButtonStyle}">
+                    <Image Style="{StaticResource CloseIconStyle}" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Menu -->
         <ItemsControl Name="MenuRegion" Grid.Row="1"
                       prism:RegionManager.RegionName="MenuRegion" 
                       prism:RegionManager.RegionContext="{Binding}" />
         
+        <!-- Dock -->
         <telerik:RadDocking x:Name="Dock" Grid.Row="2">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup Style="{StaticResource SidebarStyle}">
