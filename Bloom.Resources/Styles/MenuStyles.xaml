@@ -193,8 +193,8 @@
 							<telerik:SharedSizeContentPresenter x:Name="PART_InputGestureText" Content="{TemplateBinding InputGestureText}" Grid.Column="2" Margin="40,3,3,3" SharedSizeGroupWidth="IGTColumn" Visibility="Collapsed"/>
 							<telerik:SharedSizeContentPresenter Grid.Column="3" HorizontalAlignment="Right" SharedSizeGroupWidth="ExpandIconColumn">
 								<Grid x:Name="ExpandIcon" Height="19" Margin="0,0,2,0" Visibility="Collapsed" Width="16">
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="White" Margin="6,7,6,5"/>
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="Black" Margin="6"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6,7,6,5"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6"/>
 								</Grid>
 							</telerik:SharedSizeContentPresenter>
 						</Grid>
@@ -580,8 +580,8 @@
 							<telerik:SharedSizeContentPresenter x:Name="PART_InputGestureText" Content="{TemplateBinding InputGestureText}" Grid.Column="2" Margin="40,3,3,3" SharedSizeGroupWidth="IGTColumn" Visibility="Collapsed"/>
 							<telerik:SharedSizeContentPresenter Grid.Column="3" HorizontalAlignment="Right" SharedSizeGroupWidth="ExpandIconColumn">
 								<Grid x:Name="ExpandIcon" Height="19" Margin="0,0,2,0" Visibility="Collapsed" Width="16">
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="White" Margin="6,7,6,5"/>
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="Black" Margin="6"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6,7,6,5"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6"/>
 								</Grid>
 							</telerik:SharedSizeContentPresenter>
 						</Grid>
@@ -967,8 +967,8 @@
 							<telerik:SharedSizeContentPresenter x:Name="PART_InputGestureText" Content="{TemplateBinding InputGestureText}" Grid.Column="2" Margin="40,3,3,3" SharedSizeGroupWidth="IGTColumn" Visibility="Collapsed"/>
 							<telerik:SharedSizeContentPresenter Grid.Column="3" HorizontalAlignment="Right" SharedSizeGroupWidth="ExpandIconColumn">
 								<Grid x:Name="ExpandIcon" Height="19" Margin="0,0,2,0" Visibility="Collapsed" Width="16">
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="White" Margin="6,7,6,5"/>
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="Black" Margin="6"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6,7,6,5"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6"/>
 								</Grid>
 							</telerik:SharedSizeContentPresenter>
 						</Grid>
@@ -1354,8 +1354,8 @@
 							<telerik:SharedSizeContentPresenter x:Name="PART_InputGestureText" Content="{TemplateBinding InputGestureText}" Grid.Column="2" Margin="40,3,3,3" SharedSizeGroupWidth="IGTColumn" Visibility="Collapsed"/>
 							<telerik:SharedSizeContentPresenter Grid.Column="3" HorizontalAlignment="Right" SharedSizeGroupWidth="ExpandIconColumn">
 								<Grid x:Name="ExpandIcon" Height="19" Margin="0,0,2,0" Visibility="Collapsed" Width="16">
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="White" Margin="6,7,6,5"/>
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="Black" Margin="6"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6,7,6,5"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6"/>
 								</Grid>
 							</telerik:SharedSizeContentPresenter>
 						</Grid>
@@ -1741,8 +1741,8 @@
 							<telerik:SharedSizeContentPresenter x:Name="PART_InputGestureText" Content="{TemplateBinding InputGestureText}" Grid.Column="2" Margin="40,3,3,3" SharedSizeGroupWidth="IGTColumn" Visibility="Collapsed"/>
 							<telerik:SharedSizeContentPresenter Grid.Column="3" HorizontalAlignment="Right" SharedSizeGroupWidth="ExpandIconColumn">
 								<Grid x:Name="ExpandIcon" Height="19" Margin="0,0,2,0" Visibility="Collapsed" Width="16">
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="White" Margin="6,7,6,5"/>
-									<Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="Black" Margin="6"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6,7,6,5"/>
+                                    <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource NormalForegroundBrush}" Margin="6"/>
 								</Grid>
 							</telerik:SharedSizeContentPresenter>
 						</Grid>

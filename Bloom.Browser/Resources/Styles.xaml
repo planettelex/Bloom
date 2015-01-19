@@ -44,7 +44,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
-        <Setter Property="Padding" Value="4" />
+        <Setter Property="Padding" Value="5" />
         <Setter Property="Margin" Value="0 1 5 0" />
         <Setter Property="Template">
             <Setter.Value>
@@ -56,6 +56,11 @@
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource MenuItemSelectedBackgroundBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
