@@ -4,7 +4,7 @@
         <ResourceDictionary Source="Styles/DefaultStyles.xaml" />
         <ResourceDictionary Source="Styles/ControlStyles.xaml" />
         <ResourceDictionary Source="Styles/MenuStyles.xaml" />
-        <ResourceDictionary Source="Styles/PaneStyles.xaml" />
+        <ResourceDictionary Source="Styles/DockingStyles.xaml" />
         
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

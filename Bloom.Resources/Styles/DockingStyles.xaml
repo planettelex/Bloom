@@ -13,7 +13,7 @@
 
 	<Style TargetType="{x:Type telerikDocking:RadPane}">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource NormalForegroundBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Margin" Value="0"/>
@@ -183,7 +183,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-									<Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+									<Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -195,14 +195,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -221,14 +221,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -246,14 +246,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -271,14 +271,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -296,14 +296,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -321,14 +321,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -346,14 +346,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -371,14 +371,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -393,7 +393,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -409,7 +409,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -421,14 +421,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -447,14 +447,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -472,14 +472,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -497,14 +497,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -522,14 +522,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -547,14 +547,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -572,14 +572,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -597,14 +597,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -619,7 +619,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -796,7 +796,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-									<Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+									<Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -808,14 +808,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -834,14 +834,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -859,14 +859,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -884,14 +884,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -909,14 +909,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -934,14 +934,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -959,14 +959,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -984,14 +984,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1006,7 +1006,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -1022,7 +1022,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -1034,14 +1034,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1060,14 +1060,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1085,14 +1085,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1110,14 +1110,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1135,14 +1135,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1160,14 +1160,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1185,14 +1185,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1210,14 +1210,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -1232,7 +1232,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+													<Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -1354,7 +1354,7 @@
                                                 <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                             </Setter.Value>
 										</Setter>
-                                        <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 										<Setter Property="Template">
 											<Setter.Value>
 												<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -1366,14 +1366,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1392,14 +1392,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1417,14 +1417,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1442,14 +1442,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1467,14 +1467,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1492,14 +1492,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1517,14 +1517,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1542,14 +1542,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1564,7 +1564,7 @@
 																</VisualState>
 															</VisualStateGroup>
 														</VisualStateManager.VisualStateGroups>
-														<Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+														<Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 													</Border>
 												</ControlTemplate>
 											</Setter.Value>
@@ -1580,7 +1580,7 @@
                                                 <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                             </Setter.Value>
 										</Setter>
-										<Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+										<Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 										<Setter Property="Template">
 											<Setter.Value>
 												<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -1592,14 +1592,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1618,14 +1618,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1643,14 +1643,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1668,14 +1668,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1693,14 +1693,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1718,14 +1718,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1743,14 +1743,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1768,14 +1768,14 @@
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
 																		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																			<DiscreteObjectKeyFrame KeyTime="0">
 																				<DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
 																				</DiscreteObjectKeyFrame.Value>
 																			</DiscreteObjectKeyFrame>
 																		</ObjectAnimationUsingKeyFrames>
@@ -1790,7 +1790,7 @@
 																</VisualState>
 															</VisualStateGroup>
 														</VisualStateManager.VisualStateGroups>
-														<Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+														<Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 													</Border>
 												</ControlTemplate>
 											</Setter.Value>
@@ -1800,7 +1800,7 @@
 							</chromes:ButtonChrome>
 							<primitives:TabItemContentPresenter Grid.Column="0" x:Name="HeaderElement" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="6,3" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
 						</Grid>
-						<Border x:Name="StandAloneContent" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,1,0,0" Background="{DynamicResource TabsBackgroundBrush}" Grid.Row="1" Visibility="Collapsed">
+						<Border x:Name="StandAloneContent" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="0,1,0,0" Background="{DynamicResource TabsBackgroundBrush}" Grid.Row="1" Visibility="Collapsed">
 							<ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
 						</Border>
 					</Grid>
@@ -1971,7 +1971,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -1983,14 +1983,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2009,14 +2009,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2034,14 +2034,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2059,14 +2059,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2084,14 +2084,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2109,14 +2109,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2134,14 +2134,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2159,14 +2159,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2181,7 +2181,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -2197,7 +2197,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
                                     </Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -2209,14 +2209,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2235,14 +2235,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2260,14 +2260,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2285,14 +2285,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2310,14 +2310,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2335,14 +2335,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2360,14 +2360,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2385,14 +2385,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2407,7 +2407,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -2485,7 +2485,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -2497,14 +2497,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2523,14 +2523,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2548,14 +2548,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2573,14 +2573,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2598,14 +2598,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2623,14 +2623,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2648,14 +2648,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2673,14 +2673,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}" />
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2695,7 +2695,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-													<Border x:Name="InnerBorder" BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -2711,7 +2711,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
 									</Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
 									<Setter Property="Template">
 										<Setter.Value>
 											<ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -2723,14 +2723,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2749,14 +2749,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2774,14 +2774,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2799,14 +2799,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2824,14 +2824,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2849,14 +2849,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2874,14 +2874,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2899,14 +2899,14 @@
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
 																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
 																		<DiscreteObjectKeyFrame KeyTime="0">
 																			<DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
 																			</DiscreteObjectKeyFrame.Value>
 																		</DiscreteObjectKeyFrame>
 																	</ObjectAnimationUsingKeyFrames>
@@ -2921,7 +2921,7 @@
 															</VisualState>
 														</VisualStateGroup>
 													</VisualStateManager.VisualStateGroups>
-                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
 												</Border>
 											</ControlTemplate>
 										</Setter.Value>
@@ -2974,7 +2974,7 @@
                                             <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
                                         </Setter.Value>
                                     </Setter>
-                                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
@@ -2986,14 +2986,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3012,14 +3012,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3037,14 +3037,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3062,14 +3062,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3087,14 +3087,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3112,14 +3112,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3137,14 +3137,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3162,14 +3162,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource MenuBorderBrush}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundBrush}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -3184,7 +3184,7 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
                                                 </Border>
                                             </ControlTemplate>
                                         </Setter.Value>
