@@ -12,6 +12,143 @@
         <Setter Property="CloseButtonPosition" Value="InPane" />
     </Style>
 
+    <Style TargetType="{x:Type telerik:ToolWindow}">
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="MinWidth" Value="85"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Background" Value="{DynamicResource TabsBackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource NormalForegroundBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:ToolWindow}">
+                    <Grid x:Name="VisualRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="{DynamicResource TitlebarBackgroundColor}" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Background="Transparent">
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}" CornerRadius="4">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="3">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border x:Name="HeaderElement" Background="Transparent" Grid.Column="0" Padding="3,1" Grid.Row="0">
+                                            <ContentPresenter x:Name="Header" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}"/>
+                                        </Border>
+                                        <telerik:RadButton x:Name="CloseButton" Grid.Column="1" Command="telerik:WindowCommands.Close" Margin="1,1,3,1" Grid.Row="0">
+                                            <telerik:RadButton.Style>
+                                                <Style TargetType="{x:Type telerik:RadButton}">
+                                                    <Setter Property="Height" Value="17"/>
+                                                    <Setter Property="IsTabStop" Value="False"/>
+                                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                                    <Setter Property="Width" Value="17"/>
+                                                    <Setter Property="Margin" Value="0,2,2,1"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type telerik:RadButton}">
+                                                                <Grid x:Name="LayoutRoot">
+                                                                    <VisualStateManager.VisualStateGroups>
+                                                                        <VisualStateGroup x:Name="CommonStates">
+                                                                            <VisualState x:Name="Disabled">
+                                                                                <Storyboard>
+                                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
+                                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                                <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
+                                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                                        </DiscreteObjectKeyFrame>
+                                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
+                                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                                <SolidColorBrush Color="{DynamicResource TitlebarBackgroundColor}"/>
+                                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                                        </DiscreteObjectKeyFrame>
+                                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                                </Storyboard>
+                                                                            </VisualState>
+                                                                            <VisualState x:Name="Normal"/>
+                                                                            <VisualState x:Name="MouseOver">
+                                                                                <Storyboard>
+                                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
+                                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                                <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
+                                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                                        </DiscreteObjectKeyFrame>
+                                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
+                                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                                <SolidColorBrush Color="{DynamicResource TitlebarBackgroundColor}"/>
+                                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                                        </DiscreteObjectKeyFrame>
+                                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                                </Storyboard>
+                                                                            </VisualState>
+                                                                            <VisualState x:Name="Pressed">
+                                                                                <Storyboard>
+                                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
+                                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                                <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
+                                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                                        </DiscreteObjectKeyFrame>
+                                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
+                                                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                                                            <DiscreteObjectKeyFrame.Value>
+                                                                                                <SolidColorBrush Color="{DynamicResource TitlebarBackgroundColor}"/>
+                                                                                            </DiscreteObjectKeyFrame.Value>
+                                                                                        </DiscreteObjectKeyFrame>
+                                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                                </Storyboard>
+                                                                            </VisualState>
+                                                                        </VisualStateGroup>
+                                                                    </VisualStateManager.VisualStateGroups>
+                                                                    <chromes:ButtonChrome RenderNormal="False" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" />
+                                                                    <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource TitlebarBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="8"/>
+                                                                    <Path x:Name="ForegroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="8"/>
+                                                                </Grid>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </telerik:RadButton.Style>
+                                        </telerik:RadButton>
+                                        <ContentPresenter x:Name="Content" Grid.ColumnSpan="2" Grid.Column="0"
+                                                          Content="{TemplateBinding Content}" Margin="3,0,3,3" Grid.Row="1"/>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type telerikDocking:RadPaneGroup}">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -161,9 +298,9 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ContentControl}">
                                                 <Border x:Name="Root" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0,2,2,2">
-                                                    <Border x:Name="BorderLayer3" BorderBrush="White" BorderThickness="2" CornerRadius="0,1,1,1">
-                                                        <Border x:Name="BorderLayer2" BorderBrush="#FFF0F0F0" BorderThickness="2" CornerRadius="0">
-                                                            <Border x:Name="BorderLayer1" BorderBrush="#FF848484" BorderThickness="1" CornerRadius="0">
+                                                    <Border x:Name="BorderLayer3" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="0" CornerRadius="0,1,1,1">
+                                                        <Border x:Name="BorderLayer2" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="0" CornerRadius="0">
+                                                            <Border x:Name="BorderLayer1" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="1" CornerRadius="0">
                                                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}"/>
                                                             </Border>
                                                         </Border>
@@ -222,14 +359,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -241,14 +378,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -259,14 +396,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -279,8 +416,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="White" Height="7" Margin="0,2,0,0" Width="7"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="Black" Height="7" Margin="0,1" Width="7"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="7"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="7"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -315,14 +452,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -334,14 +471,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -352,14 +489,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -372,8 +509,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="White" Height="7" Margin="0,2,0,0" Width="7"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="Black" Height="7" Margin="0,1" Width="7"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="7"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="7"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -401,14 +538,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -420,14 +557,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -438,14 +575,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -458,8 +595,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="White" Height="7" Margin="0,2,0,0" Width="7"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="Black" Height="7" Margin="0,1" Width="7"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="7"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="7"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -486,14 +623,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -505,14 +642,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -523,14 +660,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -543,8 +680,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="White" Height="7" Margin="0,2,0,0" Width="8"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="Black" Height="7" Margin="0,1" Width="8"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource TabsBackgroundColor}" Height="7" Margin="0,2,0,0" Width="8"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource NormalForegroundColor}" Height="7" Margin="0,1" Width="8"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -1177,14 +1314,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1196,14 +1333,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1214,14 +1351,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1234,8 +1371,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="White" Height="7" Margin="0,2,0,0" Width="7"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="Black" Height="7" Margin="0,1" Width="7"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="7"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M6,0L6,7 5,7 5,6 4,6 4,5 3,5 3,4 2,4 2,3 3,3 3,2 4,2 4,1 5,1 5,0z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="7"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -1270,14 +1407,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1289,14 +1426,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1307,14 +1444,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1327,8 +1464,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="White" Height="7" Margin="0,2,0,0" Width="7"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="Black" Height="7" Margin="0,1" Width="7"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="7"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M1,0L1,7 2,7 2,6 3,6 3,5 4,5 4,4 5,4 5,3 4,3 4,2 3,2 3,1 2,1 2,0z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="7"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -1356,14 +1493,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1375,14 +1512,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1393,14 +1530,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1413,8 +1550,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="White" Height="7" Margin="0,2,0,0" Width="7"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="Black" Height="7" Margin="0,1" Width="7"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="7"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M0,2L7,2 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3z M0,0L7,0 7,1 0,1z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="7"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -1441,14 +1578,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="#FF8D8D8D"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1460,14 +1597,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1478,14 +1615,14 @@
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="Black"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
                                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
                                                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                                                 <DiscreteObjectKeyFrame.Value>
-                                                                                    <SolidColorBrush Color="White"/>
+                                                                                    <SolidColorBrush Color="{DynamicResource TabBackgroundColor}"/>
                                                                                 </DiscreteObjectKeyFrame.Value>
                                                                             </DiscreteObjectKeyFrame>
                                                                         </ObjectAnimationUsingKeyFrames>
@@ -1498,8 +1635,8 @@
                                                                 <telerik:Office_BlackTheme/>
                                                             </telerik:StyleManager.Theme>
                                                         </chromes:ButtonChrome>
-                                                        <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="White" Height="7" Margin="0,2,0,0" Width="8"/>
-                                                        <Path x:Name="ForegroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="Black" Height="7" Margin="0,1" Width="8"/>
+                                                        <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,2,0,0" Width="8"/>
+                                                        <Path x:Name="ForegroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Margin="0,1" Width="8"/>
                                                     </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
