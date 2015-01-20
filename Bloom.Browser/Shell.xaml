@@ -65,7 +65,7 @@
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>
-                <telerik:RadSplitContainer>
+                <telerik:RadSplitContainer Style="{StaticResource TabbedPanesStyle}">
                     <telerik:RadPaneGroup>
                         <telerik:RadPane Header="Library" />
                     </telerik:RadPaneGroup>

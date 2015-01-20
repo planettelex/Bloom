@@ -4,25 +4,21 @@
     <!-- Rock Skin -->
     
     <!-- Colors -->
-    <Color x:Key="NormalForegroundColor">#FF000104</Color>
-
     <Color x:Key="MenuBackgroundColor">#FFCFD3DA</Color>
     <Color x:Key="MenuBorderColor">#FF545D6E</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FFF0F1F3</Color>
-
+    <Color x:Key="NormalForegroundColor">#FF000104</Color>
     <Color x:Key="ShellBackgroundColor">#FF555E6F</Color>
     <Color x:Key="SidebarBackgroundColor">#FF3C465B</Color>
     <Color x:Key="TabsBackgroundColor">#FFD7DAE1</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFCFD3DA</Color>
 
     <!-- Brushes -->
-    <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
-    
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuBorderBrush" Color="{StaticResource MenuBorderColor}" />
     <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemSelectedBackgroundBrush" Color="{StaticResource MenuItemSelectedBackgroundColor}" />
-    
+    <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
     <SolidColorBrush x:Key="TabsBackgroundBrush" Color="{StaticResource TabsBackgroundColor}" />

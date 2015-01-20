@@ -4,25 +4,21 @@
     <!-- Goth Skin -->
 
     <!-- Colors -->
-    <Color x:Key="NormalForegroundColor">#FFF6F6F6</Color>
-
     <Color x:Key="MenuBackgroundColor">#FF0D1525</Color>
     <Color x:Key="MenuBorderColor">#FF525154</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FF222834</Color>
-    
+    <Color x:Key="NormalForegroundColor">#FFF6F6F6</Color>
     <Color x:Key="ShellBackgroundColor">#FF000000</Color>
     <Color x:Key="SidebarBackgroundColor">#FF0D1525</Color>
     <Color x:Key="TabsBackgroundColor">#FF212437</Color>
     <Color x:Key="TitlebarBackgroundColor">#FF0D1525</Color>
 
     <!-- Brushes -->
-    <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
-    
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuBorderBrush" Color="{StaticResource MenuBorderColor}" />
     <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemSelectedBackgroundBrush" Color="{StaticResource MenuItemSelectedBackgroundColor}" />
-
+    <SolidColorBrush x:Key="NormalForegroundBrush" Color="{StaticResource NormalForegroundColor}" />
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
     <SolidColorBrush x:Key="TabsBackgroundBrush" Color="{StaticResource TabsBackgroundColor}" />
