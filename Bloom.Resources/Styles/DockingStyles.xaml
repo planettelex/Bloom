@@ -6,10 +6,235 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib" 
                     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                     xmlns:tabControl="clr-namespace:Telerik.Windows.Controls.TabControl;assembly=Telerik.Windows.Controls.Navigation">
+
+    <Style x:Key="CompassStyle" TargetType="{x:Type telerik:Compass}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:Compass}">
+                    <Border x:Name="VisualRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="HighlightLeftIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_LeftIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HighlightTopIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_TopIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HighlightRightIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_RightIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HighlightBottomIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_BottomIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="HighlightCenterIndicator">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_CenterIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="LeftIndicatorVisibilityStates">
+                                <VisualState x:Name="LeftIndicatorVisibile"/>
+                                <VisualState x:Name="LeftIndicatorHidden">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_LeftIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="TopIndicatorVisibilityStates">
+                                <VisualState x:Name="TopIndicatorVisibile"/>
+                                <VisualState x:Name="TopIndicatorHidden">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_TopIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="RightIndicatorVisibilityStates">
+                                <VisualState x:Name="RightIndicatorVisibile"/>
+                                <VisualState x:Name="RightIndicatorHidden">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_RightIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="BottomIndicatorVisibilityStates">
+                                <VisualState x:Name="BottomIndicatorVisibile"/>
+                                <VisualState x:Name="BottomIndicatorHidden">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_BottomIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CenterIndicatorVisibilityStates">
+                                <VisualState x:Name="CenterIndicatorVisibile"/>
+                                <VisualState x:Name="CenterIndicatorHidden">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PART_CenterIndicator">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="Visual" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100">
+                            <chromes:ButtonChrome x:Name="PART_LeftIndicator" CornerRadius="2,1,1,2" HorizontalAlignment="Left" Height="80" Width="40">
+                                <chromes:ButtonChrome.Style>
+                                    <Style TargetType="{x:Type chromes:ButtonChrome}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
+                                                    <Grid>
+                                                        <chromes:ButtonChrome RenderMouseOver="{TemplateBinding RenderHighlighted}" />
+                                                        <Path Data="M4,0L4,7 3,7 3,6 2,6 2,5 1,5 1,4 0,4 0,3 1,3 1,2 2,2 2,1 3,1 3,0z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,1" Width="4"/>
+                                                        <Path Data="M4,0L4,7 3,7 3,6 2,6 2,5 1,5 1,4 0,4 0,3 1,3 1,2 2,2 2,1 3,1 3,0z" Fill="{DynamicResource ShellBackgroundBrush}" Height="7" Margin="0,0,0,2" Width="4"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </chromes:ButtonChrome.Style>
+                            </chromes:ButtonChrome>
+                            <chromes:ButtonChrome x:Name="PART_TopIndicator" CornerRadius="2,2,1,1" Height="40" VerticalAlignment="Top" Width="80">
+                                <chromes:ButtonChrome.Style>
+                                    <Style TargetType="{x:Type chromes:ButtonChrome}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
+                                                    <Grid>
+                                                        <chromes:ButtonChrome RenderMouseOver="{TemplateBinding RenderHighlighted}" />
+                                                        <Path Data="M0,4L7,4 7,3 6,3 6,2 5,2 5,1 4,1 4,0 3,0 3,1 2,1 2,2 1,2 1,3 0,3z" Fill="{DynamicResource TabsBackgroundBrush}" Height="4" Margin="0,1" Width="7"/>
+                                                        <Path Data="M0,4L7,4 7,3 6,3 6,2 5,2 5,1 4,1 4,0 3,0 3,1 2,1 2,2 1,2 1,3 0,3z" Fill="{DynamicResource ShellBackgroundBrush}" Height="4" Margin="0,0,0,2" Width="7"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </chromes:ButtonChrome.Style>
+                            </chromes:ButtonChrome>
+                            <chromes:ButtonChrome x:Name="PART_RightIndicator" CornerRadius="1,2,2,1" HorizontalAlignment="Right" Height="80" Width="40">
+                                <chromes:ButtonChrome.Style>
+                                    <Style TargetType="{x:Type chromes:ButtonChrome}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
+                                                    <Grid>
+                                                        <chromes:ButtonChrome RenderMouseOver="{TemplateBinding RenderHighlighted}" />
+                                                        <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 3,4 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource TabsBackgroundBrush}" Height="7" Margin="0,1" Width="4"/>
+                                                        <Path Data="M0,0L0,7 1,7 1,6 2,6 2,5 3,5 4,3 4,4 4,3 3,3 3,2 2,2 2,1 1,1 1,0z" Fill="{DynamicResource ShellBackgroundBrush}" Height="7" Margin="0,0,0,2" Width="4"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </chromes:ButtonChrome.Style>
+                            </chromes:ButtonChrome>
+                            <chromes:ButtonChrome x:Name="PART_BottomIndicator" CornerRadius="1,1,2,2" Height="40" VerticalAlignment="Bottom" Width="80">
+                                <chromes:ButtonChrome.Style>
+                                    <Style TargetType="{x:Type chromes:ButtonChrome}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
+                                                    <Grid>
+                                                        <chromes:ButtonChrome RenderMouseOver="{TemplateBinding RenderHighlighted}" />
+                                                        <Path Data="M0,0L7,0 7,1 6,1 6,2 5,2 5,3 4,3 4,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource TabsBackgroundBrush}" Height="4" Margin="0,1" Width="7"/>
+                                                        <Path Data="M0,0L7,0 7,1 6,1 6,2 5,2 5,3 4,3 4,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource ShellBackgroundBrush}" Height="4" Margin="0,0,0,2" Width="7"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </chromes:ButtonChrome.Style>
+                            </chromes:ButtonChrome>
+                            <chromes:ButtonChrome x:Name="PART_CenterIndicator" CornerRadius="5" Height="100" Width="100">
+                                <chromes:ButtonChrome.Style>
+                                    <Style TargetType="{x:Type chromes:ButtonChrome}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
+                                                    <chromes:ButtonChrome RenderMouseOver="{TemplateBinding RenderHighlighted}" Background="{DynamicResource TabsUnselectedBackgroundBrush}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </chromes:ButtonChrome.Style>
+                            </chromes:ButtonChrome>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <Style TargetType="{x:Type telerikDocking:RadDocking}">
         <Setter Property="AllowDragReorder" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ShellBackgroundBrush}" />
+        <Setter Property="CompassStyle" Value="{StaticResource CompassStyle}" />
         <Setter Property="CloseButtonPosition" Value="InPane" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="0 5 0 0" />
