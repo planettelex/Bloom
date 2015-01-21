@@ -183,7 +183,7 @@
                                 <Border.Background>
                                     <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
                                 </Border.Background>
-                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -201,7 +201,7 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="{DynamicResource MenuBackgroundBrush}">
 										<Grid>
                                             <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
@@ -232,14 +232,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -264,8 +264,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -278,7 +278,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -313,14 +313,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -345,8 +345,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -359,7 +359,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -570,7 +570,7 @@
 								<Border.Background>
                                     <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -588,7 +588,7 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="{DynamicResource MenuBackgroundBrush}">
 										<Grid>
                                             <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
@@ -619,14 +619,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -651,8 +651,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -665,7 +665,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
 																							<Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -700,14 +700,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -732,8 +732,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -746,7 +746,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
 																							<Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -957,7 +957,7 @@
 								<Border.Background>
                                     <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -975,7 +975,7 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="{DynamicResource MenuBackgroundBrush}">
 										<Grid>
                                             <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
@@ -1006,14 +1006,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -1038,8 +1038,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -1052,7 +1052,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -1087,14 +1087,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -1119,8 +1119,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -1133,7 +1133,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -1344,7 +1344,7 @@
                                 <Border.Background>
                                     <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
                                 </Border.Background>
-                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -1362,7 +1362,7 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="{DynamicResource MenuBackgroundBrush}">
 										<Grid>
                                             <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
@@ -1393,14 +1393,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -1425,8 +1425,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -1439,7 +1439,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
 																							<Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -1474,14 +1474,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -1506,8 +1506,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -1520,7 +1520,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -1731,7 +1731,7 @@
 								<Border.Background>
                                     <SolidColorBrush Color="{DynamicResource MenuItemSelectedBackgroundColor}" />
 								</Border.Background>
-								<Border x:Name="HighlightInnerBorderVisual" BorderBrush="White" BorderThickness="0" CornerRadius="0"/>
+                                <Border x:Name="HighlightInnerBorderVisual" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0" CornerRadius="0"/>
 							</Border>
 							<Grid Grid.Column="0" x:Name="IconHost" Margin="-2,0,-1,0" Width="{TemplateBinding IconColumnWidth}">
 								<Path x:Name="Tick" Data="M4,7.1L5.7,7.2 7.4,9.1 12,2.4 13.2,2 7.3,13.8z" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Height="16" Margin="5,3,6,3" Visibility="Collapsed" Width="16"/>
@@ -1749,7 +1749,7 @@
 						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False" HorizontalOffset="-1" IsOpen="{TemplateBinding IsSubmenuOpen}" VerticalOffset="-1">
 							<Grid Height="{TemplateBinding DropDownHeight}" Width="{TemplateBinding DropDownWidth}">
 								<Grid x:Name="PopupContentElement">
-                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1" Background="White">
+                                    <Border BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="1">
 										<Grid>
                                             <Border x:Name="IconSeparatorBackground" BorderBrush="{DynamicResource MenuBorderBrush}" BorderThickness="0,0,1,0" Background="{DynamicResource MenuBackgroundBrush}" HorizontalAlignment="Left" Width="{Binding IconColumnWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
 											<ScrollViewer x:Name="PART_ScrollViewer" telerik:SharedSizeScope.IsSharedSizeScope="True">
@@ -1780,14 +1780,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}" />
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+                                                                                                                                <SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -1812,8 +1812,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,4L3.5,0.5 7,4z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -1826,7 +1826,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>
@@ -1861,14 +1861,14 @@
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ForegroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="Black"/>
+																																<SolidColorBrush Color="{DynamicResource NormalForegroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
 																													<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="BackgroundIcon">
 																														<DiscreteObjectKeyFrame KeyTime="0">
 																															<DiscreteObjectKeyFrame.Value>
-																																<SolidColorBrush Color="White"/>
+																																<SolidColorBrush Color="{DynamicResource MenuBackgroundColor}"/>
 																															</DiscreteObjectKeyFrame.Value>
 																														</DiscreteObjectKeyFrame>
 																													</ObjectAnimationUsingKeyFrames>
@@ -1893,8 +1893,8 @@
 																										</VisualStateGroup>
 																									</VisualStateManager.VisualStateGroups>
 																									<Grid x:Name="ContentContainer" Margin="1,2">
-																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="White" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
-																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="Black" Height="4" Margin="0,1" Stretch="None" Width="7"/>
+																										<Path x:Name="BackgroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource MenuBackgroundBrush}" Height="4" Margin="0,2,0,0" Stretch="None" Width="7"/>
+																										<Path x:Name="ForegroundIcon" Data="M0,0L3.5,3.5 7,0z" Fill="{DynamicResource NormalBackgroundBrush}" Height="4" Margin="0,1" Stretch="None" Width="7"/>
 																									</Grid>
 																								</Border>
 																							</ControlTemplate>
@@ -1907,7 +1907,7 @@
 																							<Setter Property="MinWidth" Value="0"/>
 																							<Setter Property="MinHeight" Value="0"/>
                                                                                             <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}"/>
-																							<Setter Property="BorderBrush" Value="White"/>
+                                                                                            <Setter Property="BorderBrush" Value="{DynamicResource MenuBorderBrush}"/>
 																							<Setter Property="BorderThickness" Value="0"/>
 																							<Setter Property="ClickMode" Value="Hover"/>
 																						</Style>

@@ -5,11 +5,11 @@
 
     <!-- Colors -->
     <Color x:Key="MenuBackgroundColor">#FFF6F6F6</Color>
-    <Color x:Key="MenuBorderColor">#FFA4A4A4</Color>
-    <Color x:Key="MenuItemSelectedBackgroundColor">#FFE2E2E2</Color>
+    <Color x:Key="MenuBorderColor">#FFB4B4B4</Color>
+    <Color x:Key="MenuItemSelectedBackgroundColor">#FFE7E7E5</Color>
     <Color x:Key="NormalForegroundColor">#FF232523</Color>
     <Color x:Key="ShellBackgroundColor">#FFD3D3D3</Color>
-    <Color x:Key="SidebarBackgroundColor">#FFACACAC</Color>
+    <Color x:Key="SidebarBackgroundColor">#FFBCBCBC</Color>
     <Color x:Key="TabsBackgroundColor">#FFF5F5F3</Color>
     <Color x:Key="TabsUnselectedBackgroundColor">#FFE7E7E5</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFF6F6F6</Color>
