@@ -8,6 +8,7 @@
                     xmlns:tabControl="clr-namespace:Telerik.Windows.Controls.TabControl;assembly=Telerik.Windows.Controls.Navigation">
     
     <Style TargetType="{x:Type telerikDocking:RadDocking}">
+        <Setter Property="AllowDragReorder" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ShellBackgroundBrush}" />
         <Setter Property="CloseButtonPosition" Value="InPane" />
         <Setter Property="BorderThickness" Value="0" />

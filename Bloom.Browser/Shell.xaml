@@ -58,9 +58,9 @@
                       prism:RegionManager.RegionContext="{Binding}" />
         
         <!-- Dock -->
-        <telerik:RadDocking x:Name="Dock" Grid.Row="2">
+        <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview" >
             <telerik:RadSplitContainer>
-                <telerik:RadPaneGroup Style="{StaticResource SidebarStyle}">
+                <telerik:RadPaneGroup x:Name="Sidebar" Style="{StaticResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>

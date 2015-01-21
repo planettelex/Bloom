@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Bloom.Browser.Common;
 using Bloom.Services;
+using Telerik.Windows.Controls.Docking;
 
 namespace Bloom.Browser
 {
@@ -104,6 +105,26 @@ namespace Bloom.Browser
         private void ExitApplication()
         {
             Application.Current.Shutdown();
+        }
+
+        private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
+        {
+            if (e.TargetGroup != null && e.TargetGroup.Name == "Sidebar")
+            {
+                e.Compass.IsLeftIndicatorVisible = false;
+                e.Compass.IsTopIndicatorVisible = false;
+                e.Compass.IsRightIndicatorVisible = false;
+                e.Compass.IsBottomIndicatorVisible = false;
+                e.Compass.IsCenterIndicatorVisible = false;
+            }
+            else
+            {
+                e.Compass.IsLeftIndicatorVisible = false;
+                e.Compass.IsTopIndicatorVisible = false;
+                e.Compass.IsRightIndicatorVisible = false;
+                e.Compass.IsBottomIndicatorVisible = false;
+                e.Compass.IsCenterIndicatorVisible = true;
+            }
         }
     }
 }
