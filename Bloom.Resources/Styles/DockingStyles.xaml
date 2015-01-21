@@ -7,6 +7,19 @@
                     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
                     xmlns:tabControl="clr-namespace:Telerik.Windows.Controls.TabControl;assembly=Telerik.Windows.Controls.Navigation">
 
+    <Style x:Key="VisualCueStyle" TargetType="{x:Type telerik:VisualCue}">
+        <Setter Property="Background" Value="{DynamicResource TabsDockCueBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TabsDockCueBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type telerik:VisualCue}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="CompassStyle" TargetType="{x:Type telerik:Compass}">
         <Setter Property="Template">
             <Setter.Value>
@@ -20,7 +33,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_LeftIndicator">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <system:Boolean>True</system:Boolean>
+                                                    <system:Boolean>False</system:Boolean>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
@@ -31,7 +44,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_TopIndicator">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <system:Boolean>True</system:Boolean>
+                                                    <system:Boolean>False</system:Boolean>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
@@ -42,7 +55,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_RightIndicator">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <system:Boolean>True</system:Boolean>
+                                                    <system:Boolean>False</system:Boolean>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
@@ -53,7 +66,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_BottomIndicator">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <system:Boolean>True</system:Boolean>
+                                                    <system:Boolean>False</system:Boolean>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
@@ -64,7 +77,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="RenderHighlighted" Storyboard.TargetName="PART_CenterIndicator">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <system:Boolean>True</system:Boolean>
+                                                    <system:Boolean>False</system:Boolean>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
@@ -235,6 +248,7 @@
         <Setter Property="AllowDragReorder" Value="True" />
         <Setter Property="Background" Value="{DynamicResource ShellBackgroundBrush}" />
         <Setter Property="CompassStyle" Value="{StaticResource CompassStyle}" />
+        <Setter Property="VisualCueStyle" Value="{StaticResource VisualCueStyle}" />
         <Setter Property="CloseButtonPosition" Value="InPane" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="0 5 0 0" />

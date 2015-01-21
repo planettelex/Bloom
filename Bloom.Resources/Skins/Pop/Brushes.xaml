@@ -11,6 +11,7 @@
     <Color x:Key="ShellBackgroundColor">#FFD3D3D3</Color>
     <Color x:Key="SidebarBackgroundColor">#FFBCBCBC</Color>
     <Color x:Key="TabsBackgroundColor">#FFF5F5F3</Color>
+    <Color x:Key="TabsDockCueColor">#31313131</Color>
     <Color x:Key="TabsUnselectedBackgroundColor">#FFE7E7E5</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFF6F6F6</Color>
 
@@ -23,6 +24,7 @@
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
     <SolidColorBrush x:Key="TabsBackgroundBrush" Color="{StaticResource TabsBackgroundColor}" />
+    <SolidColorBrush x:Key="TabsDockCueBrush" Color="{StaticResource TabsDockCueColor}" />
     <SolidColorBrush x:Key="TabsUnselectedBackgroundBrush" Color="{StaticResource TabsUnselectedBackgroundColor}" />
     <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
 
