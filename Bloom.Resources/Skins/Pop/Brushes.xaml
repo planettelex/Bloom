@@ -6,11 +6,12 @@
     <!-- Colors -->
     <Color x:Key="MenuBackgroundColor">#FFF6F6F6</Color>
     <Color x:Key="MenuBorderColor">#FFA4A4A4</Color>
-    <Color x:Key="MenuItemSelectedBackgroundColor">#FFFEFEFE</Color>
+    <Color x:Key="MenuItemSelectedBackgroundColor">#FFE2E2E2</Color>
     <Color x:Key="NormalForegroundColor">#FF232523</Color>
     <Color x:Key="ShellBackgroundColor">#FFD3D3D3</Color>
-    <Color x:Key="SidebarBackgroundColor">#FF909090</Color>
+    <Color x:Key="SidebarBackgroundColor">#FFACACAC</Color>
     <Color x:Key="TabsBackgroundColor">#FFF5F5F3</Color>
+    <Color x:Key="TabsUnselectedBackgroundColor">#FFE7E7E5</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFF6F6F6</Color>
 
     <!-- Brushes -->
@@ -22,6 +23,7 @@
     <SolidColorBrush x:Key="ShellBackgroundBrush" Color="{StaticResource ShellBackgroundColor}" />
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{StaticResource SidebarBackgroundColor}" />
     <SolidColorBrush x:Key="TabsBackgroundBrush" Color="{StaticResource TabsBackgroundColor}" />
+    <SolidColorBrush x:Key="TabsUnselectedBackgroundBrush" Color="{StaticResource TabsUnselectedBackgroundColor}" />
     <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
 
 </ResourceDictionary>

@@ -10,6 +10,8 @@
     <Style TargetType="{x:Type telerikDocking:RadDocking}">
         <Setter Property="Background" Value="{DynamicResource ShellBackgroundBrush}" />
         <Setter Property="CloseButtonPosition" Value="InPane" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0 5 0 0"></Setter>
     </Style>
 
     <Style TargetType="{x:Type telerik:ToolWindow}">
@@ -1287,7 +1289,7 @@
                                 </Grid>
                             </Grid>
                         </ContentControl>
-                        <Grid x:Name="Header" Grid.Row="0">
+                        <Grid x:Name="Header" Grid.Row="0" Height="25">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -5005,7 +5007,7 @@
         <Setter Property="DocumentHostTemplate">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type telerikDocking:RadPane}">
-                    <Grid x:Name="wrapper" Margin="0,0,-1,0">
+                    <Grid x:Name="wrapper" Margin="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
@@ -5037,14 +5039,14 @@
                                 <Style TargetType="{x:Type chromes:ButtonChrome}">
                                     <Setter Property="Background">
                                         <Setter.Value>
-                                            <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
+                                            <SolidColorBrush Color="{DynamicResource TabsUnselectedBackgroundColor}" />
                                         </Setter.Value>
                                     </Setter>
                                     <Setter Property="BorderBrush" Value="{DynamicResource TabsBackgroundBrush}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type chromes:ButtonChrome}">
-                                                <Border x:Name="OuterBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+                                                <Border Margin="0 0 1 0" x:Name="OuterBorder" BorderBrush="{DynamicResource ShellBackgroundBrush}" BorderThickness="0 0 0 1" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="Disabled">
@@ -5078,14 +5080,14 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="InnerBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource ShellBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="OuterBorder">
                                                                         <DiscreteObjectKeyFrame KeyTime="0">
                                                                             <DiscreteObjectKeyFrame.Value>
-                                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}"/>
+                                                                                <SolidColorBrush Color="{DynamicResource ShellBackgroundColor}"/>
                                                                             </DiscreteObjectKeyFrame.Value>
                                                                         </DiscreteObjectKeyFrame>
                                                                     </ObjectAnimationUsingKeyFrames>
@@ -5250,7 +5252,7 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
+                                                    <Border x:Name="InnerBorder" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="0" CornerRadius="{TemplateBinding InnerCornerRadius}"/>
                                                 </Border>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -5258,7 +5260,7 @@
                                 </Style>
                             </chromes:ButtonChrome.Style>
                         </chromes:ButtonChrome>
-                        <telerik:RadButton x:Name="HeaderCloseButton" Grid.Column="1" Command="telerikDocking:RadDockingCommands.Close" Height="16" IsBackgroundVisible="False" Margin="0,0,3,0" VerticalAlignment="Center" Width="16">
+                        <telerik:RadButton ToolTip="Close" x:Name="HeaderCloseButton" Grid.Column="1" Command="telerikDocking:RadDockingCommands.Close" Height="15" IsBackgroundVisible="False" Margin="2 -3 5 0" VerticalAlignment="Center" Width="15">
                             <telerik:RadButton.Visibility>
                                 <Binding Path="IsEnabled" RelativeSource="{RelativeSource Self}">
                                     <Binding.Converter>
@@ -5266,7 +5268,7 @@
                                     </Binding.Converter>
                                 </Binding>
                             </telerik:RadButton.Visibility>
-                            <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource NormalForegroundBrush}" Height="7" Width="8"/>
+                            <Path x:Name="BackgroundIcon" Data="M0,0L2,0 2,1 3,1 3,2 5,2 5,1 6,1 6,0 8,0 8,1 7,1 7,2 6,2 6,3 5,3 5,4 6,4 6,5 6,5 7,5 7,6 8,6 8,7 6,7 6,6 5,6 5,5 3,5 3,6 2,6 2,7 0,7 0,6 1,6 1,5 2,5 2,4 3,4 3,3 2,3 2,2 1,2 1,1 0,1z" Fill="{DynamicResource NormalForegroundBrush}" Height="8" Width="8"/>
                         </telerik:RadButton>
                         <primitives:TabItemContentPresenter Grid.Column="0" x:Name="HeaderElement" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="6,3,6,2" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
@@ -5274,4 +5276,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>
