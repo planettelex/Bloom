@@ -11,14 +11,14 @@
     </Style>
 
     <Style x:Key="VerticalSplitterStyle" TargetType="GridSplitter">
-        <Setter Property="Background" Value="{DynamicResource MenuBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="ResizeDirection" Value="Columns" />
         <Setter Property="Width" Value="3" />
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="HorizontalSplitterStyle" TargetType="GridSplitter">
-        <Setter Property="Background" Value="{DynamicResource MenuBorderBrush}" />
+        <Setter Property="Background" Value="{DynamicResource NormalBorderBrush}" />
         <Setter Property="ResizeDirection" Value="Rows" />
         <Setter Property="Height" Value="3" />
         <Setter Property="VerticalAlignment" Value="Center" />

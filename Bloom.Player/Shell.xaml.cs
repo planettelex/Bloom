@@ -28,7 +28,8 @@ namespace Bloom.Player
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            Properties.Settings.Default.Save();
+            var state = (State) DataContext;
+            state.Save();
         }
     }
 }

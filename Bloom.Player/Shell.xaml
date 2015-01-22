@@ -1,13 +1,12 @@
 ﻿<Window x:Class="Bloom.Player.Shell"
-       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:prism="http://www.codeplex.com/prism"
-       xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://www.codeplex.com/prism"
         xmlns:shared="clr-namespace:Bloom.Controls;assembly=Bloom.Controls"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-       Title="Bloom Music Player">
+        Title="Bloom Music Player">
     
     <Grid>
         <Grid.RowDefinitions>
