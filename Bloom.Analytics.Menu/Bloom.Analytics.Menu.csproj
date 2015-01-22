@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="MenuModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
@@ -93,6 +94,32 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
+      <Project>{270af0ba-649a-42a7-99c1-5c4a9fac1299}</Project>
+      <Name>Bloom.Analytics.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
+      <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
+      <Name>Bloom.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Controls\Bloom.Controls.csproj">
+      <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
+      <Name>Bloom.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Domain\Bloom.Domain.csproj">
+      <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
+      <Name>Bloom.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Resources\Bloom.Resources.csproj">
+      <Project>{8d643812-f61a-41e0-bde1-b81b3bd80794}</Project>
+      <Name>Bloom.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Services\Bloom.Services.csproj">
+      <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
+      <Name>Bloom.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

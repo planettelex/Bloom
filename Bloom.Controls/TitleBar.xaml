@@ -8,7 +8,7 @@
              d:DesignHeight="25" d:DesignWidth="800">
     
     <UserControl.Resources>
-        <ResourceDictionary Source="Resources/Styles.xaml" />
+        <ResourceDictionary Source="TitleBarStyles.xaml" />
     </UserControl.Resources>
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static control:TitleBar.ToggleWindowStateCommand}" Executed="ToggleWindowState" CanExecute="CanToggleWindowState" />

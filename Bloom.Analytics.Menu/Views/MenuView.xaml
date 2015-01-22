@@ -8,7 +8,7 @@
              d:DesignHeight="25" d:DesignWidth="800">
 
     <Border Style="{DynamicResource MenuBorderStyle}">
-        <telerik:RadMenu x:Name="MainMenu">
+        <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
             <telerik:RadMenuItem Header="File">
                 <telerik:RadMenuItem Header="Connected Libraries..." />
                 <telerik:RadMenuItem Header="Exit Analytics" />
@@ -33,10 +33,10 @@
                 <telerik:RadMenuItem Header="Full Screen" />
                 <telerik:RadMenuItem Header="Hide Sidebar" />
                 <telerik:RadMenuItem Header="Configure Sidebar..." />
-                <telerik:RadMenuItem Header="Skins">
-                    <telerik:RadMenuItem Header="Rock" />
-                    <telerik:RadMenuItem Header="Pop" />
-                    <telerik:RadMenuItem Header="Goth" />
+                <telerik:RadMenuItem x:Name="Skins" Header="Skins">
+                    <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
+                    <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
+                    <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
                 </telerik:RadMenuItem>
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Help">

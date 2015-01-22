@@ -94,10 +94,6 @@
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Data\Bloom.Data.csproj">
-      <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
-      <Name>Bloom.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bloom.Domain\Bloom.Domain.csproj">
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
