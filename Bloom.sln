@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Menu", "Bloom.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.Common", "Bloom.Browser.Shared\Bloom.Browser.Common.csproj", "{D1B7AD4E-C328-4AED-A6E5-9B3E95DEC56B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Controls", "Bloom.Controls\Bloom.Controls.csproj", "{525FAACE-2C85-44FC-8A08-3674FB57D996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{D1B7AD4E-C328-4AED-A6E5-9B3E95DEC56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1B7AD4E-C328-4AED-A6E5-9B3E95DEC56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1B7AD4E-C328-4AED-A6E5-9B3E95DEC56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{525FAACE-2C85-44FC-8A08-3674FB57D996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{525FAACE-2C85-44FC-8A08-3674FB57D996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{525FAACE-2C85-44FC-8A08-3674FB57D996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{525FAACE-2C85-44FC-8A08-3674FB57D996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,5 +124,6 @@ Global
 		{0026EA94-0F63-44F1-AA1E-A67988935F17} = {9014435F-F56D-4405-B05F-9EDE65BED944}
 		{FBD9F5A9-4CC2-4A28-A13F-5643A9C8914F} = {2D46534F-4644-4995-A711-3593994314F9}
 		{D1B7AD4E-C328-4AED-A6E5-9B3E95DEC56B} = {251D4074-DD7A-48C7-8BA8-04D437DFA098}
+		{525FAACE-2C85-44FC-8A08-3674FB57D996} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Bloom.Browser.Common;
 using Bloom.Services;
 using Telerik.Windows.Controls.Docking;
@@ -22,11 +21,6 @@ namespace Bloom.Browser
             DataContext = state;
 
             skinningService.SetSkin(state.Skin);
-
-            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
-                MaximizeButton.Visibility = Visibility.Collapsed;
-            else
-                RestoreButton.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -43,68 +37,6 @@ namespace Bloom.Browser
             base.OnClosing(e);
             var state = (State) DataContext;
             state.Save();
-        }
-
-        private void ToggleWindowState(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
-                RestoreWindow();
-            else
-                MaximizeWindow();
-        }
-
-        private void CanToggleWindowState(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void MinimizeButtonClick(object sender, RoutedEventArgs e)
-        {
-            MinimizeWindow();
-        }
-
-        private void MaximizeButtonClick(object sender, RoutedEventArgs e)
-        {
-            MaximizeWindow();
-        }
-
-        private void RestoreButtonClick(object sender, RoutedEventArgs e)
-        {
-            RestoreWindow();
-        }
-
-        private void CloseButtonClick(object sender, RoutedEventArgs e)
-        {
-            ExitApplication();
-        }
-
-        private void DragWindow(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
-        private void MinimizeWindow()
-        {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        }
-
-        private void MaximizeWindow()
-        {
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
-            MaximizeButton.Visibility = Visibility.Collapsed;
-            RestoreButton.Visibility = Visibility.Visible;
-        }
-
-        private void RestoreWindow()
-        {
-            Application.Current.MainWindow.WindowState = WindowState.Normal;
-            MaximizeButton.Visibility = Visibility.Visible;
-            RestoreButton.Visibility = Visibility.Collapsed;
-        }
-
-        private void ExitApplication()
-        {
-            Application.Current.Shutdown();
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)

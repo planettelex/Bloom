@@ -163,6 +163,10 @@
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bloom.Controls\Bloom.Controls.csproj">
+      <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
+      <Name>Bloom.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Data\Bloom.Data.csproj">
       <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
       <Name>Bloom.Data</Name>

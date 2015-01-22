@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-        xmlns:app="clr-namespace:Bloom.Browser"
+        xmlns:shared="clr-namespace:Bloom.Controls;assembly=Bloom.Controls"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
@@ -12,9 +12,6 @@
     <Window.Resources>
         <ResourceDictionary Source="Resources/Styles.xaml" />
     </Window.Resources>
-    <Window.CommandBindings>
-        <CommandBinding Command="{x:Static app:Shell.ToggleWindowStateCommand}" Executed="ToggleWindowState" CanExecute="CanToggleWindowState" />
-    </Window.CommandBindings>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -23,42 +20,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Title Bar -->
-        <Border Grid.Row="0" Style="{StaticResource TitlebarBorderStyle}">
-            <Grid MouseLeftButtonDown="DragWindow" Style="{StaticResource TitlebarStyle}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.InputBindings>
-                    <MouseBinding MouseAction="LeftDoubleClick" Command="{x:Static app:Shell.ToggleWindowStateCommand}" />
-                </Grid.InputBindings>
-            
-                <TextBlock Grid.Column="0" Text="Bloom Music Browser" Style="{StaticResource TitlebarTextStyle}" />
-                <Button x:Name="MinimizeButton" Grid.Column="1" Click="MinimizeButtonClick" ToolTip="Minimize" Style="{StaticResource TitlebarButtonStyle}">
-                    <Image Style="{StaticResource MinimizeIconStyle}" />
-                </Button>
-                <Button x:Name="MaximizeButton" Grid.Column="2" Click="MaximizeButtonClick" ToolTip="Maximize" Style="{StaticResource TitlebarButtonStyle}">
-                    <Image Style="{StaticResource MaximizeIconStyle}" />
-                </Button>
-                <Button x:Name="RestoreButton" Grid.Column="2" Click="RestoreButtonClick" ToolTip="Restore Down" Style="{StaticResource TitlebarButtonStyle}">
-                    <Image Style="{StaticResource RestoreIconStyle}" />
-                </Button>
-                <Button x:Name="CloseButton" Grid.Column="3" Click="CloseButtonClick" ToolTip="Close" Style="{StaticResource TitlebarButtonStyle}">
-                    <Image Style="{StaticResource CloseIconStyle}" />
-                </Button>
-            </Grid>
-        </Border>
-
-        <!-- Menu -->
+        <shared:TitleBar Grid.Row="0" Title="Bloom Music Browser" />
         <ItemsControl Name="MenuRegion" Grid.Row="1"
                       prism:RegionManager.RegionName="MenuRegion" 
                       prism:RegionManager.RegionContext="{Binding}" />
         
-        <!-- Dock -->
-        <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview" >
+        <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup x:Name="Sidebar" Style="{StaticResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
