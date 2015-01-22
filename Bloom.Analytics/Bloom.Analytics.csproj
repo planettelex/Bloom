@@ -92,8 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="State.cs" />
-    <Page Include="Resources\Resources.xaml">
+    <Page Include="Resources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -142,10 +141,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\Styles\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
+      <Project>{270af0ba-649a-42a7-99c1-5c4a9fac1299}</Project>
+      <Name>Bloom.Analytics.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Analytics.Menu\Bloom.Analytics.Menu.csproj">
       <Project>{0026ea94-0f63-44f1-aa1e-a67988935f17}</Project>
       <Name>Bloom.Analytics.Menu</Name>
@@ -153,6 +154,10 @@
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Controls\Bloom.Controls.csproj">
+      <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
+      <Name>Bloom.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Data\Bloom.Data.csproj">
       <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>

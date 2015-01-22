@@ -9,10 +9,6 @@
         ResizeMode="CanResizeWithGrip"
         Title="Bloom Music Browser">
     
-    <Window.Resources>
-        <ResourceDictionary Source="Resources/Styles.xaml" />
-    </Window.Resources>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -27,21 +23,21 @@
         
         <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview">
             <telerik:RadSplitContainer>
-                <telerik:RadPaneGroup x:Name="Sidebar" Style="{StaticResource SidebarStyle}">
+                <telerik:RadPaneGroup x:Name="Sidebar" Style="{DynamicResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>
-                <telerik:RadSplitContainer Style="{StaticResource TabbedPanesStyle}">
+                <telerik:RadSplitContainer Style="{DynamicResource TabbedPanesStyle}">
                     <telerik:RadPaneGroup>
                         <telerik:RadPane Header="Tab  1">
-                            <Grid Style="{StaticResource TabBackgroundStyle}" />
+                            <Grid Style="{DynamicResource TabBackgroundStyle}" />
                         </telerik:RadPane>
                         <telerik:RadPane Header="Tab  2">
-                            <Grid Style="{StaticResource TabBackgroundStyle}" />
+                            <Grid Style="{DynamicResource TabBackgroundStyle}" />
                         </telerik:RadPane>
                         <telerik:RadPane Header="Tab  3">
-                            <Grid Style="{StaticResource TabBackgroundStyle}" />
+                            <Grid Style="{DynamicResource TabBackgroundStyle}" />
                         </telerik:RadPane>
                     </telerik:RadPaneGroup>
                 </telerik:RadSplitContainer>

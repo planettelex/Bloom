@@ -391,6 +391,10 @@
         </Setter>
     </Style>
 
+    <Style x:Key="TabbedPanesStyle" TargetType="{x:Type telerik:RadSplitContainer}">
+        <Setter Property="Margin" Value="0 2 5 5" />
+    </Style>
+
     <Style TargetType="{x:Type telerikDocking:RadPaneGroup}">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
@@ -2317,6 +2321,12 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="SidebarStyle" TargetType="{x:Type telerik:RadPaneGroup}">
+        <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="5 0 2 5"></Setter>
     </Style>
 
     <Style TargetType="{x:Type telerikDocking:RadPane}">
@@ -5516,5 +5526,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="TabBackgroundStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{DynamicResource TabsBackgroundBrush}"/>
+    </Style>
+
 </ResourceDictionary>

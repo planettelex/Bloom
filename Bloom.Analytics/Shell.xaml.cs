@@ -1,12 +1,13 @@
-﻿using System.Windows;
+﻿using Bloom.Analytics.Common;
 using Bloom.Services;
+using Telerik.Windows.Controls.Docking;
 
 namespace Bloom.Analytics
 {
     /// <summary>
     /// Interaction logic for Shell.xaml
     /// </summary>
-    public partial class Shell : Window
+    public partial class Shell
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Shell" /> class.
@@ -29,6 +30,26 @@ namespace Bloom.Analytics
         {
             base.OnClosing(e);
             Properties.Settings.Default.Save();
+        }
+
+        private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
+        {
+            if (e.TargetGroup != null && e.TargetGroup.Name == "Sidebar")
+            {
+                e.Compass.IsLeftIndicatorVisible = false;
+                e.Compass.IsTopIndicatorVisible = false;
+                e.Compass.IsRightIndicatorVisible = false;
+                e.Compass.IsBottomIndicatorVisible = false;
+                e.Compass.IsCenterIndicatorVisible = false;
+            }
+            else
+            {
+                e.Compass.IsLeftIndicatorVisible = false;
+                e.Compass.IsTopIndicatorVisible = false;
+                e.Compass.IsRightIndicatorVisible = false;
+                e.Compass.IsBottomIndicatorVisible = false;
+                e.Compass.IsCenterIndicatorVisible = true;
+            }
         }
     }
 }

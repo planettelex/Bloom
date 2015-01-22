@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using Bloom.Browser.Common;
+﻿using Bloom.Browser.Common;
 using Bloom.Services;
 using Telerik.Windows.Controls.Docking;
 
@@ -22,11 +21,6 @@ namespace Bloom.Browser
 
             skinningService.SetSkin(state.Skin);
         }
-
-        /// <summary>
-        /// The toggle window state command.
-        /// </summary>
-        public static RoutedCommand ToggleWindowStateCommand = new RoutedCommand();
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.

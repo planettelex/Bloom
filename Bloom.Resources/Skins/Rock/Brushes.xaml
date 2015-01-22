@@ -11,7 +11,7 @@
     <Color x:Key="ShellBackgroundColor">#FF555E6F</Color>
     <Color x:Key="SidebarBackgroundColor">#FF3C465B</Color>
     <Color x:Key="TabsBackgroundColor">#FFD7DAE1</Color>
-    <Color x:Key="TabsDockCueColor">#77FFE67B</Color>
+    <Color x:Key="TabsDockCueColor">#55FFFF8C</Color>
     <Color x:Key="TabsUnselectedBackgroundColor">#FFC0C5D1</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFCFD3DA</Color>
 
