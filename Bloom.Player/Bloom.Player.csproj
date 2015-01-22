@@ -92,7 +92,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="State.cs" />
     <Page Include="Resources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -148,9 +147,17 @@
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bloom.Controls\Bloom.Controls.csproj">
+      <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
+      <Name>Bloom.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Domain\Bloom.Domain.csproj">
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Player.Common\Bloom.Player.Common.csproj">
+      <Project>{e224effa-5b5f-4ed9-84ed-63db59623e3b}</Project>
+      <Name>Bloom.Player.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Player.Menu\Bloom.Player.Menu.csproj">
       <Project>{fbd9f5a9-4cc2-4a28-a13f-5643a9c8914f}</Project>

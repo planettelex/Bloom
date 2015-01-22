@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿using Bloom.Player.Common;
 using Bloom.Services;
 
 namespace Bloom.Player
@@ -6,7 +6,7 @@ namespace Bloom.Player
     /// <summary>
     /// Interaction logic for Shell.xaml
     /// </summary>
-    public partial class Shell : Window
+    public partial class Shell
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Shell" /> class.

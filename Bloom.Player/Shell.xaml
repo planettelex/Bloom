@@ -3,18 +3,25 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:prism="http://www.codeplex.com/prism"
        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-       Title="Bloom - Music Player">
+        xmlns:shared="clr-namespace:Bloom.Controls;assembly=Bloom.Controls"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+       Title="Bloom Music Player">
+    
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ItemsControl Name="MenuRegion" Grid.Row="0"
+        <shared:TitleBar Grid.Row="0" Title="Bloom Music Player" />
+        <ItemsControl Name="MenuRegion" Grid.Row="1"
                       prism:RegionManager.RegionName="MenuRegion" 
                       prism:RegionManager.RegionContext="{Binding}" />
 
-        <telerik:RadDocking x:Name="Dock" Grid.Row="1" >
+        <telerik:RadDocking x:Name="Dock" Grid.Row="2" >
             <telerik:RadSplitContainer InitialPosition="DockedLeft">
                 <telerik:RadPaneGroup>
                     <telerik:RadPane PaneHeaderVisibility="Collapsed" />
