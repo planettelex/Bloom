@@ -21,25 +21,25 @@
                       prism:RegionManager.RegionName="MenuRegion" 
                       prism:RegionManager.RegionContext="{Binding}" />
 
-        <telerik:RadDocking x:Name="Dock" Grid.Row="2" >
-            <telerik:RadSplitContainer InitialPosition="DockedLeft">
-                <telerik:RadPaneGroup>
-                    <telerik:RadPane PaneHeaderVisibility="Collapsed" />
-                </telerik:RadPaneGroup>
-            </telerik:RadSplitContainer>
-            <telerik:RadSplitContainer InitialPosition="DockedRight">
-                <telerik:RadPaneGroup>
-                    <telerik:RadPane PaneHeaderVisibility="Collapsed" />
-                </telerik:RadPaneGroup>
-            </telerik:RadSplitContainer>
-            <telerik:RadDocking.DocumentHost>
-                <telerik:RadSplitContainer>
-                    <telerik:RadPaneGroup>
-                        <telerik:RadDocumentPane Visibility="Collapsed" CanUserClose="False" />
-                    </telerik:RadPaneGroup>
-                </telerik:RadSplitContainer>
-            </telerik:RadDocking.DocumentHost>
-        </telerik:RadDocking>
-        
+        <Grid Grid.Row="2" Style="{DynamicResource ShellStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" x:Name="Played">
+                <TextBlock Width="350" />
+            </Grid>
+            <GridSplitter Grid.Column="1" Style="{DynamicResource VerticalSplitterStyle}" />
+            <Grid Grid.Column="2" x:Name="Playing" />
+            <GridSplitter Grid.Column="3" Style="{DynamicResource VerticalSplitterStyle}" />
+            <Grid Grid.Column="4" x:Name="Upcoming">
+                <TextBlock Width="350" />
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>

@@ -6,6 +6,24 @@
         mc:Ignorable="c"
         xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls">
     
+    <Style x:Key="ShellStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{DynamicResource ShellBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="VerticalSplitterStyle" TargetType="GridSplitter">
+        <Setter Property="Background" Value="{DynamicResource MenuBorderBrush}" />
+        <Setter Property="ResizeDirection" Value="Columns" />
+        <Setter Property="Width" Value="3" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="HorizontalSplitterStyle" TargetType="GridSplitter">
+        <Setter Property="Background" Value="{DynamicResource MenuBorderBrush}" />
+        <Setter Property="ResizeDirection" Value="Rows" />
+        <Setter Property="Height" Value="3" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
     <LinearGradientBrush x:Key="CheckBoxBorder" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FF707070" Offset="0"/>
         <GradientStop Color="#FFA3A3A3" Offset="0.5"/>

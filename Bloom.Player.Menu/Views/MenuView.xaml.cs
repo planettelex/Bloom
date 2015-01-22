@@ -1,28 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Bloom.Controls.Helpers;
+using Bloom.Player.Common;
+using Bloom.Player.Menu.ViewModels;
+using Telerik.Windows;
+using Telerik.Windows.Controls;
 
 namespace Bloom.Player.Menu.Views
 {
     /// <summary>
     /// Interaction logic for MenuView.xaml
     /// </summary>
-    public partial class MenuView : UserControl
+    public partial class MenuView
     {
-        public MenuView()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MenuView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
+        public MenuView(MenuViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
+
+            // Check the current skin.
+            foreach (RadMenuItem menuItem in Skins.Items)
+            {
+                var skinName = (string)menuItem.CommandParameter;
+                menuItem.IsChecked = skinName.Equals(viewModel.State.Skin, StringComparison.InvariantCultureIgnoreCase);
+            }
+        }
+
+        /// <summary>
+        /// Gets the application state.
+        /// </summary>
+        public State State
+        {
+            get { return ((MenuViewModel)DataContext).State; }
+        }
+
+        private void OnItemClick(object sender, RadRoutedEventArgs e)
+        {
+            var currentItem = e.OriginalSource as RadMenuItem;
+            if (currentItem == null || !currentItem.IsCheckable || currentItem.Tag == null)
+                return;
+
+            if ((string)currentItem.CommandParameter == State.Skin)
+            {
+                currentItem.IsChecked = true;
+                return;
+            }
+
+            var siblingItems = MenuControlHelper.GetSiblingGroupItems(currentItem);
+            if (siblingItems == null)
+                return;
+
+            foreach (var item in siblingItems)
+            {
+                if (!Equals(item, currentItem))
+                    item.IsChecked = false;
+            }
         }
     }
 }
