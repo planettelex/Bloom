@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Bloom.Browser.Menu;
 using Bloom.Services;
+using Bloom.Taxonomies;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -51,6 +52,7 @@ namespace Bloom.Browser
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModule));
+            moduleCatalog.AddModule(typeof (TaxonomiesModule));
         }
 
         /// <summary>

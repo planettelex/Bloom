@@ -24,7 +24,9 @@
         <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup x:Name="Sidebar" Style="{DynamicResource SidebarStyle}">
-                    <telerik:RadPane PaneHeaderVisibility="Collapsed" />
+                    <telerik:RadPane PaneHeaderVisibility="Collapsed">
+                        <ItemsControl Name="SidebarRegion" prism:RegionManager.RegionName="SidebarRegion" prism:RegionManager.RegionContext="{Binding}" />
+                    </telerik:RadPane>
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>

@@ -17,14 +17,14 @@
         </Grid.RowDefinitions>
 
         <shared:TitleBar Grid.Row="0" Title="Bloom Music Browser" />
-        <ItemsControl Name="MenuRegion" Grid.Row="1"
-                      prism:RegionManager.RegionName="MenuRegion" 
-                      prism:RegionManager.RegionContext="{Binding}" />
+        <ItemsControl Name="MenuRegion" Grid.Row="1" prism:RegionManager.RegionName="MenuRegion" prism:RegionManager.RegionContext="{Binding}" />
         
         <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview">
             <telerik:RadSplitContainer>
                 <telerik:RadPaneGroup x:Name="Sidebar" Style="{DynamicResource SidebarStyle}">
-                    <telerik:RadPane PaneHeaderVisibility="Collapsed" />
+                    <telerik:RadPane PaneHeaderVisibility="Collapsed">
+                        <ItemsControl Name="SidebarRegion" prism:RegionManager.RegionName="SidebarRegion" prism:RegionManager.RegionContext="{Binding}" />
+                    </telerik:RadPane>
                 </telerik:RadPaneGroup>
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>
