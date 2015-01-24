@@ -16,7 +16,7 @@
                 <telerik:RadMenuItem Header="Save Sources As..." />
                 <telerik:RadMenuItem Header="Save Selection As Playlist..." IsEnabled="False" />
                 <telerik:RadMenuItem Header="Clear All Sources" />
-                <telerik:RadMenuItem Header="Exit Player" />
+                <telerik:RadMenuItem Header="Exit Player" Command="{Binding Path=ExitApplicationCommand}" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Edit">
                 <telerik:RadMenuItem Header="Cut" IsEnabled="False" />

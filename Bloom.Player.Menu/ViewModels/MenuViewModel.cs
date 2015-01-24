@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Bloom.Player.Common;
 using Bloom.Services;
 using Microsoft.Practices.Prism.Commands;
@@ -20,6 +21,8 @@ namespace Bloom.Player.Menu.ViewModels
         {
             State = (State) regionManager.Regions["MenuRegion"].Context;
             SkinningService = skinningService;
+
+            ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
         }
 
@@ -32,6 +35,21 @@ namespace Bloom.Player.Menu.ViewModels
         /// Gets the skinning service.
         /// </summary>
         public ISkinningService SkinningService { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the exit application command.
+        /// </summary>
+        public ICommand ExitApplicationCommand { get; set; }
+
+        private bool CanExitApplication(object nothing)
+        {
+            return true;
+        }
+
+        private void ExitApplication(object nothing)
+        {
+            Application.Current.Shutdown();
+        }
 
         /// <summary>
         /// Gets or sets the set skin command.

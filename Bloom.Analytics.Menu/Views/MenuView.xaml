@@ -11,7 +11,7 @@
         <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
             <telerik:RadMenuItem Header="File">
                 <telerik:RadMenuItem Header="Connected Libraries..." />
-                <telerik:RadMenuItem Header="Exit Analytics" />
+                <telerik:RadMenuItem Header="Exit Analytics" Command="{Binding Path=ExitApplicationCommand}" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Edit">
                 <telerik:RadMenuItem Header="Preferences..." />

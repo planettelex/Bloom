@@ -20,7 +20,7 @@
                 <telerik:RadMenuItem Header="Add To Library..." />
                 <telerik:RadMenuItem Header="Library Operations..." />
                 <telerik:RadMenuItem Header="Close Library" />
-                <telerik:RadMenuItem Header="Exit Browser" />
+                <telerik:RadMenuItem Header="Exit Browser" Command="{Binding Path=ExitApplicationCommand}" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Edit">
                 <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
