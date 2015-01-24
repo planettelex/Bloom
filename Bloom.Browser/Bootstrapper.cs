@@ -1,6 +1,11 @@
 ﻿using System.Windows;
+using Bloom.Browser.Album;
+using Bloom.Browser.Artist;
 using Bloom.Browser.Library;
 using Bloom.Browser.Menu;
+using Bloom.Browser.Person;
+using Bloom.Browser.Playlist;
+using Bloom.Browser.Song;
 using Bloom.Services;
 using Bloom.Taxonomies;
 using Microsoft.Practices.Prism.Modularity;
@@ -55,6 +60,11 @@ namespace Bloom.Browser
             moduleCatalog.AddModule(typeof (MenuModule));
             moduleCatalog.AddModule(typeof (TaxonomiesModule));
             moduleCatalog.AddModule(typeof (LibraryModule));
+            moduleCatalog.AddModule(typeof (PersonModule));
+            moduleCatalog.AddModule(typeof (ArtistModule));
+            moduleCatalog.AddModule(typeof (SongModule));
+            moduleCatalog.AddModule(typeof (AlbumModule));
+            moduleCatalog.AddModule(typeof (PlaylistModule));
         }
 
         /// <summary>

@@ -147,6 +147,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Bloom.Browser.Album\Bloom.Browser.Album.csproj">
+      <Project>{989b378d-56fc-4e33-b37c-6d53d925e97b}</Project>
+      <Name>Bloom.Browser.Album</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Browser.Artist\Bloom.Browser.Artist.csproj">
+      <Project>{bba3a40b-a876-4018-bef2-a6b1187bc20b}</Project>
+      <Name>Bloom.Browser.Artist</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Library\Bloom.Browser.Library.csproj">
       <Project>{abeb129d-326a-472a-9933-66babb45a2b5}</Project>
       <Name>Bloom.Browser.Library</Name>
@@ -155,9 +163,21 @@
       <Project>{af3c8883-0666-4244-bc71-f23d6e5585db}</Project>
       <Name>Bloom.Browser.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bloom.Browser.Person\Bloom.Browser.Person.csproj">
+      <Project>{a890b4ae-d0d6-444c-977b-09424d997e81}</Project>
+      <Name>Bloom.Browser.Person</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Browser.Playlist\Bloom.Browser.Playlist.csproj">
+      <Project>{01d0a7a3-d469-43ef-b049-f519193c2514}</Project>
+      <Name>Bloom.Browser.Playlist</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Shared\Bloom.Browser.Common.csproj">
       <Project>{d1b7ad4e-c328-4aed-a6e5-9b3e95dec56b}</Project>
       <Name>Bloom.Browser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Browser.Song\Bloom.Browser.Song.csproj">
+      <Project>{1cbc7dc6-159e-4f9c-9a5e-4b25afa757f5}</Project>
+      <Name>Bloom.Browser.Song</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>

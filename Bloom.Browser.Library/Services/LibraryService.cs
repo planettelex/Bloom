@@ -8,6 +8,10 @@ namespace Bloom.Browser.Library.Services
 {
     public class LibraryService : ILibraryService
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LibraryService"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
         public LibraryService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
@@ -16,6 +20,11 @@ namespace Bloom.Browser.Library.Services
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
         }
         private readonly IEventAggregator _eventAggregator;
+
+        public void NewLibraryTab(object nothing)
+        {
+            NewLibraryTab();
+        }
 
         public void NewLibraryTab()
         {
@@ -28,11 +37,6 @@ namespace Bloom.Browser.Library.Services
             };
 
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
-        }
-
-        public void NewLibraryTab(object nothing)
-        {
-            NewLibraryTab();
         }
     }
 }

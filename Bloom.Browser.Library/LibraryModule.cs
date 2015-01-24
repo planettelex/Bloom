@@ -15,7 +15,7 @@ namespace Bloom.Browser.Library
         /// <summary>
         /// Initializes a new instance of the <see cref="LibraryModule"/> class.
         /// </summary>
-        /// <param name="container">The container.</param>
+        /// <param name="container">The DI container.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         public LibraryModule(IUnityContainer container, IEventAggregator eventAggregator)
         {
