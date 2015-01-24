@@ -56,6 +56,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Taxonomies", "Bloom.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.PubSubEvents", "Bloom.PubSubEvents\Bloom.PubSubEvents.csproj", "{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.Library", "Bloom.Browser.Library\Bloom.Browser.Library.csproj", "{ABEB129D-326A-472A-9933-66BABB45A2B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.Library", "Bloom.Analytics.Library\Bloom.Analytics.Library.csproj", "{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +134,14 @@ Global
 		{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABEB129D-326A-472A-9933-66BABB45A2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABEB129D-326A-472A-9933-66BABB45A2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABEB129D-326A-472A-9933-66BABB45A2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABEB129D-326A-472A-9933-66BABB45A2B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,5 +168,7 @@ Global
 		{C7EDF224-02A4-4A92-AA84-490C17D240DE} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144} = {C7EDF224-02A4-4A92-AA84-490C17D240DE}
 		{A455CC8A-5CFF-4855-B268-AA94A7C37C3F} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
+		{ABEB129D-326A-472A-9933-66BABB45A2B5} = {F76A0826-655A-4EF7-BA15-F6BBE1EA6AA0}
+		{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB} = {9014435F-F56D-4405-B05F-9EDE65BED944}
 	EndGlobalSection
 EndGlobal

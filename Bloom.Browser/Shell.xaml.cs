@@ -1,5 +1,9 @@
 ﻿using Bloom.Browser.Common;
+using Bloom.Controls;
+using Bloom.PubSubEvents;
 using Bloom.Services;
+using Microsoft.Practices.Prism.PubSubEvents;
+using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
 
 namespace Bloom.Browser
@@ -10,16 +14,19 @@ namespace Bloom.Browser
     public partial class Shell
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Shell"/> class.
+        /// Initializes a new instance of the <see cref="Shell" /> class.
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
-        public Shell(ISkinningService skinningService)
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             var state = new State();
             DataContext = state;
 
             skinningService.SetSkin(state.Skin);
+
+            eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
         }
 
         /// <summary>
@@ -31,6 +38,17 @@ namespace Bloom.Browser
             base.OnClosing(e);
             var state = (State) DataContext;
             state.Save();
+        }
+
+        private void AddTab(Tab tab)
+        {
+            var newPane = new RadPane
+            {
+                Header = tab.Header,
+                Content = tab.Content
+            };
+
+            PaneGroup.Items.Add(newPane);
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)

@@ -29,17 +29,7 @@
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer Style="{DynamicResource TabbedPanesStyle}">
-                    <telerik:RadPaneGroup>
-                        <telerik:RadPane Header="Tab  1">
-                            <Grid Style="{DynamicResource TabBackgroundStyle}" />
-                        </telerik:RadPane>
-                        <telerik:RadPane Header="Tab  2">
-                            <Grid Style="{DynamicResource TabBackgroundStyle}" />
-                        </telerik:RadPane>
-                        <telerik:RadPane Header="Tab  3">
-                            <Grid Style="{DynamicResource TabBackgroundStyle}" />
-                        </telerik:RadPane>
-                    </telerik:RadPaneGroup>
+                    <telerik:RadPaneGroup x:Name="PaneGroup" />
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>

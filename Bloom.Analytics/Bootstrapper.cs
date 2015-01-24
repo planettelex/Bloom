@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Bloom.Analytics.Library;
 using Bloom.Analytics.Menu;
 using Bloom.Services;
 using Bloom.Taxonomies;
@@ -53,6 +54,7 @@ namespace Bloom.Analytics
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModule));
             moduleCatalog.AddModule(typeof (TaxonomiesModule));
+            moduleCatalog.AddModule(typeof (LibraryModule));
         }
 
         /// <summary>

@@ -82,6 +82,20 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
+      <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
+      <Name>Bloom.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Controls\Bloom.Controls.csproj">
+      <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
+      <Name>Bloom.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Domain\Bloom.Domain.csproj">
+      <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
+      <Name>Bloom.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

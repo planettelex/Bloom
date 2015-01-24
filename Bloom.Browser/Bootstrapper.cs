@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Bloom.Browser.Library;
 using Bloom.Browser.Menu;
 using Bloom.Services;
 using Bloom.Taxonomies;
@@ -53,6 +54,7 @@ namespace Bloom.Browser
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModule));
             moduleCatalog.AddModule(typeof (TaxonomiesModule));
+            moduleCatalog.AddModule(typeof (LibraryModule));
         }
 
         /// <summary>
