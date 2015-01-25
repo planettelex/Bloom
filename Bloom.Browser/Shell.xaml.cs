@@ -64,12 +64,6 @@ namespace Bloom.Browser
             if (activeTab == null)
                 return;
 
-            var duplicateTab = new Tab
-            {
-                Header = (string) activeTab.Header,
-                Content = (UserControl) activeTab.Content.XamlClone()
-            };
-            AddTab(duplicateTab);
         }
 
         private void CloseOtherTabs(object nothing)
