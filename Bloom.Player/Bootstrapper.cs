@@ -1,5 +1,10 @@
 ﻿using System.Windows;
 using Bloom.Player.Menu;
+using Bloom.Player.Playing;
+using Bloom.Player.Recent;
+using Bloom.Player.Upcoming;
+using Bloom.Player.Visuals;
+using Bloom.Player.Volume;
 using Bloom.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
@@ -51,6 +56,11 @@ namespace Bloom.Player
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModule));
+            moduleCatalog.AddModule(typeof (PlayingModule));
+            moduleCatalog.AddModule(typeof (UpcomingModule));
+            moduleCatalog.AddModule(typeof (RecentModule));
+            moduleCatalog.AddModule(typeof (VisualsModule));
+            moduleCatalog.AddModule(typeof (VolumeModule));
         }
 
         /// <summary>

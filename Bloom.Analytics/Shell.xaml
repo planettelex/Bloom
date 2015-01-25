@@ -17,9 +17,7 @@
         </Grid.RowDefinitions>
 
         <shared:TitleBar Grid.Row="0" Title="Bloom Music Analytics" />
-        <ItemsControl Name="MenuRegion" Grid.Row="1"
-                      prism:RegionManager.RegionName="MenuRegion" 
-                      prism:RegionManager.RegionContext="{Binding}" />
+        <ItemsControl Name="MenuRegion" Grid.Row="1" prism:RegionManager.RegionName="MenuRegion" prism:RegionManager.RegionContext="{Binding}" />
         
         <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview">
             <telerik:RadSplitContainer>

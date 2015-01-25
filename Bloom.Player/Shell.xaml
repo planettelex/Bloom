@@ -16,9 +16,7 @@
         </Grid.RowDefinitions>
 
         <shared:TitleBar Grid.Row="0" Title="Bloom Music Player" />
-        <ItemsControl Name="MenuRegion" Grid.Row="1"
-                      prism:RegionManager.RegionName="MenuRegion" 
-                      prism:RegionManager.RegionContext="{Binding}" />
+        <ItemsControl Name="MenuRegion" Grid.Row="1" prism:RegionManager.RegionName="MenuRegion" prism:RegionManager.RegionContext="{Binding}" />
 
         <Grid Grid.Row="2" Style="{DynamicResource ShellStyle}">
             <Grid.ColumnDefinitions>
@@ -29,14 +27,26 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             
-            <Grid Grid.Column="0" x:Name="Played">
-                <TextBlock Width="350" />
+            <Grid Grid.Column="0" x:Name="Recent">
+                <ItemsControl Name="RecentRegion" prism:RegionManager.RegionName="RecentRegion" prism:RegionManager.RegionContext="{Binding}" />
             </Grid>
             <GridSplitter Grid.Column="1" Style="{DynamicResource VerticalSplitterStyle}" />
-            <Grid Grid.Column="2" x:Name="Playing" />
+            <Grid Grid.Column="2" x:Name="Playing">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ItemsControl Grid.Row="0" Name="PlayingRegion" prism:RegionManager.RegionName="PlayingRegion" prism:RegionManager.RegionContext="{Binding}" />
+                    <ItemsControl Grid.Row="1" Name="VisualsRegion" prism:RegionManager.RegionName="VisualsRegion" prism:RegionManager.RegionContext="{Binding}" />
+                    <ItemsControl Grid.Row="2" Name="VolumeRegion" prism:RegionManager.RegionName="VolumeRegion" prism:RegionManager.RegionContext="{Binding}" />
+                </Grid>
+            </Grid>
             <GridSplitter Grid.Column="3" Style="{DynamicResource VerticalSplitterStyle}" />
             <Grid Grid.Column="4" x:Name="Upcoming">
-                <TextBlock Width="350" />
+                <ItemsControl Name="UpcomingRegion" prism:RegionManager.RegionName="UpcomingRegion" prism:RegionManager.RegionContext="{Binding}" />
             </Grid>
         </Grid>
 
