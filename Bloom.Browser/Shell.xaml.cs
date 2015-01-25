@@ -1,4 +1,6 @@
-﻿using Bloom.Browser.Common;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using Bloom.Browser.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -23,10 +25,14 @@ namespace Bloom.Browser
             InitializeComponent();
             var state = new State();
             DataContext = state;
+            _tabs = new List<RadPane>();
 
             skinningService.SetSkin(state.Skin);
 
+            eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateTab);
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
+            eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
+            eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
 
         /// <summary>
@@ -48,7 +54,51 @@ namespace Bloom.Browser
                 Content = tab.Content
             };
 
+            _tabs.Add(newPane);
             PaneGroup.Items.Add(newPane);
+        }
+
+        private void DuplicateTab(object nothing)
+        {
+            var activeTab = GetActiveTab();
+            if (activeTab == null)
+                return;
+
+            var duplicateTab = new Tab
+            {
+                Header = (string) activeTab.Header,
+                Content = (UserControl) activeTab.Content.XamlClone()
+            };
+            AddTab(duplicateTab);
+        }
+
+        private void CloseOtherTabs(object nothing)
+        {
+            var activeTab = GetActiveTab();
+            foreach (var tab in _tabs)
+            {
+                if (activeTab != null && !Equals(activeTab, tab))
+                    tab.IsHidden = true;
+            }
+        }
+
+        private RadPane GetActiveTab()
+        {
+            RadPane activeTab = null;
+            foreach (RadPane tab in PaneGroup.Items)
+            {
+                if (tab.IsActive)
+                    activeTab = tab;
+            }
+            return activeTab;
+        }
+
+        private void CloseAllTabs(object nothing)
+        {
+            foreach (var tab in _tabs)
+            {
+                tab.IsHidden = true;
+            }
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
@@ -70,5 +120,7 @@ namespace Bloom.Browser
                 e.Compass.IsCenterIndicatorVisible = true;
             }
         }
+
+        private readonly List<RadPane> _tabs;
     }
 }
