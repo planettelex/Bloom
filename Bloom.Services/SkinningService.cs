@@ -38,7 +38,12 @@ namespace Bloom.Services
             var skinUri = new Uri(_skins[skinName.ToLower()], UriKind.Relative);
             var skin = new ResourceDictionary { Source = skinUri };
 
+            Application.Current.Resources.Clear();
             Application.Current.Resources.MergedDictionaries.Add(skin);
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri("/Bloom.Resources;component/Resources.xaml", UriKind.RelativeOrAbsolute)
+            });
         }
     }
 }
