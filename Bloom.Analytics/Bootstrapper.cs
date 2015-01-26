@@ -1,6 +1,11 @@
 ﻿using System.Windows;
+using Bloom.Analytics.Album;
+using Bloom.Analytics.Artist;
 using Bloom.Analytics.Library;
 using Bloom.Analytics.Menu;
+using Bloom.Analytics.Person;
+using Bloom.Analytics.Playlist;
+using Bloom.Analytics.Song;
 using Bloom.Services;
 using Bloom.Taxonomies;
 using Microsoft.Practices.Prism.Modularity;
@@ -55,6 +60,11 @@ namespace Bloom.Analytics
             moduleCatalog.AddModule(typeof (MenuModule));
             moduleCatalog.AddModule(typeof (TaxonomiesModule));
             moduleCatalog.AddModule(typeof (LibraryModule));
+            moduleCatalog.AddModule(typeof (PersonModule));
+            moduleCatalog.AddModule(typeof (ArtistModule));
+            moduleCatalog.AddModule(typeof (SongModule));
+            moduleCatalog.AddModule(typeof (AlbumModule));
+            moduleCatalog.AddModule(typeof (PlaylistModule));
         }
 
         /// <summary>

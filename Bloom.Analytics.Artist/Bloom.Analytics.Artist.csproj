@@ -4,18 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{60D1372A-14F8-4059-A0DD-7E0D261C0EBF}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{610F519D-44EF-4568-A449-0F317664559A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Analytics</RootNamespace>
-    <AssemblyName>Bloom.Analytics</AssemblyName>
+    <RootNamespace>Bloom.Analytics.Artist</RootNamespace>
+    <AssemblyName>Bloom.Analytics.Artist</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -52,9 +48,6 @@
     <Reference Include="Microsoft.Practices.Prism.SharedInterfaces">
       <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
-      <HintPath>..\packages\Prism.UnityExtensions.5.0.1\lib\NET45\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -67,109 +60,45 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows" />
-    <Reference Include="System.Windows.Presentation" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2014.3.1202.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Docking, Version=2014.3.1202.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2014.3.1202.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Data, Version=2014.3.1202.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="Shell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="ArtistModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ArtistService.cs" />
+    <Compile Include="Services\IArtistService.cs" />
+    <Compile Include="ViewModels\ArtistViewModel.cs" />
+    <Compile Include="Views\ArtistView.xaml.cs">
+      <DependentUpon>ArtistView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Shell.xaml.cs">
-      <DependentUpon>Shell.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Bloom.Analytics.Album\Bloom.Analytics.Album.csproj">
-      <Project>{c5c81ac6-6479-49ea-b24b-0c09a152291c}</Project>
-      <Name>Bloom.Analytics.Album</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Artist\Bloom.Analytics.Artist.csproj">
-      <Project>{610f519d-44ef-4568-a449-0f317664559a}</Project>
-      <Name>Bloom.Analytics.Artist</Name>
-    </ProjectReference>
+    <Page Include="Views\ArtistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
       <Project>{270af0ba-649a-42a7-99c1-5c4a9fac1299}</Project>
       <Name>Bloom.Analytics.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Library\Bloom.Analytics.Library.csproj">
-      <Project>{f2a36480-9f8c-408d-baf1-dc3f11a98eab}</Project>
-      <Name>Bloom.Analytics.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Menu\Bloom.Analytics.Menu.csproj">
-      <Project>{0026ea94-0f63-44f1-aa1e-a67988935f17}</Project>
-      <Name>Bloom.Analytics.Menu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Person\Bloom.Analytics.Person.csproj">
-      <Project>{2928ed60-32dc-4182-910f-344e3c89d466}</Project>
-      <Name>Bloom.Analytics.Person</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Playlist\Bloom.Analytics.Playlist.csproj">
-      <Project>{833cb199-a684-408b-953d-0b03ed0b63d8}</Project>
-      <Name>Bloom.Analytics.Playlist</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Song\Bloom.Analytics.Song.csproj">
-      <Project>{2eae4c79-a3ae-4053-81bf-5369f0197f8a}</Project>
-      <Name>Bloom.Analytics.Song</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
@@ -194,10 +123,6 @@
     <ProjectReference Include="..\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Taxonomies\Bloom.Taxonomies.csproj">
-      <Project>{25d7acf0-f4bf-41ba-a751-4cf0b8c79144}</Project>
-      <Name>Bloom.Taxonomies</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
