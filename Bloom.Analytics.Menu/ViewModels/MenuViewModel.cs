@@ -1,8 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Bloom.Analytics.Common;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Analytics.Menu.ViewModels
@@ -17,24 +19,28 @@ namespace Bloom.Analytics.Menu.ViewModels
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="skinningService">The skinning service.</param>
-        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService)
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IEventAggregator eventAggregator)
         {
             State = (State) regionManager.Regions["MenuRegion"].Context;
-            SkinningService = skinningService;
+            _skinningService = skinningService;
+            _eventAggregator = eventAggregator;
 
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
+            DuplicateTabCommand = new DelegateCommand<object>(DuplicateTab, CanDuplicateTab);
+            CloseOtherTabsCommand = new DelegateCommand<object>(CloseOtherTabs, CanCloseOtherTabs);
+            CloseAllTabsCommand = new DelegateCommand<object>(CloseAllTabs, CanCloseAllTabs);
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
         }
+        private readonly ISkinningService _skinningService;
+        private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
         /// Gets the application state.
         /// </summary>
         public State State { get; private set; }
 
-        /// <summary>
-        /// Gets the skinning service.
-        /// </summary>
-        public ISkinningService SkinningService { get; private set; }
+        #region File Menu
 
         /// <summary>
         /// Gets or sets the exit application command.
@@ -50,6 +56,59 @@ namespace Bloom.Analytics.Menu.ViewModels
         {
             Application.Current.Shutdown();
         }
+
+        #endregion
+
+        #region Analytics Menu
+
+        /// <summary>
+        /// Gets or sets the duplicate tab command.
+        /// </summary>
+        public ICommand DuplicateTabCommand { get; set; }
+
+        private bool CanDuplicateTab(object nothing)
+        {
+            return true;
+        }
+
+        private void DuplicateTab(object nothing)
+        {
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId);
+        }
+
+        /// <summary>
+        /// Gets or sets the close other tabs command.
+        /// </summary>
+        public ICommand CloseOtherTabsCommand { get; set; }
+
+        private bool CanCloseOtherTabs(object nothing)
+        {
+            return true;
+        }
+
+        private void CloseOtherTabs(object nothing)
+        {
+            _eventAggregator.GetEvent<CloseOtherTabsEvent>().Publish(null);
+        }
+
+        /// <summary>
+        /// Gets or sets the close all tabs command.
+        /// </summary>
+        public ICommand CloseAllTabsCommand { get; set; }
+
+        private bool CanCloseAllTabs(object nothing)
+        {
+            return true;
+        }
+
+        private void CloseAllTabs(object nothing)
+        {
+            _eventAggregator.GetEvent<CloseAllTabsEvent>().Publish(null);
+        }
+
+        #endregion
+
+        #region View Menu
 
         /// <summary>
         /// Gets or sets the set skin command.
@@ -67,7 +126,9 @@ namespace Bloom.Analytics.Menu.ViewModels
                 return;
 
             State.Skin = skinName;
-            SkinningService.SetSkin(skinName);
+            _skinningService.SetSkin(skinName);
         }
+
+        #endregion
     }
 }

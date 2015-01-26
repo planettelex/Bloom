@@ -17,9 +17,9 @@
                 <telerik:RadMenuItem Header="Preferences..." />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Analytics">
-                <telerik:RadMenuItem Header="Duplicate Tab" />
-                <telerik:RadMenuItem Header="Close Other Tabs" />
-                <telerik:RadMenuItem Header="Close All Tabs" />
+                <telerik:RadMenuItem Header="Duplicate Tab" Command="{Binding Path=DuplicateTabCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
+                <telerik:RadMenuItem Header="Close Other Tabs" Command="{Binding Path=CloseOtherTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
+                <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Browser">
                 <telerik:RadMenuItem Header="Go to Browser" />
