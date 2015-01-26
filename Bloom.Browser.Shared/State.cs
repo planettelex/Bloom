@@ -1,4 +1,6 @@
-﻿namespace Bloom.Browser.Common
+﻿using System;
+
+namespace Bloom.Browser.Common
 {
     /// <summary>
     /// Encapsulates the state of the player application.
@@ -10,18 +12,30 @@
         /// </summary>
         public State()
         {
+            _selectedTabId = Properties.Settings.Default.SelectedTabId;
             _skin = Properties.Settings.Default.Skin;
         }
+
+        /// <summary>
+        /// Gets or sets the active tab identifier.
+        /// </summary>
+        public Guid SelectedTabId
+        {
+            get { return _selectedTabId; }
+            set
+            {
+                _selectedTabId = value;
+                Properties.Settings.Default.SelectedTabId = _selectedTabId;
+            }
+        }
+        private Guid _selectedTabId;
 
         /// <summary>
         /// Gets or sets the skin name.
         /// </summary>
         public string Skin
         {
-            get
-            {
-                return _skin;
-            }
+            get { return _skin; }
             set
             {
                 _skin = value;

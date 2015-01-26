@@ -1,4 +1,7 @@
-﻿using Bloom.Browser.Artist.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Bloom.Browser.Artist.ViewModels;
 using Bloom.Browser.Artist.Views;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
@@ -15,9 +18,11 @@ namespace Bloom.Browser.Artist.Services
         public ArtistService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            _tabs = new List<Tab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewArtistTabEvent>().Subscribe(NewArtistTab);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateArtistTab);
         }
         private readonly IEventAggregator _eventAggregator;
 
@@ -36,7 +41,28 @@ namespace Bloom.Browser.Artist.Services
                 Content = artistView
             };
 
+            _tabs.Add(artistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
         }
+
+        public void DuplicateArtistTab(Guid tabId)
+        {
+            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            if (existingTab == null)
+                return;
+
+            var artistViewModel = new ArtistViewModel();
+            var artistView = new ArtistView(artistViewModel);
+            var artistTab = new Tab
+            {
+                Header = "Artist",
+                Content = artistView
+            };
+
+            _tabs.Add(artistTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
+        }
+
+        private readonly List<Tab> _tabs;
     }
 }

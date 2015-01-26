@@ -1,4 +1,7 @@
-﻿using Bloom.Browser.Song.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Bloom.Browser.Song.ViewModels;
 using Bloom.Browser.Song.Views;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
@@ -15,9 +18,11 @@ namespace Bloom.Browser.Song.Services
         public SongService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            _tabs = new List<Tab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewSongTabEvent>().Subscribe(NewSongTab);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSongTab);
         }
         private readonly IEventAggregator _eventAggregator;
 
@@ -36,7 +41,28 @@ namespace Bloom.Browser.Song.Services
                 Content = songView
             };
 
+            _tabs.Add(songTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
         }
+
+        public void DuplicateSongTab(Guid tabId)
+        {
+            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            if (existingTab == null)
+                return;
+
+            var songViewModel = new SongViewModel();
+            var songView = new SongView(songViewModel);
+            var songTab = new Tab
+            {
+                Header = "Song",
+                Content = songView
+            };
+
+            _tabs.Add(songTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
+        }
+
+        private readonly List<Tab> _tabs;
     }
 }

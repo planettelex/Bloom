@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace Bloom.Controls
 {
@@ -7,6 +8,19 @@ namespace Bloom.Controls
     /// </summary>
     public class Tab
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Tab"/> class.
+        /// </summary>
+        public Tab()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        public Guid Id { get; private set; }
+        
         /// <summary>
         /// Gets or sets the tab header.
         /// </summary>

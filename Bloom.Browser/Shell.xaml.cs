@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Windows.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Bloom.Browser.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
@@ -25,11 +26,10 @@ namespace Bloom.Browser
             InitializeComponent();
             var state = new State();
             DataContext = state;
-            _tabs = new List<RadPane>();
+            _tabs = new Dictionary<Guid, RadPane>();
 
             skinningService.SetSkin(state.Skin);
 
-            eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateTab);
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
@@ -54,42 +54,24 @@ namespace Bloom.Browser
                 Content = tab.Content
             };
 
-            _tabs.Add(newPane);
+            _tabs.Add(tab.Id, newPane);
             PaneGroup.Items.Add(newPane);
-        }
-
-        private void DuplicateTab(object nothing)
-        {
-            var activeTab = GetActiveTab();
-            if (activeTab == null)
-                return;
-
+            State.SelectedTabId = tab.Id;
         }
 
         private void CloseOtherTabs(object nothing)
         {
-            var activeTab = GetActiveTab();
-            foreach (var tab in _tabs)
+            var selectedTab = GetSelectedTab();
+            foreach (var tab in _tabs.Values)
             {
-                if (activeTab != null && !Equals(activeTab, tab))
+                if (selectedTab != null && !Equals(selectedTab, tab))
                     tab.IsHidden = true;
             }
         }
 
-        private RadPane GetActiveTab()
-        {
-            RadPane activeTab = null;
-            foreach (RadPane tab in PaneGroup.Items)
-            {
-                if (tab.IsActive)
-                    activeTab = tab;
-            }
-            return activeTab;
-        }
-
         private void CloseAllTabs(object nothing)
         {
-            foreach (var tab in _tabs)
+            foreach (var tab in _tabs.Values)
             {
                 tab.IsHidden = true;
             }
@@ -115,6 +97,46 @@ namespace Bloom.Browser
             }
         }
 
-        private readonly List<RadPane> _tabs;
+        private void ActivePaneChanged(object sender, ActivePangeChangedEventArgs e)
+        {
+            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
+            {
+                State.SelectedTabId = valuePair.Key;
+                break;
+            }
+        }
+
+        private void OnClose(object sender, StateChangeEventArgs e)
+        {
+            var selectedTab = GetSelectedTab();
+            if (selectedTab == null)
+            {
+                State.SelectedTabId = Guid.Empty;
+                return;
+            }
+                
+            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, selectedTab)))
+            {
+                State.SelectedTabId = valuePair.Key;
+            }
+        }
+
+        private RadPane GetSelectedTab()
+        {
+            RadPane selectedTab = null;
+            foreach (RadPane tab in PaneGroup.Items)
+            {
+                if (tab.IsSelected)
+                    selectedTab = tab;
+            }
+            return selectedTab;
+        }
+
+        private State State
+        {
+            get { return (State) DataContext; }
+        }
+
+        private readonly Dictionary<Guid, RadPane> _tabs;
     }
 }

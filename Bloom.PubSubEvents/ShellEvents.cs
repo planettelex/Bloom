@@ -1,4 +1,5 @@
-﻿using Bloom.Controls;
+﻿using System;
+using Bloom.Controls;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.PubSubEvents
@@ -41,7 +42,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Duplicates the currently active tab.
     /// </summary>
-    public class DuplicateTabEvent : PubSubEvent<object> { }
+    public class DuplicateTabEvent : PubSubEvent<Guid> { }
 
     /// <summary>
     /// Closes all tabs.

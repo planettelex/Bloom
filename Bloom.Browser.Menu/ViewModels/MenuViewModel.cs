@@ -73,7 +73,7 @@ namespace Bloom.Browser.Menu.ViewModels
 
         private void DuplicateTab(object nothing)
         {
-            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(null);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId);
         }
 
         /// <summary>
