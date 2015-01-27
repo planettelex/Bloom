@@ -70,6 +70,8 @@ namespace Bloom.Player
         {
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
+            Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IProcessService>();
         }
     }
 }

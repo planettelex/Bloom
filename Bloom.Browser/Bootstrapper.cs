@@ -15,7 +15,7 @@ using Microsoft.Practices.Prism.UnityExtensions;
 namespace Bloom.Browser
 {
     /// <summary>
-    /// The bootstrapper initialized the application and resolves dependencies.
+    /// The bootstrapper initializes the application and resolves dependencies.
     /// </summary>
     public class Bootstrapper : UnityBootstrapper
     {
@@ -74,6 +74,8 @@ namespace Bloom.Browser
         {
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
+            Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IProcessService>();
         }
     }
 }

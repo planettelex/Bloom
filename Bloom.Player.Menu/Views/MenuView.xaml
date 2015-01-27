@@ -45,11 +45,11 @@
                 <telerik:RadMenuItem Header="Configure Social..." />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Browser">
-                <telerik:RadMenuItem Header="Go to Browser" />
+                <telerik:RadMenuItem Header="Go to Browser" Command="{Binding Path=GoToBrowserCommand}" />
                 <telerik:RadMenuItem Header="Open in Browser" IsEnabled="False" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Analytics">
-                <telerik:RadMenuItem Header="Go to Analytics" />
+                <telerik:RadMenuItem Header="Go to Analytics" Command="{Binding Path=GoToAnalyticsCommand}" />
                 <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="View">

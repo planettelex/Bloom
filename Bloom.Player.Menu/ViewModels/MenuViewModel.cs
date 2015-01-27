@@ -17,24 +17,31 @@ namespace Bloom.Player.Menu.ViewModels
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="skinningService">The skinning service.</param>
-        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService)
+        /// <param name="processService">The process service.</param>
+        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService)
         {
             State = (State) regionManager.Regions["MenuRegion"].Context;
-            SkinningService = skinningService;
+            _skinningService = skinningService;
+            _processService = processService;
 
+            // File Menu
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
+            // Browser Menu
+            GoToBrowserCommand = new DelegateCommand<object>(GoToBrowser, CanGoToBrowser);
+            // Analytics Menu
+            GoToAnalyticsCommand = new DelegateCommand<object>(GoToAnalytics, CanGoToAnalytics);
+            // View Menu
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
         }
+        private readonly ISkinningService _skinningService;
+        private readonly IProcessService _processService;
 
         /// <summary>
         /// Gets the application state.
         /// </summary>
         public State State { get; private set; }
 
-        /// <summary>
-        /// Gets the skinning service.
-        /// </summary>
-        public ISkinningService SkinningService { get; private set; }
+        #region File Menu
 
         /// <summary>
         /// Gets or sets the exit application command.
@@ -50,6 +57,48 @@ namespace Bloom.Player.Menu.ViewModels
         {
             Application.Current.Shutdown();
         }
+
+        #endregion
+
+        #region Browser Menu
+
+        /// <summary>
+        /// Gets or sets the go to browser command.
+        /// </summary>
+        public ICommand GoToBrowserCommand { get; set; }
+
+        private bool CanGoToBrowser(object nothing)
+        {
+            return true;
+        }
+
+        private void GoToBrowser(object nothing)
+        {
+            _processService.GoToBrowserProcess();
+        }
+
+        #endregion
+
+        #region Analytics Menu
+
+        /// <summary>
+        /// Gets or sets the go to analytics command.
+        /// </summary>
+        public ICommand GoToAnalyticsCommand { get; set; }
+
+        private bool CanGoToAnalytics(object nothing)
+        {
+            return true;
+        }
+
+        private void GoToAnalytics(object nothing)
+        {
+            _processService.GoToAnalyticsProcess();
+        }
+
+        #endregion
+
+        #region View Menu
 
         /// <summary>
         /// Gets or sets the set skin command.
@@ -67,7 +116,9 @@ namespace Bloom.Player.Menu.ViewModels
                 return;
 
             State.Skin = skinName;
-            SkinningService.SetSkin(skinName);
+            _skinningService.SetSkin(skinName);
         }
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using Bloom.Player.Common;
+﻿using System;
+using Bloom.Player.Common;
 using Bloom.Services;
 
 namespace Bloom.Player
@@ -20,6 +21,20 @@ namespace Bloom.Player
 
             skinningService.SetSkin(state.Skin);
         }
+        private State State { get { return (State) DataContext; } }
+
+        #region Window Events
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Window.Activated" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            // TODO: Check state database for new messages.
+        }
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
@@ -28,8 +43,9 @@ namespace Bloom.Player
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            var state = (State) DataContext;
-            state.Save();
+            State.Save();
         }
+
+        #endregion
     }
 }

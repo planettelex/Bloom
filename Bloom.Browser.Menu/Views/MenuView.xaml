@@ -35,11 +35,11 @@
                 <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Player">
-                <telerik:RadMenuItem Header="Go to Player" />
+                <telerik:RadMenuItem Header="Go to Player" Command="{Binding Path=GoToPlayerCommand}" />
                 <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Analytics">
-                <telerik:RadMenuItem Header="Go to Analytics" />
+                <telerik:RadMenuItem Header="Go to Analytics" Command="{Binding Path=GoToAnalyticsCommand}" />
                 <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="View">

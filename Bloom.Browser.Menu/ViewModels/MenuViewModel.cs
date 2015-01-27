@@ -19,20 +19,30 @@ namespace Bloom.Browser.Menu.ViewModels
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="skinningService">The skinning service.</param>
+        /// <param name="processService">The process service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IEventAggregator eventAggregator)
+        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
             State = (State) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
+            _processService = processService;
             _eventAggregator = eventAggregator;
 
+            // File Menu
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
+            // Browser Menu
             DuplicateTabCommand = new DelegateCommand<object>(DuplicateTab, CanDuplicateTab);
             CloseOtherTabsCommand = new DelegateCommand<object>(CloseOtherTabs, CanCloseOtherTabs);
             CloseAllTabsCommand = new DelegateCommand<object>(CloseAllTabs, CanCloseAllTabs);
+            // Player Menu
+            GoToPlayerCommand = new DelegateCommand<object>(GoToPlayer, CanGoToPlayer);
+            // Analytics Menu
+            GoToAnalyticsCommand = new DelegateCommand<object>(GoToAnalytics, CanGoToAnalytics);
+            // View Menu
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
         }
         private readonly ISkinningService _skinningService;
+        private readonly IProcessService _processService;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -104,6 +114,44 @@ namespace Bloom.Browser.Menu.ViewModels
         private void CloseAllTabs(object nothing)
         {
             _eventAggregator.GetEvent<CloseAllTabsEvent>().Publish(null);
+        }
+
+        #endregion
+
+        #region Player Menu
+
+        /// <summary>
+        /// Gets or sets the go to player command.
+        /// </summary>
+        public ICommand GoToPlayerCommand { get; set; }
+
+        private bool CanGoToPlayer(object nothing)
+        {
+            return true;
+        }
+
+        private void GoToPlayer(object nothing)
+        {
+            _processService.GoToPlayerProcess();
+        }
+
+        #endregion
+
+        #region Analytics Menu
+
+        /// <summary>
+        /// Gets or sets the go to analytics command.
+        /// </summary>
+        public ICommand GoToAnalyticsCommand { get; set; }
+
+        private bool CanGoToAnalytics(object nothing)
+        {
+            return true;
+        }
+
+        private void GoToAnalytics(object nothing)
+        {
+            _processService.GoToAnalyticsProcess();
         }
 
         #endregion

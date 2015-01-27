@@ -34,6 +34,21 @@ namespace Bloom.Browser
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
+        private readonly Dictionary<Guid, RadPane> _tabs;
+        private State State { get { return (State) DataContext; } }
+
+        #region Window Events
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Window.Activated" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            // TODO: Check state database for new messages.
+        }
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Closing" /> event.
@@ -42,9 +57,12 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            var state = (State) DataContext;
-            state.Save();
+            State.Save();
         }
+
+        #endregion
+
+        #region Docking Events
 
         private void AddTab(Tab tab)
         {
@@ -132,11 +150,6 @@ namespace Bloom.Browser
             return selectedTab;
         }
 
-        private State State
-        {
-            get { return (State) DataContext; }
-        }
-
-        private readonly Dictionary<Guid, RadPane> _tabs;
+        #endregion
     }
 }
