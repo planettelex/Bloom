@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Analytics.Common;
+using Bloom.State;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -24,18 +24,18 @@ namespace Bloom.Analytics
         public Shell(ISkinningService skinningService, IEventAggregator eventAggregator)
         {
             InitializeComponent();
-            var state = new State();
+            var state = new AnalyticsState();
             DataContext = state;
             _tabs = new Dictionary<Guid, RadPane>();
 
-            skinningService.SetSkin(state.Skin);
+            skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
-        private State State { get { return (State) DataContext; } }
+        private AnalyticsState State { get { return (AnalyticsState) DataContext; } }
 
         #region Window Events
 
@@ -57,7 +57,7 @@ namespace Bloom.Analytics
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.Save();
+            // TODO: Save state database.
         }
 
         #endregion

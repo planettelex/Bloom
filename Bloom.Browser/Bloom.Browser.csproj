@@ -167,10 +167,6 @@
       <Project>{01d0a7a3-d469-43ef-b049-f519193c2514}</Project>
       <Name>Bloom.Browser.Playlist</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Shared\Bloom.Browser.Common.csproj">
-      <Project>{d1b7ad4e-c328-4aed-a6e5-9b3e95dec56b}</Project>
-      <Name>Bloom.Browser.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Song\Bloom.Browser.Song.csproj">
       <Project>{1cbc7dc6-159e-4f9c-9a5e-4b25afa757f5}</Project>
       <Name>Bloom.Browser.Song</Name>
@@ -198,6 +194,10 @@
     <ProjectReference Include="..\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.State\Bloom.State.csproj">
+      <Project>{a9f245f4-dcd7-4baa-a611-a5ab39b36ad2}</Project>
+      <Name>Bloom.State</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Taxonomies\Bloom.Taxonomies.csproj">
       <Project>{25d7acf0-f4bf-41ba-a751-4cf0b8c79144}</Project>

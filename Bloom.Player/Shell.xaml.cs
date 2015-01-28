@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Player.Common;
+using Bloom.State;
 using Bloom.Services;
 
 namespace Bloom.Player
@@ -16,12 +16,12 @@ namespace Bloom.Player
         public Shell(ISkinningService skinningService)
         {
             InitializeComponent();
-            var state = new State();
+            var state = new PlayerState();
             DataContext = state;
 
-            skinningService.SetSkin(state.Skin);
+            skinningService.SetSkin(state.SkinName);
         }
-        private State State { get { return (State) DataContext; } }
+        private PlayerState State { get { return (PlayerState) DataContext; } }
 
         #region Window Events
 
@@ -43,7 +43,7 @@ namespace Bloom.Player
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.Save();
+            // TODO: Save state database.
         }
 
         #endregion

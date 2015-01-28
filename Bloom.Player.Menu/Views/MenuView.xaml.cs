@@ -1,6 +1,6 @@
 ﻿using System;
 using Bloom.Controls.Helpers;
-using Bloom.Player.Common;
+using Bloom.State;
 using Bloom.Player.Menu.ViewModels;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
@@ -25,16 +25,16 @@ namespace Bloom.Player.Menu.Views
             foreach (RadMenuItem menuItem in Skins.Items)
             {
                 var skinName = (string)menuItem.CommandParameter;
-                menuItem.IsChecked = skinName.Equals(viewModel.State.Skin, StringComparison.InvariantCultureIgnoreCase);
+                menuItem.IsChecked = skinName.Equals(viewModel.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
             }
         }
 
         /// <summary>
         /// Gets the application state.
         /// </summary>
-        public State State
+        public PlayerState State
         {
-            get { return ((MenuViewModel)DataContext).State; }
+            get { return ((MenuViewModel) DataContext).State; }
         }
 
         private void OnItemClick(object sender, RadRoutedEventArgs e)
@@ -43,7 +43,7 @@ namespace Bloom.Player.Menu.Views
             if (currentItem == null || !currentItem.IsCheckable || currentItem.Tag == null)
                 return;
 
-            if ((string)currentItem.CommandParameter == State.Skin)
+            if ((string)currentItem.CommandParameter == State.SkinName)
             {
                 currentItem.IsChecked = true;
                 return;

@@ -4,6 +4,7 @@ using System.Linq;
 using Bloom.Analytics.Person.ViewModels;
 using Bloom.Analytics.Person.Views;
 using Bloom.Controls;
+using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -37,6 +38,8 @@ namespace Bloom.Analytics.Person.Services
             var personView = new PersonView(personViewModel);
             var personTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Person,
                 Header = "Person",
                 Content = personView
             };
@@ -55,6 +58,8 @@ namespace Bloom.Analytics.Person.Services
             var personView = new PersonView(personViewModel);
             var personTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Person,
                 Header = "Person",
                 Content = personView
             };

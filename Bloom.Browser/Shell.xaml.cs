@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Browser.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
+using Bloom.State;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
@@ -24,18 +24,18 @@ namespace Bloom.Browser
         public Shell(ISkinningService skinningService, IEventAggregator eventAggregator)
         {
             InitializeComponent();
-            var state = new State();
+            var state = new BrowserState();
             DataContext = state;
             _tabs = new Dictionary<Guid, RadPane>();
 
-            skinningService.SetSkin(state.Skin);
+            skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
-        private State State { get { return (State) DataContext; } }
+        private BrowserState State { get { return (BrowserState)DataContext; } }
 
         #region Window Events
 
@@ -57,7 +57,7 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.Save();
+            // TODO: Save state database.
         }
 
         #endregion

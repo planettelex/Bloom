@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Bloom.Analytics.Common;
 using Bloom.PubSubEvents;
 using Bloom.Services;
+using Bloom.State;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -23,7 +23,7 @@ namespace Bloom.Analytics.Menu.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
-            State = (State) regionManager.Regions["MenuRegion"].Context;
+            State = (AnalyticsState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
@@ -46,9 +46,9 @@ namespace Bloom.Analytics.Menu.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Gets the application state.
+        /// Gets the analytics application state.
         /// </summary>
-        public State State { get; private set; }
+        public AnalyticsState State { get; private set; }
 
         #region File Menu
 
@@ -170,10 +170,10 @@ namespace Bloom.Analytics.Menu.ViewModels
 
         private void SetSkin(string skinName)
         {
-            if (State.Skin == skinName)
+            if (State.SkinName == skinName)
                 return;
 
-            State.Skin = skinName;
+            State.SkinName = skinName;
             _skinningService.SetSkin(skinName);
         }
 

@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bloom.State.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Analytics_SkinName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Rock</Value>
+    </Setting>
+    <Setting Name="Browser_SkinName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Rock</Value>
+    </Setting>
+    <Setting Name="Player_SkinName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Rock</Value>
+    </Setting>
+    <Setting Name="Analytics_ProcessName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Bloom.Analytics</Value>
+    </Setting>
+    <Setting Name="Browser_ProcessName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Bloom.Browser</Value>
+    </Setting>
+    <Setting Name="Player_ProcessName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Bloom.Player</Value>
+    </Setting>
+    <Setting Name="Analytics_WindowState" Type="System.Windows.WindowState" Scope="Application">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="Browser_WindowState" Type="System.Windows.WindowState" Scope="Application">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="Player_WindowState" Type="System.Windows.WindowState" Scope="Application">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="Global_SidebarWidth" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

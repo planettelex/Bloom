@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Bloom.Browser.Common;
+using Bloom.State;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Microsoft.Practices.Prism.Commands;
@@ -23,7 +23,7 @@ namespace Bloom.Browser.Menu.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
-            State = (State) regionManager.Regions["MenuRegion"].Context;
+            State = (BrowserState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
@@ -46,9 +46,9 @@ namespace Bloom.Browser.Menu.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Gets the application state.
+        /// Gets the browser application state.
         /// </summary>
-        public State State { get; private set; }
+        public BrowserState State { get; private set; }
 
         #region File Menu
 
@@ -170,10 +170,10 @@ namespace Bloom.Browser.Menu.ViewModels
 
         private void SetSkin(string skinName)
         {
-            if (State.Skin == skinName)
+            if (State.SkinName == skinName)
                 return;
 
-            State.Skin = skinName;
+            State.SkinName = skinName;
             _skinningService.SetSkin(skinName);
         }
 

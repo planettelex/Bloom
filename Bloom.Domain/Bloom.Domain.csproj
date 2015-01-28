@@ -45,6 +45,7 @@
     <Compile Include="Enums\FilterComparison.cs" />
     <Compile Include="Enums\FiltersetItemScope.cs" />
     <Compile Include="Interfaces\IFiltersetOrder.cs" />
+    <Compile Include="Enums\EntityType.cs" />
     <Compile Include="Models\Filterset.cs" />
     <Compile Include="Models\FiltersetElement.cs" />
     <Compile Include="Enums\FiltersetElementType.cs" />

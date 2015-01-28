@@ -4,6 +4,7 @@ using System.Linq;
 using Bloom.Browser.Artist.ViewModels;
 using Bloom.Browser.Artist.Views;
 using Bloom.Controls;
+using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -37,6 +38,8 @@ namespace Bloom.Browser.Artist.Services
             var artistView = new ArtistView(artistViewModel);
             var artistTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Artist,
                 Header = "Artist",
                 Content = artistView
             };
@@ -55,6 +58,8 @@ namespace Bloom.Browser.Artist.Services
             var artistView = new ArtistView(artistViewModel);
             var artistTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Artist,
                 Header = "Artist",
                 Content = artistView
             };

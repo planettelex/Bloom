@@ -4,6 +4,7 @@ using System.Linq;
 using Bloom.Analytics.Library.ViewModels;
 using Bloom.Analytics.Library.Views;
 using Bloom.Controls;
+using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -33,6 +34,8 @@ namespace Bloom.Analytics.Library.Services
             var libraryView = new LibraryView(libraryViewModel);
             var libraryTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Filterset,
                 Header = "Library",
                 Content = libraryView
             };
@@ -51,6 +54,8 @@ namespace Bloom.Analytics.Library.Services
             var libraryView = new LibraryView(libraryViewModel);
             var libraryTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Filterset,
                 Header = "Library",
                 Content = libraryView
             };

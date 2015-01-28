@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Bloom.Player.Common;
+using Bloom.State;
 using Bloom.Services;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
@@ -20,7 +20,7 @@ namespace Bloom.Player.Menu.ViewModels
         /// <param name="processService">The process service.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService)
         {
-            State = (State) regionManager.Regions["MenuRegion"].Context;
+            State = (PlayerState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
 
@@ -37,9 +37,9 @@ namespace Bloom.Player.Menu.ViewModels
         private readonly IProcessService _processService;
 
         /// <summary>
-        /// Gets the application state.
+        /// Gets the player application state.
         /// </summary>
-        public State State { get; private set; }
+        public PlayerState State { get; private set; }
 
         #region File Menu
 
@@ -112,10 +112,10 @@ namespace Bloom.Player.Menu.ViewModels
 
         private void SetSkin(string skinName)
         {
-            if (State.Skin == skinName)
+            if (State.SkinName == skinName)
                 return;
 
-            State.Skin = skinName;
+            State.SkinName = skinName;
             _skinningService.SetSkin(skinName);
         }
 

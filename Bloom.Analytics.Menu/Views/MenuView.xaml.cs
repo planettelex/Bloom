@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Analytics.Common;
+using Bloom.State;
 using Bloom.Analytics.Menu.ViewModels;
 using Bloom.Controls.Helpers;
 using Telerik.Windows;
@@ -24,17 +24,17 @@ namespace Bloom.Analytics.Menu.Views
             // Check the current skin.
             foreach (RadMenuItem menuItem in Skins.Items)
             {
-                var skinName = (string)menuItem.CommandParameter;
-                menuItem.IsChecked = skinName.Equals(viewModel.State.Skin, StringComparison.InvariantCultureIgnoreCase);
+                var skinName = (string) menuItem.CommandParameter;
+                menuItem.IsChecked = skinName.Equals(viewModel.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
             }
         }
 
         /// <summary>
         /// Gets the application state.
         /// </summary>
-        public State State
+        public AnalyticsState State
         {
-            get { return ((MenuViewModel)DataContext).State; }
+            get { return ((MenuViewModel) DataContext).State; }
         }
 
         private void OnItemClick(object sender, RadRoutedEventArgs e)
@@ -43,7 +43,7 @@ namespace Bloom.Analytics.Menu.Views
             if (currentItem == null || !currentItem.IsCheckable || currentItem.Tag == null)
                 return;
 
-            if ((string)currentItem.CommandParameter == State.Skin)
+            if ((string)currentItem.CommandParameter == State.SkinName)
             {
                 currentItem.IsChecked = true;
                 return;

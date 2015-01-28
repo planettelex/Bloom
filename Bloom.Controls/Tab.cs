@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bloom.Domain.Enums;
+using System;
 using System.Windows.Controls;
 
 namespace Bloom.Controls
@@ -9,17 +10,24 @@ namespace Bloom.Controls
     public class Tab
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tab"/> class.
+        /// Gets or sets the tab identifier.
         /// </summary>
-        public Tab()
-        {
-            Id = Guid.NewGuid();
-        }
+        public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Gets or sets the library identifier.
         /// </summary>
-        public Guid Id { get; private set; }
+        public Guid LibraryId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the entity type contained in the tab.
+        /// </summary>
+        public EntityType EntityType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the entity identifier contained in the tab.
+        /// </summary>
+        public Guid EntityId { get; set; }
         
         /// <summary>
         /// Gets or sets the tab header.

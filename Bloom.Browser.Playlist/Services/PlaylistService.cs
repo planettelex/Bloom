@@ -4,6 +4,7 @@ using System.Linq;
 using Bloom.Browser.Playlist.ViewModels;
 using Bloom.Browser.Playlist.Views;
 using Bloom.Controls;
+using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -37,6 +38,8 @@ namespace Bloom.Browser.Playlist.Services
             var playlistView = new PlaylistView(playlistViewModel);
             var playlistTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Playlist,
                 Header = "Playlist",
                 Content = playlistView
             };
@@ -55,6 +58,8 @@ namespace Bloom.Browser.Playlist.Services
             var playlistView = new PlaylistView(playlistViewModel);
             var playlistTab = new Tab
             {
+                Id = Guid.NewGuid(),
+                EntityType = EntityType.Playlist,
                 Header = "Playlist",
                 Content = playlistView
             };

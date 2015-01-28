@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bloom.Player.Common")]
-[assembly: AssemblyDescription("Classes common to the Bloom Player application and all of its Prism modules.")]
+[assembly: AssemblyTitle("Bloom.State")]
+[assembly: AssemblyDescription("State management for the entire suite.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -16,5 +16,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("93859ff6-ef66-4f27-b874-f1b3567a1626")]
+[assembly: Guid("47e612f0-a86a-408f-b969-14b84cf25881")]
 

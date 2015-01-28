@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Bloom.Services")]
-[assembly: AssemblyDescription("Service classes that may be reuesed by multiple applications.")]
+[assembly: AssemblyDescription("Service classes that may be used by the entire suite.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
