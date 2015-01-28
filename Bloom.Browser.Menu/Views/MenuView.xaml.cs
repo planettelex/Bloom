@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Controls.Helpers;
-using Bloom.State;
 using Bloom.Browser.Menu.ViewModels;
+using Bloom.State.Domain.Models;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
 

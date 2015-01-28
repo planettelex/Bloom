@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bloom.State.Properties {
+namespace Bloom.State.Domain.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,19 +25,28 @@ namespace Bloom.State.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Bloom")]
-        public string AppData_Folder {
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        public int SidebarWidth {
             get {
-                return ((string)(this["AppData_Folder"]));
+                return ((int)(this["SidebarWidth"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Active.blms")]
-        public string Database_File {
+        [global::System.Configuration.DefaultSettingValueAttribute("Rock")]
+        public string SkinName {
             get {
-                return ((string)(this["Database_File"]));
+                return ((string)(this["SkinName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.WindowState WindowState {
+            get {
+                return ((global::System.Windows.WindowState)(this["WindowState"]));
             }
         }
     }

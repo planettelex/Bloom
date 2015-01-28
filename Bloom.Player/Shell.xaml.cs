@@ -1,6 +1,6 @@
 ﻿using System;
-using Bloom.State;
 using Bloom.Services;
+using Bloom.State.Domain.Models;
 
 namespace Bloom.Player
 {

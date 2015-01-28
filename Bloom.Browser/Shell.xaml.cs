@@ -4,7 +4,7 @@ using System.Linq;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
-using Bloom.State;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
