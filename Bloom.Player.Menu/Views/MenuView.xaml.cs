@@ -24,7 +24,7 @@ namespace Bloom.Player.Menu.Views
             // Check the current skin.
             foreach (RadMenuItem menuItem in Skins.Items)
             {
-                var skinName = (string)menuItem.CommandParameter;
+                var skinName = (string) menuItem.CommandParameter;
                 menuItem.IsChecked = skinName.Equals(viewModel.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
             }
         }

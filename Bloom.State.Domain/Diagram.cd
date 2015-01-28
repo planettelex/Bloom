@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bloom.State.Domain.AnalyticsState">
+    <Position X="3.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABABAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAA=</HashCode>
+      <FileName>AnalyticsState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.State.Domain.BrowserState">
+    <Position X="11.25" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABABAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAA=</HashCode>
+      <FileName>BrowserState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.State.Domain.PlayerState">
+    <Position X="7.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAAgAAAAAAQA=</HashCode>
+      <FileName>PlayerState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.State.Domain.Connections">
+    <Position X="7.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Connections.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StateConnection" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="LibraryConnections" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.State.Domain.LibraryConnection">
+    <Position X="11.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAA=</HashCode>
+      <FileName>LibraryConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.State.Domain.StateConnection">
+    <Position X="3.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>StateConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
