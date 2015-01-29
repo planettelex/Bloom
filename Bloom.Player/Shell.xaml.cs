@@ -1,6 +1,7 @@
 ﻿using System;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Bloom.State.Services;
 
 namespace Bloom.Player
 {
@@ -13,10 +14,11 @@ namespace Bloom.Player
         /// Initializes a new instance of the <see cref="Shell" /> class.
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
-        public Shell(ISkinningService skinningService)
+        /// <param name="stateService">The state service.</param>
+        public Shell(ISkinningService skinningService, IStateService stateService)
         {
             InitializeComponent();
-            var state = new PlayerState();
+            var state = stateService.InitializePlayerState();
             DataContext = state;
 
             skinningService.SetSkin(state.SkinName);

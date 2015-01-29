@@ -6,6 +6,8 @@ using Bloom.Player.Upcoming;
 using Bloom.Player.Visuals;
 using Bloom.Player.Volume;
 using Bloom.Services;
+using Bloom.State.Data;
+using Bloom.State.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -32,7 +34,8 @@ namespace Bloom.Player
         /// </remarks>
         protected override DependencyObject CreateShell()
         {
-            InjectServices();
+            RegisterDataSources();
+            RegisterServices();
             return Container.Resolve<Shell>();
         }
 
@@ -64,10 +67,22 @@ namespace Bloom.Player
         }
 
         /// <summary>
-        /// Injects the services into the DI container.
+        /// Registers the data sources with the DI container.
         /// </summary>
-        protected void InjectServices()
+        protected void RegisterDataSources()
         {
+            Container.RegisterType<IStateDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
+            var stateDataSource = Container.Resolve<IStateDataSource>();
+            stateDataSource.RegisterRepositories();
+        }
+
+        /// <summary>
+        /// Registers the services into the DI container.
+        /// </summary>
+        protected void RegisterServices()
+        {
+            Container.RegisterType<IStateService, StateService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());

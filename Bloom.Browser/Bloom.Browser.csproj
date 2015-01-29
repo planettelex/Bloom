@@ -179,6 +179,10 @@
       <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
       <Name>Bloom.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bloom.Data\Bloom.Data.csproj">
+      <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
+      <Name>Bloom.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Domain\Bloom.Domain.csproj">
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
@@ -194,6 +198,10 @@
     <ProjectReference Include="..\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.State.Data\Bloom.State.Data.csproj">
+      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
+      <Name>Bloom.State.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.State.Domain\Bloom.State.Domain.csproj">
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>

@@ -5,6 +5,7 @@ using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Bloom.State.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
@@ -21,10 +22,11 @@ namespace Bloom.Analytics
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator)
+        /// <param name="stateService">The state service.</param>
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IStateService stateService)
         {
             InitializeComponent();
-            var state = new AnalyticsState();
+            var state = stateService.InitializeAnalyticsState();
             DataContext = state;
             _tabs = new Dictionary<Guid, RadPane>();
 

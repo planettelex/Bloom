@@ -12,7 +12,7 @@ namespace Bloom.State.Domain.Models
         /// <summary>
         /// Gets or sets the library identifier.
         /// </summary>
-        [Column(Name = "library_id")]
+        [Column(Name = "library_id", IsPrimaryKey = true)]
         public Guid LibraryId { get; set; }
 
         /// <summary>
