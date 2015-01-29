@@ -25,16 +25,7 @@ namespace Bloom.State.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Bloom")]
-        public string AppData_Folder {
-            get {
-                return ((string)(this["AppData_Folder"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Active.blms")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Bloom\\Active.blms")]
         public string Database_File {
             get {
                 return ((string)(this["Database_File"]));
