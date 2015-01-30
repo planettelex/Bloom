@@ -20,7 +20,7 @@
         <ItemsControl Name="MenuRegion" Grid.Row="1" prism:RegionManager.RegionName="MenuRegion" prism:RegionManager.RegionContext="{Binding}" />
         
         <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview" ActivePaneChanged="ActivePaneChanged" Close="OnClose">
-            <telerik:RadSplitContainer>
+            <telerik:RadSplitContainer Width="{Binding Path=SidebarWidth, Mode=TwoWay}" MouseDoubleClick="OnSidebarSplitterDoubleClick">
                 <telerik:RadPaneGroup x:Name="Sidebar" Style="{DynamicResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed">
                         <ItemsControl Name="SidebarRegion" prism:RegionManager.RegionName="SidebarRegion" prism:RegionManager.RegionContext="{Binding}" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -26,10 +27,11 @@ namespace Bloom.Browser
         public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IStateService stateService)
         {
             InitializeComponent();
-            var state = stateService.InitializeBrowserState();
-            DataContext = state;
             _tabs = new Dictionary<Guid, RadPane>();
-
+            _stateService = stateService;
+            var state = _stateService.InitializeBrowserState();
+            DataContext = state;
+            
             skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
@@ -37,6 +39,7 @@ namespace Bloom.Browser
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
+        private readonly IStateService _stateService;
         private BrowserState State { get { return (BrowserState) DataContext; } }
 
         #region Window Events
@@ -59,7 +62,7 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            // TODO: Save state database.
+            _stateService.SaveState();
         }
 
         #endregion
@@ -150,6 +153,11 @@ namespace Bloom.Browser
                     selectedTab = tab;
             }
             return selectedTab;
+        }
+
+        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            State.ResetSidebarWidth();
         }
 
         #endregion

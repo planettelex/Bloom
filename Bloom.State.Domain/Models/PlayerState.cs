@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Data.Linq.Mapping;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
 {
@@ -7,7 +8,7 @@ namespace Bloom.State.Domain.Models
     /// The state of the player application.
     /// </summary>
     [Table(Name = "player_state")]
-    public class PlayerState
+    public class PlayerState : BindableBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerState"/> class.
@@ -17,7 +18,7 @@ namespace Bloom.State.Domain.Models
             ProcessName = "Bloom.Player";
             SkinName = Properties.Settings.Default.SkinName;
             WindowState = Properties.Settings.Default.WindowState;
-            PlayedWidth = Properties.Settings.Default.SidebarWidth;
+            RecentWidth = Properties.Settings.Default.SidebarWidth;
             UpcomingWidth = Properties.Settings.Default.SidebarWidth;
         }
 
@@ -40,15 +41,41 @@ namespace Bloom.State.Domain.Models
         public WindowState WindowState { get; set; }
 
         /// <summary>
-        /// Gets or sets the width of the played column.
+        /// Gets or sets the width of the recent column.
         /// </summary>
-        [Column(Name = "played_width")]
-        public int PlayedWidth { get; set; }
+        [Column(Name = "recent_width")]
+        public int RecentWidth
+        {
+            get { return _recentWidth; }
+            set { SetProperty(ref _recentWidth, value); }
+        }
+        private int _recentWidth;
 
         /// <summary>
         /// Gets or sets the width of the upcoming column.
         /// </summary>
         [Column(Name = "upcoming_width")]
-        public int UpcomingWidth { get; set; }
+        public int UpcomingWidth
+        {
+            get { return _upcomingWidth; }
+            set { SetProperty(ref _upcomingWidth, value); }
+        }
+        private int _upcomingWidth;
+
+        /// <summary>
+        /// Resets the width of the recent column to the default value.
+        /// </summary>
+        public void ResetRecentWidth()
+        {
+            RecentWidth = Properties.Settings.Default.SidebarWidth;
+        }
+
+        /// <summary>
+        /// Resets the width of the upcoming column to the default value.
+        /// </summary>
+        public void ResetUpcomingWidth()
+        {
+            UpcomingWidth = Properties.Settings.Default.SidebarWidth;
+        }
     }
 }

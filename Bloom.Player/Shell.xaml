@@ -20,17 +20,17 @@
 
         <Grid Grid.Row="2" Style="{DynamicResource ShellStyle}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition x:Name="RecentColumn" Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition x:Name="UpcomingColumn" Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            <Grid Grid.Column="0" x:Name="Recent">
+
+            <Grid Grid.Column="0" x:Name="Recent" SizeChanged="OnRecentSizeChanged">
                 <ItemsControl Name="RecentRegion" prism:RegionManager.RegionName="RecentRegion" prism:RegionManager.RegionContext="{Binding}" />
             </Grid>
-            <GridSplitter Grid.Column="1" Style="{DynamicResource VerticalSplitterStyle}" />
+            <GridSplitter Grid.Column="1" Style="{DynamicResource VerticalSplitterStyle}" MouseDoubleClick="OnRecentSplitterMouseDoubleClick" />
             <Grid Grid.Column="2" x:Name="Playing">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -44,8 +44,8 @@
                     <ItemsControl Grid.Row="2" Name="VolumeRegion" prism:RegionManager.RegionName="VolumeRegion" prism:RegionManager.RegionContext="{Binding}" />
                 </Grid>
             </Grid>
-            <GridSplitter Grid.Column="3" Style="{DynamicResource VerticalSplitterStyle}" />
-            <Grid Grid.Column="4" x:Name="Upcoming">
+            <GridSplitter Grid.Column="3" Style="{DynamicResource VerticalSplitterStyle}" MouseDoubleClick="OnUpcomingMouseDoubleClick"/>
+            <Grid Grid.Column="4" x:Name="Upcoming" SizeChanged="OnUpcomingSizeChanged">
                 <ItemsControl Name="UpcomingRegion" prism:RegionManager.RegionName="UpcomingRegion" prism:RegionManager.RegionContext="{Binding}" />
             </Grid>
         </Grid>

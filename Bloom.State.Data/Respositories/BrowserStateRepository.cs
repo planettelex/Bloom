@@ -17,6 +17,18 @@ namespace Bloom.State.Data.Respositories
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
 
         /// <summary>
+        /// Determines whether the browser state exists.
+        /// </summary>
+        /// <returns></returns>
+        public bool BrowserStateExists()
+        {
+            if (!_dataSource.IsConnected())
+                return false;
+
+            return BrowserStateTable.Any();
+        }
+
+        /// <summary>
         /// Gets the browser state.
         /// </summary>
         /// <returns></returns>
@@ -30,6 +42,18 @@ namespace Bloom.State.Data.Respositories
                 select browserState;
 
             return query.ToList().SingleOrDefault();
+        }
+
+        /// <summary>
+        /// Adds the state of the browser.
+        /// </summary>
+        /// <param name="browserState">State of the browser.</param>
+        public void AddBrowserState(BrowserState browserState)
+        {
+            if (!_dataSource.IsConnected() || BrowserStateExists())
+                return;
+
+            BrowserStateTable.InsertOnSubmit(browserState);
         }
     }
 }

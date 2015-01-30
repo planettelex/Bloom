@@ -8,8 +8,20 @@ namespace Bloom.State.Data.Respositories
     public interface IPlayerStateRepository
     {
         /// <summary>
+        /// Determines whether the player state exists.
+        /// </summary>
+        /// <returns></returns>
+        bool PlayerStateExists();
+
+        /// <summary>
         /// Gets the state of the player.
         /// </summary>
         PlayerState GetPlayerState();
+
+        /// <summary>
+        /// Adds the state of the player.
+        /// </summary>
+        /// <param name="playerState">State of the player.</param>
+        void AddPlayerState(PlayerState playerState);
     }
 }

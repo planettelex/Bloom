@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Windows;
 using Bloom.Controls;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
 {
@@ -10,7 +11,7 @@ namespace Bloom.State.Domain.Models
     /// The state of the browser application.
     /// </summary>
     [Table(Name = "browser_state")]
-    public class BrowserState
+    public class BrowserState : BindableBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BrowserState"/> class.
@@ -47,7 +48,12 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the width of the sidebar column.
         /// </summary>
         [Column(Name = "sidebar_width")]
-        public int SidebarWidth { get; set; }
+        public int SidebarWidth
+        {
+            get { return _sidebarWidth; }
+            set { SetProperty(ref _sidebarWidth, value); }
+        }
+        private int _sidebarWidth;
 
         /// <summary>
         /// Gets or sets the selected tab identifier.
@@ -59,5 +65,13 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the tabs.
         /// </summary>
         public List<Tab> Tabs { get; set; }
+
+        /// <summary>
+        /// Resets the width of the sidebar to the default value.
+        /// </summary>
+        public void ResetSidebarWidth()
+        {
+            SidebarWidth = Properties.Settings.Default.SidebarWidth;
+        }
     }
 }

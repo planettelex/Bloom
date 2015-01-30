@@ -21,6 +21,18 @@ namespace Bloom.State.Data.Respositories
         private Table<PlayerState> PlayerStateTable { get { return _dataSource.Context.GetTable<PlayerState>(); } }
 
         /// <summary>
+        /// Determines whether the player state exists.
+        /// </summary>
+        /// <returns></returns>
+        public bool PlayerStateExists()
+        {
+            if (!_dataSource.IsConnected())
+                return false;
+
+            return PlayerStateTable.Any();
+        }
+
+        /// <summary>
         /// Gets the state of the player.
         /// </summary>
         /// <returns></returns>
@@ -34,6 +46,18 @@ namespace Bloom.State.Data.Respositories
                 select analyticsState;
 
             return query.ToList().SingleOrDefault();
+        }
+
+        /// <summary>
+        /// Adds the state of the player.
+        /// </summary>
+        /// <param name="playerState">State of the player.</param>
+        public void AddPlayerState(PlayerState playerState)
+        {
+            if (!_dataSource.IsConnected() || PlayerStateExists())
+                return;
+
+            PlayerStateTable.InsertOnSubmit(playerState);
         }
     }
 }
