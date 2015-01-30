@@ -15,7 +15,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <shared:TitleBar Grid.Row="0" Title="Bloom Music Player" />
+        <shared:TitleBar x:Name="TitleBar" Grid.Row="0" Title="Bloom Music Player" />
         <ItemsControl Name="MenuRegion" Grid.Row="1" prism:RegionManager.RegionName="MenuRegion" prism:RegionManager.RegionContext="{Binding}" />
 
         <Grid Grid.Row="2" Style="{DynamicResource ShellStyle}">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
@@ -31,7 +32,13 @@ namespace Bloom.Browser
             _stateService = stateService;
             var state = _stateService.InitializeBrowserState();
             DataContext = state;
-            
+
+            // Don't open in a minimized state.
+            if (state.WindowState == WindowState.Minimized)
+                state.WindowState = WindowState.Normal;
+
+            WindowState = state.WindowState;
+            TitleBar.SetButtonVisibilties();
             skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
@@ -62,6 +69,7 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
+            State.WindowState = WindowState;
             _stateService.SaveState();
         }
 

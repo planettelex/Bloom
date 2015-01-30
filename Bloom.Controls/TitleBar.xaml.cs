@@ -15,7 +15,13 @@ namespace Bloom.Controls
         {
             InitializeComponent();
             DataContext = this;
-            
+        }
+
+        /// <summary>
+        /// Sets the button visibilties according to the main window state.
+        /// </summary>
+        public void SetButtonVisibilties()
+        {
             if (Application.Current.MainWindow != null && Application.Current.MainWindow.WindowState == WindowState.Maximized)
                 MaximizeButton.Visibility = Visibility.Collapsed;
             else
@@ -32,7 +38,7 @@ namespace Bloom.Controls
         /// </summary>
         public string Title
         {
-            get { return (string)GetValue(TitleProperty); }
+            get { return (string) GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value); }
         }
 

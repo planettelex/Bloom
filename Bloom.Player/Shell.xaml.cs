@@ -26,6 +26,12 @@ namespace Bloom.Player
             var state = _stateService.InitializePlayerState();
             DataContext = state;
 
+            // Don't open in a minimized state.
+            if (state.WindowState == WindowState.Minimized)
+                state.WindowState = WindowState.Normal;
+
+            WindowState = state.WindowState;
+            TitleBar.SetButtonVisibilties();
             SetRecentColumnWidth();
             SetUpcomingColumnWidth();
             skinningService.SetSkin(state.SkinName);
@@ -54,6 +60,7 @@ namespace Bloom.Player
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
+            State.WindowState = WindowState;
             _stateService.SaveState();
         }
 
