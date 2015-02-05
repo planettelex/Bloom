@@ -16,9 +16,27 @@ namespace Bloom.State.Domain.Models
         public Guid LibraryId { get; set; }
 
         /// <summary>
+        /// Gets or sets the library name.
+        /// </summary>
+        [Column(Name = "name")]
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or sets the library file path.
         /// </summary>
         [Column(Name = "file_path")]
         public string FilePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this library is connected.
+        /// </summary>
+        [Column(Name = "is_connected")]
+        public bool IsConnected { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last connected date and time.
+        /// </summary>
+        [Column(Name = "last_connected")]
+        public DateTime LastConnected { get; set; }
     }
 }
