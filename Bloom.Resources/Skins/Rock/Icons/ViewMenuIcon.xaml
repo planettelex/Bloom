@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <DrawingImage x:Key="ViewMenuIcon">
+        <DrawingImage.Drawing>
+			<DrawingGroup>
+				<DrawingGroup.Children>
+                    <GeometryDrawing Brush="{StaticResource NormalForegroundBrush}" Geometry="F1 M 23.9264,2.52539L 12.1038,2.52539L 12.1038,0L 23.9264,0L 23.9264,2.52539 Z "/>
+                    <GeometryDrawing Brush="{StaticResource NormalForegroundBrush}" Geometry="F1 M 23.9264,6.57336L 12.1038,6.57336L 12.1038,4.04803L 23.9264,4.04803L 23.9264,6.57336 Z "/>
+                    <GeometryDrawing Brush="{StaticResource NormalForegroundBrush}" Geometry="F1 M 23.9264,10.5814L 12.1038,10.5814L 12.1038,8.05603L 23.9264,8.05603L 23.9264,10.5814 Z "/>
+                    <GeometryDrawing Brush="{StaticResource NormalForegroundBrush}" Geometry="F1 M 0,2.68567L 7.97467,2.68567L 3.98804,6.67365L 0,2.68567 Z "/>
+				</DrawingGroup.Children>
+			</DrawingGroup>
+		</DrawingImage.Drawing>
+	</DrawingImage>
+</ResourceDictionary>

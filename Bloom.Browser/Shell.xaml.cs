@@ -79,9 +79,14 @@ namespace Bloom.Browser
 
         private void AddTab(Tab tab)
         {
+            var tabHeader = new TabHeader
+            {
+                Text = tab.Header,
+                ViewMenuVisibility = tab.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
+            };
             var newPane = new RadPane
             {
-                Header = tab.Header,
+                Header = tabHeader,
                 Content = tab.Content
             };
 

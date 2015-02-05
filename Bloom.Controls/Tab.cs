@@ -35,6 +35,11 @@ namespace Bloom.Controls
         public string Header { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show view menu on this tab.
+        /// </summary>
+        public bool ShowViewMenu { get; set; }
+
+        /// <summary>
         /// Gets or sets the tab content.
         /// </summary>
         public UserControl Content { get; set; }

@@ -27,6 +27,7 @@
             </Grid.InputBindings>
 
             <TextBlock Grid.Column="0" Text="{Binding Title}" Style="{StaticResource TitlebarTextStyle}" />
+            
             <Button x:Name="MinimizeButton" Grid.Column="1" ToolTip="Minimize" Style="{StaticResource TitlebarButtonStyle}" Click="MinimizeButtonClick">
                 <Image Style="{StaticResource MinimizeIconStyle}" />
             </Button>

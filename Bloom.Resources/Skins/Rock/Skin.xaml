@@ -6,6 +6,7 @@
         <ResourceDictionary Source="Brushes.xaml" />
 
         <!-- Icons  -->
+        <ResourceDictionary Source="Icons/ViewMenuIcon.xaml" />
         <ResourceDictionary Source="Icons/WindowCloseIcon.xaml" />
         <ResourceDictionary Source="Icons/WindowMaximizeIcon.xaml" />
         <ResourceDictionary Source="Icons/WindowMinimizeIcon.xaml" />
