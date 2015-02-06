@@ -37,7 +37,8 @@ namespace Bloom.Analytics.Library.Services
                 Id = Guid.NewGuid(),
                 EntityType = EntityType.Filterset,
                 Header = "Library",
-                Content = libraryView
+                Content = libraryView,
+                ShowViewMenu = true
             };
 
             _tabs.Add(libraryTab);

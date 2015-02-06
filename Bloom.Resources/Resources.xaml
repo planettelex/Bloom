@@ -5,6 +5,7 @@
         <ResourceDictionary Source="Styles/ControlStyles.xaml" />
         <ResourceDictionary Source="Styles/MenuStyles.xaml" />
         <ResourceDictionary Source="Styles/DockingStyles.xaml" />
+        <ResourceDictionary Source="Styles/TabHeaderStyles.xaml" />
         
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
