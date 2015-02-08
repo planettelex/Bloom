@@ -92,9 +92,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TabHeader.xaml.cs">
-      <DependentUpon>TabHeader.xaml</DependentUpon>
-    </Compile>
     <Page Include="Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,10 +108,6 @@
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TabHeader.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -145,6 +138,10 @@
       <Project>{610f519d-44ef-4568-a449-0f317664559a}</Project>
       <Name>Bloom.Analytics.Artist</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
+      <Project>{d86bec11-b4a6-412f-98b1-ccef05fa839d}</Project>
+      <Name>Bloom.Analytics.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Analytics.Library\Bloom.Analytics.Library.csproj">
       <Project>{f2a36480-9f8c-408d-baf1-dc3f11a98eab}</Project>
       <Name>Bloom.Analytics.Library</Name>
@@ -160,6 +157,14 @@
     <ProjectReference Include="..\Bloom.Analytics.Playlist\Bloom.Analytics.Playlist.csproj">
       <Project>{833cb199-a684-408b-953d-0b03ed0b63d8}</Project>
       <Name>Bloom.Analytics.Playlist</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
+      <Project>{c86fedc7-f553-4de5-85e7-3cfcff2eb333}</Project>
+      <Name>Bloom.Analytics.PubSubEvents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.Analytics.Shared\Bloom.Analytics.Common.csproj">
+      <Project>{40d9ac3d-db97-4b31-ac50-21fc82f7459a}</Project>
+      <Name>Bloom.Analytics.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Analytics.Song\Bloom.Analytics.Song.csproj">
       <Project>{2eae4c79-a3ae-4053-81bf-5369f0197f8a}</Project>

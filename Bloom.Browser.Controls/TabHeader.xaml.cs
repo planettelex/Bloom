@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Bloom.Analytics
+namespace Bloom.Browser.Controls
 {
     /// <summary>
     /// Interaction logic for TabHeader.xaml

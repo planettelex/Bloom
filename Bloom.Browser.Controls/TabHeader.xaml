@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Bloom.Analytics.TabHeader"
+﻿<UserControl x:Class="Bloom.Browser.Controls.TabHeader"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,14 +6,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="200">
-
+    
     <UserControl.Resources>
         <Style x:Key="ViewMenuGroupItemStyle" TargetType="telerik:RadMenuGroupItem">
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
                         <!-- Set different MaxHeight to control the size of the menu -->
-                        <telerik:RadWrapPanel Orientation="Vertical" MaxHeight="100" />
+                        <telerik:RadWrapPanel Orientation="Vertical" MaxHeight="150" />
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
@@ -27,16 +27,22 @@
         </Grid.ColumnDefinitions>
 
         <telerik:RadMenu Grid.Column="0" Visibility="{Binding ViewMenuVisibility}">
-            <telerik:RadMenuItem Style="{DynamicResource ViewMenuRootItemStyle}" ItemContainerStyle="{StaticResource ViewMenuGroupItemStyle}">
+            <telerik:RadMenuItem ItemContainerStyle="{StaticResource ViewMenuGroupItemStyle}">
+                <telerik:RadMenuItem.Icon>
+                    <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}"  />
+                </telerik:RadMenuItem.Icon>
                 <telerik:RadMenuGroupItem ItemContainerStyle="{DynamicResource ViewMenuItemStyle}">
-                    <telerik:RadMenuItem Header="Stats" />
-                    <telerik:RadMenuItem Header="Pie Chart" />
-                    <telerik:RadMenuItem Header="Timeline" />
-                    <telerik:RadMenuItem Header="Line Graph" />
-                    <telerik:RadMenuItem Header="Bar Chart" />
-                    <telerik:RadMenuItem Header="Map" />
+                    <telerik:RadMenuItem Header="Grid" />
+                    <telerik:RadMenuItem Header="List" />
+                    <telerik:RadMenuItem Header="Spreadsheet" />
+                    <telerik:RadMenuItem Header="Slideshow" />
+                    <telerik:RadMenuItem Header="Single Album" />
+                    <telerik:RadMenuItem Header="Scroll" />
+                    <telerik:RadMenuItem Header="Coverflow" />
+                    <telerik:RadMenuItem Header="Spines" />
+                    <telerik:RadMenuItem Header="Scattered" />
+                    <telerik:RadMenuItem Header="Tiled" />
                 </telerik:RadMenuGroupItem>
-
             </telerik:RadMenuItem>
         </telerik:RadMenu>
         
