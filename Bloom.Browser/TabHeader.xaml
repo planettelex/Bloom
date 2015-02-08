@@ -32,16 +32,16 @@
                     <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}"  />
                 </telerik:RadMenuItem.Icon>
                 <telerik:RadMenuGroupItem ItemContainerStyle="{DynamicResource ViewMenuItemStyle}">
-                    <telerik:RadMenuItem Header="Grid" />
-                    <telerik:RadMenuItem Header="List" />
-                    <telerik:RadMenuItem Header="Spreadsheet" />
-                    <telerik:RadMenuItem Header="Slideshow" />
-                    <telerik:RadMenuItem Header="Single Album" />
-                    <telerik:RadMenuItem Header="Scroll" />
-                    <telerik:RadMenuItem Header="Coverflow" />
-                    <telerik:RadMenuItem Header="Spines" />
-                    <telerik:RadMenuItem Header="Scattered" />
-                    <telerik:RadMenuItem Header="Tiled" />
+                    <telerik:RadMenuItem Header="Grid" Command="{Binding ChangeTabViewCommand}" CommandParameter="Grid" />
+                    <telerik:RadMenuItem Header="List" Command="{Binding ChangeTabViewCommand}" CommandParameter="List" />
+                    <telerik:RadMenuItem Header="Spreadsheet" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spreadsheet" />
+                    <telerik:RadMenuItem Header="Slideshow" Command="{Binding ChangeTabViewCommand}" CommandParameter="Slideshow" />
+                    <telerik:RadMenuItem Header="Single Album" Command="{Binding ChangeTabViewCommand}" CommandParameter="Album" />
+                    <telerik:RadMenuItem Header="Scroll" Command="{Binding ChangeTabViewCommand}" CommandParameter="Scroll" />
+                    <telerik:RadMenuItem Header="Coverflow" Command="{Binding ChangeTabViewCommand}" CommandParameter="Coverflow" />
+                    <telerik:RadMenuItem Header="Spines" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spines" />
+                    <telerik:RadMenuItem Header="Scattered" Command="{Binding ChangeTabViewCommand}" CommandParameter="Scattered" />
+                    <telerik:RadMenuItem Header="Tiles" Command="{Binding ChangeTabViewCommand}" CommandParameter="Tiles" />
                 </telerik:RadMenuGroupItem>
             </telerik:RadMenuItem>
         </telerik:RadMenu>

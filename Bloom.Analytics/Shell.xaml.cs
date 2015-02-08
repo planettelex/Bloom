@@ -29,6 +29,7 @@ namespace Bloom.Analytics
         {
             InitializeComponent();
             _tabs = new Dictionary<Guid, RadPane>();
+            _eventAggregator = eventAggregator;
             _stateService = stateService;
             var state = _stateService.InitializeAnalyticsState();
             DataContext = state;
@@ -47,6 +48,7 @@ namespace Bloom.Analytics
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IStateService _stateService;
+        private readonly IEventAggregator _eventAggregator;
         private AnalyticsState State { get { return (AnalyticsState) DataContext; } }
 
         #region Window Events
@@ -79,8 +81,9 @@ namespace Bloom.Analytics
 
         private void AddTab(Tab tab)
         {
-            var tabHeader = new TabHeader
+            var tabHeader = new TabHeader(_eventAggregator)
             {
+                TabId = tab.Id,
                 Text = tab.Header,
                 ViewMenuVisibility = tab.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
             };

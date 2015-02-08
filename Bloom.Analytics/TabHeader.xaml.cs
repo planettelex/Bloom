@@ -1,4 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Input;
+using Bloom.Analytics.Common;
+using Bloom.Analytics.PubSubEvents;
+using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Analytics
 {
@@ -8,14 +14,24 @@ namespace Bloom.Analytics
     public partial class TabHeader
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TabHeader"/> class.
+        /// Initializes a new instance of the <see cref="TabHeader" /> class.
         /// </summary>
-        public TabHeader()
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public TabHeader(IEventAggregator eventAggregator)
         {
             InitializeComponent();
+            _eventAggregator = eventAggregator;
             ViewMenuVisibility = Visibility.Collapsed;
             DataContext = this;
+
+            ChangeTabViewCommand = new DelegateCommand<string>(ChangeTabView, CanChangeTabView);
         }
+        private readonly IEventAggregator _eventAggregator;
+
+        /// <summary>
+        /// Gets or sets the tab identifier.
+        /// </summary>
+        public Guid TabId { get; set; }
 
         /// <summary>
         /// The text dependency property.
@@ -34,7 +50,7 @@ namespace Bloom.Analytics
         /// <summary>
         /// The view menu visibility dependency property.
         /// </summary>
-        public static readonly DependencyProperty ViewMenuVisibilityProperty = DependencyProperty.Register("ViewMenuVisibility", typeof (Visibility), typeof(TabHeader), new PropertyMetadata(null));
+        public static readonly DependencyProperty ViewMenuVisibilityProperty = DependencyProperty.Register("ViewMenuVisibility", typeof (Visibility), typeof (TabHeader), new PropertyMetadata(null));
 
         /// <summary>
         /// Gets or sets the view menu visibility.
@@ -43,6 +59,22 @@ namespace Bloom.Analytics
         {
             get { return (Visibility) GetValue(ViewMenuVisibilityProperty); }
             set { SetValue(ViewMenuVisibilityProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the change tab view command.
+        /// </summary>
+        public ICommand ChangeTabViewCommand { get; set; }
+
+        private bool CanChangeTabView(string viewType)
+        {
+            return true;
+        }
+
+        private void ChangeTabView(string viewType)
+        {
+            var libraryViewType = (LibraryViewType) Enum.Parse(typeof (LibraryViewType), viewType);
+            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Publish(new Tuple<Guid, LibraryViewType>(TabId, libraryViewType));
         }
     }
 }

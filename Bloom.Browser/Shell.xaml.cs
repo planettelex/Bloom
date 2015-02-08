@@ -29,6 +29,7 @@ namespace Bloom.Browser
         {
             InitializeComponent();
             _tabs = new Dictionary<Guid, RadPane>();
+            _eventAggregator = eventAggregator;
             _stateService = stateService;
             var state = _stateService.InitializeBrowserState();
             DataContext = state;
@@ -47,6 +48,7 @@ namespace Bloom.Browser
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IStateService _stateService;
+        private readonly IEventAggregator _eventAggregator;
         private BrowserState State { get { return (BrowserState) DataContext; } }
 
         #region Window Events
@@ -79,8 +81,9 @@ namespace Bloom.Browser
 
         private void AddTab(Tab tab)
         {
-            var tabHeader = new TabHeader
+            var tabHeader = new TabHeader(_eventAggregator)
             {
+                TabId = tab.Id,
                 Text = tab.Header,
                 ViewMenuVisibility = tab.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
             };
