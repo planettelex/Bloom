@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Bloom.Browser.Library.ViewModels;
 using Bloom.Browser.Library.Views;
 using Bloom.Controls;
@@ -36,13 +38,14 @@ namespace Bloom.Browser.Library.Services
         {
             var libraryViewModel = new LibraryViewModel();
             var libraryView = new LibraryView(libraryViewModel);
-            var libraryTab = new Tab
+            var libraryTab = new LibraryTab
             {
                 Id = Guid.NewGuid(),
                 EntityType = EntityType.Filterset,
                 Header = "Library",
                 Content = libraryView,
-                ShowViewMenu = true
+                ShowViewMenu = true,
+                ViewType = LibraryViewType.Grid
             };
 
             _tabs.Add(libraryTab);

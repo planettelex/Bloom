@@ -40,7 +40,6 @@
                     <telerik:RadMenuItem Header="Scattered" />
                     <telerik:RadMenuItem Header="Tiled" />
                 </telerik:RadMenuGroupItem>
-
             </telerik:RadMenuItem>
         </telerik:RadMenu>
         

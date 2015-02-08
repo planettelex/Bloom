@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bloom.Analytics.Common;
+using Bloom.Analytics.Controls;
 using Bloom.Analytics.Library.ViewModels;
 using Bloom.Analytics.Library.Views;
 using Bloom.Controls;
@@ -32,13 +34,14 @@ namespace Bloom.Analytics.Library.Services
         {
             var libraryViewModel = new LibraryViewModel();
             var libraryView = new LibraryView(libraryViewModel);
-            var libraryTab = new Tab
+            var libraryTab = new LibraryTab
             {
                 Id = Guid.NewGuid(),
                 EntityType = EntityType.Filterset,
                 Header = "Library",
                 Content = libraryView,
-                ShowViewMenu = true
+                ShowViewMenu = true,
+                ViewType = LibraryViewType.Stats
             };
 
             _tabs.Add(libraryTab);
