@@ -82,9 +82,6 @@
     </Compile>
     <Compile Include="LibraryTab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TabHeader.xaml.cs">
-      <DependentUpon>TabHeader.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -114,12 +111,6 @@
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="TabHeader.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
