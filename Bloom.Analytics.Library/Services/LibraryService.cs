@@ -5,6 +5,7 @@ using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
 using Bloom.Analytics.Library.ViewModels;
 using Bloom.Analytics.Library.Views;
+using Bloom.Analytics.PubSubEvents;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -21,6 +22,7 @@ namespace Bloom.Analytics.Library.Services
             // Subscribe to events
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
+            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<LibraryTab> _tabs;
@@ -32,16 +34,19 @@ namespace Bloom.Analytics.Library.Services
 
         public void NewLibraryTab()
         {
-            var libraryViewModel = new LibraryViewModel();
-            var libraryView = new LibraryView(libraryViewModel);
+            var libraryViewModel = new LibraryViewModel(LibraryViewType.Stats)
+            {
+                TabId = Guid.NewGuid()
+            };
+            var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new LibraryTab
             {
-                Id = Guid.NewGuid(),
+                Id = libraryViewModel.TabId,
                 EntityType = EntityType.Filterset,
                 Header = "Library",
                 Content = libraryView,
                 ShowViewMenu = true,
-                ViewType = LibraryViewType.Stats
+                ViewType = libraryViewModel.ViewType
             };
 
             _tabs.Add(libraryTab);
@@ -54,18 +59,28 @@ namespace Bloom.Analytics.Library.Services
             if (existingTab == null)
                 return;
 
-            var libraryViewModel = new LibraryViewModel();
-            var libraryView = new LibraryView(libraryViewModel);
+            var libraryViewModel = new LibraryViewModel(existingTab.ViewType)
+            {
+                TabId = Guid.NewGuid()
+            };
+            var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new LibraryTab
             {
-                Id = Guid.NewGuid(),
+                Id = libraryViewModel.TabId,
                 EntityType = EntityType.Filterset,
                 Header = "Library",
-                Content = libraryView
+                Content = libraryView,
+                ShowViewMenu = true,
+                ViewType = libraryViewModel.ViewType
             };
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
+        }
+
+        public void ChangeLibraryTabView(Tuple<Guid, LibraryViewType> libraryViewTuple)
+        {
+            ChangeLibraryTabView(libraryViewTuple.Item1, libraryViewTuple.Item2);
         }
 
         public void ChangeLibraryTabView(Guid tabId, LibraryViewType viewType)
