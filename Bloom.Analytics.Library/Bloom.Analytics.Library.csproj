@@ -80,95 +80,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ILibraryService.cs" />
     <Compile Include="Services\LibraryService.cs" />
-    <Compile Include="ViewModels\AlbumViewModel.cs" />
-    <Compile Include="ViewModels\CoverflowViewModel.cs" />
-    <Compile Include="ViewModels\GridViewModel.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
-    <Compile Include="ViewModels\ListViewModel.cs" />
-    <Compile Include="ViewModels\ScatteredViewModel.cs" />
-    <Compile Include="ViewModels\ScrollViewModel.cs" />
-    <Compile Include="ViewModels\SlideshowViewModel.cs" />
-    <Compile Include="ViewModels\SpinesViewModel.cs" />
-    <Compile Include="ViewModels\SpreadsheetViewModel.cs" />
-    <Compile Include="ViewModels\TilesViewModel.cs" />
-    <Compile Include="Views\AlbumView.xaml.cs">
-      <DependentUpon>AlbumView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CoverflowView.xaml.cs">
-      <DependentUpon>CoverflowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GridView.xaml.cs">
-      <DependentUpon>GridView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LibraryView.xaml.cs">
       <DependentUpon>LibraryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ListView.xaml.cs">
-      <DependentUpon>ListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ScatteredView.xaml.cs">
-      <DependentUpon>ScatteredView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ScrollView.xaml.cs">
-      <DependentUpon>ScrollView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SlideshowView.xaml.cs">
-      <DependentUpon>SlideshowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SpinesView.xaml.cs">
-      <DependentUpon>SpinesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SpreadsheetView.xaml.cs">
-      <DependentUpon>SpreadsheetView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TilesView.xaml.cs">
-      <DependentUpon>TilesView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\AlbumView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CoverflowView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\GridView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\LibraryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ScatteredView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ScrollView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SlideshowView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SpinesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SpreadsheetView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TilesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
