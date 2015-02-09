@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+           <TextBlock>Album View</TextBlock> 
     </Grid>
 </UserControl>

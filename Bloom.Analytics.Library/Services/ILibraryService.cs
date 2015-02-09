@@ -9,6 +9,6 @@ namespace Bloom.Analytics.Library.Services
 
         void DuplicateLibraryTab(Guid tabId);
 
-        void UpdateLibraryTabView(Guid tabId, LibraryViewType viewType);
+        void ChangeLibraryTabView(Guid tabId, LibraryViewType viewType);
     }
 }

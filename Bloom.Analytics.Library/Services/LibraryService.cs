@@ -68,7 +68,7 @@ namespace Bloom.Analytics.Library.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
-        public void UpdateLibraryTabView(Guid tabId, LibraryViewType viewType)
+        public void ChangeLibraryTabView(Guid tabId, LibraryViewType viewType)
         {
             var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
             if (existingTab == null)

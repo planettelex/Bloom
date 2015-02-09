@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <TextBlock>Slideshow View</TextBlock>
     </Grid>
 </UserControl>

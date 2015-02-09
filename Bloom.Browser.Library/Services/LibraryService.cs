@@ -5,7 +5,7 @@ using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
 using Bloom.Browser.Library.ViewModels;
 using Bloom.Browser.Library.Views;
-using Bloom.Controls;
+using Bloom.Browser.PubSubEvents;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -21,13 +21,15 @@ namespace Bloom.Browser.Library.Services
         public LibraryService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _tabs = new List<Tab>();
+            _tabs = new List<LibraryTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
+            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<LibraryTab> _tabs;
 
         public void NewLibraryTab(object nothing)
         {
@@ -36,16 +38,19 @@ namespace Bloom.Browser.Library.Services
 
         public void NewLibraryTab()
         {
-            var libraryViewModel = new LibraryViewModel();
-            var libraryView = new LibraryView(libraryViewModel);
+            var libraryViewModel = new LibraryViewModel(LibraryViewType.Grid)
+            {
+                TabId = Guid.NewGuid()
+            };
+            var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new LibraryTab
             {
-                Id = Guid.NewGuid(),
+                Id = libraryViewModel.TabId,
                 EntityType = EntityType.Filterset,
                 Header = "Library",
                 Content = libraryView,
                 ShowViewMenu = true,
-                ViewType = LibraryViewType.Grid
+                ViewType = libraryViewModel.ViewType
             };
 
             _tabs.Add(libraryTab);
@@ -58,20 +63,37 @@ namespace Bloom.Browser.Library.Services
             if (existingTab == null)
                 return;
 
-            var libraryViewModel = new LibraryViewModel();
-            var libraryView = new LibraryView(libraryViewModel);
-            var libraryTab = new Tab
+            var libraryViewModel = new LibraryViewModel(existingTab.ViewType)
             {
-                Id = Guid.NewGuid(),
+                TabId = Guid.NewGuid()
+            };
+            var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
+            var libraryTab = new LibraryTab
+            {
+                Id = libraryViewModel.TabId,
                 EntityType = EntityType.Filterset,
                 Header = "Library",
-                Content = libraryView
+                Content = libraryView,
+                ShowViewMenu = true,
+                ViewType = libraryViewModel.ViewType
             };
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
-        private readonly List<Tab> _tabs;
+        public void ChangeLibraryTabView(Tuple<Guid, LibraryViewType> libraryViewTuple)
+        {
+            ChangeLibraryTabView(libraryViewTuple.Item1, libraryViewTuple.Item2);
+        }
+
+        public void ChangeLibraryTabView(Guid tabId, LibraryViewType viewType)
+        {
+            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            if (existingTab == null)
+                return;
+
+            existingTab.ViewType = viewType;
+        }
     }
 }
