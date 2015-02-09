@@ -5,7 +5,6 @@ using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
 using Bloom.Analytics.Library.ViewModels;
 using Bloom.Analytics.Library.Views;
-using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -17,13 +16,14 @@ namespace Bloom.Analytics.Library.Services
         public LibraryService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _tabs = new List<Tab>();
+            _tabs = new List<LibraryTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<LibraryTab> _tabs;
 
         public void NewLibraryTab(object nothing)
         {
@@ -56,7 +56,7 @@ namespace Bloom.Analytics.Library.Services
 
             var libraryViewModel = new LibraryViewModel();
             var libraryView = new LibraryView(libraryViewModel);
-            var libraryTab = new Tab
+            var libraryTab = new LibraryTab
             {
                 Id = Guid.NewGuid(),
                 EntityType = EntityType.Filterset,
@@ -68,6 +68,13 @@ namespace Bloom.Analytics.Library.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
-        private readonly List<Tab> _tabs;
+        public void UpdateLibraryTabView(Guid tabId, LibraryViewType viewType)
+        {
+            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            if (existingTab == null)
+                return;
+
+            existingTab.ViewType = viewType;
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace Bloom.Analytics.Library.Views
         {
             InitializeComponent();
             DataContext = viewModel;
+
+            
         }
     }
 }

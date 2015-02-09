@@ -1,4 +1,5 @@
 ﻿using System;
+using Bloom.Analytics.Common;
 
 namespace Bloom.Analytics.Library.Services
 {
@@ -7,5 +8,7 @@ namespace Bloom.Analytics.Library.Services
         void NewLibraryTab();
 
         void DuplicateLibraryTab(Guid tabId);
+
+        void UpdateLibraryTabView(Guid tabId, LibraryViewType viewType);
     }
 }
