@@ -79,6 +79,7 @@
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\AlbumMood.cs" />
     <Compile Include="Enums\Condition.cs" />
+    <Compile Include="Models\LibraryPerson.cs" />
     <Compile Include="Models\LibraryPlaylist.cs" />
     <Compile Include="Models\LibrarySongMedia.cs" />
     <Compile Include="Models\LibrarySong.cs" />

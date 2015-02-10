@@ -15,8 +15,10 @@ namespace Bloom.State.Data.Tables
                        "\"library_id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
                        "\"name\" VARCHAR NOT NULL , " +
                        "\"file_path\" VARCHAR NOT NULL , " +
-                       "\"is_connected\" BOOL NOT NULL DEFAULT FALSE, " +
-                       "\"last_connected\" DATETIME NOT NULL )";
+                       "\"is_connected\" BOOL NOT NULL DEFAULT FALSE , " +
+                       "\"last_connected\" DATETIME NOT NULL , " +
+                       "\"owner_id\" VARCHAR(36) NOT NULL , " +
+                       "\"owner_name\" VARCHAR NOT NULL )";
             }
         }
     }

@@ -38,5 +38,17 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "last_connected")]
         public DateTime LastConnected { get; set; }
+
+        /// <summary>
+        /// Gets or sets the owner identifier.
+        /// </summary>
+        [Column(Name = "owner_id")]
+        public Guid OwnerId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the owner's name.
+        /// </summary>
+        [Column(Name = "owner_name")]
+        public string OwnerName { get; set; }
     }
 }

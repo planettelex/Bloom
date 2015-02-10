@@ -1,26 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Data.Linq;
 using Bloom.Data.Interfaces;
-using Bloom.State.Data.Tables;
+using Bloom.Data.Tables;
 
-namespace Bloom.State.Data.Services
+namespace Bloom.Data.Services
 {
     /// <summary>
-    /// Service for managing state SQL tables.
+    /// Service for managing library SQL tables.
     /// </summary>
-    public class StateTableService : ITableService
+    public class LibraryTableService : ITableService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StateTableService"/> class.
+        /// Initializes a new instance of the <see cref="LibraryTableService"/> class.
         /// </summary>
-        public StateTableService()
+        public LibraryTableService()
         {
             _tables = new List<ISqlTable>
             {
-                new LibraryConnectionTable(),
-                new AnalyticsStateTable(),
-                new BrowserStateTable(),
-                new PlayerStateTable()
+                new ActivityTable(),
+                new AlbumTable(),
+                new AlbumActivityTable()
             };
         }
         private readonly List<ISqlTable> _tables;

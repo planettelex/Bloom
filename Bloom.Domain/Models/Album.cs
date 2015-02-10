@@ -47,7 +47,7 @@ namespace Bloom.Domain.Models
         public LengthType LengthType { get; set; }
 
         /// <summary>
-        /// Gets or sets the album length, in milliseconds.
+        /// Gets or sets the album length in milliseconds.
         /// </summary>
         [Column(Name = "length")]
         public int Length { get; set; }

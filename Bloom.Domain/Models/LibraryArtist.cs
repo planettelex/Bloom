@@ -49,5 +49,11 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "remove_count")]
         public int RemoveCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this library follows this artist.
+        /// </summary>
+        [Column(Name = "follow")]
+        public bool Follow { get; set; }
     }
 }

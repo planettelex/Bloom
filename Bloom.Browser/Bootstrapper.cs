@@ -6,7 +6,6 @@ using Bloom.Browser.Menu;
 using Bloom.Browser.Person;
 using Bloom.Browser.Playlist;
 using Bloom.Browser.Song;
-using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.Services;
 using Bloom.State.Data;
