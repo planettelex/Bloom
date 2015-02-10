@@ -2,6 +2,12 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Person">
     <Position X="5.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="MemberOf" Type="Bloom.Domain.Models.ArtistMember" FixedFromPoint="true">
+      <Path>
+        <Point X="5.562" Y="2.565" />
+        <Point X="5.562" Y="4" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAADAICAAAAAQAAAAQACAAAAAAAAIAAAA=</HashCode>
       <FileName>Models\Person.cs</FileName>
@@ -15,7 +21,7 @@
   <Class Name="Bloom.Domain.Models.Photo">
     <Position X="1.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAQ=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAAAAAAA=</HashCode>
       <FileName>Models\Photo.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -48,6 +54,12 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Artist">
     <Position X="5.25" Y="7.5" Width="1.5" />
+    <AssociationLine Name="Members" Type="Bloom.Domain.Models.ArtistMember" FixedFromPoint="true">
+      <Path>
+        <Point X="6.5" Y="7.5" />
+        <Point X="6.5" Y="5.873" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAACEACAAAAAQAAAIwACAAAAAEAAAAAAA=</HashCode>
       <FileName>Models\Artist.cs</FileName>
@@ -60,10 +72,26 @@
   </Class>
   <Class Name="Bloom.Domain.Models.ArtistMember">
     <Position X="5.25" Y="4" Width="1.5" />
+    <AssociationLine Name="Person" Type="Bloom.Domain.Models.Person" FixedFromPoint="true">
+      <Path>
+        <Point X="6.5" Y="4" />
+        <Point X="6.5" Y="2.565" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Artist" Type="Bloom.Domain.Models.Artist" FixedFromPoint="true">
+      <Path>
+        <Point X="5.562" Y="5.873" />
+        <Point X="5.562" Y="7.5" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAEEAAAAEAAAAgIAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIACAAAAAAAAAAEEAAAAEAAAAoIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ArtistMember.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Person" />
+      <Property Name="Artist" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Roles" />
     </ShowAsCollectionAssociation>

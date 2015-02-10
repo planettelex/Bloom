@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Filterset">
-    <Position X="6.5" Y="0.5" Width="1.75" />
+    <Position X="6.25" Y="0.5" Width="1.75" />
     <AssociationLine Name="Elements" Type="Bloom.Domain.Models.FiltersetElement" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8.25" Y="1.125" />
+        <Point X="8" Y="1.125" />
         <Point X="10.625" Y="1.125" />
-        <Point X="10.625" Y="3" />
+        <Point X="10.625" Y="2.5" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Ordering" Type="Bloom.Domain.Models.FiltersetOrdering" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6.5" Y="1.125" />
+        <Point X="6.25" Y="1.125" />
         <Point X="3.75" Y="1.125" />
-        <Point X="3.75" Y="3" />
+        <Point X="3.75" Y="2.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -36,7 +36,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.FiltersetElement">
-    <Position X="9.75" Y="3" Width="1.75" />
+    <Position X="9.75" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAEABAAAAAAAAAAAAAgAAAACAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetElement.cs</FileName>
@@ -46,9 +46,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.FiltersetOrdering">
-    <Position X="3" Y="3" Width="1.75" />
+    <Position X="3" Y="2.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAACAEACgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAEAAAAAAAAAACAEACgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetOrdering.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

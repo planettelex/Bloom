@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq.Mapping;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
     /// Associcates a library with an album.
     /// </summary>
+    [Table(Name = "library_album")]
     public class LibraryAlbum
     {
         /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
+        [Column(Name = "album_id", IsPrimaryKey = true)]
         public Guid AlbumId { get; set; }
 
         /// <summary>
@@ -19,13 +22,15 @@ namespace Bloom.Domain.Models
         public Album Album { get; set; }
 
         /// <summary>
-        /// Gets or sets the rating.
+        /// Gets or sets the library album rating.
         /// </summary>
+        [Column(Name = "rating")]
         public int Rating { get; set; }
 
         /// <summary>
-        /// Gets or sets the review.
+        /// Gets or sets the library album review.
         /// </summary>
+        [Column(Name = "review")]
         public string Review { get; set; }
 
         /// <summary>

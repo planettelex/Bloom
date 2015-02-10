@@ -4,19 +4,21 @@
     <Position X="3.25" Y="1.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAABABAAAAAAAAAAAAAAAAAAEAAABgAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAAAAAAAA=</HashCode>
       <FileName>Models\AnalyticsState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.BrowserState">
-    <Position X="6.75" Y="1.5" Width="1.75" />
+    <Position X="7" Y="1.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAABABAAAAAAAAAAAAAAAAAAEAAABgAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAAAAAAAA=</HashCode>
       <FileName>Models\BrowserState.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,22 +38,23 @@
   <Class Name="Bloom.State.Domain.Models.LibraryConnection">
     <Position X="3.25" Y="5.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAQAAAAAAEAAAABAAAAAAAg=</HashCode>
       <FileName>Models\LibraryConnection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.PlayerState">
-    <Position X="10.5" Y="1.5" Width="1.75" />
+    <Position X="10.75" Y="1.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAABAAAAAAAAAAAAAACAAAAAAAAAAgAAAAAAQA=</HashCode>
+      <HashCode>LAAAAAAABAAgAAAAAAAAAAACABAIAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Models\PlayerState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.StateConnection">
-    <Position X="10.5" Y="5.75" Width="1.75" />
+    <Position X="10.75" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>Models\StateConnection.cs</FileName>

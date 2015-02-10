@@ -2,10 +2,16 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Album">
     <Position X="6.75" Y="0.5" Width="2" />
+    <AssociationLine Name="Releases" Type="Bloom.Domain.Models.AlbumRelease" FixedFromPoint="true">
+      <Path>
+        <Point X="6.75" Y="3.938" />
+        <Point X="2.75" Y="3.938" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="References" Type="Bloom.Domain.Models.AlbumReference" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6.75" Y="4.905" />
-        <Point X="4.562" Y="4.905" />
+        <Point X="6.75" Y="4.875" />
+        <Point X="4.562" Y="4.875" />
         <Point X="4.562" Y="5.5" />
       </Path>
     </AssociationLine>
@@ -20,19 +26,12 @@
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Tracks" />
-      <Property Name="Artwork" />
       <Property Name="Credits" />
       <Property Name="Releases" />
       <Property Name="Collaborators" />
       <Property Name="References" />
+      <Property Name="Artwork" />
     </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="Bloom.Domain.AlbumArtwork">
-    <Position X="1.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAAAAAAA=</HashCode>
-      <FileName>Models\AlbumArtwork.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumReference">
     <Position X="3.75" Y="5.5" Width="1.5" />
@@ -47,16 +46,22 @@
   <Class Name="Bloom.Domain.Models.AlbumTrack">
     <Position X="6.75" Y="6.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAACAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAABAAAAAAAAIAgIogAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Song" />
       <Property Name="Album" />
+      <Property Name="Song" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumRelease">
     <Position X="1.25" Y="3" Width="1.5" />
+    <AssociationLine Name="Album" Type="Bloom.Domain.Models.Album" FixedFromPoint="true">
+      <Path>
+        <Point X="2.75" Y="4.438" />
+        <Point X="6.75" Y="4.438" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAKAAAAEAAIAAEAAAAAAAMAgAAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>Models\AlbumRelease.cs</FileName>
@@ -86,7 +91,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Holiday">
-    <Position X="3.75" Y="1.5" Width="1.5" />
+    <Position X="3.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAEAAAgAAAAAAAAAESAAAAAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\Holiday.cs</FileName>
@@ -136,12 +141,16 @@
   <Class Name="Bloom.Domain.Models.Song">
     <Position X="6.75" Y="9.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>ogAGAAQAAIAhMA4AAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>ogAGAAwAAIAhMEYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="OnAlbums" />
-    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.AlbumArtwork">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAgAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\AlbumArtwork.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
