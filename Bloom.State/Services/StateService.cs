@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Bloom.Data;
 using Bloom.State.Data;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
@@ -18,14 +19,14 @@ namespace Bloom.State.Services
         /// <param name="analyticsStateRepository">The analytics state repository.</param>
         /// <param name="browserStateRepository">The browser state repository.</param>
         /// <param name="playerStateRepository">The player state repository.</param>
-        public StateService(IStateDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, IBrowserStateRepository browserStateRepository, IPlayerStateRepository playerStateRepository)
+        public StateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, IBrowserStateRepository browserStateRepository, IPlayerStateRepository playerStateRepository)
         {
             _stateDataSource = stateDataSource;
             _analyticsStateRepository = analyticsStateRepository;
             _browserStateRepository = browserStateRepository;
             _playerStateRepository = playerStateRepository;
         }
-        private readonly IStateDataSource _stateDataSource;
+        private readonly IDataSource _stateDataSource;
         private readonly IAnalyticsStateRepository _analyticsStateRepository;
         private readonly IBrowserStateRepository _browserStateRepository;
         private readonly IPlayerStateRepository _playerStateRepository;

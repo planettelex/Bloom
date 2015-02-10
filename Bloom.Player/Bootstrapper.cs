@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Bloom.Data;
 using Bloom.Player.Menu;
 using Bloom.Player.Playing;
 using Bloom.Player.Recent;
@@ -71,8 +72,8 @@ namespace Bloom.Player
         /// </summary>
         protected void RegisterDataSources()
         {
-            Container.RegisterType<IStateDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
-            var stateDataSource = Container.Resolve<IStateDataSource>();
+            Container.RegisterType<IDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
+            var stateDataSource = Container.Resolve<IDataSource>();
             stateDataSource.RegisterRepositories();
         }
 

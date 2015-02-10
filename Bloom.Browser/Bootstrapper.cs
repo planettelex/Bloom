@@ -6,6 +6,7 @@ using Bloom.Browser.Menu;
 using Bloom.Browser.Person;
 using Bloom.Browser.Playlist;
 using Bloom.Browser.Song;
+using Bloom.Data;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.State.Services;
@@ -75,8 +76,8 @@ namespace Bloom.Browser
         /// </summary>
         protected void RegisterDataSources()
         {
-            Container.RegisterType<IStateDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
-            var stateDataSource = Container.Resolve<IStateDataSource>();
+            Container.RegisterType<IDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
+            var stateDataSource = Container.Resolve<IDataSource>();
             stateDataSource.RegisterRepositories();
         }
 

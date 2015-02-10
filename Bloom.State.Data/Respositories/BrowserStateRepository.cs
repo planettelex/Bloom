@@ -1,5 +1,6 @@
 ﻿using System.Data.Linq;
 using System.Linq;
+using Bloom.Data;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
@@ -9,11 +10,11 @@ namespace Bloom.State.Data.Respositories
     /// </summary>
     public class BrowserStateRepository : IBrowserStateRepository
     {
-        public BrowserStateRepository(IStateDataSource dataSource)
+        public BrowserStateRepository(IDataSource dataSource)
         {
             _dataSource = dataSource;
         }
-        private readonly IStateDataSource _dataSource;
+        private readonly IDataSource _dataSource;
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
 
         /// <summary>

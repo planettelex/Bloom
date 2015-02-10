@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Linq;
+using Bloom.Data;
 using Bloom.State.Data.Tables;
 
 namespace Bloom.State.Data.Services

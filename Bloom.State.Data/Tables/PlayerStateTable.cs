@@ -1,4 +1,6 @@
-﻿namespace Bloom.State.Data.Tables
+﻿using Bloom.Data;
+
+namespace Bloom.State.Data.Tables
 {
     public class PlayerStateTable : ISqlTable
     {

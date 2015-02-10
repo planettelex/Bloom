@@ -1,11 +1,11 @@
 ﻿using System.Data.Linq;
 
-namespace Bloom.State.Data
+namespace Bloom.Data
 {
     /// <summary>
     /// Data source for state persistance.
     /// </summary>
-    public interface IStateDataSource
+    public interface IDataSource
     {
         /// <summary>
         /// Gets the file path.

@@ -2,13 +2,14 @@
 using System.Data.Linq;
 using System.Data.SQLite;
 using System.IO;
+using Bloom.Data;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Data.Services;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.State.Data
 {
-    public class StateDataSource : IStateDataSource
+    public class StateDataSource : IDataSource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StateDataSource"/> class.

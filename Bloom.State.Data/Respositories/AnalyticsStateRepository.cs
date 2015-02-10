@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Data.Linq;
+using Bloom.Data;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
@@ -13,11 +14,11 @@ namespace Bloom.State.Data.Respositories
         /// Initializes a new instance of the <see cref="AnalyticsStateRepository"/> class.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        public AnalyticsStateRepository(IStateDataSource dataSource)
+        public AnalyticsStateRepository(IDataSource dataSource)
         {
             _dataSource = dataSource;
         }
-        private readonly IStateDataSource _dataSource;
+        private readonly IDataSource _dataSource;
         private Table<AnalyticsState> AnalyticsStateTable { get { return _dataSource.Context.GetTable<AnalyticsState>(); } }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using Bloom.Data;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
@@ -15,11 +16,11 @@ namespace Bloom.State.Data.Respositories
         /// Initializes a new instance of the <see cref="LibraryConnectionRepository"/> class.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        public LibraryConnectionRepository(IStateDataSource dataSource)
+        public LibraryConnectionRepository(IDataSource dataSource)
         {
             _dataSource = dataSource;
         }
-        private readonly IStateDataSource _dataSource;
+        private readonly IDataSource _dataSource;
         private Table<LibraryConnection> LibraryConnectionTable { get { return _dataSource.Context.GetTable<LibraryConnection>(); } }
 
         /// <summary>
