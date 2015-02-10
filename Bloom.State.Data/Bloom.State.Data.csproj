@@ -90,7 +90,6 @@
     <Compile Include="Respositories\PlayerStateRepository.cs" />
     <Compile Include="StateDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IStateTableService.cs" />
     <Compile Include="Services\StateTableService.cs" />
     <Compile Include="Tables\AnalyticsStateTable.cs" />
     <Compile Include="Tables\BrowserStateTable.cs" />

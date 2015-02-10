@@ -1,11 +1,11 @@
 ﻿using System.Data.Linq;
 
-namespace Bloom.State.Data.Services
+namespace Bloom.Data.Interfaces
 {
     /// <summary>
     /// Service for managing SQL tables.
     /// </summary>
-    public interface IStateTableService
+    public interface ITableService
     {
         /// <summary>
         /// Creates the SQL tables.

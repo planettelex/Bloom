@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Linq;
-using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Bloom.State.Data.Tables;
 
 namespace Bloom.State.Data.Services
@@ -8,7 +8,7 @@ namespace Bloom.State.Data.Services
     /// <summary>
     /// Service for managing SQL tables.
     /// </summary>
-    public class StateTableService : IStateTableService
+    public class StateTableService : ITableService
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StateTableService"/> class.

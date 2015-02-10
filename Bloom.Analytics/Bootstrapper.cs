@@ -7,6 +7,7 @@ using Bloom.Analytics.Person;
 using Bloom.Analytics.Playlist;
 using Bloom.Analytics.Song;
 using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.State.Services;

@@ -1,6 +1,6 @@
 ﻿using System.Data.Linq;
 
-namespace Bloom.Data
+namespace Bloom.Data.Interfaces
 {
     /// <summary>
     /// Data source for state persistance.

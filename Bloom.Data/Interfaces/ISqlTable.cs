@@ -1,4 +1,4 @@
-﻿namespace Bloom.Data
+﻿namespace Bloom.Data.Interfaces
 {
     /// <summary>
     /// A SQL Table

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Bloom.Player.Menu;
 using Bloom.Player.Playing;
 using Bloom.Player.Recent;

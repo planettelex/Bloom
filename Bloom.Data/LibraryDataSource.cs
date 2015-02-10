@@ -3,26 +3,24 @@ using System.Data.Linq;
 using System.Data.SQLite;
 using System.IO;
 using Bloom.Data.Interfaces;
-using Bloom.State.Data.Respositories;
-using Bloom.State.Data.Services;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.State.Data
+namespace Bloom.Data
 {
-    public class StateDataSource : IDataSource
+    public class LibraryDataSource : IDataSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StateDataSource"/> class.
+        /// Initializes a new instance of the <see cref="LibraryDataSource"/> class.
         /// </summary>
         /// <param name="container">The container.</param>
-        public StateDataSource(IUnityContainer container)
+        public LibraryDataSource(IUnityContainer container)
         {
             _container = container;
-            _container.RegisterType<ITableService, StateTableService>(new ContainerControlledLifetimeManager());
-            _stateTableService = _container.Resolve<ITableService>();
+            //_container.RegisterType<ITableService, StateTableService>(new ContainerControlledLifetimeManager());
+            //_stateTableService = _container.Resolve<ITableService>();
         }
         private readonly IUnityContainer _container;
-        private readonly ITableService _stateTableService;
+        private readonly ITableService _libraryTableService;
 
         /// <summary>
         /// Gets the file path.
@@ -39,14 +37,7 @@ namespace Bloom.State.Data
         /// </summary>
         public void RegisterRepositories()
         {
-            _container.RegisterType<ILibraryConnectionRepository, LibraryConnectionRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<ILibraryConnectionRepository>();
-            _container.RegisterType<IAnalyticsStateRepository, AnalyticsStateRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<IAnalyticsStateRepository>();
-            _container.RegisterType<IBrowserStateRepository, BrowserStateRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<IBrowserStateRepository>();
-            _container.RegisterType<IPlayerStateRepository, PlayerStateRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<IPlayerStateRepository>();
+            
         }
 
         /// <summary>
@@ -60,7 +51,7 @@ namespace Bloom.State.Data
 
             SQLiteConnection.CreateFile(filePath);
             Connect(filePath);
-            _stateTableService.CreateTables(Context);
+            _libraryTableService.CreateTables(Context);
         }
 
         /// <summary>

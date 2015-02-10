@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Bloom.State.Data;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;

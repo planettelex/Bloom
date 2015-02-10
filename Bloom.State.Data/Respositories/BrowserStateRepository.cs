@@ -1,6 +1,6 @@
 ﻿using System.Data.Linq;
 using System.Linq;
-using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories

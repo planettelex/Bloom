@@ -1,4 +1,4 @@
-﻿using Bloom.Data;
+﻿using Bloom.Data.Interfaces;
 
 namespace Bloom.State.Data.Tables
 {
