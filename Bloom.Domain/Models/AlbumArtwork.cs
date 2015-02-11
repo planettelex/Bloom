@@ -18,7 +18,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the order for this album artwork.
         /// </summary>
-        [Column(Name = "order")]
+        [Column(Name = "order", IsPrimaryKey = true)]
         public int Order { get; set; }
 
         /// <summary>

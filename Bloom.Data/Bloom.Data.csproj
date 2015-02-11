@@ -88,6 +88,8 @@
     <Compile Include="Services\LibraryTableService.cs" />
     <Compile Include="Tables\ActivityTable.cs" />
     <Compile Include="Tables\AlbumActivityTable.cs" />
+    <Compile Include="Tables\AlbumArtworkTable.cs" />
+    <Compile Include="Tables\AlbumCollaboratorTable.cs" />
     <Compile Include="Tables\AlbumTable.cs" />
   </ItemGroup>
   <ItemGroup>
