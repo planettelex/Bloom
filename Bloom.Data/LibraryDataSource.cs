@@ -3,6 +3,7 @@ using System.Data.Linq;
 using System.Data.SQLite;
 using System.IO;
 using Bloom.Data.Interfaces;
+using Bloom.Data.Repositories;
 using Bloom.Data.Services;
 
 namespace Bloom.Data
@@ -33,7 +34,14 @@ namespace Bloom.Data
         /// </summary>
         public void RegisterRepositories()
         {
-            
+            AlbumRepository = new AlbumRepository(this);
+            ArtistRepository = new ArtistRepository(this);
+            FiltersetRepository = new FiltersetRepository(this);
+            LabelRepository = new LabelRepository(this);
+            LibraryRespository = new LibraryRepository(this);
+            PersonRepository = new PersonRepository(this);
+            PlaylistRepository = new PlaylistRepository(this);
+            SongRepository = new SongRepository(this);
         }
 
         /// <summary>
@@ -107,5 +115,45 @@ namespace Bloom.Data
 
             FilePath = null;
         }
+
+        /// <summary>
+        /// Gets the album repository.
+        /// </summary>
+        public IAlbumRepository AlbumRepository { get; private set; }
+
+        /// <summary>
+        /// Gets the artist repository.
+        /// </summary>
+        public IArtistRepository ArtistRepository { get; private set; }
+
+        /// <summary>
+        /// Gets the filterset repository.
+        /// </summary>
+        public IFiltersetRepository FiltersetRepository { get; private set; }
+
+        /// <summary>
+        /// Gets the label repository.
+        /// </summary>
+        public ILabelRepository LabelRepository { get; private set; }
+
+        /// <summary>
+        /// Gets the library respository.
+        /// </summary>
+        public ILibraryRespository LibraryRespository { get; private set; }
+
+        /// <summary>
+        /// Gets the person repository.
+        /// </summary>
+        public IPersonRepository PersonRepository { get; private set; }
+
+        /// <summary>
+        /// Gets the playlist repository.
+        /// </summary>
+        public IPlaylistRepository PlaylistRepository { get; private set; }
+
+        /// <summary>
+        /// Gets the song repository.
+        /// </summary>
+        public ISongRepository SongRepository { get; private set; }
     }
 }
