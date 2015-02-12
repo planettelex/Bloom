@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
 using Bloom.Browser.Library.ViewModels;
 using Bloom.Browser.Library.Views;
+using Bloom.Browser.Library.Windows;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
@@ -24,12 +26,31 @@ namespace Bloom.Browser.Library.Services
             _tabs = new List<LibraryTab>();
 
             // Subscribe to events
+            _eventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<LibraryTab> _tabs;
+
+        public void CreateNewLibrary(object nothing)
+        {
+            CreateNewLibrary();
+        }
+
+        public void CreateNewLibrary()
+        {
+            var newLibraryWindow = new NewLibraryWindow
+            {
+                Owner = Application.Current.MainWindow,
+                HideMaximizeButton = true,
+                HideMinimizeButton = true,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
+            newLibraryWindow.ShowDialog();
+        }
 
         public void NewLibraryTab(object nothing)
         {

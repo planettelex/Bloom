@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Bloom.Browser.PubSubEvents;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
@@ -29,6 +30,7 @@ namespace Bloom.Browser.Menu.ViewModels
             _eventAggregator = eventAggregator;
 
             // File Menu
+            CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
             // Browser Menu
             DuplicateTabCommand = new DelegateCommand<object>(DuplicateTab, CanDuplicateTab);
@@ -51,6 +53,21 @@ namespace Bloom.Browser.Menu.ViewModels
         public BrowserState State { get; private set; }
 
         #region File Menu
+
+        /// <summary>
+        /// Gets or sets the create new library command.
+        /// </summary>
+        public ICommand CreateNewLibraryCommand { get; set; }
+
+        private bool CanCreateNewLibrary(object nothing)
+        {
+            return true;
+        }
+
+        private void CreateNewLibrary(object nothing)
+        {
+            _eventAggregator.GetEvent<CreateNewLibraryEvent>().Publish(null);
+        }
 
         /// <summary>
         /// Gets or sets the exit application command.

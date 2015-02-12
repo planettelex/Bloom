@@ -5,6 +5,8 @@ namespace Bloom.Browser.Library.Services
 {
     public interface ILibraryService
     {
+        void CreateNewLibrary();
+        
         void NewLibraryTab();
 
         void DuplicateLibraryTab(Guid tabId);
