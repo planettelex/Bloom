@@ -66,7 +66,7 @@ namespace Bloom.Browser.Menu.ViewModels
 
         private void CreateNewLibrary(object nothing)
         {
-            _eventAggregator.GetEvent<CreateNewLibraryEvent>().Publish(null);
+            _eventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Publish(null);
         }
 
         /// <summary>

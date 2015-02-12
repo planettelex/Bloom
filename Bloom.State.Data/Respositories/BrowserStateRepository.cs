@@ -10,11 +10,18 @@ namespace Bloom.State.Data.Respositories
     /// </summary>
     public class BrowserStateRepository : IBrowserStateRepository
     {
-        public BrowserStateRepository(IDataSource dataSource)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BrowserStateRepository"/> class.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        public BrowserStateRepository(IDataSource dataSource, ILibraryConnectionRepository libraryConnectionRepository)
         {
             _dataSource = dataSource;
+            _libraryConnectionRepository = libraryConnectionRepository;
         }
         private readonly IDataSource _dataSource;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
 
         /// <summary>
@@ -42,7 +49,11 @@ namespace Bloom.State.Data.Respositories
                 from browserState in BrowserStateTable
                 select browserState;
 
-            return query.ToList().SingleOrDefault();
+            var state = query.ToList().SingleOrDefault();
+            if (state != null)
+                state.Connections.LibraryConnections = _libraryConnectionRepository.ListLibraryConnections();
+
+            return state;
         }
 
         /// <summary>
@@ -55,6 +66,7 @@ namespace Bloom.State.Data.Respositories
                 return;
 
             BrowserStateTable.InsertOnSubmit(browserState);
+            _libraryConnectionRepository.AddLibraryConnections(browserState.Connections.LibraryConnections);
         }
     }
 }

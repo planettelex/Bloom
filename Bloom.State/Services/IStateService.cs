@@ -13,14 +13,29 @@ namespace Bloom.State.Services
         AnalyticsState InitializeAnalyticsState();
 
         /// <summary>
+        /// Gets the analytics state.
+        /// </summary>
+        AnalyticsState GetAnalyticsState();
+
+        /// <summary>
         /// Initializes the browser state.
         /// </summary>
         BrowserState InitializeBrowserState();
 
         /// <summary>
+        /// Gets the browser state.
+        /// </summary>
+        BrowserState GetBrowserState();
+
+        /// <summary>
         /// Initializes the player state.
         /// </summary>
         PlayerState InitializePlayerState();
+
+        /// <summary>
+        /// Gets the player state.
+        /// </summary>
+        PlayerState GetPlayerState();
 
         /// <summary>
         /// Saves the state.

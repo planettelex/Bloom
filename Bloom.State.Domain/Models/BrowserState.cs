@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.IO;
 using System.Windows;
 using Bloom.Controls;
+using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
@@ -19,6 +22,8 @@ namespace Bloom.State.Domain.Models
         public BrowserState()
         {
             ProcessName = "Bloom.Browser";
+            Connections = new Connections();
+            LibraryDataSources = new Dictionary<Guid, IDataSource>();
             SkinName = Properties.Settings.Default.SkinName;
             WindowState = Properties.Settings.Default.WindowState;
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
@@ -33,6 +38,16 @@ namespace Bloom.State.Domain.Models
         public string ProcessName { get; set; }
 
         /// <summary>
+        /// Gets or sets the connections.
+        /// </summary>
+        public Connections Connections { get; set; }
+
+        /// <summary>
+        /// Gets or sets the library data sources.
+        /// </summary>
+        public Dictionary<Guid, IDataSource> LibraryDataSources { get; set; }
+
+            /// <summary>
         /// Gets or sets the name of the skin.
         /// </summary>
         [Column(Name = "skin_name")]
@@ -72,6 +87,23 @@ namespace Bloom.State.Domain.Models
         public void ResetSidebarWidth()
         {
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
+        }
+
+        public void ConnectDataSources()
+        {
+            if (Connections == null || Connections.LibraryConnections == null)
+                return;
+
+            LibraryDataSources.Clear();
+            foreach (var libraryConnection in Connections.LibraryConnections)
+            {
+                var libraryDataSource = new LibraryDataSource();
+                libraryDataSource.RegisterRepositories();
+                if (File.Exists(libraryDataSource.FilePath) && libraryDataSource.IsConnected())
+                    libraryDataSource.Connect(libraryDataSource.FilePath);
+                    
+                LibraryDataSources.Add(libraryConnection.LibraryId, libraryDataSource);
+            }
         }
     }
 }

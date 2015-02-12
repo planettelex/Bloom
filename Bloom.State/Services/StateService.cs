@@ -33,7 +33,6 @@ namespace Bloom.State.Services
         /// <summary>
         /// Initializes the analytics state.
         /// </summary>
-        /// <returns></returns>
         public AnalyticsState InitializeAnalyticsState()
         {
             AnalyticsState analyticsState;
@@ -42,21 +41,31 @@ namespace Bloom.State.Services
             if (File.Exists(stateDatabasePath))
             {
                 _stateDataSource.Connect(stateDatabasePath);
-                analyticsState = _analyticsStateRepository.GetAnalyticsState() ?? AddNewAnalyticsState();
+                analyticsState = _analyticsStateRepository.GetAnalyticsState() ?? AddNewAnalyticsState(stateDatabasePath);
             }
             else
             {
                 _stateDataSource.Create(stateDatabasePath);
-                analyticsState = AddNewAnalyticsState();
+                analyticsState = AddNewAnalyticsState(stateDatabasePath);
             }
 
             return analyticsState;
         }
 
         /// <summary>
+        /// Gets the analytics state.
+        /// </summary>
+        public AnalyticsState GetAnalyticsState()
+        {
+            if (!_stateDataSource.IsConnected())
+                return null;
+
+            return _analyticsStateRepository.GetAnalyticsState();
+        }
+
+        /// <summary>
         /// Initializes the browser state.
         /// </summary>
-        /// <returns></returns>
         public BrowserState InitializeBrowserState()
         {
             BrowserState browserState;
@@ -65,15 +74,26 @@ namespace Bloom.State.Services
             if (File.Exists(stateDatabasePath))
             {
                 _stateDataSource.Connect(stateDatabasePath);
-                browserState = _browserStateRepository.GetBrowserState() ?? AddNewBrowserState();
+                browserState = _browserStateRepository.GetBrowserState() ?? AddNewBrowserState(stateDatabasePath);
             }
             else
             {
                 _stateDataSource.Create(stateDatabasePath);
-                browserState = AddNewBrowserState();
+                browserState = AddNewBrowserState(stateDatabasePath);
             }
 
             return browserState;
+        }
+
+        /// <summary>
+        /// Gets the browser state.
+        /// </summary>
+        public BrowserState GetBrowserState()
+        {
+            if (!_stateDataSource.IsConnected())
+                return null;
+
+            return _browserStateRepository.GetBrowserState();
         }
 
         /// <summary>
@@ -88,15 +108,26 @@ namespace Bloom.State.Services
             if (File.Exists(stateDatabasePath))
             {
                 _stateDataSource.Connect(stateDatabasePath);
-                playerState = _playerStateRepository.GetPlayerState() ?? AddNewPlayerState();
+                playerState = _playerStateRepository.GetPlayerState() ?? AddNewPlayerState(stateDatabasePath);
             }
             else
             {
                 _stateDataSource.Create(stateDatabasePath);
-                playerState = AddNewPlayerState();
+                playerState = AddNewPlayerState(stateDatabasePath);
             }
 
             return playerState;
+        }
+
+        /// <summary>
+        /// Gets the player state.
+        /// </summary>
+        public PlayerState GetPlayerState()
+        {
+            if (!_stateDataSource.IsConnected())
+                return null;
+
+            return _playerStateRepository.GetPlayerState();
         }
 
         /// <summary>
@@ -113,25 +144,28 @@ namespace Bloom.State.Services
             return Path.Combine(appDataFolder, Properties.Settings.Default.Database_File);
         }
 
-        private AnalyticsState AddNewAnalyticsState()
+        private AnalyticsState AddNewAnalyticsState(string stateDatabasePath)
         {
             var analyticsState = new AnalyticsState();
+            analyticsState.Connections.StateConnection.FilePath = stateDatabasePath;
             _analyticsStateRepository.AddAnalyticsState(analyticsState);
             _stateDataSource.Save();
             return analyticsState;
         }
 
-        private BrowserState AddNewBrowserState()
+        private BrowserState AddNewBrowserState(string stateDatabasePath)
         {
             var browserState = new BrowserState();
+            browserState.Connections.StateConnection.FilePath = stateDatabasePath;
             _browserStateRepository.AddBrowserState(browserState);
             _stateDataSource.Save();
             return browserState;
         }
 
-        private PlayerState AddNewPlayerState()
+        private PlayerState AddNewPlayerState(string stateDatabasePath)
         {
             var playerState = new PlayerState();
+            playerState.Connections.StateConnection.FilePath = stateDatabasePath;
             _playerStateRepository.AddPlayerState(playerState);
             _stateDataSource.Save();
             return playerState;

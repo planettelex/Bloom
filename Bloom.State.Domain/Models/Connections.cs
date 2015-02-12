@@ -7,6 +7,12 @@ namespace Bloom.State.Domain.Models
     /// </summary>
     public class Connections
     {
+        public Connections()
+        {
+            StateConnection = new StateConnection();
+            LibraryConnections = new List<LibraryConnection>();
+        }
+
         /// <summary>
         /// Gets or sets the state data connection.
         /// </summary>

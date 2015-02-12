@@ -3,23 +3,19 @@ using System.Data.Linq;
 using System.Data.SQLite;
 using System.IO;
 using Bloom.Data.Interfaces;
-using Microsoft.Practices.Unity;
+using Bloom.Data.Services;
 
 namespace Bloom.Data
 {
     public class LibraryDataSource : IDataSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LibraryDataSource"/> class.
+        /// Initializes a new instance of the <see cref="LibraryDataSource" /> class.
         /// </summary>
-        /// <param name="container">The container.</param>
-        public LibraryDataSource(IUnityContainer container)
+        public LibraryDataSource()
         {
-            _container = container;
-            //_container.RegisterType<ITableService, StateTableService>(new ContainerControlledLifetimeManager());
-            //_stateTableService = _container.Resolve<ITableService>();
+            _libraryTableService = new LibraryTableService();
         }
-        private readonly IUnityContainer _container;
         private readonly ITableService _libraryTableService;
 
         /// <summary>

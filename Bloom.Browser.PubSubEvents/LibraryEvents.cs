@@ -7,7 +7,7 @@ namespace Bloom.Browser.PubSubEvents
     /// <summary>
     /// Invokes the create new library modal window.
     /// </summary>
-    public class CreateNewLibraryEvent : PubSubEvent<object> { }
+    public class ShowCreateNewLibraryModalEvent : PubSubEvent<object> { }
     
     /// <summary>
     /// Changes the view of a library tab.

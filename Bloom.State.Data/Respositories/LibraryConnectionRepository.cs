@@ -68,6 +68,16 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
+        /// Adds the library connections.
+        /// </summary>
+        /// <param name="libraryConnections">The library connections.</param>
+        public void AddLibraryConnections(List<LibraryConnection> libraryConnections)
+        {
+            foreach (var libraryConnection in libraryConnections)
+                AddLibraryConnection(libraryConnection);
+        }
+
+        /// <summary>
         /// Adds the library connection.
         /// </summary>
         /// <param name="libraryConnection">The library connection.</param>

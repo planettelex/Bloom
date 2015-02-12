@@ -29,7 +29,7 @@
             </telerik:RadSplitContainer>
             <telerik:RadDocking.DocumentHost>
                 <telerik:RadSplitContainer Style="{DynamicResource TabbedPanesStyle}">
-                    <telerik:RadPaneGroup x:Name="PaneGroup" />
+                    <telerik:RadPaneGroup x:Name="PaneGroup" prism:RegionManager.RegionName="DocumentRegion" prism:RegionManager.RegionContext="{Binding}" />
                 </telerik:RadSplitContainer>
             </telerik:RadDocking.DocumentHost>
         </telerik:RadDocking>

@@ -16,6 +16,7 @@ namespace Bloom.State.Domain.Models
         public PlayerState()
         {
             ProcessName = "Bloom.Player";
+            Connections = new Connections();
             SkinName = Properties.Settings.Default.SkinName;
             WindowState = Properties.Settings.Default.WindowState;
             RecentWidth = Properties.Settings.Default.SidebarWidth;
@@ -27,6 +28,11 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
         public string ProcessName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the connections.
+        /// </summary>
+        public Connections Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.

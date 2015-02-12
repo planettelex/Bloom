@@ -27,6 +27,12 @@ namespace Bloom.State.Data.Respositories
         bool LibraryConnectionExists(Guid libraryId);
 
         /// <summary>
+        /// Adds the library connections.
+        /// </summary>
+        /// <param name="libraryConnections">The library connections.</param>
+        void AddLibraryConnections(List<LibraryConnection> libraryConnections);
+
+        /// <summary>
         /// Adds the library connection.
         /// </summary>
         /// <param name="libraryConnection">The library connection.</param>
