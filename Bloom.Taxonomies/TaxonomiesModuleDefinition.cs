@@ -1,20 +1,20 @@
-﻿using Bloom.Taxonomies.Views;
+﻿using Bloom.TaxonomiesModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Taxonomies
+namespace Bloom.TaxonomiesModule
 {
     /// <summary>
     /// Shared taxonomies Prism module.
     /// </summary>
     [Module(ModuleName = "TaxonomiesModule")]
-    public class TaxonomiesModule : IModule
+    public class TaxonomiesModuleDefinition : IModule
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxonomiesModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public TaxonomiesModule(IRegionManager regionManager)
+        public TaxonomiesModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

@@ -3,7 +3,7 @@ using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Taxonomies.ViewModels
+namespace Bloom.TaxonomiesModule.ViewModels
 {
     public class TaxonomiesViewModel
     {

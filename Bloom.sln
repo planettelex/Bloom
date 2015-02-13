@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Controls", "Bloom.Con
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C7EDF224-02A4-4A92-AA84-490C17D240DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Taxonomies", "Bloom.Taxonomies\Bloom.Taxonomies.csproj", "{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.TaxonomiesModule", "Bloom.Taxonomies\Bloom.TaxonomiesModule.csproj", "{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.PubSubEvents", "Bloom.PubSubEvents\Bloom.PubSubEvents.csproj", "{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}"
 EndProject

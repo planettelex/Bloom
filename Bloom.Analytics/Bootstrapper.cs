@@ -10,7 +10,7 @@ using Bloom.Data.Interfaces;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.State.Services;
-using Bloom.Taxonomies;
+using Bloom.TaxonomiesModule;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -62,7 +62,7 @@ namespace Bloom.Analytics
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
-            moduleCatalog.AddModule(typeof (TaxonomiesModule));
+            moduleCatalog.AddModule(typeof (TaxonomiesModuleDefinition));
             moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PersonModuleDefinition));
             moduleCatalog.AddModule(typeof (ArtistModuleDefinition));

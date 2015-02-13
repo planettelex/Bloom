@@ -217,9 +217,9 @@
       <Project>{a9f245f4-dcd7-4baa-a611-a5ab39b36ad2}</Project>
       <Name>Bloom.State</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Taxonomies\Bloom.Taxonomies.csproj">
+    <ProjectReference Include="..\Bloom.Taxonomies\Bloom.TaxonomiesModule.csproj">
       <Project>{25d7acf0-f4bf-41ba-a751-4cf0b8c79144}</Project>
-      <Name>Bloom.Taxonomies</Name>
+      <Name>Bloom.TaxonomiesModule</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
