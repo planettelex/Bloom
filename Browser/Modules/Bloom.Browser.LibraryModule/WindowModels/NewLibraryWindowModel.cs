@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
@@ -12,9 +13,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
     {
         public NewLibraryWindowModel(IRegionManager regionManager)
         {
-            PotentialOwners = new ObservableCollection<Person>();
             State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
-            
+            PotentialOwners = new ObservableCollection<Person>();
+            FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
         }
 
         /// <summary>
@@ -57,5 +58,11 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         public ICommand CreateNewLibraryCommand { get; set; }
 
         public ICommand CancelCommand { get; set; }
+
+        public Person GetOwner()
+        {
+            var libraryOwner = PotentialOwners.FirstOrDefault(owner => owner.Name.Equals(OwnerName, StringComparison.InvariantCultureIgnoreCase));
+            return libraryOwner ?? Person.Create(OwnerName);
+        }
     }
 }

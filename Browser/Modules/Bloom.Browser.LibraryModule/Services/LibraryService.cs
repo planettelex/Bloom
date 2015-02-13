@@ -9,8 +9,13 @@ using Bloom.Browser.LibraryModule.Views;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
+using Bloom.Data;
 using Bloom.Domain.Enums;
+using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Data.Respositories;
+using Bloom.State.Domain.Models;
+using Bloom.State.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
@@ -23,21 +28,35 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager)
+        /// <param name="stateService">The state service.</param>
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IStateService stateService, ILibraryConnectionRepository libraryConnectionRepository)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
+            _stateService = stateService;
             _tabs = new List<LibraryTab>();
+            _libraryConnectionRepository = libraryConnectionRepository;
 
             // Subscribe to events
             _eventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Subscribe(ShowCreateNewLibraryModal);
+            _eventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
+
+            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
+        private readonly IStateService _stateService;
         private readonly List<LibraryTab> _tabs;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+
+        /// <summary>
+        /// Gets the browser application state.
+        /// </summary>
+        public BrowserState State { get; private set; }
 
         /// <summary>
         /// Shows the create new library modal window.
@@ -53,7 +72,7 @@ namespace Bloom.Browser.LibraryModule.Services
         public void ShowCreateNewLibraryModal()
         {
             var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager);
-            var newLibraryWindow = new NewLibraryWindow(newLibraryWindowModel)
+            var newLibraryWindow = new NewLibraryWindow(newLibraryWindowModel, _eventAggregator)
             {
                 Owner = Application.Current.MainWindow
             };
@@ -64,9 +83,14 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Creates a new library.
         /// </summary>
-        public void CreateNewLibrary()
+        public void CreateNewLibrary(Library library)
         {
-            
+            var dataSource = new LibraryDataSource();
+            dataSource.Create(library.FilePath);
+            var libraryConnection = LibraryConnection.Create(library);
+            State.Connections.AddLibraryConnection(libraryConnection);
+            _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
+            _stateService.SaveState();
         }
 
         /// <summary>

@@ -11,6 +11,20 @@ namespace Bloom.Domain.Models
     public class Person
     {
         /// <summary>
+        /// Creates a new person instance.
+        /// </summary>
+        /// <param name="name">The person's name.</param>
+        public static Person Create(string name)
+        {
+            var person = new Person
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
+            return person;
+        }
+
+        /// <summary>
         /// Gets or sets the person identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
@@ -26,7 +40,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date the person was born.
         /// </summary>
         [Column(Name = "born")]
-        public DateTime Born { get; set; }
+        public DateTime? Born { get; set; }
 
         /// <summary>
         /// Gets or sets the date the person died.

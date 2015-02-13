@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using System.IO;
 using System.Windows;
 using Bloom.Controls;
-using Bloom.Data;
-using Bloom.Data.Interfaces;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
@@ -23,7 +20,6 @@ namespace Bloom.State.Domain.Models
         {
             ProcessName = "Bloom.Browser";
             Connections = new Connections();
-            LibraryDataSources = new Dictionary<Guid, IDataSource>();
             SkinName = Properties.Settings.Default.SkinName;
             WindowState = Properties.Settings.Default.WindowState;
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
@@ -43,11 +39,6 @@ namespace Bloom.State.Domain.Models
         public Connections Connections { get; set; }
 
         /// <summary>
-        /// Gets or sets the library data sources.
-        /// </summary>
-        public Dictionary<Guid, IDataSource> LibraryDataSources { get; set; }
-
-            /// <summary>
         /// Gets or sets the name of the skin.
         /// </summary>
         [Column(Name = "skin_name")]
@@ -87,56 +78,6 @@ namespace Bloom.State.Domain.Models
         public void ResetSidebarWidth()
         {
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
-        }
-
-        /// <summary>
-        /// Connects the library data sources.
-        /// </summary>
-        public void ConnectLibraryDataSources()
-        {
-            if (Connections == null || Connections.LibraryConnections == null || Connections.LibraryConnections.Count == 0)
-                return;
-
-            LibraryDataSources.Clear();
-            foreach (var libraryConnection in Connections.LibraryConnections)
-            {
-                if (File.Exists(libraryConnection.FilePath) && libraryConnection.IsConnected)
-                    AddLibraryDataSource(libraryConnection);
-            }
-        }
-
-        public void AddLibraryConnection(LibraryConnection libraryConnection)
-        {
-            if (Connections == null || Connections.LibraryConnections == null)
-                return;
-
-            if (!Connections.LibraryConnections.Contains(libraryConnection))
-                Connections.LibraryConnections.Add(libraryConnection);
-
-            if (File.Exists(libraryConnection.FilePath) && libraryConnection.IsConnected)
-                AddLibraryDataSource(libraryConnection);
-        }
-
-        public void ConnectLibraryDataSource(LibraryConnection libraryConnection)
-        {
-            if (Connections == null || Connections.LibraryConnections == null)
-                return;
-
-            libraryConnection.IsConnected = true;
-            if (!Connections.LibraryConnections.Contains(libraryConnection))
-                Connections.LibraryConnections.Add(libraryConnection);
-
-            if (File.Exists(libraryConnection.FilePath))
-                AddLibraryDataSource(libraryConnection);
-        }
-
-        private void AddLibraryDataSource(LibraryConnection libraryConnection)
-        {
-            var libraryDataSource = new LibraryDataSource();
-            libraryDataSource.Connect(libraryConnection.FilePath);
-            libraryDataSource.RegisterRepositories();
-
-            LibraryDataSources.Add(libraryConnection.LibraryId, libraryDataSource);
         }
     }
 }

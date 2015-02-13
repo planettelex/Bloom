@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using Bloom.Domain.Models;
 
 namespace Bloom.State.Domain.Models
 {
@@ -10,6 +11,25 @@ namespace Bloom.State.Domain.Models
     public class LibraryConnection
     {
         /// <summary>
+        /// Creates a new library connection instance.
+        /// </summary>
+        /// <param name="library">A library.</param>
+        public static LibraryConnection Create(Library library)
+        {
+            var libraryConnection = new LibraryConnection
+            {
+                LibraryId = library.Id,
+                LibraryName = library.Name,
+                FilePath = library.FilePath,
+                OwnerId = library.OwnerId,
+                OwnerName = library.Owner.Name,
+                IsConnected = true,
+                LastConnected = DateTime.Now
+            };
+            return libraryConnection;
+        }
+
+        /// <summary>
         /// Gets or sets the library identifier.
         /// </summary>
         [Column(Name = "library_id", IsPrimaryKey = true)]
@@ -18,8 +38,8 @@ namespace Bloom.State.Domain.Models
         /// <summary>
         /// Gets or sets the library name.
         /// </summary>
-        [Column(Name = "name")]
-        public string Name { get; set; }
+        [Column(Name = "library_name")]
+        public string LibraryName { get; set; }
 
         /// <summary>
         /// Gets or sets the library file path.

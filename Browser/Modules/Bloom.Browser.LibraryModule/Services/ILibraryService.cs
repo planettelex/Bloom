@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Browser.Common;
+using Bloom.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
@@ -13,7 +14,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Creates a new library.
         /// </summary>
-        void CreateNewLibrary();
+        void CreateNewLibrary(Library library);
 
         /// <summary>
         /// Creates a new library tab.
