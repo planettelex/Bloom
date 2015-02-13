@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Analytics.Artist.Services
+namespace Bloom.Analytics.ArtistModule.Services
 {
     public interface IArtistService
     {

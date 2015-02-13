@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Analytics.Playlist.ViewModels;
-using Bloom.Analytics.Playlist.Views;
+using Bloom.Analytics.PlaylistModule.ViewModels;
+using Bloom.Analytics.PlaylistModule.Views;
 using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Analytics.Playlist.Services
+namespace Bloom.Analytics.PlaylistModule.Services
 {
     public class PlaylistService : IPlaylistService
     {

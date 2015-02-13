@@ -1,11 +1,11 @@
 ﻿using System;
-using Bloom.Analytics.Menu.ViewModels;
+using Bloom.Analytics.MenuModule.ViewModels;
 using Bloom.Controls.Helpers;
 using Bloom.State.Domain.Models;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
 
-namespace Bloom.Analytics.Menu.Views
+namespace Bloom.Analytics.MenuModule.Views
 {
     /// <summary>
     /// Interaction logic for MenuView.xaml

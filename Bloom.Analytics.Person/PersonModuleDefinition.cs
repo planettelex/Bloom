@@ -1,20 +1,20 @@
-﻿using Bloom.Analytics.Album.Services;
+﻿using Bloom.Analytics.PersonModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.Album
+namespace Bloom.Analytics.PersonModule
 {
     /// <summary>
-    /// Analytics album module.
+    /// Analytics person module.
     /// </summary>
-    [Module(ModuleName = "AlbumModule")]
-    public class AlbumModule : IModule
+    [Module(ModuleName = "PersonModule")]
+    public class PersonModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlbumModule"/> class.
+        /// Initializes a new instance of the <see cref="PersonModule"/> class.
         /// </summary>
         /// <param name="container">The container.</param>
-        public AlbumModule(IUnityContainer container)
+        public PersonModuleDefinition(IUnityContainer container)
         {
             _container = container;
         }
@@ -26,8 +26,8 @@ namespace Bloom.Analytics.Album
         public void Initialize()
         {
             // Register services this module provides
-            _container.RegisterType<IAlbumService, AlbumService>(new ContainerControlledLifetimeManager());
-            _container.Resolve(typeof(AlbumService));
+            _container.RegisterType<IPersonService, PersonService>(new ContainerControlledLifetimeManager());
+            _container.Resolve(typeof(PersonService));
         }
     }
 }

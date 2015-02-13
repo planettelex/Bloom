@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Analytics.Common;
 
-namespace Bloom.Analytics.Library.ViewModels
+namespace Bloom.Analytics.LibraryModule.ViewModels
 {
     public class LibraryViewModel
     {

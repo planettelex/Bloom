@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Song.ViewModels
+﻿namespace Bloom.Analytics.SongModule.ViewModels
 {
     public class SongViewModel
     {

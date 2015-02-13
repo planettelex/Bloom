@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Analytics.Common;
 
-namespace Bloom.Analytics.Library.Services
+namespace Bloom.Analytics.LibraryModule.Services
 {
     public interface ILibraryService
     {

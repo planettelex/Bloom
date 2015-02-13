@@ -7,8 +7,8 @@
     <ProjectGuid>{833CB199-A684-408B-953D-0B03ED0B63D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Analytics.Playlist</RootNamespace>
-    <AssemblyName>Bloom.Analytics.Playlist</AssemblyName>
+    <RootNamespace>Bloom.Analytics.PlaylistModule</RootNamespace>
+    <AssemblyName>Bloom.Analytics.PlaylistModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -76,7 +76,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="PlaylistModule.cs" />
+    <Compile Include="PlaylistModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPlaylistService.cs" />
     <Compile Include="Services\PlaylistService.cs" />

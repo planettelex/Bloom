@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Analytics.Song.ViewModels;
-using Bloom.Analytics.Song.Views;
+using Bloom.Analytics.SongModule.ViewModels;
+using Bloom.Analytics.SongModule.Views;
 using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Analytics.Song.Services
+namespace Bloom.Analytics.SongModule.Services
 {
     public class SongService : ISongService
     {

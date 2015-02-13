@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.Library.ViewModels;
-using Bloom.Analytics.Library.Views;
+using Bloom.Analytics.LibraryModule.ViewModels;
+using Bloom.Analytics.LibraryModule.Views;
 using Bloom.Analytics.PubSubEvents;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Analytics.Library.Services
+namespace Bloom.Analytics.LibraryModule.Services
 {
     public class LibraryService : ILibraryService
     {

@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.Playlist.ViewModels;
+﻿using Bloom.Analytics.PlaylistModule.ViewModels;
 
-namespace Bloom.Analytics.Playlist.Views
+namespace Bloom.Analytics.PlaylistModule.Views
 {
     /// <summary>
     /// Interaction logic for PlaylistView.xaml

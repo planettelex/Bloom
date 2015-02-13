@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Analytics.Album.Services
+namespace Bloom.Analytics.AlbumModule.Services
 {
     public interface IAlbumService
     {

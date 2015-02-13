@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Artist.ViewModels
+﻿namespace Bloom.Analytics.ArtistModule.ViewModels
 {
     public class ArtistViewModel
     {

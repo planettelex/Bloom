@@ -7,8 +7,8 @@
     <ProjectGuid>{0026EA94-0F63-44F1-AA1E-A67988935F17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Analytics.Menu</RootNamespace>
-    <AssemblyName>Bloom.Analytics.Menu</AssemblyName>
+    <RootNamespace>Bloom.Analytics.MenuModule</RootNamespace>
+    <AssemblyName>Bloom.Analytics.MenuModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -79,7 +79,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="MenuModule.cs" />
+    <Compile Include="MenuModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="Views\MenuView.xaml.cs">

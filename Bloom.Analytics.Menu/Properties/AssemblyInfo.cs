@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bloom.Analytics.Menu")]
+[assembly: AssemblyTitle("Bloom.Analytics.MenuModule")]
 [assembly: AssemblyDescription("Bloom Analytics main menu Prism module.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]

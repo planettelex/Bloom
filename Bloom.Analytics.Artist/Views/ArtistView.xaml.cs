@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.Artist.ViewModels;
+﻿using Bloom.Analytics.ArtistModule.ViewModels;
 
-namespace Bloom.Analytics.Artist.Views
+namespace Bloom.Analytics.ArtistModule.Views
 {
     /// <summary>
     /// Interaction logic for ArtistView.xaml

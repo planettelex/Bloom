@@ -137,33 +137,33 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Bloom.Analytics.Album\Bloom.Analytics.Album.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Album\Bloom.Analytics.AlbumModule.csproj">
       <Project>{c5c81ac6-6479-49ea-b24b-0c09a152291c}</Project>
-      <Name>Bloom.Analytics.Album</Name>
+      <Name>Bloom.Analytics.AlbumModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Artist\Bloom.Analytics.Artist.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Artist\Bloom.Analytics.ArtistModule.csproj">
       <Project>{610f519d-44ef-4568-a449-0f317664559a}</Project>
-      <Name>Bloom.Analytics.Artist</Name>
+      <Name>Bloom.Analytics.ArtistModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
       <Project>{d86bec11-b4a6-412f-98b1-ccef05fa839d}</Project>
       <Name>Bloom.Analytics.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Library\Bloom.Analytics.Library.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Library\Bloom.Analytics.LibraryModule.csproj">
       <Project>{f2a36480-9f8c-408d-baf1-dc3f11a98eab}</Project>
-      <Name>Bloom.Analytics.Library</Name>
+      <Name>Bloom.Analytics.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Menu\Bloom.Analytics.Menu.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Menu\Bloom.Analytics.MenuModule.csproj">
       <Project>{0026ea94-0f63-44f1-aa1e-a67988935f17}</Project>
-      <Name>Bloom.Analytics.Menu</Name>
+      <Name>Bloom.Analytics.MenuModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Person\Bloom.Analytics.Person.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Person\Bloom.Analytics.PersonModule.csproj">
       <Project>{2928ed60-32dc-4182-910f-344e3c89d466}</Project>
-      <Name>Bloom.Analytics.Person</Name>
+      <Name>Bloom.Analytics.PersonModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Playlist\Bloom.Analytics.Playlist.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Playlist\Bloom.Analytics.PlaylistModule.csproj">
       <Project>{833cb199-a684-408b-953d-0b03ed0b63d8}</Project>
-      <Name>Bloom.Analytics.Playlist</Name>
+      <Name>Bloom.Analytics.PlaylistModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
       <Project>{c86fedc7-f553-4de5-85e7-3cfcff2eb333}</Project>
@@ -173,9 +173,9 @@
       <Project>{40d9ac3d-db97-4b31-ac50-21fc82f7459a}</Project>
       <Name>Bloom.Analytics.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Analytics.Song\Bloom.Analytics.Song.csproj">
+    <ProjectReference Include="..\Bloom.Analytics.Song\Bloom.Analytics.SongModule.csproj">
       <Project>{2eae4c79-a3ae-4053-81bf-5369f0197f8a}</Project>
-      <Name>Bloom.Analytics.Song</Name>
+      <Name>Bloom.Analytics.SongModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>

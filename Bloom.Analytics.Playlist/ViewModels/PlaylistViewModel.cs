@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Playlist.ViewModels
+﻿namespace Bloom.Analytics.PlaylistModule.ViewModels
 {
     public class PlaylistViewModel
     {

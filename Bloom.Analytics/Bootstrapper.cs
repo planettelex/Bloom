@@ -1,11 +1,11 @@
 ﻿using System.Windows;
-using Bloom.Analytics.Album;
-using Bloom.Analytics.Artist;
-using Bloom.Analytics.Library;
-using Bloom.Analytics.Menu;
-using Bloom.Analytics.Person;
-using Bloom.Analytics.Playlist;
-using Bloom.Analytics.Song;
+using Bloom.Analytics.AlbumModule;
+using Bloom.Analytics.ArtistModule;
+using Bloom.Analytics.LibraryModule;
+using Bloom.Analytics.MenuModule;
+using Bloom.Analytics.PersonModule;
+using Bloom.Analytics.PlaylistModule;
+using Bloom.Analytics.SongModule;
 using Bloom.Data.Interfaces;
 using Bloom.Services;
 using Bloom.State.Data;
@@ -61,14 +61,14 @@ namespace Bloom.Analytics
             base.ConfigureModuleCatalog();
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
-            moduleCatalog.AddModule(typeof (MenuModule));
+            moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (TaxonomiesModule));
-            moduleCatalog.AddModule(typeof (LibraryModule));
-            moduleCatalog.AddModule(typeof (PersonModule));
-            moduleCatalog.AddModule(typeof (ArtistModule));
-            moduleCatalog.AddModule(typeof (SongModule));
-            moduleCatalog.AddModule(typeof (AlbumModule));
-            moduleCatalog.AddModule(typeof (PlaylistModule));
+            moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
+            moduleCatalog.AddModule(typeof (PersonModuleDefinition));
+            moduleCatalog.AddModule(typeof (ArtistModuleDefinition));
+            moduleCatalog.AddModule(typeof (SongModuleDefinition));
+            moduleCatalog.AddModule(typeof (AlbumModuleDefinition));
+            moduleCatalog.AddModule(typeof (PlaylistModuleDefinition));
         }
 
         /// <summary>

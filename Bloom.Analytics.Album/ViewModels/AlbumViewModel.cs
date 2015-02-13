@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Album.ViewModels
+﻿namespace Bloom.Analytics.AlbumModule.ViewModels
 {
     public class AlbumViewModel
     {

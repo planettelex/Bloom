@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Analytics.Person.Services
+namespace Bloom.Analytics.PersonModule.Services
 {
     public interface IPersonService
     {

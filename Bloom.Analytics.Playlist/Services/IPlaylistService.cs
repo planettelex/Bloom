@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Analytics.Playlist.Services
+namespace Bloom.Analytics.PlaylistModule.Services
 {
     public interface IPlaylistService
     {

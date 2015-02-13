@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.Person.ViewModels;
+﻿using Bloom.Analytics.PersonModule.ViewModels;
 
-namespace Bloom.Analytics.Person.Views
+namespace Bloom.Analytics.PersonModule.Views
 {
     /// <summary>
     /// Interaction logic for PersonView.xaml

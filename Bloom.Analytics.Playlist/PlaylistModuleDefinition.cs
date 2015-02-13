@@ -1,20 +1,20 @@
-﻿using Bloom.Analytics.Person.Services;
+﻿using Bloom.Analytics.PlaylistModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.Person
+namespace Bloom.Analytics.PlaylistModule
 {
     /// <summary>
-    /// Analytics person module.
+    /// Analytics playlist module.
     /// </summary>
-    [Module(ModuleName = "PersonModule")]
-    public class PersonModule : IModule
+    [Module(ModuleName = "PlaylistModule")]
+    public class PlaylistModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PersonModule"/> class.
+        /// Initializes a new instance of the <see cref="PlaylistModule"/> class.
         /// </summary>
         /// <param name="container">The container.</param>
-        public PersonModule(IUnityContainer container)
+        public PlaylistModuleDefinition(IUnityContainer container)
         {
             _container = container;
         }
@@ -26,8 +26,8 @@ namespace Bloom.Analytics.Person
         public void Initialize()
         {
             // Register services this module provides
-            _container.RegisterType<IPersonService, PersonService>(new ContainerControlledLifetimeManager());
-            _container.Resolve(typeof(PersonService));
+            _container.RegisterType<IPlaylistService, PlaylistService>(new ContainerControlledLifetimeManager());
+            _container.Resolve(typeof(IPlaylistService));
         }
     }
 }

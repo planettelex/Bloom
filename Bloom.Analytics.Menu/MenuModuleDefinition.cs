@@ -1,20 +1,20 @@
-﻿using Bloom.Analytics.Menu.Views;
+﻿using Bloom.Analytics.MenuModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.Menu
+namespace Bloom.Analytics.MenuModule
 {
     /// <summary>
     /// Analytics menu Prism module.
     /// </summary>
     [Module(ModuleName = "MenuModule")]
-    public class MenuModule : IModule
+    public class MenuModuleDefinition : IModule
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public MenuModule(IRegionManager regionManager)
+        public MenuModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

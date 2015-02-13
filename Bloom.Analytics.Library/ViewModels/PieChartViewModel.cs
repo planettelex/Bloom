@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Library.ViewModels
+﻿namespace Bloom.Analytics.LibraryModule.ViewModels
 {
     public class PieChartViewModel
     {

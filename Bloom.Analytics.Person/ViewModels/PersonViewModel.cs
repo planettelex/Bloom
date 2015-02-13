@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Person.ViewModels
+﻿namespace Bloom.Analytics.PersonModule.ViewModels
 {
     public class PersonViewModel
     {

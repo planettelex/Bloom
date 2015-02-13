@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C5C81AC6-6479-49EA-B24B-0C09A152291C}</ProjectGuid>
+    <ProjectGuid>{2EAE4C79-A3AE-4053-81BF-5369F0197F8A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Analytics.Album</RootNamespace>
-    <AssemblyName>Bloom.Analytics.Album</AssemblyName>
+    <RootNamespace>Bloom.Analytics.SongModule</RootNamespace>
+    <AssemblyName>Bloom.Analytics.SongModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -76,22 +76,22 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AlbumModule.cs" />
+    <Compile Include="Services\ISongService.cs" />
+    <Compile Include="Services\SongService.cs" />
+    <Compile Include="SongModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AlbumService.cs" />
-    <Compile Include="Services\IAlbumService.cs" />
-    <Compile Include="ViewModels\AlbumViewModel.cs" />
-    <Compile Include="Views\AlbumView.xaml.cs">
-      <DependentUpon>AlbumView.xaml</DependentUpon>
+    <Compile Include="ViewModels\SongViewModel.cs" />
+    <Compile Include="Views\SongView.xaml.cs">
+      <DependentUpon>SongView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\AlbumView.xaml">
+    <Page Include="Views\SongView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

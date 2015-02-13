@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.Library.ViewModels;
+﻿using Bloom.Analytics.LibraryModule.ViewModels;
 
-namespace Bloom.Analytics.Library.Views
+namespace Bloom.Analytics.LibraryModule.Views
 {
     /// <summary>
     /// Interaction logic for StatsView.xaml
