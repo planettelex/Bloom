@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.Visuals.ViewModels
+﻿namespace Bloom.Player.VisualsModule.ViewModels
 {
     public class VisualsViewModel
     {

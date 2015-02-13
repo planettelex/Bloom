@@ -1,20 +1,20 @@
-﻿using Bloom.Player.Recent.Views;
+﻿using Bloom.Player.VisualsModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.Recent
+namespace Bloom.Player.VisualsModule
 {
     /// <summary>
-    /// Player recent Prism module.
+    /// Player visuals Prism module.
     /// </summary>
-    [Module(ModuleName = "RecentModule")]
-    public class RecentModule : IModule
+    [Module(ModuleName = "VisualsModule")]
+    public class VisualsModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecentModule"/> class.
+        /// Initializes a new instance of the <see cref="VisualsModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public RecentModule(IRegionManager regionManager)
+        public VisualsModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
@@ -25,7 +25,7 @@ namespace Bloom.Player.Recent
         /// </summary>
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("RecentRegion", typeof(RecentView));
+            _regionManager.RegisterViewWithRegion("VisualsRegion", typeof(VisualsView));
         }
     }
 }

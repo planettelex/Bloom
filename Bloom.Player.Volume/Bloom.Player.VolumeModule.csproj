@@ -7,8 +7,8 @@
     <ProjectGuid>{4B4DA9E0-BAE1-43D4-91E3-DC34E88EB142}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Player.Volume</RootNamespace>
-    <AssemblyName>Bloom.Player.Volume</AssemblyName>
+    <RootNamespace>Bloom.Player.VolumeModule</RootNamespace>
+    <AssemblyName>Bloom.Player.VolumeModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -73,11 +73,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ViewModels\VolumeViewModel.cs" />
     <Compile Include="Views\VolumeView.xaml.cs">
       <DependentUpon>VolumeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VolumeModule.cs" />
+    <Compile Include="VolumeModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

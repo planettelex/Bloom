@@ -1,6 +1,6 @@
-﻿using Bloom.Player.Recent.ViewModels;
+﻿using Bloom.Player.RecentModule.ViewModels;
 
-namespace Bloom.Player.Recent.Views
+namespace Bloom.Player.RecentModule.Views
 {
     /// <summary>
     /// Interaction logic for RecentView.xaml

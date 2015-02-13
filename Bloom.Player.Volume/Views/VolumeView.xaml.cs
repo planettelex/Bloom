@@ -1,6 +1,6 @@
-﻿using Bloom.Player.Volume.ViewModels;
+﻿using Bloom.Player.VolumeModule.ViewModels;
 
-namespace Bloom.Player.Volume.Views
+namespace Bloom.Player.VolumeModule.Views
 {
     /// <summary>
     /// Interaction logic for VolumeView.xaml

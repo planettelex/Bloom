@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.Volume.ViewModels
+﻿namespace Bloom.Player.VolumeModule.ViewModels
 {
     public class VolumeViewModel
     {

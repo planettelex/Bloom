@@ -1,20 +1,20 @@
-﻿using Bloom.Player.Menu.Views;
+﻿using Bloom.Player.RecentModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.Menu
+namespace Bloom.Player.RecentModule
 {
     /// <summary>
-    /// Player menu Prism module.
+    /// Player recent Prism module.
     /// </summary>
-    [Module(ModuleName = "MenuModule")]
-    public class MenuModule : IModule
+    [Module(ModuleName = "RecentModule")]
+    public class RecentModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuModule"/> class.
+        /// Initializes a new instance of the <see cref="RecentModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public MenuModule(IRegionManager regionManager)
+        public RecentModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
@@ -25,7 +25,7 @@ namespace Bloom.Player.Menu
         /// </summary>
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("MenuRegion", typeof(MenuView));
+            _regionManager.RegisterViewWithRegion("RecentRegion", typeof(RecentView));
         }
     }
 }

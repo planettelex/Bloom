@@ -1,20 +1,20 @@
-﻿using Bloom.Player.Volume.Views;
+﻿using Bloom.Player.PlayingModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.Volume
+namespace Bloom.Player.PlayingModule
 {
     /// <summary>
-    /// Player volume Prism module.
+    /// Player playing Prism module.
     /// </summary>
-    [Module(ModuleName = "VolumeModule")]
-    public class VolumeModule : IModule
+    [Module(ModuleName = "PlayingModule")]
+    public class PlayingModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VolumeModule"/> class.
+        /// Initializes a new instance of the <see cref="PlayingModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public VolumeModule(IRegionManager regionManager)
+        public PlayingModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
@@ -25,7 +25,7 @@ namespace Bloom.Player.Volume
         /// </summary>
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("VolumeRegion", typeof(VolumeView));
+            _regionManager.RegisterViewWithRegion("PlayingRegion", typeof(PlayingView));
         }
     }
 }

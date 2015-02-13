@@ -40,7 +40,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.MenuModule", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.MenuModule", "Bloom.Analytics.Menu\Bloom.Analytics.MenuModule.csproj", "{0026EA94-0F63-44F1-AA1E-A67988935F17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Menu", "Bloom.Player.Menu\Bloom.Player.Menu.csproj", "{FBD9F5A9-4CC2-4A28-A13F-5643A9C8914F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.MenuModule", "Bloom.Player.Menu\Bloom.Player.MenuModule.csproj", "{FBD9F5A9-4CC2-4A28-A13F-5643A9C8914F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Controls", "Bloom.Controls\Bloom.Controls.csproj", "{525FAACE-2C85-44FC-8A08-3674FB57D996}"
 EndProject
@@ -64,15 +64,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.SongModule", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.PlaylistModule", "Bloom.Browser.Playlist\Bloom.Browser.PlaylistModule.csproj", "{01D0A7A3-D469-43EF-B049-F519193C2514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Upcoming", "Bloom.Player.Upcoming\Bloom.Player.Upcoming.csproj", "{35A90143-62CB-4383-A4CA-3D62EEFCD30F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.UpcomingModule", "Bloom.Player.Upcoming\Bloom.Player.UpcomingModule.csproj", "{35A90143-62CB-4383-A4CA-3D62EEFCD30F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Playing", "Bloom.Player.Playing\Bloom.Player.Playing.csproj", "{145ED76C-790B-4577-9415-B535479F307B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.PlayingModule", "Bloom.Player.Playing\Bloom.Player.PlayingModule.csproj", "{145ED76C-790B-4577-9415-B535479F307B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Recent", "Bloom.Player.Recent\Bloom.Player.Recent.csproj", "{48480E58-3EBC-4EFC-955A-2970AE41A9B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.RecentModule", "Bloom.Player.Recent\Bloom.Player.RecentModule.csproj", "{48480E58-3EBC-4EFC-955A-2970AE41A9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Volume", "Bloom.Player.Volume\Bloom.Player.Volume.csproj", "{4B4DA9E0-BAE1-43D4-91E3-DC34E88EB142}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.VolumeModule", "Bloom.Player.Volume\Bloom.Player.VolumeModule.csproj", "{4B4DA9E0-BAE1-43D4-91E3-DC34E88EB142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.Visuals", "Bloom.Player.Visuals\Bloom.Player.Visuals.csproj", "{6062A28F-6F28-4B8C-B9B1-3F1A82D12E47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.VisualsModule", "Bloom.Player.Visuals\Bloom.Player.VisualsModule.csproj", "{6062A28F-6F28-4B8C-B9B1-3F1A82D12E47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.AlbumModule", "Bloom.Analytics.Album\Bloom.Analytics.AlbumModule.csproj", "{C5C81AC6-6479-49EA-B24B-0C09A152291C}"
 EndProject

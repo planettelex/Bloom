@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.Recent.ViewModels
+﻿namespace Bloom.Player.RecentModule.ViewModels
 {
     public class RecentViewModel
     {

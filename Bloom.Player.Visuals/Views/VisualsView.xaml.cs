@@ -1,6 +1,6 @@
-﻿using Bloom.Player.Visuals.ViewModels;
+﻿using Bloom.Player.VisualsModule.ViewModels;
 
-namespace Bloom.Player.Visuals.Views
+namespace Bloom.Player.VisualsModule.Views
 {
     /// <summary>
     /// Interaction logic for VisualsView.xaml

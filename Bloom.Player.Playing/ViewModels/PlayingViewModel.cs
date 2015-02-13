@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.Playing.ViewModels
+﻿namespace Bloom.Player.PlayingModule.ViewModels
 {
     public class PlayingViewModel
     {

@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 using Bloom.Data.Interfaces;
-using Bloom.Player.Menu;
-using Bloom.Player.Playing;
-using Bloom.Player.Recent;
-using Bloom.Player.Upcoming;
-using Bloom.Player.Visuals;
-using Bloom.Player.Volume;
+using Bloom.Player.MenuModule;
+using Bloom.Player.PlayingModule;
+using Bloom.Player.RecentModule;
+using Bloom.Player.UpcomingModule;
+using Bloom.Player.VisualsModule;
+using Bloom.Player.VolumeModule;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.State.Services;
@@ -59,12 +59,12 @@ namespace Bloom.Player
             base.ConfigureModuleCatalog();
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
-            moduleCatalog.AddModule(typeof (MenuModule));
-            moduleCatalog.AddModule(typeof (PlayingModule));
-            moduleCatalog.AddModule(typeof (UpcomingModule));
-            moduleCatalog.AddModule(typeof (RecentModule));
-            moduleCatalog.AddModule(typeof (VisualsModule));
-            moduleCatalog.AddModule(typeof (VolumeModule));
+            moduleCatalog.AddModule(typeof (MenuModuleDefinition));
+            moduleCatalog.AddModule(typeof (PlayingModuleDefinition));
+            moduleCatalog.AddModule(typeof (UpcomingModuleDefinition));
+            moduleCatalog.AddModule(typeof (RecentModuleDefinition));
+            moduleCatalog.AddModule(typeof (VisualsModuleDefinition));
+            moduleCatalog.AddModule(typeof (VolumeModuleDefinition));
         }
 
         /// <summary>

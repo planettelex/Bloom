@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.Upcoming.ViewModels
+﻿namespace Bloom.Player.UpcomingModule.ViewModels
 {
     public class UpcomingViewModel
     {

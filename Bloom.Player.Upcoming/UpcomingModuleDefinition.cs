@@ -1,20 +1,20 @@
-﻿using Bloom.Player.Upcoming.Views;
+﻿using Bloom.Player.UpcomingModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.Upcoming
+namespace Bloom.Player.UpcomingModule
 {
     /// <summary>
     /// Player upcoming Prism module.
     /// </summary>
     [Module(ModuleName = "UpcomingModule")]
-    public class UpcomingModule : IModule
+    public class UpcomingModuleDefinition : IModule
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpcomingModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public UpcomingModule(IRegionManager regionManager)
+        public UpcomingModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

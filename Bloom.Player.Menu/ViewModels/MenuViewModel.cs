@@ -5,7 +5,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.Menu.ViewModels
+namespace Bloom.Player.MenuModule.ViewModels
 {
     /// <summary>
     /// View model for MenuView.xaml.

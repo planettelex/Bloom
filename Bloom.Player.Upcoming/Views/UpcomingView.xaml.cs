@@ -1,6 +1,6 @@
-﻿using Bloom.Player.Upcoming.ViewModels;
+﻿using Bloom.Player.UpcomingModule.ViewModels;
 
-namespace Bloom.Player.Upcoming.Views
+namespace Bloom.Player.UpcomingModule.Views
 {
     /// <summary>
     /// Interaction logic for UpcomingView.xaml
