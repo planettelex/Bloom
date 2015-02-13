@@ -82,6 +82,7 @@ namespace Bloom.State.Services
                 browserState = AddNewBrowserState(stateDatabasePath);
             }
 
+            browserState.ConnectLibraryDataSources();
             return browserState;
         }
 

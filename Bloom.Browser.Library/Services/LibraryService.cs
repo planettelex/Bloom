@@ -61,10 +61,15 @@ namespace Bloom.Browser.Library.Services
             newLibraryWindow.ShowDialog();
         }
 
+        public void CreateNewLibrary()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Creates a new library.
         /// </summary>
-        public void CreateNewLibrary()
+        public void CreateNewLibrary(Library library)
         {
             
         }

@@ -89,21 +89,54 @@ namespace Bloom.State.Domain.Models
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
         }
 
-        public void ConnectDataSources()
+        /// <summary>
+        /// Connects the library data sources.
+        /// </summary>
+        public void ConnectLibraryDataSources()
         {
-            if (Connections == null || Connections.LibraryConnections == null)
+            if (Connections == null || Connections.LibraryConnections == null || Connections.LibraryConnections.Count == 0)
                 return;
 
             LibraryDataSources.Clear();
             foreach (var libraryConnection in Connections.LibraryConnections)
             {
-                var libraryDataSource = new LibraryDataSource();
-                libraryDataSource.RegisterRepositories();
-                if (File.Exists(libraryDataSource.FilePath) && libraryDataSource.IsConnected())
-                    libraryDataSource.Connect(libraryDataSource.FilePath);
-                    
-                LibraryDataSources.Add(libraryConnection.LibraryId, libraryDataSource);
+                if (File.Exists(libraryConnection.FilePath) && libraryConnection.IsConnected)
+                    AddLibraryDataSource(libraryConnection);
             }
+        }
+
+        public void AddLibraryConnection(LibraryConnection libraryConnection)
+        {
+            if (Connections == null || Connections.LibraryConnections == null)
+                return;
+
+            if (!Connections.LibraryConnections.Contains(libraryConnection))
+                Connections.LibraryConnections.Add(libraryConnection);
+
+            if (File.Exists(libraryConnection.FilePath) && libraryConnection.IsConnected)
+                AddLibraryDataSource(libraryConnection);
+        }
+
+        public void ConnectLibraryDataSource(LibraryConnection libraryConnection)
+        {
+            if (Connections == null || Connections.LibraryConnections == null)
+                return;
+
+            libraryConnection.IsConnected = true;
+            if (!Connections.LibraryConnections.Contains(libraryConnection))
+                Connections.LibraryConnections.Add(libraryConnection);
+
+            if (File.Exists(libraryConnection.FilePath))
+                AddLibraryDataSource(libraryConnection);
+        }
+
+        private void AddLibraryDataSource(LibraryConnection libraryConnection)
+        {
+            var libraryDataSource = new LibraryDataSource();
+            libraryDataSource.Connect(libraryConnection.FilePath);
+            libraryDataSource.RegisterRepositories();
+
+            LibraryDataSources.Add(libraryConnection.LibraryId, libraryDataSource);
         }
     }
 }
