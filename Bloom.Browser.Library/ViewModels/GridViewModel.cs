@@ -1,4 +1,4 @@
-﻿namespace Bloom.Browser.Library.ViewModels
+﻿namespace Bloom.Browser.LibraryModule.ViewModels
 {
     public class GridViewModel
     {

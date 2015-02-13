@@ -1,6 +1,6 @@
-﻿using Bloom.Browser.Song.ViewModels;
+﻿using Bloom.Browser.SongModule.ViewModels;
 
-namespace Bloom.Browser.Song.Views
+namespace Bloom.Browser.SongModule.Views
 {
     /// <summary>
     /// Interaction logic for SongView.xaml

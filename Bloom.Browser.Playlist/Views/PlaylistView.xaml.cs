@@ -1,6 +1,6 @@
-﻿using Bloom.Browser.Playlist.ViewModels;
+﻿using Bloom.Browser.PlaylistModule.ViewModels;
 
-namespace Bloom.Browser.Playlist.Views
+namespace Bloom.Browser.PlaylistModule.Views
 {
     /// <summary>
     /// Interaction logic for PlaylistView.xaml

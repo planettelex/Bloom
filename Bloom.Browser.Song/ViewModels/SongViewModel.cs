@@ -1,4 +1,4 @@
-﻿namespace Bloom.Browser.Song.ViewModels
+﻿namespace Bloom.Browser.SongModule.ViewModels
 {
     public class SongViewModel
     {

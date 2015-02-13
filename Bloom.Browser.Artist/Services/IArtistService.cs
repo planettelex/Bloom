@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Browser.Artist.Services
+namespace Bloom.Browser.ArtistModule.Services
 {
     public interface IArtistService
     {

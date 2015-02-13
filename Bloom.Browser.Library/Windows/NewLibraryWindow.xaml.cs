@@ -1,7 +1,7 @@
-﻿using Bloom.Browser.Library.WindowModels;
+﻿using Bloom.Browser.LibraryModule.WindowModels;
 using Microsoft.Practices.Prism.Commands;
 
-namespace Bloom.Browser.Library.Windows
+namespace Bloom.Browser.LibraryModule.Windows
 {
     /// <summary>
     /// Interaction logic for NewLibraryWindow.xaml

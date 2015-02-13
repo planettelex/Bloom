@@ -1,20 +1,20 @@
-﻿using Bloom.Browser.Artist.Services;
+﻿using Bloom.Browser.AlbumModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Browser.Artist
+namespace Bloom.Browser.AlbumModule
 {
     /// <summary>
-    /// Browser artist module.
+    /// Browser album module.
     /// </summary>
-    [Module(ModuleName = "ArtistModule")]
-    public class ArtistModule : IModule
+    [Module(ModuleName = "AlbumModule")]
+    public class AlbumModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArtistModule"/> class.
+        /// Initializes a new instance of the <see cref="AlbumModuleDefinition"/> class.
         /// </summary>
         /// <param name="container">The DI container.</param>
-        public ArtistModule(IUnityContainer container)
+        public AlbumModuleDefinition(IUnityContainer container)
         {
             _container = container;
         }
@@ -26,8 +26,8 @@ namespace Bloom.Browser.Artist
         public void Initialize()
         {
             // Register services this module provides
-            _container.RegisterType<IArtistService, ArtistService>(new ContainerControlledLifetimeManager());
-            _container.Resolve(typeof(IArtistService));
+            _container.RegisterType<IAlbumService, AlbumService>(new ContainerControlledLifetimeManager());
+            _container.Resolve(typeof(IAlbumService));
         }
     }
 }

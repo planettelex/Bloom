@@ -1,11 +1,11 @@
 ﻿using System.Windows;
-using Bloom.Browser.Album;
-using Bloom.Browser.Artist;
-using Bloom.Browser.Library;
-using Bloom.Browser.Menu;
-using Bloom.Browser.Person;
-using Bloom.Browser.Playlist;
-using Bloom.Browser.Song;
+using Bloom.Browser.AlbumModule;
+using Bloom.Browser.ArtistModule;
+using Bloom.Browser.LibraryModule;
+using Bloom.Browser.MenuModule;
+using Bloom.Browser.PersonModule;
+using Bloom.Browser.PlaylistModule;
+using Bloom.Browser.SongModule;
 using Bloom.Data.Interfaces;
 using Bloom.Services;
 using Bloom.State.Data;
@@ -61,14 +61,14 @@ namespace Bloom.Browser
             base.ConfigureModuleCatalog();
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
-            moduleCatalog.AddModule(typeof (MenuModule));
+            moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (TaxonomiesModule));
-            moduleCatalog.AddModule(typeof (LibraryModule));
-            moduleCatalog.AddModule(typeof (PersonModule));
-            moduleCatalog.AddModule(typeof (ArtistModule));
-            moduleCatalog.AddModule(typeof (SongModule));
-            moduleCatalog.AddModule(typeof (AlbumModule));
-            moduleCatalog.AddModule(typeof (PlaylistModule));
+            moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
+            moduleCatalog.AddModule(typeof (PersonModuleDefinition));
+            moduleCatalog.AddModule(typeof (ArtistModuleDefinition));
+            moduleCatalog.AddModule(typeof (SongModuleDefinition));
+            moduleCatalog.AddModule(typeof (AlbumModuleDefinition));
+            moduleCatalog.AddModule(typeof (PlaylistModuleDefinition));
         }
 
         /// <summary>

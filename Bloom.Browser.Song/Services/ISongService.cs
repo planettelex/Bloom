@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Browser.Song.Services
+namespace Bloom.Browser.SongModule.Services
 {
     public interface ISongService
     {

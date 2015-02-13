@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Browser.Playlist.Services
+namespace Bloom.Browser.PlaylistModule.Services
 {
     public interface IPlaylistService
     {

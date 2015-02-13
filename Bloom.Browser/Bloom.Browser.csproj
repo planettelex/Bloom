@@ -138,33 +138,33 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Bloom.Browser.Album\Bloom.Browser.Album.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Album\Bloom.Browser.AlbumModule.csproj">
       <Project>{989b378d-56fc-4e33-b37c-6d53d925e97b}</Project>
-      <Name>Bloom.Browser.Album</Name>
+      <Name>Bloom.Browser.AlbumModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Artist\Bloom.Browser.Artist.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Artist\Bloom.Browser.ArtistModule.csproj">
       <Project>{bba3a40b-a876-4018-bef2-a6b1187bc20b}</Project>
-      <Name>Bloom.Browser.Artist</Name>
+      <Name>Bloom.Browser.ArtistModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Controls\Bloom.Browser.Controls.csproj">
       <Project>{56dfaa8a-7f8e-4089-b916-4f04df0e21e5}</Project>
       <Name>Bloom.Browser.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Library\Bloom.Browser.Library.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Library\Bloom.Browser.LibraryModule.csproj">
       <Project>{abeb129d-326a-472a-9933-66babb45a2b5}</Project>
-      <Name>Bloom.Browser.Library</Name>
+      <Name>Bloom.Browser.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Menu\Bloom.Browser.Menu.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Menu\Bloom.Browser.MenuModule.csproj">
       <Project>{af3c8883-0666-4244-bc71-f23d6e5585db}</Project>
-      <Name>Bloom.Browser.Menu</Name>
+      <Name>Bloom.Browser.MenuModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Person\Bloom.Browser.Person.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Person\Bloom.Browser.PersonModule.csproj">
       <Project>{a890b4ae-d0d6-444c-977b-09424d997e81}</Project>
-      <Name>Bloom.Browser.Person</Name>
+      <Name>Bloom.Browser.PersonModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Playlist\Bloom.Browser.Playlist.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Playlist\Bloom.Browser.PlaylistModule.csproj">
       <Project>{01d0a7a3-d469-43ef-b049-f519193c2514}</Project>
-      <Name>Bloom.Browser.Playlist</Name>
+      <Name>Bloom.Browser.PlaylistModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.PubSubEvents\Bloom.Browser.PubSubEvents.csproj">
       <Project>{afea27ab-8a29-4ae4-b274-1b3b056a4b76}</Project>
@@ -174,9 +174,9 @@
       <Project>{91bfa216-3015-4952-a947-efa897556993}</Project>
       <Name>Bloom.Browser.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Song\Bloom.Browser.Song.csproj">
+    <ProjectReference Include="..\Bloom.Browser.Song\Bloom.Browser.SongModule.csproj">
       <Project>{1cbc7dc6-159e-4f9c-9a5e-4b25afa757f5}</Project>
-      <Name>Bloom.Browser.Song</Name>
+      <Name>Bloom.Browser.SongModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>

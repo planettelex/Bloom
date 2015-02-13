@@ -1,6 +1,6 @@
-﻿using Bloom.Browser.Library.ViewModels;
+﻿using Bloom.Browser.LibraryModule.ViewModels;
 
-namespace Bloom.Browser.Library.Views
+namespace Bloom.Browser.LibraryModule.Views
 {
     /// <summary>
     /// Interaction logic for SlideshowView.xaml

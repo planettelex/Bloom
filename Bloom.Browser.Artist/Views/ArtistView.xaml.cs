@@ -1,6 +1,6 @@
-﻿using Bloom.Browser.Artist.ViewModels;
+﻿using Bloom.Browser.ArtistModule.ViewModels;
 
-namespace Bloom.Browser.Artist.Views
+namespace Bloom.Browser.ArtistModule.Views
 {
     /// <summary>
     /// Interaction logic for ArtistView.xaml

@@ -7,8 +7,8 @@
     <ProjectGuid>{989B378D-56FC-4E33-B37C-6D53D925E97B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Browser.Album</RootNamespace>
-    <AssemblyName>Bloom.Browser.Album</AssemblyName>
+    <RootNamespace>Bloom.Browser.AlbumModule</RootNamespace>
+    <AssemblyName>Bloom.Browser.AlbumModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -76,7 +76,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AlbumModule.cs" />
+    <Compile Include="AlbumModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Services\IAlbumService.cs" />

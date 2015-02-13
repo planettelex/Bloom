@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Browser.Artist.ViewModels;
-using Bloom.Browser.Artist.Views;
+using Bloom.Browser.ArtistModule.ViewModels;
+using Bloom.Browser.ArtistModule.Views;
 using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Browser.Artist.Services
+namespace Bloom.Browser.ArtistModule.Services
 {
     public class ArtistService : IArtistService
     {

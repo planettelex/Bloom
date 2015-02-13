@@ -1,4 +1,4 @@
-﻿namespace Bloom.Browser.Person.ViewModels
+﻿namespace Bloom.Browser.PersonModule.ViewModels
 {
     public class PersonViewModel
     {

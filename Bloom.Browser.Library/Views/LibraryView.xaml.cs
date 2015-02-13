@@ -1,10 +1,10 @@
 ﻿using System;
 using Bloom.Browser.Common;
-using Bloom.Browser.Library.ViewModels;
+using Bloom.Browser.LibraryModule.ViewModels;
 using Bloom.Browser.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Browser.Library.Views
+namespace Bloom.Browser.LibraryModule.Views
 {
     /// <summary>
     /// Interaction logic for LibraryView.xaml

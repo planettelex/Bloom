@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Browser.Common;
 
-namespace Bloom.Browser.Library.Services
+namespace Bloom.Browser.LibraryModule.Services
 {
     public interface ILibraryService
     {

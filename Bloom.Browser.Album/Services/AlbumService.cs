@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Browser.Album.ViewModels;
-using Bloom.Browser.Album.Views;
+using Bloom.Browser.AlbumModule.ViewModels;
+using Bloom.Browser.AlbumModule.Views;
 using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Browser.Album.Services
+namespace Bloom.Browser.AlbumModule.Services
 {
     public class AlbumService : IAlbumService
     {

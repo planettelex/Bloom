@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bloom.Browser.Song")]
+[assembly: AssemblyTitle("Bloom.Browser.SongModule")]
 [assembly: AssemblyDescription("Bloom Browser song Prism module.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]

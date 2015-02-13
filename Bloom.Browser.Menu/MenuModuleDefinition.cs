@@ -1,20 +1,20 @@
-﻿using Bloom.Browser.Menu.Views;
+﻿using Bloom.Browser.MenuModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Browser.Menu
+namespace Bloom.Browser.MenuModule
 {
     /// <summary>
     /// Browser menu Prism module.
     /// </summary>
     [Module(ModuleName = "MenuModule")]
-    public class MenuModule : IModule
+    public class MenuModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuModule"/> class.
+        /// Initializes a new instance of the <see cref="MenuModuleDefinition"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        public MenuModule(IRegionManager regionManager)
+        public MenuModuleDefinition(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

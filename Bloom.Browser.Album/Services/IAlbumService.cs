@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Browser.Album.Services
+namespace Bloom.Browser.AlbumModule.Services
 {
     public interface IAlbumService
     {

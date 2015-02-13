@@ -1,20 +1,20 @@
-﻿using Bloom.Browser.Person.Services;
+﻿using Bloom.Browser.PersonModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Browser.Person
+namespace Bloom.Browser.PersonModule
 {
     /// <summary>
     /// Browser person module.
     /// </summary>
     [Module(ModuleName = "PersonModule")]
-    public class PersonModule : IModule
+    public class PersonModuleDefinition : IModule
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonModule"/> class.
         /// </summary>
         /// <param name="container">The DI container.</param>
-        public PersonModule(IUnityContainer container)
+        public PersonModuleDefinition(IUnityContainer container)
         {
             _container = container;
         }

@@ -6,7 +6,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Browser.Library.WindowModels
+namespace Bloom.Browser.LibraryModule.WindowModels
 {
     public class NewLibraryWindowModel : BindableBase
     {

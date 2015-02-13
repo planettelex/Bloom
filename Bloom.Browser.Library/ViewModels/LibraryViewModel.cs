@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Browser.Common;
 
-namespace Bloom.Browser.Library.ViewModels
+namespace Bloom.Browser.LibraryModule.ViewModels
 {
     public class LibraryViewModel
     {

@@ -1,6 +1,6 @@
-﻿using Bloom.Browser.Person.ViewModels;
+﻿using Bloom.Browser.PersonModule.ViewModels;
 
-namespace Bloom.Browser.Person.Views
+namespace Bloom.Browser.PersonModule.Views
 {
     /// <summary>
     /// Interaction logic for PersonView.xaml

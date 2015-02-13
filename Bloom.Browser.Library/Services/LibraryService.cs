@@ -4,17 +4,17 @@ using System.Linq;
 using System.Windows;
 using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
-using Bloom.Browser.Library.ViewModels;
-using Bloom.Browser.Library.Views;
-using Bloom.Browser.Library.WindowModels;
-using Bloom.Browser.Library.Windows;
+using Bloom.Browser.LibraryModule.ViewModels;
+using Bloom.Browser.LibraryModule.Views;
+using Bloom.Browser.LibraryModule.WindowModels;
+using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Browser.Library.Services
+namespace Bloom.Browser.LibraryModule.Services
 {
     public class LibraryService : ILibraryService
     {
@@ -61,15 +61,10 @@ namespace Bloom.Browser.Library.Services
             newLibraryWindow.ShowDialog();
         }
 
-        public void CreateNewLibrary()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Creates a new library.
         /// </summary>
-        public void CreateNewLibrary(Library library)
+        public void CreateNewLibrary()
         {
             
         }

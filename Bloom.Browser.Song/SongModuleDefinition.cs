@@ -1,20 +1,20 @@
-﻿using Bloom.Browser.Playlist.Services;
+﻿using Bloom.Browser.SongModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Browser.Playlist
+namespace Bloom.Browser.SongModule
 {
     /// <summary>
-    /// Browser playlist module.
+    /// Browser song module.
     /// </summary>
-    [Module(ModuleName = "PlaylistModule")]
-    public class PlaylistModule : IModule
+    [Module(ModuleName = "SongModule")]
+    public class SongModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlaylistModule"/> class.
+        /// Initializes a new instance of the <see cref="SongModule"/> class.
         /// </summary>
         /// <param name="container">The DI container.</param>
-        public PlaylistModule(IUnityContainer container)
+        public SongModuleDefinition(IUnityContainer container)
         {
             _container = container;
         }
@@ -26,8 +26,8 @@ namespace Bloom.Browser.Playlist
         public void Initialize()
         {
             // Register services this module provides
-            _container.RegisterType<IPlaylistService, PlaylistService>(new ContainerControlledLifetimeManager());
-            _container.Resolve(typeof(IPlaylistService));
+            _container.RegisterType<ISongService, SongService>(new ContainerControlledLifetimeManager());
+            _container.Resolve(typeof(ISongService));
         }
     }
 }

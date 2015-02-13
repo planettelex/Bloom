@@ -1,6 +1,6 @@
-﻿using Bloom.Browser.Album.ViewModels;
+﻿using Bloom.Browser.AlbumModule.ViewModels;
 
-namespace Bloom.Browser.Album.Views
+namespace Bloom.Browser.AlbumModule.Views
 {
     /// <summary>
     /// Interaction logic for AlbumView.xaml

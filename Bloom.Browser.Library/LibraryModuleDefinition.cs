@@ -1,23 +1,23 @@
-﻿using Bloom.Browser.Library.Services;
+﻿using Bloom.Browser.LibraryModule.Services;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Browser.Library
+namespace Bloom.Browser.LibraryModule
 {
     /// <summary>
     /// Browser library module.
     /// </summary>
     [Module(ModuleName = "LibraryModule")]
-    public class LibraryModule : IModule
+    public class LibraryModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LibraryModule"/> class.
+        /// Initializes a new instance of the <see cref="LibraryModuleDefinition"/> class.
         /// </summary>
         /// <param name="container">The DI container.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public LibraryModule(IUnityContainer container, IEventAggregator eventAggregator)
+        public LibraryModuleDefinition(IUnityContainer container, IEventAggregator eventAggregator)
         {
             _container = container;
             _eventAggregator = eventAggregator;

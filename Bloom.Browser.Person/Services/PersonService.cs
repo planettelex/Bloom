@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Browser.Person.ViewModels;
-using Bloom.Browser.Person.Views;
+using Bloom.Browser.PersonModule.ViewModels;
+using Bloom.Browser.PersonModule.Views;
 using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Browser.Person.Services
+namespace Bloom.Browser.PersonModule.Services
 {
     public class PersonService : IPersonService
     {

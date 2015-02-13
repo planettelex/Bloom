@@ -8,7 +8,7 @@ using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Browser.Menu.ViewModels
+namespace Bloom.Browser.MenuModule.ViewModels
 {
     /// <summary>
     /// View model for MenuView.xaml.
