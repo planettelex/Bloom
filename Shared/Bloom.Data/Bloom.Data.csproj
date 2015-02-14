@@ -106,7 +106,24 @@
     <Compile Include="Tables\AlbumActivityTable.cs" />
     <Compile Include="Tables\AlbumArtworkTable.cs" />
     <Compile Include="Tables\AlbumCollaboratorTable.cs" />
+    <Compile Include="Tables\AlbumCreditRoleTable.cs" />
+    <Compile Include="Tables\AlbumCreditTable.cs" />
+    <Compile Include="Tables\AlbumMoodTable.cs" />
+    <Compile Include="Tables\AlbumReferenceTable.cs" />
+    <Compile Include="Tables\AlbumReleaseTable.cs" />
+    <Compile Include="Tables\AlbumReviewTable.cs" />
     <Compile Include="Tables\AlbumTable.cs" />
+    <Compile Include="Tables\AlbumTagTable.cs" />
+    <Compile Include="Tables\AlbumTrackTable.cs" />
+    <Compile Include="Tables\ArtistMemberRoleTable.cs" />
+    <Compile Include="Tables\ArtistMemberTable.cs" />
+    <Compile Include="Tables\ArtistPhotoTable.cs" />
+    <Compile Include="Tables\ArtistReferenceTable.cs" />
+    <Compile Include="Tables\ArtistTable.cs" />
+    <Compile Include="Tables\FiltersetElementTable.cs" />
+    <Compile Include="Tables\FiltersetOrderingTable.cs" />
+    <Compile Include="Tables\FiltersetStatementTable.cs" />
+    <Compile Include="Tables\FiltersetTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">

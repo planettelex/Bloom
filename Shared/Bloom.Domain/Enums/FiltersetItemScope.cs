@@ -2,7 +2,8 @@
 {
     public enum FiltersetItemScope
     {
+        Song,
         Album,
-        Song
+        Artist
     }
 }

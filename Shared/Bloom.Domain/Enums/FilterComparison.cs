@@ -2,6 +2,7 @@
 {
     public enum FilterComparison
     {
+        None,
         Is,
         IsNot,
         BeginsWith,

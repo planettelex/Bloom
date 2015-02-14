@@ -19,7 +19,21 @@ namespace Bloom.Data.Services
             {
                 new ActivityTable(),
                 new AlbumTable(),
-                new AlbumActivityTable()
+                new AlbumActivityTable(),
+                new AlbumArtworkTable(),
+                new AlbumCollaboratorTable(),
+                new AlbumCreditTable(),
+                new AlbumCreditRoleTable(),
+                new AlbumMoodTable(),
+                new AlbumReferenceTable(),
+                new AlbumReleaseTable(),
+                new AlbumReviewTable(),
+                new AlbumTagTable(),
+                new AlbumTrackTable(),
+                new ArtistTable(),
+                new ArtistMemberTable(),
+                new ArtistMemberRoleTable(),
+                new ArtistReferenceTable(),
             };
         }
         private readonly List<ISqlTable> _tables;

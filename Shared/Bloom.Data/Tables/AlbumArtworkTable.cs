@@ -14,7 +14,8 @@ namespace Bloom.Data.Tables
                 return "CREATE TABLE \"album_artwork\" (" +
                        "\"album_id\" VARCHAR(36) NOT NULL , " +
                        "\"order\" VARCHAR NOT NULL , " +
-                       "\"url\" INTEGER NOT NULL )";
+                       "\"url\" INTEGER NOT NULL ," +
+                       "PRIMARY KEY (\"album_id\", \"order\") )";
             }
         }
     }

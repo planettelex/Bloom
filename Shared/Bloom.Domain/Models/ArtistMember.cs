@@ -42,7 +42,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date this artist member started with this artist.
         /// </summary>
         [Column(Name = "started")]
-        public DateTime Started { get; set; }
+        public DateTime? Started { get; set; }
 
         /// <summary>
         /// Gets or sets the date this artist memeber ended with this artist.

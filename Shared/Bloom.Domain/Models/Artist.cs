@@ -26,7 +26,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date this artist started their career.
         /// </summary>
         [Column(Name = "started")]
-        public DateTime Started { get; set; }
+        public DateTime? Started { get; set; }
 
         /// <summary>
         /// Gets or sets the date this artist ended their career.
