@@ -6,7 +6,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Associates a song with a mood.
     /// </summary>
-    [Table(Name = "song")]
+    [Table(Name = "song_mood")]
     public class SongMood
     {
         /// <summary>

@@ -24,7 +24,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the artist rating.
         /// </summary>
         [Column(Name = "rating")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         /// <summary>
         /// Gets or sets the notes on this artist.

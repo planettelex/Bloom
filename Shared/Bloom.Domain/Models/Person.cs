@@ -39,14 +39,14 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the date the person was born.
         /// </summary>
-        [Column(Name = "born")]
-        public DateTime? Born { get; set; }
+        [Column(Name = "born_on")]
+        public DateTime? BornOn { get; set; }
 
         /// <summary>
         /// Gets or sets the date the person died.
         /// </summary>
-        [Column(Name = "died")]
-        public DateTime? Died { get; set; }
+        [Column(Name = "died_on")]
+        public DateTime? DiedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the person's bio.

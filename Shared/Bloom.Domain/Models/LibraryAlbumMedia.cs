@@ -43,19 +43,19 @@ namespace Bloom.Domain.Models
         /// Gets or sets the approximate value of the media.
         /// </summary>
         [Column(Name = "approximate_value")]
-        public decimal ApproximateValue { get; set; }
+        public decimal? ApproximateValue { get; set; }
 
         /// <summary>
         /// Gets or sets the purchased price of this media.
         /// </summary>
         [Column(Name = "purchased_price")]
-        public decimal PurchasedPrice { get; set; }
+        public decimal? PurchasedPrice { get; set; }
 
         /// <summary>
         /// Gets or sets date the media was purchased on.
         /// </summary>
         [Column(Name = "purchased_on")]
-        public DateTime PurchasedOn { get; set; }
+        public DateTime? PurchasedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the identifier of the library owner this media is on loan to.
@@ -71,7 +71,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the media release identifier.
         /// </summary>
-        [Column(Name = "released_id")]
+        [Column(Name = "release_id")]
         public Guid ReleaseId { get; set; }
 
         /// <summary>

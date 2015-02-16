@@ -1,0 +1,22 @@
+﻿using Bloom.Data.Interfaces;
+
+namespace Bloom.Data.Tables
+{
+    public class SongCollaboratorTable : ISqlTable
+    {
+        /// <summary>
+        /// Gets the create song_collaborator table SQL.
+        /// </summary>
+        public string CreateSql
+        {
+            get
+            {
+                return "CREATE TABLE \"song_collaborator\" (" +
+                       "\"song_id\" VARCHAR(36) NOT NULL , " +
+                       "\"artist_id\" VARCHAR(36) NOT NULL , " +
+                       "\"is_featured\" BOOL NOT NULL DEFAULT FALSE ," +
+                       "PRIMARY KEY (\"song_id\", \"artist_id\") )";
+            }
+        }
+    }
+}

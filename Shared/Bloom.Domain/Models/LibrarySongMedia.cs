@@ -58,19 +58,19 @@ namespace Bloom.Domain.Models
         public bool IsDamaged { get; set; }
 
         /// <summary>
-        /// Gets or sets the size of the media file.
+        /// Gets or sets the size of the media file, measured in kilobytes (KB).
         /// </summary>
         [Column(Name = "file_size")]
         public int? FileSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the media sample rate.
+        /// Gets or sets the media sample rate, measured in Hertz (Hz).
         /// </summary>
         [Column(Name = "sample_rate")]
         public int? SampleRate { get; set; }
 
         /// <summary>
-        /// Gets or sets the media bit rate.
+        /// Gets or sets the media bit rate, measured in kilobits per second (kbps).
         /// </summary>
         [Column(Name = "bit_rate")]
         public int? BitRate { get; set; }

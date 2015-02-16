@@ -31,6 +31,6 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date the photo was taken on.
         /// </summary>
         [Column(Name = "taken_on")]
-        public DateTime TakenOn { get; set; }
+        public DateTime? TakenOn { get; set; }
     }
 }

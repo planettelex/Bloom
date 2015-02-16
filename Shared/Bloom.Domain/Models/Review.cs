@@ -37,7 +37,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date the review published on.
         /// </summary>
         [Column(Name = "published_on")]
-        public DateTime PublishedOn { get; set; }
+        public DateTime? PublishedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the publication identifier.

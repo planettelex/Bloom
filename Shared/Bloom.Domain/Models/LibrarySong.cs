@@ -61,7 +61,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date this song was rated on.
         /// </summary>
         [Column(Name = "rated_on")]
-        public DateTime RatedOn { get; set; }
+        public DateTime? RatedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the date this song was last played.

@@ -38,13 +38,13 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date on which the label was founded.
         /// </summary>
         [Column(Name = "founded_on")]
-        public DateTime FoundedOn { get; set; }
+        public DateTime? FoundedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the date the label was closed.
         /// </summary>
-        [Column(Name = "closed")]
-        public DateTime? Closed { get; set; }
+        [Column(Name = "closed_on")]
+        public DateTime? ClosedOn { get; set; }
 
         /// <summary>
         /// Gets or sets the label personel.

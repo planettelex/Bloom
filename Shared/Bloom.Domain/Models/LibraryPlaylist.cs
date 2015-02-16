@@ -24,6 +24,6 @@ namespace Bloom.Domain.Models
         /// Gets or sets the playlist rating.
         /// </summary>
         [Column(Name = "rating")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
     }
 }

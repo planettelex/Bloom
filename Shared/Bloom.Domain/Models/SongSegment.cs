@@ -23,22 +23,28 @@ namespace Bloom.Domain.Models
         public Guid SongId { get; set; }
 
         /// <summary>
-        /// Gets or sets the song segment start time in miliseconds.
+        /// Gets or sets the song segment start time in milliseconds.
         /// </summary>
-        [Column(Name = "start")]
-        public int Start { get; set; }
+        [Column(Name = "start_time")]
+        public int StartTime { get; set; }
 
         /// <summary>
         /// Gets or sets the song segment stop time in milliseconds.
         /// </summary>
-        [Column(Name = "stop")]
-        public int Stop { get; set; }
+        [Column(Name = "stop_time")]
+        public int StopTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the BPM.
+        /// </summary>
+        [Column(Name = "bpm")]
+        public int? Bpm { get; set; }
 
         /// <summary>
         /// Gets or sets the song segment musical key.
         /// </summary>
         [Column(Name = "key")]
-        public MusicalKeys Key { get; set; }
+        public MusicalKeys? Key { get; set; }
 
         /// <summary>
         /// Gets or sets the time signature identifier.

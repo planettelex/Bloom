@@ -41,7 +41,7 @@ namespace Bloom.Domain.Models
         public string Version { get; set; }
 
         /// <summary>
-        /// Gets or sets the song length, in millisecond.
+        /// Gets or sets the song length, in milliseconds.
         /// </summary>
         [Column(Name = "length")]
         public int Length { get; set; }
@@ -157,13 +157,13 @@ namespace Bloom.Domain.Models
         public TimeOfYear? AboutTimeOfYear { get; set; }
 
         /// <summary>
-        /// Gets or sets the starting time this song is best played at.
+        /// Gets or sets the starting time this song is best played at, measured in seconds past midnight.
         /// </summary>
         [Column(Name = "best_played_at_start")]
         public int? BestPlayedAtStart { get; set; }
 
         /// <summary>
-        /// Gets or sets the stopping time this song is best played at.
+        /// Gets or sets the stopping time this song is best played at, measured in seconds past midnight.
         /// </summary>
         [Column(Name = "best_played_at_stop")]
         public int? BestPlayedAtStop { get; set; }

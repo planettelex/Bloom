@@ -22,9 +22,9 @@ namespace Bloom.Domain.Models
         public Guid SongId { get; set; }
 
         /// <summary>
-        /// Gets or sets the date of a recording session.
+        /// Gets or sets the date a recording session occurred on.
         /// </summary>
-        [Column(Name = "date")]
-        public DateTime Date { get; set; }
+        [Column(Name = "occurred_on")]
+        public DateTime OccurredOn { get; set; }
     }
 }

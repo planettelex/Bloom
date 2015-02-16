@@ -25,7 +25,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the library album rating.
         /// </summary>
         [Column(Name = "rating")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         /// <summary>
         /// Gets or sets the library album review.
