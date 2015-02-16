@@ -11,11 +11,12 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"genre\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"description\" VARCHAR , " +
-                       "\"parent_genre_id\" VARCHAR(36) )";
+                return "CREATE TABLE genre (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "description VARCHAR , " +
+                       "parent_genre_id VARCHAR(36) , " +
+                       "FOREIGN KEY (parent_genre_id) REFERENCES genre(id) )";
             }
         }
     }

@@ -11,10 +11,12 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"label_personel_role\" (" +
-                       "\"label_personel_id\" VARCHAR(36) NOT NULL , " +
-                       "\"role_id\" VARCHAR(36) NOT NULL , " +
-                       "PRIMARY KEY (\"label_personel_id\", \"role_id\") )";
+                return "CREATE TABLE label_personel_role (" +
+                       "label_personel_id VARCHAR(36) NOT NULL , " +
+                       "role_id VARCHAR(36) NOT NULL , " +
+                       "PRIMARY KEY (label_personel_id, role_id) , " +
+                       "FOREIGN KEY (label_personel_id) REFERENCES label_personel(id) , " +
+                       "FOREIGN KEY (role_id) REFERENCES role(id) )";
             }
         }
     }

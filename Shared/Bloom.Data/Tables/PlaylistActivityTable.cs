@@ -11,10 +11,12 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"playlist_activity\" (" +
-                       "\"playlist_id\" VARCHAR(36) NOT NULL , " +
-                       "\"activity_id\" VARCHAR(36) NOT NULL ," +
-                       "PRIMARY KEY (\"playlist_id\", \"activity_id\") )";
+                return "CREATE TABLE playlist_activity (" +
+                       "playlist_id VARCHAR(36) NOT NULL , " +
+                       "activity_id VARCHAR(36) NOT NULL ," +
+                       "PRIMARY KEY (playlist_id, activity_id) , " +
+                       "FOREIGN KEY (playlist_id) REFERENCES playlist(id) , " +
+                       "FOREIGN KEY (activity_id) REFERENCES activity(id) )";
             }
         }
     }

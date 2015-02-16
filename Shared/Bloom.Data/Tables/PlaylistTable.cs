@@ -11,13 +11,14 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"playlist\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"description\" VARCHAR , " +
-                       "\"length\" INTEGER NOT NULL DEFAULT 0 , " +
-                       "\"created_on\" DATETIME NOT NULL , " +
-                       "\"created_by_id\" VARCHAR(36) NOT NULL )";
+                return "CREATE TABLE playlist (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "description VARCHAR , " +
+                       "length INTEGER NOT NULL DEFAULT 0 , " +
+                       "created_on DATETIME NOT NULL , " +
+                       "created_by_id VARCHAR(36) NOT NULL , " +
+                       "FOREIGN KEY (created_by_id) REFERENCES person(id) )";
             }
         }
     }

@@ -71,8 +71,7 @@ namespace Bloom.Domain.Models
         {
             get
             {
-                var filePath = FolderPath.TrimEnd('\\') + "\\" + FileName;
-                return filePath.ToLower();
+                return FolderPath.TrimEnd('\\') + "\\" + FileName;
             }
         }
     }

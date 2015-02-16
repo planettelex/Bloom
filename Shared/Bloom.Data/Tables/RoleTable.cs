@@ -11,9 +11,9 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"role\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL )";
+                return "CREATE TABLE role (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL )";
             }
         }
     }

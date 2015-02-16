@@ -17,10 +17,10 @@ namespace Bloom.Domain.Models
         public Guid FiltersetId { get; set; }
 
         /// <summary>
-        /// Gets or sets the filterset element order.
+        /// Gets or sets the filterset element order priority.
         /// </summary>
-        [Column(Name = "order", IsPrimaryKey = true)]
-        public int Order { get; set; }
+        [Column(Name = "priority", IsPrimaryKey = true)]
+        public int Priority { get; set; }
 
         /// <summary>
         /// Gets or sets the filterset element type.

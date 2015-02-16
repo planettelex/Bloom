@@ -11,10 +11,10 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"time_signature\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"beats\" INTEGER NOT NULL , " +
-                       "\"note_length\" INTEGER NOT NULL )";
+                return "CREATE TABLE time_signature (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "beats INTEGER NOT NULL , " +
+                       "note_length INTEGER NOT NULL )";
             }
         }
     }

@@ -11,14 +11,14 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"artist\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"started\" DATETIME , " +
-                       "\"ended\" DATETIME , " +
-                       "\"bio\" VARCHAR , " +
-                       "\"twitter\" VARCHAR , " +
-                       "\"is_solo\" BOOL NOT NULL DEFAULT FALSE )";
+                return "CREATE TABLE artist (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "started_on DATETIME , " +
+                       "ended_on DATETIME , " +
+                       "bio VARCHAR , " +
+                       "twitter VARCHAR , " +
+                       "is_solo BOOL NOT NULL DEFAULT FALSE )";
             }
         }
     }

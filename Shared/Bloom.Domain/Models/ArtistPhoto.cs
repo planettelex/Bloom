@@ -27,9 +27,9 @@ namespace Bloom.Domain.Models
         public Photo Photo { get; set; }
 
         /// <summary>
-        /// Gets or sets the order of this artist photo.
+        /// Gets or sets the order priority of this artist photo.
         /// </summary>
-        [Column(Name = "order")]
-        public int Order { get; set; }
+        [Column(Name = "priority")]
+        public int Priority { get; set; }
     }
 }

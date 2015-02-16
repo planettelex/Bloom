@@ -11,11 +11,11 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"photo\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"url\" VARCHAR NOT NULL , " +
-                       "\"caption\" VARCHAR , " +
-                       "\"taken_on\" DATETIME )";
+                return "CREATE TABLE photo (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "url VARCHAR NOT NULL , " +
+                       "caption VARCHAR , " +
+                       "taken_on DATETIME )";
             }
         }
     }

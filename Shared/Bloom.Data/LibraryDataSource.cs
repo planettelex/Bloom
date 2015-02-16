@@ -68,7 +68,7 @@ namespace Bloom.Data
             if (IsConnected())
                 throw new InvalidOperationException("Cannot connect to a new state database while connected to an existing one.");
 
-            var connectionString = string.Format("Data Source={0};Version=3;", filePath);
+            var connectionString = string.Format("Data Source={0};Version=3;Foreign Keys=true;", filePath);
             var connection = new SQLiteConnection(connectionString);
             Context = new DataContext(connection);
             FilePath = filePath;

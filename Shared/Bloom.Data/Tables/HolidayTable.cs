@@ -11,14 +11,14 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"holiday\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"description\" VARCHAR , " +
-                       "\"start_month\" INTEGER NOT NULL DEFAULT 0 , " +
-                       "\"start_day\" INTEGER NOT NULL DEFAULT 0 , " +
-                       "\"end_month\" INTEGER NOT NULL DEFAULT 0 , " +
-                       "\"end_day\" INTEGER NOT NULL DEFAULT 0 )";
+                return "CREATE TABLE holiday (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "description VARCHAR , " +
+                       "start_month INTEGER NOT NULL DEFAULT 0 , " +
+                       "start_day INTEGER NOT NULL DEFAULT 0 , " +
+                       "end_month INTEGER NOT NULL DEFAULT 0 , " +
+                       "end_day INTEGER NOT NULL DEFAULT 0 )";
             }
         }
     }

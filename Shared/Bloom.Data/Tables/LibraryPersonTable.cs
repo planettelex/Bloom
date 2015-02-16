@@ -11,9 +11,10 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"library_person\" (" +
-                       "\"person_id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"follow\" BOOL NOT NULL DEFAULT FALSE )";
+                return "CREATE TABLE library_person (" +
+                       "person_id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "follow BOOL NOT NULL DEFAULT FALSE , " +
+                       "FOREIGN KEY (person_id) REFERENCES person(id) )";
             }
         }
     }

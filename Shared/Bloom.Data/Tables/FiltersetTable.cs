@@ -11,9 +11,9 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"filterset\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR )";
+                return "CREATE TABLE filterset (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR )";
             }
         }
     }

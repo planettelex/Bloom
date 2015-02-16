@@ -11,11 +11,11 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"filterset_statement\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"filter_id\" VARCHAR(36) NOT NULL , " +
-                       "\"scope\" INTEGER NOT NULL DEFAULT 0 , " +
-                       "\"comparison\" INTEGER NOT NULL DEFAULT 0 )";
+                return "CREATE TABLE filterset_statement (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "filter_id VARCHAR(36) NOT NULL , " +
+                       "scope INTEGER NOT NULL DEFAULT 0 , " +
+                       "comparison INTEGER NOT NULL DEFAULT 0 )";
             }
         }
     }

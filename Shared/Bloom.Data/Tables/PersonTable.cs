@@ -11,13 +11,13 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"person\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"born_on\" DATETIME , " +
-                       "\"died_on\" DATETIME , " +
-                       "\"bio\" VARCHAR , " +
-                       "\"twitter\" VARCHAR )";
+                return "CREATE TABLE person (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "born_on DATETIME , " +
+                       "died_on DATETIME , " +
+                       "bio VARCHAR , " +
+                       "twitter VARCHAR )";
             }
         }
     }

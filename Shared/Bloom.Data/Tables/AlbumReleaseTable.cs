@@ -18,7 +18,9 @@ namespace Bloom.Data.Tables
                        "\"digital_formats\" INTEGER NOT NULL DEFAULT 0, " +
                        "\"release_date\" DATETIME , " +
                        "\"label_id\" VARCHAR(36) ," +
-                       "\"catalog_number\" VARCHAR )";
+                       "\"catalog_number\" VARCHAR , " +
+                       "FOREIGN KEY (album_id) REFERENCES album(id) , " +
+                       "FOREIGN KEY (label_id) REFERENCES label(id) )";
             } 
         }
     }

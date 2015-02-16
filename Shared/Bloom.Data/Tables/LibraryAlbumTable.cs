@@ -11,11 +11,11 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"library_album\" (" +
-                       "\"album_id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"rating\" INTEGER , " +
-                       "\"review\" VARCHAR , " +
-                       "\"parent_genre_id\" VARCHAR(36) )";
+                return "CREATE TABLE library_album (" +
+                       "album_id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "rating INTEGER , " +
+                       "review VARCHAR , " +
+                       "FOREIGN KEY (album_id) REFERENCES album(id) )";
             }
         }
     }

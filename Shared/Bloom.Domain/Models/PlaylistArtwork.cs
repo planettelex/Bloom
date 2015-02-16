@@ -16,10 +16,10 @@ namespace Bloom.Domain.Models
         public Guid PlaylistId { get; set; }
 
         /// <summary>
-        /// Gets or sets the artwork order.
+        /// Gets or sets the artwork order priority.
         /// </summary>
-        [Column(Name = "order", IsPrimaryKey = true)]
-        public int Order { get; set; }
+        [Column(Name = "priority", IsPrimaryKey = true)]
+        public int Priority { get; set; }
 
         /// <summary>
         /// Gets or sets the artwork URL.

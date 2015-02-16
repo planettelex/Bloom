@@ -11,12 +11,12 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"reference\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"icon_url\" VARCHAR , " +
-                       "\"url\" VARCHAR , " +
-                       "\"title\" VARCHAR )";
+                return "CREATE TABLE reference (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "icon_url VARCHAR , " +
+                       "url VARCHAR , " +
+                       "title VARCHAR )";
             }
         }
     }

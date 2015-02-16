@@ -11,10 +11,10 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"publication\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "\"name\" VARCHAR NOT NULL , " +
-                       "\"website_url\" VARCHAR )";
+                return "CREATE TABLE publication (" +
+                       "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "name VARCHAR NOT NULL , " +
+                       "website_url VARCHAR )";
             }
         }
     }
