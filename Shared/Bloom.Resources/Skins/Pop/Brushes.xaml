@@ -4,10 +4,19 @@
     <!-- Pop Skin -->
 
     <!-- Colors -->
+    <Color x:Key="ControlBackgroundColor">#FFCFD3DA</Color>
+    <Color x:Key="ControlDisabledBackgroundColor">#FFE0E3E8</Color>
+    <Color x:Key="ControlHoverBackgroundColor">#FFE0E3E8</Color>
+    <Color x:Key="DisabledBorderColor">#FFEFEFEF</Color>
+    <Color x:Key="DisabledForegroundColor">#FF868686</Color>
+    <Color x:Key="ErrorBorderColor">#FFC92931</Color>
+    <Color x:Key="ErrorForegroundColor">#FFFEFEFE</Color>
+    <Color x:Key="ErrorBackgroundColor">#FFDC000C</Color>
     <Color x:Key="MenuBackgroundColor">#FFF6F6F6</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FFE7E7E5</Color>
     <Color x:Key="NormalBorderColor">#FFB4B4B4</Color>
     <Color x:Key="NormalForegroundColor">#FF232523</Color>
+    <Color x:Key="ScrollBarBackgroundColor">#FFD3D3D3</Color>
     <Color x:Key="ShellBackgroundColor">#FFD3D3D3</Color>
     <Color x:Key="SidebarBackgroundColor">#FFBCBCBC</Color>
     <Color x:Key="TabsBackgroundColor">#FFF5F5F3</Color>

@@ -4,10 +4,19 @@
     <!-- Goth Skin -->
 
     <!-- Colors -->
+    <Color x:Key="ControlBackgroundColor">#FFCFD3DA</Color>
+    <Color x:Key="ControlDisabledBackgroundColor">#FFE0E3E8</Color>
+    <Color x:Key="ControlHoverBackgroundColor">#FFE0E3E8</Color>
+    <Color x:Key="DisabledBorderColor">#FFEFEFEF</Color>
+    <Color x:Key="DisabledForegroundColor">#FF868686</Color>
+    <Color x:Key="ErrorBorderColor">#FFC92931</Color>
+    <Color x:Key="ErrorForegroundColor">#FFFEFEFE</Color>
+    <Color x:Key="ErrorBackgroundColor">#FFDC000C</Color>
     <Color x:Key="MenuBackgroundColor">#FF121212</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FF2A2D34</Color>
     <Color x:Key="NormalBorderColor">#FF141D2E</Color>
     <Color x:Key="NormalForegroundColor">#FFF6F6F6</Color>
+    <Color x:Key="ScrollBarBackgroundColor">#FF555E6F</Color>
     <Color x:Key="ShellBackgroundColor">#FF000000</Color>
     <Color x:Key="SidebarBackgroundColor">#FF1A1A1A</Color>
     <Color x:Key="TabsBackgroundColor">#FF22232A</Color>
