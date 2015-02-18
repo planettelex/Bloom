@@ -2,15 +2,18 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Activity">
     <Position X="7.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Activity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Song">
     <Position X="7.25" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>ogAGAAwAAIAhMEYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,8 +39,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Album">
     <Position X="0.75" Y="4.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>pAAGABQAAEBjAAEAAAAAEAxAAIgwAUEAAQACwAABAAA=</HashCode>
+      <HashCode>pAAGEFQAAEBjDAEAAAAAEAxAAogwAUEAAQACyAABAAA=</HashCode>
       <FileName>Models\Album.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -46,8 +52,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumTrack">
     <Position X="4" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAABAAAAAAAAIAgIogAAAEAAAAAACAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -56,13 +65,16 @@
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumActivity">
     <Position X="0.75" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAACEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAgAAAAEAAAAAACEAAAAA=</HashCode>
       <FileName>Models\AlbumActivity.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Activity" />
       <Property Name="Album" />
+      <Property Name="Activity" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.SongActivity">
@@ -72,8 +84,8 @@
       <FileName>Models\SongActivity.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Activity" />
       <Property Name="Song" />
+      <Property Name="Activity" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.PlaylistActivity">
@@ -83,8 +95,8 @@
       <FileName>Models\PlaylistActivity.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Activity" />
       <Property Name="Playlist" />
+      <Property Name="Activity" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

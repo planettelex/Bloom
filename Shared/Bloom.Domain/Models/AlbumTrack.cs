@@ -10,6 +10,47 @@ namespace Bloom.Domain.Models
     public class AlbumTrack
     {
         /// <summary>
+        /// Creates a new album track instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="song">The song.</param>
+        /// <param name="trackNumber">The track number.</param>
+        public static AlbumTrack Create(Album album, Song song, int trackNumber)
+        {
+            return new AlbumTrack
+            {
+                Id = Guid.NewGuid(),
+                AlbumId = album.Id,
+                Album = album,
+                SongId = song.Id,
+                Song = song,
+                DiscNumber = 1,
+                TrackNumber = trackNumber
+            };
+        }
+
+        /// <summary>
+        /// Creates a new album track instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="song">The song.</param>
+        /// <param name="trackNumber">The track number.</param>
+        /// <param name="discNumber">The disc number.</param>
+        public static AlbumTrack Create(Album album, Song song, int trackNumber, int discNumber)
+        {
+            return new AlbumTrack
+            {
+                Id = Guid.NewGuid(),
+                AlbumId = album.Id,
+                Album = album,
+                SongId = song.Id,
+                Song = song,
+                DiscNumber = discNumber,
+                TrackNumber = trackNumber
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album track identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

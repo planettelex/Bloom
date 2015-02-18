@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class AlbumMood
     {
         /// <summary>
+        /// Creates a new album mood instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="mood">The mood.</param>
+        public static AlbumMood Create(Album album, Mood mood)
+        {
+            return new AlbumMood
+            {
+                AlbumId = album.Id,
+                Album = album,
+                MoodId = mood.Id,
+                Mood = mood
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]

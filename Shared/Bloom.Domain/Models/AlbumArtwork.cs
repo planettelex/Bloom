@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class AlbumArtwork
     {
         /// <summary>
+        /// Creates a new album artwork instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="url">The artwork URL.</param>
+        /// <param name="priority">The order priority.</param>
+        public static AlbumArtwork Create(Album album, string url, int priority)
+        {
+            return new AlbumArtwork
+            {
+                AlbumId = album.Id,
+                Url = url,
+                Priority = priority
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]

@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class AlbumReview
     {
         /// <summary>
+        /// Creates a new album review instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="review">The review.</param>
+        public static AlbumReview Create(Album album, Review review)
+        {
+            return new AlbumReview
+            {
+                AlbumId = album.Id,
+                Album = album,
+                ReviewId = review.Id,
+                Review = review
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]

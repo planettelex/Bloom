@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class AlbumReference
     {
         /// <summary>
+        /// Creates a new album reference instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="reference">The reference.</param>
+        public static AlbumReference Create(Album album, Reference reference)
+        {
+            return new AlbumReference
+            {
+                AlbumId = album.Id,
+                ReferenceId = reference.Id,
+                Reference = reference
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]

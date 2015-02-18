@@ -17,7 +17,7 @@ namespace Bloom.Domain.Models
         /// <param name="folderPath">The library folder path.</param>
         public static Library Create(Person owner, string name, string folderPath)
         {
-            var library = new Library
+            return new Library
             {
                 Id = Guid.NewGuid(),
                 Name = name,
@@ -26,7 +26,6 @@ namespace Bloom.Domain.Models
                 OwnerId = owner.Id,
                 Owner = owner
             };
-            return library;
         }
 
         /// <summary>

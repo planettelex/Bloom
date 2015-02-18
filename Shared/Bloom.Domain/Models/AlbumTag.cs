@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class AlbumTag
     {
         /// <summary>
+        /// Creates  a new album tag instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="tag">The tag.</param>
+        public static AlbumTag Create(Album album, Tag tag)
+        {
+            return new AlbumTag
+            {
+                AlbumId = album.Id,
+                Album = album,
+                TagId = tag.Id,
+                Tag = tag
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]

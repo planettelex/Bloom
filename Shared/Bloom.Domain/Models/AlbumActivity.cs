@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class AlbumActivity
     {
         /// <summary>
+        /// Creates a new album activity instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="activity">The activity.</param>
+        public static AlbumActivity Create(Album album, Activity activity)
+        {
+            return new AlbumActivity
+            {
+                AlbumId = album.Id,
+                Album = album,
+                ActivityId = activity.Id,
+                Activity = activity
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]
