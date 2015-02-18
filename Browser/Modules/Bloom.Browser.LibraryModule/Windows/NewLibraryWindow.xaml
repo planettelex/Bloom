@@ -5,7 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d"
-             Header="New Library" Width="600" Height="250" ResizeMode="NoResize" HideMaximizeButton="True" HideMinimizeButton="True" WindowStartupLocation="CenterOwner">
+             Header="New Library" 
+             Width="600" 
+             Height="250" 
+             ResizeMode="NoResize"
+             HideMaximizeButton="True" 
+             HideMinimizeButton="True" 
+             WindowStartupLocation="CenterOwner"
+             Style="{DynamicResource RadWindowStyle}">
 
     <Grid>
         <Grid.RowDefinitions>
