@@ -1,13 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     <!-- Rock Skin -->
     
     <!-- Colors -->
     <Color x:Key="ControlBackgroundColor">#FFCFD3DA</Color>
     <Color x:Key="ControlDisabledBackgroundColor">#FF969696</Color>
     <Color x:Key="ControlHoverBackgroundColor">#FFE0E3E8</Color>
-    <Color x:Key="DisabledBorderColor">#FFEFEFEF</Color>
+    <Color x:Key="DisabledBorderColor">#FF727B8C</Color>
     <Color x:Key="DisabledForegroundColor">#FF868686</Color>
     <Color x:Key="ErrorBorderColor">#FFC92931</Color>
     <Color x:Key="ErrorForegroundColor">#FFFEFEFE</Color>
@@ -16,6 +15,8 @@
     <Color x:Key="MenuItemSelectedBackgroundColor">#FFE0E3E8</Color>
     <Color x:Key="NormalBorderColor">#FF727B8C</Color>
     <Color x:Key="NormalForegroundColor">#FF000104</Color>
+    <Color x:Key="ProgressBarStartColor">#FFA3CDF4</Color>
+    <Color x:Key="ProgressBarStopColor">#FF789FC3</Color>
     <Color x:Key="ScrollBarBackgroundColor">#FF555E6F</Color>
     <Color x:Key="ShellBackgroundColor">#FF555E6F</Color>
     <Color x:Key="SidebarBackgroundColor">#FF3C465B</Color>
@@ -25,6 +26,7 @@
     <Color x:Key="TitlebarBackgroundColor">#FFCFD3DA</Color>
 
     <!-- Brushes -->
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{StaticResource ControlBackgroundColor}" />
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemSelectedBackgroundBrush" Color="{StaticResource MenuItemSelectedBackgroundColor}" />

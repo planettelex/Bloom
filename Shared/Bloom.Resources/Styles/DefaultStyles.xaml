@@ -738,7 +738,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="MinHeight" Value="22"/>
-        <Setter Property="telerik:CaretBrushHelper.CaretBrush" Value="{DynamicResource NormalForegroundBrush}"/>
+        <Setter Property="telerik:CaretBrushHelper.CaretBrush" Value="{DynamicResource NormalForegroundBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Padding" Value="3 2 3 2"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTooltipTemplate}"/>
