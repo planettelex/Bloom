@@ -10,6 +10,37 @@ namespace Bloom.Domain.Models
     public class Review
     {
         /// <summary>
+        /// Creates a new review instance.
+        /// </summary>
+        /// <param name="url">The review URL.</param>
+        public static Review Create(string url)
+        {
+            return new Review
+            {
+                Id = Guid.NewGuid(),
+                Url = url
+            };
+        }
+
+        /// <summary>
+        /// Creates a new review instance.
+        /// </summary>
+        /// <param name="title">The review title.</param>
+        /// <param name="body">The review body.</param>
+        /// <param name="author">The review author.</param>
+        public static Review Create(string title, string body, Person author)
+        {
+            return new Review
+            {
+                Id = Guid.NewGuid(),
+                Title = title,
+                Body = body,
+                AuthorId = author.Id,
+                Author = author
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the review identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

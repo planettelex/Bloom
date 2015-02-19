@@ -10,6 +10,19 @@ namespace Bloom.Domain.Models
     public class Role
     {
         /// <summary>
+        /// Creates a new role instance.
+        /// </summary>
+        /// <param name="name">The role name.</param>
+        public static Role Create(string name)
+        {
+            return new Role
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the role identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class PlaylistMood
     {
         /// <summary>
+        /// Creates a new playlist mood instance.
+        /// </summary>
+        /// <param name="playlist">The playlist.</param>
+        /// <param name="mood">The mood.</param>
+        public static PlaylistMood Create(Playlist playlist, Mood mood)
+        {
+            return new PlaylistMood
+            {
+                PlaylistId = playlist.Id,
+                Playlist = playlist,
+                MoodId = mood.Id,
+                Mood = mood
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
         [Column(Name = "playlist_id", IsPrimaryKey = true)]

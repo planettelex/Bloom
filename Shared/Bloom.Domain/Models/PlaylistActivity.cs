@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class PlaylistActivity
     {
         /// <summary>
+        /// Creates a new playlist activity instance.
+        /// </summary>
+        /// <param name="playlist">The playlist.</param>
+        /// <param name="activity">The activity.</param>
+        public static PlaylistActivity Create(Playlist playlist, Activity activity)
+        {
+            return new PlaylistActivity
+            {
+                PlaylistId = playlist.Id,
+                Playlist = playlist,
+                ActivityId = activity.Id,
+                Activity = activity
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
         [Column(Name = "playlist_id", IsPrimaryKey = true)]

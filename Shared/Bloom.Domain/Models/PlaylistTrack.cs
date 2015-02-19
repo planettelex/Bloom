@@ -10,6 +10,23 @@ namespace Bloom.Domain.Models
     public class PlaylistTrack
     {
         /// <summary>
+        /// Creates a new playlist track instance.
+        /// </summary>
+        /// <param name="playlist">The playlist.</param>
+        /// <param name="song">The song.</param>
+        /// <param name="trackNumber">The track number.</param>
+        public static PlaylistTrack Create(Playlist playlist, Song song, int trackNumber)
+        {
+            return new PlaylistTrack
+            {
+                PlaylistId = playlist.Id,
+                SongId = song.Id,
+                Song = song,
+                TrackNumber = trackNumber
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
         [Column(Name = "playlist_id", IsPrimaryKey = true)]
@@ -29,7 +46,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the track number.
         /// </summary>
-        [Column(Name = "track_number")]
+        [Column(Name = "track_number", IsPrimaryKey = true)]
         public int TrackNumber { get; set; }
     }
 }

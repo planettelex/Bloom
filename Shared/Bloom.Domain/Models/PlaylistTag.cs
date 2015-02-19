@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class PlaylistTag
     {
         /// <summary>
+        /// Creates a new playlist mood instance.
+        /// </summary>
+        /// <param name="playlist">The playlist.</param>
+        /// <param name="tag">The tag.</param>
+        public static PlaylistTag Create(Playlist playlist, Tag tag)
+        {
+            return new PlaylistTag
+            {
+                PlaylistId = playlist.Id,
+                Playlist = playlist,
+                TagId = tag.Id,
+                Tag = tag
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
         [Column(Name = "playlist_id", IsPrimaryKey = true)]

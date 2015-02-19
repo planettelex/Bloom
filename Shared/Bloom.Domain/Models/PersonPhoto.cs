@@ -10,6 +10,23 @@ namespace Bloom.Domain.Models
     public class PersonPhoto
     {
         /// <summary>
+        /// Creates a new person photo instance.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="photo">The photo.</param>
+        /// <param name="priority">The order priority.</param>
+        public static PersonPhoto Create(Person person, Photo photo, int priority)
+        {
+            return new PersonPhoto
+            {
+                PersonId = person.Id,
+                PhotoId = photo.Id,
+                Photo = photo,
+                Priority = priority
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the person identifier.
         /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]

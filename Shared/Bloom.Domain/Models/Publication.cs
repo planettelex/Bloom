@@ -10,6 +10,19 @@ namespace Bloom.Domain.Models
     public class Publication
     {
         /// <summary>
+        /// Creates a new publication instance.
+        /// </summary>
+        /// <param name="name">The publication name.</param>
+        public static Publication Create(string name)
+        {
+            return new Publication
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the publication identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

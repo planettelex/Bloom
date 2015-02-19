@@ -259,7 +259,7 @@ namespace Bloom.Domain.Models
         public AlbumArtwork AddArtwork(string url)
         {
             if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException(url);
+                throw new ArgumentNullException("url");
 
             if (Artwork == null)
                 Artwork = new List<AlbumArtwork>();

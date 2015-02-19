@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class Reference
     {
         /// <summary>
+        /// Creates a new reference instance.
+        /// </summary>
+        /// <param name="name">The reference name.</param>
+        /// <param name="url">The reference URL.</param>
+        public static Reference Create(string name, string url)
+        {
+            return new Reference
+            {
+                Id = Guid.NewGuid(),
+                Name = name,
+                Url = url
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the reference identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

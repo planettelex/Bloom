@@ -11,6 +11,21 @@ namespace Bloom.Domain.Models
     public class TimeSignature
     {
         /// <summary>
+        /// Creates a new time signature instance.
+        /// </summary>
+        /// <param name="beats">The number of beats per measure.</param>
+        /// <param name="noteLength">The length of each beat.</param>
+        public static TimeSignature Create(int beats, NoteLength noteLength)
+        {
+            return new TimeSignature
+            {
+                Id = Guid.NewGuid(),
+                Beats = beats,
+                NoteLength = noteLength
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

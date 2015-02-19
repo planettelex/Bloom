@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class PersonReference
     {
         /// <summary>
+        /// Creates a new person reference instance.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="reference">The reference.</param>
+        public static PersonReference Create(Person person, Reference reference)
+        {
+            return new PersonReference
+            {
+                PersonId = person.Id,
+                ReferenceId = reference.Id,
+                Reference = reference
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the person identifier.
         /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]

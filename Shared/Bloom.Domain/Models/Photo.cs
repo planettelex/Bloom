@@ -10,6 +10,19 @@ namespace Bloom.Domain.Models
     public class Photo
     {
         /// <summary>
+        /// Creates a new photo instance.
+        /// </summary>
+        /// <param name="url">The photo URL.</param>
+        public static Photo Create(string url)
+        {
+            return new Photo
+            {
+                Id = Guid.NewGuid(),
+                Url = url
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the photo identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
