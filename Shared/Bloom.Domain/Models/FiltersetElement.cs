@@ -11,16 +11,50 @@ namespace Bloom.Domain.Models
     public class FiltersetElement
     {
         /// <summary>
+        /// Creates a new filterset element instance.
+        /// </summary>
+        /// <param name="filterset">The filterset.</param>
+        /// <param name="elementType">The type of element.</param>
+        /// <param name="elementNumber">The element number.</param>
+        public static FiltersetElement Create(Filterset filterset, FiltersetElementType elementType, int elementNumber)
+        {
+            return new FiltersetElement
+            {
+                FiltersetId = filterset.Id,
+                ElementType = elementType,
+                ElementNumber = elementNumber
+            };
+        }
+
+        /// <summary>
+        /// Creates a new filterset element instance.
+        /// </summary>
+        /// <param name="filterset">The filterset.</param>
+        /// <param name="statement">The element statement.</param>
+        /// <param name="elementNumber">The element number.</param>
+        public static FiltersetElement Create(Filterset filterset, FiltersetStatement statement, int elementNumber)
+        {
+            return new FiltersetElement
+            {
+                FiltersetId = filterset.Id,
+                ElementType = FiltersetElementType.Statement,
+                ElementNumber = elementNumber,
+                StatementId = statement.Id,
+                Statement = statement
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the filterset identifier.
         /// </summary>
         [Column(Name = "filterset_id", IsPrimaryKey = true)]
         public Guid FiltersetId { get; set; }
 
         /// <summary>
-        /// Gets or sets the filterset element order priority.
+        /// Gets or sets the filterset element number.
         /// </summary>
-        [Column(Name = "priority", IsPrimaryKey = true)]
-        public int Priority { get; set; }
+        [Column(Name = "element_number", IsPrimaryKey = true)]
+        public int ElementNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the filterset element type.

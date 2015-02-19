@@ -11,6 +11,23 @@ namespace Bloom.Domain.Models
     public class ArtistMember
     {
         /// <summary>
+        /// Creates a new album member instance.
+        /// </summary>
+        /// <param name="artist">The artist.</param>
+        /// <param name="person">The person.</param>
+        public static ArtistMember Create(Artist artist, Person person)
+        {
+            return new ArtistMember
+            {
+                Id = Guid.NewGuid(),
+                ArtistId = artist.Id,
+                Artist = artist,
+                PersonId = person.Id,
+                Person = person
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the artist member identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
@@ -53,6 +70,22 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the artist member roles.
         /// </summary>
-        public List<ArtistMemberRole> Roles { get; set; } 
+        public List<ArtistMemberRole> Roles { get; set; }
+
+        /// <summary>
+        /// Adds a role to this album credit.
+        /// </summary>
+        /// <param name="role">The role.</param>
+        /// <exception cref="System.ArgumentNullException">role</exception>
+        public void AddRole(Role role)
+        {
+            if (role == null)
+                throw new ArgumentNullException("role");
+
+            if (Roles == null)
+                Roles = new List<ArtistMemberRole>();
+
+            Roles.Add(ArtistMemberRole.Create(this, role));
+        }
     }
 }

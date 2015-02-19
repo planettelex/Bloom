@@ -10,6 +10,20 @@ namespace Bloom.Domain.Models
     public class ArtistReference
     {
         /// <summary>
+        /// Creates a new artist reference instance.
+        /// </summary>
+        /// <param name="artist">The artist.</param>
+        /// <param name="reference">The artist reference.</param>
+        public static ArtistReference Create(Artist artist, Reference reference)
+        {
+            return new ArtistReference
+            {
+                ArtistId = artist.Id,
+                ReferenceId = reference.Id,
+                Reference = reference
+            };
+        }
+        /// <summary>
         /// Gets or sets the artist identifier.
         /// </summary>
         [Column(Name = "artist_id", IsPrimaryKey = true)]

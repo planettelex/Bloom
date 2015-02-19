@@ -458,6 +458,11 @@ namespace Bloom.Domain.Models
 
         #region AddReview
 
+        /// <summary>
+        /// Adds a review to this album.
+        /// </summary>
+        /// <param name="review">The review.</param>
+        /// <exception cref="System.ArgumentNullException">review</exception>
         public void AddReview(Review review)
         {
             if (review == null)

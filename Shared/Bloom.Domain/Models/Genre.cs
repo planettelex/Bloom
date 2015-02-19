@@ -10,6 +10,35 @@ namespace Bloom.Domain.Models
     public class Genre
     {
         /// <summary>
+        /// Creates a new genre instance.
+        /// </summary>
+        /// <param name="name">The genre name.</param>
+        public static Genre Create(string name)
+        {
+            return new Genre
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
+        }
+
+        /// <summary>
+        /// Creates a new genre instance.
+        /// </summary>
+        /// <param name="name">The genre name.</param>
+        /// <param name="parentGenre">The parent genre.</param>
+        public static Genre Create(string name, Genre parentGenre)
+        {
+            return new Genre
+            {
+                Id = Guid.NewGuid(),
+                Name = name,
+                ParentGenreId = parentGenre.Id,
+                ParentGenre = parentGenre
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the genre identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

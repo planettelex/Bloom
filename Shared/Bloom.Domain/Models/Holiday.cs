@@ -10,6 +10,15 @@ namespace Bloom.Domain.Models
     [Table(Name = "holiday")]
     public class Holiday
     {
+        public static Holiday Create(string name)
+        {
+            return new Holiday
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            };
+        }
+
         /// <summary>
         /// Gets or sets the holiday identifier.
         /// </summary>

@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class ArtistMemberRole
     {
         /// <summary>
+        /// Creates a new album credit role instance.
+        /// </summary>
+        /// <param name="artistMember">The artist member.</param>
+        /// <param name="role">The artist member role.</param>
+        public static ArtistMemberRole Create(ArtistMember artistMember, Role role)
+        {
+            return new ArtistMemberRole
+            {
+                ArtistMemberId = artistMember.Id,
+                RoleId = role.Id,
+                Role = role
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the artist member identifier.
         /// </summary>
         [Column(Name = "artist_member_id", IsPrimaryKey = true)]

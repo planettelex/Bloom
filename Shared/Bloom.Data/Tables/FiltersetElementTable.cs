@@ -13,7 +13,7 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE filterset_element (" +
                        "filterset_id VARCHAR(36) NOT NULL , " +
-                       "priority INTEGER NOT NULL , " +
+                       "element_number INTEGER NOT NULL , " +
                        "element_type INTEGER NOT NULL , " +
                        "statement_id VARCHAR(36) , " +
                        "PRIMARY KEY (filterset_id, priority) , " +
