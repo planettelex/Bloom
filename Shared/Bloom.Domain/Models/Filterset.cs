@@ -44,19 +44,30 @@ namespace Bloom.Domain.Models
         #region AddElement
 
         /// <summary>
-        /// Adds an element to this filterset.
+        /// Creates and adds an element to this filterset.
         /// </summary>
         /// <param name="elementType">Type of the element.</param>
         /// <param name="elementNumber">The element number.</param>
-        public void AddElement(FiltersetElementType elementType, int elementNumber)
+        /// <returns>A new filterset element.</returns>
+        public FiltersetElement AddElement(FiltersetElementType elementType, int elementNumber)
         {
             if (Elements == null)
                 Elements = new List<FiltersetElement>();
 
-            Elements.Add(FiltersetElement.Create(this, elementType, elementNumber));
+            var filtersetElement = FiltersetElement.Create(this, elementType, elementNumber);
+            Elements.Add(filtersetElement);
+
+            return filtersetElement;
         }
 
-        public void AddElement(FiltersetStatement statement, int elementNumber)
+        /// <summary>
+        /// Creates and adds an element to this filterset.
+        /// </summary>
+        /// <param name="statement">A filterset statement.</param>
+        /// <param name="elementNumber">The element number.</param>
+        /// <returns>A new filterset element.</returns>
+        /// <exception cref="System.ArgumentNullException">statement</exception>
+        public FiltersetElement AddElement(FiltersetStatement statement, int elementNumber)
         {
             if (statement == null)
                 throw new ArgumentNullException("statement");
@@ -64,7 +75,10 @@ namespace Bloom.Domain.Models
             if (Elements == null)
                 Elements = new List<FiltersetElement>();
 
-            Elements.Add(FiltersetElement.Create(this, statement, elementNumber));
+            var filtersetElement = FiltersetElement.Create(this, statement, elementNumber);
+            Elements.Add(filtersetElement);
+
+            return filtersetElement;
         }
 
         #endregion
@@ -77,13 +91,14 @@ namespace Bloom.Domain.Models
         #region AddOrdering
 
         /// <summary>
-        /// Adds an ordering to this filterset.
+        /// Creates and adds an ordering to this filterset.
         /// </summary>
         /// <param name="order">The order.</param>
         /// <param name="priority">The ordering priority.</param>
         /// <param name="scope">The ordering scope.</param>
+        /// <returns>A new filterset ordering.</returns>
         /// <exception cref="System.ArgumentNullException">order</exception>
-        public void AddOrdering(IFiltersetOrder order, int priority, FiltersetItemScope scope)
+        public FiltersetOrdering AddOrdering(IFiltersetOrder order, int priority, FiltersetItemScope scope)
         {
             if (order == null)
                 throw new ArgumentNullException("order");
@@ -91,18 +106,22 @@ namespace Bloom.Domain.Models
             if (Ordering == null)
                 Ordering = new List<FiltersetOrdering>();
 
-            Ordering.Add(FiltersetOrdering.Create(this, order, priority, scope));
+            var filtersetOrdering = FiltersetOrdering.Create(this, order, priority, scope);
+            Ordering.Add(filtersetOrdering);
+
+            return filtersetOrdering;
         }
 
         /// <summary>
-        /// Adds an ordering to this filterset.
+        /// Creates and adds an ordering to this filterset.
         /// </summary>
         /// <param name="order">The order.</param>
         /// <param name="priority">The ordering priority.</param>
         /// <param name="scope">The ordering scope.</param>
         /// <param name="direction">The ordering direction.</param>
+        /// <returns>A new filterset ordering.</returns>
         /// <exception cref="System.ArgumentNullException">order</exception>
-        public void AddOrdering(IFiltersetOrder order, int priority, FiltersetItemScope scope, OrderDirection direction)
+        public FiltersetOrdering AddOrdering(IFiltersetOrder order, int priority, FiltersetItemScope scope, OrderDirection direction)
         {
             if (order == null)
                 throw new ArgumentNullException("order");
@@ -110,7 +129,10 @@ namespace Bloom.Domain.Models
             if (Ordering == null)
                 Ordering = new List<FiltersetOrdering>();
 
-            Ordering.Add(FiltersetOrdering.Create(this, order, priority, scope, direction));
+            var filtersetOrdering = FiltersetOrdering.Create(this, order, priority, scope, direction);
+            Ordering.Add(filtersetOrdering);
+
+            return filtersetOrdering;
         }
 
         #endregion

@@ -55,11 +55,12 @@ namespace Bloom.Domain.Models
         public List<AlbumCreditRole> Roles { get; set; }
 
         /// <summary>
-        /// Adds a role to this album credit.
+        /// Creates and adds a role to this album credit.
         /// </summary>
         /// <param name="role">The role.</param>
+        /// <returns>A new album credit role.</returns>
         /// <exception cref="System.ArgumentNullException">role</exception>
-        public void AddRole(Role role)
+        public AlbumCreditRole AddRole(Role role)
         {
             if (role == null)
                 throw new ArgumentNullException("role");
@@ -67,7 +68,10 @@ namespace Bloom.Domain.Models
             if (Roles == null)
                 Roles = new List<AlbumCreditRole>();
 
-            Roles.Add(AlbumCreditRole.Create(this, role));
+            var albumCreditRole = AlbumCreditRole.Create(this, role);
+            Roles.Add(albumCreditRole);
+
+            return albumCreditRole;
         }
     }
 }

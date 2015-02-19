@@ -11,6 +11,47 @@ namespace Bloom.Domain.Models
     public class LibraryAlbumMedia
     {
         /// <summary>
+        /// Creates a new library album media instance.
+        /// </summary>
+        /// <param name="libraryAlbum">The library album.</param>
+        /// <param name="mediaType">The type of media.</param>
+        public static LibraryAlbumMedia Create(LibraryAlbum libraryAlbum, MediaTypes mediaType)
+        {
+            return new LibraryAlbumMedia
+            {
+                LibraryId = libraryAlbum.LibraryId,
+                AlbumId = libraryAlbum.AlbumId,
+                Album = libraryAlbum.Album,
+                MediaType = mediaType
+            };
+        }
+
+        /// <summary>
+        /// Creates a new library album media instance.
+        /// </summary>
+        /// <param name="libraryAlbum">The library album.</param>
+        /// <param name="mediaType">The type of media.</param>
+        /// <param name="release">The album release of this media.</param>
+        /// <returns></returns>
+        public static LibraryAlbumMedia Create(LibraryAlbum libraryAlbum, MediaTypes mediaType, AlbumRelease release)
+        {
+            return new LibraryAlbumMedia
+            {
+                LibraryId = libraryAlbum.LibraryId,
+                AlbumId = libraryAlbum.AlbumId,
+                Album = libraryAlbum.Album,
+                MediaType = mediaType,
+                ReleaseId = release.Id,
+                Release = release
+            };
+        }
+
+        /// <summary>
+        /// Gets or sets the library identifier.
+        /// </summary>
+        public Guid LibraryId { get; set; }
+
+        /// <summary>
         /// Gets or sets the album identifier.
         /// </summary>
         [Column(Name = "album_id", IsPrimaryKey = true)]

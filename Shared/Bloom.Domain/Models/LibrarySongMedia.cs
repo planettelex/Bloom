@@ -11,6 +11,50 @@ namespace Bloom.Domain.Models
     public class LibrarySongMedia
     {
         /// <summary>
+        /// Creates a new library song media instance.
+        /// </summary>
+        /// <param name="librarySong">The library song.</param>
+        /// <param name="mediaType">The type of media.</param>
+        /// <param name="uri">The song media URI.</param>
+        public static LibrarySongMedia Create(LibrarySong librarySong, MediaTypes mediaType, string uri)
+        {
+            return new LibrarySongMedia
+            {
+                LibraryId = librarySong.LibraryId,
+                SongId = librarySong.SongId,
+                Song = librarySong.Song,
+                MediaType = mediaType,
+                Uri = uri
+            };
+        }
+
+        /// <summary>
+        /// Creates a new library song media instance.
+        /// </summary>
+        /// <param name="librarySong">The library song.</param>
+        /// <param name="mediaType">The type of media.</param>
+        /// <param name="digitalFormat">The song media digital format.</param>
+        /// <param name="uri">The song media URI.</param>
+        /// <returns></returns>
+        public static LibrarySongMedia Create(LibrarySong librarySong, MediaTypes mediaType, DigitalFormats digitalFormat, string uri)
+        {
+            return new LibrarySongMedia
+            {
+                LibraryId = librarySong.LibraryId,
+                SongId = librarySong.SongId,
+                Song = librarySong.Song,
+                MediaType = mediaType,
+                DigitalFormat = digitalFormat,
+                Uri = uri
+            };
+        }
+
+        /// <summary>
+        /// Gets or sets the library identifier.
+        /// </summary>
+        public Guid LibraryId { get; set; }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]
@@ -30,8 +74,8 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the song media digital formats.
         /// </summary>
-        [Column(Name = "digital_formats")]
-        public DigitalFormats DigitalFormats { get; set; }
+        [Column(Name = "digital_format")]
+        public DigitalFormats DigitalFormat { get; set; }
 
         /// <summary>
         /// Gets or sets the song media URI.

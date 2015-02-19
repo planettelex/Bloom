@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using Bloom.Common;
 
 namespace Bloom.Domain.Models
 {
@@ -22,7 +23,7 @@ namespace Bloom.Domain.Models
                 Id = Guid.NewGuid(),
                 Name = name,
                 FolderPath = folderPath,
-                FileName = name + ".blm",
+                FileName = name + Settings.LibraryFileExtension,
                 OwnerId = owner.Id,
                 Owner = owner
             };

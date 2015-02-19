@@ -10,6 +10,10 @@ namespace Bloom.Domain.Models
     [Table(Name = "holiday")]
     public class Holiday
     {
+        /// <summary>
+        /// Creates a new holiday instance.
+        /// </summary>
+        /// <param name="name">The holiday name.</param>
         public static Holiday Create(string name)
         {
             return new Holiday

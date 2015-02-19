@@ -10,6 +10,26 @@ namespace Bloom.Domain.Models
     public class LibraryPlaylist
     {
         /// <summary>
+        /// Creates a new library playlist instance.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="playlist">The playlist.</param>
+        public static LibraryPlaylist Create(Library library, Playlist playlist)
+        {
+            return new LibraryPlaylist
+            {
+                LibraryId = library.Id,
+                PlaylistId = playlist.Id,
+                Playlist = playlist
+            };
+        }
+
+        /// <summary>
+        /// Gets or sets the library identifier.
+        /// </summary>
+        public Guid LibraryId { get; set; }
+
+        /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
         [Column(Name = "playlist_id", IsPrimaryKey = true)]

@@ -10,6 +10,26 @@ namespace Bloom.Domain.Models
     public class LibraryArtist
     {
         /// <summary>
+        /// Creates a new library artist instance.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="artist">The artist.</param>
+        public static LibraryArtist Create(Library library, Artist artist)
+        {
+            return new LibraryArtist
+            {
+                LibraryId = library.Id,
+                ArtistId = artist.Id,
+                Artist = artist
+            };
+        }
+
+        /// <summary>
+        /// Gets or sets the library identifier.
+        /// </summary>
+        public Guid LibraryId { get; set; }
+
+        /// <summary>
         /// Gets or sets the artist identifier.
         /// </summary>
         [Column(Name = "artist_id", IsPrimaryKey = true)]

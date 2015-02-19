@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class LabelPersonelRole
     {
         /// <summary>
+        /// Creates a new label personel role instance.
+        /// </summary>
+        /// <param name="labelPersonel">The label personel.</param>
+        /// <param name="role">The label personel's role.</param>
+        public static LabelPersonelRole Create(LabelPersonel labelPersonel, Role role)
+        {
+            return new LabelPersonelRole
+            {
+                LabelPersonelId = labelPersonel.Id,
+                RoleId = role.Id,
+                Role = role
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the label personel identifier.
         /// </summary>
         [Column(Name = "label_personel_id", IsPrimaryKey = true)]

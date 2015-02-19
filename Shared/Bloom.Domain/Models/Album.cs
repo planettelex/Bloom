@@ -184,13 +184,14 @@ namespace Bloom.Domain.Models
         #region AddTrack
 
         /// <summary>
-        /// Adds a track to this album.
+        /// Creates and adds a track to this album.
         /// </summary>
         /// <param name="song">The song.</param>
         /// <param name="trackNumber">The track number.</param>
+        /// <returns>A new album track.</returns>
         /// <exception cref="System.ArgumentNullException">song</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">trackNumber</exception>
-        public void AddTrack(Song song, int trackNumber)
+        public AlbumTrack AddTrack(Song song, int trackNumber)
         {
             if (song == null)
                 throw new ArgumentNullException("song");
@@ -201,22 +202,26 @@ namespace Bloom.Domain.Models
             if (Tracks == null)
                 Tracks = new List<AlbumTrack>();
 
-            Tracks.Add(AlbumTrack.Create(this, song, trackNumber));
+            var albumTrack = AlbumTrack.Create(this, song, trackNumber);
+            Tracks.Add(albumTrack);
+
+            return albumTrack;
         }
 
         /// <summary>
-        /// Adds a track to this album.
+        /// Creates and adds a track to this album.
         /// </summary>
         /// <param name="song">The song.</param>
         /// <param name="trackNumber">The track number.</param>
         /// <param name="discNumber">The disc number.</param>
+        /// <returns>A new album track.</returns>
         /// <exception cref="System.ArgumentNullException">song</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// trackNumber
         /// or
         /// discNumber
         /// </exception>
-        public void AddTrack(Song song, int trackNumber, int discNumber)
+        public AlbumTrack AddTrack(Song song, int trackNumber, int discNumber)
         {
             if (song == null)
                 throw new ArgumentNullException("song");
@@ -230,7 +235,10 @@ namespace Bloom.Domain.Models
             if (Tracks == null)
                 Tracks = new List<AlbumTrack>();
 
-            Tracks.Add(AlbumTrack.Create(this, song, trackNumber, discNumber));
+            var albumTrack = AlbumTrack.Create(this, song, trackNumber, discNumber);
+            Tracks.Add(albumTrack);
+
+            return albumTrack;
         }
 
         #endregion
@@ -243,11 +251,12 @@ namespace Bloom.Domain.Models
         #region AddArtwork
 
         /// <summary>
-        /// Adds artwork to this album.
+        /// Creates and adds artwork to this album.
         /// </summary>
         /// <param name="url">The artwork URL.</param>
+        /// <returns>A new album artwork.</returns>
         /// <exception cref="System.ArgumentNullException">url</exception>
-        public void AddArtwork(string url)
+        public AlbumArtwork AddArtwork(string url)
         {
             if (string.IsNullOrEmpty(url))
                 throw new ArgumentNullException(url);
@@ -257,8 +266,10 @@ namespace Bloom.Domain.Models
 
             var highestPriority = Artwork.Any() ? Artwork.Max(art => art.Priority) : 0;
             var nextPriority = highestPriority + 1;
+            var albumArtwork = AlbumArtwork.Create(this, url, nextPriority);
+            Artwork.Add(albumArtwork);
 
-            Artwork.Add(AlbumArtwork.Create(this, url, nextPriority));
+            return albumArtwork;
         }
 
         #endregion
@@ -271,11 +282,12 @@ namespace Bloom.Domain.Models
         #region AddCredit
 
         /// <summary>
-        /// Adds a credit for this album.
+        /// Creates and adds a credit for this album.
         /// </summary>
         /// <param name="person">The person to credit.</param>
+        /// <returns>A new album credit.</returns>
         /// <exception cref="System.ArgumentNullException">person</exception>
-        public void AddCredit(Person person)
+        public AlbumCredit AddCredit(Person person)
         {
             if (person == null)
                 throw new ArgumentNullException("person");
@@ -283,20 +295,24 @@ namespace Bloom.Domain.Models
             if (Credits == null)
                 Credits = new List<AlbumCredit>();
 
-            Credits.Add(AlbumCredit.Create(this, person));
+            var albumCredit = AlbumCredit.Create(this, person);
+            Credits.Add(albumCredit);
+
+            return albumCredit;
         }
 
         /// <summary>
-        /// Adds a credit for this album.
+        /// Creates and adds a credit for this album.
         /// </summary>
         /// <param name="person">The person to credit.</param>
-        /// <param name="roles">The roles.</param>
+        /// <param name="roles">The person's roles with this album credit.</param>
+        /// <returns>A new album credit.</returns>
         /// <exception cref="System.ArgumentNullException">
         /// person
         /// or
         /// roles
         /// </exception>
-        public void AddCredit(Person person, IList<Role> roles)
+        public AlbumCredit AddCredit(Person person, IList<Role> roles)
         {
             if (person == null)
                 throw new ArgumentNullException("person");
@@ -307,11 +323,13 @@ namespace Bloom.Domain.Models
             if (Credits == null)
                 Credits = new List<AlbumCredit>();
 
-            var credit = AlbumCredit.Create(this, person);
+            var albumCredit = AlbumCredit.Create(this, person);
             foreach (var role in roles)
-                credit.AddRole(role);
+                albumCredit.AddRole(role);
 
-            Credits.Add(credit);
+            Credits.Add(albumCredit);
+
+            return albumCredit;
         }
 
         #endregion
@@ -324,54 +342,67 @@ namespace Bloom.Domain.Models
         #region AddRelease
 
         /// <summary>
-        /// Adds a release of this album.
+        /// Creates and adds a release of this album.
         /// </summary>
         /// <param name="releaseDate">The release date.</param>
-        public void AddRelease(DateTime releaseDate)
+        /// <returns>A new album release.</returns>
+        public AlbumRelease AddRelease(DateTime releaseDate)
         {
             if (Releases == null)
                 Releases = new List<AlbumRelease>();
 
-            Releases.Add(AlbumRelease.Create(this, releaseDate));
+            var albumRelease = AlbumRelease.Create(this, releaseDate);
+            Releases.Add(albumRelease);
+
+            return albumRelease;
         }
 
         /// <summary>
-        /// Adds a release of this album.
+        /// Creates and adds a release of this album.
         /// </summary>
         /// <param name="releaseDate">The release date.</param>
         /// <param name="mediaTypes">The media types.</param>
-        public void AddRelease(DateTime releaseDate, MediaTypes mediaTypes)
+        /// <returns>A new album release.</returns>
+        public AlbumRelease AddRelease(DateTime releaseDate, MediaTypes mediaTypes)
         {
             if (Releases == null)
                 Releases = new List<AlbumRelease>();
 
-            Releases.Add(AlbumRelease.Create(this, releaseDate, mediaTypes));
+            var albumRelease = AlbumRelease.Create(this, releaseDate, mediaTypes);
+            Releases.Add(albumRelease);
+
+            return albumRelease;
         }
 
         /// <summary>
-        /// Adds a release of this album.
+        /// Creates and adds a release of this album.
         /// </summary>
         /// <param name="releaseDate">The release date.</param>
         /// <param name="mediaTypes">The media types.</param>
         /// <param name="digitalFormats">The digital formats.</param>
-        public void AddRelease(DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats)
+        /// <returns>A new album release.</returns>
+        public AlbumRelease AddRelease(DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats)
         {
             if (Releases == null)
                 Releases = new List<AlbumRelease>();
 
-            Releases.Add(AlbumRelease.Create(this, releaseDate, mediaTypes, digitalFormats));
+            var albumRelease = AlbumRelease.Create(this, releaseDate, mediaTypes, digitalFormats);
+            Releases.Add(albumRelease);
+
+            return albumRelease;
         }
 
         /// <summary>
-        /// Adds a release of this album.
+        /// Creates and adds a release of this album.
         /// </summary>
         /// <param name="label">The release label.</param>
         /// <param name="releaseDate">The release date.</param>
         /// <param name="mediaTypes">The media types.</param>
         /// <param name="digitalFormats">The digital formats.</param>
         /// <param name="catalogNumber">The catalog number.</param>
+        /// <returns>A new album release.</returns>
         /// <exception cref="System.ArgumentNullException">label</exception>
-        public void AddRelease(Label label, DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats, string catalogNumber)
+        public AlbumRelease AddRelease(Label label, DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats, string catalogNumber)
         {
             if (label == null)
                 throw new ArgumentNullException("label");
@@ -379,7 +410,10 @@ namespace Bloom.Domain.Models
             if (Releases == null)
                 Releases = new List<AlbumRelease>();
 
-            Releases.Add(AlbumRelease.Create(this, label, releaseDate, mediaTypes, digitalFormats, catalogNumber));
+            var albumRelease = AlbumRelease.Create(this, label, releaseDate, mediaTypes, digitalFormats, catalogNumber);
+            Releases.Add(albumRelease);
+
+            return albumRelease;
         }
 
         #endregion
@@ -392,11 +426,12 @@ namespace Bloom.Domain.Models
         #region AddCollaborator
 
         /// <summary>
-        /// Adds an artist collaborator to this album.
+        /// Creates and adds an artist collaborator to this album.
         /// </summary>
         /// <param name="artist">The artist.</param>
+        /// <returns>A new album collaborator.</returns>
         /// <exception cref="System.ArgumentNullException">artist</exception>
-        public void AddCollaborator(Artist artist)
+        public AlbumCollaborator AddCollaborator(Artist artist)
         {
             if (artist == null)
                 throw new ArgumentNullException("artist");
@@ -404,16 +439,20 @@ namespace Bloom.Domain.Models
             if (Collaborators == null)
                 Collaborators = new List<AlbumCollaborator>();
 
-            Collaborators.Add(AlbumCollaborator.Create(this, artist));
+            var albumCollaborator = AlbumCollaborator.Create(this, artist);
+            Collaborators.Add(albumCollaborator);
+
+            return albumCollaborator;
         }
 
         /// <summary>
-        /// Adds an artist collaborator to this album.
+        /// Creates and adds an artist collaborator to this album.
         /// </summary>
         /// <param name="artist">The artist.</param>
         /// <param name="isFeatured">Whether this collaborator is featured.</param>
+        /// <returns>A new album collaborator.</returns>
         /// <exception cref="System.ArgumentNullException">artist</exception>
-        public void AddCollaborator(Artist artist, bool isFeatured)
+        public AlbumCollaborator AddCollaborator(Artist artist, bool isFeatured)
         {
             if (artist == null)
                 throw new ArgumentNullException("artist");
@@ -421,7 +460,10 @@ namespace Bloom.Domain.Models
             if (Collaborators == null)
                 Collaborators = new List<AlbumCollaborator>();
 
-            Collaborators.Add(AlbumCollaborator.Create(this, artist, isFeatured));
+            var albumCollaborator = AlbumCollaborator.Create(this, artist, isFeatured);
+            Collaborators.Add(albumCollaborator);
+
+            return albumCollaborator;
         }
 
         #endregion
@@ -434,11 +476,12 @@ namespace Bloom.Domain.Models
         #region AddReference
 
         /// <summary>
-        /// Adds a reference to this album.
+        /// Creates and adds a reference to this album.
         /// </summary>
         /// <param name="reference">The reference.</param>
+        /// <returns>A new album reference.</returns>
         /// <exception cref="System.ArgumentNullException">reference</exception>
-        public void AddReference(Reference reference)
+        public AlbumReference AddReference(Reference reference)
         {
             if (reference == null)
                 throw new ArgumentNullException("reference");
@@ -446,7 +489,10 @@ namespace Bloom.Domain.Models
             if (References == null)
                 References = new List<AlbumReference>();
 
-            References.Add(AlbumReference.Create(this, reference));
+            var albumReference = AlbumReference.Create(this, reference);
+            References.Add(albumReference);
+
+            return albumReference;
         }
 
         #endregion
@@ -459,11 +505,12 @@ namespace Bloom.Domain.Models
         #region AddReview
 
         /// <summary>
-        /// Adds a review to this album.
+        /// Creates and adds a review of this album.
         /// </summary>
         /// <param name="review">The review.</param>
+        /// <returns>A new album review.</returns>
         /// <exception cref="System.ArgumentNullException">review</exception>
-        public void AddReview(Review review)
+        public AlbumReview AddReview(Review review)
         {
             if (review == null)
                 throw new ArgumentNullException("review");
@@ -471,7 +518,10 @@ namespace Bloom.Domain.Models
             if (Reviews == null)
                 Reviews = new List<AlbumReview>();
 
-            Reviews.Add(AlbumReview.Create(this, review));
+            var albumReview = AlbumReview.Create(this, review);
+            Reviews.Add(albumReview);
+
+            return albumReview;
         }
 
         #endregion

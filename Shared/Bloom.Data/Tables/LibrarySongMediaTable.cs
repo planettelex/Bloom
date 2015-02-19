@@ -14,7 +14,7 @@ namespace Bloom.Data.Tables
                 return "CREATE TABLE library_song_media (" +
                        "song_id VARCHAR(36) NOT NULL , " +
                        "media_type INTEGER NOT NULL , " +
-                       "digital_formats INTEGER NOT NULL DEFAULT 0 , " +
+                       "digital_format INTEGER NOT NULL DEFAULT 0 , " +
                        "uri VARCHAR NOT NULL , " +
                        "is_compressed BOOL NOT NULL DEFAULT FALSE , " +
                        "is_protected BOOL NOT NULL DEFAULT FALSE , " +
