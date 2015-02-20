@@ -2,22 +2,25 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Filterset">
     <Position X="6.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <AssociationLine Name="Elements" Type="Bloom.Domain.Models.FiltersetElement" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8" Y="1.125" />
-        <Point X="10.625" Y="1.125" />
+        <Point X="8" Y="0.956" />
+        <Point X="10.625" Y="0.956" />
         <Point X="10.625" Y="2.5" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Ordering" Type="Bloom.Domain.Models.FiltersetOrdering" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6.25" Y="1.125" />
-        <Point X="3.75" Y="1.125" />
+        <Point X="6.25" Y="0.956" />
+        <Point X="3.75" Y="0.956" />
         <Point X="3.75" Y="2.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAgCAAAAAAAAAAAAAAAQAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgCAAAAAAABAAAAAAAQAAQAAAAAAEAAAAAAQAAAAAA=</HashCode>
       <FileName>Models\Filterset.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -27,8 +30,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.FiltersetStatement">
     <Position X="9.75" Y="5.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACgAAAAAAAAiAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACgAAAAAAAAiAAAAAAAAAAABAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetStatement.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -37,8 +43,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.FiltersetElement">
     <Position X="9.75" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAEABAAAAAAAAAAAAAgAAAACAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAAAAAAgAAAACAAAQAEAEAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetElement.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -47,8 +56,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.FiltersetOrdering">
     <Position X="3" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>EAEAAAAAAAAAACAEACgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAEAAAAAAAAAACAEACgAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetOrdering.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -57,6 +69,9 @@
   </Class>
   <Interface Name="Bloom.Domain.Interfaces.IFiltersetFilter">
     <Position X="6.5" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>ACACAAAAEBAAAAAAAAAAAAQAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>Interfaces\IFiltersetFilter.cs</FileName>
@@ -64,6 +79,9 @@
   </Interface>
   <Interface Name="Bloom.Domain.Interfaces.IFiltersetOrder">
     <Position X="3" Y="5.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAACAAAAEBAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IFiltersetOrder.cs</FileName>

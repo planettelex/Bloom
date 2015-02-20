@@ -11,6 +11,22 @@ namespace Bloom.Domain.Models
     public class SongSegment
     {
         /// <summary>
+        /// Creates a new song segment instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="startTime">The segment start time.</param>
+        /// <param name="stopTime">The segment stop time.</param>
+        public static SongSegment Create(Song song, int startTime, int stopTime)
+        {
+            return new SongSegment
+            {
+                SongId = song.Id,
+                StartTime = startTime,
+                StopTime = stopTime
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song segment identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

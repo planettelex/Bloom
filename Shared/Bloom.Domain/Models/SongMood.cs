@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class SongMood
     {
         /// <summary>
+        /// Creates a new song mood instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="mood">The mood.</param>
+        public static SongMood Create(Song song, Mood mood)
+        {
+            return new SongMood
+            {
+                SongId = song.Id,
+                Song = song,
+                MoodId = mood.Id,
+                Mood = mood
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]

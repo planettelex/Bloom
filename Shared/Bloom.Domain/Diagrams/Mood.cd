@@ -2,15 +2,21 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Mood">
     <Position X="7.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Mood.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Album">
     <Position X="0.75" Y="4.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>pAAGABQAAEBjAAEAAAAAEAxAAIgwAUEAAQACwAABAAA=</HashCode>
+      <HashCode>pAAGEFQAAEBjDAEAAAAAEAxAAogwAUEAAQACyAABAAA=</HashCode>
       <FileName>Models\Album.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -19,15 +25,21 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Song">
     <Position X="7.25" Y="4.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>pgAOAEwAAIAhNEYAAAIEEAzAAqgQBUGAIAAACAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Playlist">
     <Position X="13.25" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAGAgAAEAAAAAAARAAAASAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAACAEAAAGAgCAEAAAAAAARAAAASAEAAAAAACAAAAAE=</HashCode>
       <FileName>Models\Playlist.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -36,8 +48,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.PlaylistTrack">
     <Position X="10.5" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAABAAgAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAABAAgAAgAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\PlaylistTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -46,8 +61,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumTrack">
     <Position X="4" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAABAAAAAAAAIAgIogAAAEAAAAAACAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -56,8 +74,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumMood">
     <Position X="0.75" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAAACAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAgAAAAEAAAAAACAAAAAg=</HashCode>
       <FileName>Models\AlbumMood.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -67,24 +88,30 @@
   </Class>
   <Class Name="Bloom.Domain.Models.SongMood">
     <Position X="7.25" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAAAEABAAAAAAAAAAgAAAAAAEAAAAAAAAAAAAg=</HashCode>
       <FileName>Models\SongMood.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Mood" />
       <Property Name="Song" />
+      <Property Name="Mood" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.PlaylistMood">
     <Position X="13.25" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAEAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAQAAAAAEAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAg=</HashCode>
       <FileName>Models\PlaylistMood.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Mood" />
       <Property Name="Playlist" />
+      <Property Name="Mood" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

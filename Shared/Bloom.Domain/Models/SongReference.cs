@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class SongReference
     {
         /// <summary>
+        /// Creates a new song reference instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="reference">The reference.</param>
+        public static SongReference Create(Song song, Reference reference)
+        {
+            return new SongReference
+            {
+                SongId = song.Id,
+                ReferenceId = reference.Id,
+                Reference = reference
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]

@@ -19,21 +19,27 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAADAACBAAAAQAAAAQAGAAAAAAAAQAAAA=</HashCode>
+      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.LibraryArtist">
     <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAgAAQgAAAAAAAAAAQAEAAAAIAAAAEAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAgAAQgAAAAAAAAAAQAEAAAAIAAAEEAAAAAAAAAAAE=</HashCode>
       <FileName>Models\LibraryArtist.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.LibraryAlbum">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Position X="0.5" Y="4" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAEAAACACAAAAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAEEAAACACAAAAAY=</HashCode>
       <FileName>Models\LibraryAlbum.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -41,9 +47,12 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.LibraryAlbumMedia">
-    <Position X="3.75" Y="3" Width="1.75" />
+    <Position X="3.75" Y="3.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAgAAIAAIAAAgAAgAgAAAgAACRAAQAA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAAgAAIAAIAAAgAAgAkAAAgAACRAAQAA=</HashCode>
       <FileName>Models\LibraryAlbumMedia.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -52,7 +61,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumRelease">
-    <Position X="3.75" Y="7" Width="1.75" />
+    <Position X="3.75" Y="7.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -63,8 +72,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.LibrarySong">
     <Position X="7.5" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAgAgQgABEBBAAAAAQAAAgAAgAAAAEAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAAgAgQgABEBBAAAAAQAAAgAAgAAAEEAAAAAAAAAAAY=</HashCode>
       <FileName>Models\LibrarySong.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -76,15 +88,21 @@
   </Class>
   <Class Name="Bloom.Domain.Models.LibrarySongMedia">
     <Position X="11.25" Y="6.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>BAASAAAAAAABAAhAAAIAAAwAAAAAAAAACAAAAABAAAA=</HashCode>
+      <HashCode>BAASAAAAAAABAAhAAAIAAAoAAAAAAEAACAAAAABAAAA=</HashCode>
       <FileName>Models\LibrarySongMedia.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.LibraryPlaylist">
-    <Position X="0.5" Y="7" Width="1.5" />
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAAAAAAAAAABAAAAAAAAAEEAAAAAAAAAAAA=</HashCode>
       <FileName>Models\LibraryPlaylist.cs</FileName>
     </TypeIdentifier>
   </Class>

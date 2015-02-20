@@ -445,27 +445,6 @@ namespace Bloom.Domain.Models
             return albumCollaborator;
         }
 
-        /// <summary>
-        /// Creates and adds an artist collaborator to this album.
-        /// </summary>
-        /// <param name="artist">The artist.</param>
-        /// <param name="isFeatured">Whether this collaborator is featured.</param>
-        /// <returns>A new album collaborator.</returns>
-        /// <exception cref="System.ArgumentNullException">artist</exception>
-        public AlbumCollaborator AddCollaborator(Artist artist, bool isFeatured)
-        {
-            if (artist == null)
-                throw new ArgumentNullException("artist");
-
-            if (Collaborators == null)
-                Collaborators = new List<AlbumCollaborator>();
-
-            var albumCollaborator = AlbumCollaborator.Create(this, artist, isFeatured);
-            Collaborators.Add(albumCollaborator);
-
-            return albumCollaborator;
-        }
-
         #endregion
 
         /// <summary>

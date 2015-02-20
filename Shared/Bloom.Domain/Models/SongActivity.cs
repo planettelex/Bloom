@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class SongActivity
     {
         /// <summary>
+        /// Creates a new song activity instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="activity">The activity.</param>
+        public static SongActivity Create(Song song, Activity activity)
+        {
+            return new SongActivity
+            {
+                SongId = song.Id,
+                Song = song,
+                ActivityId = activity.Id,
+                Activity = activity
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]

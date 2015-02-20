@@ -10,7 +10,7 @@ namespace Bloom.Domain.Models
     public class PlaylistTag
     {
         /// <summary>
-        /// Creates a new playlist mood instance.
+        /// Creates a new playlist tag instance.
         /// </summary>
         /// <param name="playlist">The playlist.</param>
         /// <param name="tag">The tag.</param>

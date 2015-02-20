@@ -12,6 +12,22 @@ namespace Bloom.Domain.Models
     public class Song
     {
         /// <summary>
+        /// Creates a new song instance.
+        /// </summary>
+        /// <param name="name">The song name.</param>
+        /// <param name="artist">The song artist.</param>
+        public static Song Create(string name, Artist artist)
+        {
+            return new Song
+            {
+                Id = Guid.NewGuid(),
+                Name = name,
+                ArtistId = artist.Id,
+                Artist = artist
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
@@ -173,29 +189,184 @@ namespace Bloom.Domain.Models
         /// </summary>
         public List<SongSegment> Segments { get; set; }
 
+        #region AddSegment
+
+        /// <summary>
+        /// Creates and adds a segment to this song.
+        /// </summary>
+        /// <param name="startTime">The segment start time.</param>
+        /// <param name="stopTime">The segment stop time.</param>
+        /// <returns>A new song segment.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// startTime
+        /// or
+        /// stopTime
+        /// </exception>
+        public SongSegment AddSegment(int startTime, int stopTime)
+        {
+            if (startTime < 0 || startTime > Length)
+                throw new ArgumentOutOfRangeException("startTime");
+
+            if (stopTime < 0 || stopTime > Length || stopTime > startTime)
+                throw new ArgumentOutOfRangeException("stopTime");
+
+            if (Segments == null)
+                Segments = new List<SongSegment>();
+
+            var songSegment = SongSegment.Create(this, startTime, stopTime);
+            Segments.Add(songSegment);
+
+            return songSegment;
+        }
+
+        #endregion
+
         /// <summary>
         /// Gets or sets the recording sessions for the song.
         /// </summary>
         public List<RecordingSession> RecordingSessions { get; set; }
+
+        #region AddRecordingSession
+
+        /// <summary>
+        /// Creates and adds a recording session to this song.
+        /// </summary>
+        /// <param name="occurredOn">The date the recording session occurred on.</param>
+        /// <returns>A new recording session.</returns>
+        public RecordingSession AddRecordingSession(DateTime occurredOn)
+        {
+            if (RecordingSessions == null)
+                RecordingSessions = new List<RecordingSession>();
+
+            var recordingSession = RecordingSession.Create(this, occurredOn);
+            RecordingSessions.Add(recordingSession);
+
+            return recordingSession;
+        }
+
+        #endregion
 
         /// <summary>
         /// Gets or sets the collaborators.
         /// </summary>
         public List<SongCollaborator> Collaborators { get; set; }
 
+        #region AddCollaborator
+
+        /// <summary>
+        /// Creates and adds an artist collaborator to this song.
+        /// </summary>
+        /// <param name="artist">The artist.</param>
+        /// <returns>A new song collaborator.</returns>
+        /// <exception cref="System.ArgumentNullException">artist</exception>
+        public SongCollaborator AddCollaborator(Artist artist)
+        {
+            if (artist == null)
+                throw new ArgumentNullException("artist");
+
+            if (Collaborators == null)
+                Collaborators = new List<SongCollaborator>();
+
+            var songCollaborator = SongCollaborator.Create(this, artist);
+            Collaborators.Add(songCollaborator);
+
+            return songCollaborator;
+        }
+
+        #endregion
+
         /// <summary>
         /// Gets or sets the song's credits.
         /// </summary>
         public List<SongCredit> Credits { get; set; }
+
+        #region AddCredit
+
+        /// <summary>
+        /// Creates and adds a credit for this song.
+        /// </summary>
+        /// <param name="person">The person to credit.</param>
+        /// <returns>A new song credit.</returns>
+        /// <exception cref="System.ArgumentNullException">person</exception>
+        public SongCredit AddCredit(Person person)
+        {
+            if (person == null)
+                throw new ArgumentNullException("person");
+
+            if (Credits == null)
+                Credits = new List<SongCredit>();
+
+            var songCredit = SongCredit.Create(this, person);
+            Credits.Add(songCredit);
+
+            return songCredit;
+        }
+
+        /// <summary>
+        /// Creates and adds a credit for this song.
+        /// </summary>
+        /// <param name="person">The person to credit.</param>
+        /// <param name="roles">The person's roles with this song credit.</param>
+        /// <returns>A new song credit.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// person
+        /// or
+        /// roles
+        /// </exception>
+        public SongCredit AddCredit(Person person, IList<Role> roles)
+        {
+            if (person == null)
+                throw new ArgumentNullException("person");
+
+            if (roles == null)
+                throw new ArgumentNullException("roles");
+
+            if (Credits == null)
+                Credits = new List<SongCredit>();
+
+            var songCredit = SongCredit.Create(this, person);
+            foreach (var role in roles)
+                songCredit.AddRole(role);
+
+            Credits.Add(songCredit);
+
+            return songCredit;
+        }
+
+        #endregion
 
         /// <summary>
         /// Gets or sets the song's references.
         /// </summary>
         public List<SongReference> References { get; set; }
 
+        #region AddReference
+
+        /// <summary>
+        /// Creates and adds a reference to this song.
+        /// </summary>
+        /// <param name="reference">The reference.</param>
+        /// <returns>A new song reference.</returns>
+        /// <exception cref="System.ArgumentNullException">reference</exception>
+        public SongReference AddReference(Reference reference)
+        {
+            if (reference == null)
+                throw new ArgumentNullException("reference");
+
+            if (References == null)
+                References = new List<SongReference>();
+
+            var songReference = SongReference.Create(this, reference);
+            References.Add(songReference);
+
+            return songReference;
+        }
+
+        #endregion
+
         /// <summary>
         /// Gets or sets the album tracks ths song belongs to.
         /// </summary>
-        public List<AlbumTrack> AlbumTracks { get; set; } 
+        public List<AlbumTrack> AlbumTracks { get; set; }
     }
 }

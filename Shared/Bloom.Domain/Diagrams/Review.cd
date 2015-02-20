@@ -2,19 +2,25 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Review">
     <Position X="7.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAEAAgAABAAAAAEAAAAAACBEAAEAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAEAAgAABAAAAAEAAAEAACBEAAEAAAAA=</HashCode>
       <FileName>Models\Review.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Author" />
       <Property Name="Publication" />
+      <Property Name="Author" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumReview">
     <Position X="0.75" Y="3.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAEACACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAEACACAAAAAA=</HashCode>
       <FileName>Models\AlbumReview.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -24,8 +30,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.SongReview">
     <Position X="7.25" Y="3.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAEACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAgAAAAAAEAAEACAAAAAAAA=</HashCode>
       <FileName>Models\SongReview.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -35,15 +44,21 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Person">
     <Position X="14" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAADAICAAAAAQAAAAQACAAAAAAAAIAAAA=</HashCode>
+      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Album">
-    <Position X="0.75" Y="5.5" Width="1.75" />
+    <Position X="0.75" Y="6" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>pAAGABQAAEBjAAEAAAAAEAxAAIgwAUEAAQACwAABAAA=</HashCode>
+      <HashCode>pAAGEFQAAEBjDAEAAAAAEAxAAogwAUEAAQACyAABAAA=</HashCode>
       <FileName>Models\Album.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -51,9 +66,12 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumTrack">
-    <Position X="4" Y="5.5" Width="1.5" />
+    <Position X="4" Y="6" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAIAgIogAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAABAAAAAAAAIAgIogAAAEAAAAAACAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -61,16 +79,22 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Song">
-    <Position X="7.25" Y="5.5" Width="1.75" />
+    <Position X="7.25" Y="6" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>ogAGAAQAAIAhMAYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>pgAOAEwAAIAhNEYAAAIEEAzAAqgQBUGAIAAACAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Publication">
     <Position X="11" Y="1.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQQAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Publication.cs</FileName>
     </TypeIdentifier>
   </Class>

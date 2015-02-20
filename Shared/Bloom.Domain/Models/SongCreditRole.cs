@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class SongCreditRole
     {
         /// <summary>
+        /// Creates a new song credit role instance.
+        /// </summary>
+        /// <param name="songCredit">The song credit.</param>
+        /// <param name="role">The role.</param>
+        public static SongCreditRole Create(SongCredit songCredit, Role role)
+        {
+            return new SongCreditRole
+            {
+                SongCreditId = songCredit.Id,
+                RoleId = role.Id,
+                Role = role
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song credit identifier.
         /// </summary>
         [Column(Name = "song_credit_id", IsPrimaryKey = true)]

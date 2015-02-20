@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class SongTag
     {
         /// <summary>
+        /// Creates a new song tag instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="tag">The tag.</param>
+        public static SongTag Create(Song song, Tag tag)
+        {
+            return new SongTag
+            {
+                SongId = song.Id,
+                Song = song,
+                TagId = tag.Id,
+                Tag = tag
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]

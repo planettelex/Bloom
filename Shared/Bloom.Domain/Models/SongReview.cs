@@ -10,6 +10,22 @@ namespace Bloom.Domain.Models
     public class SongReview
     {
         /// <summary>
+        /// Creates a new song review instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="review">The review.</param>
+        public static SongReview Create(Song song, Review review)
+        {
+            return new SongReview
+            {
+                SongId = song.Id,
+                Song = song,
+                ReviewId = review.Id,
+                Review = review
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]

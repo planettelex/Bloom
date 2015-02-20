@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class RecordingSession
     {
         /// <summary>
+        /// Creates a new recording session instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="occurredOn">The date the session occurred on.</param>
+        public static RecordingSession Create(Song song, DateTime occurredOn)
+        {
+            return new RecordingSession
+            {
+                Id = Guid.NewGuid(),
+                SongId = song.Id,
+                OccurredOn = occurredOn
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the recording session identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]

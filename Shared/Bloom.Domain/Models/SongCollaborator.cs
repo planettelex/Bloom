@@ -10,6 +10,21 @@ namespace Bloom.Domain.Models
     public class SongCollaborator
     {
         /// <summary>
+        /// Creates a new song collaborator instance.
+        /// </summary>
+        /// <param name="song">The song.</param>
+        /// <param name="artist">The collaborator artist.</param>
+        public static SongCollaborator Create(Song song, Artist artist)
+        {
+            return new SongCollaborator
+            {
+                SongId = song.Id,
+                ArtistId = artist.Id,
+                Artist = artist
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
         [Column(Name = "song_id", IsPrimaryKey = true)]

@@ -100,15 +100,21 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Artist">
     <Position X="13" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AEACAAAAAAAAACAACAAAAAQEAAAwACAAAAAEAAAAAAA=</HashCode>
+      <HashCode>AEACAEAAAAAAACAACAAAAAQEAQAwAGAAAAAEQAAAAAA=</HashCode>
       <FileName>Models\Artist.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Holiday">
     <Position X="3.75" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAEAAAgAAAAAAAAAESAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAACAAAEAAAgAAAAAAAAAESAAAAAAEAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\Holiday.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -118,14 +124,17 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAADAACBAAAAQAAAAQAGAAAAAAAAQAAAA=</HashCode>
+      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Role">
     <Position X="13" Y="7.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Role.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -157,15 +166,21 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Reference">
     <Position X="3.75" Y="7.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAEAAACAAAAQAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAEAAACAAAAQAAAAAAEAACAAAAAAAAAA=</HashCode>
       <FileName>Models\Reference.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Song">
     <Position X="6.75" Y="9.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>ogAGAAwAAIAhMEYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>pgAOAEwAAIAhNEYAAAIEEAzAAqgQBUGAIAAACAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>

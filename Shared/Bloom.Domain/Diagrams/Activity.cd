@@ -12,15 +12,21 @@
   </Class>
   <Class Name="Bloom.Domain.Models.Song">
     <Position X="7.25" Y="4.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>ogAGAAwAAIAhMEYAAAIEEAzAAqgQBQGAIAAAAAAAAQA=</HashCode>
+      <HashCode>pgAOAEwAAIAhNEYAAAIEEAzAAqgQBUGAIAAACAAAAQA=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.Playlist">
     <Position X="13.25" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAGAgAAEAAAAAAARAAAASAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAACAEAAAGAgCAEAAAAAAARAAAASAEAAAAAACAAAAAE=</HashCode>
       <FileName>Models\Playlist.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -29,8 +35,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.PlaylistTrack">
     <Position X="10.5" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAABAAgAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAABAAgAAgAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\PlaylistTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -79,8 +88,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.SongActivity">
     <Position X="7.25" Y="2.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAEAAAAAAAAgAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAEAAAAAAAAgAAAAAAEAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\SongActivity.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -90,8 +102,11 @@
   </Class>
   <Class Name="Bloom.Domain.Models.PlaylistActivity">
     <Position X="13.25" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAAAEAAAAABAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAAAAEAAAAABAAAAAAAAAEAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\PlaylistActivity.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
