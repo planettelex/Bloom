@@ -7,7 +7,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAACAAAAA=</HashCode>
       <FileName>Models\AnalyticsState.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -18,14 +18,17 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAACAAAAA=</HashCode>
       <FileName>Models\BrowserState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.Connections">
     <Position X="7" Y="5.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABCAAAAAAgAAAAAAAgQAAAAAQAIAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Connections.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -37,8 +40,11 @@
   </Class>
   <Class Name="Bloom.State.Domain.Models.LibraryConnection">
     <Position X="3.25" Y="5.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAAAAQAAAAAAEAAAABAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAAIAAAAAABAAAAAAAAACgAAAEAAAABAAAAAAAg=</HashCode>
       <FileName>Models\LibraryConnection.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -49,7 +55,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>LAAAAAAABAAgAAAAAAAAAAACABAIAAAAAAgAAAAAAAA=</HashCode>
+      <HashCode>LAAAAAAABAAgAAAAAAAAAAACABAIAAAAAAgAACAAAAA=</HashCode>
       <FileName>Models\PlayerState.cs</FileName>
     </TypeIdentifier>
   </Class>

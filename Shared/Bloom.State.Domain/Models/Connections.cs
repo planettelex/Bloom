@@ -49,6 +49,10 @@ namespace Bloom.State.Domain.Models
             }
         }
 
+        /// <summary>
+        /// Adds the library connection.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
         public void AddLibraryConnection(LibraryConnection libraryConnection)
         {
             if (LibraryConnections == null)
@@ -61,6 +65,10 @@ namespace Bloom.State.Domain.Models
                 AddLibraryDataSource(libraryConnection);
         }
 
+        /// <summary>
+        /// Connects the library data source.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
         public void ConnectLibraryDataSource(LibraryConnection libraryConnection)
         {
             if (LibraryConnections == null)
