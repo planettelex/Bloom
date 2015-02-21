@@ -244,7 +244,7 @@ namespace Bloom.Domain.Models
         #endregion
 
         /// <summary>
-        /// Gets or sets the album artwork.
+        /// Gets or sets the album artwork. 
         /// </summary>
         public List<AlbumArtwork> Artwork { get; set; }
 
@@ -392,30 +392,6 @@ namespace Bloom.Domain.Models
             return albumRelease;
         }
 
-        /// <summary>
-        /// Creates and adds a release of this album.
-        /// </summary>
-        /// <param name="label">The release label.</param>
-        /// <param name="releaseDate">The release date.</param>
-        /// <param name="mediaTypes">The media types.</param>
-        /// <param name="digitalFormats">The digital formats.</param>
-        /// <param name="catalogNumber">The catalog number.</param>
-        /// <returns>A new album release.</returns>
-        /// <exception cref="System.ArgumentNullException">label</exception>
-        public AlbumRelease AddRelease(Label label, DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats, string catalogNumber)
-        {
-            if (label == null)
-                throw new ArgumentNullException("label");
-
-            if (Releases == null)
-                Releases = new List<AlbumRelease>();
-
-            var albumRelease = AlbumRelease.Create(this, label, releaseDate, mediaTypes, digitalFormats, catalogNumber);
-            Releases.Add(albumRelease);
-
-            return albumRelease;
-        }
-
         #endregion
 
         /// <summary>
@@ -501,6 +477,93 @@ namespace Bloom.Domain.Models
             Reviews.Add(albumReview);
 
             return albumReview;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the album activities.
+        /// </summary>
+        public List<AlbumActivity> Activities { get; set; }
+
+        #region AddActivity
+
+        /// <summary>
+        /// Creates and adds an activity for this album.
+        /// </summary>
+        /// <param name="activity">The activity.</param>
+        /// <returns>A new album activity.</returns>
+        /// <exception cref="System.ArgumentNullException">activity</exception>
+        public AlbumActivity AddActivity(Activity activity)
+        {
+            if (activity == null)
+                throw new ArgumentNullException("activity");
+
+            if (Activities == null)
+                Activities = new List<AlbumActivity>();
+
+            var albumActivity = AlbumActivity.Create(this, activity);
+            Activities.Add(albumActivity);
+
+            return albumActivity;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the album moods.
+        /// </summary>
+        public List<AlbumMood> Moods { get; set; }
+
+        #region AddMood
+
+        /// <summary>
+        /// Creates and adds a mood for this album.
+        /// </summary>
+        /// <param name="mood">The mood.</param>
+        /// <returns>A new album mood.</returns>
+        /// <exception cref="System.ArgumentNullException">mood</exception>
+        public AlbumMood AddMood(Mood mood)
+        {
+            if (mood == null)
+                throw new ArgumentNullException("mood");
+
+            if (Moods == null)
+                Moods = new List<AlbumMood>();
+
+            var albumMood = AlbumMood.Create(this, mood);
+            Moods.Add(albumMood);
+
+            return albumMood;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the album tags.
+        /// </summary>
+        public List<AlbumTag> Tags { get; set; }
+
+        #region AddTag
+
+        /// <summary>
+        /// Creates and adds a tag for this album.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <returns>A new album tag.</returns>
+        /// <exception cref="System.ArgumentNullException">tag</exception>
+        public AlbumTag AddTag(Tag tag)
+        {
+            if (tag == null)
+                throw new ArgumentNullException("tag");
+
+            if (Tags == null)
+                Tags = new List<AlbumTag>();
+
+            var albumTag = AlbumTag.Create(this, tag);
+            Tags.Add(albumTag);
+
+            return albumTag;
         }
 
         #endregion

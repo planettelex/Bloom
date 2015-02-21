@@ -77,8 +77,9 @@ namespace Bloom.Domain.Models
         /// Adds a photo to this artist.
         /// </summary>
         /// <param name="photo">The artist photo.</param>
+        /// <returns>A new artist photo.</returns>
         /// <exception cref="System.ArgumentNullException">photo</exception>
-        public void AddPhoto(Photo photo)
+        public ArtistPhoto AddPhoto(Photo photo)
         {
             if (photo == null)
                 throw new ArgumentNullException("photo");
@@ -89,7 +90,10 @@ namespace Bloom.Domain.Models
             var highestPriority = Photos.Any() ? Photos.Max(pic => pic.Priority) : 0;
             var nextPriority = highestPriority + 1;
 
-            Photos.Add(ArtistPhoto.Create(this, photo, nextPriority));
+            var artistPhoto = ArtistPhoto.Create(this, photo, nextPriority);
+            Photos.Add(artistPhoto);
+
+            return artistPhoto;
         }
 
         #endregion
@@ -101,7 +105,13 @@ namespace Bloom.Domain.Models
 
         #region AddMember
 
-        public void AddMember(Person person)
+        /// <summary>
+        /// Adds a member to this artist.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <returns>A new artist member.</returns>
+        /// <exception cref="System.ArgumentNullException">person</exception>
+        public ArtistMember AddMember(Person person)
         {
             if (person == null)
                 throw new ArgumentNullException("person");
@@ -109,10 +119,24 @@ namespace Bloom.Domain.Models
             if (Members == null)
                 Members = new List<ArtistMember>();
 
-            Members.Add(ArtistMember.Create(this, person));
+            var member = ArtistMember.Create(this, person);
+            Members.Add(member);
+
+            return member;
         }
 
-        public void AddMember(Person person, IList<Role> roles)
+        /// <summary>
+        /// Adds a member to this artist.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="roles">The member's roles.</param>
+        /// <returns>A new artist member.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// person
+        /// or
+        /// roles
+        /// </exception>
+        public ArtistMember AddMember(Person person, IList<Role> roles)
         {
             if (person == null)
                 throw new ArgumentNullException("person");
@@ -128,6 +152,8 @@ namespace Bloom.Domain.Models
                 member.AddRole(role);
 
             Members.Add(member);
+
+            return member;
         }
 
         #endregion
@@ -143,8 +169,9 @@ namespace Bloom.Domain.Models
         /// Adds a reference to this artist.
         /// </summary>
         /// <param name="reference">The reference.</param>
+        /// <returns>A new artist reference.</returns>
         /// <exception cref="System.ArgumentNullException">reference</exception>
-        public void AddReference(Reference reference)
+        public ArtistReference AddReference(Reference reference)
         {
             if (reference == null)
                 throw new ArgumentNullException("reference");
@@ -152,7 +179,10 @@ namespace Bloom.Domain.Models
             if (References == null)
                 References = new List<ArtistReference>();
 
-            References.Add(ArtistReference.Create(this, reference));
+            var artistReference = ArtistReference.Create(this, reference);
+            References.Add(artistReference);
+
+            return artistReference;
         }
 
         #endregion

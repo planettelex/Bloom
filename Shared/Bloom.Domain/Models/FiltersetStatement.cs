@@ -11,7 +11,13 @@ namespace Bloom.Domain.Models
     [Table(Name = "filterset_statement")]
     public class FiltersetStatement
     {
-        public FiltersetStatement Create(IFiltersetFilter filter, FilterComparison comparison, FiltersetItemScope scope)
+        /// <summary>
+        /// Creates a new filterset statement instance.
+        /// </summary>
+        /// <param name="filter">The statement filter.</param>
+        /// <param name="comparison">The statement comparison.</param>
+        /// <param name="scope">The scope of the statement.</param>
+        public static FiltersetStatement Create(IFiltersetFilter filter, FilterComparison comparison, FiltersetItemScope scope)
         {
             return new FiltersetStatement
             {

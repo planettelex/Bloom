@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using Bloom.Domain.Enums;
 
 namespace Bloom.Domain.Models
 {
@@ -66,7 +67,13 @@ namespace Bloom.Domain.Models
 
         #region AddPersonel
 
-        public void AddPersonel(Person person)
+        /// <summary>
+        /// Adds personel to this label.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <returns>A new label personel.</returns>
+        /// <exception cref="System.ArgumentNullException">person</exception>
+        public LabelPersonel AddPersonel(Person person)
         {
             if (person == null)
                 throw new ArgumentNullException("person");
@@ -74,10 +81,23 @@ namespace Bloom.Domain.Models
             if (Personel == null)
                 Personel = new List<LabelPersonel>();
 
-            Personel.Add(LabelPersonel.Create(this, person));
+            var labelPersonel = LabelPersonel.Create(this, person);
+            Personel.Add(labelPersonel);
+
+            return labelPersonel;
         }
 
-        public void AddPersonel(Person person, IList<Role> roles)
+        /// <summary>
+        /// Adds personel to this label.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="roles">The person's roles.</param>
+        /// <returns>A new label personel.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// person
+        /// or
+        /// roles</exception>
+        public LabelPersonel AddPersonel(Person person, IList<Role> roles)
         {
             if (person == null)
                 throw new ArgumentNullException("person");
@@ -93,6 +113,8 @@ namespace Bloom.Domain.Models
                 personel.AddRole(role);
 
             Personel.Add(personel);
+
+            return personel;
         }
 
         #endregion
@@ -100,6 +122,100 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the label's releases.
         /// </summary>
-        public List<AlbumRelease> Releases { get; set; } 
+        public List<AlbumRelease> Releases { get; set; }
+
+        #region AddRelease
+
+        /// <summary>
+        /// Creates and adds a release of this album.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="releaseDate">The release date.</param>
+        /// <returns>A new album release.</returns>
+        /// <exception cref="System.ArgumentNullException">album</exception>
+        public AlbumRelease AddRelease(Album album, DateTime releaseDate)
+        {
+            if (album == null)
+                throw new ArgumentNullException("album");
+
+            if (Releases == null)
+                Releases = new List<AlbumRelease>();
+
+            var albumRelease = AlbumRelease.Create(album, releaseDate);
+            albumRelease.LabelId = Id;
+            albumRelease.Label = this;
+
+            Releases.Add(albumRelease);
+            
+            if (album.Releases == null)
+                album.Releases = new List<AlbumRelease>();
+
+            album.Releases.Add(albumRelease);
+
+            return albumRelease;
+        }
+
+        /// <summary>
+        /// Creates and adds a release of this album.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="releaseDate">The release date.</param>
+        /// <param name="mediaTypes">The media types.</param>
+        /// <returns>A new album release.</returns>
+        /// <exception cref="System.ArgumentNullException">album</exception>
+        public AlbumRelease AddRelease(Album album, DateTime releaseDate, MediaTypes mediaTypes)
+        {
+            if (album == null)
+                throw new ArgumentNullException("album");
+
+            if (Releases == null)
+                Releases = new List<AlbumRelease>();
+
+            var albumRelease = AlbumRelease.Create(album, releaseDate, mediaTypes);
+            albumRelease.LabelId = Id;
+            albumRelease.Label = this;
+
+            Releases.Add(albumRelease);
+
+            if (album.Releases == null)
+                album.Releases = new List<AlbumRelease>();
+
+            album.Releases.Add(albumRelease);
+
+            return albumRelease;
+        }
+
+        /// <summary>
+        /// Creates and adds a release of this album.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="releaseDate">The release date.</param>
+        /// <param name="mediaTypes">The media types.</param>
+        /// <param name="digitalFormats">The digital formats.</param>
+        /// <returns>A new album release.</returns>
+        /// <exception cref="System.ArgumentNullException">album</exception>
+        public AlbumRelease AddRelease(Album album, DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats)
+        {
+            if (album == null)
+                throw new ArgumentNullException("album");
+
+            if (Releases == null)
+                Releases = new List<AlbumRelease>();
+
+            var albumRelease = AlbumRelease.Create(album, releaseDate, mediaTypes, digitalFormats);
+            albumRelease.LabelId = Id;
+            albumRelease.Label = this;
+
+            Releases.Add(albumRelease);
+
+            if (album.Releases == null)
+                album.Releases = new List<AlbumRelease>();
+
+            album.Releases.Add(albumRelease);
+
+            return albumRelease;
+        }
+
+        #endregion
     }
 }

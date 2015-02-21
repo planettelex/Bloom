@@ -59,7 +59,7 @@ namespace Bloom.Domain.Models
                 AlbumId = album.Id,
                 Album = album,
                 MediaTypes = mediaTypes,
-                DigitalFormat = digitalFormats,
+                DigitalFormats = digitalFormats,
                 ReleaseDate = releaseDate
             };
         }
@@ -83,7 +83,7 @@ namespace Bloom.Domain.Models
                 LabelId = label.Id,
                 Label = label,
                 MediaTypes = mediaTypes,
-                DigitalFormat = digitalFormats,
+                DigitalFormats = digitalFormats,
                 ReleaseDate = releaseDate,
                 CatalogNumber = catalogNumber
             };
@@ -116,7 +116,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the album release digital formats.
         /// </summary>
         [Column(Name = "digital_formats")]
-        public DigitalFormats DigitalFormat { get; set; }
+        public DigitalFormats DigitalFormats { get; set; }
 
         /// <summary>
         /// Gets or sets the album release date.

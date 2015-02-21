@@ -7,12 +7,27 @@ namespace Bloom.Domain.Interfaces
 {
     public interface IFiltersetOrder
     {
-        Guid Id { get; set; }
+        /// <summary>
+        /// Gets the order identifier.
+        /// </summary>
+        Guid Id { get; }
 
-        string Name { get; set; }
+        /// <summary>
+        /// Gets the order name.
+        /// </summary>
+        string Name { get; }
 
-        string Label { get; set; }
+        /// <summary>
+        /// Gets the order label.
+        /// </summary>
+        string Label { get; }
 
+        /// <summary>
+        /// Applies this order to the provided songs.
+        /// </summary>
+        /// <param name="scope">The order scope.</param>
+        /// <param name="songs">The songs.</param>
+        /// <param name="direction">The order direction.</param>
         void Apply(FiltersetItemScope scope, ref List<Song> songs, OrderDirection direction);
     }
 }

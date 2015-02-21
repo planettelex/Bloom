@@ -79,6 +79,7 @@
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\AlbumMood.cs" />
     <Compile Include="Enums\Condition.cs" />
+    <Compile Include="Models\Filters\AlbumNameFilter.cs" />
     <Compile Include="Models\LibraryPerson.cs" />
     <Compile Include="Models\LibraryPlaylist.cs" />
     <Compile Include="Models\LibrarySongMedia.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Models\ArtistMemberRole.cs" />
     <Compile Include="Models\ArtistMember.cs" />
     <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Orders\AlbumNameOrder.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonPhoto.cs" />
     <Compile Include="Models\Photo.cs" />
