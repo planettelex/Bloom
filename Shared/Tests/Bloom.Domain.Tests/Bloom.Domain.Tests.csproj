@@ -68,6 +68,9 @@
     <Compile Include="Models\ReferenceModelTests.cs" />
     <Compile Include="Models\ReviewModelTests.cs" />
     <Compile Include="Models\RoleModelTests.cs" />
+    <Compile Include="Models\SongModelTests.cs" />
+    <Compile Include="Models\TagModelTests.cs" />
+    <Compile Include="Models\TimeSignatureModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

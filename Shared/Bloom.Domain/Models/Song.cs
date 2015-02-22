@@ -207,7 +207,7 @@ namespace Bloom.Domain.Models
             if (startTime < 0 || startTime > Length)
                 throw new ArgumentOutOfRangeException("startTime");
 
-            if (stopTime < 0 || stopTime > Length || stopTime > startTime)
+            if (stopTime < 0 || stopTime > Length || stopTime < startTime)
                 throw new ArgumentOutOfRangeException("stopTime");
 
             if (Segments == null)
@@ -360,6 +360,122 @@ namespace Bloom.Domain.Models
             References.Add(songReference);
 
             return songReference;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the song reviews.
+        /// </summary>
+        public List<SongReview> Reviews { get; set; }
+
+        #region AddReview
+
+        /// <summary>
+        /// Creates and adds a review of this song.
+        /// </summary>
+        /// <param name="review">The review.</param>
+        /// <returns>A new song review.</returns>
+        /// <exception cref="System.ArgumentNullException">review</exception>
+        public SongReview AddReview(Review review)
+        {
+            if (review == null)
+                throw new ArgumentNullException("review");
+
+            if (Reviews == null)
+                Reviews = new List<SongReview>();
+
+            var songReview = SongReview.Create(this, review);
+            Reviews.Add(songReview);
+
+            return songReview;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the song activities.
+        /// </summary>
+        public List<SongActivity> Activities { get; set; }
+
+        #region AddActivity
+
+        /// <summary>
+        /// Creates and adds an activity for this song.
+        /// </summary>
+        /// <param name="activity">The activity.</param>
+        /// <returns>A new song activity.</returns>
+        /// <exception cref="System.ArgumentNullException">activity</exception>
+        public SongActivity AddActivity(Activity activity)
+        {
+            if (activity == null)
+                throw new ArgumentNullException("activity");
+
+            if (Activities == null)
+                Activities = new List<SongActivity>();
+
+            var albumActivity = SongActivity.Create(this, activity);
+            Activities.Add(albumActivity);
+
+            return albumActivity;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the song moods.
+        /// </summary>
+        public List<SongMood> Moods { get; set; }
+
+        #region AddMood
+
+        /// <summary>
+        /// Creates and adds a mood for this song.
+        /// </summary>
+        /// <param name="mood">The mood.</param>
+        /// <returns>A new song mood.</returns>
+        /// <exception cref="System.ArgumentNullException">mood</exception>
+        public SongMood AddMood(Mood mood)
+        {
+            if (mood == null)
+                throw new ArgumentNullException("mood");
+
+            if (Moods == null)
+                Moods = new List<SongMood>();
+
+            var songMood = SongMood.Create(this, mood);
+            Moods.Add(songMood);
+
+            return songMood;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the song tags.
+        /// </summary>
+        public List<SongTag> Tags { get; set; }
+
+        #region AddTag
+
+        /// <summary>
+        /// Creates and adds a tag for this song.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <returns>A new song tag.</returns>
+        /// <exception cref="System.ArgumentNullException">tag</exception>
+        public SongTag AddTag(Tag tag)
+        {
+            if (tag == null)
+                throw new ArgumentNullException("tag");
+
+            if (Tags == null)
+                Tags = new List<SongTag>();
+
+            var songTag = SongTag.Create(this, tag);
+            Tags.Add(songTag);
+
+            return songTag;
         }
 
         #endregion

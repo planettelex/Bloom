@@ -20,6 +20,7 @@ namespace Bloom.Domain.Models
         {
             return new SongSegment
             {
+                Id = Guid.NewGuid(),
                 SongId = song.Id,
                 StartTime = startTime,
                 StopTime = stopTime
