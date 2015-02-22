@@ -13,7 +13,7 @@
     <Color x:Key="ErrorBackgroundColor">#FFDC000C</Color>
     <Color x:Key="MenuBackgroundColor">#FFCFD3DA</Color>
     <Color x:Key="MenuItemSelectedBackgroundColor">#FFE0E3E8</Color>
-    <Color x:Key="NormalBorderColor">#FF727B8C</Color>
+    <Color x:Key="NormalBorderColor">#FF2C323E</Color>
     <Color x:Key="NormalForegroundColor">#FF000104</Color>
     <Color x:Key="ProgressBarStartColor">#FFA3CDF4</Color>
     <Color x:Key="ProgressBarStopColor">#FF789FC3</Color>
@@ -24,6 +24,8 @@
     <Color x:Key="TabsDockCueColor">#55FFFF8C</Color>
     <Color x:Key="TabsUnselectedBackgroundColor">#FFC0C5D1</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFCFD3DA</Color>
+    <Color x:Key="WindowHeaderBackgroundColor">#FF555E6F</Color>
+    <Color x:Key="WindowHeaderForegroundColor">#FFE0E3E8</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{StaticResource ControlBackgroundColor}" />
@@ -38,5 +40,6 @@
     <SolidColorBrush x:Key="TabsDockCueBrush" Color="{StaticResource TabsDockCueColor}" />
     <SolidColorBrush x:Key="TabsUnselectedBackgroundBrush" Color="{StaticResource TabsUnselectedBackgroundColor}" />
     <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
+    <SolidColorBrush x:Key="WindowHeaderForegroundBrush" Color="{StaticResource WindowHeaderForegroundColor}" />
 
 </ResourceDictionary>

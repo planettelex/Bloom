@@ -9,20 +9,20 @@
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="Background" Value="{DynamicResource TabsBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderBackground" Value="Transparent"/>
-        <Setter Property="ModalBackground" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="2,0,2,2"/>
-        <Setter Property="MinHeight" Value="36"/>
-        <Setter Property="MinWidth" Value="110"/>
+        <Setter Property="BorderBackground" Value="{DynamicResource TabsBackgroundBrush}"/>
+        <Setter Property="ModalBackground" Value="{DynamicResource TabsBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="5"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-        <Setter Property="Header" Value="RadWindow"/>
-        <Setter Property="WindowStartupLocation" Value="Manual"/>
+        <Setter Property="WindowStartupLocation" Value="CenterOwner" />
+        <Setter Property="HideMaximizeButton" Value="True" />
+        <Setter Property="HideMinimizeButton" Value="True" />
         <Setter Property="WindowState" Value="Normal"/>
         <Setter Property="CaptionHeight" Value="29"/>
         <Setter Property="ResizeBorder" Value="8,6,10,10"/>
+        <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -146,17 +146,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Shadow" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="0" CornerRadius="10">
-                            <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="9">
-                                <Border BorderBrush="Transparent" BorderThickness="1" CornerRadius="8">
-                                    <Border BorderBrush="Transparent" BorderThickness="0,0,1,1" CornerRadius="7">
-                                        <Border BorderBrush="Transparent" BorderThickness="0,0,1,1" CornerRadius="6"/>
-                                    </Border>
-                                </Border>
-                            </Border>
-                        </Border>
-                        <Border x:Name="WindowOuterBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5" Margin="3,3,5,5" Grid.RowSpan="2">
-                            <Border x:Name="WindowInnerBorder" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" CornerRadius="4">
+                        <Border x:Name="Shadow" BorderBrush="{DynamicResource TabsBackgroundBrush}" BorderThickness="1" CornerRadius="0" />
+                        <Border x:Name="WindowOuterBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" CornerRadius="0" Grid.RowSpan="2">
+                            <Border x:Name="WindowInnerBorder" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" CornerRadius="0">
                                 <AdornerDecorator>
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -165,7 +157,7 @@
                                         </Grid.RowDefinitions>
                                         <Rectangle x:Name="HeaderBackgroundVisual" Grid.Row="0">
                                             <Rectangle.Fill>
-                                                <SolidColorBrush Color="{DynamicResource ShellBackgroundColor}" />
+                                                <SolidColorBrush Color="{DynamicResource WindowHeaderBackgroundColor}" />
                                             </Rectangle.Fill>
                                         </Rectangle>
                                         <Rectangle x:Name="BackgroundVisual" Fill="{TemplateBinding BorderBackground}" Grid.Row="1"/>
@@ -209,7 +201,7 @@
                                                                     <Setter.Value>
                                                                         <ControlTemplate TargetType="{x:Type telerik:RadButton}">
                                                                             <Grid>
-                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" />
+                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="False" RenderPressed="False" />
                                                                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}"/>
                                                                             </Grid>
                                                                         </ControlTemplate>
@@ -229,7 +221,7 @@
                                                         </telerik:RadButton.Visibility>
                                                         <Path Data="M1.5,7.5L12.5,7.5 12.5,11.5 1.5,11.5z" Height="14" Stroke="Transparent" Width="14">
                                                             <Path.Fill>
-                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
+                                                                <SolidColorBrush Color="{DynamicResource WindowHeaderForegroundColor}" />
                                                             </Path.Fill>
                                                         </Path>
                                                     </telerik:RadButton>
@@ -243,7 +235,7 @@
                                                                     <Setter.Value>
                                                                         <ControlTemplate TargetType="{x:Type telerik:RadButton}">
                                                                             <Grid>
-                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" />
+                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="False" RenderPressed="False" />
                                                                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}"/>
                                                                             </Grid>
                                                                         </ControlTemplate>
@@ -263,7 +255,7 @@
                                                         </telerik:RadButton.Visibility>
                                                         <Path Data="M0.5,4.5L0.5,11.5 1.5,12.5 8.5,12.5 9.5,11.5 9.5,3.5 1.5,3.5z M3.5,6.5L3.5,9.5 6.5,9.5 6.5,6.5z M3.5,3.5L3.5,1.5 4.5,0.5 11.5,0.5 12.5,1.5 12.5,9.5 11.5,10.5 9.5,10.5 9.5,3.5z" Height="14" Stroke="Transparent" Width="14">
                                                             <Path.Fill>
-                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
+                                                                <SolidColorBrush Color="{DynamicResource WindowHeaderForegroundColor}" />
                                                             </Path.Fill>
                                                         </Path>
                                                     </telerik:RadButton>
@@ -277,7 +269,7 @@
                                                                     <Setter.Value>
                                                                         <ControlTemplate TargetType="{x:Type telerik:RadButton}">
                                                                             <Grid>
-                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" />
+                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="False" RenderPressed="False" />
                                                                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}"/>
                                                                             </Grid>
                                                                         </ControlTemplate>
@@ -297,7 +289,7 @@
                                                         </telerik:RadButton.Visibility>
                                                         <Path Data="M1.5,2.5L12.5,2.5 12.5,11.5 1.5,11.5z M4.5,5.5L9.5,5.5 9.5,8.5 4.5,8.5z" Height="14" Stroke="Transparent" Width="14">
                                                             <Path.Fill>
-                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
+                                                                <SolidColorBrush Color="{DynamicResource WindowHeaderForegroundColor}" />
                                                             </Path.Fill>
                                                         </Path>
                                                     </telerik:RadButton>
@@ -311,7 +303,7 @@
                                                                     <Setter.Value>
                                                                         <ControlTemplate TargetType="{x:Type telerik:RadButton}">
                                                                             <Grid>
-                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" />
+                                                                                <chromes:ButtonChrome CornerRadius="1" RenderNormal="False" RenderMouseOver="False" RenderPressed="False" />
                                                                                 <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}"/>
                                                                             </Grid>
                                                                         </ControlTemplate>
@@ -331,15 +323,15 @@
                                                         </telerik:RadButton.Visibility>
                                                         <Path Data="M1.5,3.5L2.5,2.5 4.5,2.5 6.5,4.5 8.5,2.5 10.5,2.5 11.5,3.5 8.5,6.5 8.5,7.5 11.5,10.5 10.5,11.5 8.5,11.5 6.5,9.5 4.5,11.5 2.5,11.5 1.5,10.5 4.5,7.5 4.5,6.5z" Height="14" Stroke="Transparent" Width="14">
                                                             <Path.Fill>
-                                                                <SolidColorBrush Color="{DynamicResource TabsBackgroundColor}" />
+                                                                <SolidColorBrush Color="{DynamicResource WindowHeaderForegroundColor}" />
                                                             </Path.Fill>
                                                         </Path>
                                                     </telerik:RadButton>
                                                 </StackPanel>
                                             </Border>
                                         </Grid>
-                                        <Border x:Name="ContentOuterBorder" BorderBrush="Transparent" BorderThickness="1" Margin="{TemplateBinding BorderThickness}" Grid.Row="1">
-                                            <Border x:Name="ContentInnerBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
+                                        <Border x:Name="ContentOuterBorder" BorderBrush="Transparent" BorderThickness="0" Margin="{TemplateBinding BorderThickness}" Grid.Row="1">
+                                            <Border x:Name="ContentInnerBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}">
                                                 <ContentPresenter x:Name="ContentElement" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}"/>
                                             </Border>
                                         </Border>
@@ -354,7 +346,7 @@
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <ItemContainerTemplate>
-                    <TextBlock Text="{Binding}" Foreground="{DynamicResource TabsBackgroundBrush}" />
+                    <TextBlock FontWeight="Bold" Text="{Binding}" Foreground="{DynamicResource WindowHeaderForegroundBrush}" Padding="0 6" />
                 </ItemContainerTemplate>
             </Setter.Value>
         </Setter>

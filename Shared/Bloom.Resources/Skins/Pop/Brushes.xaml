@@ -3,7 +3,7 @@
     <!-- Pop Skin -->
 
     <!-- Colors -->
-    <Color x:Key="ControlBackgroundColor">#FFC7C7C7</Color>
+    <Color x:Key="ControlBackgroundColor">#FFF6F6F6</Color>
     <Color x:Key="ControlDisabledBackgroundColor">#FFEFEFEF</Color>
     <Color x:Key="ControlHoverBackgroundColor">#FFE0E3E8</Color>
     <Color x:Key="DisabledBorderColor">#FFEFEFEF</Color>
@@ -24,6 +24,8 @@
     <Color x:Key="TabsDockCueColor">#33A4C3F9</Color>
     <Color x:Key="TabsUnselectedBackgroundColor">#FFE7E7E5</Color>
     <Color x:Key="TitlebarBackgroundColor">#FFF6F6F6</Color>
+    <Color x:Key="WindowHeaderBackgroundColor">#FFE7E7E5</Color>
+    <Color x:Key="WindowHeaderForegroundColor">#FF2D312D</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{StaticResource ControlBackgroundColor}" />
@@ -38,5 +40,6 @@
     <SolidColorBrush x:Key="TabsDockCueBrush" Color="{StaticResource TabsDockCueColor}" />
     <SolidColorBrush x:Key="TabsUnselectedBackgroundBrush" Color="{StaticResource TabsUnselectedBackgroundColor}" />
     <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
+    <SolidColorBrush x:Key="WindowHeaderForegroundBrush" Color="{StaticResource WindowHeaderForegroundColor}" />
 
 </ResourceDictionary>
