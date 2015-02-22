@@ -2,7 +2,7 @@
 using Bloom.Domain.Models;
 using NUnit.Framework;
 
-namespace Bloom.Domain.Tests
+namespace Bloom.Domain.Tests.Models
 {
     /// <summary>
     /// Tests for the genre model class.

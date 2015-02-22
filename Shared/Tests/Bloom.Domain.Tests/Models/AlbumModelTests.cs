@@ -3,7 +3,7 @@ using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using NUnit.Framework;
 
-namespace Bloom.Domain.Tests
+namespace Bloom.Domain.Tests.Models
 {
     /// <summary>
     /// Tests for the album model class.
@@ -281,7 +281,7 @@ namespace Bloom.Domain.Tests
         }
 
         /// <summary>
-        /// Tests adding an track to an album.
+        /// Tests adding a track to an album.
         /// </summary>
         [Test]
         public void AddTrackToAlbumTest()

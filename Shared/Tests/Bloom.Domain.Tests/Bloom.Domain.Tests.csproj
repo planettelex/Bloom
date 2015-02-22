@@ -49,13 +49,25 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="AlbumModelTests.cs" />
-    <Compile Include="ActivityModelTests.cs" />
-    <Compile Include="ArtistModelTests.cs" />
-    <Compile Include="FiltersetModelTests.cs" />
-    <Compile Include="GenreModelTests.cs" />
-    <Compile Include="HolidayModelTests.cs" />
-    <Compile Include="LabelModelTests.cs" />
+    <Compile Include="..\..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Models\AlbumModelTests.cs" />
+    <Compile Include="Models\ActivityModelTests.cs" />
+    <Compile Include="Models\ArtistModelTests.cs" />
+    <Compile Include="Models\FiltersetModelTests.cs" />
+    <Compile Include="Models\GenreModelTests.cs" />
+    <Compile Include="Models\HolidayModelTests.cs" />
+    <Compile Include="Models\LabelModelTests.cs" />
+    <Compile Include="Models\LibraryModelTests.cs" />
+    <Compile Include="Models\MoodModelTests.cs" />
+    <Compile Include="Models\PersonModelTests.cs" />
+    <Compile Include="Models\PhotoModelTests.cs" />
+    <Compile Include="Models\PlaylistModelTests.cs" />
+    <Compile Include="Models\PublicationModelTests.cs" />
+    <Compile Include="Models\ReferenceModelTests.cs" />
+    <Compile Include="Models\ReviewModelTests.cs" />
+    <Compile Include="Models\RoleModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

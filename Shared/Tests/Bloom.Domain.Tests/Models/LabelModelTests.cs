@@ -3,7 +3,7 @@ using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using NUnit.Framework;
 
-namespace Bloom.Domain.Tests
+namespace Bloom.Domain.Tests.Models
 {
     /// <summary>
     /// Tests for the label model class.

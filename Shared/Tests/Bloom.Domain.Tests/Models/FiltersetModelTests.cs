@@ -5,7 +5,7 @@ using Bloom.Domain.Models.Filters;
 using Bloom.Domain.Models.Orders;
 using NUnit.Framework;
 
-namespace Bloom.Domain.Tests
+namespace Bloom.Domain.Tests.Models
 {
     /// <summary>
     /// Tests for the filterset model class.

@@ -162,5 +162,92 @@ namespace Bloom.Domain.Models
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets or sets the playlist activities.
+        /// </summary>
+        public List<PlaylistActivity> Activities { get; set; }
+
+        #region AddActivity
+
+        /// <summary>
+        /// Creates and adds an activity for this playlist.
+        /// </summary>
+        /// <param name="activity">The activity.</param>
+        /// <returns>A new playlist activity.</returns>
+        /// <exception cref="System.ArgumentNullException">activity</exception>
+        public PlaylistActivity AddActivity(Activity activity)
+        {
+            if (activity == null)
+                throw new ArgumentNullException("activity");
+
+            if (Activities == null)
+                Activities = new List<PlaylistActivity>();
+
+            var playlistActivity = PlaylistActivity.Create(this, activity);
+            Activities.Add(playlistActivity);
+
+            return playlistActivity;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the playlist moods.
+        /// </summary>
+        public List<PlaylistMood> Moods { get; set; }
+
+        #region AddMood
+
+        /// <summary>
+        /// Creates and adds a mood for this playlist.
+        /// </summary>
+        /// <param name="mood">The mood.</param>
+        /// <returns>A new playlist mood.</returns>
+        /// <exception cref="System.ArgumentNullException">mood</exception>
+        public PlaylistMood AddMood(Mood mood)
+        {
+            if (mood == null)
+                throw new ArgumentNullException("mood");
+
+            if (Moods == null)
+                Moods = new List<PlaylistMood>();
+
+            var playlistMood = PlaylistMood.Create(this, mood);
+            Moods.Add(playlistMood);
+
+            return playlistMood;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the playlist tags.
+        /// </summary>
+        public List<PlaylistTag> Tags { get; set; }
+
+        #region AddTag
+
+        /// <summary>
+        /// Creates and adds a tag for this playlist.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <returns>A new playlist tag.</returns>
+        /// <exception cref="System.ArgumentNullException">tag</exception>
+        public PlaylistTag AddTag(Tag tag)
+        {
+            if (tag == null)
+                throw new ArgumentNullException("tag");
+
+            if (Tags == null)
+                Tags = new List<PlaylistTag>();
+
+            var albumTag = PlaylistTag.Create(this, tag);
+            Tags.Add(albumTag);
+
+            return albumTag;
+        }
+
+        #endregion
     }
 }
