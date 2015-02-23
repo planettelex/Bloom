@@ -5,13 +5,14 @@ namespace Bloom.Browser.LibraryModule.ViewModels
 {
     public class LibraryViewModel
     {
-        public LibraryViewModel(LibraryViewType viewType)
+        public LibraryViewModel(ViewType viewType)
         {
+            TabId = Guid.NewGuid();
             ViewType = viewType;
         }
 
         public Guid TabId { get; set; }
 
-        public LibraryViewType ViewType { get; set; }
+        public ViewType ViewType { get; set; }
     }
 }

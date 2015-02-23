@@ -39,7 +39,7 @@ namespace Bloom.Analytics.PlaylistModule.Services
             var playlistTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Playlist,
+                Type = TabType.Playlist,
                 Header = "Playlist",
                 Content = playlistView
             };
@@ -59,7 +59,7 @@ namespace Bloom.Analytics.PlaylistModule.Services
             var playlistTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Playlist,
+                Type = TabType.Playlist,
                 Header = "Playlist",
                 Content = playlistView
             };

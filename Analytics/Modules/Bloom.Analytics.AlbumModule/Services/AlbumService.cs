@@ -39,7 +39,7 @@ namespace Bloom.Analytics.AlbumModule.Services
             var albumTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Album,
+                Type = TabType.Album,
                 Header = "Album",
                 Content = albumView
             };
@@ -59,7 +59,7 @@ namespace Bloom.Analytics.AlbumModule.Services
             var albumTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Album,
+                Type = TabType.Album,
                 Header = "Album",
                 Content = albumView
             };

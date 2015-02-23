@@ -1,9 +1,9 @@
 ﻿namespace Bloom.Browser.Common
 {
     /// <summary>
-    /// A type of library view.
+    /// A type of view.
     /// </summary>
-    public enum LibraryViewType
+    public enum ViewType
     {
         Grid,
         List,

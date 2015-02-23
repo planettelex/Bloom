@@ -10,6 +10,11 @@ namespace Bloom.PubSubEvents
     public class AddTabEvent : PubSubEvent<Tab> { }
 
     /// <summary>
+    /// Creates a new home control and publish the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class NewHomeTabEvent : PubSubEvent<object> { }
+
+    /// <summary>
     /// Creates a new library control and publish the <see cref="AddTabEvent"/>.
     /// </summary>
     public class NewLibraryTabEvent : PubSubEvent<object> { }

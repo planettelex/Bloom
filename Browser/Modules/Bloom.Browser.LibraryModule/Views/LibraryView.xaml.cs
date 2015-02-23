@@ -30,7 +30,7 @@ namespace Bloom.Browser.LibraryModule.Views
             get { return (LibraryViewModel) DataContext; }
         }
 
-        private void ChangeLibraryTabView(Tuple<Guid, LibraryViewType> libraryViewTuple)
+        private void ChangeLibraryTabView(Tuple<Guid, ViewType> libraryViewTuple)
         {
             if (ViewModel.TabId != libraryViewTuple.Item1)
                 return;
@@ -38,38 +38,38 @@ namespace Bloom.Browser.LibraryModule.Views
             ShowView(libraryViewTuple.Item2);
         }
 
-        private void ShowView(LibraryViewType viewType)
+        private void ShowView(ViewType viewType)
         {
             switch (viewType)
             {
-                case LibraryViewType.Album:
+                case ViewType.Album:
                     ShowAlbumView();
                     break;
-                case LibraryViewType.Coverflow:
+                case ViewType.Coverflow:
                     ShowCoverflowView();
                     break;
-                case LibraryViewType.Grid:
+                case ViewType.Grid:
                     ShowGridView();
                     break;
-                case LibraryViewType.List:
+                case ViewType.List:
                     ShowListView();
                     break;
-                case LibraryViewType.Scattered:
+                case ViewType.Scattered:
                     ShowScatteredView();
                     break;
-                case LibraryViewType.Scroll:
+                case ViewType.Scroll:
                     ShowScrollView();
                     break;
-                case LibraryViewType.Slideshow:
+                case ViewType.Slideshow:
                     ShowSlideshowView();
                     break;
-                case LibraryViewType.Spines:
+                case ViewType.Spines:
                     ShowSpinesView();
                     break;
-                case LibraryViewType.Spreadsheet:
+                case ViewType.Spreadsheet:
                     ShowSpreadsheetView();
                     break;
-                case LibraryViewType.Tiles:
+                case ViewType.Tiles:
                     ShowTilesView();
                     break;
             }

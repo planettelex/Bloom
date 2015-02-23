@@ -73,8 +73,8 @@ namespace Bloom.Browser
 
         private void ChangeTabView(string viewType)
         {
-            var libraryViewType = (LibraryViewType) Enum.Parse(typeof (LibraryViewType), viewType);
-            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Publish(new Tuple<Guid, LibraryViewType>(TabId, libraryViewType));
+            var libraryViewType = (ViewType) Enum.Parse(typeof (ViewType), viewType);
+            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Publish(new Tuple<Guid, ViewType>(TabId, libraryViewType));
         }
     }
 }

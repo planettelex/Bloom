@@ -39,7 +39,7 @@ namespace Bloom.Analytics.PersonModule.Services
             var personTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Person,
+                Type = TabType.Person,
                 Header = "Person",
                 Content = personView
             };
@@ -59,7 +59,7 @@ namespace Bloom.Analytics.PersonModule.Services
             var personTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Person,
+                Type = TabType.Person,
                 Header = "Person",
                 Content = personView
             };

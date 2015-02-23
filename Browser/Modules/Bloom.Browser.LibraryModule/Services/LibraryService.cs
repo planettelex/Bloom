@@ -9,6 +9,7 @@ using Bloom.Browser.LibraryModule.Views;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
+using Bloom.Controls;
 using Bloom.Data;
 using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
@@ -35,7 +36,7 @@ namespace Bloom.Browser.LibraryModule.Services
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _stateService = stateService;
-            _tabs = new List<LibraryTab>();
+            _tabs = new List<ViewMenuTab>();
             _libraryConnectionRepository = libraryConnectionRepository;
 
             // Subscribe to events
@@ -50,7 +51,7 @@ namespace Bloom.Browser.LibraryModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
         private readonly IStateService _stateService;
-        private readonly List<LibraryTab> _tabs;
+        private readonly List<ViewMenuTab> _tabs;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>
@@ -106,15 +107,12 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         public void NewLibraryTab()
         {
-            var libraryViewModel = new LibraryViewModel(LibraryViewType.Grid)
-            {
-                TabId = Guid.NewGuid()
-            };
+            var libraryViewModel = new LibraryViewModel(ViewType.Grid);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var libraryTab = new LibraryTab
+            var libraryTab = new ViewMenuTab
             {
                 Id = libraryViewModel.TabId,
-                EntityType = EntityType.Filterset,
+                Type = TabType.Library,
                 Header = "Library",
                 Content = libraryView,
                 ShowViewMenu = true,
@@ -135,15 +133,12 @@ namespace Bloom.Browser.LibraryModule.Services
             if (existingTab == null)
                 return;
 
-            var libraryViewModel = new LibraryViewModel(existingTab.ViewType)
-            {
-                TabId = Guid.NewGuid()
-            };
+            var libraryViewModel = new LibraryViewModel(existingTab.ViewType);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var libraryTab = new LibraryTab
+            var libraryTab = new ViewMenuTab
             {
                 Id = libraryViewModel.TabId,
-                EntityType = EntityType.Filterset,
+                Type = TabType.Library,
                 Header = "Library",
                 Content = libraryView,
                 ShowViewMenu = true,
@@ -158,7 +153,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Changes a library tab view.
         /// </summary>
         /// <param name="libraryViewTuple">The library view tab identifier and view type tuple.</param>
-        public void ChangeLibraryTabView(Tuple<Guid, LibraryViewType> libraryViewTuple)
+        public void ChangeLibraryTabView(Tuple<Guid, ViewType> libraryViewTuple)
         {
             ChangeLibraryTabView(libraryViewTuple.Item1, libraryViewTuple.Item2);
         }
@@ -168,7 +163,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         /// <param name="tabId">The tab identifier of the view.</param>
         /// <param name="viewType">The view type to change to.</param>
-        public void ChangeLibraryTabView(Guid tabId, LibraryViewType viewType)
+        public void ChangeLibraryTabView(Guid tabId, ViewType viewType)
         {
             var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
             if (existingTab == null)

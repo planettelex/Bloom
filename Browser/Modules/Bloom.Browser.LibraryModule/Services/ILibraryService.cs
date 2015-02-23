@@ -32,6 +32,6 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         /// <param name="tabId">The tab identifier of the view.</param>
         /// <param name="viewType">The view type to change to.</param>
-        void ChangeLibraryTabView(Guid tabId, LibraryViewType viewType);
+        void ChangeLibraryTabView(Guid tabId, ViewType viewType);
     }
 }

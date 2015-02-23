@@ -39,7 +39,7 @@ namespace Bloom.Analytics.ArtistModule.Services
             var artistTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Artist,
+                Type = TabType.Artist,
                 Header = "Artist",
                 Content = artistView
             };
@@ -59,7 +59,7 @@ namespace Bloom.Analytics.ArtistModule.Services
             var artistTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Artist,
+                Type = TabType.Artist,
                 Header = "Artist",
                 Content = artistView
             };

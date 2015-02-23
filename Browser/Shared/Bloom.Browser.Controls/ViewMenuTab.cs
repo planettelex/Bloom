@@ -4,13 +4,13 @@ using Bloom.Controls;
 namespace Bloom.Browser.Controls
 {
     /// <summary>
-    /// A shell docking control library tab.
+    /// A shell docking control tab with a view menu.
     /// </summary>
-    public class LibraryTab : Tab
+    public class ViewMenuTab : Tab
     {
         /// <summary>
         /// Gets or sets the library view type.
         /// </summary>
-        public LibraryViewType ViewType { get; set; }
+        public ViewType ViewType { get; set; }
     }
 }

@@ -80,7 +80,7 @@
     <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="LibraryTab.cs" />
+    <Compile Include="ViewMenuTab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

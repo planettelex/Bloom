@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Bloom.Browser.PersonModule.ViewModels;
 using Bloom.Browser.PersonModule.Views;
 using Bloom.Controls;
-using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -19,13 +20,14 @@ namespace Bloom.Browser.PersonModule.Services
         public PersonService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _tabs = new List<Tab>();
+            _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewPersonTabEvent>().Subscribe(NewPersonTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePersonTab);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<ViewMenuTab> _tabs;
 
         public void NewPersonTab(object nothing)
         {
@@ -34,14 +36,16 @@ namespace Bloom.Browser.PersonModule.Services
 
         public void NewPersonTab()
         {
-            var personViewModel = new PersonViewModel();
+            var personViewModel = new PersonViewModel(ViewType.Grid);
             var personView = new PersonView(personViewModel);
-            var personTab = new Tab
+            var personTab = new ViewMenuTab
             {
-                Id = Guid.NewGuid(),
-                EntityType = EntityType.Person,
+                Id = personViewModel.TabId,
+                Type = TabType.Person,
                 Header = "Person",
-                Content = personView
+                Content = personView,
+                ShowViewMenu = true,
+                ViewType = personViewModel.ViewType
             };
 
             _tabs.Add(personTab);
@@ -54,20 +58,20 @@ namespace Bloom.Browser.PersonModule.Services
             if (existingTab == null)
                 return;
 
-            var personViewModel = new PersonViewModel();
+            var personViewModel = new PersonViewModel(existingTab.ViewType);
             var personView = new PersonView(personViewModel);
-            var personTab = new Tab
+            var personTab = new ViewMenuTab
             {
-                Id = Guid.NewGuid(),
-                EntityType = EntityType.Person,
+                Id = personViewModel.TabId,
+                Type = TabType.Person,
                 Header = "Person",
-                Content = personView
+                Content = personView,
+                ShowViewMenu = true,
+                ViewType = personViewModel.ViewType
             };
 
             _tabs.Add(personTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);
         }
-
-        private readonly List<Tab> _tabs;
     }
 }

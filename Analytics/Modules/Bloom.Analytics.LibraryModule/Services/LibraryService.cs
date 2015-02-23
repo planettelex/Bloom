@@ -6,6 +6,7 @@ using Bloom.Analytics.Controls;
 using Bloom.Analytics.LibraryModule.ViewModels;
 using Bloom.Analytics.LibraryModule.Views;
 using Bloom.Analytics.PubSubEvents;
+using Bloom.Controls;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -42,7 +43,7 @@ namespace Bloom.Analytics.LibraryModule.Services
             var libraryTab = new LibraryTab
             {
                 Id = libraryViewModel.TabId,
-                EntityType = EntityType.Filterset,
+                Type = TabType.Library,
                 Header = "Library",
                 Content = libraryView,
                 ShowViewMenu = true,
@@ -67,7 +68,7 @@ namespace Bloom.Analytics.LibraryModule.Services
             var libraryTab = new LibraryTab
             {
                 Id = libraryViewModel.TabId,
-                EntityType = EntityType.Filterset,
+                Type = TabType.Library,
                 Header = "Library",
                 Content = libraryView,
                 ShowViewMenu = true,

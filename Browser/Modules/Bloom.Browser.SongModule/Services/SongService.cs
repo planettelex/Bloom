@@ -39,7 +39,7 @@ namespace Bloom.Browser.SongModule.Services
             var songTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Song,
+                Type = TabType.Song,
                 Header = "Song",
                 Content = songView
             };
@@ -59,7 +59,7 @@ namespace Bloom.Browser.SongModule.Services
             var songTab = new Tab
             {
                 Id = Guid.NewGuid(),
-                EntityType = EntityType.Song,
+                Type = TabType.Song,
                 Header = "Song",
                 Content = songView
             };

@@ -20,9 +20,9 @@ namespace Bloom.Controls
         public Guid LibraryId { get; set; }
 
         /// <summary>
-        /// Gets or sets the entity type contained in the tab.
+        /// Gets or sets the type of tab.
         /// </summary>
-        public EntityType EntityType { get; set; }
+        public TabType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the entity identifier contained in the tab.

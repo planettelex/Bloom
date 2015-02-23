@@ -11,7 +11,7 @@ namespace Bloom.TaxonomiesModule
     public class TaxonomiesModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaxonomiesModule"/> class.
+        /// Initializes a new instance of the <see cref="TaxonomiesModuleDefinition"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         public TaxonomiesModuleDefinition(IRegionManager regionManager)

@@ -35,7 +35,7 @@ namespace Bloom.Browser.LibraryModule
             _container.Resolve(typeof(ILibraryService));
 
             // Create an initial library tab
-            _eventAggregator.GetEvent<NewLibraryTabEvent>().Publish(null);
+            //_eventAggregator.GetEvent<NewLibraryTabEvent>().Publish(null);
         }
     }
 }

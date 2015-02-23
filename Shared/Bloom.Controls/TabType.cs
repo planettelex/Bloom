@@ -1,10 +1,11 @@
-﻿namespace Bloom.Domain.Enums
+﻿namespace Bloom.Controls
 {
-    public enum EntityType
+    public enum TabType
     {
+        Home,
+        Library,
         Album,
         Artist,
-        Filterset,
         Person,
         Playlist,
         Song
