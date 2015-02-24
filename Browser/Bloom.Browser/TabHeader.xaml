@@ -31,17 +31,17 @@
                 <telerik:RadMenuItem.Icon>
                     <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}"  />
                 </telerik:RadMenuItem.Icon>
-                <telerik:RadMenuGroupItem ItemContainerStyle="{DynamicResource ViewMenuItemStyle}">
-                    <telerik:RadMenuItem Header="Grid" Command="{Binding ChangeTabViewCommand}" CommandParameter="Grid" />
-                    <telerik:RadMenuItem Header="List" Command="{Binding ChangeTabViewCommand}" CommandParameter="List" />
-                    <telerik:RadMenuItem Header="Spreadsheet" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spreadsheet" />
-                    <telerik:RadMenuItem Header="Slideshow" Command="{Binding ChangeTabViewCommand}" CommandParameter="Slideshow" />
-                    <telerik:RadMenuItem Header="Single Album" Command="{Binding ChangeTabViewCommand}" CommandParameter="Album" />
-                    <telerik:RadMenuItem Header="Scroll" Command="{Binding ChangeTabViewCommand}" CommandParameter="Scroll" />
-                    <telerik:RadMenuItem Header="Coverflow" Command="{Binding ChangeTabViewCommand}" CommandParameter="Coverflow" />
-                    <telerik:RadMenuItem Header="Spines" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spines" />
-                    <telerik:RadMenuItem Header="Scattered" Command="{Binding ChangeTabViewCommand}" CommandParameter="Scattered" />
-                    <telerik:RadMenuItem Header="Tiles" Command="{Binding ChangeTabViewCommand}" CommandParameter="Tiles" />
+                <telerik:RadMenuGroupItem >
+                    <telerik:RadMenuItem Header="Grid" Command="{Binding ChangeTabViewCommand}" CommandParameter="Grid" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="List" Command="{Binding ChangeTabViewCommand}" CommandParameter="List" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Spreadsheet" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spreadsheet" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Slideshow" Command="{Binding ChangeTabViewCommand}" CommandParameter="Slideshow" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Single Album" Command="{Binding ChangeTabViewCommand}" CommandParameter="Album" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Scroll" Command="{Binding ChangeTabViewCommand}" CommandParameter="Scroll" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Coverflow" Command="{Binding ChangeTabViewCommand}" CommandParameter="Coverflow" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Spines" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spines" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Scattered" Command="{Binding ChangeTabViewCommand}" CommandParameter="Scattered" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Tiles" Command="{Binding ChangeTabViewCommand}" CommandParameter="Tiles" Background="{DynamicResource TabsBackgroundBrush}" />
                 </telerik:RadMenuGroupItem>
             </telerik:RadMenuItem>
         </telerik:RadMenu>

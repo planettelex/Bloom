@@ -7,11 +7,12 @@
         <Setter Property="BorderThickness" Value="1 0 1 0" />
     </Style>
     
-    <Style TargetType="{x:Type telerik:RadMenu}">
+    <Style x:Key="RadMenuStyle" TargetType="{x:Type telerik:RadMenu}">
         <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
     </Style>
+    <Style TargetType="{x:Type telerik:RadMenu}" BasedOn="{StaticResource RadMenuStyle}" />
 
-    <Style TargetType="{x:Type telerik:RadMenuItem}">
+    <Style x:Key="RadMenuItemStyle"  TargetType="{x:Type telerik:RadMenuItem}">
         <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource NormalForegroundBrush}" />
         <Setter Property="Padding" Value="16, 4" />
@@ -2026,5 +2027,6 @@
 			</Trigger>
 		</Style.Triggers>
 	</Style>
+    <Style TargetType="{x:Type telerik:RadMenuItem}" BasedOn="{StaticResource RadMenuItemStyle}" />
     
 </ResourceDictionary>
