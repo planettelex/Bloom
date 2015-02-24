@@ -9,7 +9,7 @@ namespace Bloom.Browser.Controls
     public class ViewMenuTab : Tab
     {
         /// <summary>
-        /// Gets or sets the library view type.
+        /// Gets or sets the view type.
         /// </summary>
         public ViewType ViewType { get; set; }
     }

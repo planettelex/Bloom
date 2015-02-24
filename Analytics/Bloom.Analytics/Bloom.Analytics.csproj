@@ -137,6 +137,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Modules\Bloom.HomeModule\Bloom.HomeModule.csproj">
+      <Project>{15c48595-e331-444b-9f08-4af15f8a23dd}</Project>
+      <Name>Bloom.HomeModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Bloom.Analytics.AlbumModule\Bloom.Analytics.AlbumModule.csproj">
       <Project>{c5c81ac6-6479-49ea-b24b-0c09a152291c}</Project>
       <Name>Bloom.Analytics.AlbumModule</Name>

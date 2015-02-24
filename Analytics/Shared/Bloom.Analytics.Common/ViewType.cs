@@ -1,9 +1,9 @@
 ﻿namespace Bloom.Analytics.Common
 {
     /// <summary>
-    /// A type of library view.
+    /// A type of view.
     /// </summary>
-    public enum LibraryViewType
+    public enum ViewType
     {
         Stats,
         PieChart,

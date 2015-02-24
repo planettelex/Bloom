@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.ArtistModule.ViewModels;
 using Bloom.Analytics.ArtistModule.Views;
+using Bloom.Analytics.Common;
+using Bloom.Analytics.Controls;
 using Bloom.Controls;
-using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -19,13 +20,14 @@ namespace Bloom.Analytics.ArtistModule.Services
         public ArtistService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _tabs = new List<Tab>();
+            _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewArtistTabEvent>().Subscribe(NewArtistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateArtistTab);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<ViewMenuTab> _tabs;
 
         public void NewArtistTab(object nothing)
         {
@@ -34,14 +36,16 @@ namespace Bloom.Analytics.ArtistModule.Services
 
         public void NewArtistTab()
         {
-            var artistViewModel = new ArtistViewModel();
+            var artistViewModel = new ArtistViewModel(ViewType.Stats);
             var artistView = new ArtistView(artistViewModel);
-            var artistTab = new Tab
+            var artistTab = new ViewMenuTab
             {
-                Id = Guid.NewGuid(),
+                Id = artistViewModel.TabId,
                 Type = TabType.Artist,
                 Header = "Artist",
-                Content = artistView
+                Content = artistView,
+                ShowViewMenu = true,
+                ViewType = artistViewModel.ViewType
             };
 
             _tabs.Add(artistTab);
@@ -54,20 +58,20 @@ namespace Bloom.Analytics.ArtistModule.Services
             if (existingTab == null)
                 return;
 
-            var artistViewModel = new ArtistViewModel();
+            var artistViewModel = new ArtistViewModel(existingTab.ViewType);
             var artistView = new ArtistView(artistViewModel);
-            var artistTab = new Tab
+            var artistTab = new ViewMenuTab
             {
-                Id = Guid.NewGuid(),
+                Id = artistViewModel.TabId,
                 Type = TabType.Artist,
                 Header = "Artist",
-                Content = artistView
+                Content = artistView,
+                ShowViewMenu = true,
+                ViewType = artistViewModel.ViewType
             };
 
             _tabs.Add(artistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
         }
-
-        private readonly List<Tab> _tabs;
     }
 }

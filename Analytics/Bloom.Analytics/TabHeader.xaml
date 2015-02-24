@@ -31,13 +31,13 @@
                 <telerik:RadMenuItem.Icon>
                     <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}"  />
                 </telerik:RadMenuItem.Icon>
-                <telerik:RadMenuGroupItem ItemContainerStyle="{DynamicResource ViewMenuItemStyle}">
-                    <telerik:RadMenuItem Header="Stats" Command="{Binding ChangeTabViewCommand}" CommandParameter="Stats" />
-                    <telerik:RadMenuItem Header="Pie Chart" Command="{Binding ChangeTabViewCommand}" CommandParameter="PieChart" />
-                    <telerik:RadMenuItem Header="Timeline" Command="{Binding ChangeTabViewCommand}" CommandParameter="Timeline" />
-                    <telerik:RadMenuItem Header="Line Graph" Command="{Binding ChangeTabViewCommand}" CommandParameter="LineGraph" />
-                    <telerik:RadMenuItem Header="Bar Chart" Command="{Binding ChangeTabViewCommand}" CommandParameter="BarChart" />
-                    <telerik:RadMenuItem Header="Map" Command="{Binding ChangeTabViewCommand}" CommandParameter="Map" />
+                <telerik:RadMenuGroupItem>
+                    <telerik:RadMenuItem Header="Stats" Command="{Binding ChangeTabViewCommand}" CommandParameter="Stats" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Pie Chart" Command="{Binding ChangeTabViewCommand}" CommandParameter="PieChart" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Timeline" Command="{Binding ChangeTabViewCommand}" CommandParameter="Timeline" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Line Graph" Command="{Binding ChangeTabViewCommand}" CommandParameter="LineGraph" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Bar Chart" Command="{Binding ChangeTabViewCommand}" CommandParameter="BarChart" Background="{DynamicResource TabsBackgroundBrush}" />
+                    <telerik:RadMenuItem Header="Map" Command="{Binding ChangeTabViewCommand}" CommandParameter="Map" Background="{DynamicResource TabsBackgroundBrush}" />
                 </telerik:RadMenuGroupItem>
 
             </telerik:RadMenuItem>

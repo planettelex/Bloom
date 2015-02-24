@@ -30,7 +30,7 @@ namespace Bloom.Analytics.LibraryModule.Views
             get { return (LibraryViewModel) DataContext; }
         }
 
-        private void ChangeLibraryTabView(Tuple<Guid, LibraryViewType> libraryViewTuple)
+        private void ChangeLibraryTabView(Tuple<Guid, ViewType> libraryViewTuple)
         {
             if (ViewModel.TabId != libraryViewTuple.Item1)
                 return;
@@ -38,26 +38,26 @@ namespace Bloom.Analytics.LibraryModule.Views
             ShowView(libraryViewTuple.Item2);
         }
 
-        private void ShowView(LibraryViewType viewType)
+        private void ShowView(ViewType viewType)
         {
             switch (viewType)
             {
-                case LibraryViewType.BarChart:
+                case ViewType.BarChart:
                     ShowBarChartView();
                     break;
-                case LibraryViewType.LineGraph:
+                case ViewType.LineGraph:
                     ShowLineGraphView();
                     break;
-                case LibraryViewType.Map:
+                case ViewType.Map:
                     ShowMapView();
                     break;
-                case LibraryViewType.PieChart:
+                case ViewType.PieChart:
                     ShowPieChartView();
                     break;
-                case LibraryViewType.Stats:
+                case ViewType.Stats:
                     ShowStatsView();
                     break;
-                case LibraryViewType.Timeline:
+                case ViewType.Timeline:
                     ShowTimelineView();
                     break;
             }

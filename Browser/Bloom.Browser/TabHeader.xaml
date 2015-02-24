@@ -31,7 +31,7 @@
                 <telerik:RadMenuItem.Icon>
                     <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}"  />
                 </telerik:RadMenuItem.Icon>
-                <telerik:RadMenuGroupItem >
+                <telerik:RadMenuGroupItem>
                     <telerik:RadMenuItem Header="Grid" Command="{Binding ChangeTabViewCommand}" CommandParameter="Grid" Background="{DynamicResource TabsBackgroundBrush}" />
                     <telerik:RadMenuItem Header="List" Command="{Binding ChangeTabViewCommand}" CommandParameter="List" Background="{DynamicResource TabsBackgroundBrush}" />
                     <telerik:RadMenuItem Header="Spreadsheet" Command="{Binding ChangeTabViewCommand}" CommandParameter="Spreadsheet" Background="{DynamicResource TabsBackgroundBrush}" />

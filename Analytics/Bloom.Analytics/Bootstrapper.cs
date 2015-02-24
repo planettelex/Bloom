@@ -7,6 +7,7 @@ using Bloom.Analytics.PersonModule;
 using Bloom.Analytics.PlaylistModule;
 using Bloom.Analytics.SongModule;
 using Bloom.Data.Interfaces;
+using Bloom.HomeModule;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.State.Services;
@@ -63,6 +64,7 @@ namespace Bloom.Analytics
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (TaxonomiesModuleDefinition));
+            moduleCatalog.AddModule(typeof (HomeModuleDefinition));
             moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PersonModuleDefinition));
             moduleCatalog.AddModule(typeof (ArtistModuleDefinition));

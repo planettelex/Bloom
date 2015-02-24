@@ -38,7 +38,7 @@ namespace Bloom.Browser.AlbumModule.Services
             var albumView = new AlbumView(albumViewModel);
             var albumTab = new Tab
             {
-                Id = Guid.NewGuid(),
+                Id = albumViewModel.TabId,
                 Type = TabType.Album,
                 Header = "Album",
                 Content = albumView
@@ -58,7 +58,7 @@ namespace Bloom.Browser.AlbumModule.Services
             var albumView = new AlbumView(albumViewModel);
             var albumTab = new Tab
             {
-                Id = Guid.NewGuid(),
+                Id = albumViewModel.TabId,
                 Type = TabType.Album,
                 Header = "Album",
                 Content = albumView

@@ -4,7 +4,6 @@ using System.Linq;
 using Bloom.Analytics.AlbumModule.ViewModels;
 using Bloom.Analytics.AlbumModule.Views;
 using Bloom.Controls;
-using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -38,7 +37,7 @@ namespace Bloom.Analytics.AlbumModule.Services
             var albumView = new AlbumView(albumViewModel);
             var albumTab = new Tab
             {
-                Id = Guid.NewGuid(),
+                Id = albumViewModel.TabId,
                 Type = TabType.Album,
                 Header = "Album",
                 Content = albumView
@@ -58,7 +57,7 @@ namespace Bloom.Analytics.AlbumModule.Services
             var albumView = new AlbumView(albumViewModel);
             var albumTab = new Tab
             {
-                Id = Guid.NewGuid(),
+                Id = albumViewModel.TabId,
                 Type = TabType.Album,
                 Header = "Album",
                 Content = albumView

@@ -4,7 +4,6 @@ using System.Linq;
 using Bloom.Analytics.SongModule.ViewModels;
 using Bloom.Analytics.SongModule.Views;
 using Bloom.Controls;
-using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
@@ -38,7 +37,7 @@ namespace Bloom.Analytics.SongModule.Services
             var songView = new SongView(songViewModel);
             var songTab = new Tab
             {
-                Id = Guid.NewGuid(),
+                Id = songViewModel.TabId,
                 Type = TabType.Song,
                 Header = "Song",
                 Content = songView
@@ -58,7 +57,7 @@ namespace Bloom.Analytics.SongModule.Services
             var songView = new SongView(songViewModel);
             var songTab = new Tab
             {
-                Id = Guid.NewGuid(),
+                Id = songViewModel.TabId,
                 Type = TabType.Song,
                 Header = "Song",
                 Content = songView

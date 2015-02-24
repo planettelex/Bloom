@@ -11,7 +11,6 @@ using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Controls;
 using Bloom.Data;
-using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Data.Respositories;
