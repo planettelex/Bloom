@@ -20,7 +20,7 @@ namespace Bloom.Player.MenuModule.ViewModels
         /// <param name="processService">The process service.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService)
         {
-            State = (PlayerState) regionManager.Regions["MenuRegion"].Context;
+            State = (BloomState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
 
@@ -37,9 +37,9 @@ namespace Bloom.Player.MenuModule.ViewModels
         private readonly IProcessService _processService;
 
         /// <summary>
-        /// Gets the player application state.
+        /// Gets the state.
         /// </summary>
-        public PlayerState State { get; private set; }
+        public BloomState State { get; private set; }
 
         #region File Menu
 
@@ -112,10 +112,10 @@ namespace Bloom.Player.MenuModule.ViewModels
 
         private void SetSkin(string skinName)
         {
-            if (State.SkinName == skinName)
+            if (State.Player.SkinName == skinName)
                 return;
 
-            State.SkinName = skinName;
+            State.Player.SkinName = skinName;
             _skinningService.SetSkin(skinName);
         }
 

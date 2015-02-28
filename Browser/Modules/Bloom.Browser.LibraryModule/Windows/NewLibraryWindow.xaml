@@ -28,7 +28,7 @@
 
             <StackPanel Grid.Column="0" Orientation="Vertical">
                 <TextBlock Text="Library Name" />
-                <TextBox Text="{Binding Path=LibraryName, Mode=TwoWay}" />
+                <TextBox Text="{Binding Path=LibraryName, Mode=TwoWay, ValidatesOnDataErrors=True}" />
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <TextBlock Text="Library Owner" />

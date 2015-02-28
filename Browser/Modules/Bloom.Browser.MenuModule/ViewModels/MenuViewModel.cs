@@ -24,7 +24,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
-            State = (BrowserState) regionManager.Regions["MenuRegion"].Context;
+            State = (BloomState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
@@ -48,9 +48,9 @@ namespace Bloom.Browser.MenuModule.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Gets the browser application state.
+        /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public BloomState State { get; private set; }
 
         #region File Menu
 
@@ -100,7 +100,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         private void DuplicateTab(object nothing)
         {
-            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.Browser.SelectedTabId);
         }
 
         /// <summary>
@@ -187,10 +187,10 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         private void SetSkin(string skinName)
         {
-            if (State.SkinName == skinName)
+            if (State.Browser.SkinName == skinName)
                 return;
 
-            State.SkinName = skinName;
+            State.Browser.SkinName = skinName;
             _skinningService.SetSkin(skinName);
         }
 

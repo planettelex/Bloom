@@ -52,6 +52,7 @@
       <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0225_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Docking.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.1.225.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.1.225.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0225_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>

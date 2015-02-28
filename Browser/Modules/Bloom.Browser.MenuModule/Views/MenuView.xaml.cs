@@ -25,14 +25,14 @@ namespace Bloom.Browser.MenuModule.Views
             foreach (RadMenuItem menuItem in Skins.Items)
             {
                 var skinName = (string) menuItem.CommandParameter;
-                menuItem.IsChecked = skinName.Equals(viewModel.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
+                menuItem.IsChecked = skinName.Equals(viewModel.State.Browser.SkinName, StringComparison.InvariantCultureIgnoreCase);
             }
         }
 
         /// <summary>
-        /// Gets the application state.
+        /// Gets the state.
         /// </summary>
-        public BrowserState State
+        public BloomState State
         {
             get { return ((MenuViewModel) DataContext).State; }
         }
@@ -43,7 +43,7 @@ namespace Bloom.Browser.MenuModule.Views
             if (currentItem == null || !currentItem.IsCheckable || currentItem.Tag == null) 
                 return;
             
-            if ((string) currentItem.CommandParameter == State.SkinName)
+            if ((string) currentItem.CommandParameter == State.Browser.SkinName)
             {
                 currentItem.IsChecked = true;
                 return;

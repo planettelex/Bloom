@@ -45,7 +45,7 @@ namespace Bloom.Browser.LibraryModule.Services
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
 
-            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
+            State = (BloomState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
@@ -54,9 +54,9 @@ namespace Bloom.Browser.LibraryModule.Services
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>
-        /// Gets the browser application state.
+        /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public BloomState State { get; private set; }
 
         /// <summary>
         /// Shows the create new library modal window.
@@ -88,7 +88,7 @@ namespace Bloom.Browser.LibraryModule.Services
             var dataSource = new LibraryDataSource();
             dataSource.Create(library.FilePath);
             var libraryConnection = LibraryConnection.Create(library);
-            State.Connections.AddLibraryConnection(libraryConnection);
+            //State.Connections.AddLibraryConnection(libraryConnection);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
             _stateService.SaveState();
         }

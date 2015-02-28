@@ -66,5 +66,12 @@
       <FileName>Models\StateConnection.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Bloom.State.Domain.Models.BloomState">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BloomState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

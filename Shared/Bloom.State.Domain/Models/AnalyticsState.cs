@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Windows;
+using Bloom.Common;
 using Bloom.Controls;
 using Microsoft.Practices.Prism.Mvvm;
 
@@ -18,8 +19,8 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         public AnalyticsState()
         {
-            ProcessName = "Bloom.Analytics";
-            Connections = new Connections();
+            var process = new BloomProcess(ProcessType.Analytics);
+            ProcessName = process.Name;
             SkinName = Properties.Settings.Default.SkinName;
             WindowState = Properties.Settings.Default.WindowState;
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
@@ -32,11 +33,6 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
         public string ProcessName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the connections.
-        /// </summary>
-        public Connections Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.

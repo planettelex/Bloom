@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Bloom.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -31,16 +32,16 @@ namespace Bloom.Browser
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = _stateService.InitializeBrowserState();
+            var state = _stateService.InitializeState(ProcessType.Browser);
             DataContext = state;
 
             // Don't open in a minimized state.
-            if (state.WindowState == WindowState.Minimized)
-                state.WindowState = WindowState.Normal;
+            if (state.Browser.WindowState == WindowState.Minimized)
+                state.Browser.WindowState = WindowState.Normal;
 
-            WindowState = state.WindowState;
+            WindowState = state.Browser.WindowState;
             TitleBar.SetButtonVisibilties();
-            skinningService.SetSkin(state.SkinName);
+            skinningService.SetSkin(state.Browser.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
@@ -49,7 +50,7 @@ namespace Bloom.Browser
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
-        private BrowserState State { get { return (BrowserState) DataContext; } }
+        private BloomState State { get { return (BloomState)DataContext; } }
 
         #region Window Events
 
@@ -71,7 +72,7 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.WindowState = WindowState;
+            State.Browser.WindowState = WindowState;
             _stateService.SaveState();
         }
 
@@ -95,7 +96,7 @@ namespace Bloom.Browser
 
             _tabs.Add(tab.Id, newPane);
             PaneGroup.Items.Add(newPane);
-            State.SelectedTabId = tab.Id;
+            State.Browser.SelectedTabId = tab.Id;
         }
 
         private void CloseOtherTabs(object nothing)
@@ -140,7 +141,7 @@ namespace Bloom.Browser
         {
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
             {
-                State.SelectedTabId = valuePair.Key;
+                State.Browser.SelectedTabId = valuePair.Key;
                 break;
             }
         }
@@ -150,13 +151,13 @@ namespace Bloom.Browser
             var selectedTab = GetSelectedTab();
             if (selectedTab == null)
             {
-                State.SelectedTabId = Guid.Empty;
+                State.Browser.SelectedTabId = Guid.Empty;
                 return;
             }
                 
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, selectedTab)))
             {
-                State.SelectedTabId = valuePair.Key;
+                State.Browser.SelectedTabId = valuePair.Key;
             }
         }
 
@@ -173,7 +174,7 @@ namespace Bloom.Browser
 
         private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            State.ResetSidebarWidth();
+            State.Browser.ResetSidebarWidth();
         }
 
         #endregion

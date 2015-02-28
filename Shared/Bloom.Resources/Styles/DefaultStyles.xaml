@@ -732,6 +732,11 @@
     </Style>
     <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxStyle}"/>
     
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}" />
+    </Style>
+    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}" />
+    
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
         <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
@@ -869,6 +874,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" Value="{Binding Path=(Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
     

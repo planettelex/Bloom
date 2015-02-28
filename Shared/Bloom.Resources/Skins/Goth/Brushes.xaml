@@ -3,6 +3,9 @@
     <!-- Goth Skin -->
 
     <!-- Colors -->
+    <Color x:Key="ButtonBackgroundStartColor">#FF212326</Color>
+    <Color x:Key="ButtonBackgroundStopColor">#FF141619</Color>
+    <Color x:Key="ButtonHoverBackgroundColor">#FF2A2D34</Color>
     <Color x:Key="ControlBackgroundColor">#FF191818</Color>
     <Color x:Key="ControlDisabledBackgroundColor">#FF141415</Color>
     <Color x:Key="ControlHoverBackgroundColor">#FF1B1A1C</Color>
