@@ -3,9 +3,12 @@
     <!-- Rock Skin -->
     
     <!-- Colors -->
-    <Color x:Key="ControlBackgroundColor">#FFCFD3DA</Color>
-    <Color x:Key="ControlDisabledBackgroundColor">#FF969696</Color>
-    <Color x:Key="ControlHoverBackgroundColor">#FFE0E3E8</Color>
+    <Color x:Key="ButtonBackgroundStartColor">#FFE7E8EB</Color>
+    <Color x:Key="ButtonBackgroundStopColor">#FFC4C8D1</Color>
+    <Color x:Key="ButtonHoverBackgroundColor">#FFD1DAED</Color>
+    <Color x:Key="ControlBackgroundColor">#FFFEFEFE</Color>
+    <Color x:Key="ControlDisabledBackgroundColor">#FFEEEEEE</Color>
+    <Color x:Key="ControlHoverBackgroundColor">#FFFFFFFF</Color>
     <Color x:Key="DisabledBorderColor">#FF727B8C</Color>
     <Color x:Key="DisabledForegroundColor">#FF868686</Color>
     <Color x:Key="ErrorBorderColor">#FFC92931</Color>

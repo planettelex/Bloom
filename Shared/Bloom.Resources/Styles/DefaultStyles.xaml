@@ -7,6 +7,11 @@
         xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls">
     
     <!-- Brushes -->
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1.481" StartPoint="0.5,0">
+        <GradientStop Color="{DynamicResource ButtonBackgroundStartColor}" Offset="0"/>
+        <GradientStop Color="{DynamicResource ButtonBackgroundStopColor}" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="{DynamicResource ButtonHoverBackgroundColor}" />
     <SolidColorBrush x:Key="CheckBoxBorder" Color="{DynamicResource NormalBorderColor}" />
     <SolidColorBrush x:Key="CheckBoxBackground" Color="{DynamicResource ControlBackgroundColor}" />
     <SolidColorBrush x:Key="CheckBoxForeground" Color="{DynamicResource NormalForegroundColor}" />
@@ -501,7 +506,7 @@
         <Setter Property="Template" Value="{StaticResource ButtonTemplate}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
-        <Setter Property="Background" Value="{StaticResource ControlBackgroundNormal}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -741,6 +746,7 @@
         <Setter Property="telerik:CaretBrushHelper.CaretBrush" Value="{DynamicResource NormalForegroundBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Padding" Value="3 2 3 2"/>
+        <Setter Property="Margin" Value="0 3 0 3"/>
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationTooltipTemplate}"/>
         <Setter Property="Template">
             <Setter.Value>

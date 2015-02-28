@@ -24,6 +24,11 @@
     <sys:Double x:Key="ControlElementWidth">8</sys:Double>
 
     <!-- Brushes -->
+    <LinearGradientBrush x:Key="ButtonBackgroundBrush" EndPoint="0.5,1.481" StartPoint="0.5,0">
+        <GradientStop Color="{DynamicResource ButtonBackgroundStartColor}" Offset="0"/>
+        <GradientStop Color="{DynamicResource ButtonBackgroundStopColor}" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="{DynamicResource ButtonHoverBackgroundColor}" />
     <SolidColorBrush x:Key="TileBorderBrushSelected" Color="{DynamicResource NormalBorderColor}" />
     <SolidColorBrush x:Key="TileBorderBrushOver" Color="{DynamicResource NormalBorderColor}" />
     <SolidColorBrush x:Key="TileBackground" Color="{DynamicResource ControlBackgroundColor}" />
@@ -184,6 +189,10 @@
     <Thickness x:Key="SliderRangeMiddleThumbMargin">0</Thickness>
 
     <!-- Styles and Templates -->
+    <Style x:Key="WindowFrameStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="6" />
+    </Style>
+    
     <ControlTemplate x:Key="ErrorTooltipTemplate" TargetType="ToolTip">
         <Grid x:Name="RootVisual" HorizontalAlignment="Right" RenderTransformOrigin="0 0" Opacity="0" Margin="2 0">
             <VisualStateManager.VisualStateGroups>
@@ -1904,7 +1913,7 @@
     <Style x:Key="RadButtonStyle" TargetType="telerik:RadButton">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundNormal}"/>
-        <Setter Property="Background" Value="{StaticResource ControlBackgroundNormal}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
         <Setter Property="CornerRadius" Value="{StaticResource ControlOuterBorderCornerRadius}"/>
         <Setter Property="Padding" Value="3"/>
@@ -1999,7 +2008,7 @@
                                 Opacity="0"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{StaticResource ControlBackgroundMouseOver}"
+                                Background="{StaticResource ButtonHoverBackgroundBrush}"
                                 BorderBrush="{StaticResource ControlOuterBorderMouseOver}"/>
                         <Border x:Name="OuterPressedBorder"
                                 Visibility="Collapsed"
@@ -2033,6 +2042,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="TextButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource RadButtonStyle}">
+        <Setter Property="Padding" Value="9 3 9 3" />
+        <Setter Property="Margin" Value="0 3 0 3"/>
     </Style>
     <Style x:Key="RadPathButtonPathStyle" TargetType="Path">
         <Setter Property="Fill" Value="{StaticResource ControlElementNormal}"/>
@@ -4782,6 +4795,7 @@
     <ItemsPanelTemplate x:Key="GroupPanelTemplate">
         <telerik:TileListPanel x:Name="GroupPanelTemplatePanel" VerticalAlignment="{Binding VerticalTilesAlignment, RelativeSource={RelativeSource AncestorType=telerik:RadTileList, Mode=FindAncestor}}"/>
     </ItemsPanelTemplate>
+    
     <ControlTemplate x:Key="TileGroupContainerTemplate" TargetType="telerik:TileGroupContainer">
         <Grid>
             <Grid.RowDefinitions>
@@ -4811,6 +4825,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
     </Style>
+    
     <ControlTemplate x:Key="RadTileListTemplate" TargetType="telerik:RadTileList">
         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -4847,6 +4862,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
     </Style>
+    
     <ControlTemplate x:Key="TileTemplate" TargetType="telerik:Tile">
         <Border
                 Margin="{TemplateBinding Padding}"

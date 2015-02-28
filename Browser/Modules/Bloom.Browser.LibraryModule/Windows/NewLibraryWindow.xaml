@@ -7,19 +7,22 @@
              mc:Ignorable="d"
              Style="{DynamicResource RadWindowStyle}"
              Width="600" MaxWidth="600" MinWidth="600" 
-             Height="250" MaxHeight="250" MinHeight="250"
+             Height="200" MaxHeight="200" MinHeight="200"
              Header="New Library">
 
-    <Grid>
+    <Grid Style="{DynamicResource WindowFrameStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="6" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="18" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -27,13 +30,13 @@
                 <TextBlock Text="Library Name" />
                 <TextBox Text="{Binding Path=LibraryName, Mode=TwoWay}" />
             </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Column="2" Orientation="Vertical">
                 <TextBlock Text="Library Owner" />
                 <telerik:RadComboBox IsEditable="True" Text="{Binding Path=OwnerName, Mode=TwoWay}" ItemsSource="{Binding Path=PotentialOwners}" DisplayMemberPath="Name" />
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -43,18 +46,25 @@
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="6" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0" Text="{Binding Path=FolderPath}" />
-                <telerik:RadButton Grid.Column="1" Content="Browse" Command="{Binding Path=BrowseFoldersCommand}" />
+                <telerik:RadButton Grid.Column="2" Content="Browse" Command="{Binding Path=BrowseFoldersCommand}" Style="{DynamicResource TextButtonStyle}" />
             </Grid>
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <telerik:RadButton Content="Cancel" Command="{Binding Path=CancelCommand}" />
-            <telerik:RadButton Content="Create New Library" Command="{Binding Path=CreateNewLibraryCommand}" />
-        </StackPanel>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <telerik:RadButton Grid.Column="1" Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" />
+            <telerik:RadButton Grid.Column="3" Content="Create New Library" Command="{Binding Path=CreateNewLibraryCommand}" Style="{DynamicResource TextButtonStyle}" />
+        </Grid>
 
     </Grid>
 
