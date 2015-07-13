@@ -79,34 +79,34 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2015.1.401.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0401_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_2_623_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.1.401.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0401_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_2_623_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Docking, Version=2015.1.401.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0401_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Docking.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_2_623_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Docking.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.1.401.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0401_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_2_623_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.1.401.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0401_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_2_623_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Data, Version=2015.1.401.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Windows.Data, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_1_0401_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
+      <HintPath>..\..\..\..\..\Users\rob\AppData\Roaming\Telerik\Updates\Telerik_UI_for_WPF_2015_2_623_Dev_Hotfix\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
