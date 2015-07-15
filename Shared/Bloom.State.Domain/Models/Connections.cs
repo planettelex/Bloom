@@ -11,6 +11,9 @@ namespace Bloom.State.Domain.Models
     /// </summary>
     public class Connections
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connections"/> class.
+        /// </summary>
         public Connections()
         {
             StateConnection = new StateConnection();
@@ -82,6 +85,10 @@ namespace Bloom.State.Domain.Models
                 AddLibraryDataSource(libraryConnection);
         }
 
+        /// <summary>
+        /// Connects to and adds a library connection.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
         private void AddLibraryDataSource(LibraryConnection libraryConnection)
         {
             var libraryDataSource = new LibraryDataSource();

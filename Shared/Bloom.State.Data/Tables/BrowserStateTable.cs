@@ -2,6 +2,9 @@
 
 namespace Bloom.State.Data.Tables
 {
+    /// <summary>
+    /// The browser_state table.
+    /// </summary>
     public class BrowserStateTable : ISqlTable
     {
         /// <summary>

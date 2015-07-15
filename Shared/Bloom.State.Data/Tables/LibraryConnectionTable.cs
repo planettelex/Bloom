@@ -2,6 +2,9 @@
 
 namespace Bloom.State.Data.Tables
 {
+    /// <summary>
+    /// The library_connection table.
+    /// </summary>
     public class LibraryConnectionTable : ISqlTable
     {
         /// <summary>

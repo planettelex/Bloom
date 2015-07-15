@@ -2,6 +2,9 @@
 
 namespace Bloom.State.Data.Tables
 {
+    /// <summary>
+    /// The player_state table.
+    /// </summary>
     public class PlayerStateTable : ISqlTable
     {
         /// <summary>

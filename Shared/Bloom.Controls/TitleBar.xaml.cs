@@ -47,6 +47,11 @@ namespace Bloom.Controls
         /// </summary>
         public static RoutedCommand ToggleWindowStateCommand = new RoutedCommand();
 
+        /// <summary>
+        /// Toggles the state of the window between normal and maximized.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/> instance containing the event data.</param>
         private void ToggleWindowState(object sender, ExecutedRoutedEventArgs e)
         {
             if (Application.Current.MainWindow.WindowState == WindowState.Maximized)

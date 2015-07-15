@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.State.Domain.Models.AnalyticsState">
-    <Position X="3.25" Y="1.5" Width="1.75" />
+    <Position X="8.25" Y="4.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAACAAAAA=</HashCode>
+      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAAAAAAAA=</HashCode>
       <FileName>Models\AnalyticsState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.BrowserState">
-    <Position X="7" Y="1.5" Width="1.75" />
+    <Position X="10.5" Y="4.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAACAAAAA=</HashCode>
+      <HashCode>IAAAAAAAhABAAAAAAAAAAAAAQAAAAEAAABgAAAAAAAA=</HashCode>
       <FileName>Models\BrowserState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.Connections">
-    <Position X="7" Y="5.75" Width="1.75" />
+    <Position X="5.25" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -39,7 +39,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.State.Domain.Models.LibraryConnection">
-    <Position X="3.25" Y="5.75" Width="1.75" />
+    <Position X="1.5" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -49,29 +49,51 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.PlayerState">
-    <Position X="10.75" Y="1.5" Width="1.75" />
+    <Position X="12.75" Y="4.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>LAAAAAAABAAgAAAAAAAAAAACABAIAAAAAAgAACAAAAA=</HashCode>
+      <HashCode>LAAAAAAABAAgAAAAAAAAAAACABAIAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Models\PlayerState.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.StateConnection">
-    <Position X="10.75" Y="5.75" Width="1.75" />
+    <Position X="5.25" Y="2.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>Models\StateConnection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.State.Domain.Models.BloomState">
-    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Analytics" Type="Bloom.State.Domain.Models.AnalyticsState" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.5" Y="1" />
+        <Point X="9.125" Y="1" />
+        <Point X="9.125" Y="4.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Connections" Type="Bloom.State.Domain.Models.Connections" FixedFromPoint="true">
+      <Path>
+        <Point X="10.5" Y="0.75" />
+        <Point X="7" Y="0.75" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAASAEAAA=</HashCode>
       <FileName>Models\BloomState.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Analytics" />
+      <Property Name="Browser" />
+      <Property Name="Player" />
+      <Property Name="Connections" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

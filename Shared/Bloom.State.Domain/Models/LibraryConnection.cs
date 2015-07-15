@@ -42,7 +42,7 @@ namespace Bloom.State.Domain.Models
         public string LibraryName { get; set; }
 
         /// <summary>
-        /// Gets or sets the library file path.
+        /// Gets or sets the library database file path.
         /// </summary>
         [Column(Name = "file_path")]
         public string FilePath { get; set; }

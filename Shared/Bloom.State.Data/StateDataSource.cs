@@ -9,6 +9,9 @@ using Microsoft.Practices.Unity;
 
 namespace Bloom.State.Data
 {
+    /// <summary>
+    /// A file-based LINQ compatable data source for handling state data.
+    /// </summary>
     public class StateDataSource : IDataSource
     {
         /// <summary>

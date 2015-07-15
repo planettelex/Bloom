@@ -31,6 +31,10 @@ namespace Bloom.State.Services
         private readonly IBrowserStateRepository _browserStateRepository;
         private readonly IPlayerStateRepository _playerStateRepository;
 
+        /// <summary>
+        /// Initializes the state of a provided process.
+        /// </summary>
+        /// <param name="processType">The type of process.</param>
         public BloomState InitializeState(ProcessType processType)
         {
             var stateDatabasePath = GetStateDatabasePath();

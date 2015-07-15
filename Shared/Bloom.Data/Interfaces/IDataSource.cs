@@ -3,7 +3,7 @@
 namespace Bloom.Data.Interfaces
 {
     /// <summary>
-    /// Data source for state persistance.
+    /// A file-based LINQ compatable data source.
     /// </summary>
     public interface IDataSource
     {

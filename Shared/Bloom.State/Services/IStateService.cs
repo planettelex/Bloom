@@ -8,6 +8,10 @@ namespace Bloom.State.Services
     /// </summary>
     public interface IStateService
     {
+        /// <summary>
+        /// Initializes the state of a provided process.
+        /// </summary>
+        /// <param name="processType">The type of process.</param>
         BloomState InitializeState(ProcessType processType);
 
         /// <summary>

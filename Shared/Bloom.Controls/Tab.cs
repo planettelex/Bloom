@@ -1,5 +1,4 @@
-﻿using Bloom.Domain.Enums;
-using System;
+﻿using System;
 using System.Windows.Controls;
 
 namespace Bloom.Controls
