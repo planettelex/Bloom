@@ -33,7 +33,7 @@ namespace Bloom.Browser
             _eventAggregator = eventAggregator;
             _stateService = stateService;
             var state = _stateService.InitializeState(ProcessType.Browser);
-            DataContext = state;
+            DataContext = state.Browser;
 
             // Don't open in a minimized state.
             if (state.Browser.WindowState == WindowState.Minimized)
@@ -50,7 +50,7 @@ namespace Bloom.Browser
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
-        private BloomState State { get { return (BloomState)DataContext; } }
+        private BrowserState State { get { return (BrowserState)DataContext; } }
 
         #region Window Events
 
@@ -73,7 +73,7 @@ namespace Bloom.Browser
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.Browser.WindowState = WindowState;
+            State.WindowState = WindowState;
             _stateService.SaveState();
         }
 
@@ -97,7 +97,7 @@ namespace Bloom.Browser
 
             _tabs.Add(tabControl.Id, newPane);
             PaneGroup.Items.Add(newPane);
-            State.Browser.SelectedTabId = tabControl.Id;
+            State.SelectedTabId = tabControl.Id;
         }
 
         private void CloseOtherTabs(object nothing)
@@ -142,7 +142,7 @@ namespace Bloom.Browser
         {
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
             {
-                State.Browser.SelectedTabId = valuePair.Key;
+                State.SelectedTabId = valuePair.Key;
                 break;
             }
         }
@@ -152,13 +152,13 @@ namespace Bloom.Browser
             var selectedTab = GetSelectedTab();
             if (selectedTab == null)
             {
-                State.Browser.SelectedTabId = Guid.Empty;
+                State.SelectedTabId = Guid.Empty;
                 return;
             }
                 
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, selectedTab)))
             {
-                State.Browser.SelectedTabId = valuePair.Key;
+                State.SelectedTabId = valuePair.Key;
             }
         }
 
@@ -175,7 +175,7 @@ namespace Bloom.Browser
 
         private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            State.Browser.ResetSidebarWidth();
+            State.ResetSidebarWidth();
         }
 
         #endregion

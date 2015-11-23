@@ -25,7 +25,7 @@ namespace Bloom.Player
             _gridLengthConverter = new GridLengthConverter();
             _stateService = stateService;
             var state = _stateService.InitializeState(ProcessType.Player);
-            DataContext = state;
+            DataContext = state.Player;
 
             // Don't open in a minimized state.
             if (state.Player.WindowState == WindowState.Minimized)
@@ -39,7 +39,7 @@ namespace Bloom.Player
         }
         private readonly IStateService _stateService;
         private readonly GridLengthConverter _gridLengthConverter;
-        private BloomState State { get { return (BloomState) DataContext; } }
+        private PlayerState State { get { return (PlayerState) DataContext; } }
 
         #region Window Events
 
@@ -61,7 +61,7 @@ namespace Bloom.Player
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.Player.WindowState = WindowState;
+            State.WindowState = WindowState;
             _stateService.SaveState();
         }
 
@@ -71,36 +71,36 @@ namespace Bloom.Player
 
         private void OnRecentSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            State.Player.RecentWidth = Convert.ToInt32(RecentColumn.ActualWidth);
+            State.RecentWidth = Convert.ToInt32(RecentColumn.ActualWidth);
         }
 
         private void OnRecentSplitterMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            State.Player.ResetRecentWidth();
+            State.ResetRecentWidth();
             SetRecentColumnWidth();
         }
 
         private void SetRecentColumnWidth()
         {
-            var recentWidth = _gridLengthConverter.ConvertFromString(State.Player.RecentWidth.ToString(CultureInfo.InvariantCulture));
+            var recentWidth = _gridLengthConverter.ConvertFromString(State.RecentWidth.ToString(CultureInfo.InvariantCulture));
             if (recentWidth != null)
                 RecentColumn.Width = (GridLength) recentWidth;
         }
 
         private void OnUpcomingSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            State.Player.UpcomingWidth = Convert.ToInt32(UpcomingColumn.ActualWidth);
+            State.UpcomingWidth = Convert.ToInt32(UpcomingColumn.ActualWidth);
         }
 
         private void OnUpcomingMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            State.Player.ResetUpcomingWidth();
+            State.ResetUpcomingWidth();
             SetUpcomingColumnWidth();
         }
 
         private void SetUpcomingColumnWidth()
         {
-            var upcomingWidth = _gridLengthConverter.ConvertFromString(State.Player.UpcomingWidth.ToString(CultureInfo.InvariantCulture));
+            var upcomingWidth = _gridLengthConverter.ConvertFromString(State.UpcomingWidth.ToString(CultureInfo.InvariantCulture));
             if (upcomingWidth != null)
                 UpcomingColumn.Width = (GridLength) upcomingWidth;
         }

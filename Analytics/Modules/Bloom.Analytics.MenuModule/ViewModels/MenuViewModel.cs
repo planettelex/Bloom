@@ -23,7 +23,7 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
-            State = (BloomState) regionManager.Regions["MenuRegion"].Context;
+            State = (AnalyticsState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
@@ -48,7 +48,7 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BloomState State { get; private set; }
+        public AnalyticsState State { get; private set; }
 
         #region File Menu
 
@@ -83,7 +83,7 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         private void DuplicateTab(object nothing)
         {
-            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.Analytics.SelectedTabId);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId);
         }
 
         /// <summary>
@@ -170,10 +170,10 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         private void SetSkin(string skinName)
         {
-            if (State.Analytics.SkinName == skinName)
+            if (State.SkinName == skinName)
                 return;
 
-            State.Analytics.SkinName = skinName;
+            State.SkinName = skinName;
             _skinningService.SetSkin(skinName);
         }
 

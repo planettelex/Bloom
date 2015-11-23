@@ -33,7 +33,7 @@ namespace Bloom.Analytics
             _eventAggregator = eventAggregator;
             _stateService = stateService;
             var state = _stateService.InitializeState(ProcessType.Analytics);
-            DataContext = state;
+            DataContext = state.Analytics;
 
             // Don't open in a minimized state.
             if (state.Analytics.WindowState == WindowState.Minimized)
@@ -50,7 +50,7 @@ namespace Bloom.Analytics
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
-        private BloomState State { get { return (BloomState) DataContext; } }
+        private AnalyticsState State { get { return (AnalyticsState)DataContext; } }
 
         #region Window Events
 
@@ -72,7 +72,7 @@ namespace Bloom.Analytics
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
-            State.Analytics.WindowState = WindowState;
+            State.WindowState = WindowState;
             _stateService.SaveState();
         }
 
@@ -96,7 +96,7 @@ namespace Bloom.Analytics
 
             _tabs.Add(tabControl.Id, newPane);
             PaneGroup.Items.Add(newPane);
-            State.Analytics.SelectedTabId = tabControl.Id;
+            State.SelectedTabId = tabControl.Id;
         }
 
         private void CloseOtherTabs(object nothing)
@@ -141,7 +141,7 @@ namespace Bloom.Analytics
         {
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
             {
-                State.Analytics.SelectedTabId = valuePair.Key;
+                State.SelectedTabId = valuePair.Key;
                 break;
             }
         }
@@ -151,13 +151,13 @@ namespace Bloom.Analytics
             var selectedTab = GetSelectedTab();
             if (selectedTab == null)
             {
-                State.Analytics.SelectedTabId = Guid.Empty;
+                State.SelectedTabId = Guid.Empty;
                 return;
             }
 
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, selectedTab)))
             {
-                State.Analytics.SelectedTabId = valuePair.Key;
+                State.SelectedTabId = valuePair.Key;
             }
         }
 
@@ -174,7 +174,7 @@ namespace Bloom.Analytics
 
         private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            State.Analytics.ResetSidebarWidth();
+            State.ResetSidebarWidth();
         }
 
         #endregion
