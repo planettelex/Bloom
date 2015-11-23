@@ -113,6 +113,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
+      <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
+      <Name>Bloom.State.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Common\Bloom.Browser.Common.csproj">
       <Project>{91bfa216-3015-4952-a947-efa897556993}</Project>
       <Name>Bloom.Browser.Common</Name>

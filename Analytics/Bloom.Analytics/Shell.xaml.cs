@@ -80,23 +80,23 @@ namespace Bloom.Analytics
 
         #region Docking Events
 
-        private void AddTab(Tab tab)
+        private void AddTab(TabControl tabControl)
         {
             var tabHeader = new TabHeader(_eventAggregator)
             {
-                TabId = tab.Id,
-                Text = tab.Header,
-                ViewMenuVisibility = tab.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
+                TabId = tabControl.Id,
+                Text = tabControl.Tab.Header,
+                ViewMenuVisibility = tabControl.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
             };
             var newPane = new RadPane
             {
                 Header = tabHeader,
-                Content = tab.Content
+                Content = tabControl.Content
             };
 
-            _tabs.Add(tab.Id, newPane);
+            _tabs.Add(tabControl.Id, newPane);
             PaneGroup.Items.Add(newPane);
-            State.Analytics.SelectedTabId = tab.Id;
+            State.Analytics.SelectedTabId = tabControl.Id;
         }
 
         private void CloseOtherTabs(object nothing)

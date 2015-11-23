@@ -5,8 +5,10 @@ using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
 using Bloom.Analytics.PersonModule.ViewModels;
 using Bloom.Analytics.PersonModule.Views;
+using Bloom.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Analytics.PersonModule.Services
@@ -38,15 +40,13 @@ namespace Bloom.Analytics.PersonModule.Services
         {
             var personViewModel = new PersonViewModel(ViewType.Stats);
             var personView = new PersonView(personViewModel);
-            var personTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = personViewModel.TabId,
                 Type = TabType.Person,
-                Header = "Person",
-                Content = personView,
-                ShowViewMenu = true,
-                ViewType = personViewModel.ViewType
+                Header = "Person"
             };
+            var personTab = new ViewMenuTab(tab, personView);
 
             _tabs.Add(personTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);
@@ -54,21 +54,19 @@ namespace Bloom.Analytics.PersonModule.Services
 
         public void DuplicatePersonTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
             if (existingTab == null)
                 return;
 
             var personViewModel = new PersonViewModel(existingTab.ViewType);
             var personView = new PersonView(personViewModel);
-            var personTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = personViewModel.TabId,
-                Type = TabType.Person,
-                Header = "Person",
-                Content = personView,
-                ShowViewMenu = true,
-                ViewType = personViewModel.ViewType
+                Type = TabType.Album,
+                Header = "Album"
             };
+            var personTab = new ViewMenuTab(tab, personView);
 
             _tabs.Add(personTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);

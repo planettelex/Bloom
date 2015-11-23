@@ -20,7 +20,8 @@ namespace Bloom.State.Data.Services
                 new LibraryConnectionTable(),
                 new AnalyticsStateTable(),
                 new BrowserStateTable(),
-                new PlayerStateTable()
+                new PlayerStateTable(),
+                new TabTable()
             };
         }
         private readonly List<ISqlTable> _tables;

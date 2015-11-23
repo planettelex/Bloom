@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.Browser.AlbumModule.ViewModels;
 using Bloom.Browser.AlbumModule.Views;
-using Bloom.Controls;
-using Bloom.Domain.Enums;
+using Bloom.Browser.Controls;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Browser.AlbumModule.Services
@@ -19,13 +19,14 @@ namespace Bloom.Browser.AlbumModule.Services
         public AlbumService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _tabs = new List<Tab>();
+            _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewAlbumTabEvent>().Subscribe(NewAlbumTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateAlbumTab);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<ViewMenuTab> _tabs;
 
         public void NewAlbumTab(object nothing)
         {
@@ -36,13 +37,13 @@ namespace Bloom.Browser.AlbumModule.Services
         {
             var albumViewModel = new AlbumViewModel();
             var albumView = new AlbumView(albumViewModel);
-            var albumTab = new Tab
+            var tab = new Tab
             {
                 Id = albumViewModel.TabId,
                 Type = TabType.Album,
-                Header = "Album",
-                Content = albumView
+                Header = "Album"
             };
+            var albumTab = new ViewMenuTab(tab, albumView);
 
             _tabs.Add(albumTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
@@ -50,24 +51,22 @@ namespace Bloom.Browser.AlbumModule.Services
 
         public void DuplicateAlbumTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
             if (existingTab == null)
                 return;
 
             var albumViewModel = new AlbumViewModel();
             var albumView = new AlbumView(albumViewModel);
-            var albumTab = new Tab
+            var tab = new Tab
             {
                 Id = albumViewModel.TabId,
                 Type = TabType.Album,
-                Header = "Album",
-                Content = albumView
+                Header = "Album"
             };
+            var albumTab = new ViewMenuTab(tab, albumView);
 
             _tabs.Add(albumTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
         }
-
-        private readonly List<Tab> _tabs;
     }
 }

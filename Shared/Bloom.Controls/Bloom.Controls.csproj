@@ -106,10 +106,9 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="TabType.cs" />
     <Compile Include="Helpers\MenuControlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tab.cs" />
+    <Compile Include="TabControl.cs" />
     <Compile Include="TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
@@ -130,6 +129,14 @@
     <ProjectReference Include="..\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.State.Data\Bloom.State.Data.csproj">
+      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
+      <Name>Bloom.State.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bloom.State.Domain\Bloom.State.Domain.csproj">
+      <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
+      <Name>Bloom.State.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

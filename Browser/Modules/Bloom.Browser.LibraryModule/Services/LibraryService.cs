@@ -9,7 +9,6 @@ using Bloom.Browser.LibraryModule.Views;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
-using Bloom.Controls;
 using Bloom.Data;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -108,15 +107,13 @@ namespace Bloom.Browser.LibraryModule.Services
         {
             var libraryViewModel = new LibraryViewModel(ViewType.Grid);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var libraryTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = libraryViewModel.TabId,
                 Type = TabType.Library,
-                Header = "Library",
-                Content = libraryView,
-                ShowViewMenu = true,
-                ViewType = libraryViewModel.ViewType
+                Header = "Library"
             };
+            var libraryTab = new ViewMenuTab(tab, libraryView);
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
@@ -128,21 +125,19 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicateLibraryTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
             if (existingTab == null)
                 return;
 
             var libraryViewModel = new LibraryViewModel(existingTab.ViewType);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var libraryTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = libraryViewModel.TabId,
                 Type = TabType.Library,
-                Header = "Library",
-                Content = libraryView,
-                ShowViewMenu = true,
-                ViewType = libraryViewModel.ViewType
+                Header = "Library"
             };
+            var libraryTab = new ViewMenuTab(tab, libraryView);
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);

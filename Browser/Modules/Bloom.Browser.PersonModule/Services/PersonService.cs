@@ -5,8 +5,8 @@ using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
 using Bloom.Browser.PersonModule.ViewModels;
 using Bloom.Browser.PersonModule.Views;
-using Bloom.Controls;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Browser.PersonModule.Services
@@ -38,15 +38,13 @@ namespace Bloom.Browser.PersonModule.Services
         {
             var personViewModel = new PersonViewModel(ViewType.Grid);
             var personView = new PersonView(personViewModel);
-            var personTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = personViewModel.TabId,
                 Type = TabType.Person,
-                Header = "Person",
-                Content = personView,
-                ShowViewMenu = true,
-                ViewType = personViewModel.ViewType
+                Header = "Person"
             };
+            var personTab = new ViewMenuTab(personViewModel.ViewType, tab, personView);
 
             _tabs.Add(personTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);
@@ -54,21 +52,19 @@ namespace Bloom.Browser.PersonModule.Services
 
         public void DuplicatePersonTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
             if (existingTab == null)
                 return;
 
             var personViewModel = new PersonViewModel(existingTab.ViewType);
             var personView = new PersonView(personViewModel);
-            var personTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = personViewModel.TabId,
                 Type = TabType.Person,
-                Header = "Person",
-                Content = personView,
-                ShowViewMenu = true,
-                ViewType = personViewModel.ViewType
+                Header = "Person"
             };
+            var personTab = new ViewMenuTab(personViewModel.ViewType, tab, personView);
 
             _tabs.Add(personTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);

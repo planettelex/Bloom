@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Windows;
 using Bloom.Common;
-using Bloom.Controls;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models

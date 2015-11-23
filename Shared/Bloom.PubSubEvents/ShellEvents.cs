@@ -7,7 +7,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Adds a new tab to the docking control.
     /// </summary>
-    public class AddTabEvent : PubSubEvent<Tab> { }
+    public class AddTabEvent : PubSubEvent<TabControl> { }
 
     /// <summary>
     /// Creates a new home control and publish the <see cref="AddTabEvent"/>.

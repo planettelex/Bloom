@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bloom.Analytics.Controls;
 using Bloom.Analytics.SongModule.ViewModels;
 using Bloom.Analytics.SongModule.Views;
-using Bloom.Controls;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Analytics.SongModule.Services
@@ -18,13 +19,14 @@ namespace Bloom.Analytics.SongModule.Services
         public SongService(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _tabs = new List<Tab>();
+            _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewSongTabEvent>().Subscribe(NewSongTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSongTab);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly List<ViewMenuTab> _tabs;
 
         public void NewSongTab(object nothing)
         {
@@ -35,13 +37,13 @@ namespace Bloom.Analytics.SongModule.Services
         {
             var songViewModel = new SongViewModel();
             var songView = new SongView(songViewModel);
-            var songTab = new Tab
+            var tab = new Tab
             {
                 Id = songViewModel.TabId,
                 Type = TabType.Song,
-                Header = "Song",
-                Content = songView
+                Header = "Song"
             };
+            var songTab = new ViewMenuTab(tab, songView);
 
             _tabs.Add(songTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
@@ -49,24 +51,22 @@ namespace Bloom.Analytics.SongModule.Services
 
         public void DuplicateSongTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
             if (existingTab == null)
                 return;
 
             var songViewModel = new SongViewModel();
             var songView = new SongView(songViewModel);
-            var songTab = new Tab
+            var tab = new Tab
             {
                 Id = songViewModel.TabId,
-                Type = TabType.Song,
-                Header = "Song",
-                Content = songView
+                Type = TabType.Album,
+                Header = "Album"
             };
+            var songTab = new ViewMenuTab(tab, songView);
 
             _tabs.Add(songTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
         }
-
-        private readonly List<Tab> _tabs;
     }
 }

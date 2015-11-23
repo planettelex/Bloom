@@ -5,8 +5,8 @@ using Bloom.Browser.ArtistModule.ViewModels;
 using Bloom.Browser.ArtistModule.Views;
 using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
-using Bloom.Controls;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Browser.ArtistModule.Services
@@ -38,15 +38,13 @@ namespace Bloom.Browser.ArtistModule.Services
         {
             var artistViewModel = new ArtistViewModel(ViewType.Grid);
             var artistView = new ArtistView(artistViewModel);
-            var artistTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = artistViewModel.TabId,
                 Type = TabType.Artist,
-                Header = "Artist",
-                Content = artistView,
-                ShowViewMenu = true,
-                ViewType = artistViewModel.ViewType
+                Header = "Artist"
             };
+            var artistTab = new ViewMenuTab(artistViewModel.ViewType, tab, artistView);
 
             _tabs.Add(artistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
@@ -54,21 +52,19 @@ namespace Bloom.Browser.ArtistModule.Services
 
         public void DuplicateArtistTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
             if (existingTab == null)
                 return;
 
             var artistViewModel = new ArtistViewModel(existingTab.ViewType);
             var artistView = new ArtistView(artistViewModel);
-            var artistTab = new ViewMenuTab
+            var tab = new Tab
             {
                 Id = artistViewModel.TabId,
                 Type = TabType.Artist,
                 Header = "Artist",
-                Content = artistView,
-                ShowViewMenu = true,
-                ViewType = artistViewModel.ViewType
             };
+            var artistTab = new ViewMenuTab(artistViewModel.ViewType, tab, artistView);
 
             _tabs.Add(artistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);

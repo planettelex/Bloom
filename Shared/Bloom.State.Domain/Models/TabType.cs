@@ -1,4 +1,4 @@
-﻿namespace Bloom.Controls
+﻿namespace Bloom.State.Domain.Models
 {
     /// <summary>
     /// The types of tabs.
