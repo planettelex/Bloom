@@ -9,7 +9,7 @@ namespace Bloom.State.Domain.Models
     /// The state of the player application.
     /// </summary>
     [Table(Name = "player_state")]
-    public class PlayerState : BindableBase
+    public class PlayerState : BindableBase, IApplicationState
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerState"/> class.
@@ -22,6 +22,7 @@ namespace Bloom.State.Domain.Models
             WindowState = Properties.Settings.Default.WindowState;
             RecentWidth = Properties.Settings.Default.SidebarWidth;
             UpcomingWidth = Properties.Settings.Default.SidebarWidth;
+            Connections = new Connections();
         }
 
         /// <summary>
@@ -29,6 +30,11 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
         public string ProcessName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data connections for the suite.
+        /// </summary>
+        public Connections Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.

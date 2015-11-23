@@ -35,22 +35,21 @@ namespace Bloom.State.Services
         /// Initializes the state of a provided process.
         /// </summary>
         /// <param name="processType">The type of process.</param>
-        public BloomState InitializeState(ProcessType processType)
+        public IApplicationState InitializeState(ProcessType processType)
         {
             var stateDatabasePath = GetStateDatabasePath();
-            var state = new BloomState();
-            state.Connections.StateConnection.FilePath = stateDatabasePath;
+            IApplicationState state = null;
 
             switch (processType)
             {
                 case ProcessType.Analytics:
-                    state.Analytics = InitializeAnalyticsState(stateDatabasePath);
+                    state = InitializeAnalyticsState(stateDatabasePath);
                     break;
                 case ProcessType.Browser:
-                    state.Browser = InitializeBrowserState(stateDatabasePath);
+                    state = InitializeBrowserState(stateDatabasePath);
                     break;
                 case ProcessType.Player:
-                    state.Player = InitializePlayerState(stateDatabasePath);
+                    state = InitializePlayerState(stateDatabasePath);
                     break;
             }
             return state;
@@ -79,6 +78,7 @@ namespace Bloom.State.Services
                 analyticsState = AddNewAnalyticsState();
             }
 
+            analyticsState.Connections.StateConnection.FilePath = stateDatabasePath;
             return analyticsState;
         }
 
@@ -97,6 +97,7 @@ namespace Bloom.State.Services
                 browserState = AddNewBrowserState();
             }
 
+            browserState.Connections.StateConnection.FilePath = stateDatabasePath;
             return browserState;
         }
 
@@ -115,6 +116,7 @@ namespace Bloom.State.Services
                 playerState = AddNewPlayerState();
             }
 
+            playerState.Connections.StateConnection.FilePath = stateDatabasePath;
             return playerState;
         }
 

@@ -11,7 +11,7 @@ namespace Bloom.State.Domain.Models
     /// The state of the analytics application.
     /// </summary>
     [Table(Name = "analytics_state")]
-    public class AnalyticsState : BindableBase
+    public class AnalyticsState : BindableBase, IApplicationState
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AnalyticsState"/> class.
@@ -23,6 +23,7 @@ namespace Bloom.State.Domain.Models
             SkinName = Properties.Settings.Default.SkinName;
             WindowState = Properties.Settings.Default.WindowState;
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
+            Connections = new Connections();
             Tabs = new List<Tab>();
             SelectedTabId = Guid.Empty;
         }
@@ -32,6 +33,11 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
         public string ProcessName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data connections for the suite.
+        /// </summary>
+        public Connections Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.

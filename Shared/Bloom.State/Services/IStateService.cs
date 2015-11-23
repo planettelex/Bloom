@@ -12,7 +12,7 @@ namespace Bloom.State.Services
         /// Initializes the state of a provided process.
         /// </summary>
         /// <param name="processType">The type of process.</param>
-        BloomState InitializeState(ProcessType processType);
+        IApplicationState InitializeState(ProcessType processType);
 
         /// <summary>
         /// Saves the state.

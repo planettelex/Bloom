@@ -1,5 +1,4 @@
-﻿using System;
-using Bloom.HomeModule.Services;
+﻿using Bloom.HomeModule.Services;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.PubSubEvents;

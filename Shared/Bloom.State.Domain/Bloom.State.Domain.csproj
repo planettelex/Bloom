@@ -77,10 +77,10 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Models\BloomState.cs" />
     <Compile Include="Models\AnalyticsState.cs" />
     <Compile Include="Models\BrowserState.cs" />
     <Compile Include="Models\Connections.cs" />
+    <Compile Include="Models\IApplicationState.cs" />
     <Compile Include="Models\LibraryConnection.cs" />
     <Compile Include="Models\PlayerState.cs" />
     <Compile Include="Models\Tab.cs" />

@@ -14,7 +14,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
     {
         public NewLibraryWindowModel(IRegionManager regionManager)
         {
-            State = (BloomState) regionManager.Regions["DocumentRegion"].Context;
+            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
             PotentialOwners = new ObservableCollection<Person>();
             FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
         }
@@ -22,7 +22,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BloomState State { get; private set; }
+        public BrowserState State { get; private set; }
 
         public string LibraryName
         {

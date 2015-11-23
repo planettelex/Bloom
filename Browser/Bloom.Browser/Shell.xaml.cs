@@ -32,16 +32,16 @@ namespace Bloom.Browser
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = _stateService.InitializeState(ProcessType.Browser);
-            DataContext = state.Browser;
+            var state = (BrowserState)_stateService.InitializeState(ProcessType.Browser);
+            DataContext = state;
 
             // Don't open in a minimized state.
-            if (state.Browser.WindowState == WindowState.Minimized)
-                state.Browser.WindowState = WindowState.Normal;
+            if (state.WindowState == WindowState.Minimized)
+                state.WindowState = WindowState.Normal;
 
-            WindowState = state.Browser.WindowState;
+            WindowState = state.WindowState;
             TitleBar.SetButtonVisibilties();
-            skinningService.SetSkin(state.Browser.SkinName);
+            skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
@@ -50,7 +50,7 @@ namespace Bloom.Browser
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
-        private BrowserState State { get { return (BrowserState)DataContext; } }
+        private BrowserState State { get { return (BrowserState) DataContext; } }
 
         #region Window Events
 

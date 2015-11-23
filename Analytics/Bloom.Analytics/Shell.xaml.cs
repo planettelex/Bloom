@@ -32,16 +32,16 @@ namespace Bloom.Analytics
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = _stateService.InitializeState(ProcessType.Analytics);
-            DataContext = state.Analytics;
-
+            var state = (AnalyticsState)_stateService.InitializeState(ProcessType.Analytics);
+            DataContext = state;
+            
             // Don't open in a minimized state.
-            if (state.Analytics.WindowState == WindowState.Minimized)
-                state.Analytics.WindowState = WindowState.Normal;
+            if (state.WindowState == WindowState.Minimized)
+                state.WindowState = WindowState.Normal;
 
-            WindowState = state.Analytics.WindowState;
+            WindowState = state.WindowState;
             TitleBar.SetButtonVisibilties();
-            skinningService.SetSkin(state.Analytics.SkinName);
+            skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);

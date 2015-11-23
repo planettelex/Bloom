@@ -24,18 +24,18 @@ namespace Bloom.Player
             InitializeComponent();
             _gridLengthConverter = new GridLengthConverter();
             _stateService = stateService;
-            var state = _stateService.InitializeState(ProcessType.Player);
-            DataContext = state.Player;
+            var state = (PlayerState)_stateService.InitializeState(ProcessType.Player);
+            DataContext = state;
 
             // Don't open in a minimized state.
-            if (state.Player.WindowState == WindowState.Minimized)
-                state.Player.WindowState = WindowState.Normal;
+            if (state.WindowState == WindowState.Minimized)
+                state.WindowState = WindowState.Normal;
 
-            WindowState = state.Player.WindowState;
+            WindowState = state.WindowState;
             TitleBar.SetButtonVisibilties();
             SetRecentColumnWidth();
             SetUpcomingColumnWidth();
-            skinningService.SetSkin(state.Player.SkinName);
+            skinningService.SetSkin(state.SkinName);
         }
         private readonly IStateService _stateService;
         private readonly GridLengthConverter _gridLengthConverter;
