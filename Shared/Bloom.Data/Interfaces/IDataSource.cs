@@ -23,13 +23,23 @@ namespace Bloom.Data.Interfaces
         void RegisterRepositories();
 
         /// <summary>
-        /// Creates a state database at the specified file path.
+        /// Creates a database at this instance's file path, if one is specified.
+        /// </summary>
+        void Create();
+
+        /// <summary>
+        /// Creates a database at the specified file path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         void Create(string filePath);
 
         /// <summary>
-        /// Connects to a state database at the specified file path.
+        /// Connects to a database at this instance's file path, if one is specified.
+        /// </summary>
+        void Connect();
+
+        /// <summary>
+        /// Connects to a database at the specified file path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         void Connect(string filePath);

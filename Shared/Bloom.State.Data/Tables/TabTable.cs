@@ -21,7 +21,8 @@ namespace Bloom.State.Data.Tables
                        "\"entity_id\" VARCHAR(36) NOT NULL , " +
                        "\"type\" INTEGER NOT NULL , " +
                        "\"view\" INTEGER NOT NULL , " +
-                       "\"header\" VARCHAR )";
+                       "\"header\" VARCHAR, " +
+                       "\"order\" INTEGER NOT NULL )";
             }
         }
     }

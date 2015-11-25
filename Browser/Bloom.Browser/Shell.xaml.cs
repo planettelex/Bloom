@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.Common;
+using Bloom.Browser.State.Services;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Bloom.State.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
@@ -26,13 +25,13 @@ namespace Bloom.Browser
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IBrowserStateService stateService)
         {
             InitializeComponent();
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = (BrowserState)_stateService.InitializeState(ProcessType.Browser);
+            var state = _stateService.InitializeState();
             DataContext = state;
 
             // Don't open in a minimized state.
@@ -48,7 +47,7 @@ namespace Bloom.Browser
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
-        private readonly IStateService _stateService;
+        private readonly IBrowserStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
         private BrowserState State { get { return (BrowserState) DataContext; } }
 

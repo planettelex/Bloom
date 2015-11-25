@@ -2,10 +2,9 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.Common;
+using Bloom.Player.State.Services;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Bloom.State.Services;
 
 namespace Bloom.Player
 {
@@ -19,12 +18,12 @@ namespace Bloom.Player
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IStateService stateService)
+        public Shell(ISkinningService skinningService, IPlayerStateService stateService)
         {
             InitializeComponent();
             _gridLengthConverter = new GridLengthConverter();
             _stateService = stateService;
-            var state = (PlayerState)_stateService.InitializeState(ProcessType.Player);
+            var state = _stateService.InitializeState();
             DataContext = state;
 
             // Don't open in a minimized state.
@@ -37,7 +36,7 @@ namespace Bloom.Player
             SetUpcomingColumnWidth();
             skinningService.SetSkin(state.SkinName);
         }
-        private readonly IStateService _stateService;
+        private readonly IPlayerStateService _stateService;
         private readonly GridLengthConverter _gridLengthConverter;
         private PlayerState State { get { return (PlayerState) DataContext; } }
 

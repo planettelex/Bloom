@@ -3,12 +3,12 @@ using Bloom.Data.Interfaces;
 using Bloom.Player.MenuModule;
 using Bloom.Player.PlayingModule;
 using Bloom.Player.RecentModule;
+using Bloom.Player.State.Services;
 using Bloom.Player.UpcomingModule;
 using Bloom.Player.VisualsModule;
 using Bloom.Player.VolumeModule;
 using Bloom.Services;
 using Bloom.State.Data;
-using Bloom.State.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -82,8 +82,8 @@ namespace Bloom.Player
         /// </summary>
         protected void RegisterServices()
         {
-            Container.RegisterType<IStateService, StateService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<IStateService>();
+            Container.RegisterType<IPlayerStateService, PlayerStateService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IPlayerStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());

@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.Common;
+using Bloom.Analytics.State.Services;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Bloom.State.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
@@ -26,13 +25,13 @@ namespace Bloom.Analytics
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IAnalyticsStateService stateService)
         {
             InitializeComponent();
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = (AnalyticsState)_stateService.InitializeState(ProcessType.Analytics);
+            var state = _stateService.InitializeState();
             DataContext = state;
             
             // Don't open in a minimized state.
@@ -48,7 +47,7 @@ namespace Bloom.Analytics
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
-        private readonly IStateService _stateService;
+        private readonly IAnalyticsStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
         private AnalyticsState State { get { return (AnalyticsState)DataContext; } }
 

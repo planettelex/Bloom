@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}"
 	ProjectSection(SolutionItems) = preProject
@@ -84,8 +84,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.PlaylistMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.SongModule", "Analytics\Modules\Bloom.Analytics.SongModule\Bloom.Analytics.SongModule.csproj", "{2EAE4C79-A3AE-4053-81BF-5369F0197F8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State", "Shared\Bloom.State\Bloom.State.csproj", "{A9F245F4-DCD7-4BAA-A611-A5AB39B36AD2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Data", "Shared\Bloom.State.Data\Bloom.State.Data.csproj", "{059176F6-BECE-46D8-B160-02EF5D897559}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Domain", "Shared\Bloom.State.Domain\Bloom.State.Domain.csproj", "{A624637B-4221-4DC3-963F-2BD02F618B77}"
@@ -113,6 +111,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Domain.Tests", "Shared\Tests\Bloom.Domain.Tests\Bloom.Domain.Tests.csproj", "{9FB44FE0-7DA3-47B2-9C04-2D406C9A6EFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.HomeModule", "Shared\Modules\Bloom.HomeModule\Bloom.HomeModule.csproj", "{15C48595-E331-444B-9F08-4AF15F8A23DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.State", "Browser\Shared\Bloom.Browser.State\Bloom.Browser.State.csproj", "{7B772A0E-0C5D-4DB5-83B4-892A03EEDAEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.State", "Analytics\Shared\Bloom.Analytics.State\Bloom.Analytics.State.csproj", "{1E743B98-CEC3-450D-B06F-869245255BC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Player.State", "Player\Shared\Bloom.Player.State\Bloom.Player.State.csproj", "{D8539333-B1EF-4153-AAB9-552011F9EBA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -244,10 +248,6 @@ Global
 		{2EAE4C79-A3AE-4053-81BF-5369F0197F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EAE4C79-A3AE-4053-81BF-5369F0197F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EAE4C79-A3AE-4053-81BF-5369F0197F8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9F245F4-DCD7-4BAA-A611-A5AB39B36AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9F245F4-DCD7-4BAA-A611-A5AB39B36AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9F245F4-DCD7-4BAA-A611-A5AB39B36AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9F245F4-DCD7-4BAA-A611-A5AB39B36AD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{059176F6-BECE-46D8-B160-02EF5D897559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{059176F6-BECE-46D8-B160-02EF5D897559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{059176F6-BECE-46D8-B160-02EF5D897559}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -288,6 +288,18 @@ Global
 		{15C48595-E331-444B-9F08-4AF15F8A23DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C48595-E331-444B-9F08-4AF15F8A23DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15C48595-E331-444B-9F08-4AF15F8A23DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B772A0E-0C5D-4DB5-83B4-892A03EEDAEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B772A0E-0C5D-4DB5-83B4-892A03EEDAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B772A0E-0C5D-4DB5-83B4-892A03EEDAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B772A0E-0C5D-4DB5-83B4-892A03EEDAEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E743B98-CEC3-450D-B06F-869245255BC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E743B98-CEC3-450D-B06F-869245255BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E743B98-CEC3-450D-B06F-869245255BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E743B98-CEC3-450D-B06F-869245255BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8539333-B1EF-4153-AAB9-552011F9EBA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8539333-B1EF-4153-AAB9-552011F9EBA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8539333-B1EF-4153-AAB9-552011F9EBA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8539333-B1EF-4153-AAB9-552011F9EBA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -328,7 +340,6 @@ Global
 		{2928ED60-32DC-4182-910F-344E3C89D466} = {9014435F-F56D-4405-B05F-9EDE65BED944}
 		{833CB199-A684-408B-953D-0B03ED0B63D8} = {9014435F-F56D-4405-B05F-9EDE65BED944}
 		{2EAE4C79-A3AE-4053-81BF-5369F0197F8A} = {9014435F-F56D-4405-B05F-9EDE65BED944}
-		{A9F245F4-DCD7-4BAA-A611-A5AB39B36AD2} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{059176F6-BECE-46D8-B160-02EF5D897559} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{A624637B-4221-4DC3-963F-2BD02F618B77} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{4181D021-3052-42B6-A8E5-C50C55A30FFD} = {C20B5743-9ED0-442E-A936-49A2C3280B0A}
@@ -343,5 +354,11 @@ Global
 		{F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD} = {57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}
 		{9FB44FE0-7DA3-47B2-9C04-2D406C9A6EFC} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
 		{15C48595-E331-444B-9F08-4AF15F8A23DD} = {C7EDF224-02A4-4A92-AA84-490C17D240DE}
+		{7B772A0E-0C5D-4DB5-83B4-892A03EEDAEB} = {39BDD6AC-3A95-4E1D-9440-C39052A98E06}
+		{1E743B98-CEC3-450D-B06F-869245255BC9} = {4181D021-3052-42B6-A8E5-C50C55A30FFD}
+		{D8539333-B1EF-4153-AAB9-552011F9EBA3} = {1D5B6FB3-1ECA-464E-84F3-4DE5A27F4C81}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal

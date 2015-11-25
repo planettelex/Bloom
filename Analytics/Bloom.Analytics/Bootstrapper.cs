@@ -6,11 +6,11 @@ using Bloom.Analytics.MenuModule;
 using Bloom.Analytics.PersonModule;
 using Bloom.Analytics.PlaylistModule;
 using Bloom.Analytics.SongModule;
+using Bloom.Analytics.State.Services;
 using Bloom.Data.Interfaces;
 using Bloom.HomeModule;
 using Bloom.Services;
 using Bloom.State.Data;
-using Bloom.State.Services;
 using Bloom.TaxonomiesModule;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
@@ -88,8 +88,8 @@ namespace Bloom.Analytics
         /// </summary>
         protected void RegisterServices()
         {
-            Container.RegisterType<IStateService, StateService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<IStateService>();
+            Container.RegisterType<IAnalyticsStateService, AnalyticsStateService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IAnalyticsStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());

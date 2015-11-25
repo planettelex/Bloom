@@ -122,10 +122,6 @@
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State\Bloom.State.csproj">
-      <Project>{a9f245f4-dcd7-4baa-a611-a5ab39b36ad2}</Project>
-      <Name>Bloom.State</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

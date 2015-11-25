@@ -155,6 +155,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Bloom.Player.State\Bloom.Player.State.csproj">
+      <Project>{d8539333-b1ef-4153-aab9-552011f9eba3}</Project>
+      <Name>Bloom.Player.State</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
@@ -214,10 +218,6 @@
     <ProjectReference Include="..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.State\Bloom.State.csproj">
-      <Project>{a9f245f4-dcd7-4baa-a611-a5ab39b36ad2}</Project>
-      <Name>Bloom.State</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,11 +6,11 @@ using Bloom.Browser.MenuModule;
 using Bloom.Browser.PersonModule;
 using Bloom.Browser.PlaylistModule;
 using Bloom.Browser.SongModule;
+using Bloom.Browser.State.Services;
 using Bloom.Data.Interfaces;
 using Bloom.HomeModule;
 using Bloom.Services;
 using Bloom.State.Data;
-using Bloom.State.Services;
 using Bloom.TaxonomiesModule;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
@@ -88,8 +88,8 @@ namespace Bloom.Browser
         /// </summary>
         protected void RegisterServices()
         {
-            Container.RegisterType<IStateService, StateService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<IStateService>();
+            Container.RegisterType<IBrowserStateService, BrowserStateService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IBrowserStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());

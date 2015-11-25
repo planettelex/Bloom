@@ -48,5 +48,11 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "header")]
         public string Header { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tab order.
+        /// </summary>
+        [Column(Name = "order")]
+        public int Order { get; set; }
     }
 }

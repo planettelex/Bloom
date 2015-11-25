@@ -45,13 +45,35 @@ namespace Bloom.Data
         }
 
         /// <summary>
-        /// Creates a state database at the specified file path.
+        /// Creates a database at this instance's file path, if one is specified.
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">
+        /// Cannot create a new library database while connected to an existing one.
+        /// or
+        /// The file path to the library database file has not been specified.
+        /// </exception>
+        public void Create()
+        {
+            if (IsConnected())
+                throw new InvalidOperationException("Cannot create a new library database while connected to an existing one.");
+
+            if (string.IsNullOrEmpty(FilePath))
+                throw new InvalidOperationException("The file path to the library database file has not been specified.");
+
+            SQLiteConnection.CreateFile(FilePath);
+            Connect();
+            _libraryTableService.CreateTables(Context);
+        }
+
+        /// <summary>
+        /// Creates a library database at the specified file path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
+        /// <exception cref="System.InvalidOperationException">Cannot create a new library database while connected to an existing one.</exception>
         public void Create(string filePath)
         {
             if (IsConnected())
-                throw new InvalidOperationException("Cannot create a new state database while connected to an existing one.");
+                throw new InvalidOperationException("Cannot create a new library database while connected to an existing one.");
 
             SQLiteConnection.CreateFile(filePath);
             Connect(filePath);
@@ -59,14 +81,35 @@ namespace Bloom.Data
         }
 
         /// <summary>
-        /// Connects to a state database at the specified file path.
+        /// Connects to a library database at this instance's file path, if one is specified.
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">
+        /// Cannot connect to a new library database while connected to an existing one.
+        /// or
+        /// The file path to the library database file has not been specified.
+        /// </exception>
+        public void Connect()
+        {
+            if (IsConnected())
+                throw new InvalidOperationException("Cannot connect to a new library database while connected to an existing one.");
+
+            if (string.IsNullOrEmpty(FilePath))
+                throw new InvalidOperationException("The file path to the library database file has not been specified.");
+
+            var connectionString = string.Format("Data Source={0};Version=3;Foreign Keys=true;", FilePath);
+            var connection = new SQLiteConnection(connectionString);
+            Context = new DataContext(connection);
+        }
+
+        /// <summary>
+        /// Connects to a library database at the specified file path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        /// <exception cref="System.InvalidOperationException">Cannot connect to a new state database while connected to an existing one.</exception>
+        /// <exception cref="System.InvalidOperationException">Cannot connect to a new library database while connected to an existing one.</exception>
         public void Connect(string filePath)
         {
             if (IsConnected())
-                throw new InvalidOperationException("Cannot connect to a new state database while connected to an existing one.");
+                throw new InvalidOperationException("Cannot connect to a new library database while connected to an existing one.");
 
             var connectionString = string.Format("Data Source={0};Version=3;Foreign Keys=true;", filePath);
             var connection = new SQLiteConnection(connectionString);

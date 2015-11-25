@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Data.Linq;
+using Bloom.Common;
 using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
 
@@ -20,6 +21,7 @@ namespace Bloom.State.Data.Respositories
         }
         private readonly IDataSource _dataSource;
         private Table<AnalyticsState> AnalyticsStateTable { get { return _dataSource.Context.GetTable<AnalyticsState>(); } }
+        private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } } 
 
         /// <summary>
         /// Determines whether the analytics state exists.
@@ -41,11 +43,22 @@ namespace Bloom.State.Data.Respositories
             if (!_dataSource.IsConnected())
                 return null;
 
-            var query =
-                from analyticsState in AnalyticsStateTable
-                select analyticsState;
+            var stateQuery =
+                from state in AnalyticsStateTable
+                select state;
 
-            return query.ToList().SingleOrDefault();
+            var analyticsState = stateQuery.ToList().SingleOrDefault();
+
+            var tabsQuery =
+                from tabs in TabTable
+                where tabs.Process == ProcessType.Analytics
+                orderby tabs.Order
+                select tabs;
+
+            if (analyticsState != null)
+                analyticsState.Tabs = tabsQuery.ToList();
+
+            return analyticsState;
         }
 
         /// <summary>

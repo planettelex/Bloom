@@ -9,12 +9,12 @@ using Bloom.Browser.LibraryModule.Views;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
+using Bloom.Browser.State.Services;
 using Bloom.Data;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
-using Bloom.State.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
@@ -29,7 +29,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="regionManager">The region manager.</param>
         /// <param name="stateService">The state service.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IStateService stateService, ILibraryConnectionRepository libraryConnectionRepository)
+        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IBrowserStateService stateService, ILibraryConnectionRepository libraryConnectionRepository)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
@@ -48,7 +48,7 @@ namespace Bloom.Browser.LibraryModule.Services
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
-        private readonly IStateService _stateService;
+        private readonly IBrowserStateService _stateService;
         private readonly List<ViewMenuTab> _tabs;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 

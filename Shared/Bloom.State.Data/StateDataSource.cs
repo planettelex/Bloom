@@ -23,6 +23,7 @@ namespace Bloom.State.Data
             _container = container;
             _container.RegisterType<ITableService, StateTableService>(new ContainerControlledLifetimeManager());
             _stateTableService = _container.Resolve<ITableService>();
+            FilePath = GetStateDatabasePath();
         }
         private readonly IUnityContainer _container;
         private readonly ITableService _stateTableService;
@@ -53,6 +54,27 @@ namespace Bloom.State.Data
         }
 
         /// <summary>
+        /// Creates a state database at this instance's file path, if one is specified.
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">
+        /// Cannot create a new state database while connected to an existing one.
+        /// or
+        /// The file path to the state database file has not been specified.
+        /// </exception>
+        public void Create()
+        {
+            if (IsConnected())
+                throw new InvalidOperationException("Cannot create a new state database while connected to an existing one.");
+
+            if (string.IsNullOrEmpty(FilePath))
+                throw new InvalidOperationException("The file path to the state database file has not been specified.");
+
+            SQLiteConnection.CreateFile(FilePath);
+            Connect();
+            _stateTableService.CreateTables(Context);
+        }
+
+        /// <summary>
         /// Creates a state database at the specified file path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
@@ -64,6 +86,27 @@ namespace Bloom.State.Data
             SQLiteConnection.CreateFile(filePath);
             Connect(filePath);
             _stateTableService.CreateTables(Context);
+        }
+
+        /// <summary>
+        /// Connects to a state database at this instance's file path, if one is specified.
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">
+        /// Cannot connect to a new state database while connected to an existing one.
+        /// or
+        /// The file path to the state database file has not been specified.
+        /// </exception>
+        public void Connect()
+        {
+            if (IsConnected())
+                throw new InvalidOperationException("Cannot connect to a new state database while connected to an existing one.");
+
+            if (string.IsNullOrEmpty(FilePath))
+                throw new InvalidOperationException("The file path to the state database file has not been specified.");
+
+            var connectionString = string.Format("Data Source={0};Version=3;", FilePath);
+            var connection = new SQLiteConnection(connectionString);
+            Context = new DataContext(connection);
         }
 
         /// <summary>
@@ -122,6 +165,12 @@ namespace Bloom.State.Data
                 File.Delete(FilePath);
 
             FilePath = null;
+        }
+
+        private string GetStateDatabasePath()
+        {
+            var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Combine(appDataFolder, Properties.Settings.Default.Database_File);
         }
     }
 }

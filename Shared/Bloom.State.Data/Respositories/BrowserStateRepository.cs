@@ -1,5 +1,6 @@
 ﻿using System.Data.Linq;
 using System.Linq;
+using Bloom.Common;
 using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
 
@@ -20,6 +21,7 @@ namespace Bloom.State.Data.Respositories
         }
         private readonly IDataSource _dataSource;
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
+        private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } } 
 
         /// <summary>
         /// Determines whether the browser state exists.
@@ -42,11 +44,22 @@ namespace Bloom.State.Data.Respositories
             if (!_dataSource.IsConnected())
                 return null;
 
-            var query =
-                from browserState in BrowserStateTable
-                select browserState;
+            var stateQuery =
+                from state in BrowserStateTable
+                select state;
 
-            return query.ToList().SingleOrDefault();
+            var browserState = stateQuery.ToList().SingleOrDefault();
+
+            var tabsQuery =
+                from tabs in TabTable
+                where tabs.Process == ProcessType.Browser
+                orderby tabs.Order
+                select tabs;
+
+            if (browserState != null)
+                browserState.Tabs = tabsQuery.ToList();
+
+            return browserState;
         }
 
         /// <summary>
