@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Controls;
+using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.PubSubEvents
@@ -10,39 +11,74 @@ namespace Bloom.PubSubEvents
     public class AddTabEvent : PubSubEvent<TabControl> { }
 
     /// <summary>
-    /// Creates a new home control and publish the <see cref="AddTabEvent"/>.
+    /// Creates a new home control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
     public class NewHomeTabEvent : PubSubEvent<object> { }
 
     /// <summary>
-    /// Creates a new library control and publish the <see cref="AddTabEvent"/>.
+    /// Restores a saved home tab and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewLibraryTabEvent : PubSubEvent<object> { }
+    public class RestoreHomeTabEvent : PubSubEvent<Tab> { }
 
     /// <summary>
-    /// Creates a new artist control and publish the <see cref="AddTabEvent"/>.
+    /// Creates a new library control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewArtistTabEvent : PubSubEvent<object> { }
+    public class NewLibraryTabEvent : PubSubEvent<Guid> { }
 
     /// <summary>
-    /// Creates a new person control and publish the <see cref="AddTabEvent"/>.
+    /// Restores a saved library tab and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewPersonTabEvent : PubSubEvent<object> { }
+    public class RestoreLibraryTabEvent : PubSubEvent<Tab> { }
 
     /// <summary>
-    /// Creates a new album control and publish the <see cref="AddTabEvent"/>.
+    /// Creates a new artist control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewAlbumTabEvent : PubSubEvent<object> { }
+    public class NewArtistTabEvent : PubSubEvent<Guid> { }
 
     /// <summary>
-    /// Creates a new song control and publish the <see cref="AddTabEvent"/>.
+    /// Restores a saved artist tab and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewSongTabEvent : PubSubEvent<object> { }
+    public class RestoreArtistTabEvent : PubSubEvent<Tab> { }
 
     /// <summary>
-    /// Creates a new playlist control and publish the <see cref="AddTabEvent"/>.
+    /// Creates a new person control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewPlaylistTabEvent : PubSubEvent<object> { }
+    public class NewPersonTabEvent : PubSubEvent<Guid> { }
+
+    /// <summary>
+    /// Restores a saved person tab and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class RestorePersonTabEvent : PubSubEvent<Tab> { }
+
+    /// <summary>
+    /// Creates a new album control and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class NewAlbumTabEvent : PubSubEvent<Guid> { }
+
+    /// <summary>
+    /// Restores a saved album tab and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class RestoreAlbumTabEvent : PubSubEvent<Tab> { }
+
+    /// <summary>
+    /// Creates a new song control and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class NewSongTabEvent : PubSubEvent<Guid> { }
+
+    /// <summary>
+    /// Restores a saved song tab and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class RestoreSongTabEvent : PubSubEvent<Tab> { }
+
+    /// <summary>
+    /// Creates a new playlist control and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class NewPlaylistTabEvent : PubSubEvent<Guid> { }
+
+    /// <summary>
+    /// Restores a saved playlist tab and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class RestorePlaylistTabEvent : PubSubEvent<Tab> { }
 
     /// <summary>
     /// Duplicates the currently active tab.

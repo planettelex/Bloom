@@ -4,7 +4,7 @@ namespace Bloom.Browser.ArtistModule.Services
 {
     public interface IArtistService
     {
-        void NewArtistTab();
+        void NewArtistTab(Guid artistId);
 
         void DuplicateArtistTab(Guid tabId);
     }

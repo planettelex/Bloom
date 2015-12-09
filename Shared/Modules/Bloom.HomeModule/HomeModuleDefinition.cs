@@ -30,9 +30,6 @@ namespace Bloom.HomeModule
             // Register services this module provides
             _container.RegisterType<IHomeService, HomeService>(new ContainerControlledLifetimeManager());
             _container.Resolve(typeof(IHomeService));
-
-            // Create an initial home tab
-            _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
         }
     }
 }

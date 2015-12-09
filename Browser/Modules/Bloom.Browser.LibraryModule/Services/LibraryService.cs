@@ -10,6 +10,7 @@ using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.State.Services;
+using Bloom.Common;
 using Bloom.Data;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -41,6 +42,7 @@ namespace Bloom.Browser.LibraryModule.Services
             _eventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Subscribe(ShowCreateNewLibraryModal);
             _eventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
+            _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Subscribe(RestoreLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
 
@@ -95,24 +97,29 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Creates a new library tab.
         /// </summary>
-        public void NewLibraryTab(object nothing)
+        public void NewLibraryTab(Guid libraryId)
         {
-            NewLibraryTab();
+            const ViewType defaultViewType = ViewType.Grid;
+            var library = new Library { Id = libraryId }; // TODO: Make this data access call
+            var tab = CreateNewTab(libraryId, defaultViewType);
+            var libraryViewModel = new LibraryViewModel(library, defaultViewType) { TabId = tab.Id };
+            var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
+            var libraryTab = new ViewMenuTab(tab, libraryView);
+
+            _tabs.Add(libraryTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
         /// <summary>
-        /// Creates a new library tab.
+        /// Restores the library tab.
         /// </summary>
-        public void NewLibraryTab()
+        /// <param name="tab">The library tab.</param>
+        public void RestoreLibraryTab(Tab tab)
         {
-            var libraryViewModel = new LibraryViewModel(ViewType.Grid);
+            var library = new Library { Id = tab.EntityId }; // TODO: Make this data access call
+            var viewType = (ViewType) Enum.Parse(typeof (ViewType), tab.View);
+            var libraryViewModel = new LibraryViewModel(library, viewType) { TabId = tab.Id };
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var tab = new Tab
-            {
-                Id = libraryViewModel.TabId,
-                Type = TabType.Library,
-                Header = "Library"
-            };
             var libraryTab = new ViewMenuTab(tab, libraryView);
 
             _tabs.Add(libraryTab);
@@ -129,18 +136,30 @@ namespace Bloom.Browser.LibraryModule.Services
             if (existingTab == null)
                 return;
 
-            var libraryViewModel = new LibraryViewModel(existingTab.ViewType);
+            var libraryId = existingTab.Tab.EntityId;
+            var library = new Library { Id = libraryId }; // TODO: Make this data access call
+            var tab = CreateNewTab(libraryId, existingTab.ViewType);
+            var libraryViewModel = new LibraryViewModel(library, existingTab.ViewType) { TabId = tab.Id };
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var tab = new Tab
-            {
-                Id = libraryViewModel.TabId,
-                Type = TabType.Library,
-                Header = "Library"
-            };
             var libraryTab = new ViewMenuTab(tab, libraryView);
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
+        }
+
+        private Tab CreateNewTab(Guid libraryId, ViewType viewType)
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.Library,
+                Header = "Library",
+                Process = ProcessType.Browser,
+                LibraryId = libraryId,
+                EntityId = libraryId,
+                View = viewType.ToString()
+            };
         }
 
         /// <summary>
@@ -159,11 +178,13 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="viewType">The view type to change to.</param>
         public void ChangeLibraryTabView(Guid tabId, ViewType viewType)
         {
-            var existingTab = _tabs.FirstOrDefault(tab => tab.Id == tabId);
-            if (existingTab == null)
-                return;
+            var libraryTab = _tabs.SingleOrDefault(tab => tab.Id == tabId);
+            if (libraryTab != null)
+                libraryTab.ViewType = viewType;
 
-            existingTab.ViewType = viewType;
+            var stateTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
+            if (stateTab != null)
+                stateTab.View = viewType.ToString();
         }
     }
 }

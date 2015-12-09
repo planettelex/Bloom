@@ -73,5 +73,37 @@ namespace Bloom.State.Data.Respositories
 
             BrowserStateTable.InsertOnSubmit(browserState);
         }
+
+        /// <summary>
+        /// Adds the browser tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        public void AddBrowserTab(Tab tab)
+        {
+            if (!_dataSource.IsConnected())
+                return;
+
+            var tabsQuery =
+                from tabs in TabTable
+                where tabs.Process == ProcessType.Browser && tabs.Id == tab.Id
+                select tabs;
+
+            var existingTab = tabsQuery.SingleOrDefault();
+
+            if (existingTab == null)
+                TabTable.InsertOnSubmit(tab);
+        }
+
+        /// <summary>
+        /// Removes the browser tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        public void RemoveBrowserTab(Tab tab)
+        {
+            if (!_dataSource.IsConnected())
+                return;
+
+            TabTable.DeleteOnSubmit(tab);
+        }
     }
 }

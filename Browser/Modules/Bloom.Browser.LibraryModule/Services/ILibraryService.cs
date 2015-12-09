@@ -1,6 +1,7 @@
 ﻿using System;
 using Bloom.Browser.Common;
 using Bloom.Domain.Models;
+using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
@@ -19,7 +20,13 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Creates a new library tab.
         /// </summary>
-        void NewLibraryTab();
+        void NewLibraryTab(Guid libraryId);
+
+        /// <summary>
+        /// Restores the library tab.
+        /// </summary>
+        /// <param name="tab">The library tab.</param>
+        void RestoreLibraryTab(Tab tab);
 
         /// <summary>
         /// Duplicates a library tab.

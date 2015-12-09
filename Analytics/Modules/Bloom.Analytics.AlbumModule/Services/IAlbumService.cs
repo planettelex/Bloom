@@ -4,7 +4,7 @@ namespace Bloom.Analytics.AlbumModule.Services
 {
     public interface IAlbumService
     {
-        void NewAlbumTab();
+        void NewAlbumTab(Guid albumId);
 
         void DuplicateAlbumTab(Guid tabId);
     }

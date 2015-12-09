@@ -5,7 +5,7 @@ namespace Bloom.Analytics.LibraryModule.Services
 {
     public interface ILibraryService
     {
-        void NewLibraryTab();
+        void NewLibraryTab(Guid libraryId);
 
         void DuplicateLibraryTab(Guid tabId);
 

@@ -4,7 +4,7 @@ namespace Bloom.Analytics.PersonModule.Services
 {
     public interface IPersonService
     {
-        void NewPersonTab();
+        void NewPersonTab(Guid personId);
 
         void DuplicatePersonTab(Guid tabId);
     }

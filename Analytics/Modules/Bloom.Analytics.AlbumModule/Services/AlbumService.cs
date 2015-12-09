@@ -28,12 +28,7 @@ namespace Bloom.Analytics.AlbumModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewAlbumTab(object nothing)
-        {
-            NewAlbumTab();
-        }
-
-        public void NewAlbumTab()
+        public void NewAlbumTab(Guid albumId)
         {
             var albumViewModel = new AlbumViewModel();
             var albumView = new AlbumView(albumViewModel);

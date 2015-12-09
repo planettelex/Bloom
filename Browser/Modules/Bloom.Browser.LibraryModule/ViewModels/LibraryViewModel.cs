@@ -1,17 +1,19 @@
 ﻿using System;
 using Bloom.Browser.Common;
+using Bloom.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.ViewModels
 {
     public class LibraryViewModel
     {
-        public LibraryViewModel(ViewType viewType)
+        public LibraryViewModel(Library library, ViewType viewType)
         {
-            TabId = Guid.NewGuid();
             ViewType = viewType;
         }
 
         public Guid TabId { get; set; }
+
+        public Library Library { get; set; }
 
         public ViewType ViewType { get; set; }
     }

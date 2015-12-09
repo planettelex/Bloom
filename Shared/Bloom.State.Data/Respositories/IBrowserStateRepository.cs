@@ -22,5 +22,17 @@ namespace Bloom.State.Data.Respositories
         /// </summary>
         /// <param name="browserState">State of the browser.</param>
         void AddBrowserState(BrowserState browserState);
+
+        /// <summary>
+        /// Adds the browser tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        void AddBrowserTab(Tab tab);
+
+        /// <summary>
+        /// Removes the browser tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        void RemoveBrowserTab(Tab tab);
     }
 }

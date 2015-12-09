@@ -29,12 +29,7 @@ namespace Bloom.Browser.PersonModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewPersonTab(object nothing)
-        {
-            NewPersonTab();
-        }
-
-        public void NewPersonTab()
+        public void NewPersonTab(Guid personId)
         {
             var personViewModel = new PersonViewModel(ViewType.Grid);
             var personView = new PersonView(personViewModel);

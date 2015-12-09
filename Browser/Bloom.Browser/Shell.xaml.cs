@@ -54,6 +54,16 @@ namespace Bloom.Browser
         #region Window Events
 
         /// <summary>
+        /// Raises the <see cref="E:System.Windows.Window.ContentRendered" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+            RestoreTabs();
+        }
+
+        /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Activated" /> event.
         /// </summary>
         /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
@@ -85,7 +95,7 @@ namespace Bloom.Browser
             var tabHeader = new TabHeader(_eventAggregator)
             {
                 TabId = tabControl.Id,
-                Text = tabControl.Tab.Header,
+                Text = tabControl.Header,
                 ViewMenuVisibility = tabControl.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
             };
             var newPane = new RadPane
@@ -94,27 +104,29 @@ namespace Bloom.Browser
                 Content = tabControl.Content
             };
 
+            _stateService.AddTab(tabControl.Tab);
             _tabs.Add(tabControl.Id, newPane);
             PaneGroup.Items.Add(newPane);
-            State.SelectedTabId = tabControl.Id;
         }
 
         private void CloseOtherTabs(object nothing)
         {
+            _stateService.RemoveAllTabsExcept(State.SelectedTabId);
+
             var selectedTab = GetSelectedTab();
             foreach (var tab in _tabs.Values)
             {
-                if (selectedTab != null && !Equals(selectedTab, tab))
+                if (selectedTab != null && !Equals(selectedTab, tab)) { }
                     tab.IsHidden = true;
             }
         }
 
         private void CloseAllTabs(object nothing)
         {
+            _stateService.RemoveAllTabs();
+
             foreach (var tab in _tabs.Values)
-            {
                 tab.IsHidden = true;
-            }
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
@@ -148,6 +160,8 @@ namespace Bloom.Browser
 
         private void OnClose(object sender, StateChangeEventArgs e)
         {
+            _stateService.RemoveTab(State.SelectedTabId);
+
             var selectedTab = GetSelectedTab();
             if (selectedTab == null)
             {
@@ -175,6 +189,42 @@ namespace Bloom.Browser
         private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
         {
             State.ResetSidebarWidth();
+        }
+
+        private void RestoreTabs()
+        {
+            if (State.Tabs == null || State.Tabs.Count == 0)
+                _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+            else
+            {
+                foreach (var tab in State.Tabs)
+                {
+                    switch (tab.Type)
+                    {
+                        case TabType.Album:
+                            _eventAggregator.GetEvent<RestoreAlbumTabEvent>().Publish(tab);
+                            break;
+                        case TabType.Artist:
+                            _eventAggregator.GetEvent<RestoreArtistTabEvent>().Publish(tab);
+                            break;
+                        case TabType.Home:
+                            _eventAggregator.GetEvent<RestoreHomeTabEvent>().Publish(tab);
+                            break;
+                        case TabType.Library:
+                            _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Publish(tab);
+                            break;
+                        case TabType.Person:
+                            _eventAggregator.GetEvent<RestorePersonTabEvent>().Publish(tab);
+                            break;
+                        case TabType.Playlist:
+                            _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Publish(tab);
+                            break;
+                        case TabType.Song:
+                            _eventAggregator.GetEvent<RestoreSongTabEvent>().Publish(tab);
+                            break;
+                    }
+                }
+            }
         }
 
         #endregion

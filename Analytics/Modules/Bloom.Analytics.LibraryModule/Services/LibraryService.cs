@@ -27,12 +27,7 @@ namespace Bloom.Analytics.LibraryModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewLibraryTab(object nothing)
-        {
-            NewLibraryTab();
-        }
-
-        public void NewLibraryTab()
+        public void NewLibraryTab(Guid libraryId)
         {
             var libraryViewModel = new LibraryViewModel(ViewType.Stats);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);

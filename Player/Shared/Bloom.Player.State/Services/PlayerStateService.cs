@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bloom.Data.Interfaces;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;

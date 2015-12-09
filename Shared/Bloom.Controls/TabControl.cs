@@ -32,6 +32,14 @@ namespace Bloom.Controls
         {
             get { return Tab == null ? Guid.Empty : Tab.Id; }
         }
+
+        /// <summary>
+        /// Gets the tab header.
+        /// </summary>
+        public string Header
+        {
+            get { return Tab == null ? string.Empty : Tab.Header; }
+        }
         
         /// <summary>
         /// Gets or sets the tab data.

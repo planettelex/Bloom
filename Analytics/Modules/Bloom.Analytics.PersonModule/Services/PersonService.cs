@@ -5,8 +5,6 @@ using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
 using Bloom.Analytics.PersonModule.ViewModels;
 using Bloom.Analytics.PersonModule.Views;
-using Bloom.Common;
-using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -31,12 +29,7 @@ namespace Bloom.Analytics.PersonModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewPersonTab(object nothing)
-        {
-            NewPersonTab();
-        }
-
-        public void NewPersonTab()
+        public void NewPersonTab(Guid personId)
         {
             var personViewModel = new PersonViewModel(ViewType.Stats);
             var personView = new PersonView(personViewModel);

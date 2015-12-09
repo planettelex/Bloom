@@ -4,7 +4,7 @@ namespace Bloom.Browser.PlaylistModule.Services
 {
     public interface IPlaylistService
     {
-        void NewPlaylistTab();
+        void NewPlaylistTab(Guid playlistId);
 
         void DuplicatePlaylistTab(Guid tabId);
     }

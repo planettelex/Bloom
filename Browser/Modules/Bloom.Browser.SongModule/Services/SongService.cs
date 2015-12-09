@@ -28,12 +28,7 @@ namespace Bloom.Browser.SongModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewSongTab(object nothing)
-        {
-            NewSongTab();
-        }
-
-        public void NewSongTab()
+        public void NewSongTab(Guid songId)
         {
             var songViewModel = new SongViewModel();
             var songView = new SongView(songViewModel);

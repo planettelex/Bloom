@@ -28,12 +28,7 @@ namespace Bloom.Browser.PlaylistModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewPlaylistTab(object nothing)
-        {
-            NewPlaylistTab();
-        }
-
-        public void NewPlaylistTab()
+        public void NewPlaylistTab(Guid playlistId)
         {
             var playlistViewModel = new PlaylistViewModel();
             var playlistView = new PlaylistView(playlistViewModel);

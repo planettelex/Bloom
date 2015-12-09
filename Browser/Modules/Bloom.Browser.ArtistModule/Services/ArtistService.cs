@@ -29,12 +29,7 @@ namespace Bloom.Browser.ArtistModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewArtistTab(object nothing)
-        {
-            NewArtistTab();
-        }
-
-        public void NewArtistTab()
+        public void NewArtistTab(Guid artistId)
         {
             var artistViewModel = new ArtistViewModel(ViewType.Grid);
             var artistView = new ArtistView(artistViewModel);
