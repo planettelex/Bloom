@@ -1,7 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Data.Linq.Mapping;
 using Bloom.Common;
-using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
 {
@@ -9,7 +9,7 @@ namespace Bloom.State.Domain.Models
     /// The state of the player application.
     /// </summary>
     [Table(Name = "player_state")]
-    public class PlayerState : BindableBase, IApplicationState
+    public class PlayerState : ApplicationState
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerState"/> class.
@@ -22,31 +22,26 @@ namespace Bloom.State.Domain.Models
             WindowState = Properties.Settings.Default.WindowState;
             RecentWidth = Properties.Settings.Default.SidebarWidth;
             UpcomingWidth = Properties.Settings.Default.SidebarWidth;
-            Connections = new Connections();
+            Connections = new List<LibraryConnection>();
         }
 
         /// <summary>
         /// Gets or sets the name of the process.
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
-        public string ProcessName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data connections for the suite.
-        /// </summary>
-        public Connections Connections { get; set; }
+        public new string ProcessName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.
         /// </summary>
         [Column(Name = "skin_name")]
-        public string SkinName { get; set; }
+        public new string SkinName { get; set; }
 
         /// <summary>
         /// Gets or sets the state of the window.
         /// </summary>
         [Column(Name = "window_state")]
-        public WindowState WindowState { get; set; }
+        public new WindowState WindowState { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the recent column.

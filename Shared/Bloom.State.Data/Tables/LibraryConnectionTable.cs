@@ -20,8 +20,7 @@ namespace Bloom.State.Data.Tables
                        "\"file_path\" VARCHAR NOT NULL , " +
                        "\"is_connected\" BOOL NOT NULL DEFAULT FALSE , " +
                        "\"last_connected\" DATETIME NOT NULL , " +
-                       "\"owner_id\" VARCHAR(36) NOT NULL , " +
-                       "\"owner_name\" VARCHAR NOT NULL )";
+                       "\"last_connection_by\" VARCHAR(36) NOT NULL)";
             }
         }
     }

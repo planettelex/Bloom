@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using Bloom.Data;
 using Bloom.Domain.Models;
 
 namespace Bloom.State.Domain.Models
@@ -21,10 +22,9 @@ namespace Bloom.State.Domain.Models
                 LibraryId = library.Id,
                 LibraryName = library.Name,
                 FilePath = library.FilePath,
-                OwnerId = library.OwnerId,
-                OwnerName = library.Owner.Name,
                 IsConnected = true,
-                LastConnected = DateTime.Now
+                LastConnected = DateTime.Now,
+                LastConnectionBy = library.OwnerId
             };
             return libraryConnection;
         }
@@ -60,15 +60,30 @@ namespace Bloom.State.Domain.Models
         public DateTime LastConnected { get; set; }
 
         /// <summary>
-        /// Gets or sets the owner identifier.
+        /// Gets or sets the person identifier of the last user to connect.
         /// </summary>
-        [Column(Name = "owner_id")]
-        public Guid OwnerId { get; set; }
+        [Column(Name = "last_connection_by")]
+        public Guid LastConnectionBy { get; set; }
 
         /// <summary>
-        /// Gets or sets the owner's name.
+        /// Gets or sets the library data source.
         /// </summary>
-        [Column(Name = "owner_name")]
-        public string OwnerName { get; set; }
+        public LibraryDataSource DataSource { get; private set; }
+
+        /// <summary>
+        /// Connects to the data source specified at the provided file path.
+        /// </summary>
+        public void Connect(User user)
+        {
+            if (DataSource == null)
+                DataSource = new LibraryDataSource(FilePath);
+
+            if (user == null)
+                throw new ArgumentNullException("user");
+
+            DataSource.Connect(FilePath);
+            LastConnected = DateTime.Now;
+            LastConnectionBy = user.PersonId;
+        }
     }
 }

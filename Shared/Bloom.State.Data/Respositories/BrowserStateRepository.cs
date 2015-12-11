@@ -21,6 +21,8 @@ namespace Bloom.State.Data.Respositories
         }
         private readonly IDataSource _dataSource;
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
+        private Table<LibraryConnection> LibraryConnectionTable { get { return _dataSource.Context.GetTable<LibraryConnection>(); } }
+        private Table<User> UserTable { get { return _dataSource.Context.GetTable<User>(); } } 
         private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } } 
 
         /// <summary>
@@ -48,7 +50,24 @@ namespace Bloom.State.Data.Respositories
                 from state in BrowserStateTable
                 select state;
 
-            var browserState = stateQuery.ToList().SingleOrDefault();
+            var browserState = stateQuery.SingleOrDefault();
+
+            var lastUserQuery =
+                from users in UserTable
+                orderby users.LastLogin descending
+                select users;
+
+            if (browserState != null)
+                browserState.CurrentUser = lastUserQuery.ToList().FirstOrDefault();
+
+            var connectionsQuery =
+                from connections in LibraryConnectionTable
+                where connections.IsConnected
+                orderby connections.LastConnected descending
+                select connections;
+
+            if (browserState != null)
+                browserState.Connections = connectionsQuery.ToList();
 
             var tabsQuery =
                 from tabs in TabTable

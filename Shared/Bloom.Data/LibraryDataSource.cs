@@ -17,6 +17,16 @@ namespace Bloom.Data
         {
             _libraryTableService = new LibraryTableService();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LibraryDataSource"/> class.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        public LibraryDataSource(string filePath)
+        {
+            _libraryTableService = new LibraryTableService();
+            FilePath = filePath;
+        }
         private readonly ITableService _libraryTableService;
 
         /// <summary>

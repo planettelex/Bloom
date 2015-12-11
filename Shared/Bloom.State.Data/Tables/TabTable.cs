@@ -3,12 +3,12 @@
 namespace Bloom.State.Data.Tables
 {
     /// <summary>
-    /// The analytics_tab table.
+    /// The tab table.
     /// </summary>
     public class TabTable : ISqlTable
     {
         /// <summary>
-        /// Gets the create analytics_tab table SQL.
+        /// Gets the create tab table SQL.
         /// </summary>
         public string CreateSql
         {
@@ -20,7 +20,7 @@ namespace Bloom.State.Data.Tables
                        "\"library_id\" VARCHAR(36) NOT NULL , " +
                        "\"entity_id\" VARCHAR(36) NOT NULL , " +
                        "\"type\" INTEGER NOT NULL , " +
-                       "\"view\" INTEGER NOT NULL , " +
+                       "\"view\" VARCHAR , " +
                        "\"header\" VARCHAR, " +
                        "\"order\" INTEGER NOT NULL )";
             }

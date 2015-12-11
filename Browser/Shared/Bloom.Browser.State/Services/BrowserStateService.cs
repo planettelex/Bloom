@@ -53,6 +53,15 @@ namespace Bloom.Browser.State.Services
                 _stateDataSource.Create();
                 BrowserState = AddNewBrowserState();
             }
+
+            if (BrowserState.CurrentUser != null)
+            {
+                BrowserState.CurrentUser.LastLogin = DateTime.Now;
+                if (BrowserState.Connections != null && BrowserState.Connections.Count > 0)
+                    foreach (var libraryConnection in BrowserState.Connections)
+                        libraryConnection.Connect(BrowserState.CurrentUser);
+            }
+                
             return BrowserState;
         }
 

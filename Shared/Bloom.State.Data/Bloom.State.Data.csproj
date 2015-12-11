@@ -101,6 +101,7 @@
     <Compile Include="Tables\BrowserStateTable.cs" />
     <Compile Include="Tables\LibraryConnectionTable.cs" />
     <Compile Include="Tables\PlayerStateTable.cs" />
+    <Compile Include="Tables\UserTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">
