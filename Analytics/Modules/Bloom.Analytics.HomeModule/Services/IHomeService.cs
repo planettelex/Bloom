@@ -1,4 +1,4 @@
-﻿namespace Bloom.HomeModule.Services
+﻿namespace Bloom.Analytics.HomeModule.Services
 {
     public interface IHomeService
     {

@@ -1,6 +1,6 @@
-﻿using Bloom.HomeModule.ViewModels;
+﻿using Bloom.Analytics.HomeModule.ViewModels;
 
-namespace Bloom.HomeModule.Views
+namespace Bloom.Analytics.HomeModule.Views
 {
     /// <summary>
     /// Interaction logic for HomeView.xaml

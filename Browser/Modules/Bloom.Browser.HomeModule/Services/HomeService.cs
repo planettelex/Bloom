@@ -1,12 +1,12 @@
 ﻿using System;
+using Bloom.Browser.HomeModule.ViewModels;
+using Bloom.Browser.HomeModule.Views;
 using Bloom.Controls;
-using Bloom.HomeModule.ViewModels;
-using Bloom.HomeModule.Views;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.HomeModule.Services
+namespace Bloom.Browser.HomeModule.Services
 {
     public class HomeService : IHomeService
     {

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Bloom.Analytics.AlbumModule;
 using Bloom.Analytics.ArtistModule;
+using Bloom.Analytics.HomeModule;
 using Bloom.Analytics.LibraryModule;
 using Bloom.Analytics.MenuModule;
 using Bloom.Analytics.PersonModule;
@@ -8,7 +9,6 @@ using Bloom.Analytics.PlaylistModule;
 using Bloom.Analytics.SongModule;
 using Bloom.Analytics.State.Services;
 using Bloom.Data.Interfaces;
-using Bloom.HomeModule;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.TaxonomiesModule;

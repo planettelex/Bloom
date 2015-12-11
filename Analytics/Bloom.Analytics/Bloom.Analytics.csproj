@@ -163,13 +163,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Modules\Bloom.Analytics.HomeModule\Bloom.Analytics.HomeModule.csproj">
+      <Project>{b0b2745d-9da3-46ee-b20c-6c66598cc84b}</Project>
+      <Name>Bloom.Analytics.HomeModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Bloom.Analytics.State\Bloom.Analytics.State.csproj">
       <Project>{1e743b98-cec3-450d-b06f-869245255bc9}</Project>
       <Name>Bloom.Analytics.State</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.HomeModule\Bloom.HomeModule.csproj">
-      <Project>{15c48595-e331-444b-9f08-4af15f8a23dd}</Project>
-      <Name>Bloom.HomeModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Bloom.Analytics.AlbumModule\Bloom.Analytics.AlbumModule.csproj">
       <Project>{c5c81ac6-6479-49ea-b24b-0c09a152291c}</Project>

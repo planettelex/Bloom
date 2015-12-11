@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Bloom.HomeModule")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Bloom.Browser.HomeModule")]
+[assembly: AssemblyDescription("Bloom Browser home Prism module.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -16,5 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1a0b2969-34d0-4245-be7e-a08d6350a65d")]
-
+[assembly: Guid("fefbf7bf-ea53-44f6-a146-3232fee38190")]

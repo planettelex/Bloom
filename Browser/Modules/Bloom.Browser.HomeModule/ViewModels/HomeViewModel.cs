@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.HomeModule.ViewModels
+namespace Bloom.Browser.HomeModule.ViewModels
 {
     public class HomeViewModel
     {

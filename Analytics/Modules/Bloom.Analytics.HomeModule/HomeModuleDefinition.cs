@@ -1,10 +1,9 @@
-﻿using Bloom.HomeModule.Services;
-using Bloom.PubSubEvents;
+﻿using Bloom.Analytics.HomeModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.HomeModule
+namespace Bloom.Analytics.HomeModule
 {
     /// <summary>
     /// Shared home Prism module.

@@ -164,13 +164,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Modules\Bloom.Browser.HomeModule\Bloom.Browser.HomeModule.csproj">
+      <Project>{2e572999-6511-4a46-9721-39ce7a657b62}</Project>
+      <Name>Bloom.Browser.HomeModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Bloom.Browser.State\Bloom.Browser.State.csproj">
       <Project>{7b772a0e-0c5d-4db5-83b4-892a03eedaeb}</Project>
       <Name>Bloom.Browser.State</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.HomeModule\Bloom.HomeModule.csproj">
-      <Project>{15c48595-e331-444b-9f08-4af15f8a23dd}</Project>
-      <Name>Bloom.HomeModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modules\Bloom.Browser.AlbumModule\Bloom.Browser.AlbumModule.csproj">
       <Project>{989b378d-56fc-4e33-b37c-6d53d925e97b}</Project>

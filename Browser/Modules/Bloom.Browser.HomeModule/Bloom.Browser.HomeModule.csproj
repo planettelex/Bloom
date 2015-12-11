@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1E743B98-CEC3-450D-B06F-869245255BC9}</ProjectGuid>
+    <ProjectGuid>{2E572999-6511-4A46-9721-39CE7A657B62}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Analytics.State</RootNamespace>
-    <AssemblyName>Bloom.Analytics.State</AssemblyName>
+    <RootNamespace>Bloom.Browser.HomeModule</RootNamespace>
+    <AssemblyName>Bloom.Browser.HomeModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism.Composition, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Composition.5.0.0\lib\NET45\Microsoft.Practices.Prism.Composition.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Interactivity.5.0.0\lib\NET45\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
       <Private>True</Private>
@@ -38,8 +46,16 @@
       <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.Prism.PubSubEvents, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.PubSubEvents.1.0.0\lib\portable-sl4+wp7+windows8+net40\Microsoft.Practices.Prism.PubSubEvents.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -54,26 +70,62 @@
       <HintPath>..\..\..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="HomeModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AnalyticsStateService.cs" />
-    <Compile Include="Services\IAnalyticsStateService.cs" />
+    <Compile Include="Services\HomeService.cs" />
+    <Compile Include="Services\IHomeService.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="Views\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
+      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
+      <Name>Bloom.State.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
+      <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
+      <Name>Bloom.State.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Bloom.Browser.Common\Bloom.Browser.Common.csproj">
+      <Project>{91bfa216-3015-4952-a947-efa897556993}</Project>
+      <Name>Bloom.Browser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Bloom.Browser.Controls\Bloom.Browser.Controls.csproj">
+      <Project>{56dfaa8a-7f8e-4089-b916-4f04df0e21e5}</Project>
+      <Name>Bloom.Browser.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Bloom.Browser.PubSubEvents\Bloom.Browser.PubSubEvents.csproj">
+      <Project>{afea27ab-8a29-4ae4-b274-1b3b056a4b76}</Project>
+      <Name>Bloom.Browser.PubSubEvents</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Bloom.Controls\Bloom.Controls.csproj">
+      <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
+      <Name>Bloom.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Shared\Bloom.Data\Bloom.Data.csproj">
       <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
@@ -83,17 +135,24 @@
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
-      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
-      <Name>Bloom.State.Data</Name>
+    <ProjectReference Include="..\..\..\Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj">
+      <Project>{a455cc8a-5cff-4855-b268-aa94a7c37c3f}</Project>
+      <Name>Bloom.PubSubEvents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
-      <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
-      <Name>Bloom.State.Domain</Name>
+    <ProjectReference Include="..\..\..\Shared\Bloom.Resources\Bloom.Resources.csproj">
+      <Project>{8d643812-f61a-41e0-bde1-b81b3bd80794}</Project>
+      <Name>Bloom.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Bloom.Services\Bloom.Services.csproj">
+      <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
+      <Name>Bloom.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Page Include="Views\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

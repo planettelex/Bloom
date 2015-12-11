@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Bloom.Browser.AlbumModule;
 using Bloom.Browser.ArtistModule;
+using Bloom.Browser.HomeModule;
 using Bloom.Browser.LibraryModule;
 using Bloom.Browser.MenuModule;
 using Bloom.Browser.PersonModule;
@@ -8,7 +9,6 @@ using Bloom.Browser.PlaylistModule;
 using Bloom.Browser.SongModule;
 using Bloom.Browser.State.Services;
 using Bloom.Data.Interfaces;
-using Bloom.HomeModule;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.TaxonomiesModule;
