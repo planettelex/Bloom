@@ -5,41 +5,62 @@ using Bloom.Browser.ArtistModule.ViewModels;
 using Bloom.Browser.ArtistModule.Views;
 using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
+using Bloom.Common;
+using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.ArtistModule.Services
 {
     public class ArtistService : IArtistService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArtistService"/> class.
+        /// Initializes a new instance of the <see cref="ArtistService" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public ArtistService(IEventAggregator eventAggregator)
+        /// <param name="regionManager">The region manager.</param>
+        public ArtistService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewArtistTabEvent>().Subscribe(NewArtistTab);
+            _eventAggregator.GetEvent<RestoreArtistTabEvent>().Subscribe(RestoreArtistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateArtistTab);
+
+            State = (BrowserState)regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewArtistTab(Guid artistId)
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        public BrowserState State { get; private set; }
+
+        public void NewArtistTab(Buid artistBuid)
         {
-            var artistViewModel = new ArtistViewModel(ViewType.Grid);
+            const ViewType defaultViewType = ViewType.Grid;
+            var artist = new Artist { Id = artistBuid.EntityId }; // TODO: Make this data access call
+            var tab = CreateNewTab(artistBuid, defaultViewType);
+            var artistViewModel = new ArtistViewModel(artist, defaultViewType, tab.Id);
             var artistView = new ArtistView(artistViewModel);
-            var tab = new Tab
-            {
-                Id = artistViewModel.TabId,
-                Type = TabType.Artist,
-                Header = "Artist"
-            };
-            var artistTab = new ViewMenuTab(artistViewModel.ViewType, tab, artistView);
+            var artistTab = new ViewMenuTab(defaultViewType, tab, artistView);
+
+            _tabs.Add(artistTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
+        }
+
+        public void RestoreArtistTab(Tab tab)
+        {
+            var artist = new Artist { Id = tab.EntityId }; // TODO: Make this data access call
+            var viewType = (ViewType)Enum.Parse(typeof(ViewType), tab.View);
+            var artistViewModel = new ArtistViewModel(artist, viewType, tab.Id);
+            var artistView = new ArtistView(artistViewModel);
+            var artistTab = new ViewMenuTab(viewType, tab, artistView);
 
             _tabs.Add(artistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
@@ -51,18 +72,30 @@ namespace Bloom.Browser.ArtistModule.Services
             if (existingTab == null)
                 return;
 
-            var artistViewModel = new ArtistViewModel(existingTab.ViewType);
+            var artistId = existingTab.Tab.EntityId;
+            var artist = new Artist { Id = artistId }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Artist, artistId), existingTab.ViewType);
+            var artistViewModel = new ArtistViewModel(artist, existingTab.ViewType, tabId);
             var artistView = new ArtistView(artistViewModel);
-            var tab = new Tab
-            {
-                Id = artistViewModel.TabId,
-                Type = TabType.Artist,
-                Header = "Artist",
-            };
             var artistTab = new ViewMenuTab(artistViewModel.ViewType, tab, artistView);
 
             _tabs.Add(artistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
+        }
+
+        private Tab CreateNewTab(Buid artistBuid, ViewType viewType)
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.Artist,
+                Header = "Artist",
+                Process = ProcessType.Browser,
+                LibraryId = artistBuid.LibraryId,
+                EntityId = artistBuid.EntityId,
+                View = viewType.ToString()
+            };
         }
     }
 }

@@ -3,10 +3,17 @@
 namespace Bloom.Common
 {
     /// <summary>
-    /// Bloom (global) unique identifier.
+    /// Bloom universal identifier.
     /// </summary>
     public class Buid
     {
+        public Buid(Guid libraryId, BloomEntity entityType, Guid entityId)
+        {
+            LibraryId = libraryId;
+            EntityType = entityType;
+            EntityId = entityId;
+        }
+
         public Guid LibraryId { get; set; }
 
         public BloomEntity EntityType { get; set; }

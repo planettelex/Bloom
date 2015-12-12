@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Bloom.Data.Interfaces;
+using Bloom.PubSubEvents;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
+using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Browser.State.Services
 {
@@ -14,17 +16,20 @@ namespace Bloom.Browser.State.Services
     public class BrowserStateService : IBrowserStateService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BrowserStateService"/> class.
+        /// Initializes a new instance of the <see cref="BrowserStateService" /> class.
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
         /// <param name="browserStateRepository">The browser state repository.</param>
-        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository)
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
             _stateDataSource = stateDataSource;
             _browserStateRepository = browserStateRepository;
         }
         private readonly IDataSource _stateDataSource;
         private readonly IBrowserStateRepository _browserStateRepository;
+        private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
         /// Gets the state of the browser.
@@ -82,7 +87,6 @@ namespace Bloom.Browser.State.Services
             if (stateTab == null)
                 BrowserState.Tabs.Add(tab);
 
-            BrowserState.SelectedTabId = tab.Id;
             _browserStateRepository.AddBrowserTab(tab);
         }
 
@@ -141,12 +145,47 @@ namespace Bloom.Browser.State.Services
             BrowserState.Tabs = new List<Tab>();
         }
 
-        private BrowserState AddNewBrowserState()
+        /// <summary>
+        /// Restores the tabs from saved state.
+        /// </summary>
+        public void RestoreTabs()
         {
-            var browserState = new BrowserState();
-            _browserStateRepository.AddBrowserState(browserState);
-            _stateDataSource.Save();
-            return browserState;
+            if (BrowserState == null || BrowserState.Tabs == null || BrowserState.Tabs.Count == 0)
+                _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+            else
+            {
+                foreach (var tab in BrowserState.Tabs)
+                {
+                    // Only open tabs for connected libraries, except home which doesn't require one.
+                    //if (tab.Type == TabType.Home || BrowserState.IsConnected(tab.LibraryId))
+                    { //TODO: Uncomment when connection management is set-up.
+                        switch (tab.Type)
+                        {
+                            case TabType.Album:
+                                _eventAggregator.GetEvent<RestoreAlbumTabEvent>().Publish(tab);
+                                break;
+                            case TabType.Artist:
+                                _eventAggregator.GetEvent<RestoreArtistTabEvent>().Publish(tab);
+                                break;
+                            case TabType.Home:
+                                _eventAggregator.GetEvent<RestoreHomeTabEvent>().Publish(tab);
+                                break;
+                            case TabType.Library:
+                                _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Publish(tab);
+                                break;
+                            case TabType.Person:
+                                _eventAggregator.GetEvent<RestorePersonTabEvent>().Publish(tab);
+                                break;
+                            case TabType.Playlist:
+                                _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Publish(tab);
+                                break;
+                            case TabType.Song:
+                                _eventAggregator.GetEvent<RestoreSongTabEvent>().Publish(tab);
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -155,6 +194,14 @@ namespace Bloom.Browser.State.Services
         public void SaveState()
         {
             _stateDataSource.Save();
+        }
+
+        private BrowserState AddNewBrowserState()
+        {
+            var browserState = new BrowserState();
+            _browserStateRepository.AddBrowserState(browserState);
+            _stateDataSource.Save();
+            return browserState;
         }
     }
 }

@@ -1,17 +1,21 @@
 ﻿using System;
 using Bloom.Browser.Common;
+using Bloom.Domain.Models;
 
 namespace Bloom.Browser.PersonModule.ViewModels
 {
     public class PersonViewModel
     {
-        public PersonViewModel(ViewType viewType)
+        public PersonViewModel(Person person, ViewType viewType, Guid tabId)
         {
-            TabId = Guid.NewGuid();
             ViewType = viewType;
+            Person = person;
+            TabId = tabId;
         }
 
         public Guid TabId { get; set; }
+
+        public Person Person { get; set; }
 
         public ViewType ViewType { get; set; }
     }

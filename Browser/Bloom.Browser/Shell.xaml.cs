@@ -9,6 +9,7 @@ using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Telerik.Windows;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
 
@@ -28,6 +29,7 @@ namespace Bloom.Browser
         public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IBrowserStateService stateService)
         {
             InitializeComponent();
+            _loading = true;
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
@@ -49,6 +51,7 @@ namespace Bloom.Browser
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IBrowserStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
+        private bool _loading;
         private BrowserState State { get { return (BrowserState) DataContext; } }
 
         #region Window Events
@@ -60,7 +63,9 @@ namespace Bloom.Browser
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
-            RestoreTabs();
+            _stateService.RestoreTabs();
+            Dock.ActivePane = _tabs[State.SelectedTabId];
+            _loading = false;
         }
 
         /// <summary>
@@ -105,6 +110,9 @@ namespace Bloom.Browser
             };
 
             _stateService.AddTab(tabControl.Tab);
+            if (!_loading)
+                State.SelectedTabId = tabControl.Id;
+
             _tabs.Add(tabControl.Id, newPane);
             PaneGroup.Items.Add(newPane);
         }
@@ -129,6 +137,71 @@ namespace Bloom.Browser
                 tab.IsHidden = true;
         }
 
+        private void ActivePaneChanged(object sender, ActivePangeChangedEventArgs e)
+        {
+            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
+            {
+                State.SelectedTabId = valuePair.Key;
+                break;
+            }
+        }
+
+        private void OnClose(object sender, StateChangeEventArgs e)
+        {
+            var closingTab = e.Panes.SingleOrDefault();
+
+            foreach (var valuePair in _tabs)
+            {
+                var match = Equals(valuePair.Value, closingTab);
+                if (match)
+                    _stateService.RemoveTab(valuePair.Key);
+            }
+        }
+
+        private void PaneStateChanged(object sender, RadRoutedEventArgs e)
+        {
+            if (_loading)
+                return;
+
+            var order = 1;
+            foreach (RadPane pane in PaneGroup.Items)
+            {
+                UpdateTabOrder(pane, order);
+                order++;
+            }
+            foreach (var pane in Dock.Panes.Where(pane => !PaneGroup.Items.Contains(pane)))
+            {
+                UpdateTabOrder(pane, order);
+                order++;
+            }
+        }
+
+        private void UpdateTabOrder(RadPane pane, int order)
+        {
+            var tabId = _tabs.SingleOrDefault(valuePair => Equals(valuePair.Value, pane)).Key;
+            var tab = State.Tabs.SingleOrDefault(t => t.Id == tabId);
+            if (tab == null)
+                return;
+
+            tab.Order = order;
+        }
+
+        private RadPane GetSelectedTab()
+        {
+            RadPane selectedTab = null;
+            foreach (RadPane tab in PaneGroup.Items)
+            {
+                if (tab.IsSelected)
+                    selectedTab = tab;
+            }
+            return selectedTab;
+        }
+
+        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            State.ResetSidebarWidth();
+        }
+
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
         {
             if (e.TargetGroup != null && e.TargetGroup.Name == "Sidebar")
@@ -149,84 +222,8 @@ namespace Bloom.Browser
             }
         }
 
-        private void ActivePaneChanged(object sender, ActivePangeChangedEventArgs e)
-        {
-            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
-            {
-                State.SelectedTabId = valuePair.Key;
-                break;
-            }
-        }
-
-        private void OnClose(object sender, StateChangeEventArgs e)
-        {
-            _stateService.RemoveTab(State.SelectedTabId);
-
-            var selectedTab = GetSelectedTab();
-            if (selectedTab == null)
-            {
-                State.SelectedTabId = Guid.Empty;
-                return;
-            }
-                
-            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, selectedTab)))
-            {
-                State.SelectedTabId = valuePair.Key;
-            }
-        }
-
-        private RadPane GetSelectedTab()
-        {
-            RadPane selectedTab = null;
-            foreach (RadPane tab in PaneGroup.Items)
-            {
-                if (tab.IsSelected)
-                    selectedTab = tab;
-            }
-            return selectedTab;
-        }
-
-        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            State.ResetSidebarWidth();
-        }
-
-        private void RestoreTabs()
-        {
-            if (State.Tabs == null || State.Tabs.Count == 0)
-                _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
-            else
-            {
-                foreach (var tab in State.Tabs)
-                {
-                    switch (tab.Type)
-                    {
-                        case TabType.Album:
-                            _eventAggregator.GetEvent<RestoreAlbumTabEvent>().Publish(tab);
-                            break;
-                        case TabType.Artist:
-                            _eventAggregator.GetEvent<RestoreArtistTabEvent>().Publish(tab);
-                            break;
-                        case TabType.Home:
-                            _eventAggregator.GetEvent<RestoreHomeTabEvent>().Publish(tab);
-                            break;
-                        case TabType.Library:
-                            _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Publish(tab);
-                            break;
-                        case TabType.Person:
-                            _eventAggregator.GetEvent<RestorePersonTabEvent>().Publish(tab);
-                            break;
-                        case TabType.Playlist:
-                            _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Publish(tab);
-                            break;
-                        case TabType.Song:
-                            _eventAggregator.GetEvent<RestoreSongTabEvent>().Publish(tab);
-                            break;
-                    }
-                }
-            }
-        }
-
         #endregion
+
+        
     }
 }

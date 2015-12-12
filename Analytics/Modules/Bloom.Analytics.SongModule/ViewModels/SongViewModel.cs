@@ -1,14 +1,18 @@
 ﻿using System;
+using Bloom.Domain.Models;
 
 namespace Bloom.Analytics.SongModule.ViewModels
 {
     public class SongViewModel
     {
-        public SongViewModel()
+        public SongViewModel(Song song, Guid tabId)
         {
-            TabId = Guid.NewGuid();
+            Song = song;
+            TabId = tabId;
         }
 
         public Guid TabId { get; set; }
+
+        public Song Song { get; set; }
     }
 }

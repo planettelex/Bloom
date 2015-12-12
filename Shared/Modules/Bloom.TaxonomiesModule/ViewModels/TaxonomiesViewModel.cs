@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Bloom.Common;
 using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -43,8 +44,8 @@ namespace Bloom.TaxonomiesModule.ViewModels
 
         private void AddPersonTab(object nothing)
         {
-            var personId = Guid.NewGuid();
-            _eventAggregator.GetEvent<NewPersonTabEvent>().Publish(personId);
+            var personBuid = new Buid(Guid.NewGuid(), BloomEntity.Person, Guid.NewGuid());
+            _eventAggregator.GetEvent<NewPersonTabEvent>().Publish(personBuid);
         }
 
         public ICommand AddArtistTabCommand { get; set; }
@@ -56,8 +57,8 @@ namespace Bloom.TaxonomiesModule.ViewModels
 
         private void AddArtistTab(object nothing)
         {
-            var artistId = Guid.NewGuid();
-            _eventAggregator.GetEvent<NewArtistTabEvent>().Publish(artistId);
+            var artistBuid = new Buid(Guid.NewGuid(), BloomEntity.Artist, Guid.NewGuid());
+            _eventAggregator.GetEvent<NewArtistTabEvent>().Publish(artistBuid);
         }
 
         public ICommand AddAlbumTabCommand { get; set; }
@@ -69,8 +70,8 @@ namespace Bloom.TaxonomiesModule.ViewModels
 
         private void AddAlbumTab(object nothing)
         {
-            var albumId = Guid.NewGuid();
-            _eventAggregator.GetEvent<NewAlbumTabEvent>().Publish(albumId);
+            var albumBuid = new Buid(Guid.NewGuid(), BloomEntity.Album, Guid.NewGuid());
+            _eventAggregator.GetEvent<NewAlbumTabEvent>().Publish(albumBuid);
         }
 
         public ICommand AddSongTabCommand { get; set; }
@@ -82,8 +83,8 @@ namespace Bloom.TaxonomiesModule.ViewModels
 
         private void AddSongTab(object nothing)
         {
-            var songId = Guid.NewGuid();
-            _eventAggregator.GetEvent<NewSongTabEvent>().Publish(songId);
+            var songBuid = new Buid(Guid.NewGuid(), BloomEntity.Song, Guid.NewGuid());
+            _eventAggregator.GetEvent<NewSongTabEvent>().Publish(songBuid);
         }
 
         public ICommand AddPlaylistTabCommand { get; set; }
@@ -95,8 +96,8 @@ namespace Bloom.TaxonomiesModule.ViewModels
 
         private void AddPlaylistTab(object nothing)
         {
-            var playlistId = Guid.NewGuid();
-            _eventAggregator.GetEvent<NewPlaylistTabEvent>().Publish(playlistId);
+            var playlistBuid = new Buid(Guid.NewGuid(), BloomEntity.Album, Guid.NewGuid());
+            _eventAggregator.GetEvent<NewPlaylistTabEvent>().Publish(playlistBuid);
         }
     }
 }

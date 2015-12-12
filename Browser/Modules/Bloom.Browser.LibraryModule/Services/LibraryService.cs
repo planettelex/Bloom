@@ -86,10 +86,13 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         public void CreateNewLibrary(Library library)
         {
-            var dataSource = new LibraryDataSource();
-            dataSource.Create(library.FilePath);
+            if (library == null)
+                throw new ArgumentNullException("library");
+
+            var dataSource = new LibraryDataSource(library.FileName);
+            dataSource.Create();
             var libraryConnection = LibraryConnection.Create(library);
-            //State.Connections.AddLibraryConnection(libraryConnection);
+            State.Connections.Add(libraryConnection);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
             _stateService.SaveState();
         }
@@ -102,9 +105,9 @@ namespace Bloom.Browser.LibraryModule.Services
             const ViewType defaultViewType = ViewType.Grid;
             var library = new Library { Id = libraryId }; // TODO: Make this data access call
             var tab = CreateNewTab(libraryId, defaultViewType);
-            var libraryViewModel = new LibraryViewModel(library, defaultViewType) { TabId = tab.Id };
+            var libraryViewModel = new LibraryViewModel(library, defaultViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var libraryTab = new ViewMenuTab(tab, libraryView);
+            var libraryTab = new ViewMenuTab(defaultViewType, tab, libraryView);
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
@@ -118,9 +121,9 @@ namespace Bloom.Browser.LibraryModule.Services
         {
             var library = new Library { Id = tab.EntityId }; // TODO: Make this data access call
             var viewType = (ViewType) Enum.Parse(typeof (ViewType), tab.View);
-            var libraryViewModel = new LibraryViewModel(library, viewType) { TabId = tab.Id };
+            var libraryViewModel = new LibraryViewModel(library, viewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
-            var libraryTab = new ViewMenuTab(tab, libraryView);
+            var libraryTab = new ViewMenuTab(viewType, tab, libraryView);
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
@@ -139,27 +142,12 @@ namespace Bloom.Browser.LibraryModule.Services
             var libraryId = existingTab.Tab.EntityId;
             var library = new Library { Id = libraryId }; // TODO: Make this data access call
             var tab = CreateNewTab(libraryId, existingTab.ViewType);
-            var libraryViewModel = new LibraryViewModel(library, existingTab.ViewType) { TabId = tab.Id };
+            var libraryViewModel = new LibraryViewModel(library, existingTab.ViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(tab, libraryView);
 
             _tabs.Add(libraryTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
-        }
-
-        private Tab CreateNewTab(Guid libraryId, ViewType viewType)
-        {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Library,
-                Header = "Library",
-                Process = ProcessType.Browser,
-                LibraryId = libraryId,
-                EntityId = libraryId,
-                View = viewType.ToString()
-            };
         }
 
         /// <summary>
@@ -185,6 +173,21 @@ namespace Bloom.Browser.LibraryModule.Services
             var stateTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
             if (stateTab != null)
                 stateTab.View = viewType.ToString();
+        }
+
+        private Tab CreateNewTab(Guid libraryId, ViewType viewType)
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.Library,
+                Header = "Library",
+                Process = ProcessType.Browser,
+                LibraryId = libraryId,
+                EntityId = libraryId,
+                View = viewType.ToString()
+            };
         }
     }
 }

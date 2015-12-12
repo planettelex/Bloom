@@ -4,40 +4,59 @@ using System.Linq;
 using Bloom.Browser.PlaylistModule.ViewModels;
 using Bloom.Browser.PlaylistModule.Views;
 using Bloom.Browser.Controls;
+using Bloom.Common;
+using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.PlaylistModule.Services
 {
     public class PlaylistService : IPlaylistService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlaylistService"/> class.
+        /// Initializes a new instance of the <see cref="PlaylistService" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public PlaylistService(IEventAggregator eventAggregator)
+        /// <param name="regionManager">The region manager.</param>
+        public PlaylistService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewPlaylistTabEvent>().Subscribe(NewPlaylistTab);
+            _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Subscribe(RestorePlaylistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePlaylistTab);
+
+            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewPlaylistTab(Guid playlistId)
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        public BrowserState State { get; private set; }
+
+        public void NewPlaylistTab(Buid playlistBuid)
         {
-            var playlistViewModel = new PlaylistViewModel();
+            var playlist = new Playlist { Id = playlistBuid.EntityId };
+            var tab = CreateNewTab(playlistBuid);
+            var playlistViewModel = new PlaylistViewModel(playlist, tab.Id);
             var playlistView = new PlaylistView(playlistViewModel);
-            var tab = new Tab
-            {
-                Id = playlistViewModel.TabId,
-                Type = TabType.Playlist,
-                Header = "Playlist"
-            };
+            var playlistTab = new ViewMenuTab(tab, playlistView);
+
+            _tabs.Add(playlistTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(playlistTab);
+        }
+
+        public void RestorePlaylistTab(Tab tab)
+        {
+            var playlist = new Playlist { Id = tab.EntityId }; // TODO: Make this data access call
+            var playlistViewModel = new PlaylistViewModel(playlist, tab.Id);
+            var playlistView = new PlaylistView(playlistViewModel);
             var playlistTab = new ViewMenuTab(tab, playlistView);
 
             _tabs.Add(playlistTab);
@@ -50,18 +69,29 @@ namespace Bloom.Browser.PlaylistModule.Services
             if (existingTab == null)
                 return;
 
-            var playlistViewModel = new PlaylistViewModel();
+            var playlistId = existingTab.Tab.EntityId;
+            var playlist = new Playlist { Id = playlistId }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Playlist, playlistId));
+            var playlistViewModel = new PlaylistViewModel(playlist, tab.Id);
             var playlistView = new PlaylistView(playlistViewModel);
-            var tab = new Tab
-            {
-                Id = playlistViewModel.TabId,
-                Type = TabType.Playlist,
-                Header = "Playlist"
-            };
             var playlistTab = new ViewMenuTab(tab, playlistView);
 
             _tabs.Add(playlistTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(playlistTab);
+        }
+
+        private Tab CreateNewTab(Buid playlistBuid)
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.Playlist,
+                Header = "Playlist",
+                Process = ProcessType.Browser,
+                LibraryId = playlistBuid.LibraryId,
+                EntityId = playlistBuid.EntityId
+            };
         }
     }
 }

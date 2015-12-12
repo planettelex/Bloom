@@ -19,7 +19,7 @@
         <shared:TitleBar x:Name="TitleBar" Grid.Row="0" Title="Bloom Music Browser" />
         <ItemsControl Name="MenuRegion" Grid.Row="1" prism:RegionManager.RegionName="MenuRegion" prism:RegionManager.RegionContext="{Binding}" />
         
-        <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview" ActivePaneChanged="ActivePaneChanged" Close="OnClose">
+        <telerik:RadDocking x:Name="Dock" Grid.Row="2" PreviewShowCompass="DockCompassPreview" ActivePaneChanged="ActivePaneChanged" PaneStateChange="PaneStateChanged" Close="OnClose">
             <telerik:RadSplitContainer Width="{Binding Path=SidebarWidth, Mode=TwoWay}" MouseDoubleClick="OnSidebarSplitterDoubleClick">
                 <telerik:RadPaneGroup x:Name="Sidebar" Style="{DynamicResource SidebarStyle}">
                     <telerik:RadPane PaneHeaderVisibility="Collapsed">

@@ -38,10 +38,10 @@ namespace Bloom.State.Domain.Models
         public WindowState WindowState { get; set; }
 
         /// <summary>
-        /// Gets the library data source.
+        /// Gets the library connection data source.
         /// </summary>
         /// <param name="libraryId">The library identifier.</param>
-        public LibraryDataSource GetLibraryDataSource(Guid libraryId)
+        public LibraryDataSource GetConnectionData(Guid libraryId)
         {
             if (Connections == null || Connections.Count == 0)
                 return null;
@@ -49,6 +49,20 @@ namespace Bloom.State.Domain.Models
             var connection = Connections.SingleOrDefault(c => c.LibraryId == libraryId);
 
             return connection == null ? null : connection.DataSource;
+        }
+
+        /// <summary>
+        /// Determines whether the specified library is connected.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
+        public bool IsConnected(Guid libraryId)
+        {
+            var dataSource = GetConnectionData(libraryId);
+
+            if (dataSource == null)
+                return false;
+
+            return dataSource.IsConnected();
         }
     }
 }

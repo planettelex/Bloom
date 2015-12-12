@@ -1,4 +1,5 @@
 ﻿using System;
+using Bloom.Common;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.AlbumModule.Services
@@ -8,8 +9,8 @@ namespace Bloom.Browser.AlbumModule.Services
         /// <summary>
         /// Creates a new album tab.
         /// </summary>
-        /// <param name="albumId">The album identifier.</param>
-        void NewAlbumTab(Guid albumId);
+        /// <param name="albumBuid">The album Bloom identifier.</param>
+        void NewAlbumTab(Buid albumBuid);
 
         /// <summary>
         /// Restores the album tab.

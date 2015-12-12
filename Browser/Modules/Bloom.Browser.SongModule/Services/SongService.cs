@@ -4,40 +4,59 @@ using System.Linq;
 using Bloom.Browser.SongModule.ViewModels;
 using Bloom.Browser.SongModule.Views;
 using Bloom.Browser.Controls;
+using Bloom.Common;
+using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.SongModule.Services
 {
     public class SongService : ISongService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SongService"/> class.
+        /// Initializes a new instance of the <see cref="SongService" /> class.
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public SongService(IEventAggregator eventAggregator)
+        /// <param name="regionManager">The region manager.</param>
+        public SongService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewSongTabEvent>().Subscribe(NewSongTab);
+            _eventAggregator.GetEvent<RestoreSongTabEvent>().Subscribe(RestoreSongTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSongTab);
+
+            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
 
-        public void NewSongTab(Guid songId)
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        public BrowserState State { get; private set; }
+
+        public void NewSongTab(Buid songBuid)
         {
-            var songViewModel = new SongViewModel();
+            var song = new Song { Id = songBuid.EntityId }; // TODO: Make this data access call
+            var tab = CreateNewTab(songBuid);
+            var songViewModel = new SongViewModel(song, tab.Id);
             var songView = new SongView(songViewModel);
-            var tab = new Tab
-            {
-                Id = songViewModel.TabId,
-                Type = TabType.Song,
-                Header = "Song"
-            };
+            var songTab = new ViewMenuTab(tab, songView);
+
+            _tabs.Add(songTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
+        }
+
+        public void RestoreSongTab(Tab tab)
+        {
+            var song = new Song { Id = tab.EntityId }; // TODO: Make this data access call
+            var songViewModel = new SongViewModel(song, tab.Id);
+            var songView = new SongView(songViewModel);
             var songTab = new ViewMenuTab(tab, songView);
 
             _tabs.Add(songTab);
@@ -50,18 +69,29 @@ namespace Bloom.Browser.SongModule.Services
             if (existingTab == null)
                 return;
 
-            var songViewModel = new SongViewModel();
+            var songId = existingTab.Tab.EntityId;
+            var song = new Song { Id = songId }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Song, songId));
+            var songViewModel = new SongViewModel(song, tab.Id);
             var songView = new SongView(songViewModel);
-            var tab = new Tab
-            {
-                Id = songViewModel.TabId,
-                Type = TabType.Song,
-                Header = "Song"
-            };
             var songTab = new ViewMenuTab(tab, songView);
 
             _tabs.Add(songTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
+        }
+
+        private Tab CreateNewTab(Buid songBuid)
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.Song,
+                Header = "Song",
+                Process = ProcessType.Browser,
+                LibraryId = songBuid.LibraryId,
+                EntityId = songBuid.EntityId
+            };
         }
     }
 }

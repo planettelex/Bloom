@@ -1,4 +1,5 @@
 ﻿using System;
+using Bloom.Common;
 using Bloom.Controls;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -33,7 +34,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Creates a new artist control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewArtistTabEvent : PubSubEvent<Guid> { }
+    public class NewArtistTabEvent : PubSubEvent<Buid> { }
 
     /// <summary>
     /// Restores a saved artist tab and publishes the <see cref="AddTabEvent"/>.
@@ -43,7 +44,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Creates a new person control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewPersonTabEvent : PubSubEvent<Guid> { }
+    public class NewPersonTabEvent : PubSubEvent<Buid> { }
 
     /// <summary>
     /// Restores a saved person tab and publishes the <see cref="AddTabEvent"/>.
@@ -53,7 +54,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Creates a new album control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewAlbumTabEvent : PubSubEvent<Guid> { }
+    public class NewAlbumTabEvent : PubSubEvent<Buid> { }
 
     /// <summary>
     /// Restores a saved album tab and publishes the <see cref="AddTabEvent"/>.
@@ -63,7 +64,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Creates a new song control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewSongTabEvent : PubSubEvent<Guid> { }
+    public class NewSongTabEvent : PubSubEvent<Buid> { }
 
     /// <summary>
     /// Restores a saved song tab and publishes the <see cref="AddTabEvent"/>.
@@ -73,7 +74,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// Creates a new playlist control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
-    public class NewPlaylistTabEvent : PubSubEvent<Guid> { }
+    public class NewPlaylistTabEvent : PubSubEvent<Buid> { }
 
     /// <summary>
     /// Restores a saved playlist tab and publishes the <see cref="AddTabEvent"/>.

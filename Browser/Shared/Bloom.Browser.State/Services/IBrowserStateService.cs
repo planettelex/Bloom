@@ -15,6 +15,11 @@ namespace Bloom.Browser.State.Services
         BrowserState InitializeState();
 
         /// <summary>
+        /// Restores the tabs from saved state.
+        /// </summary>
+        void RestoreTabs();
+
+        /// <summary>
         /// Adds a tab to state.
         /// </summary>
         /// <param name="tab">The tab.</param>

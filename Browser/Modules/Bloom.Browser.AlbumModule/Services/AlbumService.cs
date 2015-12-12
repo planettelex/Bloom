@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.Browser.AlbumModule.ViewModels;
 using Bloom.Browser.AlbumModule.Views;
-using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
 using Bloom.Common;
 using Bloom.Domain.Models;
@@ -28,6 +27,7 @@ namespace Bloom.Browser.AlbumModule.Services
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewAlbumTabEvent>().Subscribe(NewAlbumTab);
+            _eventAggregator.GetEvent<RestoreAlbumTabEvent>().Subscribe(RestoreAlbumTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateAlbumTab);
 
             State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
@@ -43,28 +43,32 @@ namespace Bloom.Browser.AlbumModule.Services
         /// <summary>
         /// Creates a new album tab.
         /// </summary>
-        /// <param name="albumId">The album identifier.</param>
-        public void NewAlbumTab(Guid albumId)
+        /// <param name="albumBuid">The album Bloom identifier.</param>
+        public void NewAlbumTab(Buid albumBuid)
         {
-            const ViewType defaultViewType = ViewType.Grid;
-            var album = new Album { Id = albumId }; // TODO: Make this data access call
-            var albumViewModel = new AlbumViewModel();
+            var album = new Album { Id = albumBuid.EntityId }; // TODO: Make this data access call
+            var tab = CreateNewTab(albumBuid);
+            var albumViewModel = new AlbumViewModel(album, tab.Id);
             var albumView = new AlbumView(albumViewModel);
-            var tab = new Tab
-            {
-                Id = albumViewModel.TabId,
-                Type = TabType.Album,
-                Header = "Album"
-            };
             var albumTab = new ViewMenuTab(tab, albumView);
 
             _tabs.Add(albumTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
         }
 
+        /// <summary>
+        /// Restores the album tab.
+        /// </summary>
+        /// <param name="tab">The album tab.</param>
         public void RestoreAlbumTab(Tab tab)
         {
-            
+            var album = new Album { Id = tab.EntityId }; // TODO: Make this data access call
+            var albumViewModel = new AlbumViewModel(album, tab.Id);
+            var albumView = new AlbumView(albumViewModel);
+            var albumTab = new ViewMenuTab(tab, albumView);
+
+            _tabs.Add(albumTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
         }
 
         /// <summary>
@@ -77,18 +81,29 @@ namespace Bloom.Browser.AlbumModule.Services
             if (existingTab == null)
                 return;
 
-            var albumViewModel = new AlbumViewModel();
+            var albumId = existingTab.Tab.EntityId;
+            var album = new Album { Id = albumId }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Album, albumId));
+            var albumViewModel = new AlbumViewModel(album, tab.Id);
             var albumView = new AlbumView(albumViewModel);
-            var tab = new Tab
-            {
-                Id = albumViewModel.TabId,
-                Type = TabType.Album,
-                Header = "Album"
-            };
             var albumTab = new ViewMenuTab(tab, albumView);
 
             _tabs.Add(albumTab);
             _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
+        }
+
+        private Tab CreateNewTab(Buid albumBuid)
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.Album,
+                Header = "Album",
+                Process = ProcessType.Browser,
+                LibraryId = albumBuid.LibraryId,
+                EntityId = albumBuid.EntityId
+            };
         }
     }
 }

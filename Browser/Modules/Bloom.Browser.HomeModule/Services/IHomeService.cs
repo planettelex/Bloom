@@ -1,4 +1,7 @@
-﻿namespace Bloom.Browser.HomeModule.Services
+﻿using System;
+using Bloom.State.Domain.Models;
+
+namespace Bloom.Browser.HomeModule.Services
 {
     public interface IHomeService
     {
@@ -6,5 +9,17 @@
         /// Creates a new home tab.
         /// </summary>
         void NewHomeTab();
+
+        /// <summary>
+        /// Restores the home tab.
+        /// </summary>
+        /// <param name="tab">The home tab.</param>
+        void RestoreHomeTab(Tab tab);
+
+        /// <summary>
+        /// Duplicates the home tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier.</param>
+        void DuplicateHomeTab(Guid tabId);
     }
 }
