@@ -91,8 +91,11 @@
     <Compile Include="Respositories\IBrowserStateRepository.cs" />
     <Compile Include="Respositories\ILibraryConnectionRepository.cs" />
     <Compile Include="Respositories\IPlayerStateRepository.cs" />
+    <Compile Include="Respositories\ITabRepository.cs" />
+    <Compile Include="Respositories\IUserRepository.cs" />
     <Compile Include="Respositories\LibraryConnectionRepository.cs" />
     <Compile Include="Respositories\PlayerStateRepository.cs" />
+    <Compile Include="Respositories\UserRepository.cs" />
     <Compile Include="StateDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StateTableService.cs" />

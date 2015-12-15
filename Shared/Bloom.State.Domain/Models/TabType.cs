@@ -11,6 +11,7 @@
         Artist,
         Person,
         Playlist,
-        Song
+        Song,
+        GettingStarted
     }
 }

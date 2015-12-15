@@ -45,6 +45,7 @@
     <Compile Include="BloomEntity.cs" />
     <Compile Include="BloomProcess.cs" />
     <Compile Include="Buid.cs" />
+    <Compile Include="ExtensionMethods\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

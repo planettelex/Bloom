@@ -12,17 +12,21 @@ namespace Bloom.State.Data.Respositories
     public class BrowserStateRepository : IBrowserStateRepository
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BrowserStateRepository"/> class.
+        /// Initializes a new instance of the <see cref="BrowserStateRepository" /> class.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        public BrowserStateRepository(IDataSource dataSource)
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        /// <param name="userRepository">The user repository.</param>
+        public BrowserStateRepository(IDataSource dataSource, ILibraryConnectionRepository libraryConnectionRepository, IUserRepository userRepository)
         {
             _dataSource = dataSource;
+            _libraryConnectionRepository = libraryConnectionRepository;
+            _userRepository = userRepository;
         }
         private readonly IDataSource _dataSource;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+        private readonly IUserRepository _userRepository;
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
-        private Table<LibraryConnection> LibraryConnectionTable { get { return _dataSource.Context.GetTable<LibraryConnection>(); } }
-        private Table<User> UserTable { get { return _dataSource.Context.GetTable<User>(); } } 
         private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } } 
 
         /// <summary>
@@ -52,23 +56,13 @@ namespace Bloom.State.Data.Respositories
 
             var browserState = stateQuery.SingleOrDefault();
 
-            var lastUserQuery =
-                from users in UserTable
-                orderby users.LastLogin descending
-                select users;
-
             if (browserState != null)
-                browserState.CurrentUser = lastUserQuery.ToList().FirstOrDefault();
-
-            var connectionsQuery =
-                from connections in LibraryConnectionTable
-                where connections.IsConnected
-                orderby connections.LastConnected descending
-                select connections;
-
-            if (browserState != null)
-                browserState.Connections = connectionsQuery.ToList();
-
+            {
+                browserState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
+                browserState.CurrentUser = _userRepository.GetLastUser();
+                
+            }
+                
             var tabsQuery =
                 from tabs in TabTable
                 where tabs.Process == ProcessType.Browser

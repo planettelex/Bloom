@@ -18,7 +18,7 @@ namespace Bloom.State.Data.Respositories
         /// <summary>
         /// Lists the library connections.
         /// </summary>
-        List<LibraryConnection> ListLibraryConnections();
+        List<LibraryConnection> ListLibraryConnections(bool connected);
 
         /// <summary>
         /// Determines if a library connection exists.

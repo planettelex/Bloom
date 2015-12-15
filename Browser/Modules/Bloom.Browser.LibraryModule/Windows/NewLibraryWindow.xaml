@@ -28,11 +28,11 @@
 
             <StackPanel Grid.Column="0" Orientation="Vertical">
                 <TextBlock Text="Library Name" />
-                <TextBox Text="{Binding Path=LibraryName, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+                <TextBox Name="LibraryName" Text="{Binding Path=LibraryName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" MaxLength="260" />
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <TextBlock Text="Library Owner" />
-                <telerik:RadComboBox IsEditable="True" Text="{Binding Path=OwnerName, Mode=TwoWay}" ItemsSource="{Binding Path=PotentialOwners}" DisplayMemberPath="Name" />
+                <telerik:RadComboBox IsEditable="True" Text="{Binding Path=OwnerName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=PotentialOwners}" DisplayMemberPath="Name" />
             </StackPanel>
         </Grid>
 
@@ -50,7 +50,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBox Grid.Column="0" Text="{Binding Path=FolderPath}" />
+                <TextBox Grid.Column="0" Text="{Binding Path=FolderPath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 <telerik:RadButton Grid.Column="2" Content="Browse" Command="{Binding Path=BrowseFoldersCommand}" Style="{DynamicResource TextButtonStyle}" />
             </Grid>
         </Grid>
@@ -63,7 +63,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <telerik:RadButton Grid.Column="1" Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" />
-            <telerik:RadButton Grid.Column="3" Content="Create New Library" Command="{Binding Path=CreateNewLibraryCommand}" Style="{DynamicResource TextButtonStyle}" />
+            <telerik:RadButton Grid.Column="3" Content="Create New Library" Command="{Binding Path=CreateNewLibraryCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
         </Grid>
 
     </Grid>

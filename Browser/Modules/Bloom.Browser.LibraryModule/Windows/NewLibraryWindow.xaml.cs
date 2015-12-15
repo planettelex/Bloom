@@ -1,4 +1,6 @@
-﻿using Bloom.Browser.LibraryModule.WindowModels;
+﻿using System.Windows.Media;
+using System.Windows.Forms;
+using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
@@ -20,14 +22,23 @@ namespace Bloom.Browser.LibraryModule.Windows
         {
             InitializeComponent();
             _eventAggregator = eventAggregator;
+            _folderBrowserDialog = new FolderBrowserDialog();
+            windowModel.IsLoading = true;
             windowModel.BrowseFoldersCommand = new DelegateCommand<object>(BrowserFolders, CanBrowserFolders);
             windowModel.CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
             windowModel.CancelCommand = new DelegateCommand<object>(Cancel, CanCancel);
             DataContext = windowModel;
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly FolderBrowserDialog _folderBrowserDialog;
 
         private NewLibraryWindowModel WindowModel { get { return (NewLibraryWindowModel) DataContext; } }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+ 	        base.OnRender(drawingContext);
+            WindowModel.IsLoading = false;
+        }
 
         private bool CanBrowserFolders(object nothing)
         {
@@ -36,7 +47,15 @@ namespace Bloom.Browser.LibraryModule.Windows
 
         private void BrowserFolders(object nothing)
         {
-
+            _folderBrowserDialog.SelectedPath = WindowModel.FolderPath;
+            _folderBrowserDialog.ShowNewFolderButton = true;
+            _folderBrowserDialog.Description = "Select a folder for the new library.";
+            if (!string.IsNullOrEmpty(WindowModel.LibraryName))
+                _folderBrowserDialog.Description += "\r\nA file named \"" + WindowModel.LibraryName + Bloom.Common.Settings.LibraryFileExtension + "\" will be created at this location.";
+                
+            var result = _folderBrowserDialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+                WindowModel.FolderPath = _folderBrowserDialog.SelectedPath;
         }
 
         private bool CanCreateNewLibrary(object nothing)

@@ -89,7 +89,7 @@ namespace Bloom.Browser.LibraryModule.Services
             if (library == null)
                 throw new ArgumentNullException("library");
 
-            var dataSource = new LibraryDataSource(library.FileName);
+            var dataSource = new LibraryDataSource(library.FilePath);
             dataSource.Create();
             var libraryConnection = LibraryConnection.Create(library);
             State.Connections.Add(libraryConnection);

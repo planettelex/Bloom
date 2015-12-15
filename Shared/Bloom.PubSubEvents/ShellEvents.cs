@@ -22,6 +22,16 @@ namespace Bloom.PubSubEvents
     public class RestoreHomeTabEvent : PubSubEvent<Tab> { }
 
     /// <summary>
+    /// Creates a new getting started control and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class NewGettingStartedTabEvent : PubSubEvent<object> { }
+
+    /// <summary>
+    /// Restores a saved getting started control and publishes the <see cref="AddTabEvent"/>.
+    /// </summary>
+    public class RestoreGettingStartedTabEvent : PubSubEvent<Tab> { }
+
+    /// <summary>
     /// Creates a new library control and publishes the <see cref="AddTabEvent"/>.
     /// </summary>
     public class NewLibraryTabEvent : PubSubEvent<Guid> { }

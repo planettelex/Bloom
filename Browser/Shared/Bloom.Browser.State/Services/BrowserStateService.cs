@@ -34,7 +34,7 @@ namespace Bloom.Browser.State.Services
         /// <summary>
         /// Gets the state of the browser.
         /// </summary>
-        public BrowserState BrowserState { get; private set; }
+        public BrowserState State { get; private set; }
 
         /// <summary>
         /// Initializes the browser application state.
@@ -51,23 +51,23 @@ namespace Bloom.Browser.State.Services
             if (File.Exists(_stateDataSource.FilePath))
             {
                 _stateDataSource.Connect();
-                BrowserState = _browserStateRepository.GetBrowserState() ?? AddNewBrowserState();
+                State = _browserStateRepository.GetBrowserState() ?? AddNewState();
             }
             else
             {
                 _stateDataSource.Create();
-                BrowserState = AddNewBrowserState();
+                State = AddNewState();
             }
 
-            if (BrowserState.CurrentUser != null)
+            if (State.CurrentUser != null)
             {
-                BrowserState.CurrentUser.LastLogin = DateTime.Now;
-                if (BrowserState.Connections != null && BrowserState.Connections.Count > 0)
-                    foreach (var libraryConnection in BrowserState.Connections)
-                        libraryConnection.Connect(BrowserState.CurrentUser);
+                State.CurrentUser.LastLogin = DateTime.Now;
+                if (State.Connections != null && State.Connections.Count > 0)
+                    foreach (var libraryConnection in State.Connections)
+                        libraryConnection.Connect(State.CurrentUser);
             }
                 
-            return BrowserState;
+            return State;
         }
 
         /// <summary>
@@ -77,15 +77,15 @@ namespace Bloom.Browser.State.Services
         /// <exception cref="System.InvalidOperationException">Tabs cannot be added until state is initialized.</exception>
         public void AddTab(Tab tab)
         {
-            if (BrowserState == null)
+            if (State == null)
                 throw new InvalidOperationException("Tabs cannot be added until state is initialized.");
 
-            if (BrowserState.Tabs == null)
-                BrowserState.Tabs = new List<Tab>();
+            if (State.Tabs == null)
+                State.Tabs = new List<Tab>();
 
-            var stateTab = BrowserState.Tabs.SingleOrDefault(t => t.Id == tab.Id);
+            var stateTab = State.Tabs.SingleOrDefault(t => t.Id == tab.Id);
             if (stateTab == null)
-                BrowserState.Tabs.Add(tab);
+                State.Tabs.Add(tab);
 
             _browserStateRepository.AddBrowserTab(tab);
         }
@@ -96,15 +96,15 @@ namespace Bloom.Browser.State.Services
         /// <param name="tabId">The tab identifier.</param>
         public void RemoveTab(Guid tabId)
         {
-            if (BrowserState == null || BrowserState.Tabs == null || BrowserState.Tabs.Count == 0)
+            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
                 return;
 
-            var tab = BrowserState.Tabs.SingleOrDefault(t => t.Id == tabId);
+            var tab = State.Tabs.SingleOrDefault(t => t.Id == tabId);
             if (tab == null)
                 return;
 
-            BrowserState.Tabs.Remove(tab);
-            BrowserState.CondenseTabOrders();
+            State.Tabs.Remove(tab);
+            State.CondenseTabOrders();
             _browserStateRepository.RemoveBrowserTab(tab);
         }
 
@@ -114,20 +114,20 @@ namespace Bloom.Browser.State.Services
         /// <param name="tabId">The tab identifier.</param>
         public void RemoveAllTabsExcept(Guid tabId)
         {
-            if (BrowserState == null || BrowserState.Tabs == null || BrowserState.Tabs.Count == 0)
+            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
                 return;
 
-            var exemptTab = BrowserState.Tabs.SingleOrDefault(t => t.Id == tabId);
+            var exemptTab = State.Tabs.SingleOrDefault(t => t.Id == tabId);
             if (exemptTab == null)
                 RemoveAllTabs();
             else
             {
-                foreach (var tab in BrowserState.Tabs)
+                foreach (var tab in State.Tabs)
                     if (tab.Id != exemptTab.Id)
                         _browserStateRepository.RemoveBrowserTab(tab);
 
                 exemptTab.Order = 1;
-                BrowserState.Tabs = new List<Tab> { exemptTab };
+                State.Tabs = new List<Tab> { exemptTab };
             }
         }
 
@@ -136,13 +136,13 @@ namespace Bloom.Browser.State.Services
         /// </summary>
         public void RemoveAllTabs()
         {
-            if (BrowserState == null || BrowserState.Tabs == null || BrowserState.Tabs.Count == 0)
+            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
                 return;
 
-            foreach (var tab in BrowserState.Tabs)
+            foreach (var tab in State.Tabs)
                 _browserStateRepository.RemoveBrowserTab(tab);
 
-            BrowserState.Tabs = new List<Tab>();
+            State.Tabs = new List<Tab>();
         }
 
         /// <summary>
@@ -150,14 +150,14 @@ namespace Bloom.Browser.State.Services
         /// </summary>
         public void RestoreTabs()
         {
-            if (BrowserState == null || BrowserState.Tabs == null || BrowserState.Tabs.Count == 0)
+            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
                 _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
             else
             {
-                foreach (var tab in BrowserState.Tabs)
+                foreach (var tab in State.Tabs)
                 {
                     // Only open tabs for connected libraries, except home which doesn't require one.
-                    //if (tab.Type == TabType.Home || BrowserState.IsConnected(tab.LibraryId))
+                    //if (tab.Type == TabType.GettingStarted || tab.Type == TabType.Home || State.IsConnected(tab.LibraryId))
                     { //TODO: Uncomment when connection management is set-up.
                         switch (tab.Type)
                         {
@@ -182,6 +182,9 @@ namespace Bloom.Browser.State.Services
                             case TabType.Song:
                                 _eventAggregator.GetEvent<RestoreSongTabEvent>().Publish(tab);
                                 break;
+                            case TabType.GettingStarted:
+                                _eventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Publish(tab);
+                                break;
                         }
                     }
                 }
@@ -196,7 +199,7 @@ namespace Bloom.Browser.State.Services
             _stateDataSource.Save();
         }
 
-        private BrowserState AddNewBrowserState()
+        private BrowserState AddNewState()
         {
             var browserState = new BrowserState();
             _browserStateRepository.AddBrowserState(browserState);

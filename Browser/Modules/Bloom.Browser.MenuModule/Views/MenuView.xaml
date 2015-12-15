@@ -10,8 +10,8 @@
     <Border Style="{DynamicResource MenuBorderStyle}">
         <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
             <telerik:RadMenuItem Header="File">
-                <telerik:RadMenuItem Header="Add Music..." />
                 <telerik:RadMenuItem Header="New Library..." Command="{Binding Path=CreateNewLibraryCommand}" />
+                <telerik:RadMenuItem Header="Add Music..." />
                 <telerik:RadMenuItem Header="Connected Libraries..." />
                 <telerik:RadMenuItem Header="Library Operations..." />
                 <telerik:RadMenuItem Header="Exit Browser" Command="{Binding Path=ExitApplicationCommand}" />

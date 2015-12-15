@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using Bloom.Common.ExtensionMethods;
 using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
@@ -23,6 +25,21 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is loading.
+        /// </summary>
+        public bool IsLoading { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is valid.
+        /// </summary>
+        public bool IsValid
+        {
+            get { return _isValid; }
+            set { SetProperty(ref _isValid, value); }
+        }
+        private bool _isValid;
 
         public string LibraryName
         {
@@ -70,14 +87,31 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         {
             get
             {
+                IsValid = false;
+                if (IsLoading)
+                    return null;
+
                 if (columnName == "LibraryName")
                 {
-                    // Validate property and return a string if there is an error
                     if (string.IsNullOrEmpty(LibraryName))
                         return "Library name is required";
+                    if (!LibraryName.IsValidFilename())
+                        return "Library cannot contain the characters <, >, :, \", /, \\, |, ?, *";
+                }
+                if (columnName == "OwnerName")
+                {
+                    if (string.IsNullOrEmpty(OwnerName))
+                        return "Owner name is required";
+                }
+                if (columnName == "FolderPath")
+                {
+                    if (string.IsNullOrEmpty(FolderPath))
+                        return "Folder path is required";
+                    if (!Directory.Exists(FolderPath))
+                        return "Specified folder does not exist.";
                 }
 
-                // If there's no error, null gets returned
+                IsValid = true;
                 return null;
             }
         }

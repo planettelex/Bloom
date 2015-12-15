@@ -43,13 +43,15 @@ namespace Bloom.State.Data.Respositories
         /// <summary>
         /// Lists the library connections.
         /// </summary>  
-        public List<LibraryConnection> ListLibraryConnections()
+        public List<LibraryConnection> ListLibraryConnections(bool connected)
         {
             if (!_dataSource.IsConnected())
                 return null;
 
             var query =
                 from libraryConnection in LibraryConnectionTable
+                where libraryConnection.IsConnected == connected
+                orderby libraryConnection.LastConnected descending
                 select libraryConnection;
 
             return query.ToList();
