@@ -25,15 +25,18 @@ namespace Bloom.Browser
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="userService">The user service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IBrowserStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, IBrowserStateService stateService)
         {
             InitializeComponent();
             _loading = true;
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = _stateService.InitializeState();
+            _stateService.ConnectDataSource();
+            var user = userService.InitializeUser();
+            var state = _stateService.InitializeState(user);
             DataContext = state;
 
             // Don't open in a minimized state.
@@ -63,9 +66,10 @@ namespace Bloom.Browser
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
-            _stateService.RestoreTabs();
-            Dock.ActivePane = _tabs[State.SelectedTabId];
             _loading = false;
+            _stateService.RestoreTabs();
+            if (_tabs.ContainsKey(State.SelectedTabId))
+                Dock.ActivePane = _tabs[State.SelectedTabId];
         }
 
         /// <summary>

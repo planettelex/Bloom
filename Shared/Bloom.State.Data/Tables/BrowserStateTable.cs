@@ -15,11 +15,13 @@ namespace Bloom.State.Data.Tables
             get
             {
                 return "CREATE TABLE \"browser_state\" (" +
-                       "\"process_name\" VARCHAR PRIMARY KEY NOT NULL UNIQUE , " +
+                       "\"process_name\" VARCHAR NOT NULL , " +
+                       "\"person_id\" VARCHAR(36) NOT NULL , " +
                        "\"skin_name\" VARCHAR NOT NULL , " +
                        "\"window_state\" INTEGER NOT NULL , " +
                        "\"sidebar_width\" INTEGER NOT NULL , " +
-                       "\"selected_tab_id\" VARCHAR(36) NOT NULL )";
+                       "\"selected_tab_id\" VARCHAR(36) NOT NULL , " +
+                       "PRIMARY KEY (process_name, person_id))";
             }
         }
     }

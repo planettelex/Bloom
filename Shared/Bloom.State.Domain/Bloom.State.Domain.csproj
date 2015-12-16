@@ -106,10 +106,6 @@
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Services\Bloom.Services.csproj">
-      <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
-      <Name>Bloom.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

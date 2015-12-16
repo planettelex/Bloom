@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bloom.Common;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
@@ -11,6 +9,10 @@ namespace Bloom.State.Data.Respositories
     {
         Tab GetTab(Guid tabId);
 
-        List<Tab> ListTabs();
+        List<Tab> ListTabs(ProcessType process, Guid userId);
+
+        void AddTab(Tab tab);
+
+        void RemoveTab(Tab tab);
     }
 }

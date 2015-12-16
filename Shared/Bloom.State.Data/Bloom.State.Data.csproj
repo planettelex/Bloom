@@ -95,6 +95,7 @@
     <Compile Include="Respositories\IUserRepository.cs" />
     <Compile Include="Respositories\LibraryConnectionRepository.cs" />
     <Compile Include="Respositories\PlayerStateRepository.cs" />
+    <Compile Include="Respositories\TabRepository.cs" />
     <Compile Include="Respositories\UserRepository.cs" />
     <Compile Include="StateDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

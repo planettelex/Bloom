@@ -21,5 +21,22 @@ namespace Bloom.Browser.HomeModule.Services
         /// </summary>
         /// <param name="tabId">The tab identifier.</param>
         void DuplicateHomeTab(Guid tabId);
+
+        /// <summary>
+        /// Creates a new getting started tab.
+        /// </summary>
+        void NewGettingStartedTab();
+
+        /// <summary>
+        /// Restores the getting started tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
+        void RestoreGettingStartedTab(Tab tab);
+
+        /// <summary>
+        /// Duplicates the getting started tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier.</param>
+        void DuplicateGettingStartedTab(Guid tabId);
     }
 }

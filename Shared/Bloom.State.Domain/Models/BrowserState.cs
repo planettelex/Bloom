@@ -34,6 +34,12 @@ namespace Bloom.State.Domain.Models
         public new string ProcessName { get; set; }
 
         /// <summary>
+        /// Gets or sets the user's person identifier.
+        /// </summary>
+        [Column(Name = "person_id", IsPrimaryKey = true)]
+        public new Guid UserId { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the skin.
         /// </summary>
         [Column(Name = "skin_name")]
@@ -68,6 +74,24 @@ namespace Bloom.State.Domain.Models
         public new void ResetSidebarWidth()
         {
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
+        }
+
+        /// <summary>
+        /// Sets the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        public void SetUser(User user)
+        {
+            if (user == null)
+                return;
+
+            User = user;
+            UserId = user.PersonId;
+            if (Tabs == null || Tabs.Count <= 0) 
+                return;
+            
+            foreach (var tab in Tabs)
+                tab.UserId = UserId;
         }
     }
 }

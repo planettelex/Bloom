@@ -47,6 +47,8 @@ namespace Bloom.State.Data
             _container.Resolve<ILibraryConnectionRepository>();
             _container.RegisterType<IUserRepository, UserRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IUserRepository>();
+            _container.RegisterType<ITabRepository, TabRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ITabRepository>();
             _container.RegisterType<IAnalyticsStateRepository, AnalyticsStateRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IAnalyticsStateRepository>();
             _container.RegisterType<IBrowserStateRepository, BrowserStateRepository>(new ContainerControlledLifetimeManager());

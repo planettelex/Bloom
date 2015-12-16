@@ -20,6 +20,12 @@ namespace Bloom.State.Domain.Models
         public ProcessType Process { get; set; }
 
         /// <summary>
+        /// Gets or sets the tab user's person identifier.
+        /// </summary>
+        [Column(Name = "person_id")]
+        public Guid UserId { get; set; }
+
+        /// <summary>
         /// Gets or sets the library identifier.
         /// </summary>
         [Column(Name = "library_id")]

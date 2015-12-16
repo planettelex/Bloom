@@ -90,7 +90,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\HomeService.cs" />
     <Compile Include="Services\IHomeService.cs" />
+    <Compile Include="ViewModels\GettingStartedViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="Views\GettingStartedView.xaml.cs">
+      <DependentUpon>GettingStartedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +153,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\GettingStartedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

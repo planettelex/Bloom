@@ -27,6 +27,34 @@ namespace Bloom.Domain.Models
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="PersonPhoto"/> class.
+        /// </summary>
+        public PersonPhoto() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonPhoto"/> class.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        /// <param name="photo">The photo.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// person
+        /// or
+        /// photo
+        /// </exception>
+        public PersonPhoto(Person person, Photo photo)
+        {
+            if (person == null)
+                throw new ArgumentNullException("person");
+
+            if (photo == null)
+                throw new ArgumentNullException("photo");
+
+            PersonId = person.Id;
+            PhotoId = photo.Id;
+            Photo = photo;
+        }
+
+        /// <summary>
         /// Gets or sets the person identifier.
         /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]

@@ -9,10 +9,15 @@ namespace Bloom.Browser.State.Services
     public interface IBrowserStateService
     {
         /// <summary>
+        /// Connects the data source.
+        /// </summary>
+        void ConnectDataSource();
+
+        /// <summary>
         /// Initializes the browser application state.
         /// </summary>
-        /// <returns>The browser application state.</returns>
-        BrowserState InitializeState();
+        /// <param name="user">The user.</param>
+        BrowserState InitializeState(User user);
 
         /// <summary>
         /// Restores the tabs from saved state.

@@ -14,6 +14,7 @@ using Bloom.Common;
 using Bloom.Data;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -29,12 +30,14 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="stateService">The state service.</param>
+        /// <param name="userService">The user service.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IBrowserStateService stateService, ILibraryConnectionRepository libraryConnectionRepository)
+        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IBrowserStateService stateService, IUserService userService, ILibraryConnectionRepository libraryConnectionRepository)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _stateService = stateService;
+            _userService = userService;
             _tabs = new List<ViewMenuTab>();
             _libraryConnectionRepository = libraryConnectionRepository;
 
@@ -51,6 +54,7 @@ namespace Bloom.Browser.LibraryModule.Services
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
         private readonly IBrowserStateService _stateService;
+        private readonly IUserService _userService;
         private readonly List<ViewMenuTab> _tabs;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
@@ -72,12 +76,11 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         public void ShowCreateNewLibraryModal()
         {
-            var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager);
+            var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager, _userService);
             var newLibraryWindow = new NewLibraryWindow(newLibraryWindowModel, _eventAggregator)
             {
                 Owner = Application.Current.MainWindow
             };
-
             newLibraryWindow.ShowDialog();
         }
 

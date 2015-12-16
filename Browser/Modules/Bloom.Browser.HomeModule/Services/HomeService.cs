@@ -23,6 +23,9 @@ namespace Bloom.Browser.HomeModule.Services
             _eventAggregator.GetEvent<NewHomeTabEvent>().Subscribe(NewHomeTab);
             _eventAggregator.GetEvent<RestoreHomeTabEvent>().Subscribe(RestoreHomeTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateHomeTab);
+            _eventAggregator.GetEvent<NewGettingStartedTabEvent>().Subscribe(NewGettingStartedTab);
+            _eventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Subscribe(RestoreGettingStartedTab);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateGettingStartedTab);
 
             State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
         }
@@ -47,7 +50,7 @@ namespace Bloom.Browser.HomeModule.Services
         /// </summary>
         public void NewHomeTab()
         {
-            var tab = CreateNewTab();
+            var tab = CreateNewHomeTab();
             var homeViewModel = new HomeViewModel(tab.Id);
             var homeView = new HomeView(homeViewModel);
             var homeTab = new ViewMenuTab(tab, homeView);
@@ -76,7 +79,7 @@ namespace Bloom.Browser.HomeModule.Services
             if (existingTab == null)
                 return;
 
-            var tab = CreateNewTab();
+            var tab = CreateNewHomeTab();
             var homeViewModel = new HomeViewModel(tab.Id);
             var homeView = new HomeView(homeViewModel);
             var homeTab = new ViewMenuTab(tab, homeView);
@@ -85,7 +88,51 @@ namespace Bloom.Browser.HomeModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(homeTab);
         }
 
-        private Tab CreateNewTab()
+        /// <summary>
+        /// Creates a getting started tab.
+        /// </summary>
+        public void NewGettingStartedTab(object nothing)
+        {
+            NewGettingStartedTab();
+        }
+
+        public void NewGettingStartedTab()
+        {
+            var tab = CreateNewGettingStartedTab();
+            var gettingStartedViewModel = new GettingStartedViewModel(tab.Id);
+            var gettingStartedView = new GettingStartedView(gettingStartedViewModel);
+            var gettingStartedTab = new ViewMenuTab(tab, gettingStartedView);
+
+            _tabs.Add(gettingStartedTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(gettingStartedTab);
+        }
+
+        public void RestoreGettingStartedTab(Tab tab)
+        {
+            var gettingStartedViewModel = new GettingStartedViewModel(tab.Id);
+            var gettingStartedView = new GettingStartedView(gettingStartedViewModel);
+            var gettingStartedTab = new ViewMenuTab(tab, gettingStartedView);
+
+            _tabs.Add(gettingStartedTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(gettingStartedTab);
+        }
+
+        public void DuplicateGettingStartedTab(Guid tabId)
+        {
+            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
+            if (existingTab == null)
+                return;
+
+            var tab = CreateNewGettingStartedTab();
+            var gettingStartedViewModel = new GettingStartedViewModel(tab.Id);
+            var gettingStartedView = new GettingStartedView(gettingStartedViewModel);
+            var gettingStartedTab = new ViewMenuTab(tab, gettingStartedView);
+
+            _tabs.Add(gettingStartedTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(gettingStartedTab);
+        }
+
+        private Tab CreateNewHomeTab()
         {
             return new Tab
             {
@@ -93,6 +140,18 @@ namespace Bloom.Browser.HomeModule.Services
                 Order = State.GetNextTabOrder(),
                 Type = TabType.Home,
                 Header = "Home",
+                Process = ProcessType.Browser
+            };
+        }
+
+        private Tab CreateNewGettingStartedTab()
+        {
+            return new Tab
+            {
+                Id = Guid.NewGuid(),
+                Order = State.GetNextTabOrder(),
+                Type = TabType.GettingStarted,
+                Header = "Getting Started",
                 Process = ProcessType.Browser
             };
         }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using Bloom.Common.ExtensionMethods;
 using Bloom.Domain.Models;
+using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
@@ -14,12 +15,25 @@ namespace Bloom.Browser.LibraryModule.WindowModels
 {
     public class NewLibraryWindowModel : BindableBase, IDataErrorInfo
     {
-        public NewLibraryWindowModel(IRegionManager regionManager)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewLibraryWindowModel" /> class.
+        /// </summary>
+        /// <param name="regionManager">The region manager.</param>
+        /// <param name="userService">The user service.</param>
+        public NewLibraryWindowModel(IRegionManager regionManager, IUserService userService)
         {
+            _userService = userService;
+            var potentialOwners = _userService.ListUsers();
             State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
-            PotentialOwners = new ObservableCollection<Person>();
+            if (State.User != null)
+                OwnerName = State.User.Name;
+
             FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+            PotentialOwners = new ObservableCollection<User>();
+            foreach (var potentialOwner in potentialOwners)
+                PotentialOwners.Add(potentialOwner);
         }
+        private readonly IUserService _userService;
 
         /// <summary>
         /// Gets the state.
@@ -69,7 +83,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private string _folderPath;
 
-        public ObservableCollection<Person> PotentialOwners { get; set; }
+        public ObservableCollection<User> PotentialOwners { get; set; }
 
         public ICommand BrowseFoldersCommand { get; set; }
 
@@ -79,8 +93,22 @@ namespace Bloom.Browser.LibraryModule.WindowModels
 
         public Person GetOwner()
         {
-            var libraryOwner = PotentialOwners.FirstOrDefault(owner => owner.Name.Equals(OwnerName, StringComparison.InvariantCultureIgnoreCase));
-            return libraryOwner ?? Person.Create(OwnerName);
+            Person owner;
+            var ownerUser = PotentialOwners.FirstOrDefault(user => user.Name.Equals(OwnerName, StringComparison.InvariantCultureIgnoreCase));
+            if (ownerUser == null)
+            {
+                owner = Person.Create(OwnerName);
+                ownerUser = User.Create(owner);
+                _userService.AddUser(ownerUser);
+            }
+            else
+                owner = ownerUser.AsPerson();
+
+            // If state user is null, set it to the owner.
+            if (State.User == null)
+                State.SetUser(ownerUser);
+
+            return owner;
         }
 
         public string this[string columnName]
@@ -91,27 +119,36 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                 if (IsLoading)
                     return null;
 
+                if (columnName == "FolderPath")
+                {
+                    if (string.IsNullOrEmpty(FolderPath))
+                        return "Folder path is required";
+                    if (!Directory.Exists(FolderPath))
+                        return "Specified folder does not exist";
+
+                    // This forces a re-evaluation of library name validation.
+                    LibraryName += " ";
+                    LibraryName = LibraryName.Trim();
+                }
                 if (columnName == "LibraryName")
                 {
                     if (string.IsNullOrEmpty(LibraryName))
                         return "Library name is required";
                     if (!LibraryName.IsValidFilename())
                         return "Library cannot contain the characters <, >, :, \", /, \\, |, ?, *";
+                    if (File.Exists(FolderPath + "\\" + LibraryName + Bloom.Common.Settings.LibraryFileExtension))
+                        return "A library named \"" + LibraryName + "\" already exists at this location";
                 }
                 if (columnName == "OwnerName")
                 {
                     if (string.IsNullOrEmpty(OwnerName))
                         return "Owner name is required";
                 }
-                if (columnName == "FolderPath")
-                {
-                    if (string.IsNullOrEmpty(FolderPath))
-                        return "Folder path is required";
-                    if (!Directory.Exists(FolderPath))
-                        return "Specified folder does not exist.";
-                }
 
-                IsValid = true;
+                IsValid = !string.IsNullOrEmpty(FolderPath) && 
+                          !string.IsNullOrEmpty(LibraryName) &&
+                          !string.IsNullOrEmpty(OwnerName);
+
                 return null;
             }
         }

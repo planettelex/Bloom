@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using Bloom.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
@@ -10,6 +12,31 @@ namespace Bloom.State.Domain.Models
     [Table(Name = "user")]
     public class User : BindableBase
     {
+        /// <summary>
+        /// Creates a new user instance from a person.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        public static User Create(Person person)
+        {
+            if (person == null)
+                return null;
+
+            var user = new User
+            {
+                PersonId = person.Id,
+                Name = person.Name,
+                Birthday = person.BornOn,
+                Twitter = person.Twitter,
+                LastLogin = DateTime.Now
+            };
+            if (person.Photos != null && person.Photos.Count > 0)
+            {
+                var profilePhoto = person.Photos[0];
+                user.ProfileImageUrl = profilePhoto.Photo != null ? profilePhoto.Photo.Url : null;
+            }
+            return user;
+        }
+        
         /// <summary>
         /// Gets or sets the user's person identifier.
         /// </summary>
@@ -45,5 +72,25 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "last_login")]
         public DateTime LastLogin { get; set; }
+
+        /// <summary>
+        /// Creates a new person from this user.
+        /// </summary>
+        public Person AsPerson()
+        {
+            var person = new Person
+            {
+                Id = PersonId,
+                Name = Name,
+                BornOn = Birthday,
+                Twitter = Twitter
+            };
+            if (!string.IsNullOrEmpty(ProfileImageUrl))
+            {
+                var photo = Photo.Create(ProfileImageUrl);
+                person.Photos = new List<PersonPhoto> { new PersonPhoto(person, photo) };
+            }
+            return person;
+        }
     }
 }

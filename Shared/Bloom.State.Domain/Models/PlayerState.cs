@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Data.Linq.Mapping;
 using Bloom.Common;
@@ -30,6 +31,12 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
         public new string ProcessName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's person identifier.
+        /// </summary>
+        [Column(Name = "person_id", IsPrimaryKey = true)]
+        public new Guid UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.

@@ -23,11 +23,6 @@ namespace Bloom.State.Domain.Models
         public List<LibraryConnection> Connections { get; set; }
 
         /// <summary>
-        /// Gets or sets the current user.
-        /// </summary>
-        public User CurrentUser { get; set; }
-
-        /// <summary>
         /// Gets or sets the name of the skin.
         /// </summary>
         public string SkinName { get; set; }
@@ -36,6 +31,16 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the state of the window.
         /// </summary>
         public WindowState WindowState { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's person identifier.
+        /// </summary>
+        public Guid UserId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user of this application state.
+        /// </summary>
+        public User User { get; set; }
 
         /// <summary>
         /// Gets the library connection data source.
