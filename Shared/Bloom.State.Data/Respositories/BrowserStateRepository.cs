@@ -27,12 +27,11 @@ namespace Bloom.State.Data.Respositories
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
         private readonly ITabRepository _tabRepository;
         private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
-        
 
         /// <summary>
         /// Determines whether the browser state exists.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="user">The user.</param>
         public bool BrowserStateExists(User user)
         {
             if (!_dataSource.IsConnected() || user == null)

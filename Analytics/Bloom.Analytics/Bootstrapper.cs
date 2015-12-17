@@ -88,6 +88,8 @@ namespace Bloom.Analytics
         /// </summary>
         protected void RegisterServices()
         {
+            Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IUserService>();
             Container.RegisterType<IAnalyticsStateService, AnalyticsStateService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IAnalyticsStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());

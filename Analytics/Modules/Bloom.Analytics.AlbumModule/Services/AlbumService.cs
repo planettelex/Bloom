@@ -29,7 +29,7 @@ namespace Bloom.Analytics.AlbumModule.Services
             _eventAggregator.GetEvent<NewAlbumTabEvent>().Subscribe(NewAlbumTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateAlbumTab);
 
-            State = (BrowserState)regionManager.Regions["DocumentRegion"].Context;
+            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
@@ -37,7 +37,7 @@ namespace Bloom.Analytics.AlbumModule.Services
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public AnalyticsState State { get; private set; }
 
         public void NewAlbumTab(Buid albumBuid)
         {

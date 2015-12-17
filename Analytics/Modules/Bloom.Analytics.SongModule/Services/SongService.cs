@@ -29,7 +29,7 @@ namespace Bloom.Analytics.SongModule.Services
             _eventAggregator.GetEvent<NewSongTabEvent>().Subscribe(NewSongTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSongTab);
 
-            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
+            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
@@ -37,7 +37,7 @@ namespace Bloom.Analytics.SongModule.Services
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public AnalyticsState State { get; private set; }
 
         public void NewSongTab(Buid songBuid)
         {

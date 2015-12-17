@@ -12,51 +12,55 @@ namespace Bloom.State.Data.Respositories
     public class AnalyticsStateRepository : IAnalyticsStateRepository
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AnalyticsStateRepository"/> class.
+        /// Initializes a new instance of the <see cref="AnalyticsStateRepository" /> class.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        public AnalyticsStateRepository(IDataSource dataSource)
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        /// <param name="tabRepository">The tab repository.</param>
+        public AnalyticsStateRepository(IDataSource dataSource, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository)
         {
             _dataSource = dataSource;
+            _libraryConnectionRepository = libraryConnectionRepository;
+            _tabRepository = tabRepository;
         }
         private readonly IDataSource _dataSource;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+        private readonly ITabRepository _tabRepository;
         private Table<AnalyticsState> AnalyticsStateTable { get { return _dataSource.Context.GetTable<AnalyticsState>(); } }
-        private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } } 
 
         /// <summary>
         /// Determines whether the analytics state exists.
         /// </summary>
-        /// <returns></returns>
-        public bool AnalyticsStateExists()
+        /// <param name="user">The user.</param>
+        public bool AnalyticsStateExists(User user)
         {
-            if (!_dataSource.IsConnected())
+            if (!_dataSource.IsConnected() || user == null)
                 return false;
 
-            return AnalyticsStateTable.Any();
+            return AnalyticsStateTable.Any(u => u.UserId == user.PersonId);
         }
 
         /// <summary>
         /// Gets the analytics state.
         /// </summary>
-        public AnalyticsState GetAnalyticsState()
+        public AnalyticsState GetAnalyticsState(User user)
         {
-            if (!_dataSource.IsConnected())
+            if (!_dataSource.IsConnected() || user == null)
                 return null;
 
             var stateQuery =
                 from state in AnalyticsStateTable
+                where state.UserId == user.PersonId
                 select state;
 
-            var analyticsState = stateQuery.ToList().SingleOrDefault();
-
-            var tabsQuery =
-                from tabs in TabTable
-                where tabs.Process == ProcessType.Analytics
-                orderby tabs.Order
-                select tabs;
+            var analyticsState = stateQuery.SingleOrDefault();
 
             if (analyticsState != null)
-                analyticsState.Tabs = tabsQuery.ToList();
+            {
+                analyticsState.User = user;
+                analyticsState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
+                analyticsState.Tabs = _tabRepository.ListTabs(ProcessType.Analytics, user.PersonId);
+            }
 
             return analyticsState;
         }
@@ -67,7 +71,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="analyticsState">State of the analytics.</param>
         public void AddAnalyticsState(AnalyticsState analyticsState)
         {
-            if (!_dataSource.IsConnected() || AnalyticsStateExists())
+            if (!_dataSource.IsConnected() || analyticsState == null || AnalyticsStateExists(analyticsState.User))
                 return;
 
             AnalyticsStateTable.InsertOnSubmit(analyticsState);

@@ -9,6 +9,7 @@ using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
+using Telerik.Windows;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;
 
@@ -24,14 +25,18 @@ namespace Bloom.Analytics
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="userService">The user service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IAnalyticsStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, IAnalyticsStateService stateService)
         {
             InitializeComponent();
+            _loading = true;
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _stateService = stateService;
-            var state = _stateService.InitializeState();
+            _stateService.ConnectDataSource();
+            var user = userService.InitializeUser();
+            var state = _stateService.InitializeState(user);
             DataContext = state;
             
             // Don't open in a minimized state.
@@ -49,9 +54,23 @@ namespace Bloom.Analytics
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IAnalyticsStateService _stateService;
         private readonly IEventAggregator _eventAggregator;
-        private AnalyticsState State { get { return (AnalyticsState)DataContext; } }
+        private bool _loading;
+        private AnalyticsState State { get { return (AnalyticsState) DataContext; } }
 
         #region Window Events
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Window.ContentRendered" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+            _stateService.RestoreTabs();
+            _loading = false;
+            if (_tabs.ContainsKey(State.SelectedTabId))
+                Dock.ActivePane = _tabs[State.SelectedTabId];
+        }
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Activated" /> event.
@@ -60,8 +79,8 @@ namespace Bloom.Analytics
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-
             // TODO: Check state database for new messages.
+            _loading = false; // This is here only to avoid a ReSharper warning.
         }
 
         /// <summary>
@@ -93,13 +112,19 @@ namespace Bloom.Analytics
                 Content = tabControl.Content
             };
 
+            tabControl.Tab.UserId = State.UserId;
+            _stateService.AddTab(tabControl.Tab);
+            if (!_loading)
+                State.SelectedTabId = tabControl.Id;
+
             _tabs.Add(tabControl.Id, newPane);
             PaneGroup.Items.Add(newPane);
-            State.SelectedTabId = tabControl.Id;
         }
 
         private void CloseOtherTabs(object nothing)
         {
+            _stateService.RemoveAllTabsExcept(State.SelectedTabId);
+
             var selectedTab = GetSelectedTab();
             foreach (var tab in _tabs.Values)
             {
@@ -110,10 +135,75 @@ namespace Bloom.Analytics
 
         private void CloseAllTabs(object nothing)
         {
+            _stateService.RemoveAllTabs();
+
             foreach (var tab in _tabs.Values)
-            {
                 tab.IsHidden = true;
+        }
+
+        private void ActivePaneChanged(object sender, ActivePangeChangedEventArgs e)
+        {
+            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
+            {
+                State.SelectedTabId = valuePair.Key;
+                break;
             }
+        }
+
+        private void OnClose(object sender, StateChangeEventArgs e)
+        {
+            var closingTab = e.Panes.SingleOrDefault();
+
+            foreach (var valuePair in _tabs)
+            {
+                var match = Equals(valuePair.Value, closingTab);
+                if (match)
+                    _stateService.RemoveTab(valuePair.Key);
+            }
+        }
+
+        private void PaneStateChanged(object sender, RadRoutedEventArgs e)
+        {
+            if (_loading)
+                return;
+
+            var order = 1;
+            foreach (RadPane pane in PaneGroup.Items)
+            {
+                UpdateTabOrder(pane, order);
+                order++;
+            }
+            foreach (var pane in Dock.Panes.Where(pane => !PaneGroup.Items.Contains(pane)))
+            {
+                UpdateTabOrder(pane, order);
+                order++;
+            }
+        }
+
+        private void UpdateTabOrder(RadPane pane, int order)
+        {
+            var tabId = _tabs.SingleOrDefault(valuePair => Equals(valuePair.Value, pane)).Key;
+            var tab = State.Tabs.SingleOrDefault(t => t.Id == tabId);
+            if (tab == null)
+                return;
+
+            tab.Order = order;
+        }
+
+        private RadPane GetSelectedTab()
+        {
+            RadPane selectedTab = null;
+            foreach (RadPane tab in PaneGroup.Items)
+            {
+                if (tab.IsSelected)
+                    selectedTab = tab;
+            }
+            return selectedTab;
+        }
+
+        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            State.ResetSidebarWidth();
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
@@ -134,46 +224,6 @@ namespace Bloom.Analytics
                 e.Compass.IsBottomIndicatorVisible = false;
                 e.Compass.IsCenterIndicatorVisible = true;
             }
-        }
-
-        private void ActivePaneChanged(object sender, ActivePangeChangedEventArgs e)
-        {
-            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
-            {
-                State.SelectedTabId = valuePair.Key;
-                break;
-            }
-        }
-
-        private void OnClose(object sender, StateChangeEventArgs e)
-        {
-            var selectedTab = GetSelectedTab();
-            if (selectedTab == null)
-            {
-                State.SelectedTabId = Guid.Empty;
-                return;
-            }
-
-            foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, selectedTab)))
-            {
-                State.SelectedTabId = valuePair.Key;
-            }
-        }
-
-        private RadPane GetSelectedTab()
-        {
-            RadPane selectedTab = null;
-            foreach (RadPane tab in PaneGroup.Items)
-            {
-                if (tab.IsSelected)
-                    selectedTab = tab;
-            }
-            return selectedTab;
-        }
-
-        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            State.ResetSidebarWidth();
         }
 
         #endregion

@@ -30,7 +30,7 @@ namespace Bloom.Analytics.PersonModule.Services
             _eventAggregator.GetEvent<NewPersonTabEvent>().Subscribe(NewPersonTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePersonTab);
 
-            State = (BrowserState)regionManager.Regions["DocumentRegion"].Context;
+            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
@@ -38,7 +38,7 @@ namespace Bloom.Analytics.PersonModule.Services
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public AnalyticsState State { get; private set; }
 
         public void NewPersonTab(Buid personBuid)
         {

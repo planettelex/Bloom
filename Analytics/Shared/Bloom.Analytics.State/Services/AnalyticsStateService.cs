@@ -1,66 +1,59 @@
 ﻿using System;
-using System.IO;
 using Bloom.Data.Interfaces;
+using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
+using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Analytics.State.Services
 {
     /// <summary>
     /// Service for managing the analytics application state.
     /// </summary>
-    public class AnalyticsStateService : IAnalyticsStateService
+    public class AnalyticsStateService : TabbedStateBaseService, IAnalyticsStateService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AnalyticsStateService"/> class.
+        /// Initializes a new instance of the <see cref="AnalyticsStateService" /> class.
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
         /// <param name="analyticsStateRepository">The analytics state repository.</param>
-        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository)
+        /// <param name="tabRepository">The tab repository.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
         {
-            _stateDataSource = stateDataSource;
+            EventAggregator = eventAggregator;
+            StateDataSource = stateDataSource;
+            TabRepository = tabRepository;
             _analyticsStateRepository = analyticsStateRepository;
         }
-        private readonly IDataSource _stateDataSource;
         private readonly IAnalyticsStateRepository _analyticsStateRepository;
 
         /// <summary>
         /// Initializes the analytics application state.
         /// </summary>
-        /// <returns>
-        /// The analytics application state.
-        /// </returns>
         /// <exception cref="System.InvalidOperationException">The file path to the state database file has not been specified.</exception>
-        public AnalyticsState InitializeState()
+        public AnalyticsState InitializeState(User user)
         {
-            if (string.IsNullOrEmpty(_stateDataSource.FilePath))
-                throw new InvalidOperationException("The file path to the state database file has not been specified.");
+            State = _analyticsStateRepository.GetAnalyticsState(user) ?? AddNewState(user);
 
-            if (File.Exists(_stateDataSource.FilePath))
-            {
-                _stateDataSource.Connect();
-                return _analyticsStateRepository.GetAnalyticsState() ?? AddNewAnalyticsState();
-            }
-            else
-            {
-                _stateDataSource.Create();
-                return AddNewAnalyticsState();
-            }
+            if (State.User == null)
+                return (AnalyticsState) State;
+
+            State.User.LastLogin = DateTime.Now;
+            if (State.Connections == null || State.Connections.Count <= 0)
+                return (AnalyticsState) State;
+
+            foreach (var libraryConnection in State.Connections)
+                libraryConnection.Connect(State.User);
+
+            return (AnalyticsState) State;
         }
 
-        /// <summary>
-        /// Saves the analytics application state.
-        /// </summary>
-        public void SaveState()
-        {
-            _stateDataSource.Save();
-        }
-
-        private AnalyticsState AddNewAnalyticsState()
+        private AnalyticsState AddNewState(User user)
         {
             var analyticsState = new AnalyticsState();
+            analyticsState.SetUser(user);
             _analyticsStateRepository.AddAnalyticsState(analyticsState);
-            _stateDataSource.Save();
             return analyticsState;
         }
     }

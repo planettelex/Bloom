@@ -29,7 +29,7 @@ namespace Bloom.Analytics.PlaylistModule.Services
             _eventAggregator.GetEvent<NewPlaylistTabEvent>().Subscribe(NewPlaylistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePlaylistTab);
 
-            State = (BrowserState)regionManager.Regions["DocumentRegion"].Context;
+            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly List<ViewMenuTab> _tabs;
@@ -37,7 +37,7 @@ namespace Bloom.Analytics.PlaylistModule.Services
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public AnalyticsState State { get; private set; }
 
         public void NewPlaylistTab(Buid playlistBuid)
         {

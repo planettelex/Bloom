@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Bloom.State.Domain.Models
@@ -7,18 +6,8 @@ namespace Bloom.State.Domain.Models
     /// <summary>
     /// Application state for tabbed applications.
     /// </summary>
-    public class TabbedApplicationState : ApplicationState
+    public abstract class TabbedApplicationState : ApplicationState
     {
-        /// <summary>
-        /// Gets or sets the width of the sidebar.
-        /// </summary>
-        public int SidebarWidth { get; set; }
-
-        /// <summary>
-        /// Gets or sets the selected tab identifier.
-        /// </summary>
-        public Guid SelectedTabId { get; set; }
-
         /// <summary>
         /// Gets or sets the tabs.
         /// </summary>
@@ -50,12 +39,14 @@ namespace Bloom.State.Domain.Models
                 Tabs[i].Order = i + 1;
         }
 
-        /// <summary>
-        /// Resets the width of the sidebar to the default value.
-        /// </summary>
-        public void ResetSidebarWidth()
+        public override void SetUser(User user)
         {
-            SidebarWidth = Properties.Settings.Default.SidebarWidth;
+            base.SetUser(user);
+            if (Tabs == null || Tabs.Count <= 0)
+                return;
+
+            foreach (var tab in Tabs)
+                tab.UserId = user.PersonId;
         }
     }
 }

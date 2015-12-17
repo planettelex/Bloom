@@ -27,35 +27,23 @@ namespace Bloom.State.Domain.Models
             SelectedTabId = Guid.Empty;
         }
 
-        /// <summary>
-        /// Gets or sets the name of the process.
-        /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
-        public new string ProcessName { get; set; }
+        public string ProcessName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the user's person identifier.
-        /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]
-        public new Guid UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the skin.
-        /// </summary>
         [Column(Name = "skin_name")]
-        public new string SkinName { get; set; }
+        public string SkinName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the state of the window.
-        /// </summary>
         [Column(Name = "window_state")]
-        public new WindowState WindowState { get; set; }
+        public WindowState WindowState { get; set; }
 
-        /// <summary>
-        /// Gets or sets the width of the sidebar column.
-        /// </summary>
+        [Column(Name = "selected_tab_id")]
+        public Guid SelectedTabId { get; set; }
+
         [Column(Name = "sidebar_width")]
-        public new int SidebarWidth
+        public int SidebarWidth
         {
             get { return _sidebarWidth; }
             set { SetProperty(ref _sidebarWidth, value); }
@@ -63,35 +51,17 @@ namespace Bloom.State.Domain.Models
         private int _sidebarWidth;
 
         /// <summary>
-        /// Gets or sets the selected tab identifier.
-        /// </summary>
-        [Column(Name = "selected_tab_id")]
-        public new Guid SelectedTabId { get; set; }
-
-        /// <summary>
         /// Resets the width of the sidebar to the default value.
         /// </summary>
-        public new void ResetSidebarWidth()
+        public void ResetSidebarWidth()
         {
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
         }
 
-        /// <summary>
-        /// Sets the user.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        public void SetUser(User user)
+        public override void SetUser(User user)
         {
-            if (user == null)
-                return;
-
-            User = user;
+            base.SetUser(user);
             UserId = user.PersonId;
-            if (Tabs == null || Tabs.Count <= 0) 
-                return;
-            
-            foreach (var tab in Tabs)
-                tab.UserId = UserId;
         }
     }
 }

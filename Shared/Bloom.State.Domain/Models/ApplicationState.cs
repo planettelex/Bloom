@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Windows;
 using Bloom.Data;
@@ -10,37 +11,25 @@ namespace Bloom.State.Domain.Models
     /// <summary>
     /// Application state.
     /// </summary>
-    public class ApplicationState : BindableBase
+    public abstract class ApplicationState : BindableBase
     {
         /// <summary>
-        /// Gets or sets the name of the process.
+        /// Gets or sets the user of this application state.
         /// </summary>
-        public string ProcessName { get; set; }
+        public User User { get; set; }
 
         /// <summary>
         /// Gets or sets the library connections.
         /// </summary>
         public List<LibraryConnection> Connections { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the skin.
-        /// </summary>
-        public string SkinName { get; set; }
+        public virtual void SetUser(User user)
+        {
+            if (user == null)
+                return;
 
-        /// <summary>
-        /// Gets or sets the state of the window.
-        /// </summary>
-        public WindowState WindowState { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user's person identifier.
-        /// </summary>
-        public Guid UserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user of this application state.
-        /// </summary>
-        public User User { get; set; }
+            User = user;
+        }
 
         /// <summary>
         /// Gets the library connection data source.

@@ -66,8 +66,8 @@ namespace Bloom.Browser
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
-            _loading = false;
             _stateService.RestoreTabs();
+            _loading = false;
             if (_tabs.ContainsKey(State.SelectedTabId))
                 Dock.ActivePane = _tabs[State.SelectedTabId];
         }
@@ -79,9 +79,8 @@ namespace Bloom.Browser
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-
             // TODO: Check state database for new messages.
-            var shutUpResharper = "Stubbed Method";
+            _loading = false; // This is here only to avoid a ReSharper warning.
         }
 
         /// <summary>
@@ -113,6 +112,7 @@ namespace Bloom.Browser
                 Content = tabControl.Content
             };
 
+            tabControl.Tab.UserId = State.UserId;
             _stateService.AddTab(tabControl.Tab);
             if (!_loading)
                 State.SelectedTabId = tabControl.Id;
@@ -227,7 +227,5 @@ namespace Bloom.Browser
         }
 
         #endregion
-
-        
     }
 }
