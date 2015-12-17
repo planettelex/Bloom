@@ -45,11 +45,16 @@ namespace Bloom.Analytics
 
             WindowState = state.WindowState;
             TitleBar.SetButtonVisibilties();
+            SidebarPane.IsHidden = !state.SidebarVisible;
             skinningService.SetSkin(state.SkinName);
 
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
+            eventAggregator.GetEvent<HideSidebarEvent>().Subscribe(HideSidebar);
+            eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
+            eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
+            eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IAnalyticsStateService _stateService;
@@ -201,11 +206,6 @@ namespace Bloom.Analytics
             return selectedTab;
         }
 
-        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            State.ResetSidebarWidth();
-        }
-
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
         {
             if (e.TargetGroup != null && e.TargetGroup.Name == "Sidebar")
@@ -224,6 +224,34 @@ namespace Bloom.Analytics
                 e.Compass.IsBottomIndicatorVisible = false;
                 e.Compass.IsCenterIndicatorVisible = true;
             }
+        }
+
+        #endregion
+
+        #region Sidebar Events
+
+        private void OnSidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            State.ResetSidebarWidth();
+        }
+
+        private void ShowSidebar(object nothing)
+        {
+            State.SidebarVisible = true;
+            SidebarPane.IsHidden = false;
+        }
+
+        private void HideSidebar(object nothing)
+        {
+            State.SidebarVisible = false;
+            SidebarPane.IsHidden = true;
+        }
+
+        public void CheckConnections(Guid unused)
+        {
+            var hasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+            if (!hasConnections)
+                HideSidebar(null);
         }
 
         #endregion

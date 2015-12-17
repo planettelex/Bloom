@@ -31,7 +31,7 @@
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="View">
                 <telerik:RadMenuItem Header="Full Screen" />
-                <telerik:RadMenuItem Header="Hide Sidebar" />
+                <telerik:RadMenuItem Header="{Binding Path=ToggleSidebarVisibilityOption}" Command="{Binding Path=ToggleSidebarVisibilityCommand}" IsEnabled="{Binding Path=HasConnections}" />
                 <telerik:RadMenuItem Header="Configure Sidebar..." />
                 <telerik:RadMenuItem x:Name="Skins" Header="Skins">
                     <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
