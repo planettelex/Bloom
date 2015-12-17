@@ -105,4 +105,14 @@ namespace Bloom.PubSubEvents
     /// Close all tabs except the currently active tab.
     /// </summary>
     public class CloseOtherTabsEvent : PubSubEvent<object> { }
+
+    /// <summary>
+    /// Makes the sidebar visible.
+    /// </summary>
+    public class ShowSidebarEvent : PubSubEvent<object> { }
+
+    /// <summary>
+    /// Makes the sidebar hidden.
+    /// </summary>
+    public class HideSidebarEvent : PubSubEvent<object> { }
 }

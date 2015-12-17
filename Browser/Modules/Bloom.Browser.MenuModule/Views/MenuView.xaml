@@ -11,9 +11,9 @@
         <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
             <telerik:RadMenuItem Header="File">
                 <telerik:RadMenuItem Header="New Library..." Command="{Binding Path=CreateNewLibraryCommand}" />
-                <telerik:RadMenuItem Header="Add Music..." />
                 <telerik:RadMenuItem Header="Connected Libraries..." />
-                <telerik:RadMenuItem Header="Library Operations..." />
+                <telerik:RadMenuItem Header="Add Music..." IsEnabled="{Binding Path=HasConnections}" />
+                <telerik:RadMenuItem Header="Library Operations..." IsEnabled="{Binding Path=HasConnections}" />
                 <telerik:RadMenuItem Header="Exit Browser" Command="{Binding Path=ExitApplicationCommand}" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Edit">
@@ -38,7 +38,7 @@
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="View">
                 <telerik:RadMenuItem Header="Full Screen" />
-                <telerik:RadMenuItem Header="Hide Sidebar" />
+                <telerik:RadMenuItem Header="{Binding Path=ToggleSidebarVisibilityOption}" Command="{Binding Path=ToggleSidebarVisibilityCommand}" IsEnabled="{Binding Path=HasConnections}" />
                 <telerik:RadMenuItem Header="Configure Sidebar..." />
                 <telerik:RadMenuItem x:Name="Skins" Header="Skins">
                     <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />

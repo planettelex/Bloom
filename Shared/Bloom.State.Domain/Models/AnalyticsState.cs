@@ -42,6 +42,9 @@ namespace Bloom.State.Domain.Models
         [Column(Name = "selected_tab_id")]
         public Guid SelectedTabId { get; set; }
 
+        [Column(Name = "sidebar_visible")]
+        public bool SidebarVisible { get; set; }
+
         [Column(Name = "sidebar_width")]
         public int SidebarWidth
         {

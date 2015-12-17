@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Bloom.Browser.PubSubEvents;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
@@ -13,7 +15,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
     /// <summary>
     /// View model for MenuView.xaml.
     /// </summary>
-    public class MenuViewModel
+    public class MenuViewModel : BindableBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuViewModel" /> class.
@@ -24,11 +26,15 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// <param name="eventAggregator">The event aggregator.</param>
         public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
-            State = (BrowserState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
+            State = (BrowserState) regionManager.Regions["MenuRegion"].Context;
+            CheckConnections(null);
 
+            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            
             // File Menu
             CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
@@ -41,6 +47,8 @@ namespace Bloom.Browser.MenuModule.ViewModels
             // Analytics Menu
             GoToAnalyticsCommand = new DelegateCommand<object>(GoToAnalytics, CanGoToAnalytics);
             // View Menu
+            SetToggleSidebarVisibilityOption(State.SidebarVisible);
+            ToggleSidebarVisibilityCommand = new DelegateCommand<object>(ToggleSidebarVisibility, CanToggleSidebarVisibility);
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
         }
         private readonly ISkinningService _skinningService;
@@ -51,6 +59,29 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
+
+        public bool HasConnections
+        {
+            get { return _hasConnections; }
+            set { SetProperty(ref _hasConnections, value); }
+        }
+        private bool _hasConnections;
+
+        public void CheckConnections(object unused)
+        {
+            HasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+            if (!HasConnections)
+            {
+                SetToggleSidebarVisibilityOption(false);
+                _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
+            }   
+        }
+
+        public void CheckConnections(Guid unused)
+        {
+            CheckConnections(null);
+        }
+
 
         #region File Menu
 
@@ -174,6 +205,37 @@ namespace Bloom.Browser.MenuModule.ViewModels
         #endregion
 
         #region View Menu
+
+        public string ToggleSidebarVisibilityOption
+        {
+            get { return _toggleSidebarVisibilityOption; }
+            set { SetProperty(ref _toggleSidebarVisibilityOption, value); }
+        }
+        private string _toggleSidebarVisibilityOption;
+
+        private void SetToggleSidebarVisibilityOption(bool isVisible)
+        {
+            if (isVisible)
+                ToggleSidebarVisibilityOption = "Hide Sidebar";
+            else
+                ToggleSidebarVisibilityOption = "Show Sidebar";
+        }
+
+        public ICommand ToggleSidebarVisibilityCommand { get; set; }
+
+        private bool CanToggleSidebarVisibility(object nothing)
+        {
+            return true;
+        }
+
+        private void ToggleSidebarVisibility(object nothing)
+        {
+            SetToggleSidebarVisibilityOption(!State.SidebarVisible);
+            if (State.SidebarVisible)
+                _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
+            else
+                _eventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
+        }
 
         /// <summary>
         /// Gets or sets the set skin command.

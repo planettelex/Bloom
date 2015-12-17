@@ -392,7 +392,7 @@
     </Style>
 
     <Style x:Key="TabbedPanesStyle" TargetType="{x:Type telerik:RadSplitContainer}">
-        <Setter Property="Margin" Value="0 2 5 5" />
+        <Setter Property="Margin" Value="5 2 5 5" />
     </Style>
 
     <Style TargetType="{x:Type telerikDocking:RadPaneGroup}">
@@ -2326,7 +2326,7 @@
     <Style x:Key="SidebarStyle" TargetType="{x:Type telerik:RadPaneGroup}">
         <Setter Property="Background" Value="{DynamicResource SidebarBackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Margin" Value="5 0 2 5"></Setter>
+        <Setter Property="Margin" Value="5 0 -3 5"></Setter>
     </Style>
 
     <Style TargetType="{x:Type telerikDocking:RadPane}">

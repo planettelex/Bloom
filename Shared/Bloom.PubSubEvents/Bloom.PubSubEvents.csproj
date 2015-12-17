@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellEvents.cs" />
+    <Compile Include="StateEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

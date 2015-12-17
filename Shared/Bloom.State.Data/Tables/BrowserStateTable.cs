@@ -19,6 +19,7 @@ namespace Bloom.State.Data.Tables
                        "\"person_id\" VARCHAR(36) NOT NULL , " +
                        "\"skin_name\" VARCHAR NOT NULL , " +
                        "\"window_state\" INTEGER NOT NULL , " +
+                       "\"sidebar_visible\" BOOL NOT NULL DEFAULT FALSE , " +
                        "\"sidebar_width\" INTEGER NOT NULL , " +
                        "\"selected_tab_id\" VARCHAR(36) NOT NULL , " +
                        "PRIMARY KEY (process_name, person_id))";
