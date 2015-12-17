@@ -80,7 +80,7 @@ namespace Bloom.Browser
         {
             base.OnActivated(e);
             // TODO: Check state database for new messages.
-            _loading = false; // This is here only to avoid a ReSharper warning.
+            State.WindowState = WindowState; // This is here only to avoid a ReSharper warning.
         }
 
         /// <summary>

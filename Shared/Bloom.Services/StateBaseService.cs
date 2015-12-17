@@ -9,7 +9,7 @@ namespace Bloom.Services
     {
         protected IDataSource StateDataSource { get; set; }
 
-        protected virtual ApplicationState State { get; set; }
+        protected ApplicationState State { get; set; }
 
         /// <summary>
         /// Connects the data source.

@@ -27,6 +27,7 @@ namespace Bloom.Analytics.PlaylistModule.Services
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewPlaylistTabEvent>().Subscribe(NewPlaylistTab);
+            _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Subscribe(RestorePlaylistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePlaylistTab);
 
             State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;

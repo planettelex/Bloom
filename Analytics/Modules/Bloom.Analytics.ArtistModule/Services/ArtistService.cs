@@ -28,6 +28,7 @@ namespace Bloom.Analytics.ArtistModule.Services
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewArtistTabEvent>().Subscribe(NewArtistTab);
+            _eventAggregator.GetEvent<RestoreArtistTabEvent>().Subscribe(RestoreArtistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateArtistTab);
 
             State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;

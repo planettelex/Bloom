@@ -61,7 +61,7 @@ namespace Bloom.State.Domain.Models
         public override void SetUser(User user)
         {
             base.SetUser(user);
-            UserId = user.PersonId;
+            UserId = user != null ? user.PersonId : Guid.Empty;
         }
     }
 }

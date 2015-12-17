@@ -28,6 +28,7 @@ namespace Bloom.Analytics.PersonModule.Services
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewPersonTabEvent>().Subscribe(NewPersonTab);
+            _eventAggregator.GetEvent<RestorePersonTabEvent>().Subscribe(RestorePersonTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePersonTab);
 
             State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
