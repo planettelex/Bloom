@@ -1,5 +1,4 @@
-﻿using System;
-using Bloom.State.Domain.Models;
+﻿using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
 {

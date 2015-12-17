@@ -17,13 +17,16 @@ namespace Bloom.Player
         /// Initializes a new instance of the <see cref="Shell" /> class.
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
+        /// <param name="userService">The user service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IPlayerStateService stateService)
+        public Shell(ISkinningService skinningService, IUserService userService, IPlayerStateService stateService)
         {
             InitializeComponent();
             _gridLengthConverter = new GridLengthConverter();
             _stateService = stateService;
-            var state = _stateService.InitializeState();
+            _stateService.ConnectDataSource();
+            var user = userService.InitializeUser();
+            var state = _stateService.InitializeState(user);
             DataContext = state;
 
             // Don't open in a minimized state.
@@ -32,9 +35,9 @@ namespace Bloom.Player
 
             WindowState = state.WindowState;
             TitleBar.SetButtonVisibilties();
+            skinningService.SetSkin(state.SkinName);
             SetRecentColumnWidth();
             SetUpcomingColumnWidth();
-            skinningService.SetSkin(state.SkinName);
         }
         private readonly IPlayerStateService _stateService;
         private readonly GridLengthConverter _gridLengthConverter;
@@ -51,6 +54,7 @@ namespace Bloom.Player
             base.OnActivated(e);
 
             // TODO: Check state database for new messages.
+            WindowState = WindowState; // This is here only to avoid a ReSharper warning.
         }
 
         /// <summary>

@@ -82,6 +82,8 @@ namespace Bloom.Player
         /// </summary>
         protected void RegisterServices()
         {
+            Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IUserService>();
             Container.RegisterType<IPlayerStateService, PlayerStateService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IPlayerStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());

@@ -8,10 +8,15 @@ namespace Bloom.Player.State.Services
     public interface IPlayerStateService
     {
         /// <summary>
+        /// Connects the data source.
+        /// </summary>
+        void ConnectDataSource();
+
+        /// <summary>
         /// Initializes the player application state.
         /// </summary>
         /// <returns>The player application state.</returns>
-        PlayerState InitializeState();
+        PlayerState InitializeState(User user);
 
         /// <summary>
         /// Saves the state.

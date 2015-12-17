@@ -30,25 +30,25 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the name of the process.
         /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
-        public new string ProcessName { get; set; }
+        public string ProcessName { get; set; }
 
         /// <summary>
         /// Gets or sets the user's person identifier.
         /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]
-        public new Guid UserId { get; set; }
+        public Guid UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the skin.
         /// </summary>
         [Column(Name = "skin_name")]
-        public new string SkinName { get; set; }
+        public string SkinName { get; set; }
 
         /// <summary>
         /// Gets or sets the state of the window.
         /// </summary>
         [Column(Name = "window_state")]
-        public new WindowState WindowState { get; set; }
+        public WindowState WindowState { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the recent column.
@@ -86,6 +86,12 @@ namespace Bloom.State.Domain.Models
         public void ResetUpcomingWidth()
         {
             UpcomingWidth = Properties.Settings.Default.SidebarWidth;
+        }
+
+        public override void SetUser(User user)
+        {
+            base.SetUser(user);
+            UserId = user.PersonId;
         }
     }
 }

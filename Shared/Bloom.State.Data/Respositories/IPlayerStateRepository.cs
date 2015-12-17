@@ -11,12 +11,12 @@ namespace Bloom.State.Data.Respositories
         /// Determines whether the player state exists.
         /// </summary>
         /// <returns></returns>
-        bool PlayerStateExists();
+        bool PlayerStateExists(User user);
 
         /// <summary>
         /// Gets the state of the player.
         /// </summary>
-        PlayerState GetPlayerState();
+        PlayerState GetPlayerState(User user);
 
         /// <summary>
         /// Adds the state of the player.

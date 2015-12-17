@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Linq.Mapping;
 using System.Linq;
-using System.Windows;
 using Bloom.Data;
 using Microsoft.Practices.Prism.Mvvm;
 

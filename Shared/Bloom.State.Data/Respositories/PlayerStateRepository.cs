@@ -25,28 +25,34 @@ namespace Bloom.State.Data.Respositories
         /// Determines whether the player state exists.
         /// </summary>
         /// <returns></returns>
-        public bool PlayerStateExists()
+        public bool PlayerStateExists(User user)
         {
-            if (!_dataSource.IsConnected())
+            if (!_dataSource.IsConnected() || user == null)
                 return false;
 
-            return PlayerStateTable.Any();
+            return PlayerStateTable.Any(u => u.UserId == user.PersonId);
         }
 
         /// <summary>
         /// Gets the state of the player.
         /// </summary>
         /// <returns></returns>
-        public PlayerState GetPlayerState()
+        public PlayerState GetPlayerState(User user)
         {
-            if (!_dataSource.IsConnected())
+            if (!_dataSource.IsConnected() || user == null)
                 return null;
 
-            var query =
-                from analyticsState in PlayerStateTable
-                select analyticsState;
+            var stateQuery =
+                from state in PlayerStateTable
+                where state.UserId == user.PersonId
+                select state;
 
-            return query.ToList().SingleOrDefault();
+            var playerState = stateQuery.SingleOrDefault();
+
+            if (playerState != null)
+                playerState.User = user;
+
+            return playerState;
         }
 
         /// <summary>
@@ -55,7 +61,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="playerState">State of the player.</param>
         public void AddPlayerState(PlayerState playerState)
         {
-            if (!_dataSource.IsConnected() || PlayerStateExists())
+            if (!_dataSource.IsConnected() || playerState == null || PlayerStateExists(playerState.User))
                 return;
 
             PlayerStateTable.InsertOnSubmit(playerState);

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using Bloom.Data.Interfaces;
+using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
 
@@ -9,7 +9,7 @@ namespace Bloom.Player.State.Services
     /// <summary>
     /// Service for managing the player application state.
     /// </summary>
-    public class PlayerStateService : IPlayerStateService
+    public class PlayerStateService : StateBaseService, IPlayerStateService
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerStateService"/> class.
@@ -18,49 +18,37 @@ namespace Bloom.Player.State.Services
         /// <param name="playerStateRepository">The player state repository.</param>
         public PlayerStateService(IDataSource stateDataSource, IPlayerStateRepository playerStateRepository)
         {
-            _stateDataSource = stateDataSource;
+            StateDataSource = stateDataSource;
             _playerStateRepository = playerStateRepository;
         }
-        private readonly IDataSource _stateDataSource;
         private readonly IPlayerStateRepository _playerStateRepository;
 
         /// <summary>
         /// Initializes the player application state.
         /// </summary>
-        /// <returns>
-        /// The player application state.
-        /// </returns>
         /// <exception cref="System.InvalidOperationException">The file path to the state database file has not been specified.</exception>
-        public PlayerState InitializeState()
+        public PlayerState InitializeState(User user)
         {
-            if (string.IsNullOrEmpty(_stateDataSource.FilePath))
-                throw new InvalidOperationException("The file path to the state database file has not been specified.");
+            State = _playerStateRepository.GetPlayerState(user) ?? AddNewState(user);
 
-            if (File.Exists(_stateDataSource.FilePath))
-            {
-                _stateDataSource.Connect();
-                return _playerStateRepository.GetPlayerState() ?? AddNewPlayerState();
-            }
-            else
-            {
-                _stateDataSource.Create();
-                return AddNewPlayerState();
-            }
+            if (State.User == null)
+                return (PlayerState) State;
+
+            State.User.LastLogin = DateTime.Now;
+            if (State.Connections == null || State.Connections.Count <= 0)
+                return (PlayerState) State;
+
+            foreach (var libraryConnection in State.Connections)
+                libraryConnection.Connect(State.User);
+
+            return (PlayerState) State;
         }
 
-        /// <summary>
-        /// Saves the player application state.
-        /// </summary>
-        public void SaveState()
-        {
-            _stateDataSource.Save();
-        }
-
-        private PlayerState AddNewPlayerState()
+        private PlayerState AddNewState(User user)
         {
             var playerState = new PlayerState();
+            playerState.SetUser(user);
             _playerStateRepository.AddPlayerState(playerState);
-            _stateDataSource.Save();
             return playerState;
         }
     }
