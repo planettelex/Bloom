@@ -17,16 +17,19 @@ namespace Bloom.Browser.State.Services
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
         /// <param name="browserStateRepository">The browser state repository.</param>
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
+        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
             TabRepository = tabRepository;
+            _libraryConnectionRepository = libraryConnectionRepository;
             _browserStateRepository = browserStateRepository;
         }
         private readonly IBrowserStateRepository _browserStateRepository;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>
         /// Initializes the browser application state.
@@ -53,6 +56,7 @@ namespace Bloom.Browser.State.Services
         {
             var browserState = new BrowserState();
             browserState.SetUser(user);
+            browserState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
             _browserStateRepository.AddBrowserState(browserState);
             return browserState;
         }

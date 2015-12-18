@@ -119,7 +119,7 @@ namespace Bloom.Analytics
 
             tabControl.Tab.UserId = State.UserId;
             _stateService.AddTab(tabControl.Tab);
-            if (!_loading)
+            if (!_loading || State.SelectedTabId == Guid.Empty)
                 State.SelectedTabId = tabControl.Id;
 
             _tabs.Add(tabControl.Id, newPane);

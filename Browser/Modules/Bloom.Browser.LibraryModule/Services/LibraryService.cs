@@ -98,7 +98,7 @@ namespace Bloom.Browser.LibraryModule.Services
             State.Connections.Add(libraryConnection);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
             _stateService.SaveState();
-            _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(null);
+            _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
         }
 
         /// <summary>

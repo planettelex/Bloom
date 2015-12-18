@@ -17,16 +17,19 @@ namespace Bloom.Analytics.State.Services
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
         /// <param name="analyticsStateRepository">The analytics state repository.</param>
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
+        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
             TabRepository = tabRepository;
+            _libraryConnectionRepository = libraryConnectionRepository;
             _analyticsStateRepository = analyticsStateRepository;
         }
         private readonly IAnalyticsStateRepository _analyticsStateRepository;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>
         /// Initializes the analytics application state.
@@ -53,6 +56,7 @@ namespace Bloom.Analytics.State.Services
         {
             var analyticsState = new AnalyticsState();
             analyticsState.SetUser(user);
+            analyticsState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
             _analyticsStateRepository.AddAnalyticsState(analyticsState);
             return analyticsState;
         }

@@ -34,7 +34,7 @@ namespace Bloom.Browser.MenuModule.Views
         /// </summary>
         public BrowserState State
         {
-            get { return ((MenuViewModel)DataContext).State; }
+            get { return ((MenuViewModel) DataContext).State; }
         }
 
         private void OnItemClick(object sender, RadRoutedEventArgs e)
