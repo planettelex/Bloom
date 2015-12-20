@@ -45,9 +45,12 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             // Player Menu
             GoToPlayerCommand = new DelegateCommand<object>(GoToPlayer, CanGoToPlayer);
             // View Menu
+            OpenHomeTabCommand = new DelegateCommand<object>(OpenHomeTab, CanOpenHomeTab);
             SetToggleSidebarVisibilityOption(State.SidebarVisible);
             ToggleSidebarVisibilityCommand = new DelegateCommand<object>(ToggleSidebarVisibility, CanToggleSidebarVisibility);
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
+            // Help Menu
+            OpenGettingStartedTabCommand = new DelegateCommand<object>(OpenGettingStartedTab, CanOpenGettingStartedTab);
         }
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
@@ -188,6 +191,18 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         #region View Menu
 
+        public ICommand OpenHomeTabCommand { get; set; }
+
+        private bool CanOpenHomeTab(object nothing)
+        {
+            return true;
+        }
+
+        private void OpenHomeTab(object nothing)
+        {
+            _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+        }
+
         public string ToggleSidebarVisibilityOption
         {
             get { return _toggleSidebarVisibilityOption; }
@@ -236,6 +251,22 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
             State.SkinName = skinName;
             _skinningService.SetSkin(skinName);
+        }
+
+        #endregion
+
+        #region Help Menu
+
+        public ICommand OpenGettingStartedTabCommand { get; set; }
+
+        private bool CanOpenGettingStartedTab(object nothing)
+        {
+            return true;
+        }
+
+        private void OpenGettingStartedTab(object nothing)
+        {
+            _eventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
         }
 
         #endregion

@@ -37,7 +37,7 @@
                 <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="View">
-                <telerik:RadMenuItem Header="Full Screen" />
+                <telerik:RadMenuItem Header="Home" Command="{Binding Path=OpenHomeTabCommand}" IsEnabled="{Binding Path=HasConnections}" />
                 <telerik:RadMenuItem Header="{Binding Path=ToggleSidebarVisibilityOption}" Command="{Binding Path=ToggleSidebarVisibilityCommand}" IsEnabled="{Binding Path=HasConnections}" />
                 <telerik:RadMenuItem Header="Configure Sidebar..." />
                 <telerik:RadMenuItem x:Name="Skins" Header="Skins">
@@ -47,6 +47,7 @@
                 </telerik:RadMenuItem>
             </telerik:RadMenuItem>
             <telerik:RadMenuItem Header="Help">
+                <telerik:RadMenuItem Header="Getting Started" Command="{Binding Path=OpenGettingStartedTabCommand}" />
                 <telerik:RadMenuItem Header="About" />
                 <telerik:RadMenuItem Header="Topics" />
                 <telerik:RadMenuItem Header="Video Tutorials" />
