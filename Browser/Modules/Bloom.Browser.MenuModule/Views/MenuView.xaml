@@ -7,54 +7,69 @@
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="800">
 
-    <Border Style="{DynamicResource MenuBorderStyle}">
-        <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
-            <telerik:RadMenuItem Header="File">
-                <telerik:RadMenuItem Header="New Library..." Command="{Binding Path=CreateNewLibraryCommand}" />
-                <telerik:RadMenuItem Header="Connected Libraries..." />
-                <telerik:RadMenuItem Header="Add Music..." IsEnabled="{Binding Path=HasConnections}" />
-                <telerik:RadMenuItem Header="Library Operations..." IsEnabled="{Binding Path=HasConnections}" />
-                <telerik:RadMenuItem Header="Exit Browser" Command="{Binding Path=ExitApplicationCommand}" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Edit">
-                <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
-                <telerik:RadMenuItem Header="Copy" IsEnabled="False" />
-                <telerik:RadMenuItem Header="Paste" IsEnabled="False" />
-                <telerik:RadMenuItem Header="Delete" IsEnabled="False" />
-                <telerik:RadMenuItem Header="Preferences..." />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Browser">
-                <telerik:RadMenuItem Header="Duplicate Tab" Command="{Binding Path=DuplicateTabCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
-                <telerik:RadMenuItem Header="Close Other Tabs" Command="{Binding Path=CloseOtherTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
-                <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Player">
-                <telerik:RadMenuItem Header="Go to Player" Command="{Binding Path=GoToPlayerCommand}" />
-                <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Analytics">
-                <telerik:RadMenuItem Header="Go to Analytics" Command="{Binding Path=GoToAnalyticsCommand}" />
-                <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="View">
-                <telerik:RadMenuItem Header="Home" Command="{Binding Path=OpenHomeTabCommand}" IsEnabled="{Binding Path=HasConnections}" />
-                <telerik:RadMenuItem Header="{Binding Path=ToggleSidebarVisibilityOption}" Command="{Binding Path=ToggleSidebarVisibilityCommand}" IsEnabled="{Binding Path=HasConnections}" />
-                <telerik:RadMenuItem Header="Configure Sidebar..." />
-                <telerik:RadMenuItem x:Name="Skins" Header="Skins">
-                    <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
-                    <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
-                    <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
-                </telerik:RadMenuItem>
-            </telerik:RadMenuItem>
-            <telerik:RadMenuItem Header="Help">
-                <telerik:RadMenuItem Header="Getting Started" Command="{Binding Path=OpenGettingStartedTabCommand}" />
-                <telerik:RadMenuItem Header="About" />
-                <telerik:RadMenuItem Header="Topics" />
-                <telerik:RadMenuItem Header="Video Tutorials" />
-                <telerik:RadMenuItem Header="Online Help" />
-                <telerik:RadMenuItem Header="Get Involved" />
-            </telerik:RadMenuItem>
-        </telerik:RadMenu>
-    </Border>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
+        <Border Style="{DynamicResource MenuBorderStyle}" Grid.Column="0">
+            <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
+                <telerik:RadMenuItem Header="File">
+                    <telerik:RadMenuItem Header="New Library..." Command="{Binding Path=CreateNewLibraryCommand}" />
+                    <telerik:RadMenuItem Header="Connected Libraries..." />
+                    <telerik:RadMenuItem Header="Add Music..." IsEnabled="{Binding Path=HasConnections}" />
+                    <telerik:RadMenuItem Header="Library Operations..." IsEnabled="{Binding Path=HasConnections}" />
+                    <telerik:RadMenuItem Header="Exit Browser" Command="{Binding Path=ExitApplicationCommand}" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Edit">
+                    <telerik:RadMenuItem Header="Cut" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Copy" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Paste" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Delete" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Preferences..." />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Browser">
+                    <telerik:RadMenuItem Header="Duplicate Tab" Command="{Binding Path=DuplicateTabCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
+                    <telerik:RadMenuItem Header="Close Other Tabs" Command="{Binding Path=CloseOtherTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
+                    <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Player">
+                    <telerik:RadMenuItem Header="Go to Player" Command="{Binding Path=GoToPlayerCommand}" />
+                    <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Analytics">
+                    <telerik:RadMenuItem Header="Go to Analytics" Command="{Binding Path=GoToAnalyticsCommand}" />
+                    <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="View">
+                    <telerik:RadMenuItem Header="Home" Command="{Binding Path=OpenHomeTabCommand}" IsEnabled="{Binding Path=HasConnections}" />
+                    <telerik:RadMenuItem Header="{Binding Path=ToggleSidebarVisibilityOption}" Command="{Binding Path=ToggleSidebarVisibilityCommand}" IsEnabled="{Binding Path=HasConnections}" />
+                    <telerik:RadMenuItem Header="Configure Sidebar..." />
+                    <telerik:RadMenuItem x:Name="Skins" Header="Skins">
+                        <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
+                        <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />
+                        <telerik:RadMenuItem Header="Goth" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Goth" />
+                    </telerik:RadMenuItem>
+                </telerik:RadMenuItem>
+                <telerik:RadMenuItem Header="Help">
+                    <telerik:RadMenuItem Header="Getting Started" Command="{Binding Path=OpenGettingStartedTabCommand}" />
+                    <telerik:RadMenuItem Header="About" />
+                    <telerik:RadMenuItem Header="Topics" />
+                    <telerik:RadMenuItem Header="Video Tutorials" />
+                    <telerik:RadMenuItem Header="Online Help" />
+                    <telerik:RadMenuItem Header="Get Involved" />
+                </telerik:RadMenuItem>
+            </telerik:RadMenu>
+        </Border>
+
+        <telerik:RadAutoCompleteBox Grid.Column="1" />
+        
+        <telerik:RadMenu Grid.Column="2">
+            
+        </telerik:RadMenu>
+
+    </Grid>
+    
 </UserControl>

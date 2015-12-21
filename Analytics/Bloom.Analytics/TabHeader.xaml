@@ -26,10 +26,10 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <telerik:RadMenu Grid.Column="0" Visibility="{Binding ViewMenuVisibility}">
-            <telerik:RadMenuItem ItemContainerStyle="{StaticResource ViewMenuGroupItemStyle}">
+        <telerik:RadMenu Grid.Column="0" Visibility="{Binding ViewMenuVisibility}" BorderBrush="Transparent" Background="Transparent">
+            <telerik:RadMenuItem ItemContainerStyle="{StaticResource ViewMenuGroupItemStyle}" Background="Transparent">
                 <telerik:RadMenuItem.Icon>
-                    <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}"  />
+                    <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}" />
                 </telerik:RadMenuItem.Icon>
                 <telerik:RadMenuGroupItem>
                     <telerik:RadMenuItem Header="Stats" Command="{Binding ChangeTabViewCommand}" CommandParameter="Stats" Background="{DynamicResource TabsBackgroundBrush}" />
