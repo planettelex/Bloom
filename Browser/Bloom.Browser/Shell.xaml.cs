@@ -239,12 +239,14 @@ namespace Bloom.Browser
         {
             State.SidebarVisible = true;
             SidebarPane.IsHidden = false;
+            _eventAggregator.GetEvent<SidebarToggledEvent>().Publish(true);
         }
 
         private void HideSidebar(object nothing)
         {
             State.SidebarVisible = false;
             SidebarPane.IsHidden = true;
+            _eventAggregator.GetEvent<SidebarToggledEvent>().Publish(false);
         }
 
         public void CheckConnections(Guid unused)

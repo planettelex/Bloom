@@ -9,9 +9,7 @@
     
     <Style x:Key="RadMenuStyle" TargetType="{x:Type telerik:RadMenu}">
         <Setter Property="Background" Value="{DynamicResource MenuBackgroundBrush}" />
-        <Setter Property="Margin" Value="-1 0 0 0" />
         <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1 0 0 0" />
     </Style>
     <Style TargetType="{x:Type telerik:RadMenu}" BasedOn="{StaticResource RadMenuStyle}" />
 
@@ -2031,5 +2029,31 @@
 		</Style.Triggers>
 	</Style>
     <Style TargetType="{x:Type telerik:RadMenuItem}" BasedOn="{StaticResource RadMenuItemStyle}" />
-    
+
+    <Style x:Key="MenuSearchStyle" TargetType="{x:Type telerik:RadAutoCompleteBox}">
+        <Setter Property="WatermarkContent" Value="Search all libraries" />
+        <Setter Property="Width" Value="180" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="AutoCompleteMode" Value="SuggestAppend" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="DropDownPlacement" Value="Control" />
+    </Style>
+
+    <Style x:Key="ProfileMenuIconStyle" TargetType="Image">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Margin" Value="0 2 6 0" />
+        <Setter Property="ToolTip" Value="User Profile" />
+    </Style>
+
+    <Style x:Key="ProfileGroupItemStyle" TargetType="telerik:RadMenuGroupItem">
+        <Setter Property="FlowDirection" Value="LeftToRight" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <telerik:RadWrapPanel Orientation="Vertical" MaxHeight="60" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

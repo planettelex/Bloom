@@ -7,15 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="800">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <Border Style="{DynamicResource MenuBorderStyle}" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <Border Style="{DynamicResource MenuBorderStyle}" Grid.Column="0">
-            <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick">
+            <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick" Grid.Column="0">
                 <telerik:RadMenuItem Header="File">
                     <telerik:RadMenuItem Header="New Library..." Command="{Binding Path=CreateNewLibraryCommand}" />
                     <telerik:RadMenuItem Header="Connected Libraries..." />
@@ -62,14 +62,21 @@
                     <telerik:RadMenuItem Header="Get Involved" />
                 </telerik:RadMenuItem>
             </telerik:RadMenu>
-        </Border>
-
-        <telerik:RadAutoCompleteBox Grid.Column="1" />
-        
-        <telerik:RadMenu Grid.Column="2">
             
-        </telerik:RadMenu>
+            <telerik:RadAutoCompleteBox Grid.Column="1" Style="{DynamicResource MenuSearchStyle}" />
 
-    </Grid>
-    
+            <telerik:RadMenu Grid.Column="2">
+                <telerik:RadMenuItem ItemContainerStyle="{DynamicResource ProfileGroupItemStyle}" DropDownPlacement="Left">
+                    <telerik:RadMenuItem.Icon>
+                        <Image Source="{DynamicResource ProfileMenuIcon}" Style="{DynamicResource ProfileMenuIconStyle}" />
+                    </telerik:RadMenuItem.Icon>
+                    <telerik:RadMenuGroupItem>
+                        <telerik:RadMenuItem Header="{Binding Path=UserName}" Command="{Binding ShowUserProfileCommand}" Background="{DynamicResource MenuBackgroundBrush}" />
+                        <telerik:RadMenuItem Header="Change User" Command="{Binding ChangeUserCommand}" Background="{DynamicResource MenuBackgroundBrush}" IsEnabled="{Binding Path=HasUser}" />
+                    </telerik:RadMenuGroupItem>
+                </telerik:RadMenuItem>
+            </telerik:RadMenu>
+        </Grid>
+    </Border>
+
 </UserControl>

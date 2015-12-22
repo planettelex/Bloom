@@ -30,9 +30,12 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             _eventAggregator = eventAggregator;
             State = (AnalyticsState) regionManager.Regions["MenuRegion"].Context;
             CheckConnections(null);
+            SetUser(null);
 
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
+            _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
 
             // File Menu
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
@@ -81,6 +84,34 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         public void CheckConnections(Guid unused)
         {
             CheckConnections(null);
+        }
+
+        public bool HasUser
+        {
+            get { return _hasUser; }
+            set { SetProperty(ref _hasUser, value); }
+        }
+        private bool _hasUser;
+
+        public string UserName
+        {
+            get { return _userName; }
+            set { SetProperty(ref _userName, value); }
+        }
+        private string _userName;
+
+        public void SetUser(object nothing)
+        {
+            if (State == null || State.User == null || State.User.Name == null)
+            {
+                UserName = "Login";
+                HasUser = false;
+            }
+            else
+            {
+                UserName = State.User.Name;
+                HasUser = true;
+            }
         }
 
         #region File Menu

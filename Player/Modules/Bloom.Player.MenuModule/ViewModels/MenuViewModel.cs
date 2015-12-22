@@ -1,8 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Player.MenuModule.ViewModels
@@ -10,7 +14,7 @@ namespace Bloom.Player.MenuModule.ViewModels
     /// <summary>
     /// View model for MenuView.xaml.
     /// </summary>
-    public class MenuViewModel
+    public class MenuViewModel : BindableBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuViewModel" /> class.
@@ -18,11 +22,18 @@ namespace Bloom.Player.MenuModule.ViewModels
         /// <param name="regionManager">The region manager.</param>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="processService">The process service.</param>
-        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService)
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public MenuViewModel(IRegionManager regionManager, ISkinningService skinningService, IProcessService processService, IEventAggregator eventAggregator)
         {
-            State = (PlayerState) regionManager.Regions["MenuRegion"].Context;
             _skinningService = skinningService;
             _processService = processService;
+            State = (PlayerState) regionManager.Regions["MenuRegion"].Context;
+            CheckConnections(null);
+            SetUser(null);
+
+            eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
+            eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
 
             // File Menu
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
@@ -40,6 +51,51 @@ namespace Bloom.Player.MenuModule.ViewModels
         /// Gets the state.
         /// </summary>
         public PlayerState State { get; private set; }
+
+        public bool HasConnections
+        {
+            get { return _hasConnections; }
+            set { SetProperty(ref _hasConnections, value); }
+        }
+        private bool _hasConnections;
+
+        public void CheckConnections(object unused)
+        {
+            HasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+        }
+
+        public void CheckConnections(Guid unused)
+        {
+            CheckConnections(null);
+        }
+
+        public bool HasUser
+        {
+            get { return _hasUser; }
+            set { SetProperty(ref _hasUser, value); }
+        }
+        private bool _hasUser;
+
+        public string UserName
+        {
+            get { return _userName; }
+            set { SetProperty(ref _userName, value); }
+        }
+        private string _userName;
+
+        public void SetUser(object nothing)
+        {
+            if (State == null || State.User == null || State.User.Name == null)
+            {
+                UserName = "Login";
+                HasUser = false;
+            }
+            else
+            {
+                UserName = State.User.Name;
+                HasUser = true;
+            }
+        }
 
         #region File Menu
 

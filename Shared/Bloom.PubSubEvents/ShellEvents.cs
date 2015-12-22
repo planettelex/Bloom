@@ -115,4 +115,9 @@ namespace Bloom.PubSubEvents
     /// Makes the sidebar hidden.
     /// </summary>
     public class HideSidebarEvent : PubSubEvent<object> { }
+
+    /// <summary>
+    /// Indicates the sidebar has toggled.
+    /// </summary>
+    public class SidebarToggledEvent : PubSubEvent<bool> { }
 }
