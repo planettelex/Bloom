@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Bloom.State.Domain.Models;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Controls
 {
     /// <summary>
     /// A shell docking control tab.
     /// </summary>
-    public class TabControl
+    public class TabControl : BindableBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TabControl"/> class.
@@ -28,50 +30,74 @@ namespace Bloom.Controls
         /// <summary>
         /// Gets the tab identifier.
         /// </summary>
-        public Guid Id
+        public Guid TabId
         {
-            get { return Tab == null ? Guid.Empty : Tab.Id; }
+            get { return _tabId; }
+            set { SetProperty(ref _tabId, value); }
         }
+        private Guid _tabId;
 
         /// <summary>
-        /// Gets the tab header.
+        /// Gets or sets the tab header.
         /// </summary>
         public string Header
         {
-            get { return Tab == null ? string.Empty : Tab.Header; }
+            get { return _header; }
+            set { SetProperty(ref _header, value); }
         }
-        
+        private string _header;
+
+        /// <summary>
+        /// Gets or sets the view menu visibility.
+        /// </summary>
+        public Visibility ViewMenuVisibility
+        {
+            get { return _viewMenuVisibility; }
+            set { SetProperty(ref _viewMenuVisibility, value); }
+        }
+        private Visibility _viewMenuVisibility;
+
         /// <summary>
         /// Gets or sets the tab data.
         /// </summary>
-        public Tab Tab { get; set; }
+        public Tab Tab
+        {
+            get { return _tab; }
+            set
+            {
+                _tab = value;
+                SetViewMenuVisiblity();
+                Header = _tab != null ? _tab.Header : string.Empty;
+                TabId = _tab != null ? _tab.Id : Guid.Empty;
+            }
+        }
+        private Tab _tab;
 
         /// <summary>
         /// Gets or sets the tab content.
         /// </summary>
         public UserControl Content { get; set; }
 
-        /// <summary>
-        /// Gets a value indicating whether to show the view menu based on the tab type.
-        /// </summary>
-        public bool ShowViewMenu
+        private void SetViewMenuVisiblity()
         {
-            get
-            {
-                if (Tab == null)
-                    return false;
 
-                switch (Tab.Type)
-                {
-                    case TabType.Library:
-                        return true;
-                    case TabType.Artist:
-                        return true;
-                    case TabType.Person:
-                        return true;
-                    default:
-                        return false;
-                }
+            if (_tab == null)
+                    return;
+
+            switch (_tab.Type)
+            {
+                case TabType.Library:
+                    ViewMenuVisibility = Visibility.Visible;
+                    break;
+                case TabType.Artist:
+                    ViewMenuVisibility = Visibility.Visible;
+                    break;
+                case TabType.Person:
+                    ViewMenuVisibility = Visibility.Visible;
+                    break;
+                default:
+                    ViewMenuVisibility = Visibility.Collapsed;
+                    break;
             }
         }
     }

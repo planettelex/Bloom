@@ -9,6 +9,47 @@
         ResizeMode="CanResizeWithGrip"
         Title="Bloom Music Browser">
     
+    <Window.Resources>
+        <Style x:Key="ViewMenuGroupItemStyle" TargetType="telerik:RadMenuGroupItem">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <!-- Set different MaxHeight to control the size of the menu -->
+                        <telerik:RadWrapPanel Orientation="Vertical" MaxHeight="150" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="TitleTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadMenu Grid.Column="0" BorderBrush="Transparent" Background="Transparent" Visibility="{Binding Path=ViewMenuVisibility}">
+                    <telerik:RadMenuItem  Background="Transparent" ItemContainerStyle="{StaticResource ViewMenuGroupItemStyle}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}" />
+                        </telerik:RadMenuItem.Icon>
+                        <telerik:RadMenuGroupItem>
+                            <telerik:RadMenuItem Name="Grid" Header="Grid" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="List" Header="List" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Spreadsheet" Header="Spreadsheet" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Slideshow" Header="Slideshow" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Album" Header="Single Album" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Scroll" Header="Scroll" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Coverflow" Header="Coverflow" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Spines" Header="Spines" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Scattered" Header="Scattered" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Tiles" Header="Tiles" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                        </telerik:RadMenuGroupItem>
+                    </telerik:RadMenuItem>
+                </telerik:RadMenu>
+                <ContentPresenter Content="{Binding Path=Header}" Grid.Column="1" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

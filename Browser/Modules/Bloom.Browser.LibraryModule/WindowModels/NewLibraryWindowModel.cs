@@ -119,6 +119,8 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                 if (IsLoading)
                     return null;
 
+                var filePath = FolderPath + "\\" + LibraryName + Bloom.Common.Settings.LibraryFileExtension;
+
                 if (columnName == "FolderPath")
                 {
                     if (string.IsNullOrEmpty(FolderPath))
@@ -136,7 +138,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                         return "Library name is required";
                     if (!LibraryName.IsValidFilename())
                         return "Library cannot contain the characters <, >, :, \", /, \\, |, ?, *";
-                    if (File.Exists(FolderPath + "\\" + LibraryName + Bloom.Common.Settings.LibraryFileExtension))
+                    if (File.Exists(filePath))
                         return "A library named \"" + LibraryName + "\" already exists at this location";
                 }
                 if (columnName == "OwnerName")
@@ -147,7 +149,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
 
                 IsValid = !string.IsNullOrEmpty(FolderPath) && 
                           !string.IsNullOrEmpty(LibraryName) &&
-                          !string.IsNullOrEmpty(OwnerName);
+                          !string.IsNullOrEmpty(OwnerName) &&
+                          Directory.Exists(FolderPath) &&
+                          !File.Exists(filePath);
 
                 return null;
             }

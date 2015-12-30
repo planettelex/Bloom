@@ -65,7 +65,7 @@ namespace Bloom.Analytics.LibraryModule.Services
 
         public void DuplicateLibraryTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
             if (existingTab == null)
                 return;
 
@@ -87,7 +87,7 @@ namespace Bloom.Analytics.LibraryModule.Services
 
         public void ChangeLibraryTabView(Guid tabId, ViewType viewType)
         {
-            var libraryTab = _tabs.SingleOrDefault(tab => tab.Id == tabId);
+            var libraryTab = _tabs.SingleOrDefault(tab => tab.TabId == tabId);
             if (libraryTab != null)
                 libraryTab.ViewType = viewType;
 

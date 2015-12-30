@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Bloom.Browser.Common;
+using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.State.Services;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
@@ -105,24 +107,22 @@ namespace Bloom.Browser
 
         private void AddTab(TabControl tabControl)
         {
-            var tabHeader = new TabHeader(_eventAggregator)
-            {
-                TabId = tabControl.Id,
-                Text = tabControl.Header,
-                ViewMenuVisibility = tabControl.ShowViewMenu ? Visibility.Visible : Visibility.Collapsed
-            };
+            var titleTemplate = (DataTemplate) FindResource("TitleTemplate");
             var newPane = new RadPane
             {
-                Header = tabHeader,
-                Content = tabControl.Content
+                Content = tabControl.Content,
+                HeaderTemplate = titleTemplate,
+                TitleTemplate = titleTemplate,
+                Title = tabControl,
+                Tag = tabControl.TabId
             };
 
             tabControl.Tab.UserId = State.UserId;
             _stateService.AddTab(tabControl.Tab);
             if (!_loading || State.SelectedTabId == Guid.Empty)
-                State.SelectedTabId = tabControl.Id;
+                State.SelectedTabId = tabControl.TabId;
 
-            _tabs.Add(tabControl.Id, newPane);
+            _tabs.Add(tabControl.TabId, newPane);
             PaneGroup.Items.Add(newPane);
         }
 
@@ -183,6 +183,14 @@ namespace Bloom.Browser
                 UpdateTabOrder(pane, order);
                 order++;
             }
+        }
+
+        private void ViewMenuClick(object sender, RadRoutedEventArgs e)
+        {
+            var menuItem = (RadMenuItem) sender;
+            var tabId = (Guid) menuItem.Tag;
+            var viewType = (ViewType) Enum.Parse(typeof(ViewType), menuItem.Name);
+            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Publish(new Tuple<Guid, ViewType>(tabId, viewType));
         }
 
         private void UpdateTabOrder(RadPane pane, int order)

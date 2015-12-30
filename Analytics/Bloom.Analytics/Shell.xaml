@@ -9,6 +9,43 @@
         ResizeMode="CanResizeWithGrip"
         Title="Bloom Music Analytics">
 
+    <Window.Resources>
+        <Style x:Key="ViewMenuGroupItemStyle" TargetType="telerik:RadMenuGroupItem">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <!-- Set different MaxHeight to control the size of the menu -->
+                        <telerik:RadWrapPanel Orientation="Vertical" MaxHeight="100" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="TitleTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <telerik:RadMenu Grid.Column="0" BorderBrush="Transparent" Background="Transparent" Visibility="{Binding Path=ViewMenuVisibility}">
+                    <telerik:RadMenuItem  Background="Transparent" ItemContainerStyle="{StaticResource ViewMenuGroupItemStyle}">
+                        <telerik:RadMenuItem.Icon>
+                            <Image Source="{DynamicResource ViewMenuIcon}" Style="{DynamicResource ViewMenuIconStyle}" />
+                        </telerik:RadMenuItem.Icon>
+                        <telerik:RadMenuGroupItem>
+                            <telerik:RadMenuItem Name="Stats" Header="Stats" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="PieChart" Header="Pie Chart" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Timeline" Header="Timeline" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="LineGraph" Header="Line Graph" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="BarChart" Header="Bar Chart" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                            <telerik:RadMenuItem Name="Map" Header="Map" Click="ViewMenuClick" Tag="{Binding Path=TabId}" Background="{DynamicResource TabsBackgroundBrush}" />
+                        </telerik:RadMenuGroupItem>
+                    </telerik:RadMenuItem>
+                </telerik:RadMenu>
+                <ContentPresenter Content="{Binding Path=Header}" Grid.Column="1" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

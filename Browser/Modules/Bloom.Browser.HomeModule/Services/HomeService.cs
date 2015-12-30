@@ -75,7 +75,7 @@ namespace Bloom.Browser.HomeModule.Services
 
         public void DuplicateHomeTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
             if (existingTab == null)
                 return;
 
@@ -119,7 +119,7 @@ namespace Bloom.Browser.HomeModule.Services
 
         public void DuplicateGettingStartedTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
             if (existingTab == null)
                 return;
 

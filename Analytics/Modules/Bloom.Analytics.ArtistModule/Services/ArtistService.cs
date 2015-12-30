@@ -68,7 +68,7 @@ namespace Bloom.Analytics.ArtistModule.Services
 
         public void DuplicateArtistTab(Guid tabId)
         {
-            var existingTab = _tabs.FirstOrDefault(t => t.Id == tabId);
+            var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
             if (existingTab == null)
                 return;
 
