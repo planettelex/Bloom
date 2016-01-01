@@ -9,6 +9,7 @@ using Bloom.Browser.PlaylistModule;
 using Bloom.Browser.SongModule;
 using Bloom.Browser.State.Services;
 using Bloom.Data.Interfaces;
+using Bloom.LibraryModule;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.TaxonomiesModule;
@@ -65,6 +66,7 @@ namespace Bloom.Browser
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (TaxonomiesModuleDefinition));
             moduleCatalog.AddModule(typeof (HomeModuleDefinition));
+            moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PersonModuleDefinition));
             moduleCatalog.AddModule(typeof (ArtistModuleDefinition));
@@ -96,6 +98,8 @@ namespace Bloom.Browser
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IProcessService>();
+            Container.RegisterType<ILibraryService, LibraryService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ILibraryService>();
         }
     }
 }

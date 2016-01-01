@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Linq;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
@@ -9,7 +10,7 @@ namespace Bloom.Domain.Models
     /// Represents a person.
     /// </summary>
     [Table(Name = "person")]
-    public class Person
+    public class Person : BindableBase
     {
         /// <summary>
         /// Creates a new person instance.
@@ -35,7 +36,12 @@ namespace Bloom.Domain.Models
         /// Gets or sets the person's name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the date the person was born.

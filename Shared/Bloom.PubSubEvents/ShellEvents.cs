@@ -107,6 +107,11 @@ namespace Bloom.PubSubEvents
     public class CloseOtherTabsEvent : PubSubEvent<object> { }
 
     /// <summary>
+    /// Indicates the selected tab has changed to the provided tab id.
+    /// </summary>
+    public class SelectedTabChangedEvent : PubSubEvent<Guid> { }
+
+    /// <summary>
     /// Makes the sidebar visible.
     /// </summary>
     public class ShowSidebarEvent : PubSubEvent<object> { }

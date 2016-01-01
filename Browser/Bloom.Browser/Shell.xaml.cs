@@ -151,6 +151,7 @@ namespace Bloom.Browser
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
             {
                 State.SelectedTabId = valuePair.Key;
+                _eventAggregator.GetEvent<SelectedTabChangedEvent>().Publish(State.SelectedTabId);
                 break;
             }
         }

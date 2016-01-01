@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.Browser.PubSubEvents;
@@ -32,15 +33,20 @@ namespace Bloom.Browser.MenuModule.ViewModels
             State = (BrowserState) regionManager.Regions["MenuRegion"].Context;
             CheckConnections(null);
             SetUser(null);
+            SetLibraryContext(State.SelectedTabId);
 
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
+            _eventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
             
             // File Menu
             CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
+            ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
+            // Edit Menu
+            EditLibraryPropertiesCommand = new DelegateCommand<object>(EditLibraryProperties, CanEditLibraryProperties);
             // Browser Menu
             DuplicateTabCommand = new DelegateCommand<object>(DuplicateTab, CanDuplicateTab);
             CloseOtherTabsCommand = new DelegateCommand<object>(CloseOtherTabs, CanCloseOtherTabs);
@@ -116,6 +122,28 @@ namespace Bloom.Browser.MenuModule.ViewModels
             }
         }
 
+        public bool HasLibraryContext
+        {
+            get { return _hasLibraryContext; }
+            set { SetProperty(ref _hasLibraryContext, value); }
+        }
+        private bool _hasLibraryContext;
+        private Guid _libraryContext;
+
+        public void SetLibraryContext(Guid tabId)
+        {
+            var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
+            if (selectedTab == null || selectedTab.LibraryId == Guid.Empty)
+            {
+                _libraryContext = Guid.Empty;
+                HasLibraryContext = false;
+            }
+            else
+            {
+                _libraryContext = selectedTab.LibraryId;
+                HasLibraryContext = true;
+            }
+        }
 
         #region File Menu
 
@@ -135,6 +163,21 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets the manage connected libraries command.
+        /// </summary>
+        public ICommand ManageConnectedLibrariesCommand { get; set; }
+
+        private bool CanManageConnectedLibraries(object nothing)
+        {
+            return true;
+        }
+
+        private void ManageConnectedLibraries(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Publish(null);
+        }
+
+        /// <summary>
         /// Gets or sets the exit application command.
         /// </summary>
         public ICommand ExitApplicationCommand { get; set; }
@@ -147,6 +190,22 @@ namespace Bloom.Browser.MenuModule.ViewModels
         private void ExitApplication(object nothing)
         {
             Application.Current.Shutdown();
+        }
+
+        #endregion
+
+        #region Edit Menu
+
+        public ICommand EditLibraryPropertiesCommand { get; set; }
+
+        private bool CanEditLibraryProperties(object nothing)
+        {
+            return true;
+        }
+
+        private void EditLibraryProperties(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(_libraryContext);
         }
 
         #endregion

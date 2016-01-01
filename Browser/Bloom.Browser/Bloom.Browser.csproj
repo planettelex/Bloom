@@ -157,6 +157,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Modules\Bloom.LibraryModule\Bloom.LibraryModule.csproj">
+      <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
+      <Name>Bloom.LibraryModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Modules\Bloom.UserModule\Bloom.UserModule.csproj">
+      <Project>{ddbc521e-2b45-49f2-b9f5-743eefe9122a}</Project>
+      <Name>Bloom.UserModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Bloom.Browser.HomeModule\Bloom.Browser.HomeModule.csproj">
       <Project>{2e572999-6511-4a46-9721-39ce7a657b62}</Project>
       <Name>Bloom.Browser.HomeModule</Name>
