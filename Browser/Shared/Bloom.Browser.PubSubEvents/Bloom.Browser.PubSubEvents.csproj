@@ -79,6 +79,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
+      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
+      <Name>Bloom.State.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
+      <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
+      <Name>Bloom.State.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Controls\Bloom.Browser.Controls.csproj">
       <Project>{56dfaa8a-7f8e-4089-b916-4f04df0e21e5}</Project>
       <Name>Bloom.Browser.Controls</Name>

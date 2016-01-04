@@ -5,6 +5,7 @@ using System.IO;
 using Bloom.Data.Interfaces;
 using Bloom.Data.Repositories;
 using Bloom.Data.Services;
+using Microsoft.Practices.Unity;
 
 namespace Bloom.Data
 {
@@ -13,21 +14,14 @@ namespace Bloom.Data
         /// <summary>
         /// Initializes a new instance of the <see cref="LibraryDataSource" /> class.
         /// </summary>
-        public LibraryDataSource()
+        public LibraryDataSource(IUnityContainer container)
         {
-            _libraryTableService = new LibraryTableService();
+            _container = container;
+            _container.RegisterType<ITableService, LibraryTableService>(new ContainerControlledLifetimeManager());
+            _libraryTableService = _container.Resolve<ITableService>();
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LibraryDataSource"/> class.
-        /// </summary>
-        /// <param name="filePath">The file path.</param>
-        public LibraryDataSource(string filePath)
-        {
-            _libraryTableService = new LibraryTableService();
-            FilePath = filePath;
-        }
-        private readonly ITableService _libraryTableService;
+        private readonly IUnityContainer _container;
+        private readonly ITableService _libraryTableService;        
 
         /// <summary>
         /// Gets the file path.
@@ -44,14 +38,22 @@ namespace Bloom.Data
         /// </summary>
         public void RegisterRepositories()
         {
-            AlbumRepository = new AlbumRepository(this);
-            ArtistRepository = new ArtistRepository(this);
-            FiltersetRepository = new FiltersetRepository(this);
-            LabelRepository = new LabelRepository(this);
-            LibraryRespository = new LibraryRepository(this);
-            PersonRepository = new PersonRepository(this);
-            PlaylistRepository = new PlaylistRepository(this);
-            SongRepository = new SongRepository(this);
+            _container.RegisterType<ILibraryRepository, LibraryRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ILibraryRepository>();
+            _container.RegisterType<IAlbumRepository, AlbumRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IAlbumRepository>();
+            _container.RegisterType<IArtistRepository, ArtistRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IArtistRepository>();
+            _container.RegisterType<IFiltersetRepository, FiltersetRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IFiltersetRepository>();
+            _container.RegisterType<ILabelRepository, LabelRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ILabelRepository>();
+            _container.RegisterType<IPersonRepository, PersonRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IPersonRepository>();
+            _container.RegisterType<IPlaylistRepository, PlaylistRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<PlaylistRepository>();
+            _container.RegisterType<ISongRepository, SongRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ISongRepository>();
         }
 
         /// <summary>
@@ -168,45 +170,5 @@ namespace Bloom.Data
 
             FilePath = null;
         }
-
-        /// <summary>
-        /// Gets the album repository.
-        /// </summary>
-        public IAlbumRepository AlbumRepository { get; private set; }
-
-        /// <summary>
-        /// Gets the artist repository.
-        /// </summary>
-        public IArtistRepository ArtistRepository { get; private set; }
-
-        /// <summary>
-        /// Gets the filterset repository.
-        /// </summary>
-        public IFiltersetRepository FiltersetRepository { get; private set; }
-
-        /// <summary>
-        /// Gets the label repository.
-        /// </summary>
-        public ILabelRepository LabelRepository { get; private set; }
-
-        /// <summary>
-        /// Gets the library respository.
-        /// </summary>
-        public ILibraryRespository LibraryRespository { get; private set; }
-
-        /// <summary>
-        /// Gets the person repository.
-        /// </summary>
-        public IPersonRepository PersonRepository { get; private set; }
-
-        /// <summary>
-        /// Gets the playlist repository.
-        /// </summary>
-        public IPlaylistRepository PlaylistRepository { get; private set; }
-
-        /// <summary>
-        /// Gets the song repository.
-        /// </summary>
-        public ISongRepository SongRepository { get; private set; }
     }
 }

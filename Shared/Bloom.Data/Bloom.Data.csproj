@@ -92,7 +92,7 @@
     <Compile Include="Repositories\IArtistRepository.cs" />
     <Compile Include="Repositories\IFiltersetRepository.cs" />
     <Compile Include="Repositories\ILabelRepository.cs" />
-    <Compile Include="Repositories\ILibraryRespository.cs" />
+    <Compile Include="Repositories\ILibraryRepository.cs" />
     <Compile Include="Repositories\IPersonRepository.cs" />
     <Compile Include="Repositories\IPlaylistRepository.cs" />
     <Compile Include="Repositories\ISongRepository.cs" />

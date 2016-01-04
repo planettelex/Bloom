@@ -12,15 +12,18 @@ namespace Bloom.Player.State.Services
     public class PlayerStateService : StateBaseService, IPlayerStateService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayerStateService"/> class.
+        /// Initializes a new instance of the <see cref="PlayerStateService" /> class.
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
         /// <param name="playerStateRepository">The player state repository.</param>
-        public PlayerStateService(IDataSource stateDataSource, IPlayerStateRepository playerStateRepository)
+        /// <param name="libraryService">The library service.</param>
+        public PlayerStateService(IDataSource stateDataSource, IPlayerStateRepository playerStateRepository, ILibraryService libraryService)
         {
             StateDataSource = stateDataSource;
             _playerStateRepository = playerStateRepository;
+            _libraryService = libraryService;
         }
+        private readonly ILibraryService _libraryService;
         private readonly IPlayerStateRepository _playerStateRepository;
 
         /// <summary>
@@ -38,8 +41,7 @@ namespace Bloom.Player.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (PlayerState) State;
 
-            foreach (var libraryConnection in State.Connections)
-                libraryConnection.Connect(State.User);
+            _libraryService.MakeLibraryConnections(State.Connections, user);
 
             return (PlayerState) State;
         }

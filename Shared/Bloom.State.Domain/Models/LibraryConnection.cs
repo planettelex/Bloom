@@ -88,22 +88,14 @@ namespace Bloom.State.Domain.Models
         /// <summary>
         /// Gets or sets the library data source.
         /// </summary>
-        public LibraryDataSource DataSource { get; private set; }
+        public LibraryDataSource DataSource { get; set; }
 
         /// <summary>
-        /// Connects to the data source specified at the provided file path.
+        /// Saves the connected library data source.
         /// </summary>
-        public void Connect(User user)
+        public void SaveChanges()
         {
-            if (DataSource == null)
-                DataSource = new LibraryDataSource(FilePath);
-
-            if (user == null)
-                throw new ArgumentNullException("user");
-
-            DataSource.Connect(FilePath);
-            LastConnected = DateTime.Now;
-            LastConnectionBy = user.PersonId;
+            DataSource.Save();
         }
     }
 }

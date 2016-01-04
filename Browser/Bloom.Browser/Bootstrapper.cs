@@ -8,6 +8,7 @@ using Bloom.Browser.PersonModule;
 using Bloom.Browser.PlaylistModule;
 using Bloom.Browser.SongModule;
 using Bloom.Browser.State.Services;
+using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.LibraryModule;
 using Bloom.Services;
@@ -83,6 +84,10 @@ namespace Bloom.Browser
             Container.RegisterType<IDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
             var stateDataSource = Container.Resolve<IDataSource>();
             stateDataSource.RegisterRepositories();
+
+            Container.RegisterType<IDataSource, LibraryDataSource>("Library", new ContainerControlledLifetimeManager());
+            var libraryDataSource = Container.Resolve<IDataSource>("Library");
+            libraryDataSource.RegisterRepositories();
         }
 
         /// <summary>
@@ -92,14 +97,14 @@ namespace Bloom.Browser
         {
             Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IUserService>();
+            Container.RegisterType<ILibraryService, LibraryService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ILibraryService>();
             Container.RegisterType<IBrowserStateService, BrowserStateService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IBrowserStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IProcessService>();
-            Container.RegisterType<ILibraryService, LibraryService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<ILibraryService>();
         }
     }
 }

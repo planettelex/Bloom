@@ -19,15 +19,18 @@ namespace Bloom.Analytics.State.Services
         /// <param name="analyticsStateRepository">The analytics state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
+        /// <param name="libraryService">The library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
+        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ILibraryService libraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
             TabRepository = tabRepository;
             _libraryConnectionRepository = libraryConnectionRepository;
             _analyticsStateRepository = analyticsStateRepository;
+            _libraryService = libraryService;
         }
+        private readonly ILibraryService _libraryService;
         private readonly IAnalyticsStateRepository _analyticsStateRepository;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
@@ -46,8 +49,7 @@ namespace Bloom.Analytics.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (AnalyticsState) State;
 
-            foreach (var libraryConnection in State.Connections)
-                libraryConnection.Connect(State.User);
+            _libraryService.MakeLibraryConnections(State.Connections, user);
 
             return (AnalyticsState) State;
         }

@@ -19,15 +19,18 @@ namespace Bloom.Browser.State.Services
         /// <param name="browserStateRepository">The browser state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
+        /// <param name="libraryService">The library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, IEventAggregator eventAggregator)
+        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ILibraryService libraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
             TabRepository = tabRepository;
             _libraryConnectionRepository = libraryConnectionRepository;
             _browserStateRepository = browserStateRepository;
+            _libraryService = libraryService;
         }
+        private readonly ILibraryService _libraryService;
         private readonly IBrowserStateRepository _browserStateRepository;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
@@ -45,9 +48,8 @@ namespace Bloom.Browser.State.Services
             State.User.LastLogin = DateTime.Now;
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (BrowserState) State;
-            
-            foreach (var libraryConnection in State.Connections)
-                libraryConnection.Connect(State.User);
+
+            _libraryService.MakeLibraryConnections(State.Connections, user);
 
             return (BrowserState) State;
         }

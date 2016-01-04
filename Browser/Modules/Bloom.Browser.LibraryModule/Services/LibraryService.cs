@@ -12,6 +12,7 @@ using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.State.Services;
 using Bloom.Common;
 using Bloom.Data;
+using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -19,6 +20,7 @@ using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Unity;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
@@ -27,19 +29,27 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="LibraryService" /> class.
         /// </summary>
+        /// <param name="container">The container.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="stateService">The state service.</param>
+        /// <param name="libraryService">The library service.</param>
         /// <param name="userService">The user service.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IBrowserStateService stateService, IUserService userService, ILibraryConnectionRepository libraryConnectionRepository)
+        /// <param name="libraryRepository">The library repository.</param>
+        /// <param name="personRepository">The person repository.</param>
+        public LibraryService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager, IBrowserStateService stateService, Bloom.Services.ILibraryService libraryService, IUserService userService, ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IPersonRepository personRepository)
         {
+            _container = container;
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _stateService = stateService;
+            _libraryService = libraryService;
             _userService = userService;
             _tabs = new List<ViewMenuTab>();
             _libraryConnectionRepository = libraryConnectionRepository;
+            _personRepository = personRepository;
+            _libraryRepository = libraryRepository;
 
             // Subscribe to events
             _eventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Subscribe(ShowCreateNewLibraryModal);
@@ -51,12 +61,16 @@ namespace Bloom.Browser.LibraryModule.Services
 
             State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
         }
+        private readonly IUnityContainer _container;
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
         private readonly IBrowserStateService _stateService;
+        private readonly Bloom.Services.ILibraryService _libraryService;
         private readonly IUserService _userService;
         private readonly List<ViewMenuTab> _tabs;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+        private readonly ILibraryRepository _libraryRepository;
+        private readonly IPersonRepository _personRepository;
 
         /// <summary>
         /// Gets the state.
@@ -84,20 +98,37 @@ namespace Bloom.Browser.LibraryModule.Services
             newLibraryWindow.ShowDialog();
         }
 
+        public void CreateNewLibrary(Library library)
+        {
+            CreateNewLibrary(library, State.User);
+        }
+
         /// <summary>
         /// Creates a new library.
         /// </summary>
-        public void CreateNewLibrary(Library library)
+        /// <param name="library">The library.</param>
+        /// <param name="owner">The owner.</param>
+        /// <exception cref="System.ArgumentNullException">library</exception>
+        public void CreateNewLibrary(Library library, User owner)
         {
             if (library == null)
                 throw new ArgumentNullException("library");
 
-            var dataSource = new LibraryDataSource(library.FilePath);
-            dataSource.Create();
+            if (owner == null)
+                throw new ArgumentNullException("owner");
+
+            library.Owner = owner.AsPerson();
+            var dataSource = new LibraryDataSource(_container);
+            dataSource.Create(library.FilePath);
             var libraryConnection = LibraryConnection.Create(library);
             State.Connections.Add(libraryConnection);
+            _libraryService.ConnectLibrary(libraryConnection, owner);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
+            _personRepository.AddPerson(libraryConnection.DataSource, library.Owner);
+            _libraryRepository.AddLibrary(libraryConnection.DataSource, library);
             _stateService.SaveState();
+            libraryConnection.SaveChanges();
+
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
         }
 
