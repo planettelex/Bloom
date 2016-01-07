@@ -5462,4 +5462,20 @@
     </Style>
     <Style TargetType="controls:RadComboBox" BasedOn="{StaticResource RadComboBoxStyle}" />
 
+    <Style x:Key="PaddedButtonStyle" TargetType="{x:Type controls:RadButton}" BasedOn="{StaticResource RadButtonStyle}">
+        <Setter Property="Padding" Value="12 4" />
+    </Style>
+
+    <Style x:Key="PositiveButtonStyle" TargetType="{x:Type controls:RadButton}" BasedOn="{StaticResource PaddedButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource PositiveBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="NegativeButtonStyle" TargetType="{x:Type controls:RadButton}" BasedOn="{StaticResource PaddedButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource NegativeBackgroundBrush}" />
+    </Style>
+
+    <Style x:Key="WarningButtonStyle" TargetType="{x:Type controls:RadButton}" BasedOn="{StaticResource PaddedButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource WarningBackgroundBrush}" />
+    </Style>
+
 </ResourceDictionary>

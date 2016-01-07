@@ -16,8 +16,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Creates a new library.
         /// </summary>
         /// <param name="library">The library.</param>
-        /// <param name="owner">The owner.</param>
-        void CreateNewLibrary(Library library, User owner);
+        void CreateNewLibrary(Library library);
 
         /// <summary>
         /// Creates a new library tab.

@@ -90,8 +90,8 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         public void ShowCreateNewLibraryModal()
         {
-            var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager, _userService);
-            var newLibraryWindow = new NewLibraryWindow(newLibraryWindowModel, _eventAggregator)
+            var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager, _userService, _eventAggregator);
+            var newLibraryWindow = new NewLibraryWindow(newLibraryWindowModel)
             {
                 Owner = Application.Current.MainWindow
             };
@@ -100,29 +100,15 @@ namespace Bloom.Browser.LibraryModule.Services
 
         public void CreateNewLibrary(Library library)
         {
-            CreateNewLibrary(library, State.User);
-        }
-
-        /// <summary>
-        /// Creates a new library.
-        /// </summary>
-        /// <param name="library">The library.</param>
-        /// <param name="owner">The owner.</param>
-        /// <exception cref="System.ArgumentNullException">library</exception>
-        public void CreateNewLibrary(Library library, User owner)
-        {
             if (library == null)
                 throw new ArgumentNullException("library");
 
-            if (owner == null)
-                throw new ArgumentNullException("owner");
-
-            library.Owner = owner.AsPerson();
             var dataSource = new LibraryDataSource(_container);
             dataSource.Create(library.FilePath);
             var libraryConnection = LibraryConnection.Create(library);
+            libraryConnection.IsConnected = true;
             State.Connections.Add(libraryConnection);
-            _libraryService.ConnectLibrary(libraryConnection, owner);
+            _libraryService.ConnectLibrary(libraryConnection, State.User);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
             _personRepository.AddPerson(libraryConnection.DataSource, library.Owner);
             _libraryRepository.AddLibrary(libraryConnection.DataSource, library);
@@ -138,8 +124,12 @@ namespace Bloom.Browser.LibraryModule.Services
         public void NewLibraryTab(Guid libraryId)
         {
             const ViewType defaultViewType = ViewType.Grid;
-            var library = new Library { Id = libraryId }; // TODO: Make this data access call
-            var tab = CreateNewTab(libraryId, defaultViewType);
+            var datasource = State.GetConnectionData(libraryId);
+            if (datasource == null)
+                throw new NullReferenceException("Library datasource cannot be null.");
+
+            var library = _libraryRepository.GetLibrary(datasource);
+            var tab = CreateNewTab(library, defaultViewType);
             var libraryViewModel = new LibraryViewModel(library, defaultViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(defaultViewType, tab, libraryView);
@@ -154,7 +144,11 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="tab">The library tab.</param>
         public void RestoreLibraryTab(Tab tab)
         {
-            var library = new Library { Id = tab.EntityId }; // TODO: Make this data access call
+            var datasource = State.GetConnectionData(tab.EntityId);
+            if (datasource == null)
+                throw new NullReferenceException("Library datasource cannot be null.");
+
+            var library = _libraryRepository.GetLibrary(datasource);
             var viewType = (ViewType) Enum.Parse(typeof (ViewType), tab.View);
             var libraryViewModel = new LibraryViewModel(library, viewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
@@ -174,9 +168,12 @@ namespace Bloom.Browser.LibraryModule.Services
             if (existingTab == null)
                 return;
 
-            var libraryId = existingTab.Tab.EntityId;
-            var library = new Library { Id = libraryId }; // TODO: Make this data access call
-            var tab = CreateNewTab(libraryId, existingTab.ViewType);
+            var datasource = State.GetConnectionData(existingTab.Tab.EntityId);
+            if (datasource == null)
+                throw new NullReferenceException("Library datasource cannot be null.");
+
+            var library = _libraryRepository.GetLibrary(datasource);
+            var tab = CreateNewTab(library, existingTab.ViewType);
             var libraryViewModel = new LibraryViewModel(library, existingTab.ViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(tab, libraryView);
@@ -210,17 +207,17 @@ namespace Bloom.Browser.LibraryModule.Services
                 stateTab.View = viewType.ToString();
         }
 
-        private Tab CreateNewTab(Guid libraryId, ViewType viewType)
+        private Tab CreateNewTab(Library library, ViewType viewType)
         {
             return new Tab
             {
                 Id = Guid.NewGuid(),
                 Order = State.GetNextTabOrder(),
                 Type = TabType.Library,
-                Header = "Library",
+                Header = library.Name,
                 Process = ProcessType.Browser,
-                LibraryId = libraryId,
-                EntityId = libraryId,
+                LibraryId = library.Id,
+                EntityId = library.Id,
                 View = viewType.ToString()
             };
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Bloom.Data;
 using Bloom.Data.Repositories;
 using Bloom.State.Data.Respositories;
@@ -51,6 +52,9 @@ namespace Bloom.Services
             if (string.IsNullOrEmpty(libraryConnection.FilePath))
                 throw new NullReferenceException("Library connection file path cannot be null.");
 
+            if (!File.Exists(libraryConnection.FilePath))
+                throw new FileNotFoundException(libraryConnection.FilePath + " not found.");
+
             if (user == null)
                 throw new ArgumentNullException("user");
 
@@ -60,6 +64,27 @@ namespace Bloom.Services
             libraryConnection.DataSource.Connect(libraryConnection.FilePath);
             libraryConnection.LastConnected = DateTime.Now;
             libraryConnection.LastConnectionBy = user.PersonId;
+        }
+
+        public LibraryConnection GetLibraryConnection(Guid libraryId, User user, bool makeConnection)
+        {
+            var libraryConnection = _libraryConnectionRepository.GetLibraryConnection(libraryId);
+            if (libraryConnection == null)
+                return null;
+
+            if (!makeConnection)
+                return libraryConnection;
+
+            if (string.IsNullOrEmpty(libraryConnection.FilePath))
+                throw new NullReferenceException("Library connection file path cannot be null.");
+
+            if (!File.Exists(libraryConnection.FilePath))
+                throw new FileNotFoundException(libraryConnection.FilePath + " not found.");
+
+            ConnectLibrary(libraryConnection, user);
+            libraryConnection.Library = _libraryRepository.GetLibrary(libraryConnection.DataSource);
+
+            return libraryConnection;
         }
     }
 }

@@ -27,6 +27,19 @@ namespace Bloom.State.Domain.Models
                 return;
 
             User = user;
+            User.LastLogin = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
+        public LibraryConnection GetConnection(Guid libraryId)
+        {
+            if (Connections == null || Connections.Count == 0)
+                return null;
+
+            return Connections.SingleOrDefault(c => c.LibraryId == libraryId);
         }
 
         /// <summary>
@@ -35,12 +48,33 @@ namespace Bloom.State.Domain.Models
         /// <param name="libraryId">The library identifier.</param>
         public LibraryDataSource GetConnectionData(Guid libraryId)
         {
-            if (Connections == null || Connections.Count == 0)
-                return null;
-
-            var connection = Connections.SingleOrDefault(c => c.LibraryId == libraryId);
-
+            var connection = GetConnection(libraryId);
             return connection == null ? null : connection.DataSource;
+        }
+
+        /// <summary>
+        /// Adds the connection.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
+        public void AddConnection(LibraryConnection libraryConnection)
+        {
+            if (Connections == null)
+                Connections = new List<LibraryConnection>();
+
+            if (!Connections.Contains(libraryConnection))
+                Connections.Add(libraryConnection);
+        }
+
+        /// <summary>
+        /// Removes the connection.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
+        public void RemoveConnection(LibraryConnection libraryConnection)
+        {
+            if (Connections == null || Connections.Count == 0)
+                return;
+
+            Connections.Remove(libraryConnection);
         }
 
         /// <summary>

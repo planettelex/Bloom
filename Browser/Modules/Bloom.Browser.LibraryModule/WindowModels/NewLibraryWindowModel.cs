@@ -6,9 +6,11 @@ using System.Linq;
 using System.Windows.Input;
 using Bloom.Common.ExtensionMethods;
 using Bloom.Domain.Models;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.LibraryModule.WindowModels
@@ -20,9 +22,11 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="userService">The user service.</param>
-        public NewLibraryWindowModel(IRegionManager regionManager, IUserService userService)
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public NewLibraryWindowModel(IRegionManager regionManager, IUserService userService, IEventAggregator eventAggregator)
         {
             _userService = userService;
+            EventAggregator = eventAggregator;
             var potentialOwners = _userService.ListUsers();
             State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
             if (State.User != null)
@@ -33,7 +37,10 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             foreach (var potentialOwner in potentialOwners)
                 PotentialOwners.Add(potentialOwner);
         }
+
         private readonly IUserService _userService;
+
+        public IEventAggregator EventAggregator { get; private set; }
 
         /// <summary>
         /// Gets the state.
@@ -106,7 +113,10 @@ namespace Bloom.Browser.LibraryModule.WindowModels
 
             // If state user is null, set it to the owner.
             if (State.User == null)
+            {
                 State.SetUser(ownerUser);
+                EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
+            } 
 
             return owner;
         }

@@ -4,7 +4,6 @@ using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Browser.LibraryModule.Windows
 {
@@ -14,14 +13,12 @@ namespace Bloom.Browser.LibraryModule.Windows
     public partial class NewLibraryWindow
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NewLibraryWindow"/> class.
+        /// Initializes a new instance of the <see cref="NewLibraryWindow" /> class.
         /// </summary>
         /// <param name="windowModel">The window model.</param>
-        /// <param name="eventAggregator">The event aggregator.</param>
-        public NewLibraryWindow(NewLibraryWindowModel windowModel, IEventAggregator eventAggregator)
+        public NewLibraryWindow(NewLibraryWindowModel windowModel)
         {
             InitializeComponent();
-            _eventAggregator = eventAggregator;
             _folderBrowserDialog = new FolderBrowserDialog();
             windowModel.IsLoading = true;
             windowModel.BrowseFoldersCommand = new DelegateCommand<object>(BrowserFolders, CanBrowserFolders);
@@ -29,7 +26,6 @@ namespace Bloom.Browser.LibraryModule.Windows
             windowModel.CancelCommand = new DelegateCommand<object>(Cancel, CanCancel);
             DataContext = windowModel;
         }
-        private readonly IEventAggregator _eventAggregator;
         private readonly FolderBrowserDialog _folderBrowserDialog;
 
         private NewLibraryWindowModel WindowModel { get { return (NewLibraryWindowModel) DataContext; } }
@@ -67,7 +63,7 @@ namespace Bloom.Browser.LibraryModule.Windows
         {
             var libraryOwner = WindowModel.GetOwner();
             var newLibrary = Library.Create(libraryOwner, WindowModel.LibraryName, WindowModel.FolderPath);
-            _eventAggregator.GetEvent<CreateNewLibraryEvent>().Publish(newLibrary);
+            WindowModel.EventAggregator.GetEvent<CreateNewLibraryEvent>().Publish(newLibrary);
             Close();
         }
 

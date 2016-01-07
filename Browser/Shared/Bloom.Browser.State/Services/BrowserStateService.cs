@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Data.Interfaces;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
@@ -29,6 +30,9 @@ namespace Bloom.Browser.State.Services
             _libraryConnectionRepository = libraryConnectionRepository;
             _browserStateRepository = browserStateRepository;
             _libraryService = libraryService;
+
+            EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
+            EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
         }
         private readonly ILibraryService _libraryService;
         private readonly IBrowserStateRepository _browserStateRepository;
@@ -60,7 +64,14 @@ namespace Bloom.Browser.State.Services
             browserState.SetUser(user);
             browserState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
             _browserStateRepository.AddBrowserState(browserState);
+
+            EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return browserState;
+        }
+
+        private void SaveState(object nothing)
+        {
+            SaveState();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Bloom.PubSubEvents
 
     public class ConnectionRemovedEvent : PubSubEvent<Guid> { }
 
-    public class ChangeUserEvent : PubSubEvent<User> { }
-
     public class UserChangedEvent : PubSubEvent<object> { }
+
+    public class SaveStateEvent : PubSubEvent<object> { }
 }

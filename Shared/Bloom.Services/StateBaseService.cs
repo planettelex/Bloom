@@ -2,12 +2,15 @@
 using System.IO;
 using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
+using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Services
 {
     public class StateBaseService
     {
         protected IDataSource StateDataSource { get; set; }
+
+        protected IEventAggregator EventAggregator { get; set; }
 
         protected ApplicationState State { get; set; }
 

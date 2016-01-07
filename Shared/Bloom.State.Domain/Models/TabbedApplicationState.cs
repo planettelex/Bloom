@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Bloom.State.Domain.Models
@@ -47,6 +48,11 @@ namespace Bloom.State.Domain.Models
 
             foreach (var tab in Tabs)
                 tab.UserId = user.PersonId;
+        }
+
+        public bool HasLibraryTabs(Guid libraryId)
+        {
+            return Tabs.Any(tab => tab.LibraryId == libraryId);
         }
     }
 }

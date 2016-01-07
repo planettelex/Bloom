@@ -4,15 +4,12 @@ using System.Linq;
 using Bloom.PubSubEvents;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Services
 {
     public class TabbedStateBaseService : StateBaseService
     {
         protected ITabRepository TabRepository { get; set; }
-
-        protected IEventAggregator EventAggregator { get; set; }
 
         protected new TabbedApplicationState State { get; set; }
 
@@ -93,6 +90,20 @@ namespace Bloom.Services
                 exemptTab.Order = 1;
                 State.Tabs = new List<Tab> { exemptTab };
             }
+        }
+
+        /// <summary>
+        /// Closes all tabs for a given library.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
+        public void CloseLibraryTabs(Guid libraryId)
+        {
+            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
+                return;
+
+            var libraryTabs = State.Tabs.Where(tab => tab.LibraryId == libraryId).ToList();
+            foreach (var tab in libraryTabs)
+                EventAggregator.GetEvent<CloseTabEvent>().Publish(tab.Id);
         }
 
         /// <summary>

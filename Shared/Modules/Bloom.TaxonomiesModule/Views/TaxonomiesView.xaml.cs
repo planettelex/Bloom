@@ -1,4 +1,4 @@
-﻿using Bloom.Domain.Models;
+﻿using System;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Bloom.TaxonomiesModule.ViewModels;
@@ -21,12 +21,10 @@ namespace Bloom.TaxonomiesModule.Views
             InitializeComponent();
             DataContext = viewModel;
             _eventAggregator = eventAggregator;
-
-            if (State != null && State.Connections != null && State.Connections.Count > 0)
-                foreach (var libraryConnection in State.Connections)
-                    AddLibrary(libraryConnection);
-
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(AddLibrary);
+            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(RemoveLibrary);
+
+            SyncWithState();
         }
         private readonly IEventAggregator _eventAggregator;
 
@@ -40,9 +38,28 @@ namespace Bloom.TaxonomiesModule.Views
 
         private void AddLibrary(LibraryConnection libraryConnection)
         {
-            var library = new Library { Id = libraryConnection.LibraryId, Name = libraryConnection.LibraryName }; // Todo: Make this a data call
-            var libraryViewModel = new LibraryViewModel(library, _eventAggregator);
-            TaxonomiesLibraries.Children.Add(new LibraryView(libraryViewModel));
+            SyncWithState();
+        }
+
+        private void RemoveLibrary(Guid libraryId)
+        {
+            SyncWithState();
+        }
+
+        private void SyncWithState()
+        {
+            if (State == null || State.Connections == null || State.Connections.Count == 0)
+                _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
+            else
+            {
+                TaxonomiesLibraries.Children.Clear();
+                foreach (var libraryConnection in State.Connections)
+                {
+                    var libraryViewModel = new LibraryViewModel(libraryConnection.Library, _eventAggregator);
+                    TaxonomiesLibraries.Children.Add(new LibraryView(libraryViewModel));
+                }
+                _eventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
+            }
         }
     }
 }

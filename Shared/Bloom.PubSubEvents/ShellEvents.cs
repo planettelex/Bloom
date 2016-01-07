@@ -97,6 +97,11 @@ namespace Bloom.PubSubEvents
     public class DuplicateTabEvent : PubSubEvent<Guid> { }
 
     /// <summary>
+    /// Closes the specified tab.
+    /// </summary>
+    public class CloseTabEvent : PubSubEvent<Guid> { }
+
+    /// <summary>
     /// Closes all tabs.
     /// </summary>
     public class CloseAllTabsEvent : PubSubEvent<object> { }

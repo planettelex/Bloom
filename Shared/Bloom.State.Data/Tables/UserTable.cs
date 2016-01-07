@@ -17,7 +17,7 @@ namespace Bloom.State.Data.Tables
                        "\"birthday\" DATETIME , " +
                        "\"twitter\" VARCHAR , " +
                        "\"profile_image_url\" VARCHAR , " +
-                       "\"last_login\" DATETIME NOT NULL)";
+                       "\"last_login\" DATETIME)";
             }
         }
     }

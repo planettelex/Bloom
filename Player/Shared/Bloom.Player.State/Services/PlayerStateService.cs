@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Data.Interfaces;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
@@ -51,6 +52,8 @@ namespace Bloom.Player.State.Services
             var playerState = new PlayerState();
             playerState.SetUser(user);
             _playerStateRepository.AddPlayerState(playerState);
+
+            EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return playerState;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Data.Interfaces;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
@@ -60,6 +61,8 @@ namespace Bloom.Analytics.State.Services
             analyticsState.SetUser(user);
             analyticsState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
             _analyticsStateRepository.AddAnalyticsState(analyticsState);
+
+            EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return analyticsState;
         }
     }

@@ -24,53 +24,68 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Text="{Binding Path=Instructions}" />
-            <telerik:RadButton Grid.Column="1" Content="Connect a Library" />
+            <telerik:RadButton Grid.Column="1" Content="Connect a Library" Style="{DynamicResource PositiveButtonStyle}" />
         </Grid>
-        
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Path=LibraryConnections}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=LibraryName}" />
+        <Border Grid.Row="1" BorderBrush="{DynamicResource NormalBorderBrush}" Background="{DynamicResource DefaultBackgroundBrush}" BorderThickness="1" Margin="0 12">
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Path=LibraryConnections}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding Path=BackgroundBrush}" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="0 0 0 1" Padding="12 8">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="8"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="0">
+                                        <TextBlock Text="{Binding Path=LibraryName}" FontWeight="Bold" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                                        <TextBlock Text="{Binding Path=FilePath}" TextAlignment="Right" />
+                                        <telerik:RadButton Style="{DynamicResource WarningButtonStyle}" Visibility="{Binding Path=FileMissingButtonVisibility}">
+                                            <Image Source="{DynamicResource WarningIcon}" Width="12" Height="12" />
+                                        </telerik:RadButton>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" >
+                                        <TextBlock Text="Owner: " />
+                                        <TextBlock Text="{Binding Path=OwnerName}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                                        <telerik:RadButton Content="Connect" CommandParameter="{Binding Path=LibraryId}"
+                                                           Command="{Binding DataContext.ConnectLibraryCommand, RelativeSource={RelativeSource FindAncestor, telerik:RadWindow, 1}}"
+                                                           Style="{DynamicResource PositiveButtonStyle}" Visibility="{Binding Path=ConnectButtonVisibility}" />
+                                        <telerik:RadButton Content="Disconnect" CommandParameter="{Binding Path=LibraryId}"
+                                                           Command="{Binding DataContext.DisconnectLibraryCommand, RelativeSource={RelativeSource FindAncestor, telerik:RadWindow, 1}}"
+                                                           Style="{DynamicResource NegativeButtonStyle}" Visibility="{Binding Path=DisconnectButtonVisibility}" />
+                                        <telerik:RadButton Content="Remove" Style="{DynamicResource NegativeButtonStyle}" Visibility="{Binding Path=FileMissingButtonVisibility}" />
+                                    </StackPanel>
+
+                                </Grid>
+                            </Border>
                             
-                            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                                <TextBlock Text="{Binding Path=FilePath}" />
-                            </StackPanel>
-                            
-                            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" >
-                                <Label Content="Owner: " />
-                                <Label Content="{Binding Path=Library.Owner.Name}" />
-                            </StackPanel>
-                            
-                            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                                <telerik:RadButton Content="Connect" />
-                                <telerik:RadButton Content="Disconnect" />
-                                <telerik:RadButton Content="Remove" />
-                            </StackPanel>
-                            
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-        
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <telerik:RadButton Grid.Column="1" Content="Close" Command="{Binding Path=CloseCommand}" />
+            <telerik:RadButton Grid.Column="1" Content="Close" Command="{Binding Path=CloseCommand}" Style="{DynamicResource PaddedButtonStyle}" />
         </Grid>
     </Grid>
     

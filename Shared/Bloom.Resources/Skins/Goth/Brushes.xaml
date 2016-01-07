@@ -6,6 +6,7 @@
     <Color x:Key="ButtonBackgroundStartColor">#FF212326</Color>
     <Color x:Key="ButtonBackgroundStopColor">#FF141619</Color>
     <Color x:Key="ButtonHoverBackgroundColor">#FF2A2D34</Color>
+    <Color x:Key="DefaultBackgroundColor">#FFFAFAFA</Color>
     <Color x:Key="ControlBackgroundColor">#FF191818</Color>
     <Color x:Key="ControlDisabledBackgroundColor">#FF141415</Color>
     <Color x:Key="ControlHoverBackgroundColor">#FF1B1A1C</Color>
@@ -29,9 +30,14 @@
     <Color x:Key="TitlebarBackgroundColor">#FF121212</Color>
     <Color x:Key="WindowHeaderBackgroundColor">#FF121212</Color>
     <Color x:Key="WindowHeaderForegroundColor">#FFF6F6F6</Color>
+    <Color x:Key="PositiveBackgroundColor">#24BF1C</Color>
+    <Color x:Key="NegativeBackgroundColor">#EC2323</Color>
+    <Color x:Key="WarningBackgroundColor">#FFD300</Color>
 
     <!-- Brushes -->
+    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="{StaticResource DefaultBackgroundColor}" />
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="{StaticResource ControlBackgroundColor}" />
+    <SolidColorBrush x:Key="ControlDisabledBackgroundBrush" Color="{StaticResource ControlDisabledBackgroundColor}" />
     <SolidColorBrush x:Key="MenuBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemBackgroundBrush" Color="{StaticResource MenuBackgroundColor}" />
     <SolidColorBrush x:Key="MenuItemSelectedBackgroundBrush" Color="{StaticResource MenuItemSelectedBackgroundColor}" />
@@ -44,5 +50,8 @@
     <SolidColorBrush x:Key="TabsUnselectedBackgroundBrush" Color="{StaticResource TabsUnselectedBackgroundColor}" />
     <SolidColorBrush x:Key="TitlebarBackgroundBrush" Color="{StaticResource TitlebarBackgroundColor}" />
     <SolidColorBrush x:Key="WindowHeaderForegroundBrush" Color="{StaticResource WindowHeaderForegroundColor}" />
+    <SolidColorBrush x:Key="PositiveBackgroundBrush" Color="{StaticResource PositiveBackgroundColor}" />
+    <SolidColorBrush x:Key="NegativeBackgroundBrush" Color="{StaticResource NegativeBackgroundColor}" />
+    <SolidColorBrush x:Key="WarningBackgroundBrush" Color="{StaticResource WarningBackgroundColor}" />
 
 </ResourceDictionary>

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using System.IO;
+using System.Windows;
+using System.Windows.Media;
 using Bloom.Data;
 using Bloom.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
@@ -27,7 +30,8 @@ namespace Bloom.State.Domain.Models
                 LibraryId = library.Id,
                 LibraryName = library.Name,
                 FilePath = library.FilePath,
-                IsConnected = true,
+                OwnerId = library.OwnerId,
+                OwnerName = library.Owner.Name,
                 LastConnected = DateTime.Now,
                 LastConnectionBy = library.OwnerId
             };
@@ -38,7 +42,12 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the library identifier.
         /// </summary>
         [Column(Name = "library_id", IsPrimaryKey = true)]
-        public Guid LibraryId { get; set; }
+        public Guid LibraryId
+        {
+            get { return _libraryId; }
+            set { SetProperty(ref _libraryId, value); }
+        }
+        private Guid _libraryId;
 
         /// <summary>
         /// Gets or sets the library name.
@@ -81,6 +90,63 @@ namespace Bloom.State.Domain.Models
         public Guid LastConnectionBy { get; set; }
 
         /// <summary>
+        /// Gets or sets the owner's person identifier.
+        /// </summary>
+        [Column(Name = "owner_id")]
+        public Guid OwnerId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the owner.
+        /// </summary>
+        [Column(Name = "owner_name")]
+        public string OwnerName
+        {
+            get { return _ownerName; }
+            set { SetProperty(ref _ownerName, value); }
+        }
+        private string _ownerName;
+
+        /// <summary>
+        /// Gets or sets the connect button visibility.
+        /// </summary>
+        public Visibility ConnectButtonVisibility
+        {
+            get { return _connectButtonVisibility; }
+            set { SetProperty(ref _connectButtonVisibility, value); }
+        }
+        private Visibility _connectButtonVisibility;
+
+        /// <summary>
+        /// Gets or sets the disconnect button visibility.
+        /// </summary>
+        public Visibility DisconnectButtonVisibility
+        {
+            get { return _disconnectButtonVisibility; }
+            set { SetProperty(ref _disconnectButtonVisibility, value); }
+        }
+        private Visibility _disconnectButtonVisibility;
+
+        /// <summary>
+        /// Gets or sets the file missing button visibility.
+        /// </summary>
+        public Visibility FileMissingButtonVisibility
+        {
+            get { return _fileMissingButtonVisibility; }
+            set { SetProperty(ref _fileMissingButtonVisibility, value); }
+        }
+        private Visibility _fileMissingButtonVisibility;
+
+        /// <summary>
+        /// Gets or sets the background brush.
+        /// </summary>
+        public Brush BackgroundBrush
+        {
+            get { return _backgroundBrush; }
+            set { SetProperty(ref _backgroundBrush, value); }
+        }
+        private Brush _backgroundBrush;
+
+        /// <summary>
         /// Gets or sets the connected library.
         /// </summary>
         public Library Library { get; set; }
@@ -96,6 +162,35 @@ namespace Bloom.State.Domain.Models
         public void SaveChanges()
         {
             DataSource.Save();
+        }
+
+        /// <summary>
+        /// Sets the button visibilities.
+        /// </summary>
+        /// <exception cref="System.NullReferenceException">File path cannot be null or empty.</exception>
+        public void SetButtonVisibilities()
+        {
+            if (string.IsNullOrEmpty(FilePath))
+                throw new NullReferenceException("File path cannot be null or empty.");
+
+            if (!File.Exists(FilePath))
+            {
+                FileMissingButtonVisibility = Visibility.Visible;
+                DisconnectButtonVisibility = Visibility.Collapsed;
+                ConnectButtonVisibility = Visibility.Collapsed;
+            }
+            else if (!IsConnected || DataSource == null || !DataSource.IsConnected())
+            {
+                FileMissingButtonVisibility = Visibility.Collapsed;
+                DisconnectButtonVisibility = Visibility.Collapsed;
+                ConnectButtonVisibility = Visibility.Visible;
+            }
+            else
+            {
+                FileMissingButtonVisibility = Visibility.Collapsed;
+                DisconnectButtonVisibility = Visibility.Visible;
+                ConnectButtonVisibility = Visibility.Collapsed;
+            }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Bloom.LibraryModule.Services
         public void ShowConnectedLibrariesModal()
         {
             var connectedLibrariesWindowModel = new ConnectedLibrariesWindowModel(_regionManager, _libraryService);
-            var connectedLibrariesWindow = new ConnectedLibrariesWindow(connectedLibrariesWindowModel, _eventAggregator)
+            var connectedLibrariesWindow = new ConnectedLibrariesWindow(connectedLibrariesWindowModel, _eventAggregator, _libraryService)
             {
                 Owner = Application.Current.MainWindow
             };

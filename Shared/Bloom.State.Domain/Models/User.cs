@@ -26,8 +26,7 @@ namespace Bloom.State.Domain.Models
                 PersonId = person.Id,
                 Name = person.Name,
                 Birthday = person.BornOn,
-                Twitter = person.Twitter,
-                LastLogin = DateTime.Now
+                Twitter = person.Twitter
             };
             if (person.Photos != null && person.Photos.Count > 0)
             {
@@ -71,7 +70,7 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the user's last login datetime.
         /// </summary>
         [Column(Name = "last_login")]
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
 
         /// <summary>
         /// Creates a new person from this user.

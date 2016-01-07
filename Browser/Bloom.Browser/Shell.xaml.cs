@@ -53,6 +53,7 @@ namespace Bloom.Browser
             eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
             eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
             eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
+            eventAggregator.GetEvent<CloseTabEvent>().Subscribe(CloseTab);
             eventAggregator.GetEvent<HideSidebarEvent>().Subscribe(HideSidebar);
             eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
             eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
@@ -124,6 +125,15 @@ namespace Bloom.Browser
 
             _tabs.Add(tabControl.TabId, newPane);
             PaneGroup.Items.Add(newPane);
+        }
+
+        private void CloseTab(Guid tabId)
+        {
+            _stateService.RemoveTab(tabId);
+
+            var tab = _tabs[tabId];
+            if (tab != null)
+                tab.IsHidden = true;
         }
 
         private void CloseOtherTabs(object nothing)
