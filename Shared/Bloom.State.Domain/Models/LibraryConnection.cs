@@ -201,5 +201,20 @@ namespace Bloom.State.Domain.Models
                 ConnectButtonVisibility = Visibility.Collapsed;
             }
         }
+
+        /// <summary>
+        /// Sets the owner.
+        /// </summary>
+        /// <param name="person">The person.</param>
+        public void SetOwner(Person person)
+        {
+            if (person == null)
+                return;
+
+            OwnerId = person.Id;
+            OwnerName = person.Name;
+            if (Library != null)
+                Library.Owner = person;
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
@@ -177,7 +176,7 @@ namespace Bloom.LibraryModule.Windows
                 }
                 else
                 {
-                    // TODO: Sync connection and library data using timestamps
+                    _libraryService.SyncLibraryOwnerAndUser(lostLibraryConnection, Model.State.User);
                     lostLibraryConnection.Disconnect();
                     lostLibraryConnection.SetButtonVisibilities();
                     _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
@@ -199,7 +198,7 @@ namespace Bloom.LibraryModule.Windows
             if (_removingConnection == null)
                 return;
 
-            var confirmText = "Are you sure you would like to permanently remove the\r\nconnection to the library:\"" + _removingConnection.LibraryName + "\"?";
+            var confirmText = "Are you sure you would like to permanently remove\r\nthe connection to the library: \"" + _removingConnection.LibraryName + "\"?";
             Confirm(confirmText, OnRemoveConnectionConfirmClosed);
         }
 
@@ -233,12 +232,16 @@ namespace Bloom.LibraryModule.Windows
         private void ConnectNewLibrary(object nothing)
         {
             _findFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+            _findFileDialog.FileName = string.Empty;
             _findFileDialog.Title = "Locate the *" + Common.Settings.LibraryFileExtension + " file for the library to connect.";
 
             var result = _findFileDialog.ShowDialog();
             if (result != null && result.Value)
             {
                 var libraryConnection = _sharedLibraryService.ConnectNewLibrary(_findFileDialog.FileName);
+                if (libraryConnection == null)
+                    return;
+
                 libraryConnection.SetButtonVisibilities();
                 libraryConnection.BackgroundBrush = libraryConnection.IsConnected ? _enabledBrush : _disabledBrush;
                 var insertAt = 0;
@@ -250,7 +253,8 @@ namespace Bloom.LibraryModule.Windows
                         break;
                     }
                 }
-                Model.LibraryConnections.Insert(insertAt, libraryConnection);
+                if (!Model.LibraryConnections.Contains(libraryConnection))
+                    Model.LibraryConnections.Insert(insertAt, libraryConnection);
             }
         }
     }

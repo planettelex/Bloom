@@ -178,5 +178,51 @@ namespace Bloom.Domain.Models
         }
 
         #endregion
+
+        /// <summary>
+        /// Gets the profile image URL.
+        /// </summary>
+        public string ProfileImageUrl
+        {
+            get
+            {
+                if (Photos == null || Photos.Count == 0)
+                    return null;
+
+                var photo = Photos[0].Photo;
+
+                if (photo == null)
+                    return null;
+
+                return photo.Url;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    return;
+
+                if (Photos == null)
+                    Photos = new List<PersonPhoto>();
+
+                var existingPhoto = Photos.SingleOrDefault(photo => photo.Photo != null && photo.Photo.Url == value);
+                if (existingPhoto != null)
+                {
+                    if (existingPhoto.Photo == null)
+                        throw new NullReferenceException("Person photo reference cannot be null.");
+
+                    existingPhoto.Priority = 1;
+                    existingPhoto.Photo.Url = value;
+                    for (var i = 0; i < Photos.Count; i++)
+                        if (Photos[i].PhotoId != existingPhoto.PhotoId)
+                            Photos[i].Priority = i + 2;
+                }
+                else
+                {
+                    var photo = Photo.Create(value);
+                    var personPhoto = PersonPhoto.Create(this, photo, 1);
+                    Photos.Add(personPhoto);
+                }
+            }
+        }
     }
 }

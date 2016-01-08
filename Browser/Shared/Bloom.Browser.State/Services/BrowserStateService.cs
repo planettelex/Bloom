@@ -54,6 +54,7 @@ namespace Bloom.Browser.State.Services
                 return (BrowserState) State;
 
             _libraryService.ConnectLibraries(State.Connections, user, false, true);
+            SaveState();
 
             return (BrowserState) State;
         }

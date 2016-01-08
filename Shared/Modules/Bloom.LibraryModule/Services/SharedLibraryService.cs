@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Remoting.Messaging;
 using System.Windows;
 using Bloom.Browser.PubSubEvents;
+using Bloom.Common.ExtensionMethods;
 using Bloom.Data;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
@@ -93,15 +93,35 @@ namespace Bloom.LibraryModule.Services
             var dataSource = new LibraryDataSource(_container);
             dataSource.Connect(filePath);
             var library = _libraryRepository.GetLibrary(dataSource);
+            if (library == null)
+                return null;
+
+            library.FileName = filePath.GetFileName();
+            library.FolderPath = filePath.GetFilePath();
             var libraryConnection = LibraryConnection.Create(library);
-            _libraryService.ConnectLibrary(libraryConnection, State.User, true, false);
-            _userRepository.AddUser(User.Create(library.Owner));
+            var existingConnection = _libraryConnectionRepository.GetLibraryConnection(library.Id);
+            if (existingConnection != null)
+                libraryConnection = existingConnection;
+            
+            var success = _libraryService.ConnectLibrary(libraryConnection, State.User, true, true);
+            if (!success)
+                return null;
+
+            var existingUser = _userRepository.GetUser(library.OwnerId);
+            if (existingUser == null)
+                _userRepository.AddUser(User.Create(library.Owner));
+            else
+                _libraryService.SyncLibraryOwnerAndUser(libraryConnection, existingUser);
+
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
-            State.Connections.Insert(0, libraryConnection);
-
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
-            _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
-
+            var alreadyConnected = State.Connections.Contains(libraryConnection);
+            if (!alreadyConnected)
+            {
+                State.Connections.Insert(0, libraryConnection);
+                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
+            }
+            
             return libraryConnection;
         }
 

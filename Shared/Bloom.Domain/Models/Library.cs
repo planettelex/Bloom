@@ -66,9 +66,24 @@ namespace Bloom.Domain.Models
         public Guid OwnerId { get; set; }
 
         /// <summary>
-        /// Gets or sets the identifer owner.
+        /// Gets or sets the library owner.
         /// </summary>
-        public Person Owner { get; set; }
+        public Person Owner
+        {
+            get { return _owner; }
+            set
+            {
+                _owner = value;
+                OwnerId = _owner.Id;
+            }
+        }
+        private Person _owner;
+
+        /// <summary>
+        /// Gets or sets when the owner last connected.
+        /// </summary>
+        [Column(Name = "owner_last_connected")]
+        public DateTime OwnerLastConnected { get; set; }
 
         /// <summary>
         /// Gets the file path.

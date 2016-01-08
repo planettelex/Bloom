@@ -17,6 +17,7 @@ namespace Bloom.Data.Tables
                        "folder_path VARCHAR NOT NULL , " +
                        "file_name VARCHAR NOT NULL , " +
                        "owner_id VARCHAR(36) NOT NULL , " +
+                       "owner_last_connected DATETIME NOT NULL, " +
                        "FOREIGN KEY (owner_id) REFERENCES person(id) )";
             }
         }

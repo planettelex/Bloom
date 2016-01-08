@@ -17,5 +17,7 @@ namespace Bloom.Services
         void ConnectLibraries(List<LibraryConnection> libraryConnections, User user, bool timestamp, bool setLibrary);
 
         void RemoveLibraryConnection(LibraryConnection libraryConnection);
+
+        void SyncLibraryOwnerAndUser(LibraryConnection libraryConnection, User user);
     }
 }

@@ -30,6 +30,9 @@ namespace Bloom.Analytics.State.Services
             _libraryConnectionRepository = libraryConnectionRepository;
             _analyticsStateRepository = analyticsStateRepository;
             _libraryService = libraryService;
+
+            EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
+            EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
         }
         private readonly ILibraryService _libraryService;
         private readonly IAnalyticsStateRepository _analyticsStateRepository;
@@ -51,6 +54,7 @@ namespace Bloom.Analytics.State.Services
                 return (AnalyticsState) State;
 
             _libraryService.ConnectLibraries(State.Connections, user, false, true);
+            SaveState();
 
             return (AnalyticsState) State;
         }
@@ -64,6 +68,11 @@ namespace Bloom.Analytics.State.Services
 
             EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return analyticsState;
+        }
+
+        private void SaveState(object nothing)
+        {
+            SaveState();
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Bloom.Player.State.Services
             StateDataSource = stateDataSource;
             _playerStateRepository = playerStateRepository;
             _libraryService = libraryService;
+
+            EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
         }
         private readonly ILibraryService _libraryService;
         private readonly IPlayerStateRepository _playerStateRepository;
@@ -43,6 +45,7 @@ namespace Bloom.Player.State.Services
                 return (PlayerState) State;
 
             _libraryService.ConnectLibraries(State.Connections, user, false, true);
+            SaveState();
 
             return (PlayerState) State;
         }
@@ -55,6 +58,11 @@ namespace Bloom.Player.State.Services
 
             EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return playerState;
+        }
+
+        private void SaveState(object nothing)
+        {
+            SaveState();
         }
     }
 }
