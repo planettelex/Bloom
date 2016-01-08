@@ -38,12 +38,21 @@ namespace Bloom.TaxonomiesModule.Views
 
         private void AddLibrary(LibraryConnection libraryConnection)
         {
-            SyncWithState();
+            var libraryViewModel = new LibraryViewModel(libraryConnection.Library, _eventAggregator);
+            TaxonomiesLibraries.Children.Insert(0, new LibraryView(libraryViewModel));
         }
 
         private void RemoveLibrary(Guid libraryId)
         {
-            SyncWithState();
+            LibraryView toRemove = null;
+            foreach (LibraryView libraryView in TaxonomiesLibraries.Children)
+                if (libraryView.Model.Library.Id == libraryId)
+                    toRemove = libraryView;
+            
+            if (toRemove == null)
+                return;
+
+            TaxonomiesLibraries.Children.Remove(toRemove);
         }
 
         private void SyncWithState()

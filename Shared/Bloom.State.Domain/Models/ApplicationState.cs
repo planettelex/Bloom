@@ -62,7 +62,7 @@ namespace Bloom.State.Domain.Models
                 Connections = new List<LibraryConnection>();
 
             if (!Connections.Contains(libraryConnection))
-                Connections.Add(libraryConnection);
+                Connections.Insert(0, libraryConnection);
         }
 
         /// <summary>

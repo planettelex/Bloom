@@ -38,6 +38,8 @@ namespace Bloom.Data
         /// </summary>
         public void RegisterRepositories()
         {
+            _container.RegisterType<IPersonRepository, PersonRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IPersonRepository>();
             _container.RegisterType<ILibraryRepository, LibraryRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<ILibraryRepository>();
             _container.RegisterType<IAlbumRepository, AlbumRepository>(new ContainerControlledLifetimeManager());
@@ -48,8 +50,6 @@ namespace Bloom.Data
             _container.Resolve<IFiltersetRepository>();
             _container.RegisterType<ILabelRepository, LabelRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<ILabelRepository>();
-            _container.RegisterType<IPersonRepository, PersonRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<IPersonRepository>();
             _container.RegisterType<IPlaylistRepository, PlaylistRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<PlaylistRepository>();
             _container.RegisterType<ISongRepository, SongRepository>(new ContainerControlledLifetimeManager());

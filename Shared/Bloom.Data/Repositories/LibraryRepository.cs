@@ -7,6 +7,12 @@ namespace Bloom.Data.Repositories
 {
     public class LibraryRepository : ILibraryRepository
     {
+        public LibraryRepository(IPersonRepository personRepository)
+        {
+            _personRepository = personRepository;
+        }
+        private readonly IPersonRepository _personRepository;
+
         public Library GetLibrary(IDataSource dataSource)
         {
             if (!dataSource.IsConnected())
@@ -20,7 +26,11 @@ namespace Bloom.Data.Repositories
                 from library in libraryTable
                 select library;
 
-            return query.SingleOrDefault();
+            var returnVal = query.SingleOrDefault();
+            if (returnVal != null)
+                returnVal.Owner = _personRepository.GetPerson(dataSource, returnVal.OwnerId);
+
+            return returnVal;
         }
 
         public void AddLibrary(IDataSource dataSource, Library library)

@@ -53,7 +53,7 @@ namespace Bloom.Browser.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (BrowserState) State;
 
-            _libraryService.MakeLibraryConnections(State.Connections, user);
+            _libraryService.ConnectLibraries(State.Connections, user, false, true);
 
             return (BrowserState) State;
         }

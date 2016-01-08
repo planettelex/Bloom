@@ -6,12 +6,16 @@ namespace Bloom.Services
 {
     public interface ILibraryService
     {
-        LibraryConnection GetLibraryConnection(Guid libraryId, User user, bool makeConnection);
+        LibraryConnection GetLibraryConnection(Guid libraryId);
+
+        LibraryConnection GetLibraryConnection(String filePath);
 
         List<LibraryConnection> ListLibraryConnections();
 
-        void ConnectLibrary(LibraryConnection libraryConnection, User user);
+        bool ConnectLibrary(LibraryConnection libraryConnection, User user, bool timestamp, bool setLibrary);
 
-        void MakeLibraryConnections(List<LibraryConnection> libraryConnections, User user);
+        void ConnectLibraries(List<LibraryConnection> libraryConnections, User user, bool timestamp, bool setLibrary);
+
+        void RemoveLibraryConnection(LibraryConnection libraryConnection);
     }
 }

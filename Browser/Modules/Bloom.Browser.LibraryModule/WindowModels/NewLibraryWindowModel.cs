@@ -37,9 +37,11 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             foreach (var potentialOwner in potentialOwners)
                 PotentialOwners.Add(potentialOwner);
         }
-
         private readonly IUserService _userService;
 
+        /// <summary>
+        /// Gets the event aggregator.
+        /// </summary>
         public IEventAggregator EventAggregator { get; private set; }
 
         /// <summary>
@@ -146,7 +148,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                 {
                     if (string.IsNullOrEmpty(LibraryName))
                         return "Library name is required";
-                    if (!LibraryName.IsValidFilename())
+                    if (!LibraryName.IsValidFileName())
                         return "Library cannot contain the characters <, >, :, \", /, \\, |, ?, *";
                     if (File.Exists(filePath))
                         return "A library named \"" + LibraryName + "\" already exists at this location";

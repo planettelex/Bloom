@@ -37,7 +37,24 @@ namespace Bloom.State.Data.Respositories
                 where libraryConnection.LibraryId == libraryId
                 select libraryConnection;
 
-            return query.ToList().FirstOrDefault();
+            return query.SingleOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the library connection by it's file path.
+        /// </summary>
+        /// <param name="filePath">The library file path.</param>
+        public LibraryConnection GetLibraryConnection(string filePath)
+        {
+            if (!_dataSource.IsConnected())
+                return null;
+
+            var query =
+                from libraryConnection in LibraryConnectionTable
+                where libraryConnection.FilePath == filePath
+                select libraryConnection;
+
+            return query.SingleOrDefault();
         }
 
         /// <summary>
@@ -51,7 +68,7 @@ namespace Bloom.State.Data.Respositories
             var query =
                 from libraryConnection in LibraryConnectionTable
                 where libraryConnection.IsConnected == connected
-                orderby libraryConnection.LastConnected descending
+                orderby libraryConnection.LastConnected descending 
                 select libraryConnection;
 
             return query.ToList();

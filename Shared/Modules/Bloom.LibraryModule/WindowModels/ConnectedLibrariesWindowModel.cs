@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using System.Windows.Media;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism;
@@ -49,7 +48,13 @@ namespace Bloom.LibraryModule.WindowModels
 
         public ICommand DisconnectLibraryCommand { get; set; }
 
+        public ICommand ConnectNewLibraryCommand { get; set; }
+
         public ICommand ConnectLibraryCommand { get; set; }
+
+        public ICommand FindLibraryFileCommand { get; set; }
+
+        public ICommand RemoveConnectionCommand { get; set; }
 
         private void SetConnections()
         {

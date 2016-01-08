@@ -21,7 +21,7 @@ namespace Bloom.State.Domain.Models
         /// <param name="library">A library.</param>
         public static LibraryConnection Create(Library library)
         {
-            if (library == null)
+            if (library == null || library.Owner == null)
                 return null;
 
             var libraryConnection = new LibraryConnection
@@ -162,6 +162,15 @@ namespace Bloom.State.Domain.Models
         public void SaveChanges()
         {
             DataSource.Save();
+        }
+
+        /// <summary>
+        /// Disconnects the data source.
+        /// </summary>
+        public void Disconnect()
+        {
+            DataSource.Disconnect();
+            IsConnected = false;
         }
 
         /// <summary>

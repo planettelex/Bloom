@@ -42,7 +42,7 @@ namespace Bloom.Player.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (PlayerState) State;
 
-            _libraryService.MakeLibraryConnections(State.Connections, user);
+            _libraryService.ConnectLibraries(State.Connections, user, false, true);
 
             return (PlayerState) State;
         }

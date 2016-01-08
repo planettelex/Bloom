@@ -12,5 +12,10 @@ namespace Bloom.TaxonomiesModule.Views
             InitializeComponent();
             DataContext = viewModel;
         }
+
+        public LibraryViewModel Model
+        {
+            get { return (LibraryViewModel) DataContext; }
+        }
     }
 }

@@ -24,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Text="{Binding Path=Instructions}" />
-            <telerik:RadButton Grid.Column="1" Content="Connect a Library" Style="{DynamicResource PositiveButtonStyle}" />
+            <telerik:RadButton Grid.Column="1" Content="Connect a Library" Command="{Binding Path=ConnectNewLibraryCommand}" Style="{DynamicResource PositiveButtonStyle}" />
         </Grid>
 
         <Border Grid.Row="1" BorderBrush="{DynamicResource NormalBorderBrush}" Background="{DynamicResource DefaultBackgroundBrush}" BorderThickness="1" Margin="0 12">
@@ -50,7 +50,9 @@
 
                                     <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
                                         <TextBlock Text="{Binding Path=FilePath}" TextAlignment="Right" />
-                                        <telerik:RadButton Style="{DynamicResource WarningButtonStyle}" Visibility="{Binding Path=FileMissingButtonVisibility}">
+                                        <telerik:RadButton CommandParameter="{Binding Path=LibraryId}"
+                                            Command="{Binding DataContext.FindLibraryFileCommand, RelativeSource={RelativeSource FindAncestor, telerik:RadWindow, 1}}"
+                                            Style="{DynamicResource WarningButtonStyle}" Visibility="{Binding Path=FileMissingButtonVisibility}" Padding="4" Margin="4 -2 0 0">
                                             <Image Source="{DynamicResource WarningIcon}" Width="12" Height="12" />
                                         </telerik:RadButton>
                                     </StackPanel>
@@ -67,7 +69,9 @@
                                         <telerik:RadButton Content="Disconnect" CommandParameter="{Binding Path=LibraryId}"
                                                            Command="{Binding DataContext.DisconnectLibraryCommand, RelativeSource={RelativeSource FindAncestor, telerik:RadWindow, 1}}"
                                                            Style="{DynamicResource NegativeButtonStyle}" Visibility="{Binding Path=DisconnectButtonVisibility}" />
-                                        <telerik:RadButton Content="Remove" Style="{DynamicResource NegativeButtonStyle}" Visibility="{Binding Path=FileMissingButtonVisibility}" />
+                                        <telerik:RadButton Content="Remove" CommandParameter="{Binding Path=LibraryId}"
+                                                           Command="{Binding DataContext.RemoveConnectionCommand, RelativeSource={RelativeSource FindAncestor, telerik:RadWindow, 1}}"
+                                                           Style="{DynamicResource NegativeButtonStyle}" Visibility="{Binding Path=FileMissingButtonVisibility}" />
                                     </StackPanel>
 
                                 </Grid>

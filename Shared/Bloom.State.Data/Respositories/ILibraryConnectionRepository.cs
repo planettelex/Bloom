@@ -16,6 +16,12 @@ namespace Bloom.State.Data.Respositories
         LibraryConnection GetLibraryConnection(Guid libraryId);
 
         /// <summary>
+        /// Gets the library connection by it's file path.
+        /// </summary>
+        /// <param name="filePath">The library file path.</param>
+        LibraryConnection GetLibraryConnection(string filePath);
+
+        /// <summary>
         /// Lists the library connections.
         /// </summary>
         List<LibraryConnection> ListLibraryConnections(bool connected);
