@@ -27,15 +27,15 @@ namespace Bloom.Player.MenuModule.ViewModels
         {
             _skinningService = skinningService;
             _processService = processService;
-            State = (PlayerState) regionManager.Regions["MenuRegion"].Context;
-            CheckConnections(null);
-            SetUser(null);
+            _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
 
-            eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
-            eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
-            eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
+            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
 
             // File Menu
+            ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
             // Browser Menu
             GoToBrowserCommand = new DelegateCommand<object>(GoToBrowser, CanGoToBrowser);
@@ -46,11 +46,22 @@ namespace Bloom.Player.MenuModule.ViewModels
         }
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public PlayerState State { get; private set; }
+
+        public void SetState()
+        {
+            State = (PlayerState) _regionManager.Regions[Common.Settings.MenuRegion].Context;
+            CheckConnections(null);
+            SetUser(null);
+        }
+
+        #region Shared Properties
 
         public bool HasConnections
         {
@@ -97,7 +108,24 @@ namespace Bloom.Player.MenuModule.ViewModels
             }
         }
 
+        #endregion
+
         #region File Menu
+
+        /// <summary>
+        /// Gets or sets the manage connected libraries command.
+        /// </summary>
+        public ICommand ManageConnectedLibrariesCommand { get; set; }
+
+        private bool CanManageConnectedLibraries(object nothing)
+        {
+            return true;
+        }
+
+        private void ManageConnectedLibraries(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Publish(null);
+        }
 
         /// <summary>
         /// Gets or sets the exit application command.

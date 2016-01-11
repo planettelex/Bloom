@@ -21,20 +21,14 @@ namespace Bloom.TaxonomiesModule.Views
             InitializeComponent();
             DataContext = viewModel;
             _eventAggregator = eventAggregator;
+
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(AddLibrary);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(RemoveLibrary);
-
-            SyncWithState();
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SyncWithState);
         }
         private readonly IEventAggregator _eventAggregator;
 
-        /// <summary>
-        /// Gets the state.
-        /// </summary>
-        public TabbedApplicationState State
-        {
-            get { return ((TaxonomiesViewModel) DataContext).State; }
-        }
+        private TaxonomiesViewModel Model { get { return (TaxonomiesViewModel) DataContext; } }
 
         private void AddLibrary(LibraryConnection libraryConnection)
         {
@@ -55,14 +49,15 @@ namespace Bloom.TaxonomiesModule.Views
             TaxonomiesLibraries.Children.Remove(toRemove);
         }
 
-        private void SyncWithState()
+        private void SyncWithState(object nothing)
         {
-            if (State == null || State.Connections == null || State.Connections.Count == 0)
+            Model.SetState();
+            if (Model.State.Connections == null || Model.State.Connections.Count == 0)
                 _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
             else
             {
                 TaxonomiesLibraries.Children.Clear();
-                foreach (var libraryConnection in State.Connections)
+                foreach (var libraryConnection in Model.State.Connections)
                 {
                     var libraryViewModel = new LibraryViewModel(libraryConnection.Library, _eventAggregator);
                     TaxonomiesLibraries.Children.Add(new LibraryView(libraryViewModel));

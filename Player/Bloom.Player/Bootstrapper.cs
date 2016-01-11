@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using Bloom.Data;
 using Bloom.Data.Interfaces;
+using Bloom.LibraryModule;
 using Bloom.Player.MenuModule;
 using Bloom.Player.PlayingModule;
 using Bloom.Player.RecentModule;
@@ -60,6 +62,7 @@ namespace Bloom.Player
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
+            moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PlayingModuleDefinition));
             moduleCatalog.AddModule(typeof (UpcomingModuleDefinition));
             moduleCatalog.AddModule(typeof (RecentModuleDefinition));
@@ -75,6 +78,10 @@ namespace Bloom.Player
             Container.RegisterType<IDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
             var stateDataSource = Container.Resolve<IDataSource>();
             stateDataSource.RegisterRepositories();
+
+            Container.RegisterType<IDataSource, LibraryDataSource>("Library", new ContainerControlledLifetimeManager());
+            var libraryDataSource = Container.Resolve<IDataSource>("Library");
+            libraryDataSource.RegisterRepositories();
         }
 
         /// <summary>
@@ -84,6 +91,8 @@ namespace Bloom.Player
         {
             Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IUserService>();
+            Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ISharedLibraryService>();
             Container.RegisterType<IPlayerStateService, PlayerStateService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IPlayerStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());

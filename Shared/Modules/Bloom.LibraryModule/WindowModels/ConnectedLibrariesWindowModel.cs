@@ -1,9 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
-using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Regions;
 
@@ -12,20 +9,14 @@ namespace Bloom.LibraryModule.WindowModels
     public class ConnectedLibrariesWindowModel : BindableBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectedLibrariesWindowModel"/> class.
+        /// Initializes a new instance of the <see cref="ConnectedLibrariesWindowModel" /> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        /// <param name="libraryService">The library service.</param>
-        public ConnectedLibrariesWindowModel(IRegionManager regionManager, ILibraryService libraryService)
+        public ConnectedLibrariesWindowModel(IRegionManager regionManager)
         {
-            _libraryService = libraryService;
-         
-            State = (ApplicationState) regionManager.Regions["DocumentRegion"].Context;
+            State = (ApplicationState) regionManager.Regions[Common.Settings.MenuRegion].Context;
             Instructions = string.Format("Connect a library by specifing the path to its Bloom library file (*{0}).", Common.Settings.LibraryFileExtension);
-
-            SetConnections();
         }
-        private readonly ILibraryService _libraryService;
         
         /// <summary>
         /// Gets the state.
@@ -55,24 +46,5 @@ namespace Bloom.LibraryModule.WindowModels
         public ICommand FindLibraryFileCommand { get; set; }
 
         public ICommand RemoveConnectionCommand { get; set; }
-
-        private void SetConnections()
-        {
-            LibraryConnections = new ObservableCollection<LibraryConnection>();
-            var allConnections = _libraryService.ListLibraryConnections();
-            foreach (var connection in allConnections)
-            {
-                if (connection.IsConnected)
-                {
-                    var connectedLibrary = State.Connections.SingleOrDefault(c => c.LibraryId == connection.LibraryId);
-                    if (connectedLibrary == null)
-                        connection.IsConnected = false;
-                    else
-                        connection.DataSource = connectedLibrary.DataSource;
-                }
-                connection.SetButtonVisibilities();
-            }
-            LibraryConnections.AddRange(allConnections);
-        }
     }
 }

@@ -20,23 +20,23 @@ namespace Bloom.Browser.State.Services
         /// <param name="browserStateRepository">The browser state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
-        /// <param name="libraryService">The library service.</param>
+        /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ILibraryService libraryService, IEventAggregator eventAggregator)
+        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ILibraryConnectionRepository libraryConnectionRepository, 
+            ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
             TabRepository = tabRepository;
-            _libraryConnectionRepository = libraryConnectionRepository;
+            LibraryConnectionRepository = libraryConnectionRepository;
+            _sharedLibraryService = sharedLibraryService;
             _browserStateRepository = browserStateRepository;
-            _libraryService = libraryService;
-
+            
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
             EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
         }
-        private readonly ILibraryService _libraryService;
         private readonly IBrowserStateRepository _browserStateRepository;
-        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+        private readonly ISharedLibraryService _sharedLibraryService;
 
         /// <summary>
         /// Initializes the browser application state.
@@ -53,7 +53,7 @@ namespace Bloom.Browser.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (BrowserState) State;
 
-            _libraryService.ConnectLibraries(State.Connections, user, false, true);
+            _sharedLibraryService.ConnectLibraries(State.Connections, user, false, true);
             SaveState();
 
             return (BrowserState) State;
@@ -63,7 +63,7 @@ namespace Bloom.Browser.State.Services
         {
             var browserState = new BrowserState();
             browserState.SetUser(user);
-            browserState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
+            browserState.Connections = LibraryConnectionRepository.ListLibraryConnections(true);
             _browserStateRepository.AddBrowserState(browserState);
 
             EventAggregator.GetEvent<UserChangedEvent>().Publish(null);

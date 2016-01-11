@@ -11,14 +11,17 @@ namespace Bloom.State.Data.Respositories
     public class PlayerStateRepository : IPlayerStateRepository
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayerStateRepository"/> class.
+        /// Initializes a new instance of the <see cref="PlayerStateRepository" /> class.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        public PlayerStateRepository(IDataSource dataSource)
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        public PlayerStateRepository(IDataSource dataSource, ILibraryConnectionRepository libraryConnectionRepository)
         {
             _dataSource = dataSource;
+            _libraryConnectionRepository = libraryConnectionRepository;
         }
         private readonly IDataSource _dataSource;
+        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
         private Table<PlayerState> PlayerStateTable { get { return _dataSource.Context.GetTable<PlayerState>(); } }
 
         /// <summary>
@@ -50,8 +53,11 @@ namespace Bloom.State.Data.Respositories
             var playerState = stateQuery.SingleOrDefault();
 
             if (playerState != null)
+            {
                 playerState.User = user;
-
+                playerState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
+            }
+                
             return playerState;
         }
 

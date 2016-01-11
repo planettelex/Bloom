@@ -24,22 +24,28 @@ namespace Bloom.Analytics.ArtistModule.Services
         public ArtistService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewArtistTabEvent>().Subscribe(NewArtistTab);
             _eventAggregator.GetEvent<RestoreArtistTabEvent>().Subscribe(RestoreArtistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateArtistTab);
-
-            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public AnalyticsState State { get; private set; }
+
+        private void SetState(object nothing)
+        {
+            State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
 
         public void NewArtistTab(Buid artistBuid)
         {

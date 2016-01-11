@@ -17,12 +17,8 @@
 
             <telerik:RadMenu x:Name="MainMenu" ItemClick="OnItemClick" Grid.Column="0">
                 <telerik:RadMenuItem Header="File">
-                    <telerik:RadMenuItem Header="Connected Libraries..." />
-                    <telerik:RadMenuItem Header="Open Sources..." />
-                    <telerik:RadMenuItem Header="Save Sources" />
-                    <telerik:RadMenuItem Header="Save Sources As..." />
+                    <telerik:RadMenuItem Header="Connected Libraries..." Command="{Binding Path=ManageConnectedLibrariesCommand}" />
                     <telerik:RadMenuItem Header="Save Selection As Playlist..." IsEnabled="False" />
-                    <telerik:RadMenuItem Header="Clear All Sources" />
                     <telerik:RadMenuItem Header="Exit Player" Command="{Binding Path=ExitApplicationCommand}" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Edit">
@@ -52,12 +48,12 @@
                     <telerik:RadMenuItem Header="Configure Social..." />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Browser">
-                    <telerik:RadMenuItem Header="Go to Browser" Command="{Binding Path=GoToBrowserCommand}" />
-                    <telerik:RadMenuItem Header="Open in Browser" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Open Browser" Command="{Binding Path=GoToBrowserCommand}" />
+                    <telerik:RadMenuItem Header="Browse Selection" IsEnabled="False" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Analytics">
-                    <telerik:RadMenuItem Header="Go to Analytics" Command="{Binding Path=GoToAnalyticsCommand}" />
-                    <telerik:RadMenuItem Header="Open in Analytics" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Open Analytics" Command="{Binding Path=GoToAnalyticsCommand}" />
+                    <telerik:RadMenuItem Header="Analyze Selection" IsEnabled="False" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="View">
                     <telerik:RadMenuItem Header="Full Screen" />

@@ -28,13 +28,15 @@ namespace Bloom.Analytics
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="userService">The user service.</param>
+        /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, IAnalyticsStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, ISharedLibraryService sharedLibraryService, IAnalyticsStateService stateService)
         {
             InitializeComponent();
             _loading = true;
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
+            _sharedLibraryService = sharedLibraryService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
             var user = userService.InitializeUser();
@@ -50,18 +52,21 @@ namespace Bloom.Analytics
             SidebarPane.IsHidden = !state.SidebarVisible;
             skinningService.SetSkin(state.SkinName);
 
-            eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
-            eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
-            eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
-            eventAggregator.GetEvent<HideSidebarEvent>().Subscribe(HideSidebar);
-            eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
-            eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
-            eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
+            _eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
+            _eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
+            _eventAggregator.GetEvent<CloseTabEvent>().Subscribe(CloseTab);
+            _eventAggregator.GetEvent<HideSidebarEvent>().Subscribe(HideSidebar);
+            _eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
+            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
+            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IAnalyticsStateService _stateService;
+        private readonly ISharedLibraryService _sharedLibraryService;
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
+
         private AnalyticsState State { get { return (AnalyticsState) DataContext; } }
 
         #region Window Events
@@ -73,8 +78,9 @@ namespace Bloom.Analytics
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
-            _stateService.RestoreTabs();
             _loading = false;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Publish(null);
+            _stateService.RestoreTabs();
             if (_tabs.ContainsKey(State.SelectedTabId))
                 Dock.ActivePane = _tabs[State.SelectedTabId];
         }
@@ -86,8 +92,8 @@ namespace Bloom.Analytics
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-            // TODO: Check state database for new messages.
-            State.WindowState = WindowState; // This is here only to avoid a ReSharper warning.
+            if (!_loading)
+                _sharedLibraryService.ResetLibraryConnections();
         }
 
         /// <summary>
@@ -124,6 +130,15 @@ namespace Bloom.Analytics
 
             _tabs.Add(tabControl.TabId, newPane);
             PaneGroup.Items.Add(newPane);
+        }
+
+        private void CloseTab(Guid tabId)
+        {
+            _stateService.RemoveTab(tabId);
+
+            var tab = _tabs[tabId];
+            if (tab != null)
+                tab.IsHidden = true;
         }
 
         private void CloseOtherTabs(object nothing)

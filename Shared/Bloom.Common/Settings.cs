@@ -20,5 +20,21 @@
         {
             get { return Properties.Settings.Default.StateFileExtension; }
         }
+
+        /// <summary>
+        /// Gets the menu region.
+        /// </summary>
+        public static string MenuRegion
+        {
+            get { return Properties.Settings.Default.MenuRegion; }
+        }
+
+        /// <summary>
+        /// Gets the document region.
+        /// </summary>
+        public static string DocumentRegion
+        {
+            get { return Properties.Settings.Default.DocumentRegion; }
+        }
     }
 }

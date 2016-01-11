@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.PubSubEvents;
@@ -28,16 +29,16 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
-            State = (AnalyticsState) regionManager.Regions["MenuRegion"].Context;
-            CheckConnections(null);
-            SetUser(null);
+            _regionManager = regionManager;
 
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
+            _eventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
 
             // File Menu
+            ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
             // Analytics Menu
             DuplicateTabCommand = new DelegateCommand<object>(DuplicateTab, CanDuplicateTab);
@@ -49,7 +50,6 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             GoToPlayerCommand = new DelegateCommand<object>(GoToPlayer, CanGoToPlayer);
             // View Menu
             OpenHomeTabCommand = new DelegateCommand<object>(OpenHomeTab, CanOpenHomeTab);
-            SetToggleSidebarVisibilityOption(State.SidebarVisible);
             ToggleSidebarVisibilityCommand = new DelegateCommand<object>(ToggleSidebarVisibility, CanToggleSidebarVisibility);
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
             // Help Menu
@@ -58,11 +58,23 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public AnalyticsState State { get; private set; }
+
+        public void SetState()
+        {
+            State = (AnalyticsState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            CheckConnections(null);
+            SetUser(null);
+            SetLibraryContext(State.SelectedTabId);
+            SetToggleSidebarVisibilityOption(State.SidebarVisible);
+        }
+
+        #region Shared Properties
 
         public bool HasConnections
         {
@@ -114,7 +126,48 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             }
         }
 
+        public bool HasLibraryContext
+        {
+            get { return _hasLibraryContext; }
+            set { SetProperty(ref _hasLibraryContext, value); }
+        }
+        private bool _hasLibraryContext;
+
+        public Guid LibraryContext { get; set; }
+
+        public void SetLibraryContext(Guid tabId)
+        {
+            var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
+            if (selectedTab == null || selectedTab.LibraryId == Guid.Empty)
+            {
+                LibraryContext = Guid.Empty;
+                HasLibraryContext = false;
+            }
+            else
+            {
+                LibraryContext = selectedTab.LibraryId;
+                HasLibraryContext = true;
+            }
+        }
+
+        #endregion
+
         #region File Menu
+
+        /// <summary>
+        /// Gets or sets the manage connected libraries command.
+        /// </summary>
+        public ICommand ManageConnectedLibrariesCommand { get; set; }
+
+        private bool CanManageConnectedLibraries(object nothing)
+        {
+            return true;
+        }
+
+        private void ManageConnectedLibraries(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Publish(null);
+        }
 
         /// <summary>
         /// Gets or sets the exit application command.
@@ -129,6 +182,22 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         private void ExitApplication(object nothing)
         {
             Application.Current.Shutdown();
+        }
+
+        #endregion
+
+        #region Edit Menu
+
+        public ICommand EditLibraryPropertiesCommand { get; set; }
+
+        private bool CanEditLibraryProperties(object nothing)
+        {
+            return true;
+        }
+
+        private void EditLibraryProperties(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(LibraryContext);
         }
 
         #endregion
@@ -243,10 +312,7 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         private void SetToggleSidebarVisibilityOption(bool isVisible)
         {
-            if (isVisible)
-                ToggleSidebarVisibilityOption = "Hide Sidebar";
-            else
-                ToggleSidebarVisibilityOption = "Show Sidebar";
+            ToggleSidebarVisibilityOption = isVisible ? "Hide Sidebar" : "Show Sidebar";
         }
 
         public ICommand ToggleSidebarVisibilityCommand { get; set; }

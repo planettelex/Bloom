@@ -7,12 +7,18 @@ namespace Bloom.TaxonomiesModule.ViewModels
     {
         public TaxonomiesViewModel(IRegionManager regionManager)
         {
-            State = (TabbedApplicationState) regionManager.Regions["MenuRegion"].Context;
+            _regionManager = regionManager;
         }
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public TabbedApplicationState State { get; private set; }
+
+        public void SetState()
+        {
+            State = (TabbedApplicationState) _regionManager.Regions[Common.Settings.MenuRegion].Context;
+        }
     }
 }

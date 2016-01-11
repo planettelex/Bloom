@@ -8,5 +8,11 @@
     <Setting Name="StateFileExtension" Type="System.String" Scope="Application">
       <Value Profile="(Default)">.blms</Value>
     </Setting>
+    <Setting Name="MenuRegion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MenuRegion</Value>
+    </Setting>
+    <Setting Name="DocumentRegion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DocumentRegion</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

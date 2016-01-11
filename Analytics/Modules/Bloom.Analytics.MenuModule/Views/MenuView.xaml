@@ -17,10 +17,14 @@
 
             <telerik:RadMenu x:Name="Menu" ItemClick="OnItemClick" Grid.Column="0">
                 <telerik:RadMenuItem Header="File">
-                    <telerik:RadMenuItem Header="Connected Libraries..." />
+                    <telerik:RadMenuItem Header="Connected Libraries..." Command="{Binding Path=ManageConnectedLibrariesCommand}" />
                     <telerik:RadMenuItem Header="Exit Analytics" Command="{Binding Path=ExitApplicationCommand}" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Edit">
+                    <telerik:RadMenuItem Header="Library" IsEnabled="{Binding Path=HasLibraryContext}">
+                        <telerik:RadMenuItem Header="Properties..." Command="{Binding Path=EditLibraryPropertiesCommand}" IsEnabled="{Binding Path=HasLibraryContext}" />
+                        <telerik:RadMenuItem Header="Sidebar Configuration..." IsEnabled="{Binding Path=HasLibraryContext}" />
+                    </telerik:RadMenuItem>
                     <telerik:RadMenuItem Header="Preferences..." />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Analytics">
@@ -29,17 +33,16 @@
                     <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Browser">
-                    <telerik:RadMenuItem Header="Go to Browser" Command="{Binding Path=GoToBrowserCommand}" />
-                    <telerik:RadMenuItem Header="Open in Browser" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Open Browser" Command="{Binding Path=GoToBrowserCommand}" />
+                    <telerik:RadMenuItem Header="Browse Selection" IsEnabled="False" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Player">
-                    <telerik:RadMenuItem Header="Go to Player" Command="{Binding Path=GoToPlayerCommand}" />
-                    <telerik:RadMenuItem Header="Send to Player" IsEnabled="False" />
+                    <telerik:RadMenuItem Header="Open Player" Command="{Binding Path=GoToPlayerCommand}" />
+                    <telerik:RadMenuItem Header="Play Selection" IsEnabled="False" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="View">
                     <telerik:RadMenuItem Header="Home" Command="{Binding Path=OpenHomeTabCommand}" IsEnabled="{Binding Path=HasConnections}" />
                     <telerik:RadMenuItem Header="{Binding Path=ToggleSidebarVisibilityOption}" Command="{Binding Path=ToggleSidebarVisibilityCommand}" IsEnabled="{Binding Path=HasConnections}" />
-                    <telerik:RadMenuItem Header="Configure Sidebar..." />
                     <telerik:RadMenuItem x:Name="Skins" Header="Skins">
                         <telerik:RadMenuItem Header="Rock" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Rock" />
                         <telerik:RadMenuItem Header="Pop" IsCheckable="True" StaysOpenOnClick="True" Tag="Skin" Command="{Binding Path=SetSkinCommand}" CommandParameter="Pop" />

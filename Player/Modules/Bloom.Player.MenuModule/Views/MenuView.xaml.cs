@@ -1,7 +1,8 @@
 ﻿using System;
 using Bloom.Controls.Helpers;
 using Bloom.Player.MenuModule.ViewModels;
-using Bloom.State.Domain.Models;
+using Bloom.PubSubEvents;
+using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
 
@@ -13,28 +14,29 @@ namespace Bloom.Player.MenuModule.Views
     public partial class MenuView
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuView"/> class.
+        /// Initializes a new instance of the <see cref="MenuView" /> class.
         /// </summary>
         /// <param name="viewModel">The view model.</param>
-        public MenuView(MenuViewModel viewModel)
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public MenuView(MenuViewModel viewModel, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             DataContext = viewModel;
 
+            eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetSkin);
+        }
+
+        private MenuViewModel Model { get { return (MenuViewModel)DataContext; } }
+
+        private void SetSkin(object nothing)
+        {
+            Model.SetState();
             // Check the current skin.
             foreach (RadMenuItem menuItem in Skins.Items)
             {
-                var skinName = (string) menuItem.CommandParameter;
-                menuItem.IsChecked = skinName.Equals(viewModel.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
+                var skinName = (string)menuItem.CommandParameter;
+                menuItem.IsChecked = skinName.Equals(Model.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
             }
-        }
-
-        /// <summary>
-        /// Gets the state.
-        /// </summary>
-        public PlayerState State
-        {
-            get { return ((MenuViewModel) DataContext).State; }
         }
 
         private void OnItemClick(object sender, RadRoutedEventArgs e)
@@ -43,7 +45,7 @@ namespace Bloom.Player.MenuModule.Views
             if (currentItem == null || !currentItem.IsCheckable || currentItem.Tag == null)
                 return;
 
-            if ((string) currentItem.CommandParameter == State.SkinName)
+            if ((string) currentItem.CommandParameter == Model.State.SkinName)
             {
                 currentItem.IsChecked = true;
                 return;

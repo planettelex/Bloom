@@ -7,6 +7,7 @@ using Bloom.Analytics.LibraryModule.ViewModels;
 using Bloom.Analytics.LibraryModule.Views;
 using Bloom.Analytics.PubSubEvents;
 using Bloom.Common;
+using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
@@ -17,9 +18,11 @@ namespace Bloom.Analytics.LibraryModule.Services
 {
     public class LibraryService : ILibraryService
     {
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager)
+        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, ILibraryRepository libraryRepository)
         {
             _eventAggregator = eventAggregator;
+            _libraryRepository = libraryRepository;
+            _regionManager = regionManager;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
@@ -27,10 +30,11 @@ namespace Bloom.Analytics.LibraryModule.Services
             _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Subscribe(RestoreLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
-
-            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly ILibraryRepository _libraryRepository;
+        private readonly IRegionManager _regionManager;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
@@ -38,11 +42,20 @@ namespace Bloom.Analytics.LibraryModule.Services
         /// </summary>
         public AnalyticsState State { get; private set; }
 
+        private void SetState(object nothing)
+        {
+            State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
+
         public void NewLibraryTab(Guid libraryId)
         {
             const ViewType defaultViewType = ViewType.Stats;
-            var library = new Library { Id = libraryId }; // TODO: Make this data access call
-            var tab = CreateNewTab(libraryId, defaultViewType);
+            var datasource = State.GetConnectionData(libraryId);
+            if (datasource == null)
+                throw new NullReferenceException("Library data source cannot be null.");
+
+            var library = _libraryRepository.GetLibrary(datasource);
+            var tab = CreateNewTab(library, defaultViewType);
             var libraryViewModel = new LibraryViewModel(library, defaultViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(defaultViewType, tab, libraryView);
@@ -53,8 +66,12 @@ namespace Bloom.Analytics.LibraryModule.Services
 
         public void RestoreLibraryTab(Tab tab)
         {
-            var library = new Library { Id = tab.EntityId }; // TODO: Make this data access call
-            var viewType = (ViewType)Enum.Parse(typeof(ViewType), tab.View);
+            var datasource = State.GetConnectionData(tab.EntityId);
+            if (datasource == null)
+                throw new NullReferenceException("Library datasource cannot be null.");
+
+            var library = _libraryRepository.GetLibrary(datasource);
+            var viewType = (ViewType) Enum.Parse(typeof (ViewType), tab.View);
             var libraryViewModel = new LibraryViewModel(library, viewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(viewType, tab, libraryView);
@@ -69,9 +86,13 @@ namespace Bloom.Analytics.LibraryModule.Services
             if (existingTab == null)
                 return;
 
-            var libraryId = existingTab.Tab.EntityId;
-            var library = new Library { Id = libraryId }; // TODO: Make this data access call
-            var tab = CreateNewTab(libraryId, existingTab.ViewType);
+
+            var datasource = State.GetConnectionData(existingTab.Tab.EntityId);
+            if (datasource == null)
+                throw new NullReferenceException("Library datasource cannot be null.");
+
+            var library = _libraryRepository.GetLibrary(datasource);
+            var tab = CreateNewTab(library, existingTab.ViewType);
             var libraryViewModel = new LibraryViewModel(library, existingTab.ViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(tab, libraryView);
@@ -96,17 +117,17 @@ namespace Bloom.Analytics.LibraryModule.Services
                 stateTab.View = viewType.ToString();
         }
 
-        private Tab CreateNewTab(Guid libraryId, ViewType viewType)
+        private Tab CreateNewTab(Library library, ViewType viewType)
         {
             return new Tab
             {
                 Id = Guid.NewGuid(),
                 Order = State.GetNextTabOrder(),
                 Type = TabType.Library,
-                Header = "Library",
+                Header = library.Name,
                 Process = ProcessType.Analytics,
-                LibraryId = libraryId,
-                EntityId = libraryId,
+                LibraryId = library.Id,
+                EntityId = library.Id,
                 View = viewType.ToString()
             };
         }

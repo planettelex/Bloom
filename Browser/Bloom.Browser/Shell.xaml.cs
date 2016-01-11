@@ -28,13 +28,15 @@ namespace Bloom.Browser
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="userService">The user service.</param>
+        /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, IBrowserStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, ISharedLibraryService sharedLibraryService, IBrowserStateService stateService)
         {
             InitializeComponent();
             _loading = true;
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
+            _sharedLibraryService = sharedLibraryService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
             var user = userService.InitializeUser();
@@ -50,19 +52,22 @@ namespace Bloom.Browser
             SidebarPane.IsHidden = !state.SidebarVisible;
             skinningService.SetSkin(state.SkinName);
 
-            eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
-            eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
-            eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
-            eventAggregator.GetEvent<CloseTabEvent>().Subscribe(CloseTab);
-            eventAggregator.GetEvent<HideSidebarEvent>().Subscribe(HideSidebar);
-            eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
-            eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
-            eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<AddTabEvent>().Subscribe(AddTab);
+            _eventAggregator.GetEvent<CloseOtherTabsEvent>().Subscribe(CloseOtherTabs);
+            _eventAggregator.GetEvent<CloseAllTabsEvent>().Subscribe(CloseAllTabs);
+            _eventAggregator.GetEvent<CloseTabEvent>().Subscribe(CloseTab);
+            _eventAggregator.GetEvent<HideSidebarEvent>().Subscribe(HideSidebar);
+            _eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
+            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
+            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetTabsForUser);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IBrowserStateService _stateService;
+        private readonly ISharedLibraryService _sharedLibraryService;
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
+
         private BrowserState State { get { return (BrowserState) DataContext; } }
 
         #region Window Events
@@ -74,8 +79,9 @@ namespace Bloom.Browser
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
-            _stateService.RestoreTabs();
             _loading = false;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Publish(null);
+            _stateService.RestoreTabs();
             if (_tabs.ContainsKey(State.SelectedTabId))
                 Dock.ActivePane = _tabs[State.SelectedTabId];
         }
@@ -87,8 +93,8 @@ namespace Bloom.Browser
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-            // TODO: Check state database for new messages.
-            State.WindowState = WindowState; // This is here only to avoid a ReSharper warning.
+            if (!_loading)
+                _sharedLibraryService.ResetLibraryConnections();
         }
 
         /// <summary>
@@ -223,6 +229,15 @@ namespace Bloom.Browser
                     selectedTab = tab;
             }
             return selectedTab;
+        }
+
+        private void SetTabsForUser(object nothing)
+        {
+            if (State.Tabs == null || State.Tabs.Count == 0)
+                return;
+
+            if (State.Tabs.Count == 1 && State.Tabs[0].Type == TabType.GettingStarted && State.Tabs[0].UserId == Guid.Empty)
+                State.Tabs[0].UserId = State.UserId;
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)

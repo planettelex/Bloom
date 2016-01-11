@@ -25,7 +25,7 @@ namespace Bloom.Player.MenuModule
         /// </summary>
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("MenuRegion", typeof (MenuView));
+            _regionManager.RegisterViewWithRegion(Common.Settings.MenuRegion, typeof(MenuView));
         }
     }
 }

@@ -3,8 +3,10 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.Player.State.Services;
+using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Player
 {
@@ -17,12 +19,17 @@ namespace Bloom.Player
         /// Initializes a new instance of the <see cref="Shell" /> class.
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="userService">The user service.</param>
+        /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IUserService userService, IPlayerStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, ISharedLibraryService sharedLibraryService, IPlayerStateService stateService)
         {
             InitializeComponent();
+            _loading = true;
+            _eventAggregator = eventAggregator;
             _gridLengthConverter = new GridLengthConverter();
+            _sharedLibraryService = sharedLibraryService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
             var user = userService.InitializeUser();
@@ -40,10 +47,25 @@ namespace Bloom.Player
             SetUpcomingColumnWidth();
         }
         private readonly IPlayerStateService _stateService;
+        private readonly ISharedLibraryService _sharedLibraryService;
         private readonly GridLengthConverter _gridLengthConverter;
+        private readonly IEventAggregator _eventAggregator;
+        private bool _loading;
+
         private PlayerState State { get { return (PlayerState) DataContext; } }
 
         #region Window Events
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Window.ContentRendered" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+            _loading = false;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Publish(null);
+        }
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Window.Activated" /> event.
@@ -52,9 +74,8 @@ namespace Bloom.Player
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-
-            // TODO: Check state database for new messages.
-            WindowState = WindowState; // This is here only to avoid a ReSharper warning.
+            if (!_loading)
+                _sharedLibraryService.ResetLibraryConnections();
         }
 
         /// <summary>

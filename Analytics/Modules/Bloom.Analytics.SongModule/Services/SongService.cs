@@ -23,22 +23,28 @@ namespace Bloom.Analytics.SongModule.Services
         public SongService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewSongTabEvent>().Subscribe(NewSongTab);
             _eventAggregator.GetEvent<RestoreSongTabEvent>().Subscribe(RestoreSongTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSongTab);
-
-            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public AnalyticsState State { get; private set; }
+
+        private void SetState(object nothing)
+        {
+            State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
 
         public void NewSongTab(Buid songBuid)
         {

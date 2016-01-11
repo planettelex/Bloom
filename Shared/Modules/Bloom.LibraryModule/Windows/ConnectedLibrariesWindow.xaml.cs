@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using Bloom.Common.ExtensionMethods;
-using Bloom.LibraryModule.Services;
 using Bloom.LibraryModule.WindowModels;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -25,18 +24,16 @@ namespace Bloom.LibraryModule.Windows
         /// </summary>
         /// <param name="windowModel">The window model.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="libraryService">The library service.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
-        public ConnectedLibrariesWindow(ConnectedLibrariesWindowModel windowModel, IEventAggregator eventAggregator, ILibraryService libraryService, ISharedLibraryService sharedLibraryService)
+        public ConnectedLibrariesWindow(ConnectedLibrariesWindowModel windowModel, IEventAggregator eventAggregator, ISharedLibraryService sharedLibraryService)
         {
             InitializeComponent();
             _findFileDialog = new OpenFileDialog { Multiselect = false, DefaultExt = Common.Settings.LibraryFileExtension };
             _eventAggregator = eventAggregator;
-            _libraryService = libraryService;
             _sharedLibraryService = sharedLibraryService;
             _enabledBrush = (Brush) FindResource("ControlBackgroundBrush");
             _disabledBrush = (Brush) FindResource("ControlDisabledBackgroundBrush");
-            windowModel.CloseCommand = new DelegateCommand<object>(Close, CanClose);
+            windowModel.CloseCommand = new DelegateCommand<object>(CloseWindow, CanCloseWindow);
             windowModel.ConnectNewLibraryCommand = new DelegateCommand<object>(ConnectNewLibrary, CanConnectNewLibrary);
             windowModel.ConnectLibraryCommand = new DelegateCommand<Guid?>(ConnectLibrary, CanConnectLibrary);
             windowModel.DisconnectLibraryCommand = new DelegateCommand<Guid?>(DisconnectLibrary, CanDisconnectLibrary);
@@ -48,7 +45,6 @@ namespace Bloom.LibraryModule.Windows
         }
         private readonly OpenFileDialog _findFileDialog;
         private readonly IEventAggregator _eventAggregator;
-        private readonly ILibraryService _libraryService;
         private readonly ISharedLibraryService _sharedLibraryService;
         private LibraryConnection _disconnectingConnection;
         private LibraryConnection _removingConnection;
@@ -81,18 +77,21 @@ namespace Bloom.LibraryModule.Windows
             if (libraryId == null)
                 return;
 
-            var library = _libraryService.GetLibraryConnection(libraryId.Value);
-            library.IsConnected = _libraryService.ConnectLibrary(library, Model.State.User, true, true);
-            library.SetButtonVisibilities();
-            if (library.IsConnected)
+            var libraryToConnect = Model.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
+            if (libraryToConnect == null)
+                return;
+
+            libraryToConnect.IsConnected = _sharedLibraryService.ConnectLibrary(libraryToConnect, Model.State.User, true, true);
+            libraryToConnect.SetButtonVisibilities();
+            if (libraryToConnect.IsConnected)
             {
-                library.BackgroundBrush = _enabledBrush;
-                Model.State.AddConnection(library);
-                _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(library);
+                libraryToConnect.BackgroundBrush = _enabledBrush;
+                Model.State.AddConnection(libraryToConnect);
+                _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryToConnect);
                 _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             }
             else
-                library.BackgroundBrush = _disabledBrush;
+                libraryToConnect.BackgroundBrush = _disabledBrush;
         }
 
         private bool CanDisconnectLibrary(Guid? libraryId)
@@ -122,8 +121,7 @@ namespace Bloom.LibraryModule.Windows
 
         private void DisconnectLibrary()
         {
-            _disconnectingConnection.DataSource.Disconnect();
-            _disconnectingConnection.IsConnected = false;
+            _disconnectingConnection.Disconnect();
             _disconnectingConnection.SetButtonVisibilities();
             _disconnectingConnection.BackgroundBrush = _disabledBrush;
             Model.State.RemoveConnection(_disconnectingConnection);
@@ -164,7 +162,7 @@ namespace Bloom.LibraryModule.Windows
             if (result != null && result.Value)
             {
                 lostLibraryConnection.FilePath = _findFileDialog.FileName;
-                _libraryService.ConnectLibrary(lostLibraryConnection, Model.State.User, false, true);
+                _sharedLibraryService.ConnectLibrary(lostLibraryConnection, Model.State.User, false, true);
                 if (lostLibraryConnection.LibraryId != lostLibraryConnection.Library.Id)
                 {
                     lostLibraryConnection.FilePath = brokenFilePath;
@@ -176,7 +174,7 @@ namespace Bloom.LibraryModule.Windows
                 }
                 else
                 {
-                    _libraryService.SyncLibraryOwnerAndUser(lostLibraryConnection, Model.State.User);
+                    _sharedLibraryService.SyncLibraryOwnerAndUser(lostLibraryConnection, Model.State.User);
                     lostLibraryConnection.Disconnect();
                     lostLibraryConnection.SetButtonVisibilities();
                     _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
@@ -207,19 +205,19 @@ namespace Bloom.LibraryModule.Windows
             if (e.DialogResult != null && e.DialogResult.Value)
             {
                 Model.LibraryConnections.Remove(_removingConnection);
-                _libraryService.RemoveLibraryConnection(_removingConnection);
+                _sharedLibraryService.RemoveLibraryConnection(_removingConnection);
                 _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             }
 
             _removingConnection = null;
         }
 
-        private bool CanClose(object nothing)
+        private bool CanCloseWindow(object nothing)
         {
             return true;
         }
 
-        private void Close(object nothing)
+        private void CloseWindow(object nothing)
         {
             Close();
         }

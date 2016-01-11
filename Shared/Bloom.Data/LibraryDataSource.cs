@@ -121,7 +121,7 @@ namespace Bloom.Data
         public void Connect(string filePath)
         {
             if (IsConnected())
-                throw new InvalidOperationException("Cannot connect to a new library database while connected to an existing one.");
+                Disconnect();
 
             var connectionString = string.Format("Data Source={0};Version=3;Foreign Keys=true;", filePath);
             var connection = new SQLiteConnection(connectionString);

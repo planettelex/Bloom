@@ -11,7 +11,7 @@ namespace Bloom.Browser.State.Services
         /// <summary>
         /// Connects the data source.
         /// </summary>
-        void ConnectDataSource();
+        void ConnectDataSource();        
 
         /// <summary>
         /// Initializes the browser application state.

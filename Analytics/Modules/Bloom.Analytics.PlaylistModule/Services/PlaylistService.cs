@@ -23,22 +23,28 @@ namespace Bloom.Analytics.PlaylistModule.Services
         public PlaylistService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewPlaylistTabEvent>().Subscribe(NewPlaylistTab);
             _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Subscribe(RestorePlaylistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePlaylistTab);
-
-            State = (AnalyticsState) regionManager.Regions["DocumentRegion"].Context;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public AnalyticsState State { get; private set; }
+
+        private void SetState(object nothing)
+        {
+            State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
 
         public void NewPlaylistTab(Buid playlistBuid)
         {

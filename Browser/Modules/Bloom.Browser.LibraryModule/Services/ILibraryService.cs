@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Browser.Common;
+using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
@@ -10,6 +11,17 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Shows the create new library modal window.
         /// </summary>
         void ShowCreateNewLibraryModal();
+
+        /// <summary>
+        /// Shows the connected libraries modal window.
+        /// </summary>
+        void ShowConnectedLibrariesModal();
+
+        /// <summary>
+        /// Shows the library properties modal window.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        void ShowLibraryPropertiesModal(Library library);
         
         /// <summary>
         /// Creates a new library tab.

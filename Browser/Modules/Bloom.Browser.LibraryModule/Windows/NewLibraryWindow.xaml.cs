@@ -1,8 +1,8 @@
 ﻿using System.Windows.Media;
 using System.Windows.Forms;
 using Bloom.Browser.LibraryModule.WindowModels;
-using Bloom.Browser.PubSubEvents;
 using Bloom.Domain.Models;
+using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.Commands;
 
 namespace Bloom.Browser.LibraryModule.Windows

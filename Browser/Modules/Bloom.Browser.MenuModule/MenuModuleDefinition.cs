@@ -25,7 +25,7 @@ namespace Bloom.Browser.MenuModule
         /// </summary>
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("MenuRegion", typeof (MenuView));
+            _regionManager.RegisterViewWithRegion(Bloom.Common.Settings.MenuRegion, typeof (MenuView));
         }
     }
 }

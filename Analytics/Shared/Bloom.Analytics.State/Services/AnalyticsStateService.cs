@@ -20,23 +20,24 @@ namespace Bloom.Analytics.State.Services
         /// <param name="analyticsStateRepository">The analytics state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
-        /// <param name="libraryService">The library service.</param>
+        /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ILibraryService libraryService, IEventAggregator eventAggregator)
+        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ILibraryConnectionRepository libraryConnectionRepository,
+            ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
             TabRepository = tabRepository;
-            _libraryConnectionRepository = libraryConnectionRepository;
+            LibraryConnectionRepository = libraryConnectionRepository;
+            _sharedLibraryService = sharedLibraryService;
             _analyticsStateRepository = analyticsStateRepository;
-            _libraryService = libraryService;
+            
 
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
             EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
         }
-        private readonly ILibraryService _libraryService;
         private readonly IAnalyticsStateRepository _analyticsStateRepository;
-        private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+        private readonly ISharedLibraryService _sharedLibraryService;
 
         /// <summary>
         /// Initializes the analytics application state.
@@ -53,7 +54,7 @@ namespace Bloom.Analytics.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (AnalyticsState) State;
 
-            _libraryService.ConnectLibraries(State.Connections, user, false, true);
+            _sharedLibraryService.ConnectLibraries(State.Connections, user, false, true);
             SaveState();
 
             return (AnalyticsState) State;
@@ -63,7 +64,7 @@ namespace Bloom.Analytics.State.Services
         {
             var analyticsState = new AnalyticsState();
             analyticsState.SetUser(user);
-            analyticsState.Connections = _libraryConnectionRepository.ListLibraryConnections(true);
+            analyticsState.Connections = LibraryConnectionRepository.ListLibraryConnections(true);
             _analyticsStateRepository.AddAnalyticsState(analyticsState);
 
             EventAggregator.GetEvent<UserChangedEvent>().Publish(null);

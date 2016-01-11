@@ -97,8 +97,8 @@ namespace Bloom.Browser
         {
             Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IUserService>();
-            Container.RegisterType<ILibraryService, LibraryService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<ILibraryService>();
+            Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ISharedLibraryService>();
             Container.RegisterType<IBrowserStateService, BrowserStateService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IBrowserStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());

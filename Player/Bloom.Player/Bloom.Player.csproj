@@ -155,6 +155,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Modules\Bloom.LibraryModule\Bloom.LibraryModule.csproj">
+      <Project>{03CE0198-7E75-47B4-8447-617D1A3E36DE}</Project>
+      <Name>Bloom.LibraryModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Bloom.Player.State\Bloom.Player.State.csproj">
       <Project>{d8539333-b1ef-4153-aab9-552011f9eba3}</Project>
       <Name>Bloom.Player.State</Name>

@@ -30,10 +30,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
             _skinningService = skinningService;
             _processService = processService;
             _eventAggregator = eventAggregator;
-            State = (BrowserState) regionManager.Regions["MenuRegion"].Context;
-            CheckConnections(null);
-            SetUser(null);
-            SetLibraryContext(State.SelectedTabId);
+            _regionManager = regionManager;
 
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
@@ -57,7 +54,6 @@ namespace Bloom.Browser.MenuModule.ViewModels
             GoToAnalyticsCommand = new DelegateCommand<object>(GoToAnalytics, CanGoToAnalytics);
             // View Menu
             OpenHomeTabCommand = new DelegateCommand<object>(OpenHomeTab, CanOpenHomeTab);
-            SetToggleSidebarVisibilityOption(State.SidebarVisible);
             ToggleSidebarVisibilityCommand = new DelegateCommand<object>(ToggleSidebarVisibility, CanToggleSidebarVisibility);
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
             // Help Menu
@@ -66,11 +62,23 @@ namespace Bloom.Browser.MenuModule.ViewModels
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
+
+        public void SetState()
+        {
+            State = (BrowserState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            CheckConnections(null);
+            SetUser(null);
+            SetLibraryContext(State.SelectedTabId);
+            SetToggleSidebarVisibilityOption(State.SidebarVisible);
+        }
+
+        #region Shared Properties
 
         public bool HasConnections
         {
@@ -128,22 +136,25 @@ namespace Bloom.Browser.MenuModule.ViewModels
             set { SetProperty(ref _hasLibraryContext, value); }
         }
         private bool _hasLibraryContext;
-        private Guid _libraryContext;
+
+        public Guid LibraryContext { get; set; }
 
         public void SetLibraryContext(Guid tabId)
         {
             var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
             if (selectedTab == null || selectedTab.LibraryId == Guid.Empty)
             {
-                _libraryContext = Guid.Empty;
+                LibraryContext = Guid.Empty;
                 HasLibraryContext = false;
             }
             else
             {
-                _libraryContext = selectedTab.LibraryId;
+                LibraryContext = selectedTab.LibraryId;
                 HasLibraryContext = true;
             }
         }
+
+        #endregion
 
         #region File Menu
 
@@ -205,7 +216,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         private void EditLibraryProperties(object nothing)
         {
-            _eventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(_libraryContext);
+            _eventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(LibraryContext);
         }
 
         #endregion
@@ -320,10 +331,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         private void SetToggleSidebarVisibilityOption(bool isVisible)
         {
-            if (isVisible)
-                ToggleSidebarVisibilityOption = "Hide Sidebar";
-            else
-                ToggleSidebarVisibilityOption = "Show Sidebar";
+            ToggleSidebarVisibilityOption = isVisible ? "Hide Sidebar" : "Show Sidebar";
         }
 
         public ICommand ToggleSidebarVisibilityCommand { get; set; }

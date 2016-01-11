@@ -4,6 +4,7 @@ using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
+using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Player.State.Services
 {
@@ -17,17 +18,22 @@ namespace Bloom.Player.State.Services
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
         /// <param name="playerStateRepository">The player state repository.</param>
-        /// <param name="libraryService">The library service.</param>
-        public PlayerStateService(IDataSource stateDataSource, IPlayerStateRepository playerStateRepository, ILibraryService libraryService)
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        /// <param name="sharedLibraryService">The shared library service.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        public PlayerStateService(IDataSource stateDataSource, IPlayerStateRepository playerStateRepository,
+            ILibraryConnectionRepository libraryConnectionRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
+            EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
+            LibraryConnectionRepository = libraryConnectionRepository;
+            _sharedLibraryService = sharedLibraryService;
             _playerStateRepository = playerStateRepository;
-            _libraryService = libraryService;
-
+            
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
         }
-        private readonly ILibraryService _libraryService;
         private readonly IPlayerStateRepository _playerStateRepository;
+        private readonly ISharedLibraryService _sharedLibraryService;
 
         /// <summary>
         /// Initializes the player application state.
@@ -44,7 +50,7 @@ namespace Bloom.Player.State.Services
             if (State.Connections == null || State.Connections.Count <= 0)
                 return (PlayerState) State;
 
-            _libraryService.ConnectLibraries(State.Connections, user, false, true);
+            _sharedLibraryService.ConnectLibraries(State.Connections, user, false, true);
             SaveState();
 
             return (PlayerState) State;

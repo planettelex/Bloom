@@ -8,7 +8,9 @@ using Bloom.Analytics.PersonModule;
 using Bloom.Analytics.PlaylistModule;
 using Bloom.Analytics.SongModule;
 using Bloom.Analytics.State.Services;
+using Bloom.Data;
 using Bloom.Data.Interfaces;
+using Bloom.LibraryModule;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.TaxonomiesModule;
@@ -65,6 +67,7 @@ namespace Bloom.Analytics
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (TaxonomiesModuleDefinition));
             moduleCatalog.AddModule(typeof (HomeModuleDefinition));
+            moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PersonModuleDefinition));
             moduleCatalog.AddModule(typeof (ArtistModuleDefinition));
@@ -81,6 +84,10 @@ namespace Bloom.Analytics
             Container.RegisterType<IDataSource, StateDataSource>(new ContainerControlledLifetimeManager());
             var stateDataSource = Container.Resolve<IDataSource>();
             stateDataSource.RegisterRepositories();
+
+            Container.RegisterType<IDataSource, LibraryDataSource>("Library", new ContainerControlledLifetimeManager());
+            var libraryDataSource = Container.Resolve<IDataSource>("Library");
+            libraryDataSource.RegisterRepositories();
         }
 
         /// <summary>
@@ -90,6 +97,8 @@ namespace Bloom.Analytics
         {
             Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IUserService>();
+            Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ISharedLibraryService>();
             Container.RegisterType<IAnalyticsStateService, AnalyticsStateService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IAnalyticsStateService>();
             Container.RegisterType<ISkinningService, SkinningService>(new ContainerControlledLifetimeManager());

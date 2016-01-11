@@ -11,7 +11,16 @@ namespace Bloom.Services
     {
         protected ITabRepository TabRepository { get; set; }
 
-        protected new TabbedApplicationState State { get; set; }
+        protected new TabbedApplicationState State
+        {
+            get { return _state; }
+            set
+            {
+                base.State = value;
+                _state = value;
+            }
+        }
+        private TabbedApplicationState _state;
 
         /// <summary>
         /// Adds a tab to state.

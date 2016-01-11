@@ -17,6 +17,7 @@ namespace Bloom.Browser.HomeModule.Services
         public HomeService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
@@ -26,16 +27,21 @@ namespace Bloom.Browser.HomeModule.Services
             _eventAggregator.GetEvent<NewGettingStartedTabEvent>().Subscribe(NewGettingStartedTab);
             _eventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Subscribe(RestoreGettingStartedTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateGettingStartedTab);
-
-            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
+
+        private void SetState(object nothing)
+        {
+            State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
 
         /// <summary>
         /// Creates a new home tab.

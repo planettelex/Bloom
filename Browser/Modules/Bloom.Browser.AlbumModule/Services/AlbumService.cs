@@ -23,22 +23,28 @@ namespace Bloom.Browser.AlbumModule.Services
         public AlbumService(IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
             _tabs = new List<ViewMenuTab>();
 
             // Subscribe to events
             _eventAggregator.GetEvent<NewAlbumTabEvent>().Subscribe(NewAlbumTab);
             _eventAggregator.GetEvent<RestoreAlbumTabEvent>().Subscribe(RestoreAlbumTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateAlbumTab);
-
-            State = (BrowserState) regionManager.Regions["DocumentRegion"].Context;
+            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
+
+        private void SetState(object nothing)
+        {
+            State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
 
         /// <summary>
         /// Creates a new album tab.
