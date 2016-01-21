@@ -43,6 +43,8 @@ namespace Bloom.State.Data
         /// </summary>
         public void RegisterRepositories()
         {
+            _container.RegisterType<ISuiteStateRepository, SuiteStateRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ISuiteStateRepository>();
             _container.RegisterType<ILibraryConnectionRepository, LibraryConnectionRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<ILibraryConnectionRepository>();
             _container.RegisterType<IUserRepository, UserRepository>(new ContainerControlledLifetimeManager());
@@ -145,6 +147,16 @@ namespace Bloom.State.Data
         {
             if (IsConnected())
                 Context.SubmitChanges();
+        }
+
+        /// <summary>
+        /// Refreshes the specified object.
+        /// </summary>
+        /// <param name="toRefresh">The entitiy to refresh.</param>
+        public void Refresh(object toRefresh)
+        {
+            if (IsConnected())
+                Context.Refresh(RefreshMode.KeepChanges, toRefresh);
         }
 
         /// <summary>

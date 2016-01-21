@@ -1,10 +1,13 @@
-﻿namespace Bloom.Common
+﻿using System;
+
+namespace Bloom.Common
 {
     /// <summary>
     /// The Bloom process types.
     /// </summary>
     public enum ProcessType
     {
+        None,
         Analytics,
         Browser,
         Player
@@ -22,6 +25,17 @@
         public BloomProcess(ProcessType processType)
         {
             Type = processType;
+        }
+
+        public BloomProcess(string processName)
+        {
+            if (processName.Contains("."))
+            {
+                var typeName = processName.Split('.')[1];
+                Type = (ProcessType) Enum.Parse(typeof(ProcessType), typeName);
+            }
+            else
+                Type = (ProcessType)Enum.Parse(typeof(ProcessType), processName);
         }
 
         /// <summary>

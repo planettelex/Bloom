@@ -209,7 +209,7 @@ namespace Bloom.Services
             _libraryConnectionRepository.DeleteLibraryConnection(libraryConnection);
         }
 
-        public void ResetLibraryConnections()
+        public void CheckLibraryConnections()
         {
             if (State == null)
                 return;
@@ -223,18 +223,23 @@ namespace Bloom.Services
                 if (!State.Connections.Contains(libraryConnection))
                 {
                     ConnectLibrary(libraryConnection, State.User, false, true);
+                    State.Connections.Add(libraryConnection);
                     _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
+                    _eventAggregator.GetEvent<RefreshStateEvent>().Publish(libraryConnection);
                 }
             }
 
-
             var disconnectedLibraries = _libraryConnectionRepository.ListLibraryConnections(false);
             foreach (var libraryConnection in disconnectedLibraries)
+            {
                 if (State.Connections.Contains(libraryConnection))
+                {
+                    libraryConnection.Disconnect();
+                    State.RemoveConnection(libraryConnection);
                     _eventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(libraryConnection.LibraryId);
-
-            State.Connections = new List<LibraryConnection>();
-            State.Connections.AddRange(connectedLibraries);
+                    _eventAggregator.GetEvent<RefreshStateEvent>().Publish(libraryConnection);
+                }
+            }
         }
 
         public void SyncLibraryOwnerAndUser(LibraryConnection libraryConnection, User user)

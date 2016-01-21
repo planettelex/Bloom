@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Bloom.Analytics.Common;
 using Bloom.Analytics.PubSubEvents;
 using Bloom.Analytics.State.Services;
+using Bloom.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -93,7 +94,15 @@ namespace Bloom.Analytics
         {
             base.OnActivated(e);
             if (!_loading)
-                _sharedLibraryService.ResetLibraryConnections();
+            {
+                var lastProcessToAccessState = _stateService.LastProcessToAccessState();
+                var processChanged = lastProcessToAccessState != ProcessType.Analytics && lastProcessToAccessState != ProcessType.None;
+                if (processChanged)
+                {
+                    _stateService.ChangeStateProcess(ProcessType.Analytics);
+                    _sharedLibraryService.CheckLibraryConnections();
+                }
+            }
         }
 
         /// <summary>

@@ -75,7 +75,7 @@ namespace Bloom.Player
         {
             base.OnActivated(e);
             if (!_loading)
-                _sharedLibraryService.ResetLibraryConnections();
+                _sharedLibraryService.CheckLibraryConnections();
         }
 
         /// <summary>

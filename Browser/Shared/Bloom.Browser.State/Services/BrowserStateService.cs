@@ -1,4 +1,5 @@
 ﻿using System;
+using Bloom.Common;
 using Bloom.Data.Interfaces;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -17,23 +18,26 @@ namespace Bloom.Browser.State.Services
         /// Initializes a new instance of the <see cref="BrowserStateService" /> class.
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
+        /// <param name="suiteStateRepository">The suite state repository.</param>
         /// <param name="browserStateRepository">The browser state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public BrowserStateService(IDataSource stateDataSource, IBrowserStateRepository browserStateRepository, ILibraryConnectionRepository libraryConnectionRepository, 
-            ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
+        public BrowserStateService(IDataSource stateDataSource, ISuiteStateRepository suiteStateRepository, IBrowserStateRepository browserStateRepository, 
+            ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
-            TabRepository = tabRepository;
+            SuiteStateRepository = suiteStateRepository;
             LibraryConnectionRepository = libraryConnectionRepository;
+            TabRepository = tabRepository;
             _sharedLibraryService = sharedLibraryService;
             _browserStateRepository = browserStateRepository;
             
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
             EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
+            EventAggregator.GetEvent<RefreshStateEvent>().Subscribe(RefreshStateOf);
         }
         private readonly IBrowserStateRepository _browserStateRepository;
         private readonly ISharedLibraryService _sharedLibraryService;
@@ -43,8 +47,10 @@ namespace Bloom.Browser.State.Services
         /// </summary>
         /// <param name="user">The user.</param>
         public BrowserState InitializeState(User user)
-        { 
-            State = _browserStateRepository.GetBrowserState(user) ?? AddNewState(user);
+        {
+            State = _browserStateRepository.GetBrowserState(user) ?? NewBrowserState(user);
+            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState();
+            SuiteState.LastProcessAccess = ((BrowserState) State).ProcessName;
 
             if (State.User == null) 
                 return (BrowserState) State;
@@ -59,7 +65,15 @@ namespace Bloom.Browser.State.Services
             return (BrowserState) State;
         }
 
-        private BrowserState AddNewState(User user)
+        private SuiteState NewSuiteState()
+        {
+            var suiteState = new SuiteState();
+            SuiteStateRepository.AddSuiteState(suiteState);
+
+            return suiteState;
+        }
+
+        private BrowserState NewBrowserState(User user)
         {
             var browserState = new BrowserState();
             browserState.SetUser(user);

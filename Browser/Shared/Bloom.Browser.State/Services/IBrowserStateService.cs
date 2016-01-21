@@ -1,4 +1,5 @@
 ﻿using System;
+using Bloom.Common;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.State.Services
@@ -18,6 +19,12 @@ namespace Bloom.Browser.State.Services
         /// </summary>
         /// <param name="user">The user.</param>
         BrowserState InitializeState(User user);
+
+        ProcessType LastProcessToAccessState();
+
+        void ChangeStateProcess(ProcessType processType);
+
+        void RefreshStateOf(object toRefresh);
 
         /// <summary>
         /// Restores the tabs from saved state.

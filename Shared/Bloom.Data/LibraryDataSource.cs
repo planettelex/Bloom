@@ -148,6 +148,16 @@ namespace Bloom.Data
         }
 
         /// <summary>
+        /// Refreshes the specified object.
+        /// </summary>
+        /// <param name="toRefresh">The entitiy to refresh.</param>
+        public void Refresh(object toRefresh)
+        {
+            if (IsConnected())
+                Context.Refresh(RefreshMode.KeepChanges, toRefresh);
+        }
+
+        /// <summary>
         /// Disconnects this data source.
         /// </summary>
         public void Disconnect()

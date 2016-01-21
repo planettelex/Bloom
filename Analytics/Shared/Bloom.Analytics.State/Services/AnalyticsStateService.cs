@@ -17,18 +17,20 @@ namespace Bloom.Analytics.State.Services
         /// Initializes a new instance of the <see cref="AnalyticsStateService" /> class.
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
+        /// <param name="suiteStateRepository">The suite state repository.</param>
         /// <param name="analyticsStateRepository">The analytics state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="tabRepository">The tab repository.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AnalyticsStateService(IDataSource stateDataSource, IAnalyticsStateRepository analyticsStateRepository, ILibraryConnectionRepository libraryConnectionRepository,
-            ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
+        public AnalyticsStateService(IDataSource stateDataSource, ISuiteStateRepository suiteStateRepository, IAnalyticsStateRepository analyticsStateRepository, 
+            ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
-            TabRepository = tabRepository;
+            SuiteStateRepository = suiteStateRepository;
             LibraryConnectionRepository = libraryConnectionRepository;
+            TabRepository = tabRepository;
             _sharedLibraryService = sharedLibraryService;
             _analyticsStateRepository = analyticsStateRepository;
             

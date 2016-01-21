@@ -17,6 +17,7 @@ namespace Bloom.State.Data.Services
         {
             _tables = new List<ISqlTable>
             {
+                new SuiteStateTable(),
                 new LibraryConnectionTable(),
                 new AnalyticsStateTable(),
                 new BrowserStateTable(),

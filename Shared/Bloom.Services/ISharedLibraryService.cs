@@ -48,9 +48,9 @@ namespace Bloom.Services
         void RemoveLibraryConnection(LibraryConnection libraryConnection);
 
         /// <summary>
-        /// Resets the library connections.
+        /// Adds or removes the library connections based on the state data source.
         /// </summary>
-        void ResetLibraryConnections();
+        void CheckLibraryConnections();
 
         /// <summary>
         /// Synchronizes the library owner and user.

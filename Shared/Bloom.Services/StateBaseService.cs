@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Bloom.Common;
 using Bloom.Data.Interfaces;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
@@ -11,9 +12,13 @@ namespace Bloom.Services
     {
         protected IDataSource StateDataSource { get; set; }
 
+        protected ISuiteStateRepository SuiteStateRepository { get; set; }
+
         protected ILibraryConnectionRepository LibraryConnectionRepository { get; set; }
 
         protected IEventAggregator EventAggregator { get; set; }
+
+        protected SuiteState SuiteState { get; set; }
 
         protected ApplicationState State { get; set; }
 
@@ -32,6 +37,30 @@ namespace Bloom.Services
                 StateDataSource.Connect();
             else
                 StateDataSource.Create();
+        }
+
+        public void RefreshStateOf(object toRefresh)
+        {
+            StateDataSource.Refresh(toRefresh);
+        }
+
+        public ProcessType LastProcessToAccessState()
+        {
+            var suiteState = SuiteStateRepository.GetSuiteState();
+            if (suiteState == null || string.IsNullOrEmpty(suiteState.LastProcessAccess))
+                return ProcessType.None;
+
+            var process = new BloomProcess(suiteState.LastProcessAccess);
+
+            return process.Type;
+        }
+
+        public void ChangeStateProcess(ProcessType processType)
+        {
+            var suiteState = SuiteStateRepository.GetSuiteState();
+            var process = new BloomProcess(processType);
+            suiteState.LastProcessAccess = process.Name;
+            SaveState(); 
         }
 
         /// <summary>

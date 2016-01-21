@@ -11,4 +11,6 @@ namespace Bloom.PubSubEvents
     public class UserChangedEvent : PubSubEvent<object> { }
 
     public class SaveStateEvent : PubSubEvent<object> { }
+
+    public class RefreshStateEvent : PubSubEvent<object> { }
 }

@@ -82,6 +82,7 @@
     <Compile Include="Models\BrowserState.cs" />
     <Compile Include="Models\LibraryConnection.cs" />
     <Compile Include="Models\PlayerState.cs" />
+    <Compile Include="Models\SuiteState.cs" />
     <Compile Include="Models\Tab.cs" />
     <Compile Include="Models\TabbedApplicationState.cs" />
     <Compile Include="Models\TabType.cs" />

@@ -70,6 +70,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.1104.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.1104.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +152,10 @@
     <ProjectReference Include="..\..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
       <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
       <Name>Bloom.State.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Modules\Bloom.LibraryModule\Bloom.LibraryModule.csproj">
+      <Project>{03CE0198-7E75-47B4-8447-617D1A3E36DE}</Project>
+      <Name>Bloom.LibraryModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
       <Project>{d86bec11-b4a6-412f-98b1-ccef05fa839d}</Project>

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.Browser.Common;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.State.Services;
+using Bloom.Common;
 using Bloom.Controls;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -94,7 +96,15 @@ namespace Bloom.Browser
         {
             base.OnActivated(e);
             if (!_loading)
-                _sharedLibraryService.ResetLibraryConnections();
+            {
+                var lastProcessToAccessState = _stateService.LastProcessToAccessState();
+                var processChanged = lastProcessToAccessState != ProcessType.Browser && lastProcessToAccessState != ProcessType.None;
+                if (processChanged)
+                {
+                    _stateService.ChangeStateProcess(ProcessType.Browser);
+                    _sharedLibraryService.CheckLibraryConnections();
+                }
+            }
         }
 
         /// <summary>

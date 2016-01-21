@@ -17,15 +17,17 @@ namespace Bloom.Player.State.Services
         /// Initializes a new instance of the <see cref="PlayerStateService" /> class.
         /// </summary>
         /// <param name="stateDataSource">The state data source.</param>
+        /// <param name="suiteStateRepository">The suite state repository.</param>
         /// <param name="playerStateRepository">The player state repository.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public PlayerStateService(IDataSource stateDataSource, IPlayerStateRepository playerStateRepository,
+        public PlayerStateService(IDataSource stateDataSource, ISuiteStateRepository suiteStateRepository, IPlayerStateRepository playerStateRepository,
             ILibraryConnectionRepository libraryConnectionRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
             StateDataSource = stateDataSource;
+            SuiteStateRepository = suiteStateRepository;
             LibraryConnectionRepository = libraryConnectionRepository;
             _sharedLibraryService = sharedLibraryService;
             _playerStateRepository = playerStateRepository;

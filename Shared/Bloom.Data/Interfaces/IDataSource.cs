@@ -55,6 +55,12 @@ namespace Bloom.Data.Interfaces
         void Save();
 
         /// <summary>
+        /// Refreshes the specified to refresh.
+        /// </summary>
+        /// <param name="toRefresh">To refresh.</param>
+        void Refresh(object toRefresh);
+
+        /// <summary>
         /// Disconnects this data source.
         /// </summary>
         void Disconnect();
