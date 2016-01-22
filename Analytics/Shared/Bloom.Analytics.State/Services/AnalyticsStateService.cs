@@ -47,7 +47,10 @@ namespace Bloom.Analytics.State.Services
         /// <exception cref="System.InvalidOperationException">The file path to the state database file has not been specified.</exception>
         public AnalyticsState InitializeState(User user)
         {
-            State = _analyticsStateRepository.GetAnalyticsState(user) ?? AddNewState(user);
+            State = _analyticsStateRepository.GetAnalyticsState(user) ?? NewAnalyticsState(user);
+            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState();
+            SuiteState.LastProcessAccess = ((AnalyticsState) State).ProcessName;
+            SuiteState.ProcessAccessedOn = DateTime.Now;
 
             if (State.User == null)
                 return (AnalyticsState) State;
@@ -62,7 +65,15 @@ namespace Bloom.Analytics.State.Services
             return (AnalyticsState) State;
         }
 
-        private AnalyticsState AddNewState(User user)
+        private SuiteState NewSuiteState()
+        {
+            var suiteState = SuiteState.Create();
+            SuiteStateRepository.AddSuiteState(suiteState);
+
+            return suiteState;
+        }
+
+        private AnalyticsState NewAnalyticsState(User user)
         {
             var analyticsState = new AnalyticsState();
             analyticsState.SetUser(user);

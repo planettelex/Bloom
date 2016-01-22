@@ -156,7 +156,7 @@ namespace Bloom.State.Data
         public void Refresh(object toRefresh)
         {
             if (IsConnected())
-                Context.Refresh(RefreshMode.KeepChanges, toRefresh);
+                Context.Refresh(RefreshMode.OverwriteCurrentValues, toRefresh);
         }
 
         /// <summary>

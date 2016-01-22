@@ -43,7 +43,10 @@ namespace Bloom.Player.State.Services
         /// <exception cref="System.InvalidOperationException">The file path to the state database file has not been specified.</exception>
         public PlayerState InitializeState(User user)
         {
-            State = _playerStateRepository.GetPlayerState(user) ?? AddNewState(user);
+            State = _playerStateRepository.GetPlayerState(user) ?? NewPlayerState(user);
+            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState();
+            SuiteState.LastProcessAccess = ((PlayerState) State).ProcessName;
+            SuiteState.ProcessAccessedOn = DateTime.Now;
 
             if (State.User == null)
                 return (PlayerState) State;
@@ -58,7 +61,15 @@ namespace Bloom.Player.State.Services
             return (PlayerState) State;
         }
 
-        private PlayerState AddNewState(User user)
+        private SuiteState NewSuiteState()
+        {
+            var suiteState = SuiteState.Create();
+            SuiteStateRepository.AddSuiteState(suiteState);
+
+            return suiteState;
+        }
+
+        private PlayerState NewPlayerState(User user)
         {
             var playerState = new PlayerState();
             playerState.SetUser(user);

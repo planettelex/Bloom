@@ -23,7 +23,11 @@ namespace Bloom.State.Data.Respositories
                 from state in SuiteStateTable
                 select state;
 
-            return stateQuery.SingleOrDefault();
+            var suiteState = stateQuery.SingleOrDefault();
+
+            _dataSource.Refresh(suiteState);
+
+            return suiteState;
         }
 
         public void AddSuiteState(SuiteState suiteState)

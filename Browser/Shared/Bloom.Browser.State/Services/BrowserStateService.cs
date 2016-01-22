@@ -51,6 +51,7 @@ namespace Bloom.Browser.State.Services
             State = _browserStateRepository.GetBrowserState(user) ?? NewBrowserState(user);
             SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState();
             SuiteState.LastProcessAccess = ((BrowserState) State).ProcessName;
+            SuiteState.ProcessAccessedOn = DateTime.Now;
 
             if (State.User == null) 
                 return (BrowserState) State;
@@ -67,7 +68,7 @@ namespace Bloom.Browser.State.Services
 
         private SuiteState NewSuiteState()
         {
-            var suiteState = new SuiteState();
+            var suiteState = SuiteState.Create();
             SuiteStateRepository.AddSuiteState(suiteState);
 
             return suiteState;

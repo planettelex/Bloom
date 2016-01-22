@@ -60,6 +60,7 @@ namespace Bloom.Services
             var suiteState = SuiteStateRepository.GetSuiteState();
             var process = new BloomProcess(processType);
             suiteState.LastProcessAccess = process.Name;
+            suiteState.ProcessAccessedOn = DateTime.Now;
             SaveState(); 
         }
 

@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
+using Bloom.Common;
 using Bloom.Player.State.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -75,7 +76,15 @@ namespace Bloom.Player
         {
             base.OnActivated(e);
             if (!_loading)
-                _sharedLibraryService.CheckLibraryConnections();
+            {
+                var lastProcessToAccessState = _stateService.LastProcessToAccessState();
+                var processChanged = lastProcessToAccessState != ProcessType.Player && lastProcessToAccessState != ProcessType.None;
+                if (processChanged)
+                {
+                    _stateService.ChangeStateProcess(ProcessType.Player);
+                    _sharedLibraryService.CheckLibraryConnections();
+                }
+            }
         }
 
         /// <summary>
