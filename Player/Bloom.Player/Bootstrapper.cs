@@ -2,6 +2,7 @@
 using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.LibraryModule;
+using Bloom.Player.LibraryModule;
 using Bloom.Player.MenuModule;
 using Bloom.Player.PlayingModule;
 using Bloom.Player.RecentModule;
@@ -63,6 +64,7 @@ namespace Bloom.Player
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
+            moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PlayingModuleDefinition));
             moduleCatalog.AddModule(typeof (UpcomingModuleDefinition));
             moduleCatalog.AddModule(typeof (RecentModuleDefinition));

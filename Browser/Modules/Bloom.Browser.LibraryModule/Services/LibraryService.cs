@@ -66,7 +66,7 @@ namespace Bloom.Browser.LibraryModule.Services
 
         private void SetState(object nothing)
         {
-            State = (BrowserState)_regionManager.Regions[Settings.DocumentRegion].Context;
+            State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
         /// <summary>
