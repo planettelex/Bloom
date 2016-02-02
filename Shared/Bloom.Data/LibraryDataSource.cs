@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq;
 using System.Data.SQLite;
 using System.IO;
@@ -154,7 +155,13 @@ namespace Bloom.Data
         public void Refresh(object toRefresh)
         {
             if (IsConnected())
-                Context.Refresh(RefreshMode.KeepChanges, toRefresh);
+                Context.Refresh(RefreshMode.OverwriteCurrentValues, toRefresh);
+        }
+
+        public void Refresh(IEnumerable<object> toRefresh)
+        {
+            if (IsConnected())
+                Context.Refresh(RefreshMode.OverwriteCurrentValues, toRefresh);
         }
 
         /// <summary>

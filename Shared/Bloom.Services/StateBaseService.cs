@@ -39,11 +39,6 @@ namespace Bloom.Services
                 StateDataSource.Create();
         }
 
-        public void RefreshStateOf(object toRefresh)
-        {
-            StateDataSource.Refresh(toRefresh);
-        }
-
         public ProcessType LastProcessToAccessState()
         {
             var suiteState = SuiteStateRepository.GetSuiteState();

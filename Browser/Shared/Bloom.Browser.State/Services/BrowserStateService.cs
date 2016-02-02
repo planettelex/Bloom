@@ -1,5 +1,4 @@
 ﻿using System;
-using Bloom.Common;
 using Bloom.Data.Interfaces;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -37,7 +36,6 @@ namespace Bloom.Browser.State.Services
             
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
             EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
-            EventAggregator.GetEvent<RefreshStateEvent>().Subscribe(RefreshStateOf);
         }
         private readonly IBrowserStateRepository _browserStateRepository;
         private readonly ISharedLibraryService _sharedLibraryService;

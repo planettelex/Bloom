@@ -23,8 +23,6 @@ namespace Bloom.Player.State.Services
 
         void ChangeStateProcess(ProcessType processType);
 
-        void RefreshStateOf(object toRefresh);
-
         /// <summary>
         /// Saves the state.
         /// </summary>

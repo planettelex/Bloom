@@ -1,4 +1,5 @@
-﻿using System.Data.Linq;
+﻿using System.Collections.Generic;
+using System.Data.Linq;
 
 namespace Bloom.Data.Interfaces
 {
@@ -59,6 +60,8 @@ namespace Bloom.Data.Interfaces
         /// </summary>
         /// <param name="toRefresh">To refresh.</param>
         void Refresh(object toRefresh);
+
+        void Refresh(IEnumerable<object> toRefresh);
 
         /// <summary>
         /// Disconnects this data source.

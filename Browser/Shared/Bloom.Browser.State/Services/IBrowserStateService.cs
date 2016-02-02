@@ -24,8 +24,6 @@ namespace Bloom.Browser.State.Services
 
         void ChangeStateProcess(ProcessType processType);
 
-        void RefreshStateOf(object toRefresh);
-
         /// <summary>
         /// Restores the tabs from saved state.
         /// </summary>

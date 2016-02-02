@@ -195,12 +195,7 @@ namespace Bloom.Services
 
         public List<LibraryConnection> ListLibraryConnections()
         {
-            var connected = _libraryConnectionRepository.ListLibraryConnections(true);
-            var disconnected = _libraryConnectionRepository.ListLibraryConnections(false);
-
-            var allConnections = connected ?? new List<LibraryConnection>();
-            allConnections.AddRange(disconnected);
-
+            var allConnections = _libraryConnectionRepository.ListLibraryConnections() ?? new List<LibraryConnection>();
             return allConnections.OrderBy(connection => connection.LibraryName).ToList();
         }
 
@@ -217,27 +212,21 @@ namespace Bloom.Services
             if (State.Connections == null)
                 State.Connections = new List<LibraryConnection>();
 
-            var connectedLibraries = _libraryConnectionRepository.ListLibraryConnections(true);
-            foreach (var libraryConnection in connectedLibraries)
+            var connections = _libraryConnectionRepository.ListLibraryConnections();
+            
+            foreach (var connection in connections)
             {
-                if (!State.Connections.Contains(libraryConnection))
+                if (connection.IsConnected && !State.Connections.Contains(connection))
                 {
-                    ConnectLibrary(libraryConnection, State.User, false, true);
-                    State.Connections.Add(libraryConnection);
-                    _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
-                    _eventAggregator.GetEvent<RefreshStateEvent>().Publish(libraryConnection);
+                    ConnectLibrary(connection, State.User, false, true);
+                    State.Connections.Add(connection);
+                    _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(connection);
                 }
-            }
-
-            var disconnectedLibraries = _libraryConnectionRepository.ListLibraryConnections(false);
-            foreach (var libraryConnection in disconnectedLibraries)
-            {
-                if (State.Connections.Contains(libraryConnection))
+                if (!connection.IsConnected && State.Connections.Contains(connection))
                 {
-                    libraryConnection.Disconnect();
-                    State.RemoveConnection(libraryConnection);
-                    _eventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(libraryConnection.LibraryId);
-                    _eventAggregator.GetEvent<RefreshStateEvent>().Publish(libraryConnection);
+                    connection.Disconnect();
+                    State.RemoveConnection(connection);
+                    _eventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(connection.LibraryId);
                 }
             }
         }
