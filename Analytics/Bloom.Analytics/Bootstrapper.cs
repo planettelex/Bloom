@@ -11,9 +11,11 @@ using Bloom.Analytics.State.Services;
 using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.LibraryModule;
+using Bloom.LibraryModule.Services;
 using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.TaxonomiesModule;
+using Bloom.UserModule;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -64,11 +66,12 @@ namespace Bloom.Analytics
             base.ConfigureModuleCatalog();
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
+            moduleCatalog.AddModule(typeof (SharedUserModuleDefinition));
+            moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
+            moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (TaxonomiesModuleDefinition));
             moduleCatalog.AddModule(typeof (HomeModuleDefinition));
-            moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
-            moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
             moduleCatalog.AddModule(typeof (PersonModuleDefinition));
             moduleCatalog.AddModule(typeof (ArtistModuleDefinition));
             moduleCatalog.AddModule(typeof (SongModuleDefinition));
@@ -95,8 +98,8 @@ namespace Bloom.Analytics
         /// </summary>
         protected void RegisterServices()
         {
-            Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<IUserService>();
+            Container.RegisterType<IUserBaseService, UserBaseService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IUserBaseService>();
             Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISharedLibraryService>();
             Container.RegisterType<IAnalyticsStateService, AnalyticsStateService>(new ContainerControlledLifetimeManager());

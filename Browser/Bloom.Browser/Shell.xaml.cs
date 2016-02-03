@@ -8,6 +8,7 @@ using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.State.Services;
 using Bloom.Common;
 using Bloom.Controls;
+using Bloom.LibraryModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
@@ -31,7 +32,7 @@ namespace Bloom.Browser
         /// <param name="userService">The user service.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, ISharedLibraryService sharedLibraryService, IBrowserStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserBaseService userService, ISharedLibraryService sharedLibraryService, IBrowserStateService stateService)
         {
             InitializeComponent();
             _loading = true;

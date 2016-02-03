@@ -160,6 +160,10 @@
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
       <Name>Bloom.LibraryModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Modules\Bloom.UserModule\Bloom.UserModule.csproj">
+      <Project>{ddbc521e-2b45-49f2-b9f5-743eefe9122a}</Project>
+      <Name>Bloom.UserModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modules\Bloom.Analytics.HomeModule\Bloom.Analytics.HomeModule.csproj">
       <Project>{b0b2745d-9da3-46ee-b20c-6c66598cc84b}</Project>
       <Name>Bloom.Analytics.HomeModule</Name>

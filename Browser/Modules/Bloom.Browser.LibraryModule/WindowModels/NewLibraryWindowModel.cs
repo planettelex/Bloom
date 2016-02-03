@@ -23,7 +23,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// <param name="regionManager">The region manager.</param>
         /// <param name="userService">The user service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public NewLibraryWindowModel(IRegionManager regionManager, IUserService userService, IEventAggregator eventAggregator)
+        public NewLibraryWindowModel(IRegionManager regionManager, IUserBaseService userService, IEventAggregator eventAggregator)
         {
             _userService = userService;
             EventAggregator = eventAggregator;
@@ -37,7 +37,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             foreach (var potentialOwner in potentialOwners)
                 PotentialOwners.Add(potentialOwner);
         }
-        private readonly IUserService _userService;
+        private readonly IUserBaseService _userService;
 
         /// <summary>
         /// Gets the event aggregator.

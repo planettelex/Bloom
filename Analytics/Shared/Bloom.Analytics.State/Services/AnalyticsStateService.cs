@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Data.Interfaces;
+using Bloom.LibraryModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
@@ -23,7 +24,7 @@ namespace Bloom.Analytics.State.Services
         /// <param name="tabRepository">The tab repository.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public AnalyticsStateService(IDataSource stateDataSource, ISuiteStateRepository suiteStateRepository, IAnalyticsStateRepository analyticsStateRepository, 
+        public AnalyticsStateService(IDataSource stateDataSource, ISuiteStateRepository suiteStateRepository, IAnalyticsStateRepository analyticsStateRepository,
             ILibraryConnectionRepository libraryConnectionRepository, ITabRepository tabRepository, ISharedLibraryService sharedLibraryService, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
@@ -34,7 +35,6 @@ namespace Bloom.Analytics.State.Services
             _sharedLibraryService = sharedLibraryService;
             _analyticsStateRepository = analyticsStateRepository;
             
-
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
             EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
         }

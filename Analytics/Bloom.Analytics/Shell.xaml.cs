@@ -8,6 +8,7 @@ using Bloom.Analytics.PubSubEvents;
 using Bloom.Analytics.State.Services;
 using Bloom.Common;
 using Bloom.Controls;
+using Bloom.LibraryModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
@@ -31,7 +32,7 @@ namespace Bloom.Analytics
         /// <param name="userService">The user service.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, ISharedLibraryService sharedLibraryService, IAnalyticsStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserBaseService userService, ISharedLibraryService sharedLibraryService, IAnalyticsStateService stateService)
         {
             InitializeComponent();
             _loading = true;

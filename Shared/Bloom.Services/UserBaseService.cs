@@ -4,13 +4,13 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.Services
 {
-    public class UserService : IUserService
+    public class UserBaseService : IUserBaseService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserService" /> class.
+        /// Initializes a new instance of the <see cref="UserBaseService" /> class.
         /// </summary>
         /// <param name="userRepository">The user repository.</param>
-        public UserService(IUserRepository userRepository)
+        public UserBaseService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

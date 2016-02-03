@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.Common;
+using Bloom.LibraryModule.Services;
 using Bloom.Player.State.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -24,7 +25,7 @@ namespace Bloom.Player
         /// <param name="userService">The user service.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserService userService, ISharedLibraryService sharedLibraryService, IPlayerStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserBaseService userService, ISharedLibraryService sharedLibraryService, IPlayerStateService stateService)
         {
             InitializeComponent();
             _loading = true;

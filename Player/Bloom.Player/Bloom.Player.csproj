@@ -159,9 +159,9 @@
       <Project>{03CE0198-7E75-47B4-8447-617D1A3E36DE}</Project>
       <Name>Bloom.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.LibraryModule\Bloom.Player.LibraryModule.csproj">
-      <Project>{8100d83e-28e6-4811-8a09-1961c288cf64}</Project>
-      <Name>Bloom.Player.LibraryModule</Name>
+    <ProjectReference Include="..\..\Shared\Modules\Bloom.UserModule\Bloom.UserModule.csproj">
+      <Project>{ddbc521e-2b45-49f2-b9f5-743eefe9122a}</Project>
+      <Name>Bloom.UserModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shared\Bloom.Player.State\Bloom.Player.State.csproj">
       <Project>{d8539333-b1ef-4153-aab9-552011f9eba3}</Project>

@@ -15,10 +15,10 @@ using Microsoft.Practices.Unity;
 
 namespace Bloom.Services
 {
-    public class SharedLibraryService : ISharedLibraryService
+    public class LibraryBaseService
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SharedLibraryService" /> class.
+        /// Initializes a new instance of the <see cref="LibraryBaseService" /> class.
         /// </summary>
         /// <param name="container">The container.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
@@ -27,38 +27,41 @@ namespace Bloom.Services
         /// <param name="libraryRepository">The library repository.</param>
         /// <param name="personRepository">The person repository.</param>
         /// <param name="userRepository">The user repository.</param>
-        public SharedLibraryService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
+        public LibraryBaseService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
             ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IPersonRepository personRepository, IUserRepository userRepository)
         {
             _container = container;
-            _eventAggregator = eventAggregator;
-            _regionManager = regionManager;
             _libraryConnectionRepository = libraryConnectionRepository;
             _personRepository = personRepository;
             _libraryRepository = libraryRepository;
             _userRepository = userRepository;
+            EventAggregator = eventAggregator;
+            RegionManager = regionManager;
 
             // Subscribe to events
-            _eventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
-            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            EventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
+            EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
             
         }
         private readonly IUnityContainer _container;
-        private readonly IEventAggregator _eventAggregator;
         private readonly ILibraryRepository _libraryRepository;
         private readonly IPersonRepository _personRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IRegionManager _regionManager;
+        
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public ApplicationState State { get; private set; }
+        public ApplicationState ApplicationState { get; private set; }
+
+        protected IEventAggregator EventAggregator { get; set; }
+
+        protected IRegionManager RegionManager { get; set; }
 
         private void SetState(object nothing)
         {
-            State = (ApplicationState) _regionManager.Regions[Common.Settings.MenuRegion].Context;
+            ApplicationState = (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context;
         }
 
         public void CreateNewLibrary(Library library)
@@ -69,15 +72,15 @@ namespace Bloom.Services
             var dataSource = new LibraryDataSource(_container);
             dataSource.Create(library.FilePath);
             var libraryConnection = LibraryConnection.Create(library);
-            ConnectLibrary(libraryConnection, State.User, true, false);
+            ConnectLibrary(libraryConnection, ApplicationState.User, true, false);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
             _personRepository.AddPerson(libraryConnection.DataSource, library.Owner);
             _libraryRepository.AddLibrary(libraryConnection.DataSource, library);
             libraryConnection.SaveChanges();
-            State.Connections.Insert(0, libraryConnection);
+            ApplicationState.Connections.Insert(0, libraryConnection);
 
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
-            _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
+            EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
         }
 
         public LibraryConnection ConnectNewLibrary(string filePath)
@@ -101,7 +104,7 @@ namespace Bloom.Services
             if (existingConnection != null)
                 libraryConnection = existingConnection;
             
-            var success = ConnectLibrary(libraryConnection, State.User, true, true);
+            var success = ConnectLibrary(libraryConnection, ApplicationState.User, true, true);
             if (!success)
                 return null;
 
@@ -112,12 +115,12 @@ namespace Bloom.Services
                 SyncLibraryOwnerAndUser(libraryConnection, existingUser);
 
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
-            var alreadyConnected = State.Connections.Contains(libraryConnection);
+            var alreadyConnected = ApplicationState.Connections.Contains(libraryConnection);
             if (!alreadyConnected)
             {
-                State.Connections.Insert(0, libraryConnection);
-                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
-                _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
+                ApplicationState.Connections.Insert(0, libraryConnection);
+                EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
             }
             
             return libraryConnection;
@@ -150,7 +153,7 @@ namespace Bloom.Services
                 if (user == null && libraryConnection.Library != null)
                 {
                     user = User.Create(libraryConnection.Library.Owner);
-                    State.SetUser(user);
+                    ApplicationState.SetUser(user);
                     userCreated = true;
                 }
 
@@ -158,7 +161,7 @@ namespace Bloom.Services
                     throw new NullReferenceException("User cannot be null.");
 
                 if (userCreated)
-                    _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
+                    EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
 
                 if (timestamp)
                 {
@@ -206,27 +209,27 @@ namespace Bloom.Services
 
         public void CheckLibraryConnections()
         {
-            if (State == null)
+            if (ApplicationState == null)
                 return;
 
-            if (State.Connections == null)
-                State.Connections = new List<LibraryConnection>();
+            if (ApplicationState.Connections == null)
+                ApplicationState.Connections = new List<LibraryConnection>();
 
             var connections = _libraryConnectionRepository.ListLibraryConnections();
             
             foreach (var connection in connections)
             {
-                if (connection.IsConnected && !State.Connections.Contains(connection))
+                if (connection.IsConnected && !ApplicationState.Connections.Contains(connection))
                 {
-                    ConnectLibrary(connection, State.User, false, true);
-                    State.Connections.Add(connection);
-                    _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(connection);
+                    ConnectLibrary(connection, ApplicationState.User, false, true);
+                    ApplicationState.Connections.Add(connection);
+                    EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(connection);
                 }
-                if (!connection.IsConnected && State.Connections.Contains(connection))
+                if (!connection.IsConnected && ApplicationState.Connections.Contains(connection))
                 {
                     connection.Disconnect();
-                    State.RemoveConnection(connection);
-                    _eventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(connection.LibraryId);
+                    ApplicationState.RemoveConnection(connection);
+                    EventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(connection.LibraryId);
                 }
             }
         }

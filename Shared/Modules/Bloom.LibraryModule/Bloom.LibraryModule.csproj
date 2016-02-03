@@ -102,6 +102,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ISharedLibraryService.cs" />
+    <Compile Include="Services\SharedLibraryService.cs" />
     <Compile Include="SharedLibraryModuleDefinition.cs" />
     <Compile Include="WindowModels\ConnectedLibrariesWindowModel.cs" />
     <Compile Include="Windows\ConnectedLibrariesWindow.xaml.cs">

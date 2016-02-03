@@ -78,9 +78,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="IProcessService.cs" />
-    <Compile Include="ISharedLibraryService.cs" />
     <Compile Include="ISkinningService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="IUserBaseService.cs" />
     <Compile Include="ProcessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -88,11 +87,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SharedLibraryService.cs" />
+    <Compile Include="LibraryBaseService.cs" />
     <Compile Include="SkinningService.cs" />
     <Compile Include="StateBaseService.cs" />
     <Compile Include="TabbedStateBaseService.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="UserBaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">

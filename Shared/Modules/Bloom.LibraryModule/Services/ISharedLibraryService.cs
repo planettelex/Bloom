@@ -2,7 +2,7 @@
 using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Services
+namespace Bloom.LibraryModule.Services
 {
     public interface ISharedLibraryService
     {
@@ -58,5 +58,10 @@ namespace Bloom.Services
         /// <param name="libraryConnection">The library connection.</param>
         /// <param name="user">The user.</param>
         void SyncLibraryOwnerAndUser(LibraryConnection libraryConnection, User user);
+
+        /// <summary>
+        /// Shows the connected libraries modal.
+        /// </summary>
+        void ShowConnectedLibrariesModal();
     }
 }

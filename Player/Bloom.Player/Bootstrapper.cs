@@ -2,7 +2,7 @@
 using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.LibraryModule;
-using Bloom.Player.LibraryModule;
+using Bloom.LibraryModule.Services;
 using Bloom.Player.MenuModule;
 using Bloom.Player.PlayingModule;
 using Bloom.Player.RecentModule;
@@ -12,6 +12,7 @@ using Bloom.Player.VisualsModule;
 using Bloom.Player.VolumeModule;
 using Bloom.Services;
 using Bloom.State.Data;
+using Bloom.UserModule;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -62,9 +63,9 @@ namespace Bloom.Player
             base.ConfigureModuleCatalog();
 
             var moduleCatalog = (ModuleCatalog) ModuleCatalog;
-            moduleCatalog.AddModule(typeof (MenuModuleDefinition));
+            moduleCatalog.AddModule(typeof (SharedUserModuleDefinition));
             moduleCatalog.AddModule(typeof (SharedLibraryModuleDefinition));
-            moduleCatalog.AddModule(typeof (LibraryModuleDefinition));
+            moduleCatalog.AddModule(typeof (MenuModuleDefinition));
             moduleCatalog.AddModule(typeof (PlayingModuleDefinition));
             moduleCatalog.AddModule(typeof (UpcomingModuleDefinition));
             moduleCatalog.AddModule(typeof (RecentModuleDefinition));
@@ -91,8 +92,8 @@ namespace Bloom.Player
         /// </summary>
         protected void RegisterServices()
         {
-            Container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<IUserService>();
+            Container.RegisterType<IUserBaseService, UserBaseService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IUserBaseService>();
             Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISharedLibraryService>();
             Container.RegisterType<IPlayerStateService, PlayerStateService>(new ContainerControlledLifetimeManager());

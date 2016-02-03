@@ -1,41 +1,28 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.LibraryModule.WindowModels;
 using Bloom.LibraryModule.Windows;
 using Bloom.PubSubEvents;
+using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
-using Bloom.Services;
 using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Player.LibraryModule.Services
+namespace Bloom.LibraryModule.Services
 {
-    public class LibraryService : LibraryBaseService, ILibraryService
+    public class SharedLibraryService : LibraryBaseService, ISharedLibraryService
     {
-        public LibraryService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
+        public SharedLibraryService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
             ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IPersonRepository personRepository, IUserRepository userRepository)
             : base(container, eventAggregator, regionManager, libraryConnectionRepository, libraryRepository, personRepository, userRepository)
         {
-
             // Subscribe to events
             EventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Subscribe(ShowConnectedLibrariesModal);
-            EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
-        }
-
-        /// <summary>
-        /// Gets the state.
-        /// </summary>
-        public PlayerState State { get; private set; }
-
-        private void SetState(object nothing)
-        {
-            State = (PlayerState) RegionManager.Regions[Settings.MenuRegion].Context;
         }
 
         public void ShowConnectedLibrariesModal(object nothing)
@@ -52,7 +39,7 @@ namespace Bloom.Player.LibraryModule.Services
             {
                 if (connection.IsConnected)
                 {
-                    var connectedLibrary = State.Connections.SingleOrDefault(c => c.LibraryId == connection.LibraryId);
+                    var connectedLibrary = ApplicationState.Connections.SingleOrDefault(c => c.LibraryId == connection.LibraryId);
                     if (connectedLibrary == null)
                         connection.IsConnected = false;
                     else

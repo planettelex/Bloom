@@ -3,7 +3,7 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.Services
 {
-    public interface IUserService
+    public interface IUserBaseService
     {
         User InitializeUser();
 
