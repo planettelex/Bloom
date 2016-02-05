@@ -76,6 +76,40 @@ namespace Bloom.Analytics
 
         private AnalyticsState State { get { return (AnalyticsState) DataContext; } }
 
+        #region User Events
+
+        private void ChangeUser(User newUser)
+        {
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            var state = _stateService.InitializeState(newUser);
+            DataContext = state;
+            _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
+        }
+
+        private void SetPreferencesForUser(object nothing)
+        {
+            if (State.Tabs != null && State.Tabs.Count == 1 && State.Tabs[0].Type == TabType.GettingStarted && State.Tabs[0].UserId == Guid.Empty)
+                State.Tabs[0].UserId = State.UserId;
+            else
+            {
+                _skinningService.SetSkin(State.SkinName);
+
+                // Don't automatically minimize the application.
+                if (State.WindowState == WindowState.Minimized)
+                    State.WindowState = WindowState.Normal;
+
+                WindowState = State.WindowState;
+                SidebarPane.IsHidden = !State.SidebarVisible;
+
+                foreach (var tab in _tabs.Values)
+                    tab.IsHidden = true;
+
+                _stateService.RestoreTabs();
+            }
+        }
+
+        #endregion
+
         #region Window Events
 
         /// <summary>
@@ -128,23 +162,28 @@ namespace Bloom.Analytics
 
         private void AddTab(TabControl tabControl)
         {
-            var titleTemplate = (DataTemplate) FindResource("TitleTemplate");
-            var newPane = new RadPane
+            if (_tabs.ContainsKey(tabControl.TabId))
+                _tabs[tabControl.TabId].IsHidden = false;
+            else
             {
-                Content = tabControl.Content,
-                HeaderTemplate = titleTemplate,
-                TitleTemplate = titleTemplate,
-                Title = tabControl,
-                Tag = tabControl.TabId
-            };
+                var titleTemplate = (DataTemplate)FindResource("TitleTemplate");
+                var newPane = new RadPane
+                {
+                    Content = tabControl.Content,
+                    HeaderTemplate = titleTemplate,
+                    TitleTemplate = titleTemplate,
+                    Title = tabControl,
+                    Tag = tabControl.TabId
+                };
 
-            tabControl.Tab.UserId = State.UserId;
-            _stateService.AddTab(tabControl.Tab);
-            if (!_loading || State.SelectedTabId == Guid.Empty)
-                State.SelectedTabId = tabControl.TabId;
+                tabControl.Tab.UserId = State.UserId;
+                _stateService.AddTab(tabControl.Tab);
+                if (!_loading || State.SelectedTabId == Guid.Empty)
+                    State.SelectedTabId = tabControl.TabId;
 
-            _tabs.Add(tabControl.TabId, newPane);
-            PaneGroup.Items.Add(newPane);
+                _tabs.Add(tabControl.TabId, newPane);
+                PaneGroup.Items.Add(newPane);
+            }
         }
 
         private void CloseTab(Guid tabId)
@@ -242,36 +281,6 @@ namespace Bloom.Analytics
                     selectedTab = tab;
             }
             return selectedTab;
-        }
-
-        private void ChangeUser(User newUser)
-        {
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
-            var state = _stateService.InitializeState(newUser);
-            DataContext = state;
-            _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
-        }
-
-        private void SetPreferencesForUser(object nothing)
-        {
-            if (State.Tabs != null && State.Tabs.Count == 1 && State.Tabs[0].Type == TabType.GettingStarted && State.Tabs[0].UserId == Guid.Empty)
-                State.Tabs[0].UserId = State.UserId;
-            else
-            {
-                _skinningService.SetSkin(State.SkinName);
-
-                // Don't automatically minimize the application.
-                if (State.WindowState == WindowState.Minimized)
-                    State.WindowState = WindowState.Normal;
-
-                WindowState = State.WindowState;
-                SidebarPane.IsHidden = !State.SidebarVisible;
-
-                foreach (var tab in _tabs.Values)
-                    tab.IsHidden = true;
-
-                _stateService.RestoreTabs();
-            }
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)

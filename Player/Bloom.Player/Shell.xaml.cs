@@ -33,6 +33,7 @@ namespace Bloom.Player
             _eventAggregator = eventAggregator;
             _gridLengthConverter = new GridLengthConverter();
             _sharedLibraryService = sharedLibraryService;
+            _skinningService = skinningService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
             var user = sharedUserService.InitializeUser();
@@ -45,17 +46,44 @@ namespace Bloom.Player
 
             WindowState = state.WindowState;
             TitleBar.SetButtonVisibilties();
-            skinningService.SetSkin(state.SkinName);
+            _skinningService.SetSkin(state.SkinName);
             SetRecentColumnWidth();
             SetUpcomingColumnWidth();
+
+            _eventAggregator.GetEvent<ChangeUserEvent>().Subscribe(ChangeUser);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetPreferencesForUser);
         }
         private readonly IPlayerStateService _stateService;
         private readonly ISharedLibraryService _sharedLibraryService;
+        private readonly ISkinningService _skinningService;
         private readonly GridLengthConverter _gridLengthConverter;
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
 
         private PlayerState State { get { return (PlayerState) DataContext; } }
+
+        #region User Events
+
+        private void ChangeUser(User newUser)
+        {
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            var state = _stateService.InitializeState(newUser);
+            DataContext = state;
+            _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
+        }
+
+        private void SetPreferencesForUser(object nothing)
+        {
+            _skinningService.SetSkin(State.SkinName);
+
+            // Don't automatically minimize the application.
+            if (State.WindowState == WindowState.Minimized)
+                State.WindowState = WindowState.Normal;
+
+            WindowState = State.WindowState;
+        }
+
+        #endregion
 
         #region Window Events
 

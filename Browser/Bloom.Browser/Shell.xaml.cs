@@ -76,6 +76,40 @@ namespace Bloom.Browser
 
         private BrowserState State { get { return (BrowserState) DataContext; } }
 
+        #region User Events
+
+        private void ChangeUser(User newUser)
+        {
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            var state = _stateService.InitializeState(newUser);
+            DataContext = state;
+            _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
+        }
+
+        private void SetPreferencesForUser(object nothing)
+        {
+            if (State.Tabs != null && State.Tabs.Count == 1 && State.Tabs[0].Type == TabType.GettingStarted && State.Tabs[0].UserId == Guid.Empty)
+                State.Tabs[0].UserId = State.UserId;
+            else
+            {
+                _skinningService.SetSkin(State.SkinName);
+
+                // Don't automatically minimize the application.
+                if (State.WindowState == WindowState.Minimized)
+                    State.WindowState = WindowState.Normal;
+
+                WindowState = State.WindowState;
+                SidebarPane.IsHidden = !State.SidebarVisible;
+
+                foreach (var tab in _tabs.Values)
+                    tab.IsHidden = true;
+
+                _stateService.RestoreTabs();
+            }
+        }
+
+        #endregion
+
         #region Window Events
 
         /// <summary>
@@ -132,7 +166,7 @@ namespace Bloom.Browser
                 _tabs[tabControl.TabId].IsHidden = false;
             else
             {
-                var titleTemplate = (DataTemplate)FindResource("TitleTemplate");
+                var titleTemplate = (DataTemplate) FindResource("TitleTemplate");
                 var newPane = new RadPane
                 {
                     Content = tabControl.Content,
@@ -248,36 +282,6 @@ namespace Bloom.Browser
                     selectedTab = tab;
             }
             return selectedTab;
-        }
-
-        private void ChangeUser(User newUser)
-        {
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
-            var state = _stateService.InitializeState(newUser);
-            DataContext = state;
-            _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
-        }
-
-        private void SetPreferencesForUser(object nothing)
-        {
-             if (State.Tabs != null && State.Tabs.Count == 1 && State.Tabs[0].Type == TabType.GettingStarted && State.Tabs[0].UserId == Guid.Empty)
-                State.Tabs[0].UserId = State.UserId;
-            else
-            {
-                _skinningService.SetSkin(State.SkinName);
-
-                // Don't automatically minimize the application.
-                if (State.WindowState == WindowState.Minimized)
-                    State.WindowState = WindowState.Normal;
-
-                WindowState = State.WindowState;
-                SidebarPane.IsHidden = !State.SidebarVisible;
-
-                foreach (var tab in _tabs.Values)
-                    tab.IsHidden = true;
-
-                _stateService.RestoreTabs();
-            }
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)
