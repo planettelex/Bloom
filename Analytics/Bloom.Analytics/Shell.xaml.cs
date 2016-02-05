@@ -40,10 +40,11 @@ namespace Bloom.Analytics
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _sharedLibraryService = sharedLibraryService;
+            _sharedUserService = sharedUserService;
             _skinningService = skinningService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
-            var user = sharedUserService.InitializeUser();
+            var user = _sharedUserService.InitializeUser();
             var state = _stateService.InitializeState(user);
             DataContext = state;
             
@@ -70,6 +71,7 @@ namespace Bloom.Analytics
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IAnalyticsStateService _stateService;
         private readonly ISharedLibraryService _sharedLibraryService;
+        private readonly ISharedUserService _sharedUserService;
         private readonly ISkinningService _skinningService;
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
@@ -80,9 +82,13 @@ namespace Bloom.Analytics
 
         private void ChangeUser(User newUser)
         {
+            if (State.UserId == newUser.PersonId)
+                return;
+
             _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             var state = _stateService.InitializeState(newUser);
             DataContext = state;
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
         }
 
@@ -137,6 +143,7 @@ namespace Bloom.Analytics
                 {
                     _stateService.ChangeStateProcess(ProcessType.Analytics);
                     _sharedLibraryService.CheckLibraryConnections();
+                    _sharedUserService.CheckUser();
                 }
             }
         }

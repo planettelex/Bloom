@@ -6,23 +6,18 @@ namespace Bloom.State.Domain.Models
     [Table(Name = "suite_state")]
     public class SuiteState
     {
-        public static SuiteState Create()
+        public SuiteState()
         {
-            var suiteState = new SuiteState
-            {
-                Id = Guid.NewGuid()
-            };
-
-            return suiteState;
+            SuiteName = Properties.Settings.Default.SuiteName;
         }
 
-        [Column(Name = "id", IsPrimaryKey = true)]
-        public Guid Id { get; set; }
+        [Column(Name = "suite_name", IsPrimaryKey = true)]
+        public string SuiteName { get; set; }
 
-        [Column(Name = "last_process_access")]
+        [Column(Name = "last_process_access", UpdateCheck = UpdateCheck.Never)]
         public string LastProcessAccess { get; set; }
 
-        [Column(Name = "process_accessed_on")]
+        [Column(Name = "process_accessed_on", UpdateCheck = UpdateCheck.Never)]
         public DateTime ProcessAccessedOn { get; set; }
     }
 }

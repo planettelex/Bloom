@@ -13,5 +13,7 @@ namespace Bloom.UserModule.Services
         List<User> ListUsers();
 
         void AddUser(User user);
+
+        void CheckUser();
     }
 }

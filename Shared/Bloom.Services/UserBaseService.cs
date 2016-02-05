@@ -61,5 +61,14 @@ namespace Bloom.Services
         {
             UserRepository.AddUser(user);
         }
+
+        public void CheckUser()
+        {
+            if (ApplicationState == null)
+                return;
+
+            var lastUserToLogin = UserRepository.GetLastUser();
+            EventAggregator.GetEvent<ChangeUserEvent>().Publish(lastUserToLogin);
+        }
     }
 }

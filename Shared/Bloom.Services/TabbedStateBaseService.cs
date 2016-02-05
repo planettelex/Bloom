@@ -123,10 +123,15 @@ namespace Bloom.Services
             if (State == null)
                 return;
             
-            if (State.User == null || State.Connections == null || State.Connections.Count == 0)
+            if (State.User == null)
                 EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
             else if (State.Tabs == null || State.Tabs.Count == 0)
-                EventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+            {
+                if (State.Connections == null || State.Connections.Count == 0)
+                    EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
+                else
+                    EventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+            }
             else
             {
                 foreach (var tab in State.Tabs)
@@ -171,8 +176,7 @@ namespace Bloom.Services
         /// </summary>
         public override void SaveState()
         {
-            if (State.User != null)
-                StateDataSource.Save();
+            StateDataSource.Save();
         }
     }
 }

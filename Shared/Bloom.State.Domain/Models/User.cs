@@ -45,31 +45,31 @@ namespace Bloom.State.Domain.Models
         /// <summary>
         /// Gets or sets the user's name.
         /// </summary>
-        [Column(Name = "name")]
+        [Column(Name = "name", UpdateCheck = UpdateCheck.Never)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the user's birthday.
         /// </summary>
-        [Column(Name = "birthday")]
+        [Column(Name = "birthday", UpdateCheck = UpdateCheck.Never)]
         public DateTime? Birthday { get; set; }
 
         /// <summary>
         /// Gets or sets the user's Twitter.
         /// </summary>
-        [Column(Name = "twitter")]
+        [Column(Name = "twitter", UpdateCheck = UpdateCheck.Never)]
         public string Twitter { get; set; }
 
         /// <summary>
         /// Gets or sets the user's profile image URL.
         /// </summary>
-        [Column(Name = "profile_image_url")]
+        [Column(Name = "profile_image_url", UpdateCheck = UpdateCheck.Never)]
         public string ProfileImageUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the user's last login datetime.
         /// </summary>
-        [Column(Name = "last_login")]
+        [Column(Name = "last_login", UpdateCheck = UpdateCheck.Never)]
         public DateTime? LastLogin { get; set; }
 
         /// <summary>

@@ -64,8 +64,7 @@ namespace Bloom.Services
         /// </summary>
         public virtual void SaveState()
         {
-            if (State.User != null)
-                StateDataSource.Save();
+            StateDataSource.Save();
         }
     }
 }

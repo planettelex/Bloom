@@ -11,5 +11,8 @@
     <Setting Name="WindowState" Type="System.Windows.WindowState" Scope="Application">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
+    <Setting Name="SuiteName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Bloom</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

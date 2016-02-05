@@ -48,9 +48,11 @@ namespace Bloom.Analytics.State.Services
         public AnalyticsState InitializeState(User user)
         {
             State = _analyticsStateRepository.GetAnalyticsState(user) ?? NewAnalyticsState(user);
-            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState();
-            SuiteState.LastProcessAccess = ((AnalyticsState) State).ProcessName;
-            SuiteState.ProcessAccessedOn = DateTime.Now;
+            var process = ((AnalyticsState) State).ProcessName;
+            var now = DateTime.Now;
+            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState(process, now);
+            SuiteState.LastProcessAccess = process;
+            SuiteState.ProcessAccessedOn = now;
 
             if (State.User == null)
                 return (AnalyticsState) State;
@@ -65,10 +67,15 @@ namespace Bloom.Analytics.State.Services
             return (AnalyticsState) State;
         }
 
-        private SuiteState NewSuiteState()
+        private SuiteState NewSuiteState(string process, DateTime accessedOn)
         {
-            var suiteState = SuiteState.Create();
+            var suiteState = new SuiteState
+            {
+                LastProcessAccess = process,
+                ProcessAccessedOn = accessedOn
+            };
             SuiteStateRepository.AddSuiteState(suiteState);
+            SaveState();
 
             return suiteState;
         }

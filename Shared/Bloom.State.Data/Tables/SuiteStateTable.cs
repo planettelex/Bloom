@@ -9,7 +9,7 @@ namespace Bloom.State.Data.Tables
             get
             {
                 return "CREATE TABLE \"suite_state\" (" +
-                       "\"id\" VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                       "\"suite_name\" VARCHAR PRIMARY KEY NOT NULL UNIQUE , " +
                        "\"last_process_access\" VARCHAR NOT NULL , " +
                        "\"process_accessed_on\" DATETIME)";
             }

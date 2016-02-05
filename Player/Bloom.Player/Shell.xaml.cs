@@ -66,9 +66,13 @@ namespace Bloom.Player
 
         private void ChangeUser(User newUser)
         {
+            if (State.UserId == newUser.PersonId)
+                return;
+
             _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             var state = _stateService.InitializeState(newUser);
             DataContext = state;
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
         }
 

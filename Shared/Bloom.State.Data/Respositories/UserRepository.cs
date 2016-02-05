@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Security.Cryptography;
 using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
 
@@ -45,12 +46,14 @@ namespace Bloom.State.Data.Respositories
             if (!_dataSource.IsConnected())
                 return null;
 
+            var allUsers = ListUsers();
+
             var lastUserQuery =
                 from users in UserTable
                 orderby users.LastLogin descending
                 select users;
 
-            return lastUserQuery.ToList().FirstOrDefault();
+            return allUsers.OrderBy(user => user.LastLogin).Reverse().FirstOrDefault();
         }
 
         /// <summary>
@@ -66,7 +69,10 @@ namespace Bloom.State.Data.Respositories
                 orderby users.LastLogin descending
                 select users;
 
-            return lastUserQuery.ToList();
+            var allUsers = lastUserQuery.ToList();
+            _dataSource.Refresh(allUsers);
+
+            return allUsers;
         }
 
         /// <summary>

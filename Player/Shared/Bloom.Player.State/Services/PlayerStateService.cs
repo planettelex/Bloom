@@ -45,9 +45,11 @@ namespace Bloom.Player.State.Services
         public PlayerState InitializeState(User user)
         {
             State = _playerStateRepository.GetPlayerState(user) ?? NewPlayerState(user);
-            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState();
-            SuiteState.LastProcessAccess = ((PlayerState) State).ProcessName;
-            SuiteState.ProcessAccessedOn = DateTime.Now;
+            var process = ((PlayerState) State).ProcessName;
+            var now = DateTime.Now;
+            SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState(process, now);
+            SuiteState.LastProcessAccess = process;
+            SuiteState.ProcessAccessedOn = now;
 
             if (State.User == null)
                 return (PlayerState) State;
@@ -62,10 +64,15 @@ namespace Bloom.Player.State.Services
             return (PlayerState) State;
         }
 
-        private SuiteState NewSuiteState()
+        private SuiteState NewSuiteState(string process, DateTime accessedOn)
         {
-            var suiteState = SuiteState.Create();
+            var suiteState = new SuiteState
+            {
+                LastProcessAccess = process,
+                ProcessAccessedOn = accessedOn
+            };
             SuiteStateRepository.AddSuiteState(suiteState);
+            SaveState();
 
             return suiteState;
         }
