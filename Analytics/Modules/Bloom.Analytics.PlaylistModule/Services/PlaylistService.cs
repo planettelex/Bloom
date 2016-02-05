@@ -31,6 +31,7 @@ namespace Bloom.Analytics.PlaylistModule.Services
             _eventAggregator.GetEvent<RestorePlaylistTabEvent>().Subscribe(RestorePlaylistTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicatePlaylistTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;

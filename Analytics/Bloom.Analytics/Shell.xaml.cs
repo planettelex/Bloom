@@ -12,6 +12,7 @@ using Bloom.LibraryModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
@@ -29,19 +30,20 @@ namespace Bloom.Analytics
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="userService">The user service.</param>
+        /// <param name="sharedUserService">The shared user service.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserBaseService userService, ISharedLibraryService sharedLibraryService, IAnalyticsStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, ISharedUserService sharedUserService, ISharedLibraryService sharedLibraryService, IAnalyticsStateService stateService)
         {
             InitializeComponent();
             _loading = true;
             _tabs = new Dictionary<Guid, RadPane>();
             _eventAggregator = eventAggregator;
             _sharedLibraryService = sharedLibraryService;
+            _skinningService = skinningService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
-            var user = userService.InitializeUser();
+            var user = sharedUserService.InitializeUser();
             var state = _stateService.InitializeState(user);
             DataContext = state;
             
@@ -62,10 +64,13 @@ namespace Bloom.Analytics
             _eventAggregator.GetEvent<ShowSidebarEvent>().Subscribe(ShowSidebar);
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<ChangeUserEvent>().Subscribe(ChangeUser);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetPreferencesForUser);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IAnalyticsStateService _stateService;
         private readonly ISharedLibraryService _sharedLibraryService;
+        private readonly ISkinningService _skinningService;
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
 
@@ -237,6 +242,36 @@ namespace Bloom.Analytics
                     selectedTab = tab;
             }
             return selectedTab;
+        }
+
+        private void ChangeUser(User newUser)
+        {
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            var state = _stateService.InitializeState(newUser);
+            DataContext = state;
+            _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
+        }
+
+        private void SetPreferencesForUser(object nothing)
+        {
+            if (State.Tabs != null && State.Tabs.Count == 1 && State.Tabs[0].Type == TabType.GettingStarted && State.Tabs[0].UserId == Guid.Empty)
+                State.Tabs[0].UserId = State.UserId;
+            else
+            {
+                _skinningService.SetSkin(State.SkinName);
+
+                // Don't automatically minimize the application.
+                if (State.WindowState == WindowState.Minimized)
+                    State.WindowState = WindowState.Normal;
+
+                WindowState = State.WindowState;
+                SidebarPane.IsHidden = !State.SidebarVisible;
+
+                foreach (var tab in _tabs.Values)
+                    tab.IsHidden = true;
+
+                _stateService.RestoreTabs();
+            }
         }
 
         private void DockCompassPreview(object sender, PreviewShowCompassEventArgs e)

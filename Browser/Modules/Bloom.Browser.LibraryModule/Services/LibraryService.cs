@@ -13,8 +13,8 @@ using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
-using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
@@ -27,14 +27,14 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
-        /// <param name="userService">The user service.</param>
+        /// <param name="sharedUserService">The user service.</param>
         /// <param name="libraryRepository">The library repository.</param>
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, IUserBaseService userService, ILibraryRepository libraryRepository)
+        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, ISharedUserService sharedUserService, ILibraryRepository libraryRepository)
         {
             _eventAggregator = eventAggregator;
             _libraryRepository = libraryRepository;
             _regionManager = regionManager;
-            _userService = userService;
+            _sharedUserService = sharedUserService;
             _tabs = new List<ViewMenuTab>();
             
             // Subscribe to events
@@ -44,11 +44,12 @@ namespace Bloom.Browser.LibraryModule.Services
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly ILibraryRepository _libraryRepository;
         private readonly IRegionManager _regionManager;
-        private readonly IUserBaseService _userService;
+        private readonly ISharedUserService _sharedUserService;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         public void ShowCreateNewLibraryModal()
         {
-            var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager, _userService, _eventAggregator);
+            var newLibraryWindowModel = new NewLibraryWindowModel(_regionManager, _eventAggregator, _sharedUserService);
             var newLibraryWindow = new NewLibraryWindow(newLibraryWindowModel)
             {
                 Owner = Application.Current.MainWindow

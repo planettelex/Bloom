@@ -16,6 +16,7 @@ using Bloom.Services;
 using Bloom.State.Data;
 using Bloom.TaxonomiesModule;
 using Bloom.UserModule;
+using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Prism.UnityExtensions;
@@ -98,8 +99,8 @@ namespace Bloom.Browser
         /// </summary>
         protected void RegisterServices()
         {
-            Container.RegisterType<IUserBaseService, UserBaseService>(new ContainerControlledLifetimeManager());
-            Container.Resolve<IUserBaseService>();
+            Container.RegisterType<ISharedUserService, SharedUserService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<ISharedUserService>();
             Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISharedLibraryService>();
             Container.RegisterType<IBrowserStateService, BrowserStateService>(new ContainerControlledLifetimeManager());

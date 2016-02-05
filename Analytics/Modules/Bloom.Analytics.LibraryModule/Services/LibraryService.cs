@@ -31,6 +31,7 @@ namespace Bloom.Analytics.LibraryModule.Services
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly ILibraryRepository _libraryRepository;

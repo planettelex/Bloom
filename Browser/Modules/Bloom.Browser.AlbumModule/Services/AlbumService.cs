@@ -31,6 +31,7 @@ namespace Bloom.Browser.AlbumModule.Services
             _eventAggregator.GetEvent<RestoreAlbumTabEvent>().Subscribe(RestoreAlbumTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateAlbumTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;

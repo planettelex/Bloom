@@ -32,7 +32,7 @@ namespace Bloom.Player.MenuModule.ViewModels
 
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
-            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
 
             // File Menu
             ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);
@@ -43,6 +43,8 @@ namespace Bloom.Player.MenuModule.ViewModels
             GoToAnalyticsCommand = new DelegateCommand<object>(GoToAnalytics, CanGoToAnalytics);
             // View Menu
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
+            // User Menu
+            ChangeUserCommand = new DelegateCommand<object>(ChangeUser, CanChangeUser);
         }
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
@@ -53,6 +55,11 @@ namespace Bloom.Player.MenuModule.ViewModels
         /// Gets the state.
         /// </summary>
         public PlayerState State { get; private set; }
+
+        public void SetState(object nothing)
+        {
+            SetState();
+        }
 
         public void SetState()
         {
@@ -201,6 +208,22 @@ namespace Bloom.Player.MenuModule.ViewModels
 
             State.SkinName = skinName;
             _skinningService.SetSkin(skinName);
+        }
+
+        #endregion
+
+        #region User Menu
+
+        public ICommand ChangeUserCommand { get; set; }
+
+        private bool CanChangeUser(object nothing)
+        {
+            return true;
+        }
+
+        private void ChangeUser(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
         }
 
         #endregion

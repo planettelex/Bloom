@@ -28,6 +28,7 @@ namespace Bloom.Browser.HomeModule.Services
             _eventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Subscribe(RestoreGettingStartedTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateGettingStartedTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;

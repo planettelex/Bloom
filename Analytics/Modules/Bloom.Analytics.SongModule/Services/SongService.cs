@@ -31,6 +31,7 @@ namespace Bloom.Analytics.SongModule.Services
             _eventAggregator.GetEvent<RestoreSongTabEvent>().Subscribe(RestoreSongTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSongTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;

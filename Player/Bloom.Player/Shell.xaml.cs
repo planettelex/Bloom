@@ -8,6 +8,7 @@ using Bloom.Player.State.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Player
@@ -22,10 +23,10 @@ namespace Bloom.Player
         /// </summary>
         /// <param name="skinningService">The skinning service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        /// <param name="userService">The user service.</param>
+        /// <param name="sharedUserService">The user service.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
         /// <param name="stateService">The state service.</param>
-        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, IUserBaseService userService, ISharedLibraryService sharedLibraryService, IPlayerStateService stateService)
+        public Shell(ISkinningService skinningService, IEventAggregator eventAggregator, ISharedUserService sharedUserService, ISharedLibraryService sharedLibraryService, IPlayerStateService stateService)
         {
             InitializeComponent();
             _loading = true;
@@ -34,7 +35,7 @@ namespace Bloom.Player
             _sharedLibraryService = sharedLibraryService;
             _stateService = stateService;
             _stateService.ConnectDataSource();
-            var user = userService.InitializeUser();
+            var user = sharedUserService.InitializeUser();
             var state = _stateService.InitializeState(user);
             DataContext = state;
 

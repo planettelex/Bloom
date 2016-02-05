@@ -7,8 +7,8 @@ using System.Windows.Input;
 using Bloom.Common.ExtensionMethods;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
-using Bloom.Services;
 using Bloom.State.Domain.Models;
+using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -21,13 +21,13 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// Initializes a new instance of the <see cref="NewLibraryWindowModel" /> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
-        /// <param name="userService">The user service.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
-        public NewLibraryWindowModel(IRegionManager regionManager, IUserBaseService userService, IEventAggregator eventAggregator)
+        /// <param name="sharedUserService">The shared user service.</param>
+        public NewLibraryWindowModel(IRegionManager regionManager, IEventAggregator eventAggregator, ISharedUserService sharedUserService)
         {
-            _userService = userService;
+            _sharedUserService = sharedUserService;
             EventAggregator = eventAggregator;
-            var potentialOwners = _userService.ListUsers();
+            var potentialOwners = _sharedUserService.ListUsers();
             State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
             if (State.User != null)
                 OwnerName = State.User.Name;
@@ -37,7 +37,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             foreach (var potentialOwner in potentialOwners)
                 PotentialOwners.Add(potentialOwner);
         }
-        private readonly IUserBaseService _userService;
+        private readonly ISharedUserService _sharedUserService;
 
         /// <summary>
         /// Gets the event aggregator.
@@ -108,7 +108,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             {
                 owner = Person.Create(OwnerName);
                 ownerUser = User.Create(owner);
-                _userService.AddUser(ownerUser);
+                _sharedUserService.AddUser(ownerUser);
             }
             else
                 owner = ownerUser.AsPerson();

@@ -33,13 +33,15 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
-            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetUser);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
             _eventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
 
             // File Menu
             ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
+            // Edit Menu
+            EditLibraryPropertiesCommand = new DelegateCommand<object>(EditLibraryProperties, CanEditLibraryProperties);
             // Analytics Menu
             DuplicateTabCommand = new DelegateCommand<object>(DuplicateTab, CanDuplicateTab);
             CloseOtherTabsCommand = new DelegateCommand<object>(CloseOtherTabs, CanCloseOtherTabs);
@@ -54,6 +56,8 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
             // Help Menu
             OpenGettingStartedTabCommand = new DelegateCommand<object>(OpenGettingStartedTab, CanOpenGettingStartedTab);
+            // User Menu
+            ChangeUserCommand = new DelegateCommand<object>(ChangeUser, CanChangeUser);
         }
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
@@ -64,6 +68,11 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         /// Gets the state.
         /// </summary>
         public AnalyticsState State { get; private set; }
+
+        public void SetState(object nothing)
+        {
+            SetState();
+        }
 
         public void SetState()
         {
@@ -364,6 +373,22 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         private void OpenGettingStartedTab(object nothing)
         {
             _eventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
+        }
+
+        #endregion
+
+        #region User Menu
+
+        public ICommand ChangeUserCommand { get; set; }
+
+        private bool CanChangeUser(object nothing)
+        {
+            return true;
+        }
+
+        private void ChangeUser(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
         }
 
         #endregion

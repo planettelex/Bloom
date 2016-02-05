@@ -41,13 +41,11 @@ namespace Bloom.Services
             // Subscribe to events
             EventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
             EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
-            
         }
         private readonly IUnityContainer _container;
         private readonly ILibraryRepository _libraryRepository;
         private readonly IPersonRepository _personRepository;
         private readonly IUserRepository _userRepository;
-        
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>

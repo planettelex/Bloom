@@ -160,6 +160,10 @@
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
       <Name>Bloom.LibraryModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Modules\Bloom.UserModule\Bloom.UserModule.csproj">
+      <Project>{DDBC521E-2B45-49F2-B9F5-743EEFE9122A}</Project>
+      <Name>Bloom.UserModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Bloom.Browser.State\Bloom.Browser.State.csproj">
       <Project>{7b772a0e-0c5d-4db5-83b4-892a03eedaeb}</Project>
       <Name>Bloom.Browser.State</Name>
