@@ -1,4 +1,5 @@
-﻿using System.Data.Linq;
+﻿using System;
+using System.Data.Linq;
 using System.Linq;
 using Bloom.Common;
 using Bloom.Data.Interfaces;
@@ -72,7 +73,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="browserState">State of the browser.</param>
         public void AddBrowserState(BrowserState browserState)
         {
-            if (!_dataSource.IsConnected() || browserState == null || BrowserStateExists(browserState.User))
+            if (!_dataSource.IsConnected() || browserState == null || browserState.User == null || browserState.UserId == Guid.Empty || BrowserStateExists(browserState.User))
                 return;
 
             BrowserStateTable.InsertOnSubmit(browserState);

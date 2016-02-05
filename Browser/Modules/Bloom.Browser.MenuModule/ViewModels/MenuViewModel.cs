@@ -59,6 +59,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
             // Help Menu
             OpenGettingStartedTabCommand = new DelegateCommand<object>(OpenGettingStartedTab, CanOpenGettingStartedTab);
             // User Menu
+            UserProfileCommand = new DelegateCommand<object>(ShowUserProfile, CanShowUserProfile);
             ChangeUserCommand = new DelegateCommand<object>(ChangeUser, CanChangeUser);
         }
         private readonly ISkinningService _skinningService;
@@ -406,6 +407,21 @@ namespace Bloom.Browser.MenuModule.ViewModels
         private void ChangeUser(object nothing)
         {
             _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
+        }
+
+        public ICommand UserProfileCommand { get; set; }
+
+        private bool CanShowUserProfile(object nothing)
+        {
+            return true;
+        }
+
+        private void ShowUserProfile(object nothing)
+        {
+            if (State.User == null)
+                _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
+            else
+                _eventAggregator.GetEvent<ShowUserProfileModalEvent>().Publish(null);
         }
 
         #endregion

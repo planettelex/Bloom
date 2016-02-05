@@ -11,11 +11,26 @@ namespace Bloom.State.Data.Respositories
         {
             _dataSource = dataSource;
         }
+        private SuiteState _suiteState;
         private readonly IDataSource _dataSource;
         private Table<SuiteState> SuiteStateTable { get { return _dataSource.Context.GetTable<SuiteState>(); } }
 
+        public bool SuiteStateExists()
+        {
+            if (_suiteState != null)
+                return true;
+
+            if (!_dataSource.IsConnected())
+                return false;
+
+            return SuiteStateTable.Any();
+        }
+
         public SuiteState GetSuiteState()
         {
+            if (_suiteState != null)
+                return _suiteState;
+
             if (!_dataSource.IsConnected())
                 return null;
 
@@ -23,19 +38,21 @@ namespace Bloom.State.Data.Respositories
                 from state in SuiteStateTable
                 select state;
 
-            var suiteState = stateQuery.SingleOrDefault();
+            _suiteState = stateQuery.SingleOrDefault();
 
-            _dataSource.Refresh(suiteState);
+            if (_suiteState != null)
+                _dataSource.Refresh(_suiteState);
 
-            return suiteState;
+            return _suiteState;
         }
 
         public void AddSuiteState(SuiteState suiteState)
         {
-            if (!_dataSource.IsConnected() || suiteState == null)
+            if (!_dataSource.IsConnected() || suiteState == null || SuiteStateExists())
                 return;
 
-            SuiteStateTable.InsertOnSubmit(suiteState);
+            _suiteState = suiteState;
+            SuiteStateTable.InsertOnSubmit(_suiteState);
         }
     }
 }

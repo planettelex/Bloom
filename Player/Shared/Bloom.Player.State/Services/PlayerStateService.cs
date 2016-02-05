@@ -76,7 +76,6 @@ namespace Bloom.Player.State.Services
             playerState.SetUser(user);
             _playerStateRepository.AddPlayerState(playerState);
 
-            EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return playerState;
         }
 

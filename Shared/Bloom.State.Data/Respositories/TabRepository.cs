@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bloom.Common;
 using Bloom.Data.Interfaces;
-using Bloom.State.Data.Tables;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
@@ -47,7 +44,7 @@ namespace Bloom.State.Data.Respositories
 
         public void AddTab(Tab tab)
         {
-            if (!_dataSource.IsConnected())
+            if (!_dataSource.IsConnected() || tab.UserId == Guid.Empty)
                 return;
 
             var existingTabQuery =

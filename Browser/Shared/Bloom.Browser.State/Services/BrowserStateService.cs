@@ -80,7 +80,6 @@ namespace Bloom.Browser.State.Services
             browserState.Connections = LibraryConnectionRepository.ListLibraryConnections(true);
             _browserStateRepository.AddBrowserState(browserState);
 
-            EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return browserState;
         }
 

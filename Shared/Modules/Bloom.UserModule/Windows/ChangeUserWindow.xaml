@@ -8,7 +8,7 @@
              Style="{DynamicResource RadWindowStyle}"
              Width="300" MaxWidth="300" MinWidth="300" 
              Height="150" MaxHeight="150" MinHeight="150"
-             Header="Change User">
+             Header="{Binding Path=Header}">
 
     <Grid Style="{DynamicResource WindowFrameStyle}">
         <Grid.RowDefinitions>
@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <telerik:RadButton Grid.Column="1" Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" />
-            <telerik:RadButton Grid.Column="3" Content="Change User" Command="{Binding Path=ChangeUserCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
+            <telerik:RadButton Grid.Column="3" Content="{Binding Path=ButtonText}" Command="{Binding Path=ChangeUserCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
         </Grid>
         
     </Grid>

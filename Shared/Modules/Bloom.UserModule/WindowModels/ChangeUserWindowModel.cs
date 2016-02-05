@@ -21,9 +21,18 @@ namespace Bloom.UserModule.WindowModels
             EventAggregator = eventAggregator;
             var potentialOwners = _sharedUserService.ListUsers();
             State = (ApplicationState) regionManager.Regions[Common.Settings.MenuRegion].Context;
-            if (State.User != null)
-                UserName = State.User.Name;
 
+            if (State.User != null)
+            {
+                ButtonText = Header = "Change User";
+                UserName = State.User.Name;
+            }
+            else
+            {
+                Header = "Login User";
+                ButtonText = "Login";
+            }
+            
             PotentialUsers = new ObservableCollection<User>();
             foreach (var potentialOwner in potentialOwners)
                 PotentialUsers.Add(potentialOwner);
@@ -44,6 +53,26 @@ namespace Bloom.UserModule.WindowModels
         /// Gets or sets a value indicating whether this instance is loading.
         /// </summary>
         public bool IsLoading { get; set; }
+
+        /// <summary>
+        /// Gets or sets the header.
+        /// </summary>
+        public string Header
+        {
+            get { return _header; }
+            set { SetProperty(ref _header, value); }
+        }
+        private string _header;
+
+        /// <summary>
+        /// Gets or sets the button text.
+        /// </summary>
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set { SetProperty(ref _buttonText, value); }
+        }
+        private string _buttonText;
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is valid.
@@ -104,7 +133,8 @@ namespace Bloom.UserModule.WindowModels
                 }
 
                 IsValid = !string.IsNullOrEmpty(UserName) &&
-                          (State.User != null && !State.User.Name.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
+                          ((State.User != null && !State.User.Name.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)) ||
+                          State.User == null);
 
                 return null;
             }

@@ -80,7 +80,6 @@ namespace Bloom.Analytics.State.Services
             analyticsState.Connections = LibraryConnectionRepository.ListLibraryConnections(true);
             _analyticsStateRepository.AddAnalyticsState(analyticsState);
 
-            EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
             return analyticsState;
         }
 

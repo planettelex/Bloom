@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Data.Linq;
 using Bloom.Common;
 using Bloom.Data.Interfaces;
@@ -71,7 +72,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="analyticsState">State of the analytics.</param>
         public void AddAnalyticsState(AnalyticsState analyticsState)
         {
-            if (!_dataSource.IsConnected() || analyticsState == null || AnalyticsStateExists(analyticsState.User))
+            if (!_dataSource.IsConnected() || analyticsState == null || analyticsState.User == null || analyticsState.UserId == Guid.Empty || AnalyticsStateExists(analyticsState.User))
                 return;
 
             AnalyticsStateTable.InsertOnSubmit(analyticsState);

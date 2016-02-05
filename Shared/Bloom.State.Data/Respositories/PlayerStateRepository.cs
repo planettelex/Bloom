@@ -1,4 +1,5 @@
-﻿using System.Data.Linq;
+﻿using System;
+using System.Data.Linq;
 using System.Linq;
 using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
@@ -67,7 +68,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="playerState">State of the player.</param>
         public void AddPlayerState(PlayerState playerState)
         {
-            if (!_dataSource.IsConnected() || playerState == null || PlayerStateExists(playerState.User))
+            if (!_dataSource.IsConnected() || playerState == null || playerState.User == null || playerState.UserId == Guid.Empty || PlayerStateExists(playerState.User))
                 return;
 
             PlayerStateTable.InsertOnSubmit(playerState);

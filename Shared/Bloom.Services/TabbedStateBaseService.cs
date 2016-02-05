@@ -123,7 +123,7 @@ namespace Bloom.Services
             if (State == null)
                 return;
             
-            if (State.User == null)
+            if (State.User == null || State.Connections == null || State.Connections.Count == 0)
                 EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
             else if (State.Tabs == null || State.Tabs.Count == 0)
                 EventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
