@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Security.Cryptography;
 using Bloom.Data.Interfaces;
 using Bloom.State.Domain.Models;
 
@@ -47,11 +46,6 @@ namespace Bloom.State.Data.Respositories
                 return null;
 
             var allUsers = ListUsers();
-
-            var lastUserQuery =
-                from users in UserTable
-                orderby users.LastLogin descending
-                select users;
 
             return allUsers.OrderBy(user => user.LastLogin).Reverse().FirstOrDefault();
         }

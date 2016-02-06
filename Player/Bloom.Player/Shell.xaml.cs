@@ -85,6 +85,8 @@ namespace Bloom.Player
                 State.WindowState = WindowState.Normal;
 
             WindowState = State.WindowState;
+            SetRecentColumnWidth();
+            SetUpcomingColumnWidth();
         }
 
         #endregion
