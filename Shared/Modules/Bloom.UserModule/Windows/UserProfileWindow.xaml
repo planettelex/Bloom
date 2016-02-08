@@ -1,0 +1,94 @@
+﻿<telerik:RadWindow x:Class="Bloom.UserModule.Windows.UserProfileWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             Style="{DynamicResource RadWindowStyle}"
+             Width="500" MaxWidth="500" MinWidth="500" 
+             Height="250" MaxHeight="250" MinHeight="250"
+             Header="Edit Profile">
+    
+    <telerik:RadWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Bloom.Resources;component/Styles/DefaultStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Bloom.Resources;component/Styles/ControlStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ProfileImageStyle" TargetType="Image">
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="100" />
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Setter Property="Margin" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </telerik:RadWindow.Resources>
+    
+    <Grid Style="{DynamicResource WindowFrameStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadButton Grid.Column="0" Command="{Binding Path=SetProfileImageCommand}" Style="{StaticResource RadButtonStyle}" Width="110" Height="110" Margin="0" Padding="5">
+            <Button.ToolTip>Click to choose a new profile picture.</Button.ToolTip>
+            <StackPanel>
+                <Image Name="PlaceholderImage" Source="{DynamicResource PersonIcon}" Style="{StaticResource ProfileImageStyle}" />
+                <Image Name="ProfileImage" Source="{Binding Path=ProfileImagePath}" Style="{StaticResource ProfileImageStyle}" />
+            </StackPanel>
+        </telerik:RadButton>
+        
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="18" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="18" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Name" />
+                    <TextBox Text="{Binding Path=UserName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Birthday" />
+                    <telerik:RadDateTimePicker InputMode="DatePicker" SelectedValue="{Binding Path=Birthday, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Twitter" />
+                    <TextBox Text="{Binding Path=Twitter}" KeyUp="OnTwitterUpdated" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <telerik:RadButton Grid.Column="1" Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" />
+                <telerik:RadButton Grid.Column="3" Content="Save Changes" Command="{Binding Path=UpdateUserProfileCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</telerik:RadWindow>

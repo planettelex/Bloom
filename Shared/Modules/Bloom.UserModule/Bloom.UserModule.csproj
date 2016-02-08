@@ -95,8 +95,12 @@
     <Compile Include="Services\SharedUserService.cs" />
     <Compile Include="SharedUserModuleDefinition.cs" />
     <Compile Include="WindowModels\ChangeUserWindowModel.cs" />
+    <Compile Include="WindowModels\UserProfileWindowModel.cs" />
     <Compile Include="Windows\ChangeUserWindow.xaml.cs">
       <DependentUpon>ChangeUserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserProfileWindow.xaml.cs">
+      <DependentUpon>UserProfileWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +147,10 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Windows\ChangeUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

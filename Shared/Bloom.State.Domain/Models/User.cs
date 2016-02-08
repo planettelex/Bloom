@@ -31,7 +31,7 @@ namespace Bloom.State.Domain.Models
             if (person.Photos != null && person.Photos.Count > 0)
             {
                 var profilePhoto = person.Photos[0];
-                user.ProfileImageUrl = profilePhoto.Photo != null ? profilePhoto.Photo.Url : null;
+                user.ProfileImagePath = profilePhoto.Photo != null ? profilePhoto.Photo.Url : null;
             }
             return user;
         }
@@ -61,10 +61,10 @@ namespace Bloom.State.Domain.Models
         public string Twitter { get; set; }
 
         /// <summary>
-        /// Gets or sets the user's profile image URL.
+        /// Gets or sets the user's profile image path.
         /// </summary>
-        [Column(Name = "profile_image_url", UpdateCheck = UpdateCheck.Never)]
-        public string ProfileImageUrl { get; set; }
+        [Column(Name = "profile_image_path", UpdateCheck = UpdateCheck.Never)]
+        public string ProfileImagePath { get; set; }
 
         /// <summary>
         /// Gets or sets the user's last login datetime.
@@ -84,9 +84,9 @@ namespace Bloom.State.Domain.Models
                 BornOn = Birthday,
                 Twitter = Twitter
             };
-            if (!string.IsNullOrEmpty(ProfileImageUrl))
+            if (!string.IsNullOrEmpty(ProfileImagePath))
             {
-                var photo = Photo.Create(ProfileImageUrl);
+                var photo = Photo.Create(ProfileImagePath);
                 person.Photos = new List<PersonPhoto> { new PersonPhoto(person, photo) };
             }
             return person;

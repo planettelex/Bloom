@@ -6,6 +6,8 @@
         <ResourceDictionary Source="Brushes.xaml" />
 
         <!-- Icons  -->
+        <ResourceDictionary Source="Icons/ImagePlaceholderIcon.xaml" />
+        <ResourceDictionary Source="Icons/PersonIcon.xaml" />
         <ResourceDictionary Source="Icons/ProfileMenuIcon.xaml" />
         <ResourceDictionary Source="Icons/ViewMenuIcon.xaml" />
         <ResourceDictionary Source="Icons/WarningIcon.xaml" />

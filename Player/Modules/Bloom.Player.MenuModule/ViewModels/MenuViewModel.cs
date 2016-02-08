@@ -44,6 +44,7 @@ namespace Bloom.Player.MenuModule.ViewModels
             // View Menu
             SetSkinCommand = new DelegateCommand<string>(SetSkin, CanSetSkin);
             // User Menu
+            UserProfileCommand = new DelegateCommand<object>(ShowUserProfile, CanShowUserProfile);
             ChangeUserCommand = new DelegateCommand<object>(ChangeUser, CanChangeUser);
         }
         private readonly ISkinningService _skinningService;
@@ -224,6 +225,21 @@ namespace Bloom.Player.MenuModule.ViewModels
         private void ChangeUser(object nothing)
         {
             _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
+        }
+
+        public ICommand UserProfileCommand { get; set; }
+
+        private bool CanShowUserProfile(object nothing)
+        {
+            return true;
+        }
+
+        private void ShowUserProfile(object nothing)
+        {
+            if (State.User == null)
+                _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
+            else
+                _eventAggregator.GetEvent<ShowUserProfileModalEvent>().Publish(null);
         }
 
         #endregion

@@ -16,6 +16,7 @@ namespace Bloom.UserModule.Services
         {
             // Subscribe to events
             EventAggregator.GetEvent<ShowChangeUserModalEvent>().Subscribe(ShowChangeUserModal);
+            EventAggregator.GetEvent<ShowUserProfileModalEvent>().Subscribe(ShowUserProfileModal);
         }
 
         public void ShowChangeUserModal(object nothing)
@@ -25,12 +26,27 @@ namespace Bloom.UserModule.Services
 
         public void ShowChangeUserModal()
         {
-            var changeUserWindowModal = new ChangeUserWindowModel(RegionManager, EventAggregator, this);
-            var changeUserWindow = new ChangeUserWindow(changeUserWindowModal)
+            var changeUserWindowModel = new ChangeUserWindowModel(RegionManager, EventAggregator, this);
+            var changeUserWindow = new ChangeUserWindow(changeUserWindowModel)
             {
                 Owner = Application.Current.MainWindow
             };
             changeUserWindow.ShowDialog();
+        }
+
+        public void ShowUserProfileModal(object nothing)
+        {
+            ShowUserProfileModal();
+        }
+
+        public void ShowUserProfileModal()
+        {
+            var userProfileWindowModel = new UserProfileWindowModel(RegionManager, EventAggregator);
+            var userProfileWindow = new UserProfileWindow(userProfileWindowModel)
+            {
+                Owner = Application.Current.MainWindow
+            };
+            userProfileWindow.ShowDialog();
         }
     }
 }
