@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Style="{DynamicResource RadWindowStyle}"
              Width="500" MaxWidth="500" MinWidth="500" 
-             Height="250" MaxHeight="250" MinHeight="250"
+             Height="210" MaxHeight="210" MinHeight="210"
              Header="Edit Profile">
     
     <telerik:RadWindow.Resources>
@@ -22,6 +22,13 @@
                 <Setter Property="Visibility" Value="Collapsed" />
                 <Setter Property="Margin" Value="0" />
             </Style>
+            <Style x:Key="ProfileImageButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource RadButtonStyle}">
+                <Setter Property="Width" Value="110" />
+                <Setter Property="Height" Value="110" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+            </Style>
         </ResourceDictionary>
     </telerik:RadWindow.Resources>
     
@@ -32,7 +39,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <telerik:RadButton Grid.Column="0" Command="{Binding Path=SetProfileImageCommand}" Style="{StaticResource RadButtonStyle}" Width="110" Height="110" Margin="0" Padding="5">
+        <telerik:RadButton Grid.Column="0" Command="{Binding Path=SetProfileImageCommand}" Style="{StaticResource ProfileImageButtonStyle}">
             <Button.ToolTip>Click to choose a new profile picture.</Button.ToolTip>
             <StackPanel>
                 <Image Name="PlaceholderImage" Source="{DynamicResource PersonIcon}" Style="{StaticResource ProfileImageStyle}" />
@@ -62,7 +69,7 @@
                 </StackPanel>
                 
                 <StackPanel Grid.Column="2">
-                    <TextBlock Text="Birthday" />
+                    <TextBlock Text="Birthday" Margin="0 0 0 2" />
                     <telerik:RadDateTimePicker InputMode="DatePicker" SelectedValue="{Binding Path=Birthday, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
                 </StackPanel>
             </Grid>
@@ -74,7 +81,7 @@
 
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Twitter" />
-                    <TextBox Text="{Binding Path=Twitter}" KeyUp="OnTwitterUpdated" />
+                    <TextBox Text="{Binding Path=Twitter, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" KeyUp="OnTwitterUpdated" />
                 </StackPanel>
             </Grid>
 
@@ -87,7 +94,7 @@
                 </Grid.ColumnDefinitions>
 
                 <telerik:RadButton Grid.Column="1" Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" />
-                <telerik:RadButton Grid.Column="3" Content="Save Changes" Command="{Binding Path=UpdateUserProfileCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
+                <telerik:RadButton Grid.Column="3" Content="Save Changes" Command="{Binding Path=SaveChangesCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
             </Grid>
         </Grid>
     </Grid>

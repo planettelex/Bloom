@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
+using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
@@ -16,13 +18,14 @@ namespace Bloom.UserModule.WindowModels
         public UserProfileWindowModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
-            State = (ApplicationState) regionManager.Regions[Common.Settings.MenuRegion].Context;
+            State = (ApplicationState) regionManager.Regions[Settings.MenuRegion].Context;
+
             if (State.User != null)
             {
                 ProfileImagePath = State.User.ProfileImagePath;
                 UserName = State.User.Name;
                 Birthday = State.User.Birthday;
-                Twitter = "@" + State.User.Twitter;
+                Twitter = State.User.Twitter ?? "@";
             }
             else
                 Twitter = "@";
@@ -41,6 +44,8 @@ namespace Bloom.UserModule.WindowModels
         public ICommand SetProfileImageCommand { get; set; }
 
         public ICommand CancelCommand { get; set; }
+
+        public ICommand SaveChangesCommand { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is loading.
@@ -103,6 +108,12 @@ namespace Bloom.UserModule.WindowModels
                     if (!string.IsNullOrEmpty(ProfileImagePath) && !File.Exists(ProfileImagePath))
                         return "Invalid profile image path";
                 }
+                if (columnName == "Twitter")
+                {
+                    var twitter = Twitter.TrimStart('@');
+                    if (!string.IsNullOrWhiteSpace(twitter) && !Regex.IsMatch(twitter, RegExPattern.AlphaNumericWithUnderscore))
+                        return "Invalid Twitter username, only letters, numbers, and underscores are allowed";
+                }
 
                 IsValid = !string.IsNullOrEmpty(UserName) &&
                           (string.IsNullOrEmpty(ProfileImagePath) || File.Exists(ProfileImagePath));
@@ -112,7 +123,7 @@ namespace Bloom.UserModule.WindowModels
             }
         }
 
-        public string Error { get; private set; }
+        public string Error { get { return null; } }
 
         public bool HasChanges()
         {
@@ -120,15 +131,18 @@ namespace Bloom.UserModule.WindowModels
                 return true;
 
             var twitter = Twitter == "@" ? null : Twitter;
+            var profileImagePath = string.IsNullOrEmpty(ProfileImagePath) ? null : ProfileImagePath;
 
-            return !ProfileImagePath.Equals(State.User.ProfileImagePath, StringComparison.CurrentCultureIgnoreCase) ||
-                   !UserName.Equals(State.User.Name, StringComparison.CurrentCultureIgnoreCase) ||
+            return !UserName.Equals(State.User.Name, StringComparison.CurrentCultureIgnoreCase) ||
+                   (profileImagePath == null && State.User.ProfileImagePath != null) ||
+                   (profileImagePath != null && !profileImagePath.Equals(State.User.ProfileImagePath, StringComparison.CurrentCultureIgnoreCase)) ||
                    (twitter == null && State.User.Twitter != null) ||
                    (twitter != null && !twitter.Equals(State.User.Twitter, StringComparison.CurrentCultureIgnoreCase)) ||
-                   Birthday != State.User.Birthday;
+                   (Birthday == null && State.User.Birthday != null) ||
+                   (Birthday != null && Birthday != State.User.Birthday);
         }
 
-        public void ApplyChanges()
+        public void SaveChanges()
         {
             if (State.User == null)
                 State.User = User.Create(Person.Create(UserName));
@@ -138,6 +152,7 @@ namespace Bloom.UserModule.WindowModels
             State.User.Birthday = Birthday;
             State.User.Twitter = Twitter == "@" ? null : Twitter;
 
+            EventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
             EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
         }
     }

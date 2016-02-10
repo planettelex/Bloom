@@ -35,6 +35,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
             _eventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
             

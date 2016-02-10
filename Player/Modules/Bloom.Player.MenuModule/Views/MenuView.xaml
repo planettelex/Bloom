@@ -85,7 +85,7 @@
                         <Image Source="{DynamicResource ProfileMenuIcon}" Style="{DynamicResource ProfileMenuIconStyle}" />
                     </telerik:RadMenuItem.Icon>
                     <telerik:RadMenuGroupItem>
-                        <telerik:RadMenuItem Header="{Binding Path=UserName}" Command="{Binding ShowUserProfileCommand}" Background="{DynamicResource MenuBackgroundBrush}" />
+                        <telerik:RadMenuItem Header="{Binding Path=UserName}" Command="{Binding UserProfileCommand}" Background="{DynamicResource MenuBackgroundBrush}" />
                         <telerik:RadMenuItem Header="Change User" Command="{Binding ChangeUserCommand}" Background="{DynamicResource MenuBackgroundBrush}" IsEnabled="{Binding Path=HasUser}" />
                     </telerik:RadMenuGroupItem>
                 </telerik:RadMenuItem>

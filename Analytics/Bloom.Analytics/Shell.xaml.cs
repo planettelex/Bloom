@@ -83,11 +83,15 @@ namespace Bloom.Analytics
         private void ChangeUser(User newUser)
         {
             if (State.UserId == newUser.PersonId)
+            {
+                _eventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
                 return;
-
+            }
+            
             _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             var state = _stateService.InitializeState(newUser);
             DataContext = state;
+
             _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
         }

@@ -33,6 +33,7 @@ namespace Bloom.Player.MenuModule.ViewModels
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
 
             // File Menu
             ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);

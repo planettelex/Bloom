@@ -20,5 +20,8 @@
     <Setting Name="AnalyticsProcessName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Bloom.Analytics</Value>
     </Setting>
+    <Setting Name="UserProfilesFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">User Profiles</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

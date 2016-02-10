@@ -18,7 +18,7 @@ namespace Bloom.UserModule.Windows
             DataContext = windowModel;
         }
 
-        protected ChangeUserWindowModel WindowModel
+        protected ChangeUserWindowModel Model
         {
             get { return (ChangeUserWindowModel) DataContext; }
         }
@@ -26,7 +26,7 @@ namespace Bloom.UserModule.Windows
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-            WindowModel.IsLoading = false;
+            Model.IsLoading = false;
         }
 
         private bool CanChangeUser(object nothing)
@@ -36,7 +36,7 @@ namespace Bloom.UserModule.Windows
 
         private void ChangeUser(object nothing)
         {
-            WindowModel.ChangeUser();
+            Model.ChangeUser();
             Close();
         }
 

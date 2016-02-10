@@ -16,8 +16,10 @@ namespace Bloom.Services
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="userRepository">The user repository.</param>
-        public UserBaseService(IEventAggregator eventAggregator, IRegionManager regionManager, IUserRepository userRepository)
+        /// <param name="fileSystemService">The file system service.</param>
+        public UserBaseService(IEventAggregator eventAggregator, IRegionManager regionManager, IUserRepository userRepository, IFileSystemService fileSystemService)
         {
+            FileSystemService = fileSystemService;
             UserRepository = userRepository;
             EventAggregator = eventAggregator;
             RegionManager = regionManager;
@@ -30,6 +32,8 @@ namespace Bloom.Services
         /// Gets the state.
         /// </summary>
         public ApplicationState ApplicationState { get; private set; }
+
+        protected IFileSystemService FileSystemService { get; set; }
 
         protected IEventAggregator EventAggregator { get; set; }
 

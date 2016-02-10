@@ -11,8 +11,8 @@ namespace Bloom.UserModule.Services
 {
     public class SharedUserService : UserBaseService, ISharedUserService
     {
-        public SharedUserService(IEventAggregator eventAggregator, IRegionManager regionManager, IUserRepository userRepository)
-            : base(eventAggregator, regionManager, userRepository)
+        public SharedUserService(IEventAggregator eventAggregator, IRegionManager regionManager, IUserRepository userRepository, IFileSystemService fileSystemService)
+            : base(eventAggregator, regionManager, userRepository, fileSystemService)
         {
             // Subscribe to events
             EventAggregator.GetEvent<ShowChangeUserModalEvent>().Subscribe(ShowChangeUserModal);
@@ -42,7 +42,7 @@ namespace Bloom.UserModule.Services
         public void ShowUserProfileModal()
         {
             var userProfileWindowModel = new UserProfileWindowModel(RegionManager, EventAggregator);
-            var userProfileWindow = new UserProfileWindow(userProfileWindowModel)
+            var userProfileWindow = new UserProfileWindow(userProfileWindowModel, FileSystemService)
             {
                 Owner = Application.Current.MainWindow
             };

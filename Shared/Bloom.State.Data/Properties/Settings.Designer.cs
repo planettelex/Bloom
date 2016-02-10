@@ -25,10 +25,19 @@ namespace Bloom.State.Data.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Bloom\\Active.blms")]
-        public string Database_File {
+        [global::System.Configuration.DefaultSettingValueAttribute("Active.blms")]
+        public string DatabaseFile {
             get {
-                return ((string)(this["Database_File"]));
+                return ((string)(this["DatabaseFile"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Bloom")]
+        public string LocalFolder {
+            get {
+                return ((string)(this["LocalFolder"]));
             }
         }
     }

@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Bloom.Services;
 using Bloom.UserModule.WindowModels;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Win32;
@@ -23,12 +15,15 @@ namespace Bloom.UserModule.Windows
     /// </summary>
     public partial class UserProfileWindow
     {
-        public UserProfileWindow(UserProfileWindowModel windowModel)
+        public UserProfileWindow(UserProfileWindowModel windowModel, IFileSystemService fileSystemService)
         {
             InitializeComponent();
+            windowModel.IsLoading = true;
+            _fileSystemService = fileSystemService;
             _profileImageFileDialog = new OpenFileDialog { Multiselect = false };
             windowModel.CancelCommand = new DelegateCommand<object>(CancelWindow, CanCancelWindow);
             windowModel.SetProfileImageCommand = new DelegateCommand<object>(SetProfileImage, CanSetProfileImage);
+            windowModel.SaveChangesCommand = new DelegateCommand<object>(SaveChanges, CanSaveChanges);
 
             if (string.IsNullOrEmpty(windowModel.ProfileImagePath))
                 PlaceholderImage.Visibility = Visibility.Visible;
@@ -38,10 +33,17 @@ namespace Bloom.UserModule.Windows
             DataContext = windowModel;
         }
         private readonly OpenFileDialog _profileImageFileDialog;
+        private readonly IFileSystemService _fileSystemService;
 
         protected UserProfileWindowModel Model
         {
             get { return (UserProfileWindowModel) DataContext; }
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+            Model.IsLoading = false;
         }
 
         private bool CanCancelWindow(object nothing)
@@ -68,11 +70,28 @@ namespace Bloom.UserModule.Windows
             var result = _profileImageFileDialog.ShowDialog();
             if (result != null && result.Value)
             {
-                Model.ProfileImagePath = _profileImageFileDialog.FileName; // Temp
-                // Copy image to Bloom local resources
-                PlaceholderImage.Visibility = Visibility.Collapsed;
-                ProfileImage.Visibility = Visibility.Visible;
+                var isValid = Model["ProfileImagePath"] == null;
+                if (isValid)
+                {
+                    var filePath = _profileImageFileDialog.FileName;
+                    Model.ProfileImagePath = _fileSystemService.CopyProfileImage(Model.State.User, filePath);
+                    PlaceholderImage.Visibility = Visibility.Collapsed;
+                    ProfileImage.Visibility = Visibility.Visible;
+                }
             }
+        }
+
+        private bool CanSaveChanges(object nothing)
+        {
+            return true;
+        }
+
+        private void SaveChanges(object nothing)
+        {
+            if (Model.HasChanges())
+                Model.SaveChanges();
+
+            Close();
         }
 
         private void OnTwitterUpdated(object sender, KeyEventArgs e)

@@ -29,6 +29,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             EventAggregator = eventAggregator;
             var potentialOwners = _sharedUserService.ListUsers();
             State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+
             if (State.User != null)
                 OwnerName = State.User.Name;
 

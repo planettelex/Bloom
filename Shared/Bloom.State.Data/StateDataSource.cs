@@ -199,7 +199,8 @@ namespace Bloom.State.Data
         private string GetStateDatabasePath()
         {
             var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            return Path.Combine(appDataFolder, Properties.Settings.Default.Database_File);
+            var localDataFolder = Path.Combine(appDataFolder, Properties.Settings.Default.LocalFolder);
+            return Path.Combine(localDataFolder, Properties.Settings.Default.DatabaseFile);
         }
     }
 }

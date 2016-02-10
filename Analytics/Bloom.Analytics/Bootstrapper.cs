@@ -99,6 +99,8 @@ namespace Bloom.Analytics
         /// </summary>
         protected void RegisterServices()
         {
+            Container.RegisterType<IFileSystemService, FileSystemService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IFileSystemService>();
             Container.RegisterType<ISharedUserService, SharedUserService>(new ContainerControlledLifetimeManager());
             Container.Resolve<ISharedUserService>();
             Container.RegisterType<ISharedLibraryService, SharedLibraryService>(new ContainerControlledLifetimeManager());
