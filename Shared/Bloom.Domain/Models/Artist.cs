@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using System.Linq;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
@@ -9,7 +9,7 @@ namespace Bloom.Domain.Models
     /// Represents a musical artist.
     /// </summary>
     [Table(Name = "artist")]
-    public class Artist
+    public class Artist : BindableBase
     {
         /// <summary>
         /// Creates a new artist instance.
@@ -34,7 +34,12 @@ namespace Bloom.Domain.Models
         /// Gets or sets the artist name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the date this artist started their career.
@@ -55,7 +60,7 @@ namespace Bloom.Domain.Models
         public string Bio { get; set; }
 
         /// <summary>
-        /// Gets or sets the artist's Twitter handle.
+        /// Gets or sets the artist's Twitter username.
         /// </summary>
         [Column(Name = "twitter")]
         public string Twitter { get; set; }
@@ -67,124 +72,54 @@ namespace Bloom.Domain.Models
         public bool IsSolo { get; set; }
 
         /// <summary>
-        /// Gets or sets the artist photos.
+        /// Gets or sets the artist's photos.
         /// </summary>
-        public List<ArtistPhoto> Photos { get; set; }
-
-        #region AddPhoto
-
-        /// <summary>
-        /// Adds a photo to this artist.
-        /// </summary>
-        /// <param name="photo">The artist photo.</param>
-        /// <returns>A new artist photo.</returns>
-        /// <exception cref="System.ArgumentNullException">photo</exception>
-        public ArtistPhoto AddPhoto(Photo photo)
-        {
-            if (photo == null)
-                throw new ArgumentNullException("photo");
-
-            if (Photos == null)
-                Photos = new List<ArtistPhoto>();
-
-            var highestPriority = Photos.Any() ? Photos.Max(pic => pic.Priority) : 0;
-            var nextPriority = highestPriority + 1;
-
-            var artistPhoto = ArtistPhoto.Create(this, photo, nextPriority);
-            Photos.Add(artistPhoto);
-
-            return artistPhoto;
-        }
-
-        #endregion
+        public List<Photo> Photos { get; set; }
 
         /// <summary>
         /// Gets or sets the artist members.
         /// </summary>
         public List<ArtistMember> Members { get; set; }
 
-        #region AddMember
-
-        /// <summary>
-        /// Adds a member to this artist.
-        /// </summary>
-        /// <param name="person">The person.</param>
-        /// <returns>A new artist member.</returns>
-        /// <exception cref="System.ArgumentNullException">person</exception>
-        public ArtistMember AddMember(Person person)
-        {
-            if (person == null)
-                throw new ArgumentNullException("person");
-
-            if (Members == null)
-                Members = new List<ArtistMember>();
-
-            var member = ArtistMember.Create(this, person);
-            Members.Add(member);
-
-            return member;
-        }
-
-        /// <summary>
-        /// Adds a member to this artist.
-        /// </summary>
-        /// <param name="person">The person.</param>
-        /// <param name="roles">The member's roles.</param>
-        /// <returns>A new artist member.</returns>
-        /// <exception cref="System.ArgumentNullException">
-        /// person
-        /// or
-        /// roles
-        /// </exception>
-        public ArtistMember AddMember(Person person, IList<Role> roles)
-        {
-            if (person == null)
-                throw new ArgumentNullException("person");
-
-            if (roles == null)
-                throw new ArgumentNullException("roles");
-
-            if (Members == null)
-                Members = new List<ArtistMember>();
-
-            var member = ArtistMember.Create(this, person);
-            foreach (var role in roles)
-                member.AddRole(role);
-
-            Members.Add(member);
-
-            return member;
-        }
-
-        #endregion
-
         /// <summary>
         /// Gets or sets the artist references.
         /// </summary>
-        public List<ArtistReference> References { get; set; }
+        public List<Reference> References { get; set; }
 
-        #region AddReference
-
-        /// <summary>
-        /// Adds a reference to this artist.
-        /// </summary>
-        /// <param name="reference">The reference.</param>
-        /// <returns>A new artist reference.</returns>
-        /// <exception cref="System.ArgumentNullException">reference</exception>
-        public ArtistReference AddReference(Reference reference)
+        public void SetProfileImage(string profileImageUrl)
         {
-            if (reference == null)
-                throw new ArgumentNullException("reference");
-
-            if (References == null)
-                References = new List<ArtistReference>();
-
-            var artistReference = ArtistReference.Create(this, reference);
-            References.Add(artistReference);
-
-            return artistReference;
+            if (Photos == null)
+                Photos = new List<Photo> { Photo.Create(profileImageUrl) };
+            else if (Photos.Count == 0)
+                Photos.Add(Photo.Create(profileImageUrl));
+            else
+                Photos[0].Url = profileImageUrl;
         }
 
-        #endregion
+        /// <summary>
+        /// Gets the profile image.
+        /// </summary>
+        public Photo ProfileImage
+        {
+            get
+            {
+                if (Photos == null || Photos.Count == 0)
+                    return null;
+
+                return Photos[0];
+            }
+            set
+            {
+                if (value == null || value.Id == Guid.Empty)
+                    return;
+
+                if (Photos == null)
+                    Photos = new List<Photo> { value };
+                else if (Photos.Count == 0)
+                    Photos.Add(value);
+                else
+                    Photos[0] = value;
+            }
+        }
     }
 }

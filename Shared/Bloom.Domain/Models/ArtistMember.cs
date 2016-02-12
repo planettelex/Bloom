@@ -21,7 +21,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 ArtistId = artist.Id,
-                Artist = artist,
                 PersonId = person.Id,
                 Person = person
             };
@@ -38,11 +37,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "artist_id")]
         public Guid ArtistId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the artist.
-        /// </summary>
-        public Artist Artist { get; set; }
 
         /// <summary>
         /// Gets or sets the person identifier.
@@ -68,28 +62,14 @@ namespace Bloom.Domain.Models
         public DateTime? Ended { get; set; }
 
         /// <summary>
-        /// Gets or sets the artist member roles.
+        /// Gets or sets the priority.
         /// </summary>
-        public List<ArtistMemberRole> Roles { get; set; }
+        [Column(Name = "priority")]
+        public int Priority { get; set; }
 
         /// <summary>
-        /// Creates and adds a role to this album credit.
+        /// Gets or sets the artist member roles.
         /// </summary>
-        /// <param name="role">The role.</param>
-        /// <returns>A new artist memeber role.</returns>
-        /// <exception cref="System.ArgumentNullException">role</exception>
-        public ArtistMemberRole AddRole(Role role)
-        {
-            if (role == null)
-                throw new ArgumentNullException("role");
-
-            if (Roles == null)
-                Roles = new List<ArtistMemberRole>();
-
-            var artistMemberRole = ArtistMemberRole.Create(this, role);
-            Roles.Add(artistMemberRole);
-
-            return artistMemberRole;
-        }
+        public List<Role> Roles { get; set; }
     }
 }

@@ -33,6 +33,7 @@ namespace Bloom.Data.Repositories
             var photosQuery =
                 from pp in personPhotoTable
                 join photo in photoTable on pp.PhotoId equals photo.Id
+                where pp.PersonId == personId
                 orderby pp.Priority
                 select photo;
 
@@ -45,6 +46,7 @@ namespace Bloom.Data.Repositories
                 from pr in personReferenceTable
                 join reference in referenceTable on pr.ReferenceId equals reference.Id
                 join source in sourceTable on reference.SourceId equals  source.Id
+                where pr.PersonId == personId
                 orderby source.Name, reference.Title
                 select new Reference
                 {

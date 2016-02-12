@@ -17,6 +17,7 @@ namespace Bloom.Data.Tables
                        "person_id VARCHAR(36) NOT NULL , " +
                        "started DATETIME , " +
                        "ended DATETIME , " +
+                       "priority INTEGER NOT NULL , " +
                        "FOREIGN KEY (artist_id) REFERENCES artist(id) , " +
                        "FOREIGN KEY (person_id) REFERENCES person(id) )";
             }

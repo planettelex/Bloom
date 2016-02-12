@@ -241,14 +241,14 @@ namespace Bloom.Services
             {
                 user.Name = libraryConnection.Library.Owner.Name;
                 user.Birthday = libraryConnection.Library.Owner.BornOn;
-                user.ProfileImagePath = libraryConnection.Library.Owner.ProfileImageUrl;
+                user.ProfileImagePath = libraryConnection.Library.Owner.ProfileImage.Url;
                 user.Twitter = libraryConnection.Library.Owner.Twitter;
             }
             else if (libraryConnection.Library.OwnerLastConnected < libraryConnection.LastConnected)
             {
                 libraryConnection.Library.Owner.Name = user.Name;
                 libraryConnection.Library.Owner.BornOn = user.Birthday;
-                libraryConnection.Library.Owner.ProfileImageUrl = user.ProfileImagePath;
+                libraryConnection.Library.Owner.SetProfileImage(user.ProfileImagePath);
                 libraryConnection.Library.Owner.Twitter = user.Twitter;
                 libraryConnection.SaveChanges();
             }

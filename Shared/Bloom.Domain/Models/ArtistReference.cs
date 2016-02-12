@@ -19,8 +19,7 @@ namespace Bloom.Domain.Models
             return new ArtistReference
             {
                 ArtistId = artist.Id,
-                ReferenceId = reference.Id,
-                Reference = reference
+                ReferenceId = reference.Id
             };
         }
         /// <summary>
@@ -34,10 +33,5 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "reference_id", IsPrimaryKey = true)]
         public Guid ReferenceId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the reference.
-        /// </summary>
-        public Reference Reference { get; set; }
     }
 }

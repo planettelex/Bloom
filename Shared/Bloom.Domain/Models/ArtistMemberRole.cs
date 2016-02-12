@@ -19,8 +19,7 @@ namespace Bloom.Domain.Models
             return new ArtistMemberRole
             {
                 ArtistMemberId = artistMember.Id,
-                RoleId = role.Id,
-                Role = role
+                RoleId = role.Id
             };
         }
 
@@ -35,10 +34,5 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "role_id", IsPrimaryKey = true)]
         public Guid RoleId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the role.
-        /// </summary>
-        public Role Role { get; set; }
     }
 }

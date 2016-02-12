@@ -22,7 +22,6 @@ namespace Bloom.Domain.Models
             {
                 ArtistId = artist.Id,
                 PhotoId = photo.Id,
-                Photo = photo,
                 Priority = priority
             };
         }
@@ -38,11 +37,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "photo_id", IsPrimaryKey = true)]
         public Guid PhotoId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the photo.
-        /// </summary>
-        public Photo Photo { get; set; }
 
         /// <summary>
         /// Gets or sets the order priority of this artist photo.

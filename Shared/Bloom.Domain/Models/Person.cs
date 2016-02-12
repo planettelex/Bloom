@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using System.Linq;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
@@ -62,7 +61,7 @@ namespace Bloom.Domain.Models
         public string Bio { get; set; }
 
         /// <summary>
-        /// Gets or sets the person's Twitter.
+        /// Gets or sets the person's Twitter username.
         /// </summary>
         [Column(Name = "twitter")]
         public string Twitter { get; set; }
@@ -77,29 +76,39 @@ namespace Bloom.Domain.Models
         /// </summary>
         public List<Reference> References { get; set; }
 
+        public void SetProfileImage(string profileImageUrl)
+        {
+            if (Photos == null)
+                Photos = new List<Photo> { Photo.Create(profileImageUrl) };
+            else if (Photos.Count == 0)
+                Photos.Add(Photo.Create(profileImageUrl));
+            else
+                Photos[0].Url = profileImageUrl;
+        }
+
         /// <summary>
-        /// Gets the profile image URL.
+        /// Gets the profile image.
         /// </summary>
-        public string ProfileImageUrl
+        public Photo ProfileImage
         {
             get
             {
                 if (Photos == null || Photos.Count == 0)
                     return null;
 
-                return Photos[0].Url;
+                return Photos[0];
             }
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (value == null || value.Id == Guid.Empty)
                     return;
 
                 if (Photos == null)
-                    Photos = new List<Photo> { Photo.Create(value) };
+                    Photos = new List<Photo> { value };
                 else if (Photos.Count == 0)
-                    Photos.Add(Photo.Create(value));
-                else
-                    Photos[0].Url = value;
+                    Photos.Add(value);
+                else 
+                    Photos[0] = value;
             }
         }
     }
