@@ -29,10 +29,8 @@ namespace Bloom.State.Domain.Models
                 Twitter = person.Twitter
             };
             if (person.Photos != null && person.Photos.Count > 0)
-            {
-                var profilePhoto = person.Photos[0];
-                user.ProfileImagePath = profilePhoto.Photo != null ? profilePhoto.Photo.Url : null;
-            }
+                user.ProfileImagePath = person.Photos[0].Url;
+            
             return user;
         }
         
@@ -85,10 +83,8 @@ namespace Bloom.State.Domain.Models
                 Twitter = Twitter
             };
             if (!string.IsNullOrEmpty(ProfileImagePath))
-            {
-                var photo = Photo.Create(ProfileImagePath);
-                person.Photos = new List<PersonPhoto> { new PersonPhoto(person, photo) };
-            }
+                person.Photos = new List<Photo> { Photo.Create(ProfileImagePath) };
+            
             return person;
         }
     }

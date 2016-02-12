@@ -35,18 +35,9 @@ namespace Bloom.Domain.Tests.Models
             var person = Person.Create(PersonName);
             var photo1 = Photo.Create(url1);
             var photo2 = Photo.Create(url2);
-            var personPhoto1 = person.AddPhoto(photo1);
-            var personPhoto2 = person.AddPhoto(photo2);
+            // Todo
 
             Assert.AreEqual(person.Photos.Count, 2);
-            Assert.AreEqual(personPhoto1.PersonId, person.Id);
-            Assert.AreEqual(personPhoto1.PhotoId, photo1.Id);
-            Assert.AreEqual(personPhoto1.Photo.Url, url1);
-            Assert.AreEqual(personPhoto1.Priority, 1);
-            Assert.AreEqual(personPhoto2.PersonId, person.Id);
-            Assert.AreEqual(personPhoto2.PhotoId, photo2.Id);
-            Assert.AreEqual(personPhoto2.Photo.Url, url2);
-            Assert.AreEqual(personPhoto2.Priority, 2);
         }
 
         /// <summary>
@@ -55,17 +46,13 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void AddReferenceToPersonTest()
         {
-            const string referenceName = "Test Reference";
+            const string referenceTitle = "Test Reference";
             const string referenceUrl = "http://www.test.com/";
             var person = Person.Create(PersonName);
-            var reference = Reference.Create(referenceName, referenceUrl);
-            var artistReference = person.AddReference(reference);
+            var reference = Reference.Create(referenceTitle, referenceUrl);
+            // Todo
 
             Assert.AreEqual(person.References.Count, 1);
-            Assert.AreEqual(artistReference.PersonId, person.Id);
-            Assert.AreEqual(artistReference.ReferenceId, reference.Id);
-            Assert.AreEqual(artistReference.Reference.Name, referenceName);
-            Assert.AreEqual(artistReference.Reference.Url, referenceUrl);
         }
     }
 }

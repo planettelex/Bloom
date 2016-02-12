@@ -79,7 +79,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the publication.
         /// </summary>
-        public Publication Publication { get; set; }
+        public Source Publication { get; set; }
 
         /// <summary>
         /// Gets or sets the author identifier.

@@ -13,8 +13,7 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE reference (" +
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "name VARCHAR NOT NULL , " +
-                       "icon_url VARCHAR , " +
+                       "source_id VARCHAR(36) NOT NULL , " +
                        "url VARCHAR , " +
                        "title VARCHAR )";
             }

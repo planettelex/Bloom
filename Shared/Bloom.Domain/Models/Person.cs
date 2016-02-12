@@ -70,114 +70,12 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the person's photos.
         /// </summary>
-        public List<PersonPhoto> Photos { get; set; }
-
-        #region AddPhoto
-
-        /// <summary>
-        /// Creates and adds a photo for this person.
-        /// </summary>
-        /// <param name="photo">The photo.</param>
-        /// <returns>A new person photo.</returns>
-        /// <exception cref="System.ArgumentNullException">photo</exception>
-        public PersonPhoto AddPhoto(Photo photo)
-        {
-            if (photo == null)
-                throw new ArgumentNullException("photo");
-
-            if (Photos == null)
-                Photos = new List<PersonPhoto>();
-
-            var highestPriority = Photos.Any() ? Photos.Max(pic => pic.Priority) : 0;
-            var nextPriority = highestPriority + 1;
-            var personPhoto = PersonPhoto.Create(this, photo, nextPriority);
-            Photos.Add(personPhoto);
-
-            return personPhoto;
-        }
-
-        /// <summary>
-        /// Creates and adds a photo for this person.
-        /// </summary>
-        /// <param name="url">The photo URL.</param>
-        /// <returns>A new person photo.</returns>
-        /// <exception cref="System.ArgumentNullException">photo</exception>
-        public PersonPhoto AddPhoto(string url)
-        {
-            if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException("url");
-
-            if (Photos == null)
-                Photos = new List<PersonPhoto>();
-
-            var highestPriority = Photos.Any() ? Photos.Max(pic => pic.Priority) : 0;
-            var nextPriority = highestPriority + 1;
-            var photo = Photo.Create(url);
-            var personPhoto = PersonPhoto.Create(this, photo, nextPriority);
-            Photos.Add(personPhoto);
-
-            return personPhoto;
-        }
-
-        #endregion
-
-        /// <summary>
-        /// Gets or sets artists this person is a member of.
-        /// </summary>
-        public List<ArtistMember> MemberOf { get; set; }
-
-        #region AddMemberOf
-
-        /// <summary>
-        /// Creates and adds an artist this person is member of.
-        /// </summary>
-        /// <param name="artist">The artist.</param>
-        /// <returns>A new artist member.</returns>
-        /// <exception cref="System.ArgumentNullException">artist</exception>
-        public ArtistMember AddMemberOf(Artist artist)
-        {
-            if (artist == null)
-                throw new ArgumentNullException("artist");
-
-            if (MemberOf == null)
-                MemberOf = new List<ArtistMember>();
-
-            var artistMember = ArtistMember.Create(artist, this);
-            MemberOf.Add(artistMember);
-
-            return artistMember;
-        }
-
-        #endregion
+        public List<Photo> Photos { get; set; }
 
         /// <summary>
         /// Gets or sets the person references.
         /// </summary>
-        public List<PersonReference> References { get; set; }
-
-        #region AddReference
-
-        /// <summary>
-        /// Creates and adds a reference to this person.
-        /// </summary>
-        /// <param name="reference">The reference.</param>
-        /// <returns>A new person reference.</returns>
-        /// <exception cref="System.ArgumentNullException">reference</exception>
-        public PersonReference AddReference(Reference reference)
-        {
-            if (reference == null)
-                throw new ArgumentNullException("reference");
-
-            if (References == null)
-                References = new List<PersonReference>();
-
-            var personReference = PersonReference.Create(this, reference);
-            References.Add(personReference);
-
-            return personReference;
-        }
-
-        #endregion
+        public List<Reference> References { get; set; }
 
         /// <summary>
         /// Gets the profile image URL.
@@ -189,12 +87,7 @@ namespace Bloom.Domain.Models
                 if (Photos == null || Photos.Count == 0)
                     return null;
 
-                var photo = Photos[0].Photo;
-
-                if (photo == null)
-                    return null;
-
-                return photo.Url;
+                return Photos[0].Url;
             }
             set
             {
@@ -202,26 +95,11 @@ namespace Bloom.Domain.Models
                     return;
 
                 if (Photos == null)
-                    Photos = new List<PersonPhoto>();
-
-                var existingPhoto = Photos.SingleOrDefault(photo => photo.Photo != null && photo.Photo.Url == value);
-                if (existingPhoto != null)
-                {
-                    if (existingPhoto.Photo == null)
-                        throw new NullReferenceException("Person photo reference cannot be null.");
-
-                    existingPhoto.Priority = 1;
-                    existingPhoto.Photo.Url = value;
-                    for (var i = 0; i < Photos.Count; i++)
-                        if (Photos[i].PhotoId != existingPhoto.PhotoId)
-                            Photos[i].Priority = i + 2;
-                }
+                    Photos = new List<Photo> { Photo.Create(value) };
+                else if (Photos.Count == 0)
+                    Photos.Add(Photo.Create(value));
                 else
-                {
-                    var photo = Photo.Create(value);
-                    var personPhoto = PersonPhoto.Create(this, photo, 1);
-                    Photos.Add(personPhoto);
-                }
+                    Photos[0].Url = value;
             }
         }
     }

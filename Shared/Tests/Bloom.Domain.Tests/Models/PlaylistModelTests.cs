@@ -94,17 +94,17 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void AddReferenceToPlaylistTest()
         {
-            const string referenceName = "Test Reference";
+            const string referenceTitle = "Test Reference";
             const string referenceUrl = "http://www.test.com/";
             var owner = Person.Create(LibraryOwnerName);
             var playlist = Playlist.Create(PlaylistName, owner);
-            var reference = Reference.Create(referenceName, referenceUrl);
+            var reference = Reference.Create(referenceTitle, referenceUrl);
             var playlistReference = playlist.AddReference(reference);
 
             Assert.AreEqual(playlist.References.Count, 1);
             Assert.AreEqual(playlistReference.PlaylistId, playlist.Id);
             Assert.AreEqual(playlistReference.ReferenceId, reference.Id);
-            Assert.AreEqual(playlistReference.Reference.Name, referenceName);
+            Assert.AreEqual(playlistReference.Reference.Title, referenceTitle);
             Assert.AreEqual(playlistReference.Reference.Url, referenceUrl);
         }
 

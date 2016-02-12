@@ -12,14 +12,14 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new reference instance.
         /// </summary>
-        /// <param name="name">The reference name.</param>
+        /// <param name="title">The reference name.</param>
         /// <param name="url">The reference URL.</param>
-        public static Reference Create(string name, string url)
+        public static Reference Create(string title, string url)
         {
             return new Reference
             {
                 Id = Guid.NewGuid(),
-                Name = name,
+                Title = title,
                 Url = url
             };
         }
@@ -31,16 +31,10 @@ namespace Bloom.Domain.Models
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the reference name.
+        /// Gets or sets the source identifier.
         /// </summary>
-        [Column(Name = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the reference icon URL.
-        /// </summary>
-        [Column(Name = "icon_url")]
-        public string IconUrl { get; set; }
+        [Column(Name = "source_id")]
+        public Guid SourceId { get; set; }
 
         /// <summary>
         /// Gets or sets the reference URL.
@@ -52,6 +46,11 @@ namespace Bloom.Domain.Models
         /// Gets or sets the reference title.
         /// </summary>
         [Column(Name = "title")]
-        public string Title { get; set; } 
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        public Source Source { get; set; }
     }
 }

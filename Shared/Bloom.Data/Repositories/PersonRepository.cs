@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using Bloom.Data.Interfaces;
@@ -17,12 +18,52 @@ namespace Bloom.Data.Repositories
             if (personTable == null)
                 return null;
 
-            var query =
-                from person in personTable
-                where person.Id == personId
-                select person;
+            var personQuery =
+                from p in personTable
+                where p.Id == personId
+                select p;
 
-            return query.SingleOrDefault();
+            var person = personQuery.SingleOrDefault();
+
+            if (person == null)
+                return null;
+
+            var photoTable = PhotoTable(dataSource);
+            var personPhotoTable = PersonPhotoTable(dataSource);
+            var photosQuery =
+                from pp in personPhotoTable
+                join photo in photoTable on pp.PhotoId equals photo.Id
+                orderby pp.Priority
+                select photo;
+
+            person.Photos = photosQuery.ToList();
+
+            var sourceTable = SourceTable(dataSource);
+            var referenceTable = ReferenceTable(dataSource);
+            var personReferenceTable = PersonReferenceTable(dataSource);
+            var referencesQuery =
+                from pr in personReferenceTable
+                join reference in referenceTable on pr.ReferenceId equals reference.Id
+                join source in sourceTable on reference.SourceId equals  source.Id
+                orderby source.Name, reference.Title
+                select new Reference
+                {
+                    Id = reference.Id,
+                    Title = reference.Title,
+                    Url = reference.Url,
+                    SourceId = reference.SourceId,
+                    Source = new Source
+                    {
+                        Id = source.Id,
+                        Name = source.Name,
+                        Type = source.Type,
+                        WebsiteUrl = source.WebsiteUrl
+                    }
+                };
+
+            person.References = referencesQuery.ToList();
+
+            return person;
         }
 
         public void AddPerson(IDataSource dataSource, Person person)
@@ -37,9 +78,72 @@ namespace Bloom.Data.Repositories
             personTable.InsertOnSubmit(person);
         }
 
-        private Table<Person> PersonTable(IDataSource dataSource)
+        public void AddPersonPhoto(IDataSource dataSource, Person person, Photo photo, int priority)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var personPhotoTable = PersonPhotoTable(dataSource);
+            if (personPhotoTable == null)
+                return;
+
+            var personPhoto = PersonPhoto.Create(person, photo, priority);
+            personPhotoTable.InsertOnSubmit(personPhoto);
+        }
+
+        public void AddPersonReference(IDataSource dataSource, Person person, Reference reference)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var personReferenceTable = PersonReferenceTable(dataSource);
+            if (personReferenceTable == null)
+                return;
+
+            var personReference = PersonReference.Create(person, reference);
+            personReferenceTable.InsertOnSubmit(personReference);
+        }
+
+        public void DeletePerson(IDataSource dataSource, Person person)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var personTable = PersonTable(dataSource);
+            if (personTable == null)
+                return;
+
+            personTable.DeleteOnSubmit(person);
+        }
+
+        private static Table<Person> PersonTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+        }
+
+        private static Table<PersonPhoto> PersonPhotoTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<PersonPhoto>() : null;
+        }
+
+        private static Table<PersonReference> PersonReferenceTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<PersonReference>() : null;
+        }
+
+        private static IEnumerable<Photo> PhotoTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<Photo>() : null;
+        }
+
+        private static IEnumerable<Reference> ReferenceTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<Reference>() : null;
+        }
+
+        private static IEnumerable<Source> SourceTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<Source>() : null;
         }
     }
 }

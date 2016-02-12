@@ -28,7 +28,7 @@ namespace Bloom.Data.Services
                 new MoodTable(),
                 new PersonTable(),
                 new PhotoTable(),
-                new PublicationTable(),
+                new SourceTable(),
                 new ReferenceTable(),
                 new RoleTable(),
                 new TagTable(),

@@ -165,16 +165,16 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void AddReferenceToAlbumTest()
         {
-            const string referenceName = "Test Reference";
+            const string referenceTitle = "Test Reference";
             const string referenceUrl = "http://www.test.com/";
             var album = Album.Create(AlbumName);
-            var reference = Reference.Create(referenceName, referenceUrl);
+            var reference = Reference.Create(referenceTitle, referenceUrl);
             var albumReference = album.AddReference(reference);
 
             Assert.AreEqual(album.References.Count, 1);
             Assert.AreEqual(albumReference.AlbumId, album.Id);
             Assert.AreEqual(albumReference.ReferenceId, reference.Id);
-            Assert.AreEqual(albumReference.Reference.Name, referenceName);
+            Assert.AreEqual(albumReference.Reference.Title, referenceTitle);
             Assert.AreEqual(albumReference.Reference.Url, referenceUrl);
         }
 

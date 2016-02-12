@@ -16,12 +16,12 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void CreateReferenceTest()
         {
-            const string referenceName = "Test Reference";
+            const string referenceTitle = "Test Reference";
             const string url = "http://www.test.com/reference";
-            var reference = Reference.Create(referenceName, url);
+            var reference = Reference.Create(referenceTitle, url);
 
             Assert.AreNotEqual(reference.Id, Guid.Empty);
-            Assert.AreEqual(reference.Name, referenceName);
+            Assert.AreEqual(reference.Title, referenceTitle);
         }
     }
 }

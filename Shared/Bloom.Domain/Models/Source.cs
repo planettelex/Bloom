@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using Bloom.Domain.Enums;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents a publication.
+    /// Represents a reference or review source.
     /// </summary>
-    [Table(Name = "publication")]
-    public class Publication
+    [Table(Name = "source")]
+    public class Source
     {
         /// <summary>
         /// Creates a new publication instance.
         /// </summary>
         /// <param name="name">The publication name.</param>
-        public static Publication Create(string name)
+        public static Source Create(string name)
         {
-            return new Publication
+            return new Source
             {
                 Id = Guid.NewGuid(),
                 Name = name
@@ -23,21 +24,27 @@ namespace Bloom.Domain.Models
         }
 
         /// <summary>
-        /// Gets or sets the publication identifier.
+        /// Gets or sets the source identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the publication name.
+        /// Gets or sets the source name.
         /// </summary>
         [Column(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the publication website URL.
+        /// Gets or sets the source website URL.
         /// </summary>
         [Column(Name = "website_url")]
         public string WebsiteUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        [Column(Name = "type")]
+        public SourceType Type { get; set; }
     }
 }

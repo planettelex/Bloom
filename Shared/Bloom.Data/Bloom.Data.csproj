@@ -149,7 +149,7 @@
     <Compile Include="Tables\PlaylistTable.cs" />
     <Compile Include="Tables\PlaylistTagTable.cs" />
     <Compile Include="Tables\PlaylistTrackTable.cs" />
-    <Compile Include="Tables\PublicationTable.cs" />
+    <Compile Include="Tables\SourceTable.cs" />
     <Compile Include="Tables\RecordingSessionTable.cs" />
     <Compile Include="Tables\ReferenceTable.cs" />
     <Compile Include="Tables\ReviewTable.cs" />

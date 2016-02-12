@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Enums\FilterComparison.cs" />
     <Compile Include="Enums\FiltersetItemScope.cs" />
+    <Compile Include="Enums\SourceType.cs" />
     <Compile Include="Interfaces\IFiltersetOrder.cs" />
     <Compile Include="Models\Filterset.cs" />
     <Compile Include="Models\FiltersetElement.cs" />
@@ -144,7 +145,7 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\SongReview.cs" />
-    <Compile Include="Models\Publication.cs" />
+    <Compile Include="Models\Source.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bloom.Common\Bloom.Common.csproj">

@@ -17,7 +17,7 @@ namespace Bloom.Domain.Tests.Models
         public void CreatePublicationTest()
         {
             const string publicationName = "Test Publication";
-            var publication = Publication.Create(publicationName);
+            var publication = Source.Create(publicationName);
 
             Assert.AreNotEqual(publication.Id, Guid.Empty);
             Assert.AreEqual(publication.Name, publicationName);
