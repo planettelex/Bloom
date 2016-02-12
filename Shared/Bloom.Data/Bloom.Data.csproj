@@ -126,8 +126,8 @@
     <Compile Include="Tables\FiltersetTable.cs" />
     <Compile Include="Tables\GenreTable.cs" />
     <Compile Include="Tables\HolidayTable.cs" />
-    <Compile Include="Tables\LabelPersonelRoleTable.cs" />
-    <Compile Include="Tables\LabelPersonelTable.cs" />
+    <Compile Include="Tables\LabelPersonnelRoleTable.cs" />
+    <Compile Include="Tables\LabelPersonnelTable.cs" />
     <Compile Include="Tables\LabelTable.cs" />
     <Compile Include="Tables\LibraryAlbumMediaTable.cs" />
     <Compile Include="Tables\LibraryAlbumTable.cs" />

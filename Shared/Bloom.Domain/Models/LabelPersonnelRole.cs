@@ -6,17 +6,17 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Associates a label personel with a role.
     /// </summary>
-    [Table(Name = "label_personel_role")]
-    public class LabelPersonelRole
+    [Table(Name = "label_personnel_role")]
+    public class LabelPersonnelRole
     {
         /// <summary>
         /// Creates a new label personel role instance.
         /// </summary>
         /// <param name="labelPersonel">The label personel.</param>
         /// <param name="role">The label personel's role.</param>
-        public static LabelPersonelRole Create(LabelPersonel labelPersonel, Role role)
+        public static LabelPersonnelRole Create(LabelPersonnel labelPersonel, Role role)
         {
-            return new LabelPersonelRole
+            return new LabelPersonnelRole
             {
                 LabelPersonelId = labelPersonel.Id,
                 RoleId = role.Id,

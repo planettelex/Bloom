@@ -37,8 +37,8 @@ namespace Bloom.Data.Services
                 // Secondary Tables (external foreign keys)
                 new PersonPhotoTable(),
                 new PersonReferenceTable(),
-                new LabelPersonelTable(),
-                new LabelPersonelRoleTable(),
+                new LabelPersonnelTable(),
+                new LabelPersonnelRoleTable(),
                 new ArtistMemberTable(),
                 new ArtistMemberRoleTable(),
                 new ArtistPhotoTable(),

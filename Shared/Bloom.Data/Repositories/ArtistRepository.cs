@@ -67,7 +67,6 @@ namespace Bloom.Data.Repositories
 
             var personTable = PersonTable(dataSource);
             var artistMemberTable = ArtistMemberTable(dataSource);
-            
             var membersQuery =
                 from member in artistMemberTable
                 join person in personTable on member.PersonId equals person.Id
@@ -102,9 +101,9 @@ namespace Bloom.Data.Repositories
             {
                 var am = artistMember;
                 var rolesQuery =
-                    from arm in artistMemberRoleTable
-                    join role in roleTable on arm.RoleId equals role.Id
-                    where arm.ArtistMemberId == am.Id
+                    from amr in artistMemberRoleTable
+                    join role in roleTable on amr.RoleId equals role.Id
+                    where amr.ArtistMemberId == am.Id
                     orderby role.Name
                     select new Role
                     {

@@ -7,17 +7,17 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Associates a label with a person.
     /// </summary>
-    [Table(Name = "label_personel")]
-    public class LabelPersonel
+    [Table(Name = "label_personnel")]
+    public class LabelPersonnel
     {
         /// <summary>
         /// Creates a new label personel instance.
         /// </summary>
         /// <param name="label">The label.</param>
         /// <param name="person">The person.</param>
-        public static LabelPersonel Create(Label label, Person person)
+        public static LabelPersonnel Create(Label label, Person person)
         {
-            return new LabelPersonel
+            return new LabelPersonnel
             {
                 Id = Guid.NewGuid(),
                 LabelId = label.Id,
@@ -45,6 +45,24 @@ namespace Bloom.Domain.Models
         public Guid PersonId { get; set; }
 
         /// <summary>
+        /// Gets or sets the date this person started with this label.
+        /// </summary>
+        [Column(Name = "started")]
+        public DateTime? Started { get; set; }
+
+        /// <summary>
+        /// Gets or sets the date this person ended with this label.
+        /// </summary>
+        [Column(Name = "ended")]
+        public DateTime? Ended { get; set; }
+
+        /// <summary>
+        /// Gets or sets the priority.
+        /// </summary>
+        [Column(Name = "priority")]
+        public int Priority { get; set; }
+
+        /// <summary>
         /// Gets or sets the person.
         /// </summary>
         public Person Person { get; set; }
@@ -52,26 +70,6 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the personel roles.
         /// </summary>
-        public List<LabelPersonelRole> Roles { get; set; }
-
-        /// <summary>
-        /// Creates and adds a role to this label personel.
-        /// </summary>
-        /// <param name="role">The role.</param>
-        /// <returns>A new label personel role.</returns>
-        /// <exception cref="System.ArgumentNullException">role</exception>
-        public LabelPersonelRole AddRole(Role role)
-        {
-            if (role == null)
-                throw new ArgumentNullException("role");
-
-            if (Roles == null)
-                Roles = new List<LabelPersonelRole>();
-
-            var labelPersonelRole = LabelPersonelRole.Create(this, role);
-            Roles.Add(labelPersonelRole);
-
-            return labelPersonelRole;
-        }
+        public List<Role> Roles { get; set; }
     }
 }

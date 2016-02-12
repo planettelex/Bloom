@@ -88,8 +88,8 @@
     <Compile Include="Models\LibraryAlbum.cs" />
     <Compile Include="Models\LibraryArtist.cs" />
     <Compile Include="Models\Library.cs" />
-    <Compile Include="Models\LabelPersonelRole.cs" />
-    <Compile Include="Models\LabelPersonel.cs" />
+    <Compile Include="Models\LabelPersonnelRole.cs" />
+    <Compile Include="Models\LabelPersonnel.cs" />
     <Compile Include="Models\AlbumCollaborator.cs" />
     <Compile Include="Enums\DigitalFormats.cs" />
     <Compile Include="Enums\MediaTypes.cs" />
