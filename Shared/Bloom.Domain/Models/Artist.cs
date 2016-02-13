@@ -81,11 +81,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         public List<ArtistMember> Members { get; set; }
 
-        /// <summary>
-        /// Gets or sets the artist references.
-        /// </summary>
-        public List<Reference> References { get; set; }
-
         public void SetProfileImage(string profileImageUrl)
         {
             if (Photos == null)

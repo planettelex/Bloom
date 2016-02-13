@@ -39,32 +39,6 @@ namespace Bloom.Data.Repositories
 
             person.Photos = photosQuery.ToList();
 
-            var sourceTable = SourceTable(dataSource);
-            var referenceTable = ReferenceTable(dataSource);
-            var personReferenceTable = PersonReferenceTable(dataSource);
-            var referencesQuery =
-                from pr in personReferenceTable
-                join reference in referenceTable on pr.ReferenceId equals reference.Id
-                join source in sourceTable on reference.SourceId equals  source.Id
-                where pr.PersonId == personId
-                orderby source.Name, reference.Title
-                select new Reference
-                {
-                    Id = reference.Id,
-                    Title = reference.Title,
-                    Url = reference.Url,
-                    SourceId = reference.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
-                };
-
-            person.References = referencesQuery.ToList();
-
             return person;
         }
 
@@ -136,16 +110,6 @@ namespace Bloom.Data.Repositories
         private static IEnumerable<Photo> PhotoTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Photo>() : null;
-        }
-
-        private static IEnumerable<Reference> ReferenceTable(IDataSource dataSource)
-        {
-            return dataSource != null ? dataSource.Context.GetTable<Reference>() : null;
-        }
-
-        private static IEnumerable<Source> SourceTable(IDataSource dataSource)
-        {
-            return dataSource != null ? dataSource.Context.GetTable<Source>() : null;
         }
     }
 }

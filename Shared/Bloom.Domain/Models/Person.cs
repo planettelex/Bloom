@@ -71,11 +71,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         public List<Photo> Photos { get; set; }
 
-        /// <summary>
-        /// Gets or sets the person references.
-        /// </summary>
-        public List<Reference> References { get; set; }
-
         public void SetProfileImage(string profileImageUrl)
         {
             if (Photos == null)

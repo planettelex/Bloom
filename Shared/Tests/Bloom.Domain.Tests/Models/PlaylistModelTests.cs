@@ -29,25 +29,6 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
-        /// Tests adding an activity to a playlist.
-        /// </summary>
-        [Test]
-        public void AddActivityToPlaylistTest()
-        {
-            const string activityName = "Test Activity";
-            var activity = Activity.Create(activityName);
-            var owner = Person.Create(LibraryOwnerName);
-            var playlist = Playlist.Create(PlaylistName, owner);
-            var playlistActivity = playlist.AddActivity(activity);
-
-            Assert.AreEqual(playlist.Activities.Count, 1);
-            Assert.AreEqual(playlistActivity.PlaylistId, playlist.Id);
-            Assert.AreEqual(playlistActivity.Playlist.Name, PlaylistName);
-            Assert.AreEqual(playlistActivity.ActivityId, activity.Id);
-            Assert.AreEqual(playlistActivity.Activity.Name, activityName);
-        }
-
-        /// <summary>
         /// Tests adding artwork to a playlist.
         /// </summary>
         [Test]
@@ -69,64 +50,7 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(playlistArtwork2.Priority, 2);
         }
 
-        /// <summary>
-        /// Tests adding a mood to a playlist.
-        /// </summary>
-        [Test]
-        public void AddMoodToPlaylistTest()
-        {
-            const string moodName = "Test Mood";
-            var mood = Mood.Create(moodName);
-            var owner = Person.Create(LibraryOwnerName);
-            var playlist = Playlist.Create(PlaylistName, owner);
-            var playlistMood = playlist.AddMood(mood);
-
-            Assert.AreEqual(playlist.Moods.Count, 1);
-            Assert.AreEqual(playlistMood.PlaylistId, playlist.Id);
-            Assert.AreEqual(playlistMood.Playlist.Name, PlaylistName);
-            Assert.AreEqual(playlistMood.MoodId, mood.Id);
-            Assert.AreEqual(playlistMood.Mood.Name, moodName);
-        }
-
-        /// <summary>
-        /// Tests adding a reference to a playlist.
-        /// </summary>
-        [Test]
-        public void AddReferenceToPlaylistTest()
-        {
-            const string referenceTitle = "Test Reference";
-            const string referenceUrl = "http://www.test.com/";
-            var owner = Person.Create(LibraryOwnerName);
-            var playlist = Playlist.Create(PlaylistName, owner);
-            var reference = Reference.Create(referenceTitle, referenceUrl);
-            var playlistReference = playlist.AddReference(reference);
-
-            Assert.AreEqual(playlist.References.Count, 1);
-            Assert.AreEqual(playlistReference.PlaylistId, playlist.Id);
-            Assert.AreEqual(playlistReference.ReferenceId, reference.Id);
-            Assert.AreEqual(playlistReference.Reference.Title, referenceTitle);
-            Assert.AreEqual(playlistReference.Reference.Url, referenceUrl);
-        }
-
-        /// <summary>
-        /// Tests adding an tag to a playlist.
-        /// </summary>
-        [Test]
-        public void AddTagToPlaylistTest()
-        {
-            const string tagName = "Test Tag";
-            var owner = Person.Create(LibraryOwnerName);
-            var playlist = Playlist.Create(PlaylistName, owner);
-            var tag = Tag.Create(tagName);
-            var playlistTag = playlist.AddTag(tag);
-
-            Assert.AreEqual(playlist.Tags.Count, 1);
-            Assert.AreEqual(playlistTag.PlaylistId, playlist.Id);
-            Assert.AreEqual(playlistTag.Playlist.Name, PlaylistName);
-            Assert.AreEqual(playlistTag.TagId, tag.Id);
-            Assert.AreEqual(playlistTag.Tag.Name, tagName);
-        }
-
+       
         /// <summary>
         /// Tests adding a track to a playlist.
         /// </summary>

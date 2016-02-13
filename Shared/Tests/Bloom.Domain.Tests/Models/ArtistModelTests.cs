@@ -53,20 +53,5 @@ namespace Bloom.Domain.Tests.Models
 
             Assert.AreEqual(artist.Photos.Count, 2);
         }
-
-        /// <summary>
-        /// Tests adding a reference to an artist.
-        /// </summary>
-        [Test]
-        public void AddReferenceToArtistTest()
-        {
-            const string referenceTitle = "Test Reference";
-            const string referenceUrl = "http://www.test.com/";
-            var artist = Artist.Create(ArtistName);
-            var reference = Reference.Create(referenceTitle, referenceUrl);
-            // todo
-
-            Assert.AreEqual(artist.References.Count, 1);
-        }
     }
 }
