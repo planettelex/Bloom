@@ -58,26 +58,6 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the person's roles on the song.
         /// </summary>
-        public List<SongCreditRole> Roles { get; set; }
-
-        /// <summary>
-        /// Creates and adds a role to this song credit.
-        /// </summary>
-        /// <param name="role">The role.</param>
-        /// <returns>A new song credit role.</returns>
-        /// <exception cref="System.ArgumentNullException">role</exception>
-        public SongCreditRole AddRole(Role role)
-        {
-            if (role == null)
-                throw new ArgumentNullException("role");
-
-            if (Roles == null)
-                Roles = new List<SongCreditRole>();
-
-            var songCreditRole = SongCreditRole.Create(this, role);
-            Roles.Add(songCreditRole);
-
-            return songCreditRole;
-        }
+        public List<Role> Roles { get; set; }
     }
 }
