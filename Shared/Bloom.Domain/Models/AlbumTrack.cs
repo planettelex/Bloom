@@ -21,7 +21,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                Album = album,
                 SongId = song.Id,
                 Song = song,
                 DiscNumber = 1,
@@ -42,7 +41,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                Album = album,
                 SongId = song.Id,
                 Song = song,
                 DiscNumber = discNumber,
@@ -61,11 +59,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "album_id")]
         public Guid AlbumId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the album.
-        /// </summary>
-        public Album Album { get; set; }
 
         /// <summary>
         /// Gets or sets the song identifier.

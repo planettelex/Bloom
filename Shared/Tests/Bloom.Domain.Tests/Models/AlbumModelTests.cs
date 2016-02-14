@@ -105,49 +105,6 @@ namespace Bloom.Domain.Tests.Models
       
 
         /// <summary>
-        /// Tests adding a release to an album.
-        /// </summary>
-        [Test]
-        public void AddReleaseToAlbumTest()
-        {
-            var releaseDate = DateTime.Now.AddDays(-900);
-            var album = Album.Create(AlbumName);
-            // todo
-
-            Assert.AreEqual(album.Releases.Count, 1);
-        }
-
-        /// <summary>
-        /// Tests adding a release with media types to an album.
-        /// </summary>
-        [Test]
-        public void AddReleaseWithMediaTypesToAlbumTest()
-        {
-            var releaseDate = DateTime.Now.AddDays(-900);
-            var album = Album.Create(AlbumName);
-            //var albumRelease = album.AddRelease(releaseDate, MediaTypes.CD | MediaTypes.Vinyl);
-
-            Assert.AreEqual(album.Releases.Count, 1);
-            
-        }
-
-        /// <summary>
-        /// Tests adding a release with media types and digital formats to an album.
-        /// </summary>
-        [Test]
-        public void AddReleaseWithDigitalFormatsToAlbumTest()
-        {
-            var releaseDate = DateTime.Now.AddDays(-900);
-            var album = Album.Create(AlbumName);
-            //var albumRelease = album.AddRelease(releaseDate, MediaTypes.Digital | MediaTypes.CD | MediaTypes.Vinyl, DigitalFormats.MP3 | DigitalFormats.M4A | DigitalFormats.FLAC);
-
-            Assert.AreEqual(album.Releases.Count, 1);
-
-            //Assert.IsTrue(albumRelease.MediaTypes.HasFlag(MediaTypes.Digital));
-
-        }
-
-        /// <summary>
         /// Tests adding a review to an album.
         /// </summary>
         [Test]

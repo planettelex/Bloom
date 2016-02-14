@@ -187,11 +187,6 @@ namespace Bloom.Domain.Models
         public List<AlbumCredit> Credits { get; set; }
 
         /// <summary>
-        /// Gets or sets the album releases.
-        /// </summary>
-        public List<AlbumRelease> Releases { get; set; }
-
-        /// <summary>
         /// Gets or sets the album artist collaborators.
         /// </summary>
         public List<AlbumCollaborator> Collaborators { get; set; }

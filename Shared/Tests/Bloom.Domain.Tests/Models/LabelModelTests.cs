@@ -59,47 +59,6 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(label.Personnel.Count, 1);
         }
 
-        /// <summary>
-        /// Tests adding an album release to a label.
-        /// </summary>
-        [Test]
-        public void AddReleaseToLabelTest()
-        {
-            var releaseDate = DateTime.Now.AddDays(-900);
-            var album = Album.Create(AlbumName);
-            var label = Label.Create(LabelName);
-            // todo
-
-            Assert.AreEqual(album.Releases.Count, 1);
-        }
-
-        /// <summary>
-        /// Tests adding an album release with media types to a label.
-        /// </summary>
-        [Test]
-        public void AddReleaseWithMediaTypesToLabelTest()
-        {
-            var releaseDate = DateTime.Now.AddDays(-900);
-            var album = Album.Create(AlbumName);
-            var label = Label.Create(LabelName);
-            // todo
-
-            Assert.AreEqual(album.Releases.Count, 1);
-        }
-
-        /// <summary>
-        /// Tests adding an album release with media types and digital formats to a label.
-        /// </summary>
-        [Test]
-        public void AddReleaseWithDigitalFormatsToLabelTest()
-        {
-            var releaseDate = DateTime.Now.AddDays(-900);
-            var album = Album.Create(AlbumName);
-            var label = Label.Create(LabelName);
-           //AddRelease(album, releaseDate, MediaTypes.Digital | MediaTypes.CD | MediaTypes.Vinyl, DigitalFormats.MP3 | DigitalFormats.M4A | DigitalFormats.FLAC);
-
-            Assert.AreEqual(album.Releases.Count, 1);
-            //Assert.IsFalse(albumRelease.DigitalFormats.HasFlag(DigitalFormats.OGG));
-        }
+        
     }
 }
