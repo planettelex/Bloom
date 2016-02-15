@@ -19,9 +19,7 @@ namespace Bloom.Domain.Models
             return new AlbumActivity
             {
                 AlbumId = album.Id,
-                Album = album,
-                ActivityId = activity.Id,
-                Activity = activity
+                ActivityId = activity.Id
             };
         }
 
@@ -32,19 +30,9 @@ namespace Bloom.Domain.Models
         public Guid AlbumId { get; set; }
 
         /// <summary>
-        /// Gets or sets the album.
-        /// </summary>
-        public Album Album { get; set; }
-
-        /// <summary>
         /// Gets or sets the activity identifier.
         /// </summary>
         [Column(Name = "activity_id", IsPrimaryKey = true)]
         public Guid ActivityId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the activity.
-        /// </summary>
-        public Activity Activity { get; set; }
     }
 }

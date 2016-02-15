@@ -19,9 +19,7 @@ namespace Bloom.Domain.Models
             return new SongActivity
             {
                 SongId = song.Id,
-                Song = song,
-                ActivityId = activity.Id,
-                Activity = activity
+                ActivityId = activity.Id
             };
         }
 
@@ -32,19 +30,9 @@ namespace Bloom.Domain.Models
         public Guid SongId { get; set; }
 
         /// <summary>
-        /// Gets or sets the song.
-        /// </summary>
-        public Song Song { get; set; }
-
-        /// <summary>
         /// Gets or sets the activity identifier.
         /// </summary>
         [Column(Name = "activity_id", IsPrimaryKey = true)]
         public Guid ActivityId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the activity.
-        /// </summary>
-        public Activity Activity { get; set; }
     }
 }

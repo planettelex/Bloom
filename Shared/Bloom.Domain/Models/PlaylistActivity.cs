@@ -19,9 +19,7 @@ namespace Bloom.Domain.Models
             return new PlaylistActivity
             {
                 PlaylistId = playlist.Id,
-                Playlist = playlist,
-                ActivityId = activity.Id,
-                Activity = activity
+                ActivityId = activity.Id
             };
         }
 
@@ -32,19 +30,9 @@ namespace Bloom.Domain.Models
         public Guid PlaylistId { get; set; }
 
         /// <summary>
-        /// Gets or sets the playlist.
-        /// </summary>
-        public Playlist Playlist { get; set; }
-
-        /// <summary>
         /// Gets or sets the activity identifier.
         /// </summary>
         [Column(Name = "activity_id", IsPrimaryKey = true)]
         public Guid ActivityId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the playlist activity.
-        /// </summary>
-        public Activity Activity { get; set; }
     }
 }

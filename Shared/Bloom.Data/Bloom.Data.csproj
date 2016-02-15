@@ -96,6 +96,7 @@
     <Compile Include="Repositories\IPersonRepository.cs" />
     <Compile Include="Repositories\IPlaylistRepository.cs" />
     <Compile Include="Repositories\IMoodRepository.cs" />
+    <Compile Include="Repositories\IActivityRepository.cs" />
     <Compile Include="Repositories\ITagRepository.cs" />
     <Compile Include="Repositories\IReferenceRepository.cs" />
     <Compile Include="Repositories\ISongRepository.cs" />
