@@ -29,13 +29,13 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
-        [Column(Name = "playlist_id", IsPrimaryKey = true)]
+        [Column(Name = "playlist_id")]
         public Guid PlaylistId { get; set; }
 
         /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
-        [Column(Name = "song_id", IsPrimaryKey = true)]
+        [Column(Name = "song_id")]
         public Guid SongId { get; set; }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the track number.
         /// </summary>
-        [Column(Name = "track_number", IsPrimaryKey = true)]
+        [Column(Name = "track_number")]
         public int TrackNumber { get; set; }
     }
 }

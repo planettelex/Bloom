@@ -377,7 +377,7 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<Album>() : null;
         }
 
-        private static Table<Song> SongTable(IDataSource dataSource)
+        private static IEnumerable<Song> SongTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Song>() : null;
         }
@@ -387,12 +387,12 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<Artist>() : null;
         }
 
-        private static Table<Genre> GenreTable(IDataSource dataSource)
+        private static IEnumerable<Genre> GenreTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Genre>() : null;
         }
 
-        private static Table<TimeSignature> TimeSignatureTable(IDataSource dataSource)
+        private static IEnumerable<TimeSignature> TimeSignatureTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<TimeSignature>() : null;
         }
