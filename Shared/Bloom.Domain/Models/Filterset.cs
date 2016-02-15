@@ -29,12 +29,6 @@ namespace Bloom.Domain.Models
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the filterset name.
-        /// </summary>
-        [Column(Name = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// Gets or sets the elements of the filterset.
         /// </summary>
         public List<FiltersetElement> Elements { get; set; }
