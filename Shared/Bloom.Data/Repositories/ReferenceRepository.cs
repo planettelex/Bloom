@@ -52,7 +52,7 @@ namespace Bloom.Data.Repositories
             if (songReferenceTable == null)
                 return null;
 
-            var referenceQuery =
+            var referencesQuery =
                 from sr in songReferenceTable
                 join reference in referenceTable on sr.ReferenceId equals reference.Id
                 join source in sourceTable on reference.SourceId equals source.Id
@@ -72,7 +72,7 @@ namespace Bloom.Data.Repositories
                     }
                 };
 
-            return referenceQuery.ToList();
+            return referencesQuery.ToList();
         }
 
         public List<Reference> ListReferences(IDataSource dataSource, Album album)
@@ -295,7 +295,7 @@ namespace Bloom.Data.Repositories
             referenceTable.DeleteOnSubmit(reference);
         }
 
-        public void DeleteReferenceTo(IDataSource dataSource, Reference reference, Song song)
+        public void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Song song)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -307,7 +307,7 @@ namespace Bloom.Data.Repositories
             songReferenceTable.DeleteOnSubmit(SongReference.Create(song, reference));
         }
 
-        public void DeleteReferenceTo(IDataSource dataSource, Reference reference, Album album)
+        public void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Album album)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -319,7 +319,7 @@ namespace Bloom.Data.Repositories
             albumReferenceTable.DeleteOnSubmit(AlbumReference.Create(album, reference));
         }
 
-        public void DeleteReferenceTo(IDataSource dataSource, Reference reference, Artist artist)
+        public void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Artist artist)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -331,7 +331,7 @@ namespace Bloom.Data.Repositories
             artistReferenceTable.DeleteOnSubmit(ArtistReference.Create(artist, reference));
         }
 
-        public void DeleteReferenceTo(IDataSource dataSource, Reference reference, Person person)
+        public void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Person person)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -343,7 +343,7 @@ namespace Bloom.Data.Repositories
             personReferenceTable.DeleteOnSubmit(PersonReference.Create(person, reference));
         }
 
-        public void DeleteReferenceTo(IDataSource dataSource, Reference reference, Playlist playlist)
+        public void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Playlist playlist)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -360,7 +360,7 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<Reference>() : null;
         }
 
-        private static Table<Source> SourceTable(IDataSource dataSource)
+        private static IEnumerable<Source> SourceTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Source>() : null;
         }

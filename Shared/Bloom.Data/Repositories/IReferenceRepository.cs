@@ -17,7 +17,7 @@ namespace Bloom.Data.Repositories
 
         List<Reference> ListReferences(IDataSource dataSource, Person person);
 
-        List<Reference> ListReferences(IDataSource dataSource, Playlist person);
+        List<Reference> ListReferences(IDataSource dataSource, Playlist playlist);
 
         void AddReference(IDataSource dataSource, Reference reference);
 
@@ -33,14 +33,14 @@ namespace Bloom.Data.Repositories
 
         void DeleteReference(IDataSource dataSource, Reference reference);
 
-        void DeleteReferenceTo(IDataSource dataSource, Reference reference, Song song);
+        void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Song song);
 
-        void DeleteReferenceTo(IDataSource dataSource, Reference reference, Album album);
+        void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Album album);
 
-        void DeleteReferenceTo(IDataSource dataSource, Reference reference, Artist artist);
+        void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Artist artist);
 
-        void DeleteReferenceTo(IDataSource dataSource, Reference reference, Person person);
+        void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Person person);
 
-        void DeleteReferenceTo(IDataSource dataSource, Reference reference, Playlist playlist);
+        void DeleteReferenceFrom(IDataSource dataSource, Reference reference, Playlist playlist);
     }
 }

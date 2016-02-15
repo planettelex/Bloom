@@ -95,6 +95,7 @@
     <Compile Include="Repositories\ILibraryRepository.cs" />
     <Compile Include="Repositories\IPersonRepository.cs" />
     <Compile Include="Repositories\IPlaylistRepository.cs" />
+    <Compile Include="Repositories\ITagRepository.cs" />
     <Compile Include="Repositories\IReferenceRepository.cs" />
     <Compile Include="Repositories\ISongRepository.cs" />
     <Compile Include="Repositories\LabelRepository.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Repositories\PlaylistRepository.cs" />
     <Compile Include="Repositories\ReferenceRepository.cs" />
     <Compile Include="Repositories\SongRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Services\LibraryTableService.cs" />
     <Compile Include="Tables\ActivityTable.cs" />
     <Compile Include="Tables\AlbumActivityTable.cs" />

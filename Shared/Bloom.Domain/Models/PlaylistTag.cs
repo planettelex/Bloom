@@ -19,9 +19,7 @@ namespace Bloom.Domain.Models
             return new PlaylistTag
             {
                 PlaylistId = playlist.Id,
-                Playlist = playlist,
-                TagId = tag.Id,
-                Tag = tag
+                TagId = tag.Id
             };
         }
 
@@ -32,19 +30,9 @@ namespace Bloom.Domain.Models
         public Guid PlaylistId { get; set; }
 
         /// <summary>
-        /// Gets or sets the playlist.
-        /// </summary>
-        public Playlist Playlist { get; set; }
-
-        /// <summary>
         /// Gets or sets the tag identifier.
         /// </summary>
         [Column(Name = "tag_id", IsPrimaryKey = true)]
         public Guid TagId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the tag.
-        /// </summary>
-        public Tag Tag { get; set; }
     }
 }
