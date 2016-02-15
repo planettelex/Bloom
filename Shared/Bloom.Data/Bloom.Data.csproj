@@ -95,11 +95,13 @@
     <Compile Include="Repositories\ILibraryRepository.cs" />
     <Compile Include="Repositories\IPersonRepository.cs" />
     <Compile Include="Repositories\IPlaylistRepository.cs" />
+    <Compile Include="Repositories\IReferenceRepository.cs" />
     <Compile Include="Repositories\ISongRepository.cs" />
     <Compile Include="Repositories\LabelRepository.cs" />
     <Compile Include="Repositories\LibraryRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="Repositories\PlaylistRepository.cs" />
+    <Compile Include="Repositories\ReferenceRepository.cs" />
     <Compile Include="Repositories\SongRepository.cs" />
     <Compile Include="Services\LibraryTableService.cs" />
     <Compile Include="Tables\ActivityTable.cs" />
