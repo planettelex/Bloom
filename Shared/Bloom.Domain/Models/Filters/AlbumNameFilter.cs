@@ -5,7 +5,7 @@ using Bloom.Domain.Interfaces;
 
 namespace Bloom.Domain.Models.Filters
 {
-    public class AlbumNameFilter : IFiltersetFilter
+    public class AlbumNameFilter : IFilter
     {
         /// <summary>
         /// Gets the filter identifier.
@@ -35,25 +35,11 @@ namespace Bloom.Domain.Models.Filters
         public string Label { get { return "Album Name Filter"; } }
 
         /// <summary>
-        /// Gets the followup filter identifier.
-        /// </summary>
-        /// <value>
-        /// 00000000-0000-0000-0000-000000000000
-        /// </value>
-        public Guid FollowupFilterId { get { return Guid.Empty; } }
-
-        /// <summary>
-        /// Gets the followup filter.
-        /// </summary>
-        public IFiltersetFilter FollowupFilter { get { return null; } }
-
-        /// <summary>
         /// Applies this filter to the provided songs.
         /// </summary>
-        /// <param name="scope">The filter scope.</param>
         /// <param name="songs">The songs.</param>
         /// <param name="comparison">The filter comparison.</param>
-        public List<Song> Apply(FiltersetItemScope scope, List<Song> songs, FilterComparison comparison)
+        public List<Song> Apply(List<Song> songs, FilterComparison comparison)
         {
             throw new NotImplementedException();
         }

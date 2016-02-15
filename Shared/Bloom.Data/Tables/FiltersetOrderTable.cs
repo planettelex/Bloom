@@ -2,7 +2,7 @@
 
 namespace Bloom.Data.Tables
 {
-    public class FiltersetOrderingTable : ISqlTable
+    public class FiltersetOrderTable : ISqlTable
     {
         /// <summary>
         /// Gets the create filterset_element table SQL.
@@ -11,12 +11,11 @@ namespace Bloom.Data.Tables
         {
             get
             {
-                return "CREATE TABLE filterset_ordering (" +
+                return "CREATE TABLE filterset_order (" +
                        "filterset_id VARCHAR(36) NOT NULL , " +
-                       "priority INTEGER NOT NULL , " +
+                       "order_number INTEGER NOT NULL , " +
                        "order_id VARCHAR(36) NOT NULL , " +
-                       "scope INTEGER NOT NULL DEFAULT 0, " +
-                       "direction INTEGER NOT NULL DEFAULT 0 , " +
+                       "order_direction INTEGER NOT NULL DEFAULT 0 , " +
                        "PRIMARY KEY (filterset_id, priority) , " +
                        "FOREIGN KEY (filterset_id) REFERENCES filterset(id) )";
             }

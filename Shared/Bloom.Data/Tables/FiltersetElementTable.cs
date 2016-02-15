@@ -15,7 +15,9 @@ namespace Bloom.Data.Tables
                        "filterset_id VARCHAR(36) NOT NULL , " +
                        "element_number INTEGER NOT NULL , " +
                        "element_type INTEGER NOT NULL , " +
-                       "statement_id VARCHAR(36) , " +
+                       "filter_id VARCHAR(36) NOT NULL , " +
+                       "filter_comparison INTEGER NOT NULL , " +
+                       "filter_against VARCHAR , " +
                        "PRIMARY KEY (filterset_id, element_number) , " +
                        "FOREIGN KEY (filterset_id) REFERENCES filterset(id) )";
             }

@@ -5,7 +5,7 @@ using Bloom.Domain.Interfaces;
 
 namespace Bloom.Domain.Models.Orders
 {
-    public class AlbumNameOrder : IFiltersetOrder
+    public class AlbumNameOrder : IOrder
     {
         /// <summary>
         /// Gets the order identifier.
@@ -34,11 +34,10 @@ namespace Bloom.Domain.Models.Orders
         /// <summary>
         /// Applies this order to the provided songs.
         /// </summary>
-        /// <param name="scope">The order scope.</param>
         /// <param name="songs">The songs.</param>
         /// <param name="direction">The order direction.</param>
         /// <exception cref="System.NotImplementedException"></exception>
-        public void Apply(FiltersetItemScope scope, ref List<Song> songs, OrderDirection direction)
+        public void Apply(ref List<Song> songs, OrderDirection direction)
         {
             throw new NotImplementedException();
         }

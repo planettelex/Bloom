@@ -121,8 +121,7 @@
     <Compile Include="Tables\ArtistReferenceTable.cs" />
     <Compile Include="Tables\ArtistTable.cs" />
     <Compile Include="Tables\FiltersetElementTable.cs" />
-    <Compile Include="Tables\FiltersetOrderingTable.cs" />
-    <Compile Include="Tables\FiltersetStatementTable.cs" />
+    <Compile Include="Tables\FiltersetOrderTable.cs" />
     <Compile Include="Tables\FiltersetTable.cs" />
     <Compile Include="Tables\GenreTable.cs" />
     <Compile Include="Tables\HolidayTable.cs" />

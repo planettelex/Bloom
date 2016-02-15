@@ -6,10 +6,10 @@ using Bloom.Domain.Interfaces;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents a set of filterset ordering.
+    /// Represents a filterset order.
     /// </summary>
-    [Table(Name = "filterset_ordering")]
-    public class FiltersetOrdering
+    [Table(Name = "filterset_order")]
+    public class FiltersetOrder
     {
         /// <summary>
         /// Creates a new filterset ordering instance.
@@ -17,16 +17,14 @@ namespace Bloom.Domain.Models
         /// <param name="filterset">The filterset.</param>
         /// <param name="order">The order.</param>
         /// <param name="priority">The ordering priority.</param>
-        /// <param name="scope">The ordering scope.</param>
-        public static FiltersetOrdering Create(Filterset filterset, IFiltersetOrder order, int priority, FiltersetItemScope scope)
+        public static FiltersetOrder Create(Filterset filterset, IOrder order, int priority)
         {
-            return new FiltersetOrdering
+            return new FiltersetOrder
             {
                 FiltersetId = filterset.Id,
                 OrderId = order.Id,
                 Order = order,
-                Priority = priority,
-                Scope = scope
+                Priority = priority
             };
         }
 
@@ -36,17 +34,15 @@ namespace Bloom.Domain.Models
         /// <param name="filterset">The filterset.</param>
         /// <param name="order">The order.</param>
         /// <param name="priority">The ordering priority.</param>
-        /// <param name="scope">The ordering scope.</param>
         /// <param name="direction">The ordering direction.</param>
-        public static FiltersetOrdering Create(Filterset filterset, IFiltersetOrder order, int priority, FiltersetItemScope scope, OrderDirection direction)
+        public static FiltersetOrder Create(Filterset filterset, IOrder order, int priority, OrderDirection direction)
         {
-            return new FiltersetOrdering
+            return new FiltersetOrder
             {
                 FiltersetId = filterset.Id,
                 OrderId = order.Id,
                 Order = order,
                 Priority = priority,
-                Scope = scope,
                 Direction = direction
             };
         }
@@ -58,9 +54,9 @@ namespace Bloom.Domain.Models
         public Guid FiltersetId { get; set; }
 
         /// <summary>
-        /// Gets or sets the filterset ordering priority.
+        /// Gets or sets the filterset order number.
         /// </summary>
-        [Column(Name = "priority", IsPrimaryKey = true)]
+        [Column(Name = "order_number", IsPrimaryKey = true)]
         public int Priority { get; set; }
 
         /// <summary>
@@ -70,20 +66,14 @@ namespace Bloom.Domain.Models
         public Guid OrderId { get; set; }
 
         /// <summary>
-        /// Gets or sets the filterset order.
-        /// </summary>
-        public IFiltersetOrder Order { get; set; }
-
-        /// <summary>
-        /// Gets or sets the filterset item scope.
-        /// </summary>
-        [Column(Name = "scope")]
-        public FiltersetItemScope Scope { get; set; }
-
-        /// <summary>
         /// Gets or sets the order direction.
         /// </summary>
-        [Column(Name = "direction")]
+        [Column(Name = "order_direction")]
         public OrderDirection Direction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filterset order.
+        /// </summary>
+        public IOrder Order { get; set; }
     }
 }

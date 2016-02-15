@@ -50,8 +50,8 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void AddArtworkToAlbumTest()
         {
-            const string url1 = "http://www.test.com/image1.jpg";
-            const string url2 = "http://www.test.com/image2.jpg";
+            //const string url1 = "http://www.test.com/image1.jpg";
+            //const string url2 = "http://www.test.com/image2.jpg";
             var album = Album.Create(AlbumName);
             // todo
 
