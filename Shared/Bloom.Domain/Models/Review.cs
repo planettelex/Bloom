@@ -73,13 +73,13 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the publication identifier.
         /// </summary>
-        [Column(Name = "publication_id")]
-        public Guid PublicationId { get; set; }
+        [Column(Name = "source_id")]
+        public Guid SourceId { get; set; }
 
         /// <summary>
-        /// Gets or sets the publication.
+        /// Gets or sets the publication source.
         /// </summary>
-        public Source Publication { get; set; }
+        public Source Source { get; set; }
 
         /// <summary>
         /// Gets or sets the author identifier.

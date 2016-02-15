@@ -19,9 +19,7 @@ namespace Bloom.Domain.Models
             return new AlbumReview
             {
                 AlbumId = album.Id,
-                Album = album,
-                ReviewId = review.Id,
-                Review = review
+                ReviewId = review.Id
             };
         }
 
@@ -32,19 +30,9 @@ namespace Bloom.Domain.Models
         public Guid AlbumId { get; set; }
 
         /// <summary>
-        /// Gets or sets the album.
-        /// </summary>
-        public Album Album { get; set; }
-
-        /// <summary>
         /// Gets or sets the review identifier.
         /// </summary>
         [Column(Name = "review_id", IsPrimaryKey = true)]
         public Guid ReviewId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the review.
-        /// </summary>
-        public Review Review { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Bloom.Data.Tables
                        "title VARCHAR , " +
                        "body VARCHAR , " +
                        "published_on DATETIME ," +
-                       "publication_id VARCHAR(36) , " +
+                       "source_id VARCHAR(36) , " +
                        "author_id VARCHAR(36) , " +
                        "FOREIGN KEY (publication_id) REFERENCES publication(id) , " +
                        "FOREIGN KEY (author_id) REFERENCES person(id) )";

@@ -97,14 +97,17 @@
     <Compile Include="Repositories\IPlaylistRepository.cs" />
     <Compile Include="Repositories\IMoodRepository.cs" />
     <Compile Include="Repositories\IActivityRepository.cs" />
+    <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\ITagRepository.cs" />
     <Compile Include="Repositories\IReferenceRepository.cs" />
     <Compile Include="Repositories\ISongRepository.cs" />
     <Compile Include="Repositories\LabelRepository.cs" />
     <Compile Include="Repositories\LibraryRepository.cs" />
+    <Compile Include="Repositories\ActivityRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
     <Compile Include="Repositories\PlaylistRepository.cs" />
     <Compile Include="Repositories\ReferenceRepository.cs" />
+    <Compile Include="Repositories\ReviewRepository.cs" />
     <Compile Include="Repositories\SongRepository.cs" />
     <Compile Include="Repositories\MoodRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
