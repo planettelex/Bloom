@@ -19,9 +19,7 @@ namespace Bloom.Domain.Models
             return new SongMood
             {
                 SongId = song.Id,
-                Song = song,
-                MoodId = mood.Id,
-                Mood = mood
+                MoodId = mood.Id
             };
         }
 
@@ -32,19 +30,9 @@ namespace Bloom.Domain.Models
         public Guid SongId { get; set; }
 
         /// <summary>
-        /// Gets or sets the song.
-        /// </summary>
-        public Song Song { get; set; }
-
-        /// <summary>
         /// Gets or sets the mood identifier.
         /// </summary>
         [Column(Name = "mood_id", IsPrimaryKey = true)]
         public Guid MoodId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the mood.
-        /// </summary>
-        public Mood Mood { get; set; }
     }
 }
