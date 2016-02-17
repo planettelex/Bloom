@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an album with a person.
+    /// Represents an association between an album and a person.
     /// </summary>
     [Table(Name = "album_credit")]
     public class AlbumCredit
@@ -13,7 +13,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album credit instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="person">The person credited.</param>
         public static AlbumCredit Create(Album album, Person person)
         {

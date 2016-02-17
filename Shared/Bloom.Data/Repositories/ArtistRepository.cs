@@ -116,7 +116,7 @@ namespace Bloom.Data.Repositories
                     ProfileImage = new Photo
                     {
                         Id = photo.Id,
-                        Url = photo.Url,
+                        FilePath = photo.FilePath,
                         Caption = photo.Caption,
                         TakenOn = photo.TakenOn
                     }

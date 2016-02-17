@@ -1,5 +1,4 @@
 ﻿using System;
-using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using NUnit.Framework;
 
@@ -14,9 +13,6 @@ namespace Bloom.Domain.Tests.Models
         private const string LibraryOwnerName = "Owner Name";
         private const string LibraryName = "Library";
         private const string LibraryFolderPath = "C:\\Music";
-        private const string ArtistName = "Test Artist";
-        private const string AlbumName = "Test Album";
-        private const string SongName = "Test Song";
 
         /// <summary>
         /// Tests the library create method.
@@ -32,7 +28,32 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(library.FolderPath, LibraryFolderPath);
             Assert.AreEqual(library.OwnerId, owner.Id);
             Assert.AreEqual(library.Owner.Name, LibraryOwnerName);
-            Assert.AreEqual(library.FilePath, library.FolderPath + "\\" + library.Name + Common.Settings.LibraryFileExtension);
+            Assert.AreEqual(library.FileName, LibraryName + Common.Settings.LibraryFileExtension);
+        }
+
+        /// <summary>
+        /// Tests the library properties.
+        /// </summary>
+        [Test]
+        public void LibraryPropertiesTest()
+        {
+            var id = Guid.NewGuid();
+            var now = DateTime.Now;
+            var owner = Person.Create(LibraryOwnerName);
+            var library = new Library
+            {
+                Id = id,
+                Name = LibraryName,
+                FileName = LibraryName + ".blm",
+                FolderPath = LibraryFolderPath,
+                Owner = owner,
+                OwnerLastConnected = now
+            };
+
+            Assert.AreEqual(library.Id, id);
+            Assert.AreEqual(library.Name, LibraryName);
+            Assert.AreEqual(library.FilePath, LibraryFolderPath + "\\" + LibraryName + ".blm");
+            Assert.AreEqual(library.OwnerLastConnected, now);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates song with a review
+    /// Represents an association between a song and a review
     /// </summary>
     [Table(Name = "song_review")]
     public class SongReview
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new song review instance.
         /// </summary>
-        /// <param name="song">The song.</param>
+        /// <param name="song">A song.</param>
         /// <param name="review">The review.</param>
         public static SongReview Create(Song song, Review review)
         {

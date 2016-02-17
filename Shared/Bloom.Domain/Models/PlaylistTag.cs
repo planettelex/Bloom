@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a playlist with a tag.
+    /// Represents an association between a playlist and a tag.
     /// </summary>
     [Table(Name = "playlist_tag")]
     public class PlaylistTag

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Bloom.Domain.Tests.Models
 {
     /// <summary>
-    /// Tests for the activity model class.
+    /// Tests for the activity model classes.
     /// </summary>
     [TestFixture]
     public class ActivityModelTests
@@ -16,11 +16,28 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void CreateActivityTest()
         {
-            const string activityName = "Test Activity";
-            var activity = Activity.Create(activityName);
+            var activity = Activity.Create("Test Activity");
 
             Assert.AreNotEqual(activity.Id, Guid.Empty);
-            Assert.AreEqual(activity.Name, activityName);
+            Assert.AreEqual(activity.Name, "Test Activity");
+        }
+
+        /// <summary>
+        /// Tests the activity properties.
+        /// </summary>
+        [Test]
+        public void ActivityPropertiesTest()
+        {
+            var activityId = Guid.NewGuid();
+
+            var activity = new Activity
+            {
+                Id = activityId,
+                Name = "Test Activity"
+            };
+
+            Assert.AreEqual(activity.Id, activityId);
+            Assert.AreEqual(activity.Name, "Test Activity");
         }
     }
 }

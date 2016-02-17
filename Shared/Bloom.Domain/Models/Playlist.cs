@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
@@ -8,7 +9,7 @@ namespace Bloom.Domain.Models
     /// Represents a music playlist.
     /// </summary>
     [Table(Name = "playlist")]
-    public class Playlist
+    public class Playlist : BindableBase
     {
         /// <summary>
         /// Creates a new playlist instance.
@@ -37,25 +38,45 @@ namespace Bloom.Domain.Models
         /// Gets or sets the playlist name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the playlist description.
         /// </summary>
         [Column(Name = "description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+        private string _description;
 
         /// <summary>
         /// Gets or sets the playlist length, in milliseconds.
         /// </summary>
         [Column(Name = "length")]
-        public int Length { get; set; }
+        public int Length
+        {
+            get { return _length; }
+            set { SetProperty(ref _length, value); }
+        }
+        private int _length;
 
         /// <summary>
         /// Gets or sets the date this playlist was created on.
         /// </summary>
         [Column(Name = "created_on")]
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn
+        {
+            get { return _createdOn; }
+            set { SetProperty(ref _createdOn, value); }
+        }
+        private DateTime _createdOn;
 
         /// <summary>
         /// Gets or sets library owner identifier who created the playlist.

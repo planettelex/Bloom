@@ -241,7 +241,7 @@ namespace Bloom.Services
             {
                 user.Name = libraryConnection.Library.Owner.Name;
                 user.Birthday = libraryConnection.Library.Owner.BornOn;
-                user.ProfileImagePath = libraryConnection.Library.Owner.ProfileImage.Url;
+                user.ProfileImagePath = libraryConnection.Library.Owner.ProfileImage.FilePath;
                 user.Twitter = libraryConnection.Library.Owner.Twitter;
             }
             else if (libraryConnection.Library.OwnerLastConnected < libraryConnection.LastConnected)

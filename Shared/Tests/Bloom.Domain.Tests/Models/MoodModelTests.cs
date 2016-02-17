@@ -16,11 +16,28 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void CreateMoodTest()
         {
-            const string moodName = "Test Mood";
-            var mood = Mood.Create(moodName);
+            var mood = Mood.Create("Test Mood");
 
             Assert.AreNotEqual(mood.Id, Guid.Empty);
-            Assert.AreEqual(mood.Name, moodName);
+            Assert.AreEqual(mood.Name, "Test Mood");
+        }
+
+        /// <summary>
+        /// Tests the mood properties.
+        /// </summary>
+        [Test]
+        public void MoodPropertiesTest()
+        {
+            var moodId = Guid.NewGuid();
+
+            var activity = new Mood
+            {
+                Id = moodId,
+                Name = "Test Mood"
+            };
+
+            Assert.AreEqual(activity.Id, moodId);
+            Assert.AreEqual(activity.Name, "Test Mood");
         }
     }
 }

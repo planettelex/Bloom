@@ -29,7 +29,7 @@ namespace Bloom.State.Domain.Models
                 Twitter = person.Twitter
             };
             if (person.Photos != null && person.Photos.Count > 0)
-                user.ProfileImagePath = person.Photos[0].Url;
+                user.ProfileImagePath = person.Photos[0].FilePath;
             
             return user;
         }

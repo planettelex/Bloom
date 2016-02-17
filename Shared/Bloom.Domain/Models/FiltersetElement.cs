@@ -6,7 +6,7 @@ using Bloom.Domain.Interfaces;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents a single element in a filterset.
+    /// Represents an element in a filterset.
     /// </summary>
     [Table(Name = "filterset_element")]
     public class FiltersetElement
@@ -14,14 +14,17 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new filterset element instance.
         /// </summary>
-        /// <param name="filterset">The filterset.</param>
+        /// <param name="filterset">A filterset.</param>
         /// <param name="elementType">The type of element.</param>
+        /// <param name="filter">The filter.</param>
         /// <param name="elementNumber">The element number.</param>
-        public static FiltersetElement Create(Filterset filterset, FiltersetElementType elementType, int elementNumber)
+        public static FiltersetElement Create(Filterset filterset, FiltersetElementType elementType, IFilter filter, int elementNumber)
         {
             return new FiltersetElement
             {
                 FiltersetId = filterset.Id,
+                Filter = filter,
+                FilterId = filter.Id,
                 ElementType = elementType,
                 ElementNumber = elementNumber
             };
@@ -30,13 +33,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new filterset element instance.
         /// </summary>
-        /// <param name="filterset">The filterset.</param>
+        /// <param name="filterset">A filterset.</param>
+        /// <param name="filter">The filter.</param>
         /// <param name="elementNumber">The element number.</param>
-        public static FiltersetElement Create(Filterset filterset, int elementNumber)
+        public static FiltersetElement Create(Filterset filterset, IFilter filter, int elementNumber)
         {
             return new FiltersetElement
             {
                 FiltersetId = filterset.Id,
+                Filter = filter,
+                FilterId = filter.Id,
                 ElementType = FiltersetElementType.Statement,
                 ElementNumber = elementNumber
             };

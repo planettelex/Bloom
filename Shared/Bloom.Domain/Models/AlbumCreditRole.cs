@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a role with an album credit.
+    /// Represents an association between a role and an album credit.
     /// </summary>
     [Table(Name = "album_credit_role")]
     public class AlbumCreditRole
@@ -12,15 +12,14 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album credit role instance.
         /// </summary>
-        /// <param name="albumCredit">The album credit.</param>
-        /// <param name="role">The role.</param>
+        /// <param name="albumCredit">An album credit.</param>
+        /// <param name="role">A role.</param>
         public static AlbumCreditRole Create(AlbumCredit albumCredit, Role role)
         {
             return new AlbumCreditRole
             {
                 AlbumCreditId = albumCredit.Id,
-                RoleId = role.Id,
-                Role = role
+                RoleId = role.Id
             };
         }
         
@@ -35,10 +34,5 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "role_id", IsPrimaryKey = true)]
         public Guid RoleId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the role.
-        /// </summary>
-        public Role Role { get; set; }
     }
 }

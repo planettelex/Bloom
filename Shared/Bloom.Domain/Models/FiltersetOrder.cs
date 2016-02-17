@@ -14,7 +14,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new filterset ordering instance.
         /// </summary>
-        /// <param name="filterset">The filterset.</param>
+        /// <param name="filterset">A filterset.</param>
         /// <param name="order">The order.</param>
         /// <param name="priority">The ordering priority.</param>
         public static FiltersetOrder Create(Filterset filterset, IOrder order, int priority)
@@ -31,7 +31,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new filterset ordering instance.
         /// </summary>
-        /// <param name="filterset">The filterset.</param>
+        /// <param name="filterset">A filterset.</param>
         /// <param name="order">The order.</param>
         /// <param name="priority">The ordering priority.</param>
         /// <param name="direction">The ordering direction.</param>

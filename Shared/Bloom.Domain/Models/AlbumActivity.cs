@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an activity with an album.
+    /// Represents an association between an album and an activity.
     /// </summary>
     [Table(Name = "album_activity")]
     public class AlbumActivity
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album activity instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="activity">The activity.</param>
         public static AlbumActivity Create(Album album, Activity activity)
         {

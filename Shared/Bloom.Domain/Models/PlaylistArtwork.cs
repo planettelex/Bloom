@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a playlist with an activity.
+    /// Represents an association between a playlist and artwork.
     /// </summary>
     [Table(Name = "playlist_artwork")]
     public class PlaylistArtwork
@@ -13,14 +13,14 @@ namespace Bloom.Domain.Models
         /// Creates a new playlist artwork instance.
         /// </summary>
         /// <param name="playlist">The playlist.</param>
-        /// <param name="url">The artwork URL.</param>
+        /// <param name="filePath">The artwork file path.</param>
         /// <param name="priority">The order priority.</param>
-        public static PlaylistArtwork Create(Playlist playlist, string url, int priority)
+        public static PlaylistArtwork Create(Playlist playlist, string filePath, int priority)
         {
             return new PlaylistArtwork
             {
                 PlaylistId = playlist.Id,
-                Url = url,
+                FilePath = filePath,
                 Priority = priority
             };
         }
@@ -38,9 +38,9 @@ namespace Bloom.Domain.Models
         public int Priority { get; set; }
 
         /// <summary>
-        /// Gets or sets the artwork URL.
+        /// Gets or sets the artwork file path.
         /// </summary>
-        [Column(Name = "url")]
-        public string Url { get; set; }
+        [Column(Name = "file_path")]
+        public string FilePath { get; set; }
     }
 }

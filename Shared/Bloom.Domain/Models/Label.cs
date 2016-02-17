@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using Bloom.Domain.Enums;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
@@ -46,13 +45,18 @@ namespace Bloom.Domain.Models
         /// Gets or sets the label's bio.
         /// </summary>
         [Column(Name = "bio")]
-        public string Bio { get; set; }
+        public string Bio
+        {
+            get { return _bio; }
+            set { SetProperty(ref _bio, value); }
+        }
+        private string _bio;
 
         /// <summary>
-        /// Gets or sets the label logo URL.
+        /// Gets or sets the label logo file path.
         /// </summary>
-        [Column(Name = "logo_url")]
-        public string LogoUrl { get; set; }
+        [Column(Name = "logo_file_path")]
+        public string LogoFilePath { get; set; }
 
         /// <summary>
         /// Gets or sets the date on which the label was founded.

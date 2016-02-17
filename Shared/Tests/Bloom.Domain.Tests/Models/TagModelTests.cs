@@ -22,5 +22,23 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreNotEqual(tag.Id, Guid.Empty);
             Assert.AreEqual(tag.Name, tagName);
         }
+
+        /// <summary>
+        /// Tests the tag properties.
+        /// </summary>
+        [Test]
+        public void TagPropertiesTest()
+        {
+            var tagId = Guid.NewGuid();
+
+            var tag = new Tag
+            {
+                Id = tagId,
+                Name = "Test Tag"
+            };
+
+            Assert.AreEqual(tag.Id, tagId);
+            Assert.AreEqual(tag.Name, "Test Tag");
+        }
     }
 }

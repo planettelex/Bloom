@@ -8,7 +8,7 @@ namespace Bloom.Domain.Tests.Models
     /// Tests for the publication model class.
     /// </summary>
     [TestFixture]
-    public class PublicationModelTests
+    public class SourceModelTests
     {
         /// <summary>
         /// Tests the holiday create method.

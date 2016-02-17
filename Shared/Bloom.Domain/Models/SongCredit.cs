@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a song with a person.
+    /// Represents an association between a song and a person.
     /// </summary>
     [Table(Name = "song_credit")]
     public class SongCredit

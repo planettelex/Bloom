@@ -12,13 +12,13 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new photo instance.
         /// </summary>
-        /// <param name="url">The photo URL.</param>
-        public static Photo Create(string url)
+        /// <param name="filePath">The photo file path.</param>
+        public static Photo Create(string filePath)
         {
             return new Photo
             {
                 Id = Guid.NewGuid(),
-                Url = url
+                FilePath = filePath
             };
         }
 
@@ -29,10 +29,10 @@ namespace Bloom.Domain.Models
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the photo URL.
+        /// Gets or sets the photo file path.
         /// </summary>
-        [Column(Name = "url")]
-        public string Url { get; set; }
+        [Column(Name = "file_path")]
+        public string FilePath { get; set; }
 
         /// <summary>
         /// Gets or sets the caption.

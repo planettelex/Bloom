@@ -18,7 +18,6 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void CreateGenreTest()
         {
-            
             var genre = Genre.Create(GenreName);
 
             Assert.AreNotEqual(genre.Id, Guid.Empty);
@@ -39,6 +38,25 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(genre.Name, GenreName);
             Assert.AreEqual(genre.ParentGenreId, parentGenre.Id);
             Assert.AreEqual(genre.ParentGenre.Name, parentGenreName);
+        }
+
+        /// <summary>
+        /// Tests the genres properties.
+        /// </summary>
+        [Test]
+        public void GenrePropertiesTest()
+        {
+            var id = Guid.NewGuid();
+            var genre = new Genre
+            {
+                Id = id,
+                Name = GenreName,
+                Description = "Genre description."
+            };
+
+            Assert.AreEqual(genre.Id, id);
+            Assert.AreEqual(genre.Name, GenreName);
+            Assert.AreEqual(genre.Description, "Genre description.");
         }
     }
 }

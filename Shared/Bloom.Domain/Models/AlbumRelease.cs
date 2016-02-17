@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
 using Bloom.Domain.Enums;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an album with a release.
+    /// Represents an association between an album and a release.
     /// </summary>
     [Table(Name = "album_release")]
-    public class AlbumRelease
+    public class AlbumRelease : BindableBase
     {
         /// <summary>
         /// Creates a new album release instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="releaseDate">The release date.</param>
         public static AlbumRelease Create(Album album, DateTime releaseDate)
         {
@@ -21,7 +22,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                Album = album,
                 ReleaseDate = releaseDate
             };
         }
@@ -29,7 +29,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album release instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="releaseDate">The release date.</param>
         /// <param name="mediaTypes">The media types.</param>
         public static AlbumRelease Create(Album album, DateTime releaseDate, MediaTypes mediaTypes)
@@ -38,7 +38,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                Album = album,
                 MediaTypes = mediaTypes,
                 ReleaseDate = releaseDate
             };
@@ -47,7 +46,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album release instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="releaseDate">The release date.</param>
         /// <param name="mediaTypes">The media types.</param>
         /// <param name="digitalFormats">The digital formats.</param>
@@ -57,7 +56,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                Album = album,
                 MediaTypes = mediaTypes,
                 DigitalFormats = digitalFormats,
                 ReleaseDate = releaseDate
@@ -67,21 +65,19 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album release instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="label">The label.</param>
         /// <param name="releaseDate">The release date.</param>
         /// <param name="mediaTypes">The media types.</param>
         /// <param name="digitalFormats">The digital formats.</param>
         /// <param name="catalogNumber">The catalog number.</param>
-        public static AlbumRelease Create(Album album, Label label, DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats, string catalogNumber)
+        public static AlbumRelease Create(Album album, DateTime releaseDate, MediaTypes mediaTypes, DigitalFormats digitalFormats, Label label, string catalogNumber)
         {
             return new AlbumRelease
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                Album = album,
                 LabelId = label.Id,
-                Label = label,
                 MediaTypes = mediaTypes,
                 DigitalFormats = digitalFormats,
                 ReleaseDate = releaseDate,
@@ -102,27 +98,37 @@ namespace Bloom.Domain.Models
         public Guid AlbumId { get; set; }
 
         /// <summary>
-        /// Gets or sets the album.
-        /// </summary>
-        public Album Album { get; set; }
-
-        /// <summary>
         /// Gets or sets the album release media types.
         /// </summary>
         [Column(Name = "media_types")]
-        public MediaTypes MediaTypes { get; set; }
+        public MediaTypes MediaTypes
+        {
+            get { return _mediaTypes; }
+            set { SetProperty(ref _mediaTypes, value); }
+        }
+        private MediaTypes _mediaTypes;
 
         /// <summary>
         /// Gets or sets the album release digital formats.
         /// </summary>
         [Column(Name = "digital_formats")]
-        public DigitalFormats DigitalFormats { get; set; }
+        public DigitalFormats DigitalFormats
+        {
+            get { return _digitalFormats; }
+            set { SetProperty(ref _digitalFormats, value); }
+        }
+        private DigitalFormats _digitalFormats;
 
         /// <summary>
         /// Gets or sets the album release date.
         /// </summary>
         [Column(Name = "release_date")]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime ReleaseDate
+        {
+            get { return _releaseDate; }
+            set { SetProperty(ref _releaseDate, value); }
+        }
+        private DateTime _releaseDate;
 
         /// <summary>
         /// Gets or sets the album release label identifier.
@@ -131,15 +137,15 @@ namespace Bloom.Domain.Models
         public Guid LabelId { get; set; }
 
         /// <summary>
-        /// Gets or sets the album release label.
-        /// </summary>
-        public Label Label { get; set; }
-
-        /// <summary>
         /// Gets or sets the album release catalog number.
         /// </summary>
         [Column(Name = "catalog_number")]
-        public string CatalogNumber { get; set; }
+        public string CatalogNumber
+        {
+            get { return _catalogNumber; }
+            set { SetProperty(ref _catalogNumber, value); }
+        }
+        private string _catalogNumber;
 
     }
 }

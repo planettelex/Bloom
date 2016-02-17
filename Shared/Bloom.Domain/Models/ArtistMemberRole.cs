@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an artist member with a role.
+    /// Represents an association between an artist member and a role.
     /// </summary>
     [Table(Name = "artist_member_role")]
     public class ArtistMemberRole
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album credit role instance.
         /// </summary>
-        /// <param name="artistMember">The artist member.</param>
+        /// <param name="artistMember">An artist member.</param>
         /// <param name="role">The artist member role.</param>
         public static ArtistMemberRole Create(ArtistMember artistMember, Role role)
         {

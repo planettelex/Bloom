@@ -13,7 +13,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new song segment instance.
         /// </summary>
-        /// <param name="song">The song.</param>
+        /// <param name="song">A song.</param>
         /// <param name="startTime">The segment start time.</param>
         /// <param name="stopTime">The segment stop time.</param>
         public static SongSegment Create(Song song, int startTime, int stopTime)

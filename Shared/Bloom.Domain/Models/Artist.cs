@@ -45,31 +45,56 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date this artist started their career.
         /// </summary>
         [Column(Name = "started_on")]
-        public DateTime? StartedOn { get; set; }
+        public DateTime? StartedOn
+        {
+            get { return _startedOn; }
+            set { SetProperty(ref _startedOn, value); }
+        }
+        private DateTime? _startedOn;
 
         /// <summary>
         /// Gets or sets the date this artist ended their career.
         /// </summary>
         [Column(Name = "ended_on")]
-        public DateTime? EndedOn { get; set; }
+        public DateTime? EndedOn
+        {
+            get { return _endedOn; }
+            set { SetProperty(ref _endedOn, value); }
+        }
+        private DateTime? _endedOn;
 
         /// <summary>
         /// Gets or sets the artist's bio.
         /// </summary>
         [Column(Name = "bio")]
-        public string Bio { get; set; }
+        public string Bio
+        {
+            get { return _bio; }
+            set { SetProperty(ref _bio, value); }
+        }
+        private string _bio;
 
         /// <summary>
         /// Gets or sets the artist's Twitter username.
         /// </summary>
         [Column(Name = "twitter")]
-        public string Twitter { get; set; }
+        public string Twitter
+        {
+            get { return _twitter; }
+            set { SetProperty(ref _twitter, value); }
+        }
+        private string _twitter;
 
         /// <summary>
         /// Gets or sets a whether this is a solo artist.
         /// </summary>
         [Column(Name = "is_solo")]
-        public bool IsSolo { get; set; }
+        public bool IsSolo
+        {
+            get { return _isSolo; }
+            set { SetProperty(ref _isSolo, value); }
+        }
+        private bool _isSolo;
 
         /// <summary>
         /// Gets or sets the artist's photos.
@@ -80,16 +105,6 @@ namespace Bloom.Domain.Models
         /// Gets or sets the artist members.
         /// </summary>
         public List<ArtistMember> Members { get; set; }
-
-        public void SetProfileImage(string profileImageUrl)
-        {
-            if (Photos == null)
-                Photos = new List<Photo> { Photo.Create(profileImageUrl) };
-            else if (Photos.Count == 0)
-                Photos.Add(Photo.Create(profileImageUrl));
-            else
-                Photos[0].Url = profileImageUrl;
-        }
 
         /// <summary>
         /// Gets the profile image.
@@ -115,6 +130,20 @@ namespace Bloom.Domain.Models
                 else
                     Photos[0] = value;
             }
+        }
+
+        /// <summary>
+        /// Sets the profile image path.
+        /// </summary>
+        /// <param name="profileImagePath">The profile image path.</param>
+        public void SetProfileImagePath(string profileImagePath)
+        {
+            if (Photos == null)
+                Photos = new List<Photo> { Photo.Create(profileImagePath) };
+            else if (Photos.Count == 0)
+                Photos.Add(Photo.Create(profileImagePath));
+            else
+                Photos[0].FilePath = profileImagePath;
         }
     }
 }

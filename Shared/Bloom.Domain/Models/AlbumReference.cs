@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an album with a reference.
+    /// Represents an association between an album and a reference.
     /// </summary>
     [Table(Name = "album_reference")]
     public class AlbumReference
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album reference instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="reference">The reference.</param>
         public static AlbumReference Create(Album album, Reference reference)
         {

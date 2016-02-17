@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an album with an artist collaborator.
+    /// Represents an association between an album and an artist collaborator.
     /// </summary>
     [Table(Name = "album_collaborator")]
     public class AlbumCollaborator
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album collaborator instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="artist">The collaborator artist.</param>
         public static AlbumCollaborator Create(Album album, Artist artist)
         {

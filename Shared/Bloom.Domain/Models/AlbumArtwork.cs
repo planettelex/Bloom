@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an album with artwork.
+    /// Represents an association between an album and artwork.
     /// </summary>
     [Table(Name = "album_artwork")]
     public class AlbumArtwork
@@ -12,15 +12,15 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new album artwork instance.
         /// </summary>
-        /// <param name="album">The album.</param>
-        /// <param name="url">The artwork URL.</param>
+        /// <param name="album">An album.</param>
+        /// <param name="filePath">The artwork file path.</param>
         /// <param name="priority">The order priority.</param>
-        public static AlbumArtwork Create(Album album, string url, int priority)
+        public static AlbumArtwork Create(Album album, string filePath, int priority)
         {
             return new AlbumArtwork
             {
                 AlbumId = album.Id,
-                Url = url,
+                FilePath = filePath,
                 Priority = priority
             };
         }
@@ -38,9 +38,9 @@ namespace Bloom.Domain.Models
         public int Priority { get; set; }
 
         /// <summary>
-        /// Gets or sets the artwork URL.
+        /// Gets or sets the artwork file path.
         /// </summary>
-        [Column(Name = "url")]
-        public string Url { get; set; }
+        [Column(Name = "file_path")]
+        public string FilePath { get; set; }
     }
 }

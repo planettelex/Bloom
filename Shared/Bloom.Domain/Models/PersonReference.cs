@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a person with a reference.
+    /// Represents an association between a person and a reference.
     /// </summary>
     [Table(Name = "person_reference")]
     public class PersonReference

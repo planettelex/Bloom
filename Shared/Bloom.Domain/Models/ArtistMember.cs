@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an artist with a person.
+    /// Represents an artist member.
     /// </summary>
     [Table(Name = "artist_member")]
-    public class ArtistMember
+    public class ArtistMember : BindableBase
     {
         /// <summary>
         /// Creates a new album member instance.
         /// </summary>
-        /// <param name="artist">The artist.</param>
-        /// <param name="person">The person.</param>
+        /// <param name="artist">An artist.</param>
+        /// <param name="person">A person.</param>
         public static ArtistMember Create(Artist artist, Person person)
         {
             return new ArtistMember
@@ -53,13 +54,23 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date this artist member started with this artist.
         /// </summary>
         [Column(Name = "started")]
-        public DateTime? Started { get; set; }
+        public DateTime? Started
+        {
+            get { return _started; }
+            set { SetProperty(ref _started, value); }
+        }
+        private DateTime? _started;
 
         /// <summary>
         /// Gets or sets the date this artist memeber ended with this artist.
         /// </summary>
         [Column(Name = "ended")]
-        public DateTime? Ended { get; set; }
+        public DateTime? Ended
+        {
+            get { return _ended; }
+            set { SetProperty(ref _ended, value); }
+        }
+        private DateTime? _ended;
 
         /// <summary>
         /// Gets or sets the priority.

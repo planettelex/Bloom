@@ -4,15 +4,15 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates an album with a tag.
+    /// Represents an association between an album and a tag.
     /// </summary>
     [Table(Name = "album_tag")]
     public class AlbumTag
     {
         /// <summary>
-        /// Creates  a new album tag instance.
+        /// Creates a new album tag instance.
         /// </summary>
-        /// <param name="album">The album.</param>
+        /// <param name="album">An album.</param>
         /// <param name="tag">The tag.</param>
         public static AlbumTag Create(Album album, Tag tag)
         {

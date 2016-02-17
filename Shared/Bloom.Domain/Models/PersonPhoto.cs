@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a person with a photo.
+    /// Represents an association between a person and a photo.
     /// </summary>
     [Table(Name = "person_photo")]
     public class PersonPhoto
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new person photo instance.
         /// </summary>
-        /// <param name="person">The person.</param>
+        /// <param name="person">A person.</param>
         /// <param name="photo">The photo.</param>
         /// <param name="priority">The order priority.</param>
         public static PersonPhoto Create(Person person, Photo photo, int priority)
@@ -26,33 +26,6 @@ namespace Bloom.Domain.Models
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PersonPhoto"/> class.
-        /// </summary>
-        public PersonPhoto() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PersonPhoto"/> class.
-        /// </summary>
-        /// <param name="person">The person.</param>
-        /// <param name="photo">The photo.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// person
-        /// or
-        /// photo
-        /// </exception>
-        public PersonPhoto(Person person, Photo photo)
-        {
-            if (person == null)
-                throw new ArgumentNullException("person");
-
-            if (photo == null)
-                throw new ArgumentNullException("photo");
-
-            PersonId = person.Id;
-            PhotoId = photo.Id;
-        }
-
-        /// <summary>
         /// Gets or sets the person identifier.
         /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]
@@ -63,8 +36,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "photo_id", IsPrimaryKey = true)]
         public Guid PhotoId { get; set; }
-
-
 
         /// <summary>
         /// Gets or sets the photo order priority.

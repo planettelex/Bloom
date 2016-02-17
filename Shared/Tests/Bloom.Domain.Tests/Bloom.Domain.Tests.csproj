@@ -76,7 +76,7 @@
     <Compile Include="Models\PersonModelTests.cs" />
     <Compile Include="Models\PhotoModelTests.cs" />
     <Compile Include="Models\PlaylistModelTests.cs" />
-    <Compile Include="Models\PublicationModelTests.cs" />
+    <Compile Include="Models\SourceModelTests.cs" />
     <Compile Include="Models\ReferenceModelTests.cs" />
     <Compile Include="Models\ReviewModelTests.cs" />
     <Compile Include="Models\RoleModelTests.cs" />

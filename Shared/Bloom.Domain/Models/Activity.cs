@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
@@ -7,7 +8,7 @@ namespace Bloom.Domain.Models
     /// Represents an activity (e.g. Workout, Cleaning).
     /// </summary>
     [Table(Name = "activity")]
-    public class Activity
+    public class Activity : BindableBase
     {
         /// <summary>
         /// Creates a new activity instance.
@@ -32,6 +33,11 @@ namespace Bloom.Domain.Models
         /// Gets or sets the activity name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
     }
 }

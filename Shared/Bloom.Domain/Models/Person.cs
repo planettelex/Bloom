@@ -46,40 +46,50 @@ namespace Bloom.Domain.Models
         /// Gets or sets the date the person was born.
         /// </summary>
         [Column(Name = "born_on")]
-        public DateTime? BornOn { get; set; }
+        public DateTime? BornOn
+        {
+            get { return _bornOn; }
+            set { SetProperty(ref _bornOn, value); }
+        }
+        private DateTime? _bornOn;
 
         /// <summary>
         /// Gets or sets the date the person died.
         /// </summary>
         [Column(Name = "died_on")]
-        public DateTime? DiedOn { get; set; }
+        public DateTime? DiedOn
+        {
+            get { return _diedOn; }
+            set { SetProperty(ref _diedOn, value); }
+        }
+        private DateTime? _diedOn;
 
         /// <summary>
         /// Gets or sets the person's bio.
         /// </summary>
         [Column(Name = "bio")]
-        public string Bio { get; set; }
+        public string Bio
+        {
+            get { return _bio; }
+            set { SetProperty(ref _bio, value); }
+        }
+        private string _bio;
 
         /// <summary>
         /// Gets or sets the person's Twitter username.
         /// </summary>
         [Column(Name = "twitter")]
-        public string Twitter { get; set; }
+        public string Twitter
+        {
+            get { return _twitter; }
+            set { SetProperty(ref _twitter, value); }
+        }
+        private string _twitter;
 
         /// <summary>
         /// Gets or sets the person's photos.
         /// </summary>
         public List<Photo> Photos { get; set; }
-
-        public void SetProfileImage(string profileImageUrl)
-        {
-            if (Photos == null)
-                Photos = new List<Photo> { Photo.Create(profileImageUrl) };
-            else if (Photos.Count == 0)
-                Photos.Add(Photo.Create(profileImageUrl));
-            else
-                Photos[0].Url = profileImageUrl;
-        }
 
         /// <summary>
         /// Gets the profile image.
@@ -105,6 +115,20 @@ namespace Bloom.Domain.Models
                 else 
                     Photos[0] = value;
             }
+        }
+
+        /// <summary>
+        /// Sets the profile image.
+        /// </summary>
+        /// <param name="profileImagePath">The profile image path.</param>
+        public void SetProfileImage(string profileImagePath)
+        {
+            if (Photos == null)
+                Photos = new List<Photo> { Photo.Create(profileImagePath) };
+            else if (Photos.Count == 0)
+                Photos.Add(Photo.Create(profileImagePath));
+            else
+                Photos[0].FilePath = profileImagePath;
         }
     }
 }

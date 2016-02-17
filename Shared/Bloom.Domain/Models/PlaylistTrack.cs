@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a playlist with a song.
+    /// Represents a song track in a playlist.
     /// </summary>
     [Table(Name = "playlist_track")]
     public class PlaylistTrack
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new playlist track instance.
         /// </summary>
-        /// <param name="playlist">The playlist.</param>
+        /// <param name="playlist">A playlist.</param>
         /// <param name="song">The song.</param>
         /// <param name="trackNumber">The track number.</param>
         public static PlaylistTrack Create(Playlist playlist, Song song, int trackNumber)

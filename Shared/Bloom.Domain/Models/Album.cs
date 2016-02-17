@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using System.Linq;
 using Bloom.Domain.Enums;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents an album, a collection of songs.
+    /// Represents an album.
     /// </summary>
     [Table(Name = "album")]
-    public class Album
+    public class Album : BindableBase
     {
         /// <summary>
         /// Creates a new album instance.
@@ -48,13 +48,13 @@ namespace Bloom.Domain.Models
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the album artist identifier.
+        /// Gets or sets the artist identifier.
         /// </summary>
         [Column(Name = "artist_id")]
         public Guid ArtistId { get; set; }
 
         /// <summary>
-        /// Gets or sets the album artist.
+        /// Gets or sets the artist.
         /// </summary>
         public Artist Artist { get; set; }
 
@@ -62,55 +62,100 @@ namespace Bloom.Domain.Models
         /// Gets or sets the album name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the album edition.
         /// </summary>
         [Column(Name = "edition")]
-        public string Edition { get; set; }
+        public string Edition
+        {
+            get { return _edition; }
+            set { SetProperty(ref _edition, value); }
+        }
+        private string _edition;
 
         /// <summary>
         /// Gets or sets the album length type.
         /// </summary>
         [Column(Name = "length_type")]
-        public LengthType LengthType { get; set; }
+        public LengthType LengthType
+        {
+            get { return _lengthType; }
+            set { SetProperty(ref _lengthType, value); }
+        }
+        private LengthType _lengthType;
 
         /// <summary>
         /// Gets or sets the album length in milliseconds.
         /// </summary>
         [Column(Name = "length")]
-        public int Length { get; set; }
+        public int Length
+        {
+            get { return _length; }
+            set { SetProperty(ref _length, value); }
+        }
+        private int _length;
 
         /// <summary>
         /// Gets or sets the album description.
         /// </summary>
         [Column(Name = "description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+        private string _description;
 
         /// <summary>
         /// Gets or sets the album liner notes.
         /// </summary>
         [Column(Name = "liner_notes")]
-        public string LinerNotes { get; set; }
+        public string LinerNotes
+        {
+            get { return _linerNotes; }
+            set { SetProperty(ref _linerNotes, value); }
+        }
+        private string _linerNotes;
 
         /// <summary>
         /// Gets or sets whether this album is live.
         /// </summary>
         [Column(Name = "is_live")]
-        public bool IsLive { get; set; }
+        public bool IsLive
+        {
+            get { return _isLive; }
+            set { SetProperty(ref _isLive, value); }
+        }
+        private bool _isLive;
 
         /// <summary>
         /// Gets or sets whether this is a remix album.
         /// </summary>
         [Column(Name = "is_remix")]
-        public bool IsRemix { get; set; }
+        public bool IsRemix
+        {
+            get { return _isRemix; }
+            set { SetProperty(ref _isRemix, value); }
+        }
+        private bool _isRemix;
 
         /// <summary>
         /// Gets or sets whether this is a tribute album.
         /// </summary>
         [Column(Name = "is_tribute")]
-        public bool IsTribute { get; set; }
+        public bool IsTribute
+        {
+            get { return _isTribute; }
+            set { SetProperty(ref _isTribute, value); }
+        }
+        private bool _isTribute;
 
         /// <summary>
         /// Gets or sets the identifier of the artist this album is a tribute to.
@@ -122,13 +167,23 @@ namespace Bloom.Domain.Models
         /// Gets or sets whether this album is a soundtrack.
         /// </summary>
         [Column(Name = "is_soundtrack")]
-        public bool IsSoundtrack { get; set; }
+        public bool IsSoundtrack
+        {
+            get { return _isSoundtrack; }
+            set { SetProperty(ref _isSoundtrack, value); }
+        }
+        private bool _isSoundtrack;
 
         /// <summary>
         /// Gets or sets whether this album is for a holiday.
         /// </summary>
         [Column(Name = "is_holiday")]
-        public bool IsHoliday { get; set; }
+        public bool IsHoliday
+        {
+            get { return _isHoliday; }
+            set { SetProperty(ref _isHoliday, value); }
+        }
+        private bool _isHoliday;
 
         /// <summary>
         /// Gets or sets identifier of the holiday this album is for.
@@ -145,31 +200,56 @@ namespace Bloom.Domain.Models
         /// Gets or sets whether this album is a bootleg.
         /// </summary>
         [Column(Name = "is_bootleg")]
-        public bool IsBootleg { get; set; }
+        public bool IsBootleg
+        {
+            get { return _isBootleg; }
+            set { SetProperty(ref _isBootleg, value); }
+        }
+        private bool _isBootleg;
 
         /// <summary>
         /// Gets or sets whether this album is promotional.
         /// </summary>
         [Column(Name = "is_promotional")]
-        public bool IsPromotional { get; set; }
+        public bool IsPromotional
+        {
+            get { return _isPromotional; }
+            set { SetProperty(ref _isPromotional, value); }
+        }
+        private bool _isPromotional;
 
         /// <summary>
         /// Gets or sets whether this album is a compilation.
         /// </summary>
         [Column(Name = "is_compilation")]
-        public bool IsCompilation { get; set; }
+        public bool IsCompilation
+        {
+            get { return _isCompilation; }
+            set { SetProperty(ref _isCompilation, value); }
+        }
+        private bool _isCompilation;
 
         /// <summary>
         /// Gets or sets whether this album contains mixed artists.
         /// </summary>
         [Column(Name = "is_mixed_artist")]
-        public bool IsMixedArtist { get; set; }
+        public bool IsMixedArtist
+        {
+            get { return _isMixedArtist; }
+            set { SetProperty(ref _isMixedArtist, value); }
+        }
+        private bool _isMixedArtist;
 
         /// <summary>
         /// Gets or sets whether this album is a single track.
         /// </summary>
         [Column(Name = "is_single_track")]
-        public bool IsSingleTrack { get; set; }
+        public bool IsSingleTrack
+        {
+            get { return _isSingleTrack; }
+            set { SetProperty(ref _isSingleTrack, value); }
+        }
+        private bool _isSingleTrack;
 
         /// <summary>
         /// Gets or sets the album tracks.

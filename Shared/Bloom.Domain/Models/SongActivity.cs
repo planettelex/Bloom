@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a song with an activity.
+    /// Represents an association between a song and an activity.
     /// </summary>
     [Table(Name = "song_activity")]
     public class SongActivity

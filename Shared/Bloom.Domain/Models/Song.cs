@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using Bloom.Domain.Enums;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
@@ -9,7 +10,7 @@ namespace Bloom.Domain.Models
     /// Represents a song.
     /// </summary>
     [Table(Name = "song")]
-    public class Song
+    public class Song : BindableBase
     {
         /// <summary>
         /// Creates a new song instance.
@@ -48,19 +49,34 @@ namespace Bloom.Domain.Models
         /// Gets or sets the song name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the song version.
         /// </summary>
         [Column(Name = "version")]
-        public string Version { get; set; }
+        public string Version
+        {
+            get { return _version; }
+            set { SetProperty(ref _version, value); }
+        }
+        private string _version;
 
         /// <summary>
-        /// Gets or sets the song length, in milliseconds.
+        /// Gets or sets the song length in milliseconds.
         /// </summary>
         [Column(Name = "length")]
-        public int Length { get; set; }
+        public int Length
+        {
+            get { return _length; }
+            set { SetProperty(ref _length, value); }
+        }
+        private int _length;
 
         /// <summary>
         /// Gets or sets the song genre identifier.
@@ -100,13 +116,23 @@ namespace Bloom.Domain.Models
         /// Gets or sets song description.
         /// </summary>
         [Column(Name = "description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+        private string _description;
 
         /// <summary>
         /// Gets or sets the song's lyrics.
         /// </summary>
         [Column(Name = "lyrics")]
-        public string Lyrics { get; set; }
+        public string Lyrics
+        {
+            get { return _lyrics; }
+            set { SetProperty(ref _lyrics, value); }
+        }
+        private string _lyrics;
 
         /// <summary>
         /// Gets or sets whether this song is live.

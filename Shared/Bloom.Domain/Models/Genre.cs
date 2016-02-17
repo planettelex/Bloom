@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
@@ -7,7 +8,7 @@ namespace Bloom.Domain.Models
     /// Represents a music genre.
     /// </summary>
     [Table(Name = "genre")]
-    public class Genre
+    public class Genre : BindableBase
     {
         /// <summary>
         /// Creates a new genre instance.
@@ -48,13 +49,23 @@ namespace Bloom.Domain.Models
         /// Gets or sets the genre name.
         /// </summary>
         [Column(Name = "name")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+        private string _name;
 
         /// <summary>
         /// Gets or sets the genre description.
         /// </summary>
         [Column(Name = "description")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
+        }
+        private string _description;
 
         /// <summary>
         /// Gets or sets the parent genre identifier.

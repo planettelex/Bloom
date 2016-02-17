@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a label with a person.
+    /// Represents a person who worked for a label.
     /// </summary>
     [Table(Name = "label_personnel")]
     public class LabelPersonnel
@@ -13,7 +13,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new label personel instance.
         /// </summary>
-        /// <param name="label">The label.</param>
+        /// <param name="label">A label.</param>
         /// <param name="person">The person.</param>
         public static LabelPersonnel Create(Label label, Person person)
         {
@@ -68,7 +68,7 @@ namespace Bloom.Domain.Models
         public Person Person { get; set; }
 
         /// <summary>
-        /// Gets or sets the personel roles.
+        /// Gets or sets the personnel roles.
         /// </summary>
         public List<Role> Roles { get; set; }
     }

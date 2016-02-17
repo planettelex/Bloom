@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a song with a tag.
+    /// Represents an association between a song and a tag.
     /// </summary>
     [Table(Name = "song_tag")]
     public class SongTag
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new song tag instance.
         /// </summary>
-        /// <param name="song">The song.</param>
+        /// <param name="song">A song.</param>
         /// <param name="tag">The tag.</param>
         public static SongTag Create(Song song, Tag tag)
         {
