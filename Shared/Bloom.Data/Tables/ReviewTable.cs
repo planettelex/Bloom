@@ -19,7 +19,7 @@ namespace Bloom.Data.Tables
                        "published_on DATETIME ," +
                        "source_id VARCHAR(36) , " +
                        "author_id VARCHAR(36) , " +
-                       "FOREIGN KEY (publication_id) REFERENCES publication(id) , " +
+                       "FOREIGN KEY (source_id) REFERENCES source(id) , " +
                        "FOREIGN KEY (author_id) REFERENCES person(id) )";
             }
         }

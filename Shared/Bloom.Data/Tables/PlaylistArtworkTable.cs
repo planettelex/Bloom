@@ -13,8 +13,8 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE playlist_artwork (" +
                        "playlist_id VARCHAR(36) NOT NULL , " +
-                       "priority VARCHAR NOT NULL , " +
-                       "url INTEGER NOT NULL ," +
+                       "file_path VARCHAR NOT NULL ," +
+                       "priority INTEGER NOT NULL , " +
                        "PRIMARY KEY (playlist_id, priority) , " +
                        "FOREIGN KEY (playlist_id) REFERENCES playlist(id) )";
             }

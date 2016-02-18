@@ -13,8 +13,8 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE album_artwork (" +
                        "album_id VARCHAR(36) NOT NULL , " +
-                       "priority VARCHAR NOT NULL , " +
-                       "url INTEGER NOT NULL , " +
+                       "file_path VARCHAR NOT NULL , " +
+                       "priority INTEGER NOT NULL , " +
                        "PRIMARY KEY (album_id, priority) , " +
                        "FOREIGN KEY (album_id) REFERENCES album(id) )";
             }

@@ -15,7 +15,7 @@ namespace Bloom.Data.Tables
                        "artist_id VARCHAR(36) NOT NULL , " +
                        "photo_id VARCHAR(36) NOT NULL , " +
                        "priority INTEGER NOT NULL , " +
-                       "PRIMARY KEY (artist_id, photo_id) , " +
+                       "PRIMARY KEY (artist_id, photo_id, priority) , " +
                        "FOREIGN KEY (artist_id) REFERENCES artist(id) , " +
                        "FOREIGN KEY (photo_id) REFERENCES photo(id) )";
             }

@@ -14,7 +14,7 @@ namespace Bloom.Data.Tables
                 return "CREATE TABLE album_collaborator (" +
                        "album_id VARCHAR(36) NOT NULL , " +
                        "artist_id VARCHAR(36) NOT NULL , " +
-                       "url INTEGER NOT NULL ," +
+                       "is_featured BOOL NOT NULL DEFAULT FALSE ," +
                        "PRIMARY KEY (album_id, artist_id) , " +
                        "FOREIGN KEY (album_id) REFERENCES album(id) , " +
                        "FOREIGN KEY (artist_id) REFERENCES artist(id) )";

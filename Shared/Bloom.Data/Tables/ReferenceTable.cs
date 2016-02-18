@@ -15,7 +15,8 @@ namespace Bloom.Data.Tables
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
                        "source_id VARCHAR(36) NOT NULL , " +
                        "url VARCHAR , " +
-                       "title VARCHAR )";
+                       "title VARCHAR ," +
+                       "FOREIGN KEY (source_id) REFERENCES source(id) )";
             }
         }
     }

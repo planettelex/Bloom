@@ -16,7 +16,7 @@ namespace Bloom.Data.Tables
                        "order_number INTEGER NOT NULL , " +
                        "order_id VARCHAR(36) NOT NULL , " +
                        "order_direction INTEGER NOT NULL DEFAULT 0 , " +
-                       "PRIMARY KEY (filterset_id, priority) , " +
+                       "PRIMARY KEY (filterset_id, order_number) , " +
                        "FOREIGN KEY (filterset_id) REFERENCES filterset(id) )";
             }
         }
