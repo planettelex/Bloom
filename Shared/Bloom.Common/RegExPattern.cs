@@ -1,5 +1,8 @@
 ﻿namespace Bloom.Common
 {
+    /// <summary>
+    /// Regular expression patterns.
+    /// </summary>
     public class RegExPattern
     {
         /// <summary>

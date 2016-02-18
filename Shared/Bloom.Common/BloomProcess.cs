@@ -27,6 +27,10 @@ namespace Bloom.Common
             Type = processType;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BloomProcess"/> class.
+        /// </summary>
+        /// <param name="processName">The name of the process.</param>
         public BloomProcess(string processName)
         {
             if (processName.Contains("."))
@@ -35,7 +39,7 @@ namespace Bloom.Common
                 Type = (ProcessType) Enum.Parse(typeof(ProcessType), typeName);
             }
             else
-                Type = (ProcessType)Enum.Parse(typeof(ProcessType), processName);
+                Type = (ProcessType) Enum.Parse(typeof(ProcessType), processName);
         }
 
         /// <summary>

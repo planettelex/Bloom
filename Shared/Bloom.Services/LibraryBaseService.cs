@@ -94,7 +94,7 @@ namespace Bloom.Services
             var library = _libraryRepository.GetLibrary(dataSource);
             if (library == null)
                 return null;
-
+            
             library.FileName = filePath.GetFileName();
             library.FolderPath = filePath.GetFilePath();
             var libraryConnection = LibraryConnection.Create(library);
