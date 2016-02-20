@@ -6,6 +6,7 @@ using Bloom.Analytics.HomeModule.ViewModels;
 using Bloom.Analytics.HomeModule.Views;
 using Bloom.Common;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -137,26 +138,12 @@ namespace Bloom.Analytics.HomeModule.Services
 
         private Tab CreateNewHomeTab()
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Home,
-                Header = "Home",
-                Process = ProcessType.Analytics
-            };
+            return Tab.Create(ProcessType.Analytics, State.User, Buid.Empty, State.GetNextTabOrder(), TabType.Home, "Home");
         }
 
         private Tab CreateNewGettingStartedTab()
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.GettingStarted,
-                Header = "Getting Started",
-                Process = ProcessType.Analytics
-            };
+            return Tab.Create(ProcessType.Analytics, State.User, Buid.Empty, State.GetNextTabOrder(), TabType.GettingStarted, "Getting Started");
         }
     }
 }

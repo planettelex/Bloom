@@ -95,10 +95,8 @@ namespace Bloom.Services
             if (library == null)
                 return null;
 
-            var fileName = Path.GetFileName(filePath);
-            var folderPath = Path.GetDirectoryName(filePath);
-            library.FileName = filePath.GetFileName();
-            library.FolderPath = filePath.GetFilePath();
+            library.FileName = Path.GetFileName(filePath);
+            library.FolderPath = Path.GetDirectoryName(filePath);
             var libraryConnection = LibraryConnection.Create(library);
             var existingConnection = _libraryConnectionRepository.GetLibraryConnection(library.Id);
             if (existingConnection != null)

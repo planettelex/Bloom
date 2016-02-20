@@ -7,6 +7,7 @@ using Bloom.Analytics.SongModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -89,16 +90,7 @@ namespace Bloom.Analytics.SongModule.Services
 
         private Tab CreateNewTab(Buid songBuid)
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Song,
-                Header = "Song",
-                Process = ProcessType.Analytics,
-                LibraryId = songBuid.LibraryId,
-                EntityId = songBuid.EntityId
-            };
+            return Tab.Create(ProcessType.Analytics, State.User, songBuid, State.GetNextTabOrder(), TabType.Song, "Song");
         }
     }
 }

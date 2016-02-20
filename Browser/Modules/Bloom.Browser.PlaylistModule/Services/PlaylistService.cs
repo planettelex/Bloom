@@ -7,6 +7,7 @@ using Bloom.Browser.Controls;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -78,7 +79,8 @@ namespace Bloom.Browser.PlaylistModule.Services
 
             var playlistId = existingTab.Tab.EntityId;
             var playlist = new Playlist { Id = playlistId }; // TODO: Make this data access call
-            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Playlist, playlistId));
+            var playlistBuid = new Buid(existingTab.Tab.LibraryId, BloomEntity.Playlist, playlistId);
+            var tab = CreateNewTab(playlistBuid);
             var playlistViewModel = new PlaylistViewModel(playlist, tab.Id);
             var playlistView = new PlaylistView(playlistViewModel);
             var playlistTab = new ViewMenuTab(tab, playlistView);
@@ -89,16 +91,7 @@ namespace Bloom.Browser.PlaylistModule.Services
 
         private Tab CreateNewTab(Buid playlistBuid)
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Playlist,
-                Header = "Playlist",
-                Process = ProcessType.Browser,
-                LibraryId = playlistBuid.LibraryId,
-                EntityId = playlistBuid.EntityId
-            };
+            return Tab.Create(ProcessType.Browser, State.User, playlistBuid, State.GetNextTabOrder(), TabType.Playlist, "Playlist");
         }
     }
 }

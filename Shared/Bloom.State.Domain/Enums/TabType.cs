@@ -1,4 +1,4 @@
-﻿namespace Bloom.State.Domain.Models
+﻿namespace Bloom.State.Domain.Enums
 {
     /// <summary>
     /// The types of tabs.

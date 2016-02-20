@@ -5,7 +5,7 @@ using System.Linq;
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
-    /// Application state for tabbed applications.
+    /// Represents the state of a tabbed application.
     /// </summary>
     public abstract class TabbedApplicationState : ApplicationState
     {
@@ -40,18 +40,15 @@ namespace Bloom.State.Domain.Models
                 Tabs[i].Order = i + 1;
         }
 
-        public override void SetUser(User user)
-        {
-            base.SetUser(user);
-            if (Tabs == null || Tabs.Count <= 0)
-                return;
-
-            foreach (var tab in Tabs)
-                tab.UserId = user.PersonId;
-        }
-
+        /// <summary>
+        /// Determines whether there are any tabs connected to the specified library.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         public bool HasLibraryTabs(Guid libraryId)
         {
+            if (Tabs == null)
+                return false;
+
             return Tabs.Any(tab => tab.LibraryId == libraryId);
         }
     }

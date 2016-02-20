@@ -7,7 +7,7 @@ using Bloom.Common;
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
-    /// The state of the player application.
+    /// Represents the state of the player application.
     /// </summary>
     [Table(Name = "player_state")]
     public class PlayerState : ApplicationState
@@ -88,6 +88,10 @@ namespace Bloom.State.Domain.Models
             UpcomingWidth = Properties.Settings.Default.SidebarWidth;
         }
 
+        /// <summary>
+        /// Sets the user and their login time to now.
+        /// </summary>
+        /// <param name="user">A user.</param>
         public override void SetUser(User user)
         {
             base.SetUser(user);

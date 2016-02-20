@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using Bloom.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
@@ -7,7 +6,7 @@ using Microsoft.Practices.Prism.Mvvm;
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
-    /// Represents a person who uses the Bloom suite.
+    /// Represents a person who uses any application.
     /// </summary>
     [Table(Name = "user")]
     public class User : BindableBase
@@ -28,8 +27,8 @@ namespace Bloom.State.Domain.Models
                 Birthday = person.BornOn,
                 Twitter = person.Twitter
             };
-            if (person.Photos != null && person.Photos.Count > 0)
-                user.ProfileImagePath = person.Photos[0].FilePath;
+            if (person.ProfileImage != null)
+                user.ProfileImagePath = person.ProfileImage.FilePath;
             
             return user;
         }
@@ -71,7 +70,7 @@ namespace Bloom.State.Domain.Models
         public DateTime? LastLogin { get; set; }
 
         /// <summary>
-        /// Creates a new person from this user.
+        /// Returns this user as a new person object.
         /// </summary>
         public Person AsPerson()
         {
@@ -83,7 +82,7 @@ namespace Bloom.State.Domain.Models
                 Twitter = Twitter
             };
             if (!string.IsNullOrEmpty(ProfileImagePath))
-                person.Photos = new List<Photo> { Photo.Create(ProfileImagePath) };
+                person.SetProfileImage(ProfileImagePath);
             
             return person;
         }

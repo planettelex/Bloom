@@ -10,7 +10,7 @@ using Microsoft.Practices.Prism.Mvvm;
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
-    /// A connection to a library database.
+    /// Represents a connection to a library database.
     /// </summary>
     [Table(Name = "library_connection")]
     public class LibraryConnection : BindableBase

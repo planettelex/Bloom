@@ -7,7 +7,7 @@ using Bloom.Common;
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
-    /// The state of the analytics application.
+    /// Represents the state of the analytics application.
     /// </summary>
     [Table(Name = "analytics_state")]
     public class AnalyticsState : TabbedApplicationState
@@ -27,24 +27,45 @@ namespace Bloom.State.Domain.Models
             SelectedTabId = Guid.Empty;
         }
 
+        /// <summary>
+        /// Gets or sets the name of the process.
+        /// </summary>
         [Column(Name = "process_name", IsPrimaryKey = true)]
         public string ProcessName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the user's person identifier.
+        /// </summary>
         [Column(Name = "person_id", IsPrimaryKey = true)]
         public Guid UserId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the skin.
+        /// </summary>
         [Column(Name = "skin_name")]
         public string SkinName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the state of the window.
+        /// </summary>
         [Column(Name = "window_state")]
         public WindowState WindowState { get; set; }
 
+        /// <summary>
+        /// Gets or sets the selected tab identifier.
+        /// </summary>
         [Column(Name = "selected_tab_id")]
         public Guid SelectedTabId { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the sidebar is visible.
+        /// </summary>
         [Column(Name = "sidebar_visible")]
         public bool SidebarVisible { get; set; }
 
+        /// <summary>
+        /// Gets or sets the width of the sidebar.
+        /// </summary>
         [Column(Name = "sidebar_width")]
         public int SidebarWidth
         {
@@ -61,6 +82,10 @@ namespace Bloom.State.Domain.Models
             SidebarWidth = Properties.Settings.Default.SidebarWidth;
         }
 
+        /// <summary>
+        /// Sets the user and their login time to now.
+        /// </summary>
+        /// <param name="user">A user.</param>
         public override void SetUser(User user)
         {
             base.SetUser(user);

@@ -5,6 +5,7 @@
     /// </summary>
     public enum BloomEntity
     {
+        None,
         Album,
         Artist,
         Library,

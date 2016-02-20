@@ -21,6 +21,14 @@ namespace Bloom.Common
         }
 
         /// <summary>
+        /// Gets a Buid whose values are all zeros.
+        /// </summary>
+        public static Buid Empty
+        {
+            get { return new Buid(Guid.Empty, BloomEntity.None, Guid.Empty); }
+        }
+
+        /// <summary>
         /// Gets or sets the library identifier.
         /// </summary>
         public Guid LibraryId { get; set; }

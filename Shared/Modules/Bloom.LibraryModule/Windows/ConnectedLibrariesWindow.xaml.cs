@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
-using Bloom.Common.ExtensionMethods;
 using Bloom.LibraryModule.Services;
 using Bloom.LibraryModule.WindowModels;
 using Bloom.PubSubEvents;
@@ -154,8 +153,8 @@ namespace Bloom.LibraryModule.Windows
                 throw new InvalidOperationException("Library connection for id " + libraryId.Value + " not found in the observable collection.");
 
             var brokenFilePath = lostLibraryConnection.FilePath;
-            _findFileDialog.InitialDirectory = brokenFilePath.GetFilePath();
-            _findFileDialog.FileName = brokenFilePath.GetFileName();
+            _findFileDialog.InitialDirectory = Path.GetDirectoryName(brokenFilePath);
+            _findFileDialog.FileName = Path.GetFileName(brokenFilePath);
             _findFileDialog.Title = "Locate the *" + Common.Settings.LibraryFileExtension + " file for " + lostLibraryConnection.LibraryName;
 
             var result = _findFileDialog.ShowDialog();

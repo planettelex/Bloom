@@ -10,6 +10,7 @@ using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -120,17 +121,8 @@ namespace Bloom.Analytics.LibraryModule.Services
 
         private Tab CreateNewTab(Library library, ViewType viewType)
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Library,
-                Header = library.Name,
-                Process = ProcessType.Analytics,
-                LibraryId = library.Id,
-                EntityId = library.Id,
-                View = viewType.ToString()
-            };
+            var libraryBuid = new Buid(library.Id, BloomEntity.Library, library.Id);
+            return Tab.Create(ProcessType.Analytics, State.User, libraryBuid, State.GetNextTabOrder(), TabType.Library, library.Name, viewType.ToString());
         }
     }
 }

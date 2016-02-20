@@ -7,6 +7,7 @@ using Bloom.Browser.Controls;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -101,16 +102,7 @@ namespace Bloom.Browser.AlbumModule.Services
 
         private Tab CreateNewTab(Buid albumBuid)
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Album,
-                Header = "Album",
-                Process = ProcessType.Browser,
-                LibraryId = albumBuid.LibraryId,
-                EntityId = albumBuid.EntityId
-            };
+            return Tab.Create(ProcessType.Browser, State.User, albumBuid, State.GetNextTabOrder(), TabType.Album, "Album");
         }
     }
 }

@@ -8,6 +8,7 @@ using Bloom.Browser.PersonModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
@@ -92,17 +93,7 @@ namespace Bloom.Browser.PersonModule.Services
 
         private Tab CreateNewTab(Buid personBuid, ViewType viewType)
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Person,
-                Header = "Person",
-                Process = ProcessType.Browser,
-                LibraryId = personBuid.LibraryId,
-                EntityId = personBuid.EntityId,
-                View = viewType.ToString()
-            };
+            return Tab.Create(ProcessType.Browser, State.User, personBuid, State.GetNextTabOrder(), TabType.Person, "Person", viewType.ToString());
         }
     }
 }

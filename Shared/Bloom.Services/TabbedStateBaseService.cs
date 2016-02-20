@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.PubSubEvents;
 using Bloom.State.Data.Respositories;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Services

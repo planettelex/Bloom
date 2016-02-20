@@ -22,40 +22,7 @@ namespace Bloom.Common.ExtensionMethods
             if (s.Length > 260)
                 return false;
 
-            if (FilesystemReservedCharacters.Any(s.Contains))
-                return false;
-
-            return true;
-        }
-
-        /// <summary>
-        /// Gets the file name from.
-        /// </summary>
-        /// <param name="s">The s.</param>
-        /// <returns></returns>
-        public static string GetFileName(this string s)
-        {
-            if (!s.Contains("\\"))
-                return s;
-
-            var parts = s.Split('\\');
-            return parts[parts.Length - 1];
-        }
-
-        public static string GetFilePath(this string s)
-        {
-            if (!s.Contains("\\"))
-                return s;
-
-            var parts = s.Split('\\');
-            if (parts.Length <= 2)
-                return parts[0];
-
-            var path = string.Empty;
-            for (var i = 0; i < parts.Length - 1; i++)
-                path += parts[i] + "\\";
-
-            return path;
+            return !FilesystemReservedCharacters.Any(s.Contains);
         }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.Practices.Prism.Mvvm;
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
-    /// Application state.
+    /// Represents an application state.
     /// </summary>
     public abstract class ApplicationState : BindableBase
     {
@@ -21,12 +21,17 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         public List<LibraryConnection> Connections { get; set; }
 
+        /// <summary>
+        /// Sets the user and their login time to now.
+        /// </summary>
+        /// <param name="user">A user.</param>
         public virtual void SetUser(User user)
         {
+            User = user;
+
             if (user == null)
                 return;
 
-            User = user;
             User.LastLogin = DateTime.Now;
         }
 

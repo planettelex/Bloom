@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9FB44FE0-7DA3-47B2-9C04-2D406C9A6EFC}</ProjectGuid>
+    <ProjectGuid>{BBCA21F7-7FC6-44EA-971F-00DB55616DE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Domain.Tests</RootNamespace>
-    <AssemblyName>Bloom.Domain.Tests</AssemblyName>
+    <RootNamespace>Bloom.Common.Tests</RootNamespace>
+    <AssemblyName>Bloom.Common.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,18 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Prism.Mvvm.1.0.0\lib\net45\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -65,39 +53,20 @@
     <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Models\AlbumModelTests.cs" />
-    <Compile Include="Models\ActivityModelTests.cs" />
-    <Compile Include="Models\ArtistModelTests.cs" />
-    <Compile Include="Models\FiltersetModelTests.cs" />
-    <Compile Include="Models\GenreModelTests.cs" />
-    <Compile Include="Models\HolidayModelTests.cs" />
-    <Compile Include="Models\LabelModelTests.cs" />
-    <Compile Include="Models\LibraryModelTests.cs" />
-    <Compile Include="Models\MoodModelTests.cs" />
-    <Compile Include="Models\PersonModelTests.cs" />
-    <Compile Include="Models\PhotoModelTests.cs" />
-    <Compile Include="Models\PlaylistModelTests.cs" />
-    <Compile Include="Models\SourceModelTests.cs" />
-    <Compile Include="Models\ReferenceModelTests.cs" />
-    <Compile Include="Models\ReviewModelTests.cs" />
-    <Compile Include="Models\RoleModelTests.cs" />
-    <Compile Include="Models\SongModelTests.cs" />
-    <Compile Include="Models\TagModelTests.cs" />
-    <Compile Include="Models\TimeSignatureModelTests.cs" />
+    <Compile Include="RegExPatternTests.cs" />
+    <Compile Include="BuidTests.cs" />
+    <Compile Include="BloomProcessTests.cs" />
+    <Compile Include="ExtensionMethods\StringExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Bloom.Domain\Bloom.Domain.csproj">
-      <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
-      <Name>Bloom.Domain</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

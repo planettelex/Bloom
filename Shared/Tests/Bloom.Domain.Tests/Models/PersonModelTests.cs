@@ -24,6 +24,10 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(person.Name, PersonName);
         }
 
+        /// <summary>
+        /// Tests the person properties.
+        /// </summary>
+        [Test]
         public void PersonPropertiesTest()
         {
             var id = Guid.NewGuid();

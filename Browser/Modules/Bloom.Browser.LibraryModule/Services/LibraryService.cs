@@ -13,6 +13,7 @@ using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
+using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -174,17 +175,8 @@ namespace Bloom.Browser.LibraryModule.Services
 
         private Tab CreateNewTab(Library library, ViewType viewType)
         {
-            return new Tab
-            {
-                Id = Guid.NewGuid(),
-                Order = State.GetNextTabOrder(),
-                Type = TabType.Library,
-                Header = library.Name,
-                Process = ProcessType.Browser,
-                LibraryId = library.Id,
-                EntityId = library.Id,
-                View = viewType.ToString()
-            };
+            var libraryBuid = new Buid(library.Id, BloomEntity.Library, library.Id);
+            return Tab.Create(ProcessType.Browser, State.User, libraryBuid, State.GetNextTabOrder(), TabType.Library, library.Name, viewType.ToString());
         }
     }
 }
