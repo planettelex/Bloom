@@ -7,6 +7,9 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
 {
+    /// <summary>
+    /// Access methods for user data.
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         /// <summary>
@@ -70,7 +73,7 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
-        /// Adds the user.
+        /// Adds a user.
         /// </summary>
         /// <param name="user">The user.</param>
         public void AddUser(User user)
@@ -81,7 +84,7 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
-        /// Deletes the user.
+        /// Deletes a user.
         /// </summary>
         /// <param name="user">The user.</param>
         public void DeleteUser(User user)

@@ -7,7 +7,7 @@ using Bloom.State.Domain.Models;
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for the player state.
+    /// Access methods for player state data.
     /// </summary>
     public class PlayerStateRepository : IPlayerStateRepository
     {
@@ -28,7 +28,7 @@ namespace Bloom.State.Data.Respositories
         /// <summary>
         /// Determines whether the player state exists.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="user">The user.</param>
         public bool PlayerStateExists(User user)
         {
             if (!_dataSource.IsConnected() || user == null)
@@ -38,9 +38,9 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
-        /// Gets the state of the player.
+        /// Gets player state.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="user">The user.</param>
         public PlayerState GetPlayerState(User user)
         {
             if (!_dataSource.IsConnected() || user == null)
@@ -63,9 +63,9 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
-        /// Adds the state of the player.
+        /// Adds the player state.
         /// </summary>
-        /// <param name="playerState">State of the player.</param>
+        /// <param name="playerState">The player state.</param>
         public void AddPlayerState(PlayerState playerState)
         {
             if (!_dataSource.IsConnected() || playerState == null || playerState.User == null || playerState.UserId == Guid.Empty || PlayerStateExists(playerState.User))

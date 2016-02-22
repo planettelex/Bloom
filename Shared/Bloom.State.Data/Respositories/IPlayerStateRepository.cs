@@ -3,25 +3,26 @@
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for the player state.
+    /// Access methods for player state data.
     /// </summary>
     public interface IPlayerStateRepository
     {
         /// <summary>
         /// Determines whether the player state exists.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="user">The user.</param>
         bool PlayerStateExists(User user);
 
         /// <summary>
-        /// Gets the state of the player.
+        /// Gets player state.
         /// </summary>
+        /// <param name="user">The user.</param>
         PlayerState GetPlayerState(User user);
 
         /// <summary>
-        /// Adds the state of the player.
+        /// Adds the player state.
         /// </summary>
-        /// <param name="playerState">State of the player.</param>
+        /// <param name="playerState">The player state.</param>
         void AddPlayerState(PlayerState playerState);
     }
 }

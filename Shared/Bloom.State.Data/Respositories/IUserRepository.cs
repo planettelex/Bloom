@@ -4,6 +4,9 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
 {
+    /// <summary>
+    /// Access methods for user data.
+    /// </summary>
     public interface IUserRepository
     {
         /// <summary>
@@ -23,13 +26,13 @@ namespace Bloom.State.Data.Respositories
         List<User> ListUsers();
 
         /// <summary>
-        /// Adds the user.
+        /// Adds a user.
         /// </summary>
         /// <param name="user">The user.</param>
         void AddUser(User user);
 
         /// <summary>
-        /// Deletes the user.
+        /// Deletes a user.
         /// </summary>
         /// <param name="user">The user.</param>
         void DeleteUser(User user);

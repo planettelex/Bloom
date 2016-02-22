@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bloom.State.Data.Properties {
+namespace Bloom.Data.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,10 +25,19 @@ namespace Bloom.State.Data.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Active.blms")]
-        public string DatabaseFile {
+        [global::System.Configuration.DefaultSettingValueAttribute("Bloom")]
+        public string LocalFolder {
             get {
-                return ((string)(this["DatabaseFile"]));
+                return ((string)(this["LocalFolder"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tests")]
+        public string TestsFolder {
+            get {
+                return ((string)(this["TestsFolder"]));
             }
         }
     }

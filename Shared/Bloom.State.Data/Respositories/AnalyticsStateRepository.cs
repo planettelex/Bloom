@@ -8,7 +8,7 @@ using Bloom.State.Domain.Models;
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for the analytics state.
+    /// Access methods for analytics state data.
     /// </summary>
     public class AnalyticsStateRepository : IAnalyticsStateRepository
     {
@@ -44,6 +44,7 @@ namespace Bloom.State.Data.Respositories
         /// <summary>
         /// Gets the analytics state.
         /// </summary>
+        /// <param name="user">The user.</param>
         public AnalyticsState GetAnalyticsState(User user)
         {
             if (!_dataSource.IsConnected() || user == null)
@@ -67,9 +68,9 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
-        /// Adds the state of the analytics.
+        /// Adds the analytics state.
         /// </summary>
-        /// <param name="analyticsState">State of the analytics.</param>
+        /// <param name="analyticsState">The analytics state.</param>
         public void AddAnalyticsState(AnalyticsState analyticsState)
         {
             if (!_dataSource.IsConnected() || analyticsState == null || analyticsState.User == null || analyticsState.UserId == Guid.Empty || AnalyticsStateExists(analyticsState.User))

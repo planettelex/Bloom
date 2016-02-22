@@ -85,6 +85,11 @@
     <Compile Include="Interfaces\ITableService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LibraryDataSource.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\ArtistRepository.cs" />
     <Compile Include="Repositories\FiltersetRepository.cs" />
@@ -112,6 +117,7 @@
     <Compile Include="Repositories\MoodRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Services\LibraryTableService.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Tables\ActivityTable.cs" />
     <Compile Include="Tables\AlbumActivityTable.cs" />
     <Compile Include="Tables\AlbumArtworkTable.cs" />
@@ -189,6 +195,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="x64\SQLite.Interop.dll">

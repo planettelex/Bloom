@@ -40,7 +40,7 @@ namespace Bloom.State.Data
         public DataContext Context { get; private set; }
 
         /// <summary>
-        /// Registers the repositories.
+        /// Registers the repositories with the DI container.
         /// </summary>
         public void RegisterRepositories()
         {
@@ -151,9 +151,9 @@ namespace Bloom.State.Data
         }
 
         /// <summary>
-        /// Refreshes the specified object.
+        /// Refreshes the specified object from the data source.
         /// </summary>
-        /// <param name="toRefresh">The entitiy to refresh.</param>
+        /// <param name="toRefresh">The entity to refresh.</param>
         public void Refresh(object toRefresh)
         {
             if (toRefresh == null)
@@ -163,6 +163,10 @@ namespace Bloom.State.Data
                 Context.Refresh(RefreshMode.OverwriteCurrentValues, toRefresh);
         }
 
+        /// <summary>
+        /// Refreshes the specified object collection from the data source.
+        /// </summary>
+        /// <param name="toRefresh">The collection to refresh.</param>
         public void Refresh(IEnumerable<object> toRefresh)
         {
             if (toRefresh == null)
@@ -196,11 +200,12 @@ namespace Bloom.State.Data
             FilePath = null;
         }
 
-        private string GetStateDatabasePath()
+        /// <summary>
+        /// Gets the state database path.
+        /// </summary>
+        private static string GetStateDatabasePath()
         {
-            var appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            var localDataFolder = Path.Combine(appDataFolder, Properties.Settings.Default.LocalFolder);
-            return Path.Combine(localDataFolder, Properties.Settings.Default.DatabaseFile);
+            return Path.Combine(Bloom.Data.Settings.LocalDataPath, Properties.Settings.Default.DatabaseFile);
         }
     }
 }

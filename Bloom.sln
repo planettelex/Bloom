@@ -128,6 +128,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Common.Tests", "Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Domain.Tests", "Shared\Tests\Bloom.State.Domain.Tests\Bloom.State.Domain.Tests.csproj", "{AE37AEBA-FD71-4643-814F-A8E554A337B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Data.Tests", "Shared\Tests\Bloom.Data.Tests\Bloom.Data.Tests.csproj", "{65823186-3F94-463C-8F34-FA78CF9CB6D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Data.Tests", "Shared\Tests\Bloom.State.Data.Tests\Bloom.State.Data.Tests.csproj", "{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -330,6 +334,14 @@ Global
 		{AE37AEBA-FD71-4643-814F-A8E554A337B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE37AEBA-FD71-4643-814F-A8E554A337B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE37AEBA-FD71-4643-814F-A8E554A337B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65823186-3F94-463C-8F34-FA78CF9CB6D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65823186-3F94-463C-8F34-FA78CF9CB6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65823186-3F94-463C-8F34-FA78CF9CB6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65823186-3F94-463C-8F34-FA78CF9CB6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -392,6 +404,8 @@ Global
 		{DDBC521E-2B45-49F2-B9F5-743EEFE9122A} = {C7EDF224-02A4-4A92-AA84-490C17D240DE}
 		{BBCA21F7-7FC6-44EA-971F-00DB55616DE7} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
 		{AE37AEBA-FD71-4643-814F-A8E554A337B9} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
+		{65823186-3F94-463C-8F34-FA78CF9CB6D0} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
+		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

@@ -62,7 +62,7 @@ namespace Bloom.Services
             State.Tabs.Remove(tab);
             State.CondenseTabOrders();
 
-            TabRepository.RemoveTab(tab);
+            TabRepository.DeleteTab(tab);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Bloom.Services
                 return;
 
             foreach (var tab in State.Tabs)
-                TabRepository.RemoveTab(tab);
+                TabRepository.DeleteTab(tab);
 
             State.Tabs = new List<Tab>();
         }
@@ -95,7 +95,7 @@ namespace Bloom.Services
             {
                 foreach (var tab in State.Tabs)
                     if (tab.Id != exemptTab.Id)
-                        TabRepository.RemoveTab(tab);
+                        TabRepository.DeleteTab(tab);
 
                 exemptTab.Order = 1;
                 State.Tabs = new List<Tab> { exemptTab };

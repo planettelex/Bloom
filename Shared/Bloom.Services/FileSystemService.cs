@@ -8,7 +8,7 @@ namespace Bloom.Services
     {
         public FileSystemService()
         {
-            var localDataFolder = State.Data.Settings.LocalDataPath;
+            var localDataFolder = Data.Settings.LocalDataPath;
             _userProfilesFolder = Path.Combine(localDataFolder, Properties.Settings.Default.UserProfilesFolder);
             if(!Directory.Exists(_userProfilesFolder))
                 Directory.CreateDirectory(_userProfilesFolder);

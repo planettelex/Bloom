@@ -5,7 +5,7 @@ using Bloom.State.Domain.Models;
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for library connections.
+    /// Access methods for library connection data.
     /// </summary>
     public interface ILibraryConnectionRepository
     {
@@ -27,9 +27,9 @@ namespace Bloom.State.Data.Respositories
         List<LibraryConnection> ListLibraryConnections();
 
         /// <summary>
-        /// Lists the library connections.
+        /// Lists the library connections by connection status.
         /// </summary>
-        /// <param name="connected">if set to <c>true</c> [connected].</param>
+        /// <param name="connected">If true, gets only the connected libraries.</param>
         List<LibraryConnection> ListLibraryConnections(bool connected);
 
         /// <summary>
@@ -45,13 +45,13 @@ namespace Bloom.State.Data.Respositories
         void AddLibraryConnections(List<LibraryConnection> libraryConnections);
 
         /// <summary>
-        /// Adds the library connection.
+        /// Adds a library connection.
         /// </summary>
         /// <param name="libraryConnection">The library connection.</param>
         void AddLibraryConnection(LibraryConnection libraryConnection);
 
         /// <summary>
-        /// Deletes the library connection.
+        /// Deletes a library connection.
         /// </summary>
         /// <param name="libraryConnection">The library connection.</param>
         void DeleteLibraryConnection(LibraryConnection libraryConnection);

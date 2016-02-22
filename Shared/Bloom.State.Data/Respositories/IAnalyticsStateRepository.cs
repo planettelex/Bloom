@@ -3,7 +3,7 @@
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for the analytics state.
+    /// Access methods for analytics state data.
     /// </summary>
     public interface IAnalyticsStateRepository
     {
@@ -20,9 +20,9 @@ namespace Bloom.State.Data.Respositories
         AnalyticsState GetAnalyticsState(User user);
 
         /// <summary>
-        /// Adds the state of the analytics.
+        /// Adds the analytics state.
         /// </summary>
-        /// <param name="analyticsState">State of the analytics.</param>
+        /// <param name="analyticsState">The analytics state.</param>
         void AddAnalyticsState(AnalyticsState analyticsState);
     }
 }

@@ -3,7 +3,7 @@
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for the browser state.
+    /// Access methods for browser state data.
     /// </summary>
     public interface IBrowserStateRepository
     {
@@ -20,9 +20,9 @@ namespace Bloom.State.Data.Respositories
         BrowserState GetBrowserState(User user);
 
         /// <summary>
-        /// Adds the state of the browser.
+        /// Adds the browser state.
         /// </summary>
-        /// <param name="browserState">State of the browser.</param>
+        /// <param name="browserState">The browser state.</param>
         void AddBrowserState(BrowserState browserState);
     }
 }

@@ -5,8 +5,5 @@
     <Setting Name="DatabaseFile" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Active.blms</Value>
     </Setting>
-    <Setting Name="LocalFolder" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Bloom</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

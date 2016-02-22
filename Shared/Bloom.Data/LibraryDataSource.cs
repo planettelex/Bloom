@@ -10,6 +10,9 @@ using Microsoft.Practices.Unity;
 
 namespace Bloom.Data
 {
+    /// <summary>
+    /// A file-based LINQ compatable data source for handling library data.
+    /// </summary>
     public class LibraryDataSource : IDataSource
     {
         /// <summary>
@@ -35,7 +38,7 @@ namespace Bloom.Data
         public DataContext Context { get; private set; }
 
         /// <summary>
-        /// Registers the repositories.
+        /// Registers the repositories with the DI container.
         /// </summary>
         public void RegisterRepositories()
         {
@@ -149,15 +152,19 @@ namespace Bloom.Data
         }
 
         /// <summary>
-        /// Refreshes the specified object.
+        /// Refreshes the specified object from the data source.
         /// </summary>
-        /// <param name="toRefresh">The entitiy to refresh.</param>
+        /// <param name="toRefresh">The entity to refresh.</param>
         public void Refresh(object toRefresh)
         {
             if (IsConnected())
                 Context.Refresh(RefreshMode.OverwriteCurrentValues, toRefresh);
         }
 
+        /// <summary>
+        /// Refreshes the specified object collection from the data source.
+        /// </summary>
+        /// <param name="toRefresh">The collection to refresh.</param>
         public void Refresh(IEnumerable<object> toRefresh)
         {
             if (IsConnected())

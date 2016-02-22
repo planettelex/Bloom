@@ -19,7 +19,7 @@ namespace Bloom.Data.Interfaces
         DataContext Context { get; }
 
         /// <summary>
-        /// Registers the repositories.
+        /// Registers the repositories with the DI container.
         /// </summary>
         void RegisterRepositories();
 
@@ -56,11 +56,15 @@ namespace Bloom.Data.Interfaces
         void Save();
 
         /// <summary>
-        /// Refreshes the specified to refresh.
+        /// Refreshes the specified object from the data source.
         /// </summary>
-        /// <param name="toRefresh">To refresh.</param>
+        /// <param name="toRefresh">The entity to refresh.</param>
         void Refresh(object toRefresh);
 
+        /// <summary>
+        /// Refreshes the specified object collection from the data source.
+        /// </summary>
+        /// <param name="toRefresh">The collection to refresh.</param>
         void Refresh(IEnumerable<object> toRefresh);
 
         /// <summary>

@@ -19,8 +19,12 @@ namespace Bloom.State.Data.Respositories
             _dataSource = dataSource;
         }
         private readonly IDataSource _dataSource;
-        private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } } 
+        private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } }
 
+        /// <summary>
+        /// Gets the tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier.</param>
         public Tab GetTab(Guid tabId)
         {
             var tabsQuery =
@@ -58,7 +62,7 @@ namespace Bloom.State.Data.Respositories
                 TabTable.InsertOnSubmit(tab);
         }
 
-        public void RemoveTab(Tab tab)
+        public void DeleteTab(Tab tab)
         {
             if (!_dataSource.IsConnected())
                 return;

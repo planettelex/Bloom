@@ -8,7 +8,7 @@ using Bloom.State.Domain.Models;
 namespace Bloom.State.Data.Respositories
 {
     /// <summary>
-    /// Repository for the browser state.
+    /// Access methods for browser state data.
     /// </summary>
     public class BrowserStateRepository : IBrowserStateRepository
     {
@@ -44,7 +44,7 @@ namespace Bloom.State.Data.Respositories
         /// <summary>
         /// Gets the browser state.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="user">The user.</param>
         public BrowserState GetBrowserState(User user)
         {
             if (!_dataSource.IsConnected() || user == null)
@@ -68,9 +68,9 @@ namespace Bloom.State.Data.Respositories
         }
 
         /// <summary>
-        /// Adds the state of the browser.
+        /// Adds the browser state.
         /// </summary>
-        /// <param name="browserState">State of the browser.</param>
+        /// <param name="browserState">The browser state.</param>
         public void AddBrowserState(BrowserState browserState)
         {
             if (!_dataSource.IsConnected() || browserState == null || browserState.User == null || browserState.UserId == Guid.Empty || BrowserStateExists(browserState.User))
