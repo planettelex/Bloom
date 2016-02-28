@@ -2,6 +2,9 @@
 
 namespace Bloom.Domain.Interfaces
 {
+    /// <summary>
+    /// A data order.
+    /// </summary>
     public interface IOrder
     {
         /// <summary>

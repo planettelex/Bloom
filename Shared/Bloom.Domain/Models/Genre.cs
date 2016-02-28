@@ -19,7 +19,7 @@ namespace Bloom.Domain.Models
             return new Genre
             {
                 Id = Guid.NewGuid(),
-                Name = name
+                Name = name,
             };
         }
 
@@ -71,11 +71,20 @@ namespace Bloom.Domain.Models
         /// Gets or sets the parent genre identifier.
         /// </summary>
         [Column(Name = "parent_genre_id")]
-        public Guid ParentGenreId { get; set; }
+        public Guid? ParentGenreId { get; set; }
 
         /// <summary>
         /// Gets or sets the parent genre.
         /// </summary>
-        public Genre ParentGenre { get; set; }
+        public Genre ParentGenre 
+        { 
+            get { return _parentGenre; }
+            set
+            {
+                _parentGenre = value;
+                ParentGenreId = _parentGenre == null ? (Guid?) null : _parentGenre.Id;
+            } 
+        }
+        private Genre _parentGenre;
     }
 }

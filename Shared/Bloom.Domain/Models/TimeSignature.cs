@@ -15,13 +15,13 @@ namespace Bloom.Domain.Models
         /// </summary>
         /// <param name="beats">The number of beats per measure.</param>
         /// <param name="noteLength">The length of each beat.</param>
-        public static TimeSignature Create(int beats, NoteLength noteLength)
+        public static TimeSignature Create(int beats, BeatLength noteLength)
         {
             return new TimeSignature
             {
                 Id = Guid.NewGuid(),
-                Beats = beats,
-                NoteLength = noteLength
+                BeatsPerMeasure = beats,
+                BeatLength = noteLength
             };
         }
 
@@ -32,23 +32,23 @@ namespace Bloom.Domain.Models
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the time signature beats.
+        /// Gets or sets the time signature beats per measure.
         /// </summary>
-        [Column(Name = "beats")]
-        public int Beats { get; set; }
+        [Column(Name = "beats_per_measure")]
+        public int BeatsPerMeasure { get; set; }
 
         /// <summary>
-        /// Gets or sets the length of each note in the time signature.
+        /// Gets or sets the length of each beat in the time signature.
         /// </summary>
-        [Column(Name = "note_length")]
-        public NoteLength NoteLength { get; set; }
+        [Column(Name = "beat_length")]
+        public BeatLength BeatLength { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         public override string ToString()
         {
-            return Beats + "/" + (int) NoteLength;
+            return BeatsPerMeasure + "/" + (int) BeatLength;
         }
     }
 }

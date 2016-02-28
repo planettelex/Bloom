@@ -1,5 +1,8 @@
 ﻿namespace Bloom.Domain.Enums
 {
+    /// <summary>
+    /// Conditions for physical media.
+    /// </summary>
     public enum Condition
     {
         None,

@@ -55,7 +55,7 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the selected tab identifier.
         /// </summary>
         [Column(Name = "selected_tab_id")]
-        public Guid SelectedTabId { get; set; }
+        public Guid? SelectedTabId { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the sidebar is visible.

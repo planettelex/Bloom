@@ -17,11 +17,11 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void CreateTimeSignatureTest()
         {
-            var timeSignature = TimeSignature.Create(4, NoteLength.Quarter);
+            var timeSignature = TimeSignature.Create(4, BeatLength.Quarter);
 
             Assert.AreNotEqual(timeSignature.Id, Guid.Empty);
-            Assert.AreEqual(timeSignature.Beats, 4);
-            Assert.AreEqual(timeSignature.NoteLength, NoteLength.Quarter);
+            Assert.AreEqual(timeSignature.BeatsPerMeasure, 4);
+            Assert.AreEqual(timeSignature.BeatLength, BeatLength.Quarter);
             Assert.AreEqual(timeSignature.ToString(), "4/4");
         }
     }

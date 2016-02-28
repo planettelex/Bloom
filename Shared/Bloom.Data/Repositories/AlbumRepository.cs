@@ -128,8 +128,8 @@ namespace Bloom.Data.Repositories
                         TimeSignature = song.TimeSignatureId == Guid.Empty ? null : new TimeSignature
                         {
                             Id = timeSignature.Id,
-                            Beats = timeSignature.Beats,
-                            NoteLength = timeSignature.NoteLength
+                            BeatsPerMeasure = timeSignature.BeatsPerMeasure,
+                            BeatLength = timeSignature.BeatLength
                         },
                         AboutDayOfWeek = song.AboutDayOfWeek,
                         AboutTimeOfYear = song.AboutTimeOfYear,

@@ -2,6 +2,9 @@
 
 namespace Bloom.Domain.Interfaces
 {
+    /// <summary>
+    /// A data filter.
+    /// </summary>
     public interface IFilter
     {
         /// <summary>

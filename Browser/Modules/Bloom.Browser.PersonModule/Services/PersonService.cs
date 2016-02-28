@@ -64,7 +64,10 @@ namespace Bloom.Browser.PersonModule.Services
 
         public void RestorePersonTab(Tab tab)
         {
-            var person = new Person { Id = tab.EntityId }; // TODO: Make this data access call
+            if (tab == null || tab.EntityId == null)
+                return;
+
+            var person = new Person { Id = tab.EntityId.Value }; // TODO: Make this data access call
             var viewType = (ViewType)Enum.Parse(typeof(ViewType), tab.View);
             var personViewModel = new PersonViewModel(person, viewType, tab.Id);
             var personView = new PersonView(personViewModel);
@@ -81,8 +84,12 @@ namespace Bloom.Browser.PersonModule.Services
                 return;
 
             var personId = existingTab.Tab.EntityId;
-            var person = new Person { Id = personId }; // TODO: Make this data access call
-            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Artist, personId), existingTab.ViewType);
+            var libraryId = existingTab.Tab.LibraryId;
+            if (personId == null || libraryId == null)
+                return;
+
+            var person = new Person { Id = personId.Value }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(libraryId.Value, BloomEntity.Artist, personId.Value), existingTab.ViewType);
             var personViewModel = new PersonViewModel(person, existingTab.ViewType, tabId);
             var personView = new PersonView(personViewModel);
             var personTab = new ViewMenuTab(personViewModel.ViewType, tab, personView);

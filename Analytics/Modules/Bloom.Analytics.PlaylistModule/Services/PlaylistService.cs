@@ -62,7 +62,10 @@ namespace Bloom.Analytics.PlaylistModule.Services
 
         public void RestorePlaylistTab(Tab tab)
         {
-            var playlist = new Playlist { Id = tab.EntityId }; // TODO: Make this data access call
+            if (tab == null || tab.EntityId == null)
+                return;
+
+            var playlist = new Playlist { Id = tab.EntityId.Value }; // TODO: Make this data access call
             var playlistViewModel = new PlaylistViewModel(playlist, tab.Id);
             var playlistView = new PlaylistView(playlistViewModel);
             var playlistTab = new ViewMenuTab(tab, playlistView);
@@ -78,8 +81,12 @@ namespace Bloom.Analytics.PlaylistModule.Services
                 return;
 
             var playlistId = existingTab.Tab.EntityId;
-            var playlist = new Playlist { Id = playlistId }; // TODO: Make this data access call
-            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Playlist, playlistId));
+            var libraryId = existingTab.Tab.LibraryId;
+            if (playlistId == null || libraryId == null)
+                return;
+
+            var playlist = new Playlist { Id = playlistId.Value }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(libraryId.Value, BloomEntity.Playlist, playlistId.Value));
             var playlistViewModel = new PlaylistViewModel(playlist, tab.Id);
             var playlistView = new PlaylistView(playlistViewModel);
             var playlistTab = new ViewMenuTab(tab, playlistView);

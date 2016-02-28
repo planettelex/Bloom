@@ -2,6 +2,9 @@
 
 namespace Bloom.Domain.Enums
 {
+    /// <summary>
+    /// The key for a piece of music (i.e. A Major, C Sharp Minor).
+    /// </summary>
     [Flags]
     public enum MusicalKeys
     {

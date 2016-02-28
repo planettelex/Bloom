@@ -7,8 +7,32 @@ using Bloom.Domain.Models;
 
 namespace Bloom.Data.Repositories
 {
+    /// <summary>
+    /// Access methods for artist data.
+    /// </summary>
     public class ArtistRepository : IArtistRepository
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArtistRepository" /> class.
+        /// </summary>
+        /// <param name="roleRepository">The role repository.</param>
+        /// <param name="photoRespository">The photo respository.</param>
+        /// <param name="personRepository">The person repository.</param>
+        public ArtistRepository(IRoleRepository roleRepository, IPhotoRespository photoRespository, IPersonRepository personRepository)
+        {
+            _roleRepository = roleRepository;
+            _photoRespository = photoRespository;
+            _personRepository = personRepository;
+        }
+        private readonly IRoleRepository _roleRepository;
+        private readonly IPhotoRespository _photoRespository;
+        private readonly IPersonRepository _personRepository;
+
+        /// <summary>
+        /// Gets the artist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artistId">The artist identifier.</param>
         public Artist GetArtist(IDataSource dataSource, Guid artistId)
         {
             if (!dataSource.IsConnected())
@@ -39,30 +63,12 @@ namespace Bloom.Data.Repositories
 
             artist.Photos = photosQuery.ToList();
 
-            var personTable = PersonTable(dataSource);
             var artistMemberTable = ArtistMemberTable(dataSource);
             var membersQuery =
                 from member in artistMemberTable
-                join person in personTable on member.PersonId equals person.Id
                 where member.ArtistId == artistId
                 orderby member.Priority
-                select new ArtistMember
-                {
-                    Id = member.Id,
-                    ArtistId = artistId,
-                    Priority = member.Priority,
-                    Started = member.Started,
-                    Ended = member.Ended,
-                    PersonId = member.PersonId,
-                    Person = new Person
-                    {
-                        Id = person.Id,
-                        Name = person.Name,
-                        Twitter = person.Twitter,
-                        BornOn = person.BornOn,
-                        DiedOn = person.DiedOn
-                    }
-                };
+                select member;
 
             artist.Members = membersQuery.ToList();
 
@@ -70,20 +76,24 @@ namespace Bloom.Data.Repositories
                 return artist;
             
             var artistMemberRoleTable = ArtistMemberRoleTable(dataSource);
+            var personTable = PersonTable(dataSource);
             var roleTable = RoleTable(dataSource);
             foreach (var artistMember in artist.Members)
             {
                 var am = artistMember;
+                var personQuery =
+                    from person in personTable
+                    where person.Id == am.PersonId
+                    select person;
+
+                artistMember.Person = personQuery.SingleOrDefault();
+
                 var rolesQuery =
                     from amr in artistMemberRoleTable
                     join role in roleTable on amr.RoleId equals role.Id
                     where amr.ArtistMemberId == am.Id
                     orderby role.Name
-                    select new Role
-                    {
-                        Id = role.Id,
-                        Name = role.Name
-                    };
+                    select role;
 
                 artistMember.Roles = rolesQuery.ToList();
             }
@@ -91,6 +101,10 @@ namespace Bloom.Data.Repositories
             return artist;
         }
 
+        /// <summary>
+        /// Lists the artists.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
         public List<Artist> ListArtists(IDataSource dataSource)
         {
             if (!dataSource.IsConnected())
@@ -103,28 +117,33 @@ namespace Bloom.Data.Repositories
             var photoTable = PhotoTable(dataSource);
             var artistPhotoTable = ArtistPhotoTable(dataSource);
             var artistsQuery =
-                from artist in artistTable
-                join ap in artistPhotoTable on new { A = artist.Id, B = 1 } equals new { A = ap.ArtistId, B = ap.Priority }
-                join photo in photoTable on ap.PhotoId equals photo.Id
-                orderby artist.Name
-                select new Artist
+                from a in artistTable
+                from artistPhoto in artistPhotoTable.Where(ap => ap.ArtistId == a.Id && ap.Priority == 1).DefaultIfEmpty()
+                from photo in photoTable.Where(p => artistPhoto.PhotoId == p.Id).DefaultIfEmpty()
+                orderby a.Name
+                select new 
                 {
-                    Id = artist.Id,
-                    StartedOn = artist.StartedOn,
-                    EndedOn = artist.EndedOn,
-                    IsSolo = artist.IsSolo,
-                    ProfileImage = new Photo
-                    {
-                        Id = photo.Id,
-                        FilePath = photo.FilePath,
-                        Caption = photo.Caption,
-                        TakenOn = photo.TakenOn
-                    }
+                    Artist = a,
+                    ProfileImage = photo
                 };
 
-            return artistsQuery.ToList();
+            var results = artistsQuery.ToList();
+            var artists = new List<Artist>();
+            foreach (var result in results)
+            {
+                var artist = result.Artist;
+                artist.ProfileImage = result.ProfileImage;
+                artists.Add(artist);
+            }
+
+            return artists;
         }
 
+        /// <summary>
+        /// Adds an artist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artist">The artist.</param>
         public void AddArtist(IDataSource dataSource, Artist artist)
         {
             if (!dataSource.IsConnected())
@@ -135,24 +154,68 @@ namespace Bloom.Data.Repositories
                 return;
 
             artistTable.InsertOnSubmit(artist);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds an artist member.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="member">The artist member.</param>
         public void AddArtistMember(IDataSource dataSource, ArtistMember member)
         {
             if (!dataSource.IsConnected())
                 return;
+
+            if (!_personRepository.PersonExists(dataSource, member.PersonId))
+                _personRepository.AddPerson(dataSource, member.Person);
 
             var artistMemberTable = ArtistMemberTable(dataSource);
             if (artistMemberTable == null)
                 return;
 
             artistMemberTable.InsertOnSubmit(member);
+            dataSource.Save();
         }
 
-        public void AddArtistPhoto(IDataSource dataSource, Artist artist, Photo photo, int priority)
+        /// <summary>
+        /// Adds an artist member role.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="member">The member.</param>
+        /// <param name="role">The role.</param>
+        public void AddArtistMemberRole(IDataSource dataSource, ArtistMember member, Role role)
         {
             if (!dataSource.IsConnected())
                 return;
+
+            if (!_roleRepository.RoleExists(dataSource, role.Id))
+                _roleRepository.AddRole(dataSource, role);
+
+            var artistMemberRoleTable = ArtistMemberRoleTable(dataSource);
+            if (artistMemberRoleTable == null)
+                return;
+
+            var artistMemberRole = ArtistMemberRole.Create(member, role);
+
+            artistMemberRoleTable.InsertOnSubmit(artistMemberRole);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Adds an artist photo.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artist">An artist.</param>
+        /// <param name="photo">The photo.</param>
+        /// <param name="priority">The priority.</param>
+        public void AddArtistPhoto(IDataSource dataSource, Artist artist, Photo photo, int priority)
+        {
+            if (!dataSource.IsConnected() || photo == null)
+                return;
+
+            if (!_photoRespository.PhotoExists(dataSource, photo.Id))
+                _photoRespository.AddPhoto(dataSource, photo);
 
             var artistPhotoTable = ArtistPhotoTable(dataSource);
             if (artistPhotoTable == null)
@@ -160,21 +223,14 @@ namespace Bloom.Data.Repositories
 
             var artistPhoto = ArtistPhoto.Create(artist, photo, priority);
             artistPhotoTable.InsertOnSubmit(artistPhoto);
+            dataSource.Save();
         }
 
-        public void AddArtistReference(IDataSource dataSource, Artist artist, Reference reference)
-        {
-            if (!dataSource.IsConnected())
-                return;
-
-            var artistReferenceTable = ArtistReferenceTable(dataSource);
-            if (artistReferenceTable == null)
-                return;
-
-            var artistReference = ArtistReference.Create(artist, reference);
-            artistReferenceTable.InsertOnSubmit(artistReference);
-        }
-
+        /// <summary>
+        /// Deletes an artist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artist">The artist.</param>
         public void DeleteArtist(IDataSource dataSource, Artist artist)
         {
             if (!dataSource.IsConnected())
@@ -184,8 +240,54 @@ namespace Bloom.Data.Repositories
             if (artistTable == null)
                 return;
 
+            if (artist.Photos != null)
+            {
+                var artistPhotoTable = ArtistPhotoTable(dataSource);
+                foreach (var photo in artist.Photos)
+                {
+                    var p = photo;
+                    var artistPhotoQuery =
+                        from ap in artistPhotoTable
+                        where ap.ArtistId == artist.Id && ap.PhotoId == p.Id
+                        select ap;
+
+                    var artistPhoto = artistPhotoQuery.SingleOrDefault();
+                    if (artistPhoto != null)
+                        artistPhotoTable.DeleteOnSubmit(artistPhoto);
+                }
+                dataSource.Save();
+            }
+
+            if (artist.Members != null)
+            {
+                var artistMemberTable = ArtistMemberTable(dataSource);
+                var artistMemberRoleTable = ArtistMemberRoleTable(dataSource);
+                foreach (var member in artist.Members)
+                {
+                    var m = member;
+                    foreach (var role in m.Roles)
+                    {
+                        var r = role;
+                        var artistMemberRoleQuery =
+                            from amr in artistMemberRoleTable
+                            where amr.ArtistMemberId == m.Id && amr.RoleId == r.Id
+                            select amr;
+
+                        var artistMemberRole = artistMemberRoleQuery.SingleOrDefault();
+                        if (artistMemberRole != null)
+                            artistMemberRoleTable.DeleteOnSubmit(artistMemberRole);
+                    }
+                    dataSource.Save();
+                    artistMemberTable.DeleteOnSubmit(m);
+                }
+                dataSource.Save();
+            }
+
             artistTable.DeleteOnSubmit(artist);
+            dataSource.Save();
         }
+
+        #region Tables
 
         private static Table<Artist> ArtistTable(IDataSource dataSource)
         {
@@ -195,11 +297,6 @@ namespace Bloom.Data.Repositories
         private static Table<ArtistPhoto> ArtistPhotoTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<ArtistPhoto>() : null;
-        }
-
-        private static Table<ArtistReference> ArtistReferenceTable(IDataSource dataSource)
-        {
-            return dataSource != null ? dataSource.Context.GetTable<ArtistReference>() : null;
         }
 
         private static Table<ArtistMember> ArtistMemberTable(IDataSource dataSource)
@@ -217,7 +314,7 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
         }
 
-        private static IEnumerable<Person> PersonTable(IDataSource dataSource)
+        private static Table<Person> PersonTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
         }
@@ -226,5 +323,7 @@ namespace Bloom.Data.Repositories
         {
             return dataSource != null ? dataSource.Context.GetTable<Photo>() : null;
         }
+
+        #endregion
     }
 }

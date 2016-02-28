@@ -62,7 +62,10 @@ namespace Bloom.Browser.SongModule.Services
 
         public void RestoreSongTab(Tab tab)
         {
-            var song = new Song { Id = tab.EntityId }; // TODO: Make this data access call
+            if (tab == null || tab.EntityId == null)
+                return;
+
+            var song = new Song { Id = tab.EntityId.Value }; // TODO: Make this data access call
             var songViewModel = new SongViewModel(song, tab.Id);
             var songView = new SongView(songViewModel);
             var songTab = new ViewMenuTab(tab, songView);
@@ -78,8 +81,12 @@ namespace Bloom.Browser.SongModule.Services
                 return;
 
             var songId = existingTab.Tab.EntityId;
-            var song = new Song { Id = songId }; // TODO: Make this data access call
-            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Song, songId));
+            var libraryId = existingTab.Tab.LibraryId;
+            if (songId == null || libraryId == null)
+                return;
+
+            var song = new Song { Id = songId.Value }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(libraryId.Value, BloomEntity.Song, songId.Value));
             var songViewModel = new SongViewModel(song, tab.Id);
             var songView = new SongView(songViewModel);
             var songTab = new ViewMenuTab(tab, songView);

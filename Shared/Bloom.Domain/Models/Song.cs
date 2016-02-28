@@ -23,7 +23,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                ArtistId = artist.Id,
                 Artist = artist
             };
         }
@@ -43,7 +42,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the song's artist.
         /// </summary>
-        public Artist Artist { get; set; }
+        public Artist Artist
+        {
+            get { return _artist; }
+            set
+            {
+                _artist = value;
+                ArtistId = _artist == null ? Guid.Empty : _artist.Id;
+            }
+        }
+        private Artist _artist;
 
         /// <summary>
         /// Gets or sets the song name.
@@ -82,12 +90,21 @@ namespace Bloom.Domain.Models
         /// Gets or sets the song genre identifier.
         /// </summary>
         [Column(Name = "genre_id")]
-        public Guid GenreId { get; set; }
+        public Guid? GenreId { get; set; }
 
         /// <summary>
         /// Gets or sets the song genre.
         /// </summary>
-        public Genre Genre { get; set; }
+        public Genre Genre 
+        {
+            get { return _genre; }
+            set
+            {
+                _genre = value;
+                GenreId = _genre == null ? (Guid?) null : _genre.Id;
+            }
+        }
+        private Genre _genre;
 
         /// <summary>
         /// Gets or sets the song's beats per minute.
@@ -105,12 +122,21 @@ namespace Bloom.Domain.Models
         /// Gets or sets the time signature identifier.
         /// </summary>
         [Column(Name = "time_signature_id")]
-        public Guid TimeSignatureId { get; set; }
+        public Guid? TimeSignatureId { get; set; }
 
         /// <summary>
         /// Gets or sets the song's time signature.
         /// </summary>
-        public TimeSignature TimeSignature { get; set; }
+        public TimeSignature TimeSignature
+        {
+            get { return _timeSignature; }
+            set
+            {
+                _timeSignature = value;
+                TimeSignatureId = _timeSignature == null ? (Guid?) null : _timeSignature.Id;
+            }
+        }
+        private TimeSignature _timeSignature;
 
         /// <summary>
         /// Gets or sets song description.
@@ -156,7 +182,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the original song identifier.
         /// </summary>
         [Column(Name = "original_song_id")]
-        public Guid OriginalSongId { get; set; }
+        public Guid? OriginalSongId { get; set; }
 
         /// <summary>
         /// Gets or sets whether this song is for a holiday.
@@ -168,12 +194,21 @@ namespace Bloom.Domain.Models
         /// Gets or sets the holiday identifier.
         /// </summary>
         [Column(Name = "holiday_id")]
-        public Guid HolidayId { get; set; }
+        public Guid? HolidayId { get; set; }
 
         /// <summary>
         /// Gets or sets the holiday.
         /// </summary>s
-        public Holiday Holiday { get; set; }
+        public Holiday Holiday
+        {
+            get { return _holiday; }
+            set
+            {
+                _holiday = value;
+                HolidayId = _holiday == null ? (Guid?) null : _holiday.Id;
+            }
+        }
+        private Holiday _holiday;
 
         /// <summary>
         /// Gets or sets whether this song has explicit content.

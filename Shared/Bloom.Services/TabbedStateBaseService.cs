@@ -138,7 +138,7 @@ namespace Bloom.Services
                 foreach (var tab in State.Tabs)
                 {
                     // Only open tabs for connected libraries, except home and getting started tabs which doesn't require one.
-                    if (tab.Type == TabType.GettingStarted || tab.Type == TabType.Home || State.IsConnected(tab.LibraryId))
+                    if (tab.Type == TabType.GettingStarted || tab.Type == TabType.Home || (tab.LibraryId != null && State.IsConnected(tab.LibraryId.Value)))
                     {
                         switch (tab.Type)
                         {

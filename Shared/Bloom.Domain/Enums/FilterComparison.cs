@@ -1,5 +1,8 @@
 ﻿namespace Bloom.Domain.Enums
 {
+    /// <summary>
+    /// Comparison expressions for filtering.
+    /// </summary>
     public enum FilterComparison
     {
         None,

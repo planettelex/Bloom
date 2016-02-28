@@ -200,9 +200,9 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void CreateTimeSignatureTest()
         {
-            var timeSignature = TimeSignature.Create(4, NoteLength.Quarter);
-            Assert.AreEqual(timeSignature.Beats, 4);
-            Assert.AreEqual(timeSignature.NoteLength, NoteLength.Quarter);
+            var timeSignature = TimeSignature.Create(4, BeatLength.Quarter);
+            Assert.AreEqual(timeSignature.BeatsPerMeasure, 4);
+            Assert.AreEqual(timeSignature.BeatLength, BeatLength.Quarter);
         }
 
         /// <summary>
@@ -213,11 +213,11 @@ namespace Bloom.Domain.Tests.Models
         {
             var timeSignature = new TimeSignature
             {
-                Beats = 6,
-                NoteLength = NoteLength.Eighth
+                BeatsPerMeasure = 6,
+                BeatLength = BeatLength.Eighth
             };
-            Assert.AreEqual(timeSignature.Beats, 6);
-            Assert.AreEqual(timeSignature.NoteLength, NoteLength.Eighth);
+            Assert.AreEqual(timeSignature.BeatsPerMeasure, 6);
+            Assert.AreEqual(timeSignature.BeatLength, BeatLength.Eighth);
             Assert.AreEqual(timeSignature.ToString(), "6/8");
         }
     }

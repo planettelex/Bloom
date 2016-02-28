@@ -68,7 +68,10 @@ namespace Bloom.Analytics.LibraryModule.Services
 
         public void RestoreLibraryTab(Tab tab)
         {
-            var datasource = State.GetConnectionData(tab.EntityId);
+            if (tab == null || tab.EntityId == null)
+                return;
+
+            var datasource = State.GetConnectionData(tab.EntityId.Value);
             if (datasource == null)
                 throw new NullReferenceException("Library datasource cannot be null.");
 
@@ -85,11 +88,10 @@ namespace Bloom.Analytics.LibraryModule.Services
         public void DuplicateLibraryTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
-            if (existingTab == null)
+            if (existingTab == null || existingTab.Tab == null || existingTab.Tab.EntityId == null)
                 return;
 
-
-            var datasource = State.GetConnectionData(existingTab.Tab.EntityId);
+            var datasource = State.GetConnectionData(existingTab.Tab.EntityId.Value);
             if (datasource == null)
                 throw new NullReferenceException("Library datasource cannot be null.");
 

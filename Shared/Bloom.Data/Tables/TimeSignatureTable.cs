@@ -13,8 +13,8 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE time_signature (" +
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "beats INTEGER NOT NULL , " +
-                       "note_length INTEGER NOT NULL )";
+                       "beats_per_measure INTEGER NOT NULL , " +
+                       "beat_length INTEGER NOT NULL )";
             }
         }
     }

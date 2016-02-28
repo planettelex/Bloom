@@ -114,7 +114,7 @@
     <Compile Include="Models\PersonReference.cs" />
     <Compile Include="Enums\MusicalKeys.cs" />
     <Compile Include="Enums\Month.cs" />
-    <Compile Include="Enums\NoteLength.cs" />
+    <Compile Include="Enums\BeatLength.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\PlaylistArtwork.cs" />
     <Compile Include="Models\PlaylistReference.cs" />

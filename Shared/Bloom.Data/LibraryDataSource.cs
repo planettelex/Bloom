@@ -42,22 +42,32 @@ namespace Bloom.Data
         /// </summary>
         public void RegisterRepositories()
         {
+            _container.RegisterType<IRoleRepository, RoleRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IRoleRepository>();
+            _container.RegisterType<IPhotoRespository, PhotoRespository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IPhotoRespository>();
             _container.RegisterType<IPersonRepository, PersonRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IPersonRepository>();
+            _container.RegisterType<IArtistRepository, ArtistRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IArtistRepository>();
+            _container.RegisterType<IHolidayRepository, HolidayRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IHolidayRepository>();
+            _container.RegisterType<IGenreRepository, GenreRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IGenreRepository>();
+            _container.RegisterType<ITimeSignatureRepository, TimeSignatureRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ITimeSignatureRepository>();
+            _container.RegisterType<ISongRepository, SongRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ISongRepository>();
             _container.RegisterType<ILibraryRepository, LibraryRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<ILibraryRepository>();
             _container.RegisterType<IAlbumRepository, AlbumRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IAlbumRepository>();
-            _container.RegisterType<IArtistRepository, ArtistRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<IArtistRepository>();
             _container.RegisterType<IFiltersetRepository, FiltersetRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IFiltersetRepository>();
             _container.RegisterType<ILabelRepository, LabelRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<ILabelRepository>();
             _container.RegisterType<IPlaylistRepository, PlaylistRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<PlaylistRepository>();
-            _container.RegisterType<ISongRepository, SongRepository>(new ContainerControlledLifetimeManager());
-            _container.Resolve<ISongRepository>();
         }
 
         /// <summary>

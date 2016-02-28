@@ -62,7 +62,10 @@ namespace Bloom.Analytics.AlbumModule.Services
 
         public void RestoreAlbumTab(Tab tab)
         {
-            var album = new Album { Id = tab.EntityId }; // TODO: Make this data access call
+            if (tab == null || tab.EntityId == null)
+                return;
+
+            var album = new Album { Id = tab.EntityId.Value }; // TODO: Make this data access call
             var albumViewModel = new AlbumViewModel(album, tab.Id);
             var albumView = new AlbumView(albumViewModel);
             var albumTab = new ViewMenuTab(tab, albumView);
@@ -78,8 +81,12 @@ namespace Bloom.Analytics.AlbumModule.Services
                 return;
 
             var albumId = existingTab.Tab.EntityId;
-            var album = new Album { Id = albumId }; // TODO: Make this data access call
-            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Album, albumId));
+            var libraryId = existingTab.Tab.LibraryId;
+            if (albumId == null || libraryId == null)
+                return;
+
+            var album = new Album { Id = albumId.Value }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(libraryId.Value, BloomEntity.Album, albumId.Value));
             var albumViewModel = new AlbumViewModel(album, tabId);
             var albumView = new AlbumView(albumViewModel);
             var albumTab = new ViewMenuTab(tab, albumView);

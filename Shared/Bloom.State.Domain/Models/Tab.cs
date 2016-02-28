@@ -83,13 +83,13 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the library identifier.
         /// </summary>
         [Column(Name = "library_id")]
-        public Guid LibraryId { get; set; }
+        public Guid? LibraryId { get; set; }
 
         /// <summary>
         /// Gets or sets the entity identifier contained in the tab.
         /// </summary>
         [Column(Name = "entity_id")]
-        public Guid EntityId { get; set; }
+        public Guid? EntityId { get; set; }
 
         /// <summary>
         /// Gets or sets the type of tab.

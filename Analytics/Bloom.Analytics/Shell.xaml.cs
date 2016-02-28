@@ -128,8 +128,8 @@ namespace Bloom.Analytics
             _loading = false;
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Publish(null);
             _stateService.RestoreTabs();
-            if (_tabs.ContainsKey(State.SelectedTabId))
-                Dock.ActivePane = _tabs[State.SelectedTabId];
+            if (State.SelectedTabId != null && _tabs.ContainsKey(State.SelectedTabId.Value))
+                Dock.ActivePane = _tabs[State.SelectedTabId.Value];
         }
 
         /// <summary>
@@ -204,17 +204,21 @@ namespace Bloom.Analytics
 
         private void CloseOtherTabs(object nothing)
         {
-            _stateService.RemoveAllTabsExcept(State.SelectedTabId);
-
-            var selectedTab = GetSelectedTab();
-            foreach (var tab in _tabs.Values)
+            if (State.SelectedTabId == null)
+                CloseAllTabs();
+            else
             {
-                if (selectedTab != null && !Equals(selectedTab, tab))
-                    tab.IsHidden = true;
+                _stateService.RemoveAllTabsExcept(State.SelectedTabId.Value);
+                var selectedTab = GetSelectedTab();
+                foreach (var tab in _tabs.Values)
+                {
+                    if (selectedTab != null && !Equals(selectedTab, tab))
+                        tab.IsHidden = true;
+                }
             }
         }
 
-        private void CloseAllTabs(object nothing)
+        private void CloseAllTabs(object nothing = null)
         {
             _stateService.RemoveAllTabs();
 

@@ -64,7 +64,10 @@ namespace Bloom.Analytics.ArtistModule.Services
 
         public void RestoreArtistTab(Tab tab)
         {
-            var artist = new Artist { Id = tab.EntityId }; // TODO: Make this data access call
+            if (tab == null || tab.EntityId == null)
+                return;
+
+            var artist = new Artist { Id = tab.EntityId.Value }; // TODO: Make this data access call
             var viewType = (ViewType)Enum.Parse(typeof(ViewType), tab.View);
             var artistViewModel = new ArtistViewModel(artist, viewType, tab.Id);
             var artistView = new ArtistView(artistViewModel);
@@ -81,8 +84,12 @@ namespace Bloom.Analytics.ArtistModule.Services
                 return;
 
             var artistId = existingTab.Tab.EntityId;
-            var artist = new Artist { Id = artistId }; // TODO: Make this data access call
-            var tab = CreateNewTab(new Buid(existingTab.Tab.LibraryId, BloomEntity.Artist, artistId), existingTab.ViewType);
+            var libraryId = existingTab.Tab.LibraryId;
+            if (artistId == null || libraryId == null)
+                return;
+
+            var artist = new Artist { Id = artistId.Value }; // TODO: Make this data access call
+            var tab = CreateNewTab(new Buid(libraryId.Value, BloomEntity.Artist, artistId.Value), existingTab.ViewType);
             var artistViewModel = new ArtistViewModel(artist, existingTab.ViewType, tabId);
             var artistView = new ArtistView(artistViewModel);
             var artistTab = new ViewMenuTab(artistViewModel.ViewType, tab, artistView);

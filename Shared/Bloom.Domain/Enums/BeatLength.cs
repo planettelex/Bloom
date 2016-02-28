@@ -1,6 +1,9 @@
 ﻿namespace Bloom.Domain.Enums
 {
-    public enum NoteLength
+    /// <summary>
+    /// Beat lengths for time signatures.
+    /// </summary>
+    public enum BeatLength
     {
         Whole = 1,
         Half = 2,

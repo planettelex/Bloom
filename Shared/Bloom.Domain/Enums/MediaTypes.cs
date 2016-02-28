@@ -2,6 +2,9 @@
 
 namespace Bloom.Domain.Enums
 {
+    /// <summary>
+    /// Types of media.
+    /// </summary>
     [Flags]
     public enum MediaTypes
     {

@@ -7,8 +7,16 @@ using Bloom.Domain.Models;
 
 namespace Bloom.Data.Repositories
 {
+    /// <summary>
+    /// Access methods for song data.
+    /// </summary>
     public class SongRepository : ISongRepository
     {
+        /// <summary>
+        /// Gets the song.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songId">The song identifier.</param>
         public Song GetSong(IDataSource dataSource, Guid songId)
         {
             if (!dataSource.IsConnected())
@@ -24,74 +32,33 @@ namespace Bloom.Data.Repositories
 
             var songQuery =
                 from s in songTable
-                join artist in artistTable on s.ArtistId equals artist.Id
-                join genre in genreTable on s.GenreId equals genre.Id
-                join holiday in holidayTable on s.HolidayId equals holiday.Id
-                join timeSignature in timeSignatureTable on s.TimeSignatureId equals timeSignature.Id
+                from artist in artistTable.Where(a => s.ArtistId == a.Id).DefaultIfEmpty()
+                from genre in genreTable.Where(g => s.GenreId == g.Id).DefaultIfEmpty()
+                from holiday in holidayTable.Where(h => s.HolidayId == h.Id).DefaultIfEmpty()
+                from timeSignature in timeSignatureTable.Where(t => s.TimeSignatureId == t.Id).DefaultIfEmpty()
                 where s.Id == songId
-                select new Song
+                select new
                 {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Version = s.Version,
-                    ArtistId = s.ArtistId,
-                    Artist = new Artist
-                    {
-                        Id = artist.Id,
-                        Name = artist.Name,
-                        IsSolo = artist.IsSolo,
-                        Bio = artist.Bio,
-                        StartedOn = artist.StartedOn,
-                        EndedOn = artist.EndedOn,
-                        Twitter = artist.Twitter
-                    },
-                    Description = s.Description,
-                    GenreId = s.GenreId,
-                    Genre = s.GenreId == Guid.Empty ? null : new Genre
-                    {
-                        Id = genre.Id,
-                        Name = genre.Name,
-                        Description = genre.Description,
-                        ParentGenreId = genre.ParentGenreId
-                    },
-                    Length = s.Length,
-                    Bpm = s.Bpm,
-                    Key = s.Key,
-                    TimeSignatureId = s.TimeSignatureId,
-                    TimeSignature = s.TimeSignatureId == Guid.Empty ? null : new TimeSignature
-                    {
-                        Id = timeSignature.Id,
-                        Beats = timeSignature.Beats,
-                        NoteLength = timeSignature.NoteLength
-                    },
-                    Lyrics = s.Lyrics,
-                    AboutDayOfWeek = s.AboutDayOfWeek,
-                    AboutTimeOfYear = s.AboutTimeOfYear,
-                    BestPlayedAtStart = s.BestPlayedAtStart,
-                    BestPlayedAtStop = s.BestPlayedAtStop,
-                    HasExplicitContent = s.HasExplicitContent,
-                    IsRemix = s.IsRemix,
-                    IsCover = s.IsCover,
-                    IsLive = s.IsLive,
-                    OriginalSongId = s.OriginalSongId,
-                    IsHoliday = s.IsHoliday,
-                    HolidayId = s.HolidayId,
-                    Holiday = s.HolidayId == Guid.Empty ? null : new Holiday
-                    {
-                        Id = holiday.Id,
-                        Name = holiday.Name,
-                        Description = holiday.Description,
-                        StartDay = holiday.StartDay,
-                        StartMonth = holiday.StartMonth,
-                        EndDay = holiday.EndDay,
-                        EndMonth = holiday.EndMonth
-                    }
+                    Song = s,
+                    Artist = artist,
+                    Genre = genre,
+                    Holiday = holiday,
+                    TimeSignature = timeSignature
                 };
 
-            var song = songQuery.SingleOrDefault();
+            var result = songQuery.SingleOrDefault();
 
+            if (result == null)
+                return null;
+
+            var song = result.Song;
             if (song == null)
                 return null;
+
+            song.Artist = result.Artist;
+            song.Genre = result.Genre;
+            song.Holiday = result.Holiday;
+            song.TimeSignature = result.TimeSignature;
 
             var segmentsTable = SongSegmentTable(dataSource);
             var segmentsQuery =
@@ -99,24 +66,23 @@ namespace Bloom.Data.Repositories
                 join timeSignature in timeSignatureTable on segment.TimeSignatureId equals timeSignature.Id
                 where segment.SongId == songId
                 orderby segment.StartTime
-                select new SongSegment
+                select new
                 {
-                    Id = segment.Id,
-                    SongId = songId,
-                    StartTime = segment.StartTime,
-                    StopTime = segment.StopTime,
-                    Bpm = segment.Bpm,
-                    Key = segment.Key,
-                    TimeSignatureId = segment.TimeSignatureId,
-                    TimeSignature = segment.TimeSignatureId == Guid.Empty ? null : new TimeSignature
-                    {
-                        Id = timeSignature.Id,
-                        Beats = timeSignature.Beats,
-                        NoteLength = timeSignature.NoteLength
-                    }
+                    Segment = segment,
+                    TimeSignature = timeSignature
                 };
 
-            song.Segments = segmentsQuery.ToList();
+            var segmentsResults = segmentsQuery.ToList();
+            if (segmentsResults.Any())
+            {
+                song.Segments = new List<SongSegment>();
+                foreach (var segmentResult in segmentsResults)
+                {
+                    var songSegment = segmentResult.Segment;
+                    songSegment.TimeSignature = segmentResult.TimeSignature;
+                    song.Segments.Add(songSegment);
+                }
+            }
 
             var collaboratorsTable = SongCollaboratorTable(dataSource);
             var collaboratorsQuery =
@@ -124,23 +90,23 @@ namespace Bloom.Data.Repositories
                 join artist in artistTable on collaborator.ArtistId equals artist.Id
                 where collaborator.SongId == songId
                 orderby artist.Name
-                select new SongCollaborator
+                select new 
                 {
-                    SongId = songId,
-                    ArtistId = artist.Id,
-                    Artist = new Artist
-                    {
-                        Id = artist.Id,
-                        Name = artist.Name,
-                        IsSolo = artist.IsSolo,
-                        StartedOn = artist.StartedOn,
-                        EndedOn = artist.EndedOn,
-                        Twitter = artist.Twitter
-                    },
-                    IsFeatured = collaborator.IsFeatured
+                    Collaborator = collaborator,
+                    Artist = artist
                 };
 
-            song.Collaborators = collaboratorsQuery.ToList();
+            var collaboratorsResults = collaboratorsQuery.ToList();
+            if (collaboratorsResults.Any())
+            {
+                song.Collaborators = new List<SongCollaborator>();
+                foreach (var collaboratorResult in collaboratorsResults)
+                {
+                    var songCollaborator = collaboratorResult.Collaborator;
+                    songCollaborator.Artist = collaboratorResult.Artist;
+                    song.Collaborators.Add(songCollaborator);
+                }
+            }
 
             var personTable = PersonTable(dataSource);
             var creditsTable = SongCreditTable(dataSource);
@@ -149,23 +115,23 @@ namespace Bloom.Data.Repositories
                 join person in personTable on songCredit.PersonId equals person.Id
                 where songCredit.SongId == songId
                 orderby person.Name
-                select new SongCredit
+                select new
                 {
-                    Id = songCredit.Id,
-                    SongId = songId,
-                    PersonId = songCredit.PersonId,
-                    Person = new Person
-                    {
-                        Id = person.Id,
-                        Name = person.Name,
-                        BornOn = person.BornOn,
-                        DiedOn = person.DiedOn,
-                        Twitter = person.Twitter
-                    },
-                    IsFeatured = songCredit.IsFeatured
+                    Credit = songCredit,
+                    Person = person
                 };
 
-            song.Credits = creditsQuery.ToList();
+            var creditsResults = creditsQuery.ToList();
+            if (creditsResults.Any())
+            {
+                song.Credits = new List<SongCredit>();
+                foreach (var creditResult in creditsResults)
+                {
+                    var songCredit = creditResult.Credit;
+                    songCredit.Person = creditResult.Person;
+                    song.Credits.Add(songCredit);
+                }
+            }
 
             if (song.Credits == null)
                 return song;
@@ -180,11 +146,7 @@ namespace Bloom.Data.Repositories
                     join role in roleTable on scr.RoleId equals role.Id
                     where scr.SongCreditId == c.Id
                     orderby role.Name
-                    select new Role
-                    {
-                        Id = role.Id, 
-                        Name = role.Name
-                    };
+                    select role;
 
                 credit.Roles = rolesQuery.ToList();
             }
@@ -192,6 +154,10 @@ namespace Bloom.Data.Repositories
             return song;
         }
 
+        /// <summary>
+        /// Lists the songs.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
         public List<Song> ListSongs(IDataSource dataSource)
         {
             if (!dataSource.IsConnected())
@@ -243,8 +209,8 @@ namespace Bloom.Data.Repositories
                     TimeSignature = s.TimeSignatureId == Guid.Empty ? null : new TimeSignature
                     {
                         Id = timeSignature.Id,
-                        Beats = timeSignature.Beats,
-                        NoteLength = timeSignature.NoteLength
+                        BeatsPerMeasure = timeSignature.BeatsPerMeasure,
+                        BeatLength = timeSignature.BeatLength
                     },
                     Lyrics = s.Lyrics,
                     AboutDayOfWeek = s.AboutDayOfWeek,
@@ -273,6 +239,11 @@ namespace Bloom.Data.Repositories
             return songsQuery.ToList();
         }
 
+        /// <summary>
+        /// Adds the song.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="song">The song.</param>
         public void AddSong(IDataSource dataSource, Song song)
         {
             if (!dataSource.IsConnected())
@@ -283,8 +254,14 @@ namespace Bloom.Data.Repositories
                 return;
 
             songTable.InsertOnSubmit(song);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds a song segment.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songSegment">The song segment.</param>
         public void AddSongSegment(IDataSource dataSource, SongSegment songSegment)
         {
             if (!dataSource.IsConnected())
@@ -295,8 +272,14 @@ namespace Bloom.Data.Repositories
                 return;
 
             songSegmentTable.InsertOnSubmit(songSegment);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds a song collaborator.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songCollaborator">The song collaborator.</param>
         public void AddSongCollaborator(IDataSource dataSource, SongCollaborator songCollaborator)
         {
             if (!dataSource.IsConnected())
@@ -307,8 +290,14 @@ namespace Bloom.Data.Repositories
                 return;
 
             songCollaboratorTable.InsertOnSubmit(songCollaborator);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds a song credit.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songCredit">The song credit.</param>
         public void AddSongCredit(IDataSource dataSource, SongCredit songCredit)
         {
             if (!dataSource.IsConnected())
@@ -319,8 +308,14 @@ namespace Bloom.Data.Repositories
                 return;
 
             songCreditTable.InsertOnSubmit(songCredit);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes the song.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="song">The song.</param>
         public void DeleteSong(IDataSource dataSource, Song song)
         {
             if (!dataSource.IsConnected())
@@ -331,7 +326,10 @@ namespace Bloom.Data.Repositories
                 return;
 
             songTable.DeleteOnSubmit(song);
+            dataSource.Save();
         }
+
+        #region Tables
 
         private static Table<Song> SongTable(IDataSource dataSource)
         {
@@ -343,12 +341,12 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<Artist>() : null;
         }
 
-        private static Table<Genre> GenreTable(IDataSource dataSource)
+        private static IEnumerable<Genre> GenreTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Genre>() : null;
         }
 
-        private static Table<Holiday> HolidayTable(IDataSource dataSource)
+        private static IEnumerable<Holiday> HolidayTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Holiday>() : null;
         }
@@ -387,5 +385,7 @@ namespace Bloom.Data.Repositories
         {
             return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
         }
+
+        #endregion
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace Bloom.Domain.Enums
 {
+    /// <summary>
+    /// The months of the year.
+    /// </summary>
     public enum Month
     {
         None,

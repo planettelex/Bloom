@@ -148,17 +148,23 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         public Guid LibraryContext { get; set; }
 
-        public void SetLibraryContext(Guid tabId)
+        private void SetLibraryContext(Guid? tabId)
+        {
+            if (tabId != null)
+                SetLibraryContext(tabId.Value);
+        }
+
+        private void SetLibraryContext(Guid tabId)
         {
             var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
-            if (selectedTab == null || selectedTab.LibraryId == Guid.Empty)
+            if (selectedTab == null || selectedTab.LibraryId == null)
             {
                 LibraryContext = Guid.Empty;
                 HasLibraryContext = false;
             }
             else
             {
-                LibraryContext = selectedTab.LibraryId;
+                LibraryContext = selectedTab.LibraryId.Value;
                 HasLibraryContext = true;
             }
         }
@@ -244,7 +250,8 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         private void DuplicateTab(object nothing)
         {
-            _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId);
+            if (State.SelectedTabId != null)
+                _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId.Value);
         }
 
         /// <summary>

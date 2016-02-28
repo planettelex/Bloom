@@ -2,6 +2,9 @@
 
 namespace Bloom.Domain.Enums
 {
+    /// <summary>
+    /// File formats of digital media.
+    /// </summary>
     [Flags]
     public enum DigitalFormats
     {
