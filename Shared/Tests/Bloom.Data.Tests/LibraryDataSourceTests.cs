@@ -58,6 +58,7 @@ namespace Bloom.Data.Tests
             _dataSource.RegisterRepositories();
 
             Assert.NotNull(_container.Resolve<IRoleRepository>());
+            Assert.NotNull(_container.Resolve<ISourceRepository>());
             Assert.NotNull(_container.Resolve<IPhotoRespository>());
             Assert.NotNull(_container.Resolve<IPersonRepository>());
             Assert.NotNull(_container.Resolve<IArtistRepository>());

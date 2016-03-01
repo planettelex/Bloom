@@ -56,12 +56,12 @@ namespace Bloom.Data.Repositories
             if (genreTable == null)
                 return null;
 
-            var genreQuery =
+            var genresQuery =
                 from g in genreTable
                 orderby g.Name
                 select g;
 
-            return genreQuery.ToList();
+            return genresQuery.ToList();
         }
 
         /// <summary>

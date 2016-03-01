@@ -14,6 +14,7 @@ namespace Bloom.Data.Tables
                 return "CREATE TABLE recording_session (" +
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
                        "song_id VARCHAR(36) NOT NULL , " +
+                       "notes VARCHAR , " +
                        "occurred_on DATETIME NOT NULL , " +
                        "FOREIGN KEY (song_id) REFERENCES song(id) )";
             }

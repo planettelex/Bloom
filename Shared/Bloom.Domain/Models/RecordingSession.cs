@@ -37,6 +37,12 @@ namespace Bloom.Domain.Models
         public Guid SongId { get; set; }
 
         /// <summary>
+        /// Gets or sets the recording session notes.
+        /// </summary>
+        [Column(Name = "notes")]
+        public string Notes { get; set; }
+
+        /// <summary>
         /// Gets or sets the date a recording session occurred on.
         /// </summary>
         [Column(Name = "occurred_on")]

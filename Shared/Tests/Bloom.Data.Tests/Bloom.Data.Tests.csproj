@@ -81,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LibraryDataSourceTests.cs" />
     <Compile Include="Repositories\ArtistRepositoryTests.cs" />
+    <Compile Include="Repositories\SourceRespositoryTests.cs" />
     <Compile Include="Repositories\HolidayRespositoryTests.cs" />
     <Compile Include="Repositories\SongRepositoryTests.cs" />
     <Compile Include="Repositories\TimeSignatureRespositoryTests.cs" />

@@ -109,6 +109,7 @@
     <Compile Include="Repositories\IActivityRepository.cs" />
     <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />
+    <Compile Include="Repositories\ISourceRepository.cs" />
     <Compile Include="Repositories\ITagRepository.cs" />
     <Compile Include="Repositories\IReferenceRepository.cs" />
     <Compile Include="Repositories\ISongRepository.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Repositories\PlaylistRepository.cs" />
     <Compile Include="Repositories\ReferenceRepository.cs" />
     <Compile Include="Repositories\ReviewRepository.cs" />
+    <Compile Include="Repositories\SourceRepository.cs" />
     <Compile Include="Repositories\TimeSignatureRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\SongRepository.cs" />

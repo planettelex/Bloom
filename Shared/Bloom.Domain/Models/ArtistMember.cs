@@ -16,14 +16,17 @@ namespace Bloom.Domain.Models
         /// </summary>
         /// <param name="artist">An artist.</param>
         /// <param name="person">A person.</param>
-        public static ArtistMember Create(Artist artist, Person person)
+        /// <param name="priority">The member priority.</param>
+        public static ArtistMember Create(Artist artist, Person person, int priority)
         {
             return new ArtistMember
             {
                 Id = Guid.NewGuid(),
                 ArtistId = artist.Id,
                 PersonId = person.Id,
-                Person = person
+                Person = person,
+                Priority = priority,
+                Roles = new List<Role>()
             };
         }
 

@@ -206,6 +206,7 @@ namespace Bloom.Domain.Models
             {
                 _holiday = value;
                 HolidayId = _holiday == null ? (Guid?) null : _holiday.Id;
+                IsHoliday = _holiday != null;
             }
         }
         private Holiday _holiday;

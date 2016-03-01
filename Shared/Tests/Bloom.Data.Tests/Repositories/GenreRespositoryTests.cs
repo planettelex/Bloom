@@ -101,7 +101,7 @@ namespace Bloom.Data.Tests.Repositories
         /// Tests the delete genre method.
         /// </summary>
         [Test]
-        public void DeleteRoleTest()
+        public void DeleteGenreTest()
         {
             var genre4 = Genre.Create("R&B");
             genre4.ParentGenreId = _bluesId;

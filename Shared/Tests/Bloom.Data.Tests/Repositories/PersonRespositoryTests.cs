@@ -172,5 +172,26 @@ namespace Bloom.Data.Tests.Repositories
             var deletedUser = _personRepository.GetPerson(_dataSource, ringoId);
             Assert.IsNull(deletedUser);
         }
+
+        /// <summary>
+        /// Tests the delete person photo method.
+        /// </summary>
+        [Test]
+        public void DeletePersonPhotoTest()
+        {
+            var john = _personRepository.GetPerson(_dataSource, _johnId);
+            Assert.NotNull(john);
+
+            var johnPhoto2 = Photo.Create("c:\\images\\profiles\\john-lennon-2.jpg");
+            _personRepository.AddPersonPhoto(_dataSource, john, johnPhoto2, 2);
+
+            john = _personRepository.GetPerson(_dataSource, _johnId);
+            Assert.AreEqual(2, john.Photos.Count);
+            Assert.AreEqual("c:\\images\\profiles\\john-lennon-2.jpg", john.Photos[1].FilePath);
+
+            _personRepository.DeletePersonPhoto(_dataSource, john, john.Photos[1]);
+            john = _personRepository.GetPerson(_dataSource, _johnId);
+            Assert.AreEqual(1, john.Photos.Count);
+        }
     }
 }

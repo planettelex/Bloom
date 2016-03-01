@@ -44,6 +44,8 @@ namespace Bloom.Data
         {
             _container.RegisterType<IRoleRepository, RoleRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IRoleRepository>();
+            _container.RegisterType<ISourceRepository, SourceRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ISourceRepository>();
             _container.RegisterType<IPhotoRespository, PhotoRespository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IPhotoRespository>();
             _container.RegisterType<IPersonRepository, PersonRepository>(new ContainerControlledLifetimeManager());

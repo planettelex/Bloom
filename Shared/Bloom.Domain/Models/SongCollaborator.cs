@@ -39,7 +39,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the artist.
         /// </summary>
-        public Artist Artist { get; set; }
+        public Artist Artist 
+        { 
+            get { return _artist; }
+            set
+            {
+                _artist = value;
+                ArtistId = _artist == null ? Guid.Empty : _artist.Id;
+            }
+        }
+        private Artist _artist;
 
         /// <summary>
         /// Gets or sets whether this collaborator is featured.

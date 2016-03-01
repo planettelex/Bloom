@@ -67,11 +67,20 @@ namespace Bloom.Domain.Models
         /// Gets or sets the time signature identifier.
         /// </summary>
         [Column(Name = "time_signature_id")]
-        public Guid TimeSignatureId { get; set; }
+        public Guid? TimeSignatureId { get; set; }
 
         /// <summary>
         /// Gets or sets the song segment time signature.
         /// </summary>
-        public TimeSignature TimeSignature { get; set; }
+        public TimeSignature TimeSignature 
+        { 
+            get { return _timeSignature; }
+            set
+            {
+                _timeSignature = value;
+                TimeSignatureId = _timeSignature == null ? (Guid?) null : _timeSignature.Id;
+            } 
+        }
+        private TimeSignature _timeSignature;
     }
 }

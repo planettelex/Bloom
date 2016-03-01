@@ -179,6 +179,28 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Deletes an artist member.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="member">The artist member.</param>
+        public void DeleteArtistMember(IDataSource dataSource, ArtistMember member)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var artistMemberTable = ArtistMemberTable(dataSource);
+            if (artistMemberTable == null)
+                return;
+
+            if (member.Roles != null && member.Roles.Count > 0)
+                foreach (var role in member.Roles)
+                    DeleteArtistMemberRole(dataSource, member, role);
+
+            artistMemberTable.DeleteOnSubmit(member);
+            dataSource.Save();
+        }
+
+        /// <summary>
         /// Adds an artist member role.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -199,6 +221,34 @@ namespace Bloom.Data.Repositories
             var artistMemberRole = ArtistMemberRole.Create(member, role);
 
             artistMemberRoleTable.InsertOnSubmit(artistMemberRole);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes an artist member role.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="member">The member.</param>
+        /// <param name="role">The role.</param>
+        public void DeleteArtistMemberRole(IDataSource dataSource, ArtistMember member, Role role)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var artistMemberRoleTable = ArtistMemberRoleTable(dataSource);
+            if (artistMemberRoleTable == null)
+                return;
+
+            var artistMemberRoleQuery =
+                from amr in artistMemberRoleTable
+                where amr.ArtistMemberId == member.Id && amr.RoleId == role.Id
+                select amr;
+
+            var artistMemberRole = artistMemberRoleQuery.SingleOrDefault();
+            if (artistMemberRole == null)
+                return;
+
+            artistMemberRoleTable.DeleteOnSubmit(artistMemberRole);
             dataSource.Save();
         }
 
@@ -227,6 +277,34 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Deletes the artist photo.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artist">The artist.</param>
+        /// <param name="photo">The photo.</param>
+        public void DeleteArtistPhoto(IDataSource dataSource, Artist artist, Photo photo)
+        {
+            if (!dataSource.IsConnected() || photo == null)
+                return;
+
+            var artistPhotoTable = ArtistPhotoTable(dataSource);
+            if (artistPhotoTable == null)
+                return;
+
+            var artistPhotoQuery =
+                from ap in artistPhotoTable
+                where ap.ArtistId == artist.Id && ap.PhotoId == photo.Id
+                select ap;
+
+            var personPhoto = artistPhotoQuery.SingleOrDefault();
+            if (personPhoto == null)
+                return;
+
+            artistPhotoTable.DeleteOnSubmit(personPhoto);
+            dataSource.Save();
+        }
+
+        /// <summary>
         /// Deletes an artist.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -240,46 +318,44 @@ namespace Bloom.Data.Repositories
             if (artistTable == null)
                 return;
 
-            if (artist.Photos != null)
-            {
-                var artistPhotoTable = ArtistPhotoTable(dataSource);
-                foreach (var photo in artist.Photos)
-                {
-                    var p = photo;
-                    var artistPhotoQuery =
-                        from ap in artistPhotoTable
-                        where ap.ArtistId == artist.Id && ap.PhotoId == p.Id
-                        select ap;
+            var artistReferenceTable = ArtistReferenceTable(dataSource);
+            var artistReferencesQuery =
+                from ar in artistReferenceTable
+                where ar.ArtistId == artist.Id
+                select ar;
 
-                    var artistPhoto = artistPhotoQuery.SingleOrDefault();
-                    if (artistPhoto != null)
-                        artistPhotoTable.DeleteOnSubmit(artistPhoto);
-                }
-                dataSource.Save();
-            }
+            artistReferenceTable.DeleteAllOnSubmit(artistReferencesQuery.AsEnumerable());
+            dataSource.Save();
 
-            if (artist.Members != null)
+            var artistPhotoTable = ArtistPhotoTable(dataSource);
+            var artistPhotosQuery =
+                from ap in artistPhotoTable
+                where ap.ArtistId == artist.Id
+                select ap;
+
+            artistPhotoTable.DeleteAllOnSubmit(artistPhotosQuery.AsEnumerable());
+            dataSource.Save();
+
+            var artistMemberTable = ArtistMemberTable(dataSource);
+            var artistMembersQuery =
+                from am in artistMemberTable
+                where am.ArtistId == artist.Id
+                select am;
+
+            var members = artistMembersQuery.ToList();
+            foreach (var member in members)
             {
-                var artistMemberTable = ArtistMemberTable(dataSource);
+                var m = member;
                 var artistMemberRoleTable = ArtistMemberRoleTable(dataSource);
-                foreach (var member in artist.Members)
-                {
-                    var m = member;
-                    foreach (var role in m.Roles)
-                    {
-                        var r = role;
-                        var artistMemberRoleQuery =
-                            from amr in artistMemberRoleTable
-                            where amr.ArtistMemberId == m.Id && amr.RoleId == r.Id
-                            select amr;
+                var artistMemberRolesQuery =
+                    from amr in artistMemberRoleTable
+                    where amr.ArtistMemberId == m.Id
+                    select amr;
 
-                        var artistMemberRole = artistMemberRoleQuery.SingleOrDefault();
-                        if (artistMemberRole != null)
-                            artistMemberRoleTable.DeleteOnSubmit(artistMemberRole);
-                    }
-                    dataSource.Save();
-                    artistMemberTable.DeleteOnSubmit(m);
-                }
+                artistMemberRoleTable.DeleteAllOnSubmit(artistMemberRolesQuery.AsEnumerable());
+                dataSource.Save();
+
+                artistMemberTable.DeleteOnSubmit(member);
                 dataSource.Save();
             }
 
@@ -297,6 +373,11 @@ namespace Bloom.Data.Repositories
         private static Table<ArtistPhoto> ArtistPhotoTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<ArtistPhoto>() : null;
+        }
+
+        private static Table<ArtistReference> ArtistReferenceTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<ArtistReference>() : null;
         }
 
         private static Table<ArtistMember> ArtistMemberTable(IDataSource dataSource)

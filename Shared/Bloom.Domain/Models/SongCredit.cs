@@ -22,7 +22,8 @@ namespace Bloom.Domain.Models
                 Id = Guid.NewGuid(),
                 SongId = song.Id,
                 PersonId = person.Id,
-                Person = person
+                Person = person,
+                Roles = new List<Role>()
             };
         }
 
@@ -47,7 +48,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the person.
         /// </summary>
-        public Person Person { get; set; }
+        public Person Person
+        {
+            get { return _person; }
+            set
+            {
+                _person = value;
+                PersonId = _person == null ? Guid.Empty : _person.Id;
+            }
+        }
+        private Person _person;
 
         /// <summary>
         /// Gets or sets whether this person has a "featured" credit.

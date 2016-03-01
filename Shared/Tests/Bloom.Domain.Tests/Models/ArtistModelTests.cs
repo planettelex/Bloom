@@ -76,12 +76,13 @@ namespace Bloom.Domain.Tests.Models
         {
             var artist = Artist.Create(ArtistName);
             var person = Person.Create("Member");
-            var artistMember = ArtistMember.Create(artist, person);
+            var artistMember = ArtistMember.Create(artist, person, 1);
 
             Assert.AreNotEqual(artistMember.Id, Guid.Empty);
             Assert.AreEqual(artistMember.ArtistId, artist.Id);
             Assert.AreEqual(artistMember.PersonId, person.Id);
-            Assert.AreEqual(artistMember.Person.Name, "Member");
+            Assert.AreEqual("Member", artistMember.Person.Name);
+            Assert.AreEqual(1, artistMember.Priority);
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace Bloom.Domain.Tests.Models
         {
             var artist = Artist.Create(ArtistName);
             var person = Person.Create("Member");
-            var artistMember = ArtistMember.Create(artist, person);
+            var artistMember = ArtistMember.Create(artist, person, 1);
             var role = Role.Create("Role");
             var artistMemberRole = ArtistMemberRole.Create(artistMember, role);
 

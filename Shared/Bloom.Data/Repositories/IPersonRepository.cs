@@ -40,6 +40,14 @@ namespace Bloom.Data.Repositories
         void AddPersonPhoto(IDataSource dataSource, Person person, Photo photo, int priority);
 
         /// <summary>
+        /// Deletes a person photo.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="person">The person.</param>
+        /// <param name="photo">The photo.</param>
+        void DeletePersonPhoto(IDataSource dataSource, Person person, Photo photo);
+
+        /// <summary>
         /// Deletes a person.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

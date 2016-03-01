@@ -38,12 +38,27 @@ namespace Bloom.Data.Repositories
         void AddArtistMember(IDataSource dataSource, ArtistMember member);
 
         /// <summary>
+        /// Deletes an artist member.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="member">The artist member.</param>
+        void DeleteArtistMember(IDataSource dataSource, ArtistMember member);
+
+        /// <summary>
         /// Adds an artist member role.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="member">The member.</param>
         /// <param name="role">The role.</param>
         void AddArtistMemberRole(IDataSource dataSource, ArtistMember member, Role role);
+
+        /// <summary>
+        /// Deletes an artist member role.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="member">The member.</param>
+        /// <param name="role">The role.</param>
+        void DeleteArtistMemberRole(IDataSource dataSource, ArtistMember member, Role role);
 
         /// <summary>
         /// Adds an artist photo.
@@ -53,6 +68,14 @@ namespace Bloom.Data.Repositories
         /// <param name="photo">The photo.</param>
         /// <param name="priority">The priority.</param>
         void AddArtistPhoto(IDataSource dataSource, Artist artist, Photo photo, int priority);
+
+        /// <summary>
+        /// Deletes the artist photo.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artist">The artist.</param>
+        /// <param name="photo">The photo.</param>
+        void DeleteArtistPhoto(IDataSource dataSource, Artist artist, Photo photo);
 
         /// <summary>
         /// Deletes an artist.

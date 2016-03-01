@@ -21,8 +21,9 @@ namespace Bloom.State.Data.Tables
                        "\"window_state\" INTEGER NOT NULL , " +
                        "\"sidebar_visible\" BOOL NOT NULL DEFAULT FALSE , " +
                        "\"sidebar_width\" INTEGER NOT NULL , " +
-                       "\"selected_tab_id\" VARCHAR(36) NOT NULL , " +
-                       "PRIMARY KEY (process_name, person_id))";
+                       "\"selected_tab_id\" VARCHAR(36) , " +
+                       "PRIMARY KEY (process_name, person_id) , " +
+                       "FOREIGN KEY (selected_tab_id) REFERENCES tab(id) )";
             }
         }
     }

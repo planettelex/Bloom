@@ -125,6 +125,34 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Deletes a person photo.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="person">The person.</param>
+        /// <param name="photo">The photo.</param>
+        public void DeletePersonPhoto(IDataSource dataSource, Person person, Photo photo)
+        {
+            if (!dataSource.IsConnected() || photo == null)
+                return;
+
+            var personPhotoTable = PersonPhotoTable(dataSource);
+            if (personPhotoTable == null)
+                return;
+
+            var personPhotoQuery =
+                from pp in personPhotoTable
+                where pp.PersonId == person.Id && pp.PhotoId == photo.Id
+                select pp;
+
+            var personPhoto = personPhotoQuery.SingleOrDefault();
+            if (personPhoto == null)
+                return;
+
+            personPhotoTable.DeleteOnSubmit(personPhoto);
+            dataSource.Save();
+        }
+
+        /// <summary>
         /// Deletes a person.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -138,23 +166,23 @@ namespace Bloom.Data.Repositories
             if (personTable == null)
                 return;
 
-            if (person.Photos != null)
-            {
-                var personPhotoTable = PersonPhotoTable(dataSource);
-                foreach (var photo in person.Photos)
-                {
-                    var p = photo;
-                    var personPhotoQuery =
-                        from pp in personPhotoTable
-                        where pp.PersonId == person.Id && pp.PhotoId == p.Id
-                        select pp;
+            var personReferenceTable = PersonReferenceTable(dataSource);
+            var personReferencesQuery =
+                from pr in personReferenceTable
+                where pr.PersonId == person.Id
+                select pr;
 
-                    var personPhoto = personPhotoQuery.SingleOrDefault();
-                    if (personPhoto != null) 
-                        personPhotoTable.DeleteOnSubmit(personPhoto);
-                }
-                dataSource.Save();
-            }
+            personReferenceTable.DeleteAllOnSubmit(personReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var personPhotoTable = PersonPhotoTable(dataSource);
+            var personPhotosQuery =
+                from pp in personPhotoTable
+                where pp.PersonId == person.Id
+                select pp;
+
+            personPhotoTable.DeleteAllOnSubmit(personPhotosQuery.AsEnumerable());
+            dataSource.Save();
                 
             personTable.DeleteOnSubmit(person);
             dataSource.Save();
@@ -170,6 +198,11 @@ namespace Bloom.Data.Repositories
         private static Table<PersonPhoto> PersonPhotoTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<PersonPhoto>() : null;
+        }
+
+        private static Table<PersonReference> PersonReferenceTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<PersonReference>() : null;
         }
 
         private static IEnumerable<Photo> PhotoTable(IDataSource dataSource)
