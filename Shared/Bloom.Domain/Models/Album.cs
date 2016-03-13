@@ -51,12 +51,21 @@ namespace Bloom.Domain.Models
         /// Gets or sets the artist identifier.
         /// </summary>
         [Column(Name = "artist_id")]
-        public Guid ArtistId { get; set; }
+        public Guid? ArtistId { get; set; }
 
         /// <summary>
         /// Gets or sets the artist.
         /// </summary>
-        public Artist Artist { get; set; }
+        public Artist Artist
+        {
+            get { return _artist; }
+            set
+            {
+                _artist = value;
+                ArtistId = _artist == null ? (Guid?) null : _artist.Id;
+            }
+        }
+        private Artist _artist;
 
         /// <summary>
         /// Gets or sets the album name.
@@ -68,6 +77,17 @@ namespace Bloom.Domain.Models
             set { SetProperty(ref _name, value); }
         }
         private string _name;
+
+        /// <summary>
+        /// Gets or sets an unofficial name for the album (e.g. The White Album).
+        /// </summary>
+        [Column(Name = "unofficial_name")]
+        public string UnofficialName
+        {
+            get { return _unofficialName; }
+            set { SetProperty(ref _unofficialName, value); }
+        }
+        private string _unofficialName;
 
         /// <summary>
         /// Gets or sets the album edition.
@@ -114,6 +134,17 @@ namespace Bloom.Domain.Models
         private string _description;
 
         /// <summary>
+        /// Gets or sets the date the album was first released on.
+        /// </summary>
+        [Column(Name = "first_released_on")]
+        public DateTime? FirstReleasedOn
+        {
+            get { return _firstReleasedOn; }
+            set { SetProperty(ref _firstReleasedOn, value); }
+        }
+        private DateTime? _firstReleasedOn;
+
+        /// <summary>
         /// Gets or sets the album liner notes.
         /// </summary>
         [Column(Name = "liner_notes")]
@@ -147,6 +178,12 @@ namespace Bloom.Domain.Models
         private bool _isRemix;
 
         /// <summary>
+        /// Gets or sets the identifier of the original album if this is a live version or remix album.
+        /// </summary>
+        [Column(Name = "original_album_id")]
+        public Guid? OriginalAlbumId { get; set; }
+
+        /// <summary>
         /// Gets or sets whether this is a tribute album.
         /// </summary>
         [Column(Name = "is_tribute")]
@@ -161,7 +198,16 @@ namespace Bloom.Domain.Models
         /// Gets or sets the identifier of the artist this album is a tribute to.
         /// </summary>
         [Column(Name = "tribute_artist_id")]
-        public Guid TributeArtistId { get; set; }
+        public Guid? TributeArtistId 
+        { 
+            get { return _tributeArtistId; }
+            set
+            {
+                _tributeArtistId = value;
+                IsTribute = _tributeArtistId != null;
+            } 
+        }
+        private Guid? _tributeArtistId;
 
         /// <summary>
         /// Gets or sets whether this album is a soundtrack.
@@ -189,12 +235,22 @@ namespace Bloom.Domain.Models
         /// Gets or sets identifier of the holiday this album is for.
         /// </summary>
         [Column(Name = "holiday_id")]
-        public Guid HolidayId { get; set; }
+        public Guid? HolidayId { get; set; }
 
         /// <summary>
         /// Gets or sets the holiday this album is for.
         /// </summary>
-        public Holiday Holiday { get; set; }
+        public Holiday Holiday
+        {
+            get { return _holiday; }
+            set
+            {
+                _holiday = value;
+                HolidayId = _holiday == null ? (Guid?) null : _holiday.Id;
+                IsHoliday = _holiday != null;
+            }
+        }
+        private Holiday _holiday;
 
         /// <summary>
         /// Gets or sets whether this album is a bootleg.
@@ -270,5 +326,13 @@ namespace Bloom.Domain.Models
         /// Gets or sets the album artist collaborators.
         /// </summary>
         public List<AlbumCollaborator> Collaborators { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Artist == null ? Name : Artist.Name + ": " + Name;
+        }
     }
 }

@@ -54,5 +54,12 @@ namespace Bloom.Domain.Models
         /// </summary>
         public List<Role> Roles { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Person != null ? Person.Name : PersonId.ToString();
+        }
     }
 }

@@ -134,7 +134,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the album release label identifier.
         /// </summary>
         [Column(Name = "label_id")]
-        public Guid LabelId { get; set; }
+        public Guid? LabelId { get; set; }
 
         /// <summary>
         /// Gets or sets the album release catalog number.

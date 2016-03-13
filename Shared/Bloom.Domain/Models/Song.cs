@@ -255,5 +255,13 @@ namespace Bloom.Domain.Models
         /// Gets or sets the song's credits.
         /// </summary>
         public List<SongCredit> Credits { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Artist == null ? Name : Artist.Name + ": " + Name;
+        }
     }
 }

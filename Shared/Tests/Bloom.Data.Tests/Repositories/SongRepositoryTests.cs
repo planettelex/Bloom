@@ -135,10 +135,10 @@ namespace Bloom.Data.Tests.Repositories
             atomHeartMother.Lyrics = "Silence in the studio!";
             _songRepository.AddSong(_dataSource, atomHeartMother);
 
-            var segment1 = SongSegment.Create(atomHeartMother, 0, 120345);
+            var segment1 = SongSegment.Create(atomHeartMother, 0, 170000, "Father's Shout");
             segment1.Bpm = 80;
             _songRepository.AddSongSegment(_dataSource, segment1);
-            var segment2 = SongSegment.Create(atomHeartMother, 120345, 189345);
+            var segment2 = SongSegment.Create(atomHeartMother, 170000, 323000, "Breast Milky");
             segment2.TimeSignature = sixFour;
             segment2.Key = MusicalKeys.G;
             _songRepository.AddSongSegment(_dataSource, segment2);
@@ -288,6 +288,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.IsNull(atomHeartMother.BestPlayedAtStop);
             Assert.NotNull(atomHeartMother.Segments);
             Assert.AreEqual(2, atomHeartMother.Segments.Count);
+            Assert.AreEqual("Father's Shout", atomHeartMother.Segments[0].Name);
             Assert.AreEqual(80, atomHeartMother.Segments[0].Bpm);
             Assert.AreEqual(MusicalKeys.G, atomHeartMother.Segments[1].Key);
             Assert.AreEqual("6/4", atomHeartMother.Segments[1].TimeSignature.ToString());

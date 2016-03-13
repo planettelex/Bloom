@@ -95,5 +95,13 @@ namespace Bloom.Domain.Models
             set { SetProperty(ref _endDay, value); }
         }
         private int _endDay;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

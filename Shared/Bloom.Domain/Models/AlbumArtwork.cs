@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents an association between an album and artwork.
+    /// Represents artwork for an album.
     /// </summary>
     [Table(Name = "album_artwork")]
     public class AlbumArtwork

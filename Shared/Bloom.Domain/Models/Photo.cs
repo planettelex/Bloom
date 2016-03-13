@@ -45,5 +45,13 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "taken_on")]
         public DateTime? TakenOn { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return FilePath;
+        }
     }
 }

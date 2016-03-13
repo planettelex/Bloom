@@ -192,7 +192,7 @@ namespace Bloom.Data.Repositories
             if (artistMemberTable == null)
                 return;
 
-            if (member.Roles != null && member.Roles.Count > 0)
+            if (member.Roles != null && member.Roles.Any())
                 foreach (var role in member.Roles)
                     DeleteArtistMemberRole(dataSource, member, role);
 

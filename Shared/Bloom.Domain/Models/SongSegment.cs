@@ -28,6 +28,25 @@ namespace Bloom.Domain.Models
         }
 
         /// <summary>
+        /// Creates a new song segment instance.
+        /// </summary>
+        /// <param name="song">A song.</param>
+        /// <param name="startTime">The segment start time.</param>
+        /// <param name="stopTime">The segment stop time.</param>
+        /// <param name="name">The segment name.</param>
+        public static SongSegment Create(Song song, int startTime, int stopTime, string name)
+        {
+            return new SongSegment
+            {
+                Id = Guid.NewGuid(),
+                SongId = song.Id,
+                StartTime = startTime,
+                StopTime = stopTime,
+                Name = name
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the song segment identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
@@ -38,6 +57,12 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "song_id")]
         public Guid SongId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the song segment name.
+        /// </summary>
+        [Column(Name = "name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the song segment start time in milliseconds.

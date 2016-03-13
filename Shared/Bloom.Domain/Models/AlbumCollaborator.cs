@@ -46,5 +46,17 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "is_featured")]
         public bool IsFeatured { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            var label = Artist != null ? Artist.Name : ArtistId.ToString();
+            if (IsFeatured)
+                label += " (Featured)";
+
+            return label;
+        }
     }
 }

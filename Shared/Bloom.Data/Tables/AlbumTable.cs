@@ -15,13 +15,16 @@ namespace Bloom.Data.Tables
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
                        "artist_id VARCHAR(36) , " +
                        "name VARCHAR NOT NULL , " +
+                       "unofficial_name VARCHAR , " +
                        "edition VARCHAR , " +
                        "length_type INTEGER NOT NULL , " +
                        "length INTEGER NOT NULL , " +
+                       "first_released_on DATETIME , " +
                        "description VARCHAR , " +
                        "liner_notes VARCHAR , " +
                        "is_live BOOL NOT NULL DEFAULT FALSE , " +
                        "is_remix BOOL NOT NULL DEFAULT FALSE , " +
+                       "original_album_id VARCHAR(36) , " +
                        "is_tribute BOOL NOT NULL DEFAULT FALSE , " +
                        "tribute_artist_id VARCHAR(36) , " +
                        "is_soundtrack BOOL NOT NULL DEFAULT FALSE , " +

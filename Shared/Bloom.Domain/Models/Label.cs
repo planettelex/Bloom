@@ -71,8 +71,22 @@ namespace Bloom.Domain.Models
         public DateTime? ClosedOn { get; set; }
 
         /// <summary>
+        /// Gets or sets the parent label identifier.
+        /// </summary>
+        [Column(Name = "parent_label_id")]
+        public Guid? ParentLabelId { get; set; }
+
+        /// <summary>
         /// Gets or sets the label personnel.
         /// </summary>
         public List<LabelPersonnel> Personnel { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

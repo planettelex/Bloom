@@ -86,5 +86,13 @@ namespace Bloom.Domain.Models
             } 
         }
         private Genre _parentGenre;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

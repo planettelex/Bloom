@@ -145,5 +145,13 @@ namespace Bloom.Domain.Models
             else
                 Photos[0].FilePath = profileImagePath;
         }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

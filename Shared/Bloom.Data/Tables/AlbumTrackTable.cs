@@ -17,6 +17,7 @@ namespace Bloom.Data.Tables
                        "song_id VARCHAR(36) NOT NULL ," +
                        "disc_number INTEGER NOT NULL DEFAULT 1 , " +
                        "track_number INTEGER NOT NULL , " +
+                       "side VARCHAR(1) ," +
                        "start_time INTEGER , " +
                        "stop_time INTEGER , " +
                        "FOREIGN KEY (album_id) REFERENCES album(id) , " +

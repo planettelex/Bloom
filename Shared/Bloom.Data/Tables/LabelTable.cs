@@ -15,9 +15,10 @@ namespace Bloom.Data.Tables
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
                        "name VARCHAR NOT NULL , " +
                        "bio VARCHAR , " +
-                       "logo_url VARCHAR , " +
+                       "logo_file_path VARCHAR , " +
                        "founded_on DATETIME , " +
-                       "closed_on DATETIME )";
+                       "closed_on DATETIME , " +
+                       "parent_label_id VARCHAR(36))";
             }
         }
     }

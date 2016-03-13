@@ -7,8 +7,29 @@ using Bloom.Domain.Models;
 
 namespace Bloom.Data.Repositories
 {
+    /// <summary>
+    /// Access methods for album data.
+    /// </summary>
     public class AlbumRepository : IAlbumRepository
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlbumRepository"/> class.
+        /// </summary>
+        /// <param name="roleRepository">The role repository.</param>
+        /// <param name="personRepository">The person repository.</param>
+        public AlbumRepository(IRoleRepository roleRepository, IPersonRepository personRepository)
+        {
+            _roleRepository = roleRepository;
+            _personRepository = personRepository;
+        }
+        private readonly IRoleRepository _roleRepository;
+        private readonly IPersonRepository _personRepository;
+
+        /// <summary>
+        /// Gets the album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumId">The album identifier.</param>
         public Album GetAlbum(IDataSource dataSource, Guid albumId)
         {
             if (!dataSource.IsConnected())
@@ -22,57 +43,27 @@ namespace Bloom.Data.Repositories
 
             var albumQuery =
                 from a in albumTable
-                join artist in artistTable on a.ArtistId equals artist.Id
-                join holiday in holidayTable on a.HolidayId equals holiday.Id
+                from artist in artistTable.Where(r => a.ArtistId == r.Id).DefaultIfEmpty()
+                from holiday in holidayTable.Where(h => a.HolidayId == h.Id).DefaultIfEmpty()
                 where a.Id == albumId
-                select new Album
+                select new
                 {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Edition = a.Edition,
-                    ArtistId = a.ArtistId,
-                    Artist = new Artist
-                    {
-                        Id = artist.Id,
-                        Name = artist.Name,
-                        IsSolo = artist.IsSolo,
-                        Bio = artist.Bio,
-                        StartedOn = artist.StartedOn,
-                        EndedOn = artist.EndedOn,
-                        Twitter = artist.Twitter
-                    },
-                    Description = a.Description,
-                    Length = a.Length,
-                    LengthType = a.LengthType,
-                    LinerNotes = a.LinerNotes,
-                    IsBootleg = a.IsBootleg,
-                    IsLive = a.IsLive,
-                    IsCompilation = a.IsCompilation,
-                    IsPromotional = a.IsPromotional,
-                    IsMixedArtist = a.IsMixedArtist,
-                    IsRemix = a.IsRemix,
-                    IsSingleTrack = a.IsSingleTrack,
-                    IsSoundtrack = a.IsSoundtrack,
-                    IsTribute = a.IsTribute,
-                    TributeArtistId = a.TributeArtistId,
-                    IsHoliday = a.IsHoliday,
-                    HolidayId = a.HolidayId,
-                    Holiday = a.HolidayId == Guid.Empty ? null : new Holiday
-                    {
-                        Id = holiday.Id,
-                        Name = holiday.Name,
-                        Description = holiday.Description,
-                        StartDay = holiday.StartDay,
-                        StartMonth = holiday.StartMonth,
-                        EndDay = holiday.EndDay,
-                        EndMonth = holiday.EndMonth
-                    }
+                    Album = a,
+                    Artist = artist,
+                    Holiday = holiday
                 };
 
-            var album = albumQuery.SingleOrDefault();
+            var result = albumQuery.SingleOrDefault();
 
+            if (result == null)
+                return null;
+
+            var album = result.Album;
             if (album == null)
                 return null;
+
+            album.Artist = result.Artist;
+            album.Holiday = result.Holiday;
 
             var tracksTable = AlbumTrackTable(dataSource);
             var songTable = SongTable(dataSource);
@@ -81,82 +72,40 @@ namespace Bloom.Data.Repositories
             var tracksQuery =
                 from track in tracksTable
                 join song in songTable on track.SongId equals song.Id
-                join genre in genreTable on song.GenreId equals genre.Id
-                join artist in artistTable on song.ArtistId equals artist.Id
-                join holiday in holidayTable on song.HolidayId equals holiday.Id
-                join timeSignature in timeSignatureTable on song.TimeSignatureId equals timeSignature.Id
+                from genre in genreTable.Where(g => song.GenreId == g.Id).DefaultIfEmpty()
+                from artist in artistTable.Where(a => song.ArtistId == a.Id).DefaultIfEmpty()
+                from holiday in holidayTable.Where(h => song.HolidayId == h.Id).DefaultIfEmpty()
+                from timeSignature in timeSignatureTable.Where(t => song.TimeSignatureId == t.Id).DefaultIfEmpty()
                 where track.AlbumId == albumId
                 orderby track.DiscNumber, track.TrackNumber
-                select new AlbumTrack
+                select new 
                 {
-                    Id = track.Id,
-                    AlbumId = albumId,
-                    DiscNumber = track.DiscNumber,
-                    TrackNumber = track.TrackNumber,
-                    StartTime = track.StartTime,
-                    StopTime = track.StopTime,
-                    SongId = track.SongId,
-                    Song = new Song
-                    {
-                        Id = song.Id,
-                        Name = song.Name,
-                        Version = song.Version,
-                        ArtistId = song.ArtistId,
-                        Artist = new Artist
-                        {
-                            Id = artist.Id,
-                            Name = artist.Name,
-                            IsSolo = artist.IsSolo,
-                            Bio = artist.Bio,
-                            StartedOn = artist.StartedOn,
-                            EndedOn = artist.EndedOn,
-                            Twitter = artist.Twitter
-                        },
-                        Description = song.Description,
-                        GenreId = song.GenreId,
-                        Genre = song.GenreId == Guid.Empty ? null : new Genre
-                        {
-                            Id = genre.Id,
-                            Name = genre.Name,
-                            Description = genre.Description,
-                            ParentGenreId = genre.ParentGenreId
-                        },
-                        Length = song.Length,
-                        Bpm = song.Bpm,
-                        Key = song.Key,
-                        TimeSignatureId = song.TimeSignatureId,
-                        TimeSignature = song.TimeSignatureId == Guid.Empty ? null : new TimeSignature
-                        {
-                            Id = timeSignature.Id,
-                            BeatsPerMeasure = timeSignature.BeatsPerMeasure,
-                            BeatLength = timeSignature.BeatLength
-                        },
-                        AboutDayOfWeek = song.AboutDayOfWeek,
-                        AboutTimeOfYear = song.AboutTimeOfYear,
-                        BestPlayedAtStart = song.BestPlayedAtStart,
-                        BestPlayedAtStop = song.BestPlayedAtStop,
-                        HasExplicitContent = song.HasExplicitContent,
-                        IsRemix = song.IsRemix,
-                        IsCover = song.IsCover,
-                        IsLive = song.IsLive,
-                        OriginalSongId = song.OriginalSongId,
-                        IsHoliday = song.IsHoliday,
-                        HolidayId = song.HolidayId,
-                        Holiday = song.HolidayId == Guid.Empty ? null : new Holiday
-                        {
-                            Id = holiday.Id,
-                            Name = holiday.Name,
-                            Description = holiday.Description,
-                            StartDay = holiday.StartDay,
-                            StartMonth = holiday.StartMonth,
-                            EndDay = holiday.EndDay,
-                            EndMonth = holiday.EndMonth
-                        }
-                    }
+                    Track = track,
+                    Song = song,
+                    Genre = genre,
+                    Artist = artist,
+                    Holiday = holiday,
+                    TimeSignature = timeSignature
                 };
 
-            album.Tracks = tracksQuery.ToList();
+            var results = tracksQuery.ToList();
 
+            album.Tracks = null;
+            if (results.Any())
+            {
+                album.Tracks = new List<AlbumTrack>();
+                foreach (var trackResult in results)
+                {
+                    var track = trackResult.Track;
+                    track.Song = trackResult.Song;
+                    track.Song.Artist = trackResult.Artist;
+                    track.Song.Genre = trackResult.Genre;
+                    track.Song.Holiday = trackResult.Holiday;
+                    track.Song.TimeSignature = trackResult.TimeSignature;
+                    album.Tracks.Add(track);
+                }
+            }
+            
             var albumArtworkTable = AlbumArtworkTable(dataSource);
             var artworkQuery =
                 from artwork in albumArtworkTable
@@ -170,24 +119,25 @@ namespace Bloom.Data.Repositories
                 from collaborator in collaboratorsTable
                 join artist in artistTable on collaborator.ArtistId equals artist.Id
                 where collaborator.AlbumId == albumId
-                orderby artist.Name
-                select new AlbumCollaborator
+                orderby collaborator.IsFeatured descending, artist.Name
+                select new
                 {
-                    AlbumId = albumId,
-                    ArtistId = artist.Id,
-                    Artist = new Artist
-                    {
-                        Id = artist.Id,
-                        Name = artist.Name,
-                        IsSolo = artist.IsSolo,
-                        StartedOn = artist.StartedOn,
-                        EndedOn = artist.EndedOn,
-                        Twitter = artist.Twitter
-                    },
-                    IsFeatured = collaborator.IsFeatured
+                    Collaborator = collaborator,
+                    Artist = artist
                 };
 
-            album.Collaborators = collaboratorsQuery.ToList();
+            album.Collaborators = null;
+            var collaboratorsResults = collaboratorsQuery.ToList();
+            if (collaboratorsResults.Any())
+            {
+                album.Collaborators = new List<AlbumCollaborator>();
+                foreach (var collaboratorResult in collaboratorsResults)
+                {
+                    var albumCollaborator = collaboratorResult.Collaborator;
+                    albumCollaborator.Artist = collaboratorResult.Artist;
+                    album.Collaborators.Add(albumCollaborator);
+                }
+            }
 
             var personTable = PersonTable(dataSource);
             var creditsTable = AlbumCreditTable(dataSource);
@@ -196,22 +146,24 @@ namespace Bloom.Data.Repositories
                 join person in personTable on albumCredit.PersonId equals person.Id
                 where albumCredit.AlbumId == albumId
                 orderby person.Name
-                select new AlbumCredit
+                select new
                 {
-                    Id = albumCredit.Id,
-                    AlbumId = albumId,
-                    PersonId = albumCredit.PersonId,
-                    Person = new Person
-                    {
-                        Id = person.Id,
-                        Name = person.Name,
-                        BornOn = person.BornOn,
-                        DiedOn = person.DiedOn,
-                        Twitter = person.Twitter
-                    }
+                    Credit = albumCredit,
+                    Person = person
                 };
 
-            album.Credits = creditsQuery.ToList();
+            album.Credits = null;
+            var creditsResults = creditsQuery.ToList();
+            if (creditsResults.Any())
+            {
+                album.Credits = new List<AlbumCredit>();
+                foreach (var creditResult in creditsResults)
+                {
+                    var albumCredit = creditResult.Credit;
+                    albumCredit.Person = creditResult.Person;
+                    album.Credits.Add(albumCredit);
+                }
+            }
 
             if (album.Credits == null)
                 return album;
@@ -226,11 +178,7 @@ namespace Bloom.Data.Repositories
                     join role in roleTable on acr.RoleId equals role.Id
                     where acr.AlbumCreditId == c.Id
                     orderby role.Name
-                    select new Role
-                    {
-                        Id = role.Id,
-                        Name = role.Name
-                    };
+                    select role;
 
                 credit.Roles = rolesQuery.ToList();
             }
@@ -238,6 +186,32 @@ namespace Bloom.Data.Repositories
             return album;
         }
 
+        /// <summary>
+        /// Gets the album release.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumReleaseId">The album release identifier.</param>
+        public AlbumRelease GetAlbumRelease(IDataSource dataSource, Guid albumReleaseId)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var albumReleaseTable = AlbumReleaseTable(dataSource);
+            if (albumReleaseTable == null)
+                return null;
+
+            var albumReleaseQuery =
+                from albumRelease in albumReleaseTable
+                where albumRelease.Id == albumReleaseId
+                select albumRelease;
+
+            return albumReleaseQuery.SingleOrDefault();
+        }
+
+        /// <summary>
+        /// Lists the albums.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
         public List<Album> ListAlbums(IDataSource dataSource)
         {
             if (!dataSource.IsConnected())
@@ -250,56 +224,123 @@ namespace Bloom.Data.Repositories
                 return null;
 
             var albumQuery =
-                from a in albumTable
-                join artist in artistTable on a.ArtistId equals artist.Id
-                join holiday in holidayTable on a.HolidayId equals holiday.Id
-                select new Album
+                from album in albumTable
+                from artist in artistTable.Where(r => album.ArtistId == r.Id).DefaultIfEmpty()
+                from holiday in holidayTable.Where(h => album.HolidayId == h.Id).DefaultIfEmpty()
+                where album.ArtistId != null
+                orderby artist.Name, album.FirstReleasedOn, album.Name
+                select new
                 {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Edition = a.Edition,
-                    ArtistId = a.ArtistId,
-                    Artist = new Artist
-                    {
-                        Id = artist.Id,
-                        Name = artist.Name,
-                        IsSolo = artist.IsSolo,
-                        Bio = artist.Bio,
-                        StartedOn = artist.StartedOn,
-                        EndedOn = artist.EndedOn,
-                        Twitter = artist.Twitter
-                    },
-                    Description = a.Description,
-                    Length = a.Length,
-                    LengthType = a.LengthType,
-                    LinerNotes = a.LinerNotes,
-                    IsBootleg = a.IsBootleg,
-                    IsLive = a.IsLive,
-                    IsCompilation = a.IsCompilation,
-                    IsPromotional = a.IsPromotional,
-                    IsMixedArtist = a.IsMixedArtist,
-                    IsRemix = a.IsRemix,
-                    IsSingleTrack = a.IsSingleTrack,
-                    IsSoundtrack = a.IsSoundtrack,
-                    IsTribute = a.IsTribute,
-                    TributeArtistId = a.TributeArtistId,
-                    IsHoliday = a.IsHoliday,
-                    HolidayId = a.HolidayId,
-                    Holiday = a.HolidayId == Guid.Empty ? null : new Holiday
-                    {
-                        Id = holiday.Id,
-                        Name = holiday.Name,
-                        Description = holiday.Description,
-                        StartDay = holiday.StartDay,
-                        StartMonth = holiday.StartMonth,
-                        EndDay = holiday.EndDay,
-                        EndMonth = holiday.EndMonth
-                    }
+                    Album = album,
+                    Artist = artist,
+                    Holiday = holiday
                 };
 
-            return albumQuery.ToList();
+            var noArtistAlbumQuery =
+                from album in albumTable
+                from artist in artistTable.Where(r => album.ArtistId == r.Id).DefaultIfEmpty()
+                from holiday in holidayTable.Where(h => album.HolidayId == h.Id).DefaultIfEmpty()
+                where album.ArtistId == null
+                orderby album.FirstReleasedOn, album.Name
+                select new
+                {
+                    Album = album,
+                    Artist = artist,
+                    Holiday = holiday
+                };
+
+            var results = albumQuery.ToList();
+            results.AddRange(noArtistAlbumQuery.ToList());
+
+            if (!results.Any()) 
+                return null;
+
+            var albums = new List<Album>();
+            foreach (var result in results)
+            {
+                var album = result.Album;
+                album.Artist = result.Artist;
+                album.Holiday = result.Holiday;
+                albums.Add(album);
+            }
+
+            return albums;
         }
 
+        /// <summary>
+        /// Lists the albums for a given artist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artistId">The artist identifier.</param>
+        public List<Album> ListArtistAlbums(IDataSource dataSource, Guid artistId)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var holidayTable = HolidayTable(dataSource);
+            var artistTable = ArtistTable(dataSource);
+            var albumTable = AlbumTable(dataSource);
+            if (albumTable == null)
+                return null;
+
+            var albumQuery =
+                from album in albumTable
+                from artist in artistTable.Where(r => album.ArtistId == r.Id).DefaultIfEmpty()
+                from holiday in holidayTable.Where(h => album.HolidayId == h.Id).DefaultIfEmpty()
+                where artist.Id == artistId
+                orderby album.FirstReleasedOn, album.Name
+                select new
+                {
+                    Album = album,
+                    Artist = artist,
+                    Holiday = holiday
+                };
+
+            var results = albumQuery.ToList();
+
+            if (!results.Any())
+                return null;
+
+            var albums = new List<Album>();
+            foreach (var result in results)
+            {
+                var album = result.Album;
+                album.Artist = result.Artist;
+                album.Holiday = result.Holiday;
+                albums.Add(album);
+            }
+
+            return albums;
+        }
+
+        /// <summary>
+        /// Lists the album releases.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumId">The album identifier.</param>
+        public List<AlbumRelease> ListAlbumReleases(IDataSource dataSource, Guid albumId)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var albumReleaseTable = AlbumReleaseTable(dataSource);
+            if (albumReleaseTable == null)
+                return null;
+
+            var albumReleaseQuery =
+                from albumRelease in albumReleaseTable
+                where albumRelease.AlbumId == albumId
+                orderby albumRelease.ReleaseDate
+                select albumRelease;
+
+            return albumReleaseQuery.ToList();
+        }
+
+        /// <summary>
+        /// Adds the album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="album">The album.</param>
         public void AddAlbum(IDataSource dataSource, Album album)
         {
             if (!dataSource.IsConnected())
@@ -310,8 +351,14 @@ namespace Bloom.Data.Repositories
                 return;
 
             albumTable.InsertOnSubmit(album);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds a track to the album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumTrack">The album track.</param>
         public void AddAlbumTrack(IDataSource dataSource, AlbumTrack albumTrack)
         {
             if (!dataSource.IsConnected())
@@ -322,8 +369,32 @@ namespace Bloom.Data.Repositories
                 return;
 
             albumTrackTable.InsertOnSubmit(albumTrack);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes an album track.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumTrack">The album track.</param>
+        public void DeleteAlbumTrack(IDataSource dataSource, AlbumTrack albumTrack)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumTrackTable = AlbumTrackTable(dataSource);
+            if (albumTrackTable == null)
+                return;
+
+            albumTrackTable.DeleteOnSubmit(albumTrack);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Adds album artwork.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumArtwork">The album artwork.</param>
         public void AddAlbumArtwork(IDataSource dataSource, AlbumArtwork albumArtwork)
         {
             if (!dataSource.IsConnected())
@@ -334,8 +405,68 @@ namespace Bloom.Data.Repositories
                 return;
 
             albumArtworkTable.InsertOnSubmit(albumArtwork);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes album artwork.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumArtwork">The album artwork.</param>
+        public void DeleteAlbumArtwork(IDataSource dataSource, AlbumArtwork albumArtwork)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumArtworkTable = AlbumArtworkTable(dataSource);
+            if (albumArtworkTable == null)
+                return;
+
+            albumArtworkTable.DeleteOnSubmit(albumArtwork);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Adds an album release.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumRelease">The album release.</param>
+        public void AddAlbumRelease(IDataSource dataSource, AlbumRelease albumRelease)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumReleaseTable = AlbumReleaseTable(dataSource);
+            if (albumReleaseTable == null)
+                return;
+
+            albumReleaseTable.InsertOnSubmit(albumRelease);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes an album release.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumRelease">The album release.</param>
+        public void DeleteAlbumRelease(IDataSource dataSource, AlbumRelease albumRelease)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumReleaseTable = AlbumReleaseTable(dataSource);
+            if (albumReleaseTable == null)
+                return;
+
+            albumReleaseTable.DeleteOnSubmit(albumRelease);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Adds an album collaborator.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumCollaborator">The album collaborator.</param>
         public void AddAlbumCollaborator(IDataSource dataSource, AlbumCollaborator albumCollaborator)
         {
             if (!dataSource.IsConnected())
@@ -346,9 +477,54 @@ namespace Bloom.Data.Repositories
                 return;
 
             albumCollaboratorTable.InsertOnSubmit(albumCollaborator);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes an album collaborator.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumCollaborator">The album collaborator.</param>
+        public void DeleteAlbumCollaborator(IDataSource dataSource, AlbumCollaborator albumCollaborator)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumCollaboratorTable = AlbumCollaboratorTable(dataSource);
+            if (albumCollaboratorTable == null)
+                return;
+
+            albumCollaboratorTable.DeleteOnSubmit(albumCollaborator);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Adds an album credit.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumCredit">The album credit.</param>
         public void AddAlbumCredit(IDataSource dataSource, AlbumCredit albumCredit)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            if (!_personRepository.PersonExists(dataSource, albumCredit.PersonId))
+                _personRepository.AddPerson(dataSource, albumCredit.Person);
+
+            var albumCreditTable = AlbumCreditTable(dataSource);
+            if (albumCreditTable == null)
+                return;
+
+            albumCreditTable.InsertOnSubmit(albumCredit);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes an album credit.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumCredit">The album credit.</param>
+        public void DeleteAlbumCredit(IDataSource dataSource, AlbumCredit albumCredit)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -357,9 +533,71 @@ namespace Bloom.Data.Repositories
             if (albumCreditTable == null)
                 return;
 
-            albumCreditTable.InsertOnSubmit(albumCredit);
+            if (albumCredit.Roles != null && albumCredit.Roles.Any())
+                foreach (var role in albumCredit.Roles)
+                    DeleteAlbumCreditRole(dataSource, albumCredit, role);
+
+            albumCreditTable.DeleteOnSubmit(albumCredit);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds an album credit role.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumCredit">The album credit.</param>
+        /// <param name="role">The role.</param>
+        public void AddAlbumCreditRole(IDataSource dataSource, AlbumCredit albumCredit, Role role)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            if (!_roleRepository.RoleExists(dataSource, role.Id))
+                _roleRepository.AddRole(dataSource, role);
+
+            var albumCreditRoleTable = AlbumCreditRoleTable(dataSource);
+            if (albumCreditRoleTable == null)
+                return;
+
+            var albumCreditRole = AlbumCreditRole.Create(albumCredit, role);
+
+            albumCreditRoleTable.InsertOnSubmit(albumCreditRole);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes an album credit role.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumCredit">The album credit.</param>
+        /// <param name="role">The role.</param>
+        public void DeleteAlbumCreditRole(IDataSource dataSource, AlbumCredit albumCredit, Role role)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumCreditRoleTable = AlbumCreditRoleTable(dataSource);
+            if (albumCreditRoleTable == null)
+                return;
+
+            var albumCreditRoleQuery =
+                from acr in albumCreditRoleTable
+                where acr.AlbumCreditId == albumCredit.Id && acr.RoleId == role.Id
+                select acr;
+
+            var albumCreditRole = albumCreditRoleQuery.SingleOrDefault();
+            if (albumCreditRole == null)
+                return;
+
+            albumCreditRoleTable.DeleteOnSubmit(albumCreditRole);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes the album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="album">The album.</param>
         public void DeleteAlbum(IDataSource dataSource, Album album)
         {
             if (!dataSource.IsConnected())
@@ -369,8 +607,115 @@ namespace Bloom.Data.Repositories
             if (albumTable == null)
                 return;
 
+            var albumArtworkTable = AlbumArtworkTable(dataSource);
+            var albumArtworkQuery =
+                from aa in albumArtworkTable
+                where aa.AlbumId == album.Id
+                select aa;
+
+            albumArtworkTable.DeleteAllOnSubmit(albumArtworkQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumReferenceTable = AlbumReferenceTable(dataSource);
+            var albumReferencesQuery =
+                from ar in albumReferenceTable
+                where ar.AlbumId == album.Id
+                select ar;
+
+            albumReferenceTable.DeleteAllOnSubmit(albumReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumActivityTable = AlbumActivityTable(dataSource);
+            var albumActivitiesQuery =
+                from aa in albumActivityTable
+                where aa.AlbumId == album.Id
+                select aa;
+
+            albumActivityTable.DeleteAllOnSubmit(albumActivitiesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumMoodTable = AlbumMoodTable(dataSource);
+            var albumMoodsQuery =
+                from am in albumMoodTable
+                where am.AlbumId == album.Id
+                select am;
+
+            albumMoodTable.DeleteAllOnSubmit(albumMoodsQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumTagTable = AlbumTagTable(dataSource);
+            var albumTagsQuery =
+                from at in albumTagTable
+                where at.AlbumId == album.Id
+                select at;
+
+            albumTagTable.DeleteAllOnSubmit(albumTagsQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumReviewTable = AlbumReviewTable(dataSource);
+            var albumReviewsQuery =
+                from ar in albumReviewTable
+                where ar.AlbumId == album.Id
+                select ar;
+
+            albumReviewTable.DeleteAllOnSubmit(albumReviewsQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumCollaboratorTable = AlbumCollaboratorTable(dataSource);
+            var albumCollaboratorsQuery =
+                from ac in albumCollaboratorTable
+                where ac.AlbumId == album.Id
+                select ac;
+
+            albumCollaboratorTable.DeleteAllOnSubmit(albumCollaboratorsQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumReleaseTable = AlbumReleaseTable(dataSource);
+            var albumReleaseQuery =
+                from ar in albumReleaseTable
+                where ar.AlbumId == album.Id
+                select ar;
+
+            albumReleaseTable.DeleteAllOnSubmit(albumReleaseQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumTrackTable = AlbumTrackTable(dataSource);
+            var albumTrackQuery =
+                from at in albumTrackTable
+                where at.AlbumId == album.Id
+                select at;
+
+            albumTrackTable.DeleteAllOnSubmit(albumTrackQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumCreditTable = AlbumCreditTable(dataSource);
+            var albumCreditsQuery =
+                from ac in albumCreditTable
+                where ac.AlbumId == album.Id
+                select ac;
+
+            var credits = albumCreditsQuery.ToList();
+            foreach (var credit in credits)
+            {
+                var c = credit;
+                var albumCreditRoleTable = AlbumCreditRoleTable(dataSource);
+                var albumCreditRolesQuery =
+                    from acr in albumCreditRoleTable
+                    where acr.AlbumCreditId == c.Id
+                    select acr;
+
+                albumCreditRoleTable.DeleteAllOnSubmit(albumCreditRolesQuery.AsEnumerable());
+                dataSource.Save();
+
+                albumCreditTable.DeleteOnSubmit(credit);
+                dataSource.Save();
+            }
+
             albumTable.DeleteOnSubmit(album);
+            dataSource.Save();
         }
+
+        #region Tables
 
         private static Table<Album> AlbumTable(IDataSource dataSource)
         {
@@ -407,6 +752,31 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<AlbumTrack>() : null;
         }
 
+        private static Table<AlbumReference> AlbumReferenceTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumReference>() : null;
+        }
+
+        private static Table<AlbumActivity> AlbumActivityTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumActivity>() : null;
+        }
+
+        private static Table<AlbumMood> AlbumMoodTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumMood>() : null;
+        }
+
+        private static Table<AlbumReview> AlbumReviewTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumReview>() : null;
+        }
+
+        private static Table<AlbumTag> AlbumTagTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumTag>() : null;
+        }
+
         private static Table<AlbumArtwork> AlbumArtworkTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<AlbumArtwork>() : null;
@@ -427,6 +797,11 @@ namespace Bloom.Data.Repositories
             return dataSource != null ? dataSource.Context.GetTable<AlbumCreditRole>() : null;
         }
 
+        private static Table<AlbumRelease> AlbumReleaseTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumRelease>() : null;
+        }
+
         private static Table<Role> RoleTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
@@ -436,5 +811,7 @@ namespace Bloom.Data.Repositories
         {
             return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
         }
+
+        #endregion
     }
 }

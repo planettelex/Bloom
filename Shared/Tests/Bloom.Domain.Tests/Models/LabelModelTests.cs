@@ -57,7 +57,7 @@ namespace Bloom.Domain.Tests.Models
         {
             var label = Label.Create(LabelName);
             var person = Person.Create("Person");
-            var labelPersonnel = LabelPersonnel.Create(label, person);
+            var labelPersonnel = LabelPersonnel.Create(label, person, 1);
 
             Assert.AreNotEqual(labelPersonnel.Id, Guid.Empty);
             Assert.AreEqual(labelPersonnel.LabelId, label.Id);
@@ -73,7 +73,7 @@ namespace Bloom.Domain.Tests.Models
         {
             var label = Label.Create(LabelName);
             var person = Person.Create("Personnel");
-            var labelPersonnel = LabelPersonnel.Create(label, person);
+            var labelPersonnel = LabelPersonnel.Create(label, person, 1);
             var role = Role.Create("Role");
             var labelPersonnelRole = LabelPersonnelRole.Create(labelPersonnel, role);
 

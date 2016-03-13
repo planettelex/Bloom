@@ -227,19 +227,18 @@ namespace Bloom.Data.Repositories
 
             var results = songsQuery.ToList();
 
-            List<Song> songs = null;
-            if (results.Any())
+            if (!results.Any()) 
+                return null;
+
+            var songs = new List<Song>();
+            foreach (var result in results)
             {
-                songs = new List<Song>();
-                foreach (var result in results)
-                {
-                    var song = result.Song;
-                    song.Artist = result.Artist;
-                    song.Genre = result.Genre;
-                    song.Holiday = result.Holiday;
-                    song.TimeSignature = result.TimeSignature;
-                    songs.Add(song);
-                }
+                var song = result.Song;
+                song.Artist = result.Artist;
+                song.Genre = result.Genre;
+                song.Holiday = result.Holiday;
+                song.TimeSignature = result.TimeSignature;
+                songs.Add(song);
             }
 
             return songs;
@@ -393,7 +392,7 @@ namespace Bloom.Data.Repositories
             if (songCreditTable == null)
                 return;
 
-            if (songCredit.Roles != null && songCredit.Roles.Count > 0)
+            if (songCredit.Roles != null && songCredit.Roles.Any())
                 foreach (var role in songCredit.Roles)
                     DeleteSongCreditRole(dataSource, songCredit, role);
 

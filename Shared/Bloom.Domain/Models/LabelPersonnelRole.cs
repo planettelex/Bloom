@@ -26,7 +26,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the label personnel identifier.
         /// </summary>
-        [Column(Name = "label_personel_id", IsPrimaryKey = true)]
+        [Column(Name = "label_personnel_id", IsPrimaryKey = true)]
         public Guid LabelPersonelId { get; set; }
 
         /// <summary>

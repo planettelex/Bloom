@@ -15,14 +15,16 @@ namespace Bloom.Domain.Models
         /// </summary>
         /// <param name="label">A label.</param>
         /// <param name="person">The person.</param>
-        public static LabelPersonnel Create(Label label, Person person)
+        /// <param name="priority">The priority.</param>
+        public static LabelPersonnel Create(Label label, Person person, int priority)
         {
             return new LabelPersonnel
             {
                 Id = Guid.NewGuid(),
                 LabelId = label.Id,
                 PersonId = person.Id,
-                Person = person
+                Person = person,
+                Priority = priority
             };
         }
 
