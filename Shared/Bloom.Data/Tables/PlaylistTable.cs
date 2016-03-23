@@ -16,6 +16,7 @@ namespace Bloom.Data.Tables
                        "name VARCHAR NOT NULL , " +
                        "description VARCHAR , " +
                        "length INTEGER NOT NULL DEFAULT 0 , " +
+                       "rating INTEGER , " +
                        "created_on DATETIME NOT NULL , " +
                        "created_by_id VARCHAR(36) NOT NULL , " +
                        "FOREIGN KEY (created_by_id) REFERENCES person(id) )";

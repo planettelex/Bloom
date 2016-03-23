@@ -17,7 +17,6 @@ namespace Bloom.Data.Services
         {
             _tables = new List<ISqlTable>
             {
-                // Primary Tables (no external foreign keys)
                 new ActivityTable(),
                 new ArtistTable(),
                 new FiltersetTable(),
@@ -32,8 +31,6 @@ namespace Bloom.Data.Services
                 new RoleTable(),
                 new TagTable(),
                 new TimeSignatureTable(),
-
-                // Secondary Tables (external foreign keys)
                 new PersonPhotoTable(),
                 new PersonReferenceTable(),
                 new LabelPersonnelTable(),
@@ -53,6 +50,7 @@ namespace Bloom.Data.Services
                 new SongReviewTable(),
                 new SongSegmentTable(),
                 new SongTagTable(),
+                new SongMediaTable(),
                 new RecordingSessionTable(),
                 new AlbumTable(),
                 new AlbumActivityTable(),
@@ -66,6 +64,7 @@ namespace Bloom.Data.Services
                 new AlbumReviewTable(),
                 new AlbumTagTable(),
                 new AlbumTrackTable(),
+                new AlbumMediaTable(),
                 new PlaylistTable(),
                 new PlaylistActivityTable(),
                 new PlaylistArtworkTable(),
@@ -75,14 +74,7 @@ namespace Bloom.Data.Services
                 new PlaylistTrackTable(),
                 new FiltersetElementTable(),
                 new FiltersetOrderTable(),
-                new LibraryTable(),
-                new LibraryAlbumTable(),
-                new LibraryAlbumMediaTable(),
-                new LibraryArtistTable(),
-                new LibraryPersonTable(),
-                new LibraryPlaylistTable(),
-                new LibrarySongTable(),
-                new LibrarySongMediaTable()
+                new LibraryTable()
             };
         }
         private readonly List<ISqlTable> _tables;

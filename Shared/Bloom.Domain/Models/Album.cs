@@ -308,6 +308,12 @@ namespace Bloom.Domain.Models
         private bool _isSingleTrack;
 
         /// <summary>
+        /// Gets or sets the album rating.
+        /// </summary>
+        [Column(Name = "rating")]
+        public int? Rating { get; set; }
+
+        /// <summary>
         /// Gets or sets the album tracks.
         /// </summary>
         public List<AlbumTrack> Tracks { get; set; }
@@ -316,6 +322,11 @@ namespace Bloom.Domain.Models
         /// Gets or sets the album artwork. 
         /// </summary>
         public List<AlbumArtwork> Artwork { get; set; }
+
+        /// <summary>
+        /// Gets or sets the album media.
+        /// </summary>
+        public List<AlbumMedia> Media { get; set; }
 
         /// <summary>
         /// Gets or sets the album credits.

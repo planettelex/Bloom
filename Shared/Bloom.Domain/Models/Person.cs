@@ -87,6 +87,12 @@ namespace Bloom.Domain.Models
         private string _twitter;
 
         /// <summary>
+        /// Gets or sets a value indicating whether this library follows this person.
+        /// </summary>
+        [Column(Name = "follow")]
+        public bool Follow { get; set; }
+
+        /// <summary>
         /// Gets or sets the person's photos.
         /// </summary>
         public List<Photo> Photos { get; set; }

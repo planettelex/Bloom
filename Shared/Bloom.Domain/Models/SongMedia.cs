@@ -5,83 +5,74 @@ using Bloom.Domain.Enums;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Associates a library song with a media.
+    /// Represents a song media.
     /// </summary>
-    [Table(Name = "library_song_media")]
-    public class LibrarySongMedia
+    [Table(Name = "song_media")]
+    public class SongMedia
     {
         /// <summary>
-        /// Creates a new library song media instance.
+        /// Creates a new song media instance.
         /// </summary>
-        /// <param name="librarySong">The library song.</param>
-        /// <param name="mediaType">The type of media.</param>
-        /// <param name="uri">The song media URI.</param>
-        public static LibrarySongMedia Create(LibrarySong librarySong, MediaTypes mediaType, string uri)
+        /// <param name="song">The song.</param>
+        /// <param name="mediaType">The type of the media.</param>
+        public static SongMedia Create(Song song, MediaTypes mediaType)
         {
-            return new LibrarySongMedia
+            return new SongMedia
             {
-                LibraryId = librarySong.LibraryId,
-                SongId = librarySong.SongId,
-                Song = librarySong.Song,
-                MediaType = mediaType,
-                Uri = uri
+                Id = Guid.NewGuid(),
+                SongId = song.Id,
+                MediaType = mediaType
             };
         }
 
         /// <summary>
-        /// Creates a new library song media instance.
+        /// Creates a new song media instance.
         /// </summary>
-        /// <param name="librarySong">The library song.</param>
-        /// <param name="mediaType">The type of media.</param>
-        /// <param name="digitalFormat">The song media digital format.</param>
-        /// <param name="uri">The song media URI.</param>
-        /// <returns></returns>
-        public static LibrarySongMedia Create(LibrarySong librarySong, MediaTypes mediaType, DigitalFormats digitalFormat, string uri)
+        /// <param name="song">The song.</param>
+        /// <param name="mediaType">The type of the media.</param>
+        /// <param name="digitalFormat">The digital format.</param>
+        /// <param name="filePath">The file path.</param>
+        public static SongMedia Create(Song song, MediaTypes mediaType, DigitalFormats digitalFormat, string filePath)
         {
-            return new LibrarySongMedia
+            return new SongMedia
             {
-                LibraryId = librarySong.LibraryId,
-                SongId = librarySong.SongId,
-                Song = librarySong.Song,
+                Id = Guid.NewGuid(),
+                SongId = song.Id,
                 MediaType = mediaType,
                 DigitalFormat = digitalFormat,
-                Uri = uri
+                FilePath = filePath
             };
         }
 
         /// <summary>
-        /// Gets or sets the library identifier.
+        /// Gets or sets the identifier.
         /// </summary>
-        public Guid LibraryId { get; set; }
-
+        [Column(Name = "id", IsPrimaryKey = true)]
+        public Guid Id { get; set; }
+        
         /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
-        [Column(Name = "song_id", IsPrimaryKey = true)]
+        [Column(Name = "song_id")]
         public Guid SongId { get; set; }
 
         /// <summary>
-        /// Gets or sets the song.
+        /// Gets or sets media type.
         /// </summary>
-        public Song Song { get; set; }
-
-        /// <summary>
-        /// Gets or sets media type of this song media.
-        /// </summary>
-        [Column(Name = "media_type", IsPrimaryKey = true)]
+        [Column(Name = "media_type")]
         public MediaTypes MediaType { get; set; }
 
         /// <summary>
-        /// Gets or sets the song media digital formats.
+        /// Gets or sets the media digital format.
         /// </summary>
         [Column(Name = "digital_format")]
-        public DigitalFormats DigitalFormat { get; set; }
+        public DigitalFormats? DigitalFormat { get; set; }
 
         /// <summary>
-        /// Gets or sets the song media URI.
+        /// Gets or sets the song media file path.
         /// </summary>
-        [Column(Name = "uri")]
-        public string Uri { get; set; }
+        [Column(Name = "file_path")]
+        public string FilePath { get; set; }
 
         /// <summary>
         /// Gets or sets whether this song media is compressed.
@@ -123,6 +114,12 @@ namespace Bloom.Domain.Models
         /// Gets or sets the media volume offset.
         /// </summary>
         [Column(Name = "volume_offset")]
-        public int VolumeOffset { get; set; }
+        public int? VolumeOffset { get; set; }
+
+        /// <summary>
+        /// Gets or sets identifier of the person this media was received from.
+        /// </summary>
+        [Column(Name = "received_from_person_id")]
+        public Guid ReceivedFromPersonId { get; set; }
     }
 }

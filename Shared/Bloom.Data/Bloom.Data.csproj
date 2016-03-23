@@ -156,13 +156,8 @@
     <Compile Include="Tables\LabelPersonnelRoleTable.cs" />
     <Compile Include="Tables\LabelPersonnelTable.cs" />
     <Compile Include="Tables\LabelTable.cs" />
-    <Compile Include="Tables\LibraryAlbumMediaTable.cs" />
-    <Compile Include="Tables\LibraryAlbumTable.cs" />
-    <Compile Include="Tables\LibraryArtistTable.cs" />
-    <Compile Include="Tables\LibraryPersonTable.cs" />
-    <Compile Include="Tables\LibraryPlaylistTable.cs" />
-    <Compile Include="Tables\LibrarySongMediaTable.cs" />
-    <Compile Include="Tables\LibrarySongTable.cs" />
+    <Compile Include="Tables\AlbumMediaTable.cs" />
+    <Compile Include="Tables\SongMediaTable.cs" />
     <Compile Include="Tables\LibraryTable.cs" />
     <Compile Include="Tables\MoodTable.cs" />
     <Compile Include="Tables\PersonPhotoTable.cs" />

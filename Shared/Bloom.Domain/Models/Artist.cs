@@ -75,6 +75,18 @@ namespace Bloom.Domain.Models
         private string _bio;
 
         /// <summary>
+        /// Gets or sets the artist rating.
+        /// </summary>
+        [Column(Name = "rating")]
+        public int? Rating { get; set; }
+
+        /// <summary>
+        /// Gets or sets the notes on this artist.
+        /// </summary>
+        [Column(Name = "notes")]
+        public string Notes { get; set; }
+
+        /// <summary>
         /// Gets or sets the artist's Twitter username.
         /// </summary>
         [Column(Name = "twitter")]
@@ -95,6 +107,30 @@ namespace Bloom.Domain.Models
             set { SetProperty(ref _isSolo, value); }
         }
         private bool _isSolo;
+
+        /// <summary>
+        /// Gets or sets the artist play count.
+        /// </summary>
+        [Column(Name = "play_count")]
+        public int PlayCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the artist skip count.
+        /// </summary>
+        [Column(Name = "skip_count")]
+        public int SkipCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the artist's remove count.
+        /// </summary>
+        [Column(Name = "remove_count")]
+        public int RemoveCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this library follows this artist.
+        /// </summary>
+        [Column(Name = "follow")]
+        public bool Follow { get; set; }
 
         /// <summary>
         /// Gets or sets the artist's photos.

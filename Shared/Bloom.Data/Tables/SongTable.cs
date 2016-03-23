@@ -34,6 +34,14 @@ namespace Bloom.Data.Tables
                        "about_time_of_year INTEGER , " +
                        "best_played_at_start INTEGER , " +
                        "best_played_at_stop INTEGER , " +
+                       "rating INTEGER , " +
+                       "notes VARCHAR , " +
+                       "play_count INTEGER NOT NULL DEFAULT 0 , " +
+                       "skip_count INTEGER NOT NULL DEFAULT 0 , " +
+                       "remove_count INTEGER NOT NULL DEFAULT 0 , " +
+                       "added_on DATETIME NOT NULL , " +
+                       "rated_on DATETIME , " +
+                       "last_played DATETIME , " +
                        "FOREIGN KEY (artist_id) REFERENCES artist(id) , " +
                        "FOREIGN KEY (genre_id) REFERENCES genre(id) , " +
                        "FOREIGN KEY (time_signature_id) REFERENCES time_signature(id) , " +

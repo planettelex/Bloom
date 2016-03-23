@@ -17,8 +17,14 @@ namespace Bloom.Data.Tables
                        "started_on DATETIME , " +
                        "ended_on DATETIME , " +
                        "bio VARCHAR , " +
+                       "rating INTEGER , " +
+                       "notes VARCHAR , " +
                        "twitter VARCHAR , " +
-                       "is_solo BOOL NOT NULL DEFAULT FALSE )";
+                       "is_solo BOOL NOT NULL DEFAULT FALSE , " +
+                       "play_count INTEGER NOT NULL DEFAULT 0 , " +
+                       "skip_count INTEGER NOT NULL DEFAULT 0 , " +
+                       "remove_count INTEGER NOT NULL DEFAULT 0 , " +
+                       "follow BOOL NOT NULL DEFAULT FALSE )";
             }
         }
     }

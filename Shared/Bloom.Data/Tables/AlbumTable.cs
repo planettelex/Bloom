@@ -17,8 +17,8 @@ namespace Bloom.Data.Tables
                        "name VARCHAR NOT NULL , " +
                        "unofficial_name VARCHAR , " +
                        "edition VARCHAR , " +
-                       "length_type INTEGER NOT NULL , " +
-                       "length INTEGER NOT NULL , " +
+                       "length_type INTEGER NOT NULL DEFAULT 0 , " +
+                       "length INTEGER NOT NULL DEFAULT 0 , " +
                        "first_released_on DATETIME , " +
                        "description VARCHAR , " +
                        "liner_notes VARCHAR , " +
@@ -35,6 +35,7 @@ namespace Bloom.Data.Tables
                        "is_compilation BOOL NOT NULL DEFAULT FALSE , " +
                        "is_mixed_artist BOOL NOT NULL DEFAULT FALSE , " +
                        "is_single_track BOOL NOT NULL DEFAULT FALSE , " +
+                       "rating INTEGER , " +
                        "FOREIGN KEY (artist_id) REFERENCES artist(id) , " +
                        "FOREIGN KEY (tribute_artist_id) REFERENCES artist(id) , " +
                        "FOREIGN KEY (holiday_id) REFERENCES holiday(id) )";

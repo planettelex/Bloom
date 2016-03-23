@@ -17,7 +17,8 @@ namespace Bloom.Data.Tables
                        "born_on DATETIME , " +
                        "died_on DATETIME , " +
                        "bio VARCHAR , " +
-                       "twitter VARCHAR )";
+                       "twitter VARCHAR , " +
+                       "follow BOOL NOT NULL DEFAULT FALSE )";
             }
         }
     }

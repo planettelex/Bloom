@@ -1,92 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Person">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+    <Position X="8.25" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
+      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAA=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Photos" />
-      <Property Name="MemberOf" />
-      <Property Name="References" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Photo">
-    <Position X="1.5" Y="4" Width="1.5" />
+    <Position X="5.25" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAQAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAAAAAAAAEAACABQAAAAAAA=</HashCode>
       <FileName>Models\Photo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Bloom.Domain.Models.PersonPhoto">
-    <Position X="1.5" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAEAAAAAAAAAAAAAEAAAAACAAAAAAA=</HashCode>
-      <FileName>Models\PersonPhoto.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Photo" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Bloom.Domain.Models.Reference">
-    <Position X="12.5" Y="3.75" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAEAAACAAAAQAAAAAAEAACAAAAAAAAAA=</HashCode>
-      <FileName>Models\Reference.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Bloom.Domain.Models.PersonReference">
-    <Position X="12.5" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAEAAAAAAAAAAAEAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\PersonReference.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Reference" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="Bloom.Domain.Models.Artist">
-    <Position X="5.25" Y="7.5" Width="1.5" />
+    <Position X="5.25" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEACAEAAAAAAACAACAAAAAQEAQAwAGAAAAAEQAAAAAA=</HashCode>
+      <HashCode>AEACIAAAAAAACSAGCAAAAAQEAAAgAGAAAQCEAQAAAQA=</HashCode>
       <FileName>Models\Artist.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Photos" />
       <Property Name="Members" />
-      <Property Name="References" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.ArtistMember">
-    <Position X="5.25" Y="4" Width="1.5" />
+    <Position X="8.25" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AIACAAAAAAAAAAEEgAAAEAAAAoIAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIACAAQAAAAAAAEEAACAEAAAAgIAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ArtistMember.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Artist" />
       <Property Name="Person" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
@@ -94,53 +57,44 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Role">
-    <Position X="8.75" Y="2" Width="1.75" />
+    <Position X="11" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Role.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.ArtistMemberRole">
-    <Position X="8.75" Y="4.25" Width="1.75" />
+    <Position X="11" Y="2.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAEAAAAAAAAAAAAGAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ArtistMemberRole.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Role" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.ArtistReference">
-    <Position X="12.5" Y="7.5" Width="1.5" />
+    <Position X="3" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAAAAEAAAAAAEAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAEAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ArtistReference.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Reference" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.ArtistPhoto">
-    <Position X="1.5" Y="7.5" Width="1.5" />
+    <Position X="3" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAEAAAAEAAAAAAAAEAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAEAAAAAAAAEAAAAACAAAAAAA=</HashCode>
       <FileName>Models\ArtistPhoto.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Photo" />
-    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

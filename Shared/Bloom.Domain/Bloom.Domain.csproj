@@ -78,13 +78,8 @@
     <Compile Include="Models\AlbumMood.cs" />
     <Compile Include="Enums\Condition.cs" />
     <Compile Include="Models\Filters\AlbumNameFilter.cs" />
-    <Compile Include="Models\LibraryPerson.cs" />
-    <Compile Include="Models\LibraryPlaylist.cs" />
-    <Compile Include="Models\LibrarySongMedia.cs" />
-    <Compile Include="Models\LibrarySong.cs" />
-    <Compile Include="Models\LibraryAlbumMedia.cs" />
-    <Compile Include="Models\LibraryAlbum.cs" />
-    <Compile Include="Models\LibraryArtist.cs" />
+    <Compile Include="Models\SongMedia.cs" />
+    <Compile Include="Models\AlbumMedia.cs" />
     <Compile Include="Models\Library.cs" />
     <Compile Include="Models\LabelPersonnelRole.cs" />
     <Compile Include="Models\LabelPersonnel.cs" />

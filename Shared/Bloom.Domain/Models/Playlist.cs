@@ -68,6 +68,12 @@ namespace Bloom.Domain.Models
         private int _length;
 
         /// <summary>
+        /// Gets or sets the playlist rating.
+        /// </summary>
+        [Column(Name = "rating")]
+        public int? Rating { get; set; }
+
+        /// <summary>
         /// Gets or sets the date this playlist was created on.
         /// </summary>
         [Column(Name = "created_on")]
