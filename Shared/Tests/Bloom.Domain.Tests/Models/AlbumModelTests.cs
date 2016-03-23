@@ -271,7 +271,8 @@ namespace Bloom.Domain.Tests.Models
         public void CreateAlbumReviewTest()
         {
             var album = Album.Create(AlbumName);
-            var review = Review.Create("http://www.test.com/review-article");
+            var source = Source.Create("Source");
+            var review = Review.Create(source, "http://www.test.com/review-article");
             var albumReview = AlbumReview.Create(album, review);
 
             Assert.AreEqual(albumReview.AlbumId, album.Id);

@@ -39,5 +39,13 @@ namespace Bloom.Domain.Models
             set { SetProperty(ref _name, value); }
         }
         private string _name;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

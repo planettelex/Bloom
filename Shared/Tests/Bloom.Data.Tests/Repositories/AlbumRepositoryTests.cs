@@ -1053,10 +1053,6 @@ namespace Bloom.Data.Tests.Repositories
 
             var sydBarett = Person.Create("Syd Barett");
             _personRepository.AddPerson(_dataSource, sydBarett);
-            var sydMember = ArtistMember.Create(pinkFloyd, sydBarett, 5);
-            _artistRepository.AddArtistMember(_dataSource, sydMember);
-            _artistRepository.AddArtistMemberRole(_dataSource, sydMember, leadGuitar);
-            _artistRepository.AddArtistMemberRole(_dataSource, sydMember, leadVocals);
             var sydAlbumCredit = AlbumCredit.Create(atomHeartMother, sydBarett);
             _albumRepository.AddAlbumCredit(_dataSource, sydAlbumCredit);
             _albumRepository.AddAlbumCreditRole(_dataSource, sydAlbumCredit, leadGuitar);

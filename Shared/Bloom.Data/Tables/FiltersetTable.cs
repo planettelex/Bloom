@@ -13,7 +13,8 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE filterset (" +
                        "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "name VARCHAR )";
+                       "name VARCHAR , " +
+                       "created_on DATETIME NOT NULL )";
             }
         }
     }

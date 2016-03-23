@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using System.Globalization;
 
 namespace Bloom.Domain.Models
 {
@@ -29,13 +30,13 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the playlist identifier.
         /// </summary>
-        [Column(Name = "playlist_id")]
+        [Column(Name = "playlist_id", IsPrimaryKey = true)]
         public Guid PlaylistId { get; set; }
 
         /// <summary>
         /// Gets or sets the song identifier.
         /// </summary>
-        [Column(Name = "song_id")]
+        [Column(Name = "song_id", IsPrimaryKey = true)]
         public Guid SongId { get; set; }
 
         /// <summary>
@@ -46,7 +47,19 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the track number.
         /// </summary>
-        [Column(Name = "track_number")]
+        [Column(Name = "track_number", IsPrimaryKey = true)]
         public int TrackNumber { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            var label = TrackNumber.ToString(CultureInfo.InvariantCulture);
+            if (Song != null)
+                label += ": " + Song.Name;
+
+            return label;
+        }
     }
 }

@@ -72,7 +72,6 @@ namespace Bloom.Services
             var libraryConnection = LibraryConnection.Create(library);
             ConnectLibrary(libraryConnection, ApplicationState.User, true, false);
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
-            _personRepository.AddPerson(libraryConnection.DataSource, library.Owner);
             _libraryRepository.AddLibrary(libraryConnection.DataSource, library);
             libraryConnection.SaveChanges();
             ApplicationState.Connections.Insert(0, libraryConnection);

@@ -18,7 +18,8 @@ namespace Bloom.Domain.Models
         {
             return new Filterset
             {
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                CreatedOn = DateTime.Now
             };
         }
 
@@ -30,7 +31,8 @@ namespace Bloom.Domain.Models
             return new Filterset
             {
                 Id = Guid.NewGuid(),
-                Name = name
+                Name = name,
+                CreatedOn = DateTime.Now
             };
         }
         
@@ -50,6 +52,17 @@ namespace Bloom.Domain.Models
             set { SetProperty(ref _name, value); }
         }
         private string _name;
+
+        /// <summary>
+        /// Gets or sets the date this filterset was created on.
+        /// </summary>
+        [Column(Name = "created_on")]
+        public DateTime CreatedOn
+        {
+            get { return _createdOn; }
+            set { SetProperty(ref _createdOn, value); }
+        }
+        private DateTime _createdOn;
 
         /// <summary>
         /// Gets or sets the elements of the filterset.

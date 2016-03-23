@@ -80,9 +80,17 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LibraryDataSourceTests.cs" />
+    <Compile Include="Repositories\LibraryRepositoryTests.cs" />
+    <Compile Include="Repositories\ReferenceRepositoryTests.cs" />
+    <Compile Include="Repositories\ReviewRepositoryTests.cs" />
+    <Compile Include="Repositories\TagRepositoryTests.cs" />
+    <Compile Include="Repositories\MoodRepositoryTests.cs" />
+    <Compile Include="Repositories\ActivityRepositoryTests.cs" />
     <Compile Include="Repositories\AlbumRepositoryTests.cs" />
     <Compile Include="Repositories\ArtistRepositoryTests.cs" />
+    <Compile Include="Repositories\FiltersetRepositoryTests.cs" />
     <Compile Include="Repositories\LabelRepositoryTests.cs" />
+    <Compile Include="Repositories\PlaylistRepositoryTests.cs" />
     <Compile Include="Repositories\SourceRespositoryTests.cs" />
     <Compile Include="Repositories\HolidayRespositoryTests.cs" />
     <Compile Include="Repositories\SongRepositoryTests.cs" />

@@ -8,15 +8,38 @@ using Bloom.Domain.Models;
 namespace Bloom.Data.Repositories
 {
     /// <summary>
-    /// Access methods for source data.
+    /// Access methods for publication source data.
     /// </summary>
     public class SourceRepository : ISourceRepository
     {
         /// <summary>
-        /// Gets a source.
+        /// Determines whether a publication source exists.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        /// <param name="sourceId">The source identifier.</param>
+        /// <param name="sourceId">The publication source identifier.</param>
+        public bool SourceExists(IDataSource dataSource, Guid sourceId)
+        {
+            if (!dataSource.IsConnected())
+                return false;
+
+            var sourceTable = SourceTable(dataSource);
+            if (sourceTable == null)
+                return false;
+
+            var sourceQuery =
+                from s in sourceTable
+                where s.Id == sourceId
+                select s;
+
+            return sourceQuery.Any();
+        }
+
+        /// <summary>
+        /// Gets a publication source.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="sourceId">The publication source identifier.</param>
+        /// <returns></returns>
         public Source GetSource(IDataSource dataSource, Guid sourceId)
         {
             if (!dataSource.IsConnected())
@@ -35,7 +58,7 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
-        /// Lists the sources.
+        /// Lists the publication sources.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         public List<Source> ListSources(IDataSource dataSource)
@@ -56,10 +79,10 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
-        /// Adds a source.
+        /// Adds a publication source.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        /// <param name="source">The source.</param>
+        /// <param name="source">The publication source.</param>
         public void AddSource(IDataSource dataSource, Source source)
         {
             if (!dataSource.IsConnected())
@@ -74,10 +97,10 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
-        /// Deletes a source.
+        /// Deletes a publication source.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        /// <param name="source">The source.</param>
+        /// <param name="source">The publication source.</param>
         public void DeleteSource(IDataSource dataSource, Source source)
         {
             if (!dataSource.IsConnected())

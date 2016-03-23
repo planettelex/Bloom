@@ -4,7 +4,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents an association between a playlist and artwork.
+    /// Represents artwork for a playlist.
     /// </summary>
     [Table(Name = "playlist_artwork")]
     public class PlaylistArtwork
@@ -12,7 +12,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new playlist artwork instance.
         /// </summary>
-        /// <param name="playlist">The playlist.</param>
+        /// <param name="playlist">A playlist.</param>
         /// <param name="filePath">The artwork file path.</param>
         /// <param name="priority">The order priority.</param>
         public static PlaylistArtwork Create(Playlist playlist, string filePath, int priority)
@@ -32,7 +32,7 @@ namespace Bloom.Domain.Models
         public Guid PlaylistId { get; set; }
 
         /// <summary>
-        /// Gets or sets the artwork order priority.
+        /// Gets or sets the order priority for this playlist artwork.
         /// </summary>
         [Column(Name = "priority", IsPrimaryKey = true)]
         public int Priority { get; set; }
@@ -42,5 +42,13 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "file_path")]
         public string FilePath { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return FilePath;
+        }
     }
 }

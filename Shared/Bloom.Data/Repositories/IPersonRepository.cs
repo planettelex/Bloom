@@ -12,9 +12,9 @@ namespace Bloom.Data.Repositories
         /// <summary>
         /// Determines whether a person exists.
         /// </summary>
-        /// <param name="data">The data source.</param>
+        /// <param name="dataSource">The data source.</param>
         /// <param name="personId">The person identifier.</param>
-        bool PersonExists(IDataSource data, Guid personId);
+        bool PersonExists(IDataSource dataSource, Guid personId);
         
         /// <summary>
         /// Gets the person.

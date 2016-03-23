@@ -12,12 +12,14 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new review instance.
         /// </summary>
+        /// <param name="source">The review source.</param>
         /// <param name="url">The review URL.</param>
-        public static Review Create(string url)
+        public static Review Create(Source source, string url)
         {
             return new Review
             {
                 Id = Guid.NewGuid(),
+                Source = source,
                 Url = url
             };
         }
@@ -25,17 +27,18 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Creates a new review instance.
         /// </summary>
+        /// <param name="source">The review source.</param>
         /// <param name="title">The review title.</param>
         /// <param name="body">The review body.</param>
         /// <param name="author">The review author.</param>
-        public static Review Create(string title, string body, Person author)
+        public static Review Create(Source source, string title, string body, Person author)
         {
             return new Review
             {
                 Id = Guid.NewGuid(),
+                Source = source,
                 Title = title,
                 Body = body,
-                AuthorId = author.Id,
                 Author = author
             };
         }
@@ -71,7 +74,7 @@ namespace Bloom.Domain.Models
         public DateTime? PublishedOn { get; set; }
 
         /// <summary>
-        /// Gets or sets the publication identifier.
+        /// Gets or sets the publication source identifier.
         /// </summary>
         [Column(Name = "source_id")]
         public Guid SourceId { get; set; }
@@ -79,17 +82,49 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the publication source.
         /// </summary>
-        public Source Source { get; set; }
+        public Source Source
+        {
+            get { return _source; }
+            set
+            {
+                _source = value;
+                SourceId = _source != null ? _source.Id : Guid.Empty;
+            }
+        }
+        private Source _source;
 
         /// <summary>
         /// Gets or sets the author identifier.
         /// </summary>
         [Column(Name = "author_id")]
-        public Guid AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
 
         /// <summary>
         /// Gets or sets the author.
         /// </summary>
-        public Person Author { get; set; }
+        public Person Author
+        {
+            get { return _author; }
+            set
+            {
+                _author = value;
+                AuthorId = _author != null ? _author.Id : (Guid?) null;
+            }
+        }
+        private Person _author;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            if (!string.IsNullOrEmpty(Url))
+                return Url;
+
+            if (!string.IsNullOrEmpty(Title))
+                return Title;
+
+            return Id.ToString();
+        }
     }
 }

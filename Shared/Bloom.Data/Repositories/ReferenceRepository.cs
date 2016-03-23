@@ -13,6 +13,16 @@ namespace Bloom.Data.Repositories
     public class ReferenceRepository : IReferenceRepository
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="ReferenceRepository"/> class.
+        /// </summary>
+        /// <param name="sourceRepository">The source repository.</param>
+        public ReferenceRepository(ISourceRepository sourceRepository)
+        {
+            _sourceRepository = sourceRepository;
+        }
+        private readonly ISourceRepository _sourceRepository;
+
+        /// <summary>
         /// Determines whether a reference exists.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -48,24 +58,26 @@ namespace Bloom.Data.Repositories
 
             var referenceQuery =
                 from r in referenceTable
-                join source in sourceTable on r.SourceId equals source.Id
+                from source in sourceTable.Where(s => r.SourceId == s.Id).DefaultIfEmpty()
                 where r.Id == referenceId
-                select new Reference
+                select new
                 {
-                    Id = r.Id,
-                    Title = r.Title,
-                    Url = r.Url,
-                    SourceId = r.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
+                    Reference = r,
+                    Source = source
                 };
 
-            return referenceQuery.SingleOrDefault();
+            var result = referenceQuery.SingleOrDefault();
+
+            if (result == null)
+                return null;
+
+            var reference = result.Reference;
+            if (reference == null)
+                return null;
+
+            reference.Source = result.Source;
+
+            return reference;
         }
 
         /// <summary>
@@ -87,24 +99,29 @@ namespace Bloom.Data.Repositories
             var referencesQuery =
                 from sr in songReferenceTable
                 join reference in referenceTable on sr.ReferenceId equals reference.Id
-                join source in sourceTable on reference.SourceId equals source.Id
+                from source in sourceTable.Where(s => reference.SourceId == s.Id).DefaultIfEmpty()
+                orderby reference.Url
                 where sr.SongId == song.Id
-                select new Reference
+                select new
                 {
-                    Id = reference.Id,
-                    Title = reference.Title,
-                    Url = reference.Url,
-                    SourceId = reference.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
+                    Reference = reference,
+                    Source = source
                 };
 
-            return referencesQuery.ToList();
+            var results = referencesQuery.ToList();
+
+            if (!results.Any())
+                return null;
+
+            var references = new List<Reference>();
+            foreach (var result in results)
+            {
+                var reference = result.Reference;
+                reference.Source = result.Source;
+                references.Add(reference);
+            }
+
+            return references;
         }
 
         /// <summary>
@@ -123,27 +140,32 @@ namespace Bloom.Data.Repositories
             if (albumReferenceTable == null)
                 return null;
 
-            var referenceQuery =
+            var referencesQuery =
                 from ar in albumReferenceTable
                 join reference in referenceTable on ar.ReferenceId equals reference.Id
-                join source in sourceTable on reference.SourceId equals source.Id
+                from source in sourceTable.Where(s => reference.SourceId == s.Id).DefaultIfEmpty()
+                orderby reference.Url
                 where ar.AlbumId == album.Id
-                select new Reference
+                select new
                 {
-                    Id = reference.Id,
-                    Title = reference.Title,
-                    Url = reference.Url,
-                    SourceId = reference.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
+                    Reference = reference,
+                    Source = source
                 };
 
-            return referenceQuery.ToList();
+            var results = referencesQuery.ToList();
+
+            if (!results.Any())
+                return null;
+
+            var references = new List<Reference>();
+            foreach (var result in results)
+            {
+                var reference = result.Reference;
+                reference.Source = result.Source;
+                references.Add(reference);
+            }
+
+            return references;
         }
 
         /// <summary>
@@ -162,27 +184,32 @@ namespace Bloom.Data.Repositories
             if (artistReferenceTable == null)
                 return null;
 
-            var referenceQuery =
+            var referencesQuery =
                 from ar in artistReferenceTable
                 join reference in referenceTable on ar.ReferenceId equals reference.Id
-                join source in sourceTable on reference.SourceId equals source.Id
+                from source in sourceTable.Where(s => reference.SourceId == s.Id).DefaultIfEmpty()
+                orderby reference.Url
                 where ar.ArtistId == artist.Id
-                select new Reference
+                select new
                 {
-                    Id = reference.Id,
-                    Title = reference.Title,
-                    Url = reference.Url,
-                    SourceId = reference.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
+                    Reference = reference,
+                    Source = source
                 };
 
-            return referenceQuery.ToList();
+            var results = referencesQuery.ToList();
+
+            if (!results.Any())
+                return null;
+
+            var references = new List<Reference>();
+            foreach (var result in results)
+            {
+                var reference = result.Reference;
+                reference.Source = result.Source;
+                references.Add(reference);
+            }
+
+            return references;
         }
 
         /// <summary>
@@ -201,27 +228,32 @@ namespace Bloom.Data.Repositories
             if (personReferenceTable == null)
                 return null;
 
-            var referenceQuery =
+            var referencesQuery =
                 from pr in personReferenceTable
                 join reference in referenceTable on pr.ReferenceId equals reference.Id
-                join source in sourceTable on reference.SourceId equals source.Id
+                from source in sourceTable.Where(s => reference.SourceId == s.Id).DefaultIfEmpty()
+                orderby reference.Url
                 where pr.PersonId == person.Id
-                select new Reference
+                select new
                 {
-                    Id = reference.Id,
-                    Title = reference.Title,
-                    Url = reference.Url,
-                    SourceId = reference.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
+                    Reference = reference,
+                    Source = source
                 };
 
-            return referenceQuery.ToList();
+            var results = referencesQuery.ToList();
+
+            if (!results.Any())
+                return null;
+
+            var references = new List<Reference>();
+            foreach (var result in results)
+            {
+                var reference = result.Reference;
+                reference.Source = result.Source;
+                references.Add(reference);
+            }
+
+            return references;
         }
 
         /// <summary>
@@ -240,27 +272,32 @@ namespace Bloom.Data.Repositories
             if (playlistReferenceTable == null)
                 return null;
 
-            var referenceQuery =
+            var referencesQuery =
                 from pr in playlistReferenceTable
                 join reference in referenceTable on pr.ReferenceId equals reference.Id
-                join source in sourceTable on reference.SourceId equals source.Id
-                where pr.ReferenceId == reference.Id
-                select new Reference
+                from source in sourceTable.Where(s => reference.SourceId == s.Id).DefaultIfEmpty()
+                orderby reference.Url
+                where pr.PlaylistId == playlist.Id
+                select new
                 {
-                    Id = reference.Id,
-                    Title = reference.Title,
-                    Url = reference.Url,
-                    SourceId = reference.SourceId,
-                    Source = new Source
-                    {
-                        Id = source.Id,
-                        Name = source.Name,
-                        Type = source.Type,
-                        WebsiteUrl = source.WebsiteUrl
-                    }
+                    Reference = reference,
+                    Source = source
                 };
 
-            return referenceQuery.ToList();
+            var results = referencesQuery.ToList();
+
+            if (!results.Any())
+                return null;
+
+            var references = new List<Reference>();
+            foreach (var result in results)
+            {
+                var reference = result.Reference;
+                reference.Source = result.Source;
+                references.Add(reference);
+            }
+
+            return references;
         }
 
         /// <summary>
@@ -273,15 +310,19 @@ namespace Bloom.Data.Repositories
             if (!dataSource.IsConnected())
                 return;
 
+            if (reference.SourceId != null && reference.Source != null && !_sourceRepository.SourceExists(dataSource, reference.SourceId.Value))
+                _sourceRepository.AddSource(dataSource, reference.Source);
+
             var referenceTable = ReferenceTable(dataSource);
             if (referenceTable == null)
                 return;
 
             referenceTable.InsertOnSubmit(reference);
+            dataSource.Save();
         }
 
         /// <summary>
-        /// Adds a reference to a song.
+        /// Adds a reference to the given song.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -296,10 +337,11 @@ namespace Bloom.Data.Repositories
                 return;
 
             songReferenceTable.InsertOnSubmit(SongReference.Create(song, reference));
+            dataSource.Save();
         }
 
         /// <summary>
-        /// Adds a reference to an album.
+        /// Adds a reference to the given album.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -314,10 +356,11 @@ namespace Bloom.Data.Repositories
                 return;
 
             albumReferenceTable.InsertOnSubmit(AlbumReference.Create(album, reference));
+            dataSource.Save();
         }
 
         /// <summary>
-        /// Adds a reference to an artist.
+        /// Adds a reference to the given artist.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -332,10 +375,11 @@ namespace Bloom.Data.Repositories
                 return;
 
             artistReferenceTable.InsertOnSubmit(ArtistReference.Create(artist, reference));
+            dataSource.Save();
         }
 
         /// <summary>
-        /// Adds a reference to a person.
+        /// Adds a reference to the given person.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -350,10 +394,11 @@ namespace Bloom.Data.Repositories
                 return;
 
             personReferenceTable.InsertOnSubmit(PersonReference.Create(person, reference));
+            dataSource.Save();
         }
 
         /// <summary>
-        /// Adds a reference to a playlist.
+        /// Adds a reference to the given playlist.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -368,6 +413,7 @@ namespace Bloom.Data.Repositories
                 return;
 
             playlistReferenceTable.InsertOnSubmit(PlaylistReference.Create(playlist, reference));
+            dataSource.Save();
         }
 
         /// <summary>
@@ -384,11 +430,57 @@ namespace Bloom.Data.Repositories
             if (referenceTable == null)
                 return;
 
+            var songReferenceTable = SongReferenceTable(dataSource);
+            var songReferencesQuery =
+                from sr in songReferenceTable
+                where sr.ReferenceId == reference.Id
+                select sr;
+
+            songReferenceTable.DeleteAllOnSubmit(songReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumReferenceTable = AlbumReferenceTable(dataSource);
+            var albumReferencesQuery =
+                from ar in albumReferenceTable
+                where ar.ReferenceId == reference.Id
+                select ar;
+
+            albumReferenceTable.DeleteAllOnSubmit(albumReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var playlistReferenceTable = PlaylistReferenceTable(dataSource);
+            var playlistReferencesQuery =
+                from pr in playlistReferenceTable
+                where pr.ReferenceId == reference.Id
+                select pr;
+
+            playlistReferenceTable.DeleteAllOnSubmit(playlistReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var artistReferenceTable = ArtistReferenceTable(dataSource);
+            var artistReferencesQuery =
+                from ar in artistReferenceTable
+                where ar.ReferenceId == reference.Id
+                select ar;
+
+            artistReferenceTable.DeleteAllOnSubmit(artistReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
+            var personReferenceTable = PersonReferenceTable(dataSource);
+            var personReferencesQuery =
+                from pr in personReferenceTable
+                where pr.ReferenceId == reference.Id
+                select pr;
+
+            personReferenceTable.DeleteAllOnSubmit(personReferencesQuery.AsEnumerable());
+            dataSource.Save();
+
             referenceTable.DeleteOnSubmit(reference);
+            dataSource.Save();
         }
 
         /// <summary>
-        /// Deletes the reference from a song.
+        /// Deletes the reference from the given song.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">The reference.</param>
@@ -402,7 +494,17 @@ namespace Bloom.Data.Repositories
             if (songReferenceTable == null)
                 return;
 
-            songReferenceTable.DeleteOnSubmit(SongReference.Create(song, reference));
+            var songReferenceQuery =
+                from sr in songReferenceTable
+                where sr.ReferenceId == reference.Id && sr.SongId == song.Id
+                select sr;
+
+            var songReference = songReferenceQuery.SingleOrDefault();
+            if (songReference == null)
+                return;
+
+            songReferenceTable.DeleteOnSubmit(songReference);
+            dataSource.Save();
         }
 
         /// <summary>
@@ -420,7 +522,17 @@ namespace Bloom.Data.Repositories
             if (albumReferenceTable == null)
                 return;
 
-            albumReferenceTable.DeleteOnSubmit(AlbumReference.Create(album, reference));
+            var albumReferenceQuery =
+                from ar in albumReferenceTable
+                where ar.ReferenceId == reference.Id && ar.AlbumId == album.Id
+                select ar;
+
+            var albumReference = albumReferenceQuery.SingleOrDefault();
+            if (albumReference == null)
+                return;
+
+            albumReferenceTable.DeleteOnSubmit(albumReference);
+            dataSource.Save();
         }
 
         /// <summary>
@@ -438,7 +550,17 @@ namespace Bloom.Data.Repositories
             if (artistReferenceTable == null)
                 return;
 
-            artistReferenceTable.DeleteOnSubmit(ArtistReference.Create(artist, reference));
+            var artistReferenceQuery =
+                from ar in artistReferenceTable
+                where ar.ReferenceId == reference.Id && ar.ArtistId == artist.Id
+                select ar;
+
+            var artistReference = artistReferenceQuery.SingleOrDefault();
+            if (artistReference == null)
+                return;
+
+            artistReferenceTable.DeleteOnSubmit(artistReference);
+            dataSource.Save();
         }
 
         /// <summary>
@@ -456,7 +578,17 @@ namespace Bloom.Data.Repositories
             if (personReferenceTable == null)
                 return;
 
-            personReferenceTable.DeleteOnSubmit(PersonReference.Create(person, reference));
+            var personReferenceQuery =
+                from pr in personReferenceTable
+                where pr.ReferenceId == reference.Id && pr.PersonId == person.Id
+                select pr;
+
+            var personReference = personReferenceQuery.SingleOrDefault();
+            if (personReference == null)
+                return;
+
+            personReferenceTable.DeleteOnSubmit(personReference);
+            dataSource.Save();
         }
 
         /// <summary>
@@ -474,7 +606,17 @@ namespace Bloom.Data.Repositories
             if (playlistReferenceTable == null)
                 return;
 
-            playlistReferenceTable.DeleteOnSubmit(PlaylistReference.Create(playlist, reference));
+            var playlistReferenceQuery =
+                from pr in playlistReferenceTable
+                where pr.ReferenceId == reference.Id && pr.PlaylistId == playlist.Id
+                select pr;
+
+            var playlistReference = playlistReferenceQuery.SingleOrDefault();
+            if (playlistReference == null)
+                return;
+
+            playlistReferenceTable.DeleteOnSubmit(playlistReference);
+            dataSource.Save();
         }
 
         #region Tables

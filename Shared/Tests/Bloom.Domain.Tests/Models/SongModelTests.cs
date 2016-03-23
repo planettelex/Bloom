@@ -157,7 +157,8 @@ namespace Bloom.Domain.Tests.Models
         {
             var artist = Artist.Create(ArtistName);
             var song = Song.Create(SongName, artist);
-            var review = Review.Create("http://www.test.com/review-article");
+            var source = Source.Create("Source");
+            var review = Review.Create(source, "http://www.test.com/review-article");
             var songReview = SongReview.Create(song, review);
 
             Assert.AreEqual(songReview.SongId, song.Id);

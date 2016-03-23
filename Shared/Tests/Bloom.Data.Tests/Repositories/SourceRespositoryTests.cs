@@ -83,6 +83,16 @@ namespace Bloom.Data.Tests.Repositories
         }
 
         /// <summary>
+        /// Tests the source exists method.
+        /// </summary>
+        [Test]
+        public void SourceExistsTest()
+        {
+            Assert.IsFalse(_sourceRepository.SourceExists(_dataSource, Guid.NewGuid()));
+            Assert.IsTrue(_sourceRepository.SourceExists(_dataSource, _gutterbubblesId));
+        }
+
+        /// <summary>
         /// Tests the get source method.
         /// </summary>
         [Test]

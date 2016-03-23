@@ -67,7 +67,7 @@ namespace Bloom.Data.Repositories
         void AddReference(IDataSource dataSource, Reference reference);
 
         /// <summary>
-        /// Adds a reference to a song.
+        /// Adds a reference to the given song.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -75,7 +75,7 @@ namespace Bloom.Data.Repositories
         void AddReferenceTo(IDataSource dataSource, Reference reference, Song song);
 
         /// <summary>
-        /// Adds a reference to an album.
+        /// Adds a reference to the given album.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -83,7 +83,7 @@ namespace Bloom.Data.Repositories
         void AddReferenceTo(IDataSource dataSource, Reference reference, Album album);
 
         /// <summary>
-        /// Adds a reference to an artist.
+        /// Adds a reference to the given artist.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -91,7 +91,7 @@ namespace Bloom.Data.Repositories
         void AddReferenceTo(IDataSource dataSource, Reference reference, Artist artist);
 
         /// <summary>
-        /// Adds a reference to a person.
+        /// Adds a reference to the given person.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>
@@ -99,7 +99,7 @@ namespace Bloom.Data.Repositories
         void AddReferenceTo(IDataSource dataSource, Reference reference, Person person);
 
         /// <summary>
-        /// Adds a reference to a playlist.
+        /// Adds a reference to the given playlist.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="reference">A reference.</param>

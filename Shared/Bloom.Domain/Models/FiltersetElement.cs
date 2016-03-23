@@ -24,7 +24,7 @@ namespace Bloom.Domain.Models
             {
                 FiltersetId = filterset.Id,
                 Filter = filter,
-                FilterId = filter.Id,
+                FilterId = filter != null ? filter.Id : (Guid?) null,
                 ElementType = elementType,
                 ElementNumber = elementNumber
             };
@@ -70,13 +70,13 @@ namespace Bloom.Domain.Models
         /// Gets or sets the filter identifier.
         /// </summary>
         [Column(Name = "filter_id")]
-        public Guid FilterId { get; set; }
+        public Guid? FilterId { get; set; }
 
         /// <summary>
         /// Gets or sets the filter comparison.
         /// </summary>
         [Column(Name = "filter_comparison")]
-        public FilterComparison Comparison { get; set; }
+        public FilterComparison? Comparison { get; set; }
 
         /// <summary>
         /// Gets or sets the value to filter against.

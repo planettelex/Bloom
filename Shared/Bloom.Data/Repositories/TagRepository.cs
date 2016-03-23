@@ -7,8 +7,16 @@ using Bloom.Domain.Models;
 
 namespace Bloom.Data.Repositories
 {
+    /// <summary>
+    /// Access methods for tag data.
+    /// </summary>
     public class TagRepository : ITagRepository
     {
+        /// <summary>
+        /// Gets the tag.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tagId">The tag identifier.</param>
         public Tag GetTag(IDataSource dataSource, Guid tagId)
         {
             if (!dataSource.IsConnected())
@@ -19,13 +27,17 @@ namespace Bloom.Data.Repositories
                 return null;
 
             var tagQuery =
-                from t in tagTable
-                where t.Id == tagId
-                select t;
+                from tag in tagTable
+                where tag.Id == tagId
+                select tag;
 
             return tagQuery.SingleOrDefault();
         }
 
+        /// <summary>
+        /// Lists the tags.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
         public List<Tag> ListTags(IDataSource dataSource)
         {
             if (!dataSource.IsConnected())
@@ -36,12 +48,18 @@ namespace Bloom.Data.Repositories
                 return null;
 
             var tagsQuery =
-                from t in tagTable
-                select t;
+                from tag in tagTable
+                orderby tag.Name
+                select tag;
 
             return tagsQuery.ToList();
         }
 
+        /// <summary>
+        /// Lists the tags for the given song.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="song">The song.</param>
         public List<Tag> ListTags(IDataSource dataSource, Song song)
         {
             if (!dataSource.IsConnected() || song == null)
@@ -56,11 +74,17 @@ namespace Bloom.Data.Repositories
                 from st in songTagTable
                 join tag in tagTable on st.TagId equals tag.Id
                 where st.SongId == song.Id
+                orderby tag.Name
                 select tag;
             
             return tagsQuery.ToList();
         }
 
+        /// <summary>
+        /// Lists the tags for the given album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="album">The album.</param>
         public List<Tag> ListTags(IDataSource dataSource, Album album)
         {
             if (!dataSource.IsConnected() || album == null)
@@ -75,11 +99,17 @@ namespace Bloom.Data.Repositories
                 from at in albumTagTable
                 join tag in tagTable on at.TagId equals tag.Id
                 where at.AlbumId == album.Id
+                orderby tag.Name
                 select tag;
 
             return tagsQuery.ToList();
         }
 
+        /// <summary>
+        /// Lists the tags for the given playlist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="playlist">The playlist.</param>
         public List<Tag> ListTags(IDataSource dataSource, Playlist playlist)
         {
             if (!dataSource.IsConnected() || playlist == null)
@@ -94,11 +124,17 @@ namespace Bloom.Data.Repositories
                 from pt in playlistTagTable
                 join tag in tagTable on pt.TagId equals tag.Id
                 where pt.PlaylistId == playlist.Id
+                orderby tag.Name
                 select tag;
 
             return tagsQuery.ToList();
         }
 
+        /// <summary>
+        /// Adds the tag.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
         public void AddTag(IDataSource dataSource, Tag tag)
         {
             if (!dataSource.IsConnected())
@@ -109,8 +145,15 @@ namespace Bloom.Data.Repositories
                 return;
 
             tagTable.InsertOnSubmit(tag);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds the tag to the given song.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="song">The song.</param>
         public void AddTagTo(IDataSource dataSource, Tag tag, Song song)
         {
             if (!dataSource.IsConnected())
@@ -121,8 +164,15 @@ namespace Bloom.Data.Repositories
                 return;
 
             songTagTable.InsertOnSubmit(SongTag.Create(song, tag));
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds the tag to the given album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="album">The album.</param>
         public void AddTagTo(IDataSource dataSource, Tag tag, Album album)
         {
             if (!dataSource.IsConnected())
@@ -133,8 +183,15 @@ namespace Bloom.Data.Repositories
                 return;
 
             albumTagTable.InsertOnSubmit(AlbumTag.Create(album, tag));
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Adds the tag to the given playlist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="playlist">The playlist.</param>
         public void AddTagTo(IDataSource dataSource, Tag tag, Playlist playlist)
         {
             if (!dataSource.IsConnected())
@@ -145,8 +202,14 @@ namespace Bloom.Data.Repositories
                 return;
 
             playlistTagTable.InsertOnSubmit(PlaylistTag.Create(playlist, tag));
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes the tag.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
         public void DeleteTag(IDataSource dataSource, Tag tag)
         {
             if (!dataSource.IsConnected())
@@ -156,9 +219,43 @@ namespace Bloom.Data.Repositories
             if (tagTable == null)
                 return;
 
+            var songTagTable = SongTagTable(dataSource);
+            var songTagsQuery =
+                from st in songTagTable
+                where st.TagId == tag.Id
+                select st;
+
+            songTagTable.DeleteAllOnSubmit(songTagsQuery.AsEnumerable());
+            dataSource.Save();
+
+            var albumTagTable = AlbumTagTable(dataSource);
+            var albumTagsQuery =
+                from at in albumTagTable
+                where at.TagId == tag.Id
+                select at;
+
+            albumTagTable.DeleteAllOnSubmit(albumTagsQuery.AsEnumerable());
+            dataSource.Save();
+
+            var playlistTagTable = PlaylistTagTable(dataSource);
+            var playlistTagsQuery =
+                from pt in playlistTagTable
+                where pt.TagId == tag.Id
+                select pt;
+
+            playlistTagTable.DeleteAllOnSubmit(playlistTagsQuery.AsEnumerable());
+            dataSource.Save();
+
             tagTable.DeleteOnSubmit(tag);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes the tag from the given song.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="song">The song.</param>
         public void DeleteTagFrom(IDataSource dataSource, Tag tag, Song song)
         {
             if (!dataSource.IsConnected())
@@ -168,9 +265,25 @@ namespace Bloom.Data.Repositories
             if (songTagTable == null)
                 return;
 
-            songTagTable.DeleteOnSubmit(SongTag.Create(song, tag));
+            var songTagQuery =
+                from st in songTagTable
+                where st.TagId == tag.Id && st.SongId == song.Id
+                select st;
+
+            var songTag = songTagQuery.SingleOrDefault();
+            if (songTag == null)
+                return;
+
+            songTagTable.DeleteOnSubmit(songTag);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes the tag from the given album.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="album">The album.</param>
         public void DeleteTagFrom(IDataSource dataSource, Tag tag, Album album)
         {
             if (!dataSource.IsConnected())
@@ -180,9 +293,25 @@ namespace Bloom.Data.Repositories
             if (albumTagTable == null)
                 return;
 
-            albumTagTable.DeleteOnSubmit(AlbumTag.Create(album, tag));
+            var albumTagQuery =
+                from at in albumTagTable
+                where at.TagId == tag.Id && at.AlbumId == album.Id
+                select at;
+
+            var albumTag = albumTagQuery.SingleOrDefault();
+            if (albumTag == null)
+                return;
+
+            albumTagTable.DeleteOnSubmit(albumTag);
+            dataSource.Save();
         }
 
+        /// <summary>
+        /// Deletes the tag from the given playlist.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="playlist">The playlist.</param>
         public void DeleteTagFrom(IDataSource dataSource, Tag tag, Playlist playlist)
         {
             if (!dataSource.IsConnected())
@@ -192,8 +321,20 @@ namespace Bloom.Data.Repositories
             if (playlistTagTable == null)
                 return;
 
-            playlistTagTable.DeleteOnSubmit(PlaylistTag.Create(playlist, tag));
+            var playlistTagQuery =
+                from pt in playlistTagTable
+                where pt.TagId == tag.Id && pt.PlaylistId == playlist.Id
+                select pt;
+
+            var playlistTag = playlistTagQuery.SingleOrDefault();
+            if (playlistTag == null)
+                return;
+
+            playlistTagTable.DeleteOnSubmit(playlistTag);
+            dataSource.Save();
         }
+
+        #region Tables
 
         private static Table<Tag> TagTable(IDataSource dataSource)
         {
@@ -214,5 +355,7 @@ namespace Bloom.Data.Repositories
         {
             return dataSource != null ? dataSource.Context.GetTable<PlaylistTag>() : null;
         }
+
+        #endregion
     }
 }

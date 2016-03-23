@@ -12,43 +12,43 @@ namespace Bloom.Domain.Models
     public class FiltersetOrder
     {
         /// <summary>
-        /// Creates a new filterset ordering instance.
+        /// Creates a new filterset order instance.
         /// </summary>
         /// <param name="filterset">A filterset.</param>
         /// <param name="order">The order.</param>
-        /// <param name="priority">The ordering priority.</param>
-        public static FiltersetOrder Create(Filterset filterset, IOrder order, int priority)
+        /// <param name="orderNumber">The order number.</param>
+        public static FiltersetOrder Create(Filterset filterset, IOrder order, int orderNumber)
         {
             return new FiltersetOrder
             {
                 FiltersetId = filterset.Id,
                 OrderId = order.Id,
                 Order = order,
-                Priority = priority
+                OrderNumber = orderNumber
             };
         }
 
         /// <summary>
-        /// Creates a new filterset ordering instance.
+        /// Creates a new filterset order instance.
         /// </summary>
         /// <param name="filterset">A filterset.</param>
         /// <param name="order">The order.</param>
-        /// <param name="priority">The ordering priority.</param>
+        /// <param name="orderNumber">The order number.</param>
         /// <param name="direction">The ordering direction.</param>
-        public static FiltersetOrder Create(Filterset filterset, IOrder order, int priority, OrderDirection direction)
+        public static FiltersetOrder Create(Filterset filterset, IOrder order, int orderNumber, OrderDirection direction)
         {
             return new FiltersetOrder
             {
                 FiltersetId = filterset.Id,
                 OrderId = order.Id,
                 Order = order,
-                Priority = priority,
+                OrderNumber = orderNumber,
                 Direction = direction
             };
         }
 
         /// <summary>
-        /// Gets or sets the filterset ordering identifier.
+        /// Gets or sets the filterset order identifier.
         /// </summary>
         [Column(Name = "filterset_id", IsPrimaryKey = true)]
         public Guid FiltersetId { get; set; }
@@ -57,7 +57,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the filterset order number.
         /// </summary>
         [Column(Name = "order_number", IsPrimaryKey = true)]
-        public int Priority { get; set; }
+        public int OrderNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the order identifier.

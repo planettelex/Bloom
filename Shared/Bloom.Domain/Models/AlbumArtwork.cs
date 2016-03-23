@@ -42,5 +42,13 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "file_path")]
         public string FilePath { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return FilePath;
+        }
     }
 }

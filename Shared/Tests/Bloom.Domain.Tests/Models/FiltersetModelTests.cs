@@ -96,11 +96,11 @@ namespace Bloom.Domain.Tests.Models
 
             Assert.AreEqual(filtersetOrder1.FiltersetId, filterset.Id);
             Assert.AreEqual(filtersetOrder1.OrderId, order.Id);
-            Assert.AreEqual(filtersetOrder1.Priority, 2);
+            Assert.AreEqual(filtersetOrder1.OrderNumber, 2);
 
             Assert.AreEqual(filtersetOrder2.FiltersetId, filterset.Id);
             Assert.AreEqual(filtersetOrder2.OrderId, order.Id);
-            Assert.AreEqual(filtersetOrder2.Priority, 3);
+            Assert.AreEqual(filtersetOrder2.OrderNumber, 3);
             Assert.AreEqual(filtersetOrder2.Direction, OrderDirection.Descending);
         }
     }
