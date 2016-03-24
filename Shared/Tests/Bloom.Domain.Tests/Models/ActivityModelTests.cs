@@ -39,5 +39,16 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(activity.Id, activityId);
             Assert.AreEqual(activity.Name, "Test Activity");
         }
+
+        /// <summary>
+        /// Tests the activity to string method.
+        /// </summary>
+        [Test]
+        public void ActivityToStringTest()
+        {
+            var activity = Activity.Create("Test Activity");
+
+            Assert.AreEqual(activity.ToString(), "Test Activity");
+        }
     }
 }

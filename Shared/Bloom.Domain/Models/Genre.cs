@@ -34,7 +34,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                ParentGenreId = parentGenre.Id,
                 ParentGenre = parentGenre
             };
         }

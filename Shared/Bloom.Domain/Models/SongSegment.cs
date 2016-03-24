@@ -107,5 +107,13 @@ namespace Bloom.Domain.Models
             } 
         }
         private TimeSignature _timeSignature;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return !string.IsNullOrEmpty(Name) ? Name : Id.ToString();
+        }
     }
 }

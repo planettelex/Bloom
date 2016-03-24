@@ -19,7 +19,6 @@ namespace Bloom.Domain.Models
             return new AlbumCollaborator
             {
                 AlbumId = album.Id,
-                ArtistId = artist.Id,
                 Artist = artist
             };
         }
@@ -39,7 +38,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the artist.
         /// </summary>
-        public Artist Artist { get; set; }
+        public Artist Artist
+        {
+            get { return _artist; }
+            set
+            {
+                _artist = value;
+                ArtistId = _artist == null ? Guid.Empty : _artist.Id;
+            }
+        }
+        private Artist _artist;
 
         /// <summary>
         /// Gets or sets whether this collaborator is featured.
@@ -52,11 +60,11 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            var label = Artist != null ? Artist.Name : ArtistId.ToString();
+            var collaborator = Artist != null ? Artist.Name : ArtistId.ToString();
             if (IsFeatured)
-                label += " (Featured)";
+                collaborator += " (Featured)";
 
-            return label;
+            return collaborator;
         }
     }
 }

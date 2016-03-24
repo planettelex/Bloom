@@ -22,7 +22,6 @@ namespace Bloom.Domain.Models
             return new FiltersetOrder
             {
                 FiltersetId = filterset.Id,
-                OrderId = order.Id,
                 Order = order,
                 OrderNumber = orderNumber
             };
@@ -40,7 +39,6 @@ namespace Bloom.Domain.Models
             return new FiltersetOrder
             {
                 FiltersetId = filterset.Id,
-                OrderId = order.Id,
                 Order = order,
                 OrderNumber = orderNumber,
                 Direction = direction
@@ -74,6 +72,23 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the filterset order.
         /// </summary>
-        public IOrder Order { get; set; }
+        public IOrder Order
+        {
+            get { return _order; }
+            set
+            {
+                _order = value;
+                OrderId = _order != null ? _order.Id : Guid.Empty;
+            }
+        }
+        private IOrder _order;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Order != null ? string.Format("{0} {1}", Order.ToString(), Direction) : Direction.ToString();
+        }
     }
 }

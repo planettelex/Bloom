@@ -21,5 +21,10 @@ namespace Bloom.Domain.Interfaces
         /// Gets the filter label.
         /// </summary>
         string Label { get; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        string ToString();
     }
 }

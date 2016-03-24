@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using System.Globalization;
 using Bloom.Domain.Enums;
 using Microsoft.Practices.Prism.Mvvm;
 
@@ -147,5 +148,12 @@ namespace Bloom.Domain.Models
         }
         private string _catalogNumber;
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return ReleaseDate.ToShortDateString();
+        }
     }
 }

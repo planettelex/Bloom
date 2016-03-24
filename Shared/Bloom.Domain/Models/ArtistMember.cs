@@ -23,7 +23,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 ArtistId = artist.Id,
-                PersonId = person.Id,
                 Person = person,
                 Priority = priority,
                 Roles = new List<Role>()
@@ -51,7 +50,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the person.
         /// </summary>
-        public Person Person { get; set; }
+        public Person Person
+        {
+            get { return _person; }
+            set
+            {
+                _person = value;
+                PersonId = _person == null ? Guid.Empty : _person.Id;
+            }
+        }
+        private Person _person;
 
         /// <summary>
         /// Gets or sets the date this artist member started with this artist.
@@ -85,5 +93,13 @@ namespace Bloom.Domain.Models
         /// Gets or sets the artist member roles.
         /// </summary>
         public List<Role> Roles { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return Person != null ? Person.Name : PersonId.ToString();
+        }
     }
 }

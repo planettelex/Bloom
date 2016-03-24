@@ -46,17 +46,32 @@ namespace Bloom.Domain.Tests.Models
         [Test]
         public void GenrePropertiesTest()
         {
+            var parentGenre = Genre.Create("Parent");
             var id = Guid.NewGuid();
             var genre = new Genre
             {
                 Id = id,
                 Name = GenreName,
-                Description = "Genre description."
+                Description = "Genre description.",
+                ParentGenre = parentGenre
             };
 
             Assert.AreEqual(genre.Id, id);
             Assert.AreEqual(genre.Name, GenreName);
             Assert.AreEqual(genre.Description, "Genre description.");
+            Assert.NotNull(genre.ParentGenre);
+            Assert.AreEqual(genre.ParentGenreId, parentGenre.Id);
+        }
+
+        /// <summary>
+        /// Tests the genre to string method.
+        /// </summary>
+        [Test]
+        public void GenreToStringTest()
+        {
+            var genre = Genre.Create(GenreName);
+
+            Assert.AreEqual(genre.ToString(), GenreName);
         }
     }
 }

@@ -11,6 +11,37 @@ namespace Bloom.Domain.Models
     public class AlbumMedia
     {
         /// <summary>
+        /// Creates a new album media instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="mediaType">The type of the media.</param>
+        public static AlbumMedia Create(Album album, MediaTypes mediaType)
+        {
+            return new AlbumMedia
+            {
+                Id = Guid.NewGuid(),
+                AlbumId = album.Id,
+                MediaType = mediaType
+            };
+        }
+
+        /// <summary>
+        /// Creates a new album media instance.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="digitalFormat">The digital format.</param>
+        public static AlbumMedia Create(Album album, DigitalFormats digitalFormat)
+        {
+            return new AlbumMedia
+            {
+                Id = Guid.NewGuid(),
+                AlbumId = album.Id,
+                MediaType = MediaTypes.Digital,
+                DigitalFormat = digitalFormat
+            };
+        }
+
+        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         [Column(Name = "id", IsPrimaryKey = true)]
@@ -68,7 +99,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the identifier of the person this media is on loan to.
         /// </summary>
         [Column(Name = "on_loan_to_person_id")]
-        public Guid? OnLoanToId { get; set; }
+        public Guid? OnLoanToPersonId { get; set; }
 
         /// <summary>
         /// Gets or sets the release identifier.
@@ -79,6 +110,23 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the media release.
         /// </summary>
-        public AlbumRelease Release { get; set; }
+        public AlbumRelease Release
+        {
+            get { return _release; }
+            set
+            {
+                _release = value;
+                ReleaseId = _release != null ? _release.Id : (Guid?) null;
+            }
+        }
+        private AlbumRelease _release;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return MediaType == MediaTypes.Digital ? DigitalFormat.ToString() : MediaType.ToString();
+        }
     }
 }

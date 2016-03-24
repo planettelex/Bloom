@@ -34,7 +34,7 @@ namespace Bloom.Domain.Tests.Models
         public void PlaylistPropertiesTest()
         {
             var id = Guid.NewGuid();
-            var personId = Guid.NewGuid();
+            var person = Person.Create("Person");
             var now = DateTime.Now;
 
             var playlist = new Playlist
@@ -43,7 +43,7 @@ namespace Bloom.Domain.Tests.Models
                 Name = PlaylistName,
                 Description = "Playlist description",
                 Length = 13579,
-                CreatedById = personId,
+                CreatedBy = person,
                 CreatedOn = now
             };
 
@@ -51,8 +51,20 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(playlist.Name, PlaylistName);
             Assert.AreEqual(playlist.Description, "Playlist description");
             Assert.AreEqual(playlist.Length, 13579);
-            Assert.AreEqual(playlist.CreatedById, personId);
+            Assert.AreEqual(playlist.CreatedById, person.Id);
             Assert.AreEqual(playlist.CreatedOn, now);
+        }
+
+        /// <summary>
+        /// Tests the playlist to string method.
+        /// </summary>
+        [Test]
+        public void PlaylistToStringTest()
+        {
+            var owner = Person.Create("Person");
+            var playlist = Playlist.Create(PlaylistName, owner);
+
+            Assert.AreEqual(playlist.ToString(), PlaylistName);
         }
 
         /// <summary>
@@ -101,6 +113,19 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the playlist artwork to string method.
+        /// </summary>
+        [Test]
+        public void PlaylistArtworkToStringTest()
+        {
+            var owner = Person.Create("Person");
+            var playlist = Playlist.Create(PlaylistName, owner);
+            var playlistArtwork = PlaylistArtwork.Create(playlist, "c:\\Music\\Image.jpg", 3);
+
+            Assert.AreEqual(playlistArtwork.ToString(), "c:\\Music\\Image.jpg");
+        }
+
+        /// <summary>
         /// Tests the playlist reference create method.
         /// </summary>
         [Test]
@@ -146,6 +171,41 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(playlistTrack.SongId, song.Id);
             Assert.AreEqual(playlistTrack.Song.Name, song.Name);
             Assert.AreEqual(playlistTrack.TrackNumber, 6);
+        }
+
+        /// <summary>
+        /// Tests the playlist track properties.
+        /// </summary>
+        [Test]
+        public void PlaylistTrackPropertiesTest()
+        {
+            var playlistId = Guid.NewGuid();
+            var song = Song.Create("Song", Artist.Create("Artist"));
+            var playlistTrack = new PlaylistTrack
+            {
+                PlaylistId = playlistId,
+                Song = song,
+                TrackNumber = 5
+            };
+
+            Assert.AreEqual(playlistTrack.PlaylistId, playlistId);
+            Assert.AreEqual(playlistTrack.SongId, song.Id);
+            Assert.AreEqual(playlistTrack.TrackNumber, 5);
+        }
+
+        /// <summary>
+        /// Tests the playlist track to string method.
+        /// </summary>
+        [Test]
+        public void PlaylistTrackToStringTest()
+        {
+            var owner = Person.Create("Person");
+            var playlist = Playlist.Create(PlaylistName, owner);
+            var artist = Artist.Create("Artist");
+            var song = Song.Create("Song Name", artist);
+            var albumTrack = PlaylistTrack.Create(playlist, song, 3);
+
+            Assert.AreEqual(albumTrack.ToString(), "3: Song Name");
         }
     }
 }

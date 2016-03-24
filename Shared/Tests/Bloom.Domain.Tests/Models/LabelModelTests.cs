@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Bloom.Domain.Models;
 using NUnit.Framework;
 
@@ -66,6 +67,55 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the label personnel properties.
+        /// </summary>
+        [Test]
+        public void LabelPersonnelPropertiesTest()
+        {
+            var id = Guid.NewGuid();
+            var labelId = Guid.NewGuid();
+            var person = Person.Create("Person");
+            var roles = new List<Role>
+            {
+                Role.Create("Role 1"),
+                Role.Create("Role 2")
+            };
+            var labelPersonnel = new LabelPersonnel
+            {
+                Id = id,
+                Person = person,
+                LabelId = labelId,
+                Priority = 1,
+                Started = DateTime.Parse("9/1/2007"),
+                Ended = DateTime.Parse("6/12/2013"),
+                Roles = roles
+            };
+
+            Assert.AreEqual(labelPersonnel.Id, id);
+            Assert.AreEqual(labelPersonnel.LabelId, labelId);
+            Assert.AreEqual(labelPersonnel.PersonId, person.Id);
+            Assert.NotNull(labelPersonnel.Person);
+            Assert.AreEqual(labelPersonnel.Priority, 1);
+            Assert.AreEqual(labelPersonnel.Started, DateTime.Parse("9/1/2007"));
+            Assert.AreEqual(labelPersonnel.Ended, DateTime.Parse("6/12/2013"));
+            Assert.NotNull(labelPersonnel);
+            Assert.AreEqual(labelPersonnel.Roles.Count, 2);
+        }
+
+        /// <summary>
+        /// Tests the label personnel to string method.
+        /// </summary>
+        [Test]
+        public void LabelPersonnelToStringTest()
+        {
+            var label = Label.Create(LabelName);
+            var person = Person.Create("Person");
+            var labelPersonnel = LabelPersonnel.Create(label, person, 1);
+
+            Assert.AreEqual(labelPersonnel.ToString(), "Person");
+        }
+
+        /// <summary>
         /// Tests the label personnel role create method.
         /// </summary>
         [Test]
@@ -79,6 +129,17 @@ namespace Bloom.Domain.Tests.Models
 
             Assert.AreEqual(labelPersonnelRole.LabelPersonelId, labelPersonnel.Id);
             Assert.AreEqual(labelPersonnelRole.RoleId, role.Id);
+        }
+
+        /// <summary>
+        /// Tests the label to string method.
+        /// </summary>
+        [Test]
+        public void LabelToStringTest()
+        {
+            var label = Label.Create(LabelName);
+
+            Assert.AreEqual(label.ToString(), LabelName);
         }
     }
 }

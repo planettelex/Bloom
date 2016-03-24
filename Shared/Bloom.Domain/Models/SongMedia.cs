@@ -29,16 +29,15 @@ namespace Bloom.Domain.Models
         /// Creates a new song media instance.
         /// </summary>
         /// <param name="song">The song.</param>
-        /// <param name="mediaType">The type of the media.</param>
         /// <param name="digitalFormat">The digital format.</param>
         /// <param name="filePath">The file path.</param>
-        public static SongMedia Create(Song song, MediaTypes mediaType, DigitalFormats digitalFormat, string filePath)
+        public static SongMedia Create(Song song, DigitalFormats digitalFormat, string filePath)
         {
             return new SongMedia
             {
                 Id = Guid.NewGuid(),
                 SongId = song.Id,
-                MediaType = mediaType,
+                MediaType = MediaTypes.Digital,
                 DigitalFormat = digitalFormat,
                 FilePath = filePath
             };
@@ -121,5 +120,14 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "received_from_person_id")]
         public Guid ReceivedFromPersonId { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            var digitalMedia = string.IsNullOrEmpty(FilePath) ? DigitalFormat.ToString() : FilePath;
+            return MediaType == MediaTypes.Digital ? digitalMedia : MediaType.ToString();
+        }
     }
 }

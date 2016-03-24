@@ -51,5 +51,16 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(holiday.EndMonth, Month.April);
             Assert.AreEqual(holiday.EndDay, 11);
         }
+
+        /// <summary>
+        /// Tests the holiday to string method.
+        /// </summary>
+        [Test]
+        public void HolidayToStringTest()
+        {
+            var holiday = Holiday.Create(HolidayName);
+
+            Assert.AreEqual(holiday.ToString(), HolidayName);
+        }
     }
 }

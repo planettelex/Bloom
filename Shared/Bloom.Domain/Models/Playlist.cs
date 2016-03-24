@@ -22,7 +22,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                CreatedById = createdBy.Id,
                 CreatedBy = createdBy,
                 CreatedOn = DateTime.Now
             };
@@ -85,15 +84,24 @@ namespace Bloom.Domain.Models
         private DateTime _createdOn;
 
         /// <summary>
-        /// Gets or sets library owner identifier who created the playlist.
+        /// Gets or sets the person identifier who created the playlist.
         /// </summary>
         [Column(Name = "created_by_id")]
         public Guid CreatedById { get; set; }
 
         /// <summary>
-        /// Gets or sets library owner who created the playlist.
+        /// Gets or sets the person who created the playlist.
         /// </summary>
-        public Person CreatedBy { get; set; }
+        public Person CreatedBy
+        {
+            get { return _createdById; }
+            set
+            {
+                _createdById = value;
+                CreatedById = _createdById == null ? Guid.Empty : _createdById.Id;
+            }
+        }
+        private Person _createdById;
 
         /// <summary>
         /// Gets or sets the playlist tracks.

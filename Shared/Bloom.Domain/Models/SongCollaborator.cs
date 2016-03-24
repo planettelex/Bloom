@@ -19,7 +19,6 @@ namespace Bloom.Domain.Models
             return new SongCollaborator
             {
                 SongId = song.Id,
-                ArtistId = artist.Id,
                 Artist = artist
             };
         }
@@ -55,5 +54,17 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "is_featured")]
         public bool IsFeatured { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            var collaborator = Artist != null ? Artist.Name : ArtistId.ToString();
+            if (IsFeatured)
+                collaborator += " (Featured)";
+
+            return collaborator;
+        }
     }
 }

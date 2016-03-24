@@ -88,7 +88,7 @@ namespace Bloom.Data.Tests.Repositories
             filterset1Element1.Comparison = FilterComparison.Is;
             filterset1Element1.FilterAgainst = "Filter Element 1 Against";
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset1Element1);
-            var filterset1Element2 = FiltersetElement.Create(filterset1, FiltersetElementType.And, null, 2);
+            var filterset1Element2 = FiltersetElement.Create(filterset1, FiltersetElementType.And, 2);
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset1Element2);
             var filterset1Element3 = FiltersetElement.Create(filterset1, new TestFilter2(), 3);
             filterset1Element3.Comparison = FilterComparison.DoesNotContain;
@@ -103,13 +103,13 @@ namespace Bloom.Data.Tests.Repositories
 
             var filterset2 = Filterset.Create("Filterset 2");
             _filtersetRepository.AddFilterset(_dataSource, filterset2);
-            var filterset2Element1 = FiltersetElement.Create(filterset2, FiltersetElementType.OpenParenthesis, null, 1);
+            var filterset2Element1 = FiltersetElement.Create(filterset2, FiltersetElementType.OpenParenthesis, 1);
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset2Element1);
             var filterset2Element2 = FiltersetElement.Create(filterset2, new TestFilter1(), 2);
             filterset2Element2.Comparison = FilterComparison.EndsWith;
             filterset2Element2.FilterAgainst = "Filter Element 2 Against";
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset2Element2);
-            var filterset2Element3 = FiltersetElement.Create(filterset2, FiltersetElementType.CloseParenthesis, null, 3);
+            var filterset2Element3 = FiltersetElement.Create(filterset2, FiltersetElementType.CloseParenthesis, 3);
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset2Element3);
             
             var filterset3 = Filterset.Create("Filterset 3");

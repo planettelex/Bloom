@@ -52,8 +52,21 @@ namespace Bloom.Domain.Tests.Models
 
             Assert.AreEqual(library.Id, id);
             Assert.AreEqual(library.Name, LibraryName);
+            Assert.AreEqual(library.OwnerId, owner.Id);
             Assert.AreEqual(library.FilePath, LibraryFolderPath + "\\" + LibraryName + ".blm");
             Assert.AreEqual(library.OwnerLastConnected, now);
+        }
+
+        /// <summary>
+        /// Tests the library to string method.
+        /// </summary>
+        [Test]
+        public void LibraryToStringTest()
+        {
+            var owner = Person.Create(LibraryOwnerName);
+            var library = Library.Create(owner, LibraryName, LibraryFolderPath);
+
+            Assert.AreEqual(library.ToString(), LibraryName);
         }
     }
 }

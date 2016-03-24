@@ -245,7 +245,16 @@ namespace Bloom.Domain.Models
         /// Gets or sets the song rating.
         /// </summary>
         [Column(Name = "rating")]
-        public int? Rating { get; set; }
+        public int? Rating 
+        { 
+            get { return _rating; }
+            set
+            {
+                _rating = value;
+                RatedOn = DateTime.Now;
+            } 
+        }
+        private int? _rating;
 
         /// <summary>
         /// Gets or sets notes on this song.
@@ -288,8 +297,6 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "last_played")]
         public DateTime? LastPlayed { get; set; }
-
-
 
         /// <summary>
         /// Gets or sets the song media.

@@ -21,7 +21,6 @@ namespace Bloom.Domain.Models
             return new PlaylistTrack
             {
                 PlaylistId = playlist.Id,
-                SongId = song.Id,
                 Song = song,
                 TrackNumber = trackNumber
             };
@@ -42,7 +41,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the song.
         /// </summary>
-        public Song Song { get; set; }
+        public Song Song
+        {
+            get { return _song; }
+            set
+            {
+                _song = value;
+                SongId = _song != null ? _song.Id : Guid.Empty;
+            }
+        }
+        private Song _song;
 
         /// <summary>
         /// Gets or sets the track number.
@@ -55,11 +63,8 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            var label = TrackNumber.ToString(CultureInfo.InvariantCulture);
-            if (Song != null)
-                label += ": " + Song.Name;
-
-            return label;
+            var number = TrackNumber.ToString(CultureInfo.InvariantCulture);
+            return Song == null ? number : number + ": " + Song.Name;
         }
     }
 }

@@ -47,5 +47,13 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "occurred_on")]
         public DateTime OccurredOn { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return OccurredOn.ToShortDateString();
+        }
     }
 }

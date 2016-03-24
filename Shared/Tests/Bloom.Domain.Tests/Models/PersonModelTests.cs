@@ -94,5 +94,16 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(personReference.PersonId, person.Id);
             Assert.AreEqual(personReference.ReferenceId, reference.Id);
         }
+
+        /// <summary>
+        /// Tests the person to string method.
+        /// </summary>
+        [Test]
+        public void PersonToStringTest()
+        {
+            var person = Person.Create(PersonName);
+
+            Assert.AreEqual(person.ToString(), PersonName);
+        }
     }
 }

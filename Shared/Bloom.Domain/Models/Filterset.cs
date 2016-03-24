@@ -74,5 +74,12 @@ namespace Bloom.Domain.Models
         /// </summary>
         public List<FiltersetOrder> Ordering { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            return !string.IsNullOrEmpty(Name) ? Name : Id.ToString();
+        }
     }
 }

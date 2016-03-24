@@ -39,5 +39,16 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(activity.Id, moodId);
             Assert.AreEqual(activity.Name, "Test Mood");
         }
+
+        /// <summary>
+        /// Tests the mood to string method.
+        /// </summary>
+        [Test]
+        public void MoodToStringTest()
+        {
+            var mood = Mood.Create("Test Mood");
+
+            Assert.AreEqual(mood.ToString(), "Test Mood");
+        }
     }
 }

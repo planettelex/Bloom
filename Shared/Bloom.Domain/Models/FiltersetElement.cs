@@ -16,15 +16,12 @@ namespace Bloom.Domain.Models
         /// </summary>
         /// <param name="filterset">A filterset.</param>
         /// <param name="elementType">The type of element.</param>
-        /// <param name="filter">The filter.</param>
         /// <param name="elementNumber">The element number.</param>
-        public static FiltersetElement Create(Filterset filterset, FiltersetElementType elementType, IFilter filter, int elementNumber)
+        public static FiltersetElement Create(Filterset filterset, FiltersetElementType elementType, int elementNumber)
         {
             return new FiltersetElement
             {
                 FiltersetId = filterset.Id,
-                Filter = filter,
-                FilterId = filter != null ? filter.Id : (Guid?) null,
                 ElementType = elementType,
                 ElementNumber = elementNumber
             };
@@ -42,7 +39,6 @@ namespace Bloom.Domain.Models
             {
                 FiltersetId = filterset.Id,
                 Filter = filter,
-                FilterId = filter.Id,
                 ElementType = FiltersetElementType.Statement,
                 ElementNumber = elementNumber
             };
@@ -87,6 +83,39 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
-        public IFilter Filter { get; set; }
+        public IFilter Filter
+        {
+            get { return _filter; }
+            set
+            {
+                _filter = value;
+                FilterId = _filter != null ? _filter.Id : (Guid?) null;
+            }
+        }
+        private IFilter _filter;
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        public override string ToString()
+        {
+            switch (ElementType)
+            {
+                case FiltersetElementType.OpenParenthesis:
+                    return "(";
+                case FiltersetElementType.CloseParenthesis:
+                    return ")";
+                case FiltersetElementType.And:
+                    return " and ";
+                case FiltersetElementType.Or:
+                    return " or ";
+                case FiltersetElementType.Statement:
+                    if (Filter != null && Comparison != null)
+                        return string.Format("{0} {1} {2}", Filter.ToString(), Comparison, FilterAgainst);
+                    return FilterAgainst;
+                default:
+                    return FilterAgainst;
+            }
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace Bloom.Domain.Tests.Models
     [TestFixture]
     public class FiltersetModelTests
     {
+        #region Test Classes
+
         public class TestFilter : IFilter
         {
             public Guid Id { get { return Guid.Parse("13927ebd-c8bb-4e75-87d7-1fea1a96d220"); } }
@@ -19,6 +21,11 @@ namespace Bloom.Domain.Tests.Models
             public string Name { get { return "TestFilter"; } }
 
             public string Label { get { return "Test Filter"; } }
+
+            public override string ToString()
+            {
+                return "Filter Property";
+            }
         }
 
         public class TestOrder : IOrder
@@ -28,7 +35,14 @@ namespace Bloom.Domain.Tests.Models
             public string Name { get { return "TestOrder"; } }
 
             public string Label { get { return "Test Order"; } }
+
+            public override string ToString()
+            {
+                return "Order Property";
+            }
         }
+
+        #endregion
 
         /// <summary>
         /// Tests the filterset create method.
@@ -62,6 +76,19 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the filterset to string method.
+        /// </summary>
+        [Test]
+        public void FiltersetToStringTest()
+        {
+            var filterset1 = Filterset.Create();
+            var filterset2 = Filterset.Create("Filterset");
+
+            Assert.AreEqual(filterset1.ToString(), filterset1.Id.ToString());
+            Assert.AreEqual(filterset2.ToString(), "Filterset");
+        }
+
+        /// <summary>
         /// Tests the filterset element create method.
         /// </summary>
         [Test]
@@ -69,11 +96,10 @@ namespace Bloom.Domain.Tests.Models
         {
             var filter = new TestFilter();
             var filterset = Filterset.Create();
-            var filtersetElement1 = FiltersetElement.Create(filterset, FiltersetElementType.And, filter, 2);
+            var filtersetElement1 = FiltersetElement.Create(filterset, FiltersetElementType.And, 2);
             var filtersetElement2 = FiltersetElement.Create(filterset, filter, 3);
 
             Assert.AreEqual(filtersetElement1.FiltersetId, filterset.Id);
-            Assert.AreEqual(filtersetElement1.FilterId, filter.Id);
             Assert.AreEqual(filtersetElement1.ElementType, FiltersetElementType.And);
             Assert.AreEqual(filtersetElement1.ElementNumber, 2);
 
@@ -81,6 +107,57 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(filtersetElement2.FilterId, filter.Id);
             Assert.AreEqual(filtersetElement2.ElementType, FiltersetElementType.Statement);
             Assert.AreEqual(filtersetElement2.ElementNumber, 3);
+        }
+
+        /// <summary>
+        /// Tests the filterset element properties.
+        /// </summary>
+        [Test]
+        public void FiltersetElementPropertiesTest()
+        {
+            var filter = new TestFilter();
+            var filterset = Filterset.Create();
+            var filtersetElement1 = new FiltersetElement
+            {
+                FiltersetId = filterset.Id,
+                ElementNumber = 1,
+                ElementType = FiltersetElementType.OpenParenthesis
+            };
+            var filtersetElement2 = new FiltersetElement
+            {
+                FiltersetId = filterset.Id,
+                ElementNumber = 2,
+                ElementType = FiltersetElementType.Statement,
+                Filter = filter,
+                Comparison = FilterComparison.BeginsWith,
+                FilterAgainst = "Something"
+            };
+
+            Assert.AreEqual(filtersetElement1.FiltersetId, filterset.Id);
+            Assert.AreEqual(filtersetElement1.ElementType, FiltersetElementType.OpenParenthesis);
+            Assert.AreEqual(filtersetElement2.FiltersetId, filterset.Id);
+            Assert.AreEqual(filtersetElement2.FilterId, filter.Id);
+            Assert.AreEqual(filtersetElement2.ElementType, FiltersetElementType.Statement);
+            Assert.AreEqual(filtersetElement2.ElementNumber, 2);
+            Assert.AreEqual(filtersetElement2.Comparison, FilterComparison.BeginsWith);
+            Assert.AreEqual(filtersetElement2.FilterAgainst, "Something");
+        }
+
+        /// <summary>
+        /// Tests the filterset element to string method.
+        /// </summary>
+        [Test]
+        public void FiltersetElementToStringTest()
+        {
+            var filter = new TestFilter();
+            var filterset = Filterset.Create();
+            var filtersetElement1 = FiltersetElement.Create(filterset, FiltersetElementType.OpenParenthesis, 1);
+            var filtersetElement2 = FiltersetElement.Create(filterset, filter, 2);
+            filtersetElement2.Comparison = FilterComparison.Is;
+            filtersetElement2.FilterAgainst = "Something";
+
+            Assert.AreEqual("(", filtersetElement1.ToString());
+            Assert.AreEqual("Filter Property Is Something", filtersetElement2.ToString());
         }
 
         /// <summary>
@@ -102,6 +179,42 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(filtersetOrder2.OrderId, order.Id);
             Assert.AreEqual(filtersetOrder2.OrderNumber, 3);
             Assert.AreEqual(filtersetOrder2.Direction, OrderDirection.Descending);
+        }
+
+        /// <summary>
+        /// Tests the filterset order properties.
+        /// </summary>
+        [Test]
+        public void FiltersetOrderPropertiesTest()
+        {
+            var order = new TestOrder();
+            var filterset = Filterset.Create();
+            var filtersetOrder = new FiltersetOrder
+            {
+                FiltersetId = filterset.Id,
+                OrderNumber = 1,
+                Order = order,
+                Direction = OrderDirection.Descending
+            };
+
+            Assert.AreEqual(filtersetOrder.FiltersetId, filterset.Id);
+            Assert.AreEqual(filtersetOrder.OrderNumber, 1);
+            Assert.AreEqual(filtersetOrder.Direction, OrderDirection.Descending);
+            Assert.AreEqual(filtersetOrder.OrderId, order.Id);
+            Assert.NotNull(filtersetOrder.Order);
+        }
+
+        /// <summary>
+        /// Tests the filterset order to string method.
+        /// </summary>
+        [Test]
+        public void FiltersetOrderToStringTest()
+        {
+            var order = new TestOrder();
+            var filterset = Filterset.Create();
+            var filtersetOrder = FiltersetOrder.Create(filterset, order, 1);
+
+            Assert.AreEqual("Order Property Ascending", filtersetOrder.ToString());
         }
     }
 }

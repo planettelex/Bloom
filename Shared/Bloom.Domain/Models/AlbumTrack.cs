@@ -22,7 +22,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                SongId = song.Id,
                 Song = song,
                 DiscNumber = 1,
                 TrackNumber = trackNumber
@@ -42,7 +41,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                SongId = song.Id,
                 Song = song,
                 DiscNumber = 1,
                 TrackNumber = trackNumber,
@@ -63,7 +61,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                SongId = song.Id,
                 Song = song,
                 DiscNumber = discNumber,
                 TrackNumber = trackNumber
@@ -84,7 +81,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
-                SongId = song.Id,
                 Song = song,
                 DiscNumber = discNumber,
                 TrackNumber = trackNumber,
@@ -113,7 +109,16 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets the song.
         /// </summary>
-        public Song Song { get; set; }
+        public Song Song
+        {
+            get { return _song; }
+            set
+            {
+                _song = value;
+                SongId = _song != null ? _song.Id : Guid.Empty;
+            }
+        }
+        private Song _song;
 
         /// <summary>
         /// Gets or sets the disc number.

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using NUnit.Framework;
@@ -49,21 +51,24 @@ namespace Bloom.Domain.Tests.Models
         public void AlbumPropertiesTest()
         {
             var id = Guid.NewGuid();
-            var artistId = Guid.NewGuid();
+            var artist = Artist.Create("Test Artist");
+            var holiday = Holiday.Create("Holiday");
             var tributeArtistId = Guid.NewGuid();
+            var originalAlbumId = Guid.NewGuid();
 
             var album = new Album
             {
                 Id = id,
                 Name = AlbumName,
+                UnofficialName = "Unofficial Name",
                 Edition = "Album Edition",
-                ArtistId = artistId,
+                Artist = artist,
                 Description = "Album description",
+                Holiday = holiday,
                 IsBootleg = false,
                 IsCompilation = true,
                 IsLive = false,
                 IsRemix = true,
-                IsHoliday = false,
                 IsMixedArtist = true,
                 IsPromotional = false,
                 IsTribute = true,
@@ -72,19 +77,25 @@ namespace Bloom.Domain.Tests.Models
                 Length = 12345,
                 LengthType = LengthType.LP,
                 LinerNotes = "Liner notes",
-                TributeArtistId = tributeArtistId
+                TributeArtistId = tributeArtistId,
+                OriginalAlbumId = originalAlbumId,
+                Rating = 4,
+                FirstReleasedOn = DateTime.Parse("1/1/2001")
             };
 
             Assert.AreEqual(album.Id, id);
             Assert.AreEqual(album.Name, AlbumName);
             Assert.AreEqual(album.Edition, "Album Edition");
-            Assert.AreEqual(album.ArtistId, artistId);
+            Assert.AreEqual(album.ArtistId, artist.Id);
+            Assert.NotNull(album.Artist);
             Assert.AreEqual(album.Description, "Album description");
             Assert.IsFalse(album.IsBootleg);
             Assert.IsTrue(album.IsCompilation);
             Assert.IsFalse(album.IsLive);
             Assert.IsTrue(album.IsRemix);
-            Assert.IsFalse(album.IsHoliday);
+            Assert.IsTrue(album.IsHoliday);
+            Assert.AreEqual(holiday.Id, album.HolidayId);
+            Assert.NotNull(album.Holiday);
             Assert.IsTrue(album.IsMixedArtist);
             Assert.IsFalse(album.IsPromotional);
             Assert.IsTrue(album.IsTribute);
@@ -94,6 +105,21 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(album.LengthType, LengthType.LP);
             Assert.AreEqual(album.LinerNotes, "Liner notes");
             Assert.AreEqual(album.TributeArtistId, tributeArtistId);
+            Assert.AreEqual(album.OriginalAlbumId, originalAlbumId);
+            Assert.AreEqual(album.Rating, 4);
+            Assert.AreEqual(album.FirstReleasedOn, DateTime.Parse("1/1/2001"));
+        }
+
+        /// <summary>
+        /// Tests the album to string method.
+        /// </summary>
+        [Test]
+        public void AlbumToStringTest()
+        {
+            var album1 = Album.Create(AlbumName);
+            var album2 = Album.Create("Album 2", Artist.Create("Artist"));
+            Assert.AreEqual(album1.ToString(), AlbumName);
+            Assert.AreEqual(album2.ToString(), "Artist: Album 2");
         }
 
         /// <summary>
@@ -139,6 +165,18 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the album artwork to string method.
+        /// </summary>
+        [Test]
+        public void AlbumArtworkToStringTest()
+        {
+            var album = Album.Create(AlbumName);
+            var albumArtwork = AlbumArtwork.Create(album, "c:\\Music\\Image.jpg", 3);
+
+            Assert.AreEqual(albumArtwork.ToString(), "c:\\Music\\Image.jpg");
+        }
+
+        /// <summary>
         /// Tests the album collaborator create method.
         /// </summary>
         [Test]
@@ -154,6 +192,42 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the album collaborator properties.
+        /// </summary>
+        [Test]
+        public void AlbumCollaboratorPropertiesTest()
+        {
+            var albumId = Guid.NewGuid();
+            var artist = Artist.Create("Artist");
+
+            var albumCollaborator = new AlbumCollaborator
+            {
+                AlbumId = albumId,
+                Artist = artist,
+                IsFeatured = true
+            };
+
+            Assert.AreEqual(albumCollaborator.AlbumId, albumId);
+            Assert.AreEqual(albumCollaborator.ArtistId, artist.Id);
+            Assert.NotNull(albumCollaborator.Artist);
+            Assert.IsTrue(albumCollaborator.IsFeatured);
+        }
+
+        /// <summary>
+        /// Tests the album collaborator to string method.
+        /// </summary>
+        [Test]
+        public void AlbumCollaboratorToStringTest()
+        {
+            var album = Album.Create(AlbumName);
+            var artist = Artist.Create("Artist");
+            var albumCollaborator = AlbumCollaborator.Create(album, artist);
+            albumCollaborator.IsFeatured = true;
+
+            Assert.AreEqual(albumCollaborator.ToString(), "Artist (Featured)");
+        }
+
+        /// <summary>
         /// Tests the album credit create method.
         /// </summary>
         [Test]
@@ -166,6 +240,47 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(albumCredit.AlbumId, album.Id);
             Assert.AreEqual(albumCredit.PersonId, person.Id);
             Assert.AreEqual(albumCredit.Person.Name, "Person");
+        }
+
+        /// <summary>
+        /// Tests the album credit properties.
+        /// </summary>
+        [Test]
+        public void AlbumCreditPropertiesTest()
+        {
+            var albumId = Guid.NewGuid();
+            var person = Person.Create("Person");
+            var roles = new List<Role>
+            {
+                Role.Create("Role 1"),
+                Role.Create("Role 2")
+            };
+
+            var albumCredit = new AlbumCredit
+            {
+                AlbumId = albumId,
+                Person = person,
+                Roles = roles
+            };
+
+            Assert.AreEqual(albumCredit.AlbumId, albumId);
+            Assert.AreEqual(albumCredit.PersonId, person.Id);
+            Assert.NotNull(albumCredit.Person);
+            Assert.NotNull(albumCredit.Roles);
+            Assert.AreEqual(2, albumCredit.Roles.Count);
+        }
+
+        /// <summary>
+        /// Tests the album credit to string method.
+        /// </summary>
+        [Test]
+        public void AlbumCreditToStringTest()
+        {
+            var album = Album.Create(AlbumName);
+            var person = Person.Create("Person");
+            var albumCredit = AlbumCredit.Create(album, person);
+
+            Assert.AreEqual(albumCredit.ToString(), "Person");
         }
 
         /// <summary>
@@ -265,6 +380,20 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the album release to string method.
+        /// </summary>
+        [Test]
+        public void AlbumReleaseToStringTest()
+        {
+            var album = Album.Create(AlbumName);
+            var releaseDate = DateTime.Parse("01/01/2001");
+            
+            var release = AlbumRelease.Create(album, releaseDate);
+
+            Assert.AreEqual(release.ToString(), releaseDate.ToShortDateString());
+        }
+
+        /// <summary>
         /// Tests the album review create method.
         /// </summary>
         [Test]
@@ -327,12 +456,12 @@ namespace Bloom.Domain.Tests.Models
         {
             var id = Guid.NewGuid();
             var albumId = Guid.NewGuid();
-            var songId = Guid.NewGuid();
+            var song = Song.Create("Song", Artist.Create("Artist"));
             var albumTrack = new AlbumTrack
             {
                 Id = id,
                 AlbumId = albumId,
-                SongId = songId,
+                Song = song,
                 DiscNumber = 2,
                 TrackNumber = 5,
                 StartTime = 54321,
@@ -341,11 +470,97 @@ namespace Bloom.Domain.Tests.Models
 
             Assert.AreEqual(albumTrack.Id, id);
             Assert.AreEqual(albumTrack.AlbumId, albumId);
-            Assert.AreEqual(albumTrack.SongId, songId);
+            Assert.AreEqual(albumTrack.SongId, song.Id);
             Assert.AreEqual(albumTrack.DiscNumber, 2);
             Assert.AreEqual(albumTrack.TrackNumber, 5);
             Assert.AreEqual(albumTrack.StartTime, 54321);
             Assert.AreEqual(albumTrack.StopTime, 54334);
+        }
+
+        /// <summary>
+        /// Tests the album track to string method.
+        /// </summary>
+        [Test]
+        public void AlbumTrackToStringTest()
+        {
+            var album = Album.Create(AlbumName);
+            var artist = Artist.Create("Artist");
+            var song = Song.Create("Song", artist);
+            var albumTrack = AlbumTrack.Create(album, song, 1);
+
+            Assert.AreEqual(albumTrack.ToString(), "1-1: Song");
+        }
+
+        /// <summary>
+        /// Tests the album media create methods.
+        /// </summary>
+        [Test]
+        public void CreateAlbumMediaTest()
+        {
+            var album = Album.Create(AlbumName);
+            var albumMedia1 = AlbumMedia.Create(album, MediaTypes.CD);
+            var albumMedia2 = AlbumMedia.Create(album, DigitalFormats.MP3);
+
+            Assert.AreNotEqual(albumMedia1.Id, Guid.Empty);
+            Assert.AreEqual(albumMedia1.AlbumId, album.Id);
+            Assert.AreEqual(albumMedia1.MediaType, MediaTypes.CD);
+            Assert.AreNotEqual(albumMedia2.Id, Guid.Empty);
+            Assert.AreEqual(albumMedia2.MediaType, MediaTypes.Digital);
+            Assert.AreEqual(albumMedia2.DigitalFormat, DigitalFormats.MP3);
+        }
+
+        /// <summary>
+        /// Tests the album media properties.
+        /// </summary>
+        [Test]
+        public void AlbumMediaPropertiesTest()
+        {
+            var id = Guid.NewGuid();
+            var album = Album.Create("Album");
+            var onLoanToPersonId = Guid.NewGuid();
+            var release = AlbumRelease.Create(album, DateTime.Parse("11/11/2011"));
+
+            var albumMedia = new AlbumMedia
+            {
+                Id = id,
+                AlbumId = album.Id,
+                MediaType = MediaTypes.Digital,
+                DigitalFormat = DigitalFormats.FLAC,
+                MediaCondition = Condition.GoodPlus,
+                PackagingCondition = Condition.Good,
+                ApproximateValue = 22.95m,
+                PurchasedPrice = 12.99m,
+                PurchasedOn = DateTime.Parse("2/2/2002"),
+                OnLoanToPersonId = onLoanToPersonId,
+                Release = release
+            };
+
+            Assert.AreEqual(id, albumMedia.Id);
+            Assert.AreEqual(album.Id, albumMedia.AlbumId);
+            Assert.AreEqual(MediaTypes.Digital, albumMedia.MediaType);
+            Assert.AreEqual(DigitalFormats.FLAC, albumMedia.DigitalFormat);
+            Assert.AreEqual(Condition.GoodPlus, albumMedia.MediaCondition);
+            Assert.AreEqual(Condition.Good, albumMedia.PackagingCondition);
+            Assert.AreEqual(22.95m, albumMedia.ApproximateValue);
+            Assert.AreEqual(12.99m, albumMedia.PurchasedPrice);
+            Assert.AreEqual(DateTime.Parse("2/2/2002"), albumMedia.PurchasedOn);
+            Assert.AreEqual(onLoanToPersonId, albumMedia.OnLoanToPersonId);
+            Assert.AreEqual(release.Id, albumMedia.ReleaseId);
+            Assert.NotNull(albumMedia.Release);
+        }
+
+        /// <summary>
+        /// Tests the album media to string method.
+        /// </summary>
+        [Test]
+        public void AlbumMediaToStringTest()
+        {
+            var album = Album.Create(AlbumName);
+            var albumMedia1 = AlbumMedia.Create(album, MediaTypes.CD);
+            var albumMedia2 = AlbumMedia.Create(album, DigitalFormats.MP3);
+
+            Assert.AreEqual(albumMedia1.ToString(), "CD");
+            Assert.AreEqual(albumMedia2.ToString(), "MP3");
         }
     }
 }
