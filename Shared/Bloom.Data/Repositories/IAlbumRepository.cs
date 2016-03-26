@@ -66,6 +66,20 @@ namespace Bloom.Data.Repositories
         void DeleteAlbumTrack(IDataSource dataSource, AlbumTrack albumTrack);
 
         /// <summary>
+        /// Adds the album media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumMedia">The album media.</param>
+        void AddAlbumMedia(IDataSource dataSource, AlbumMedia albumMedia);
+
+        /// <summary>
+        /// Deletes the album media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumMedia">The album media.</param>
+        void DeleteAlbumMedia(IDataSource dataSource, AlbumMedia albumMedia);
+
+        /// <summary>
         /// Adds album artwork.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

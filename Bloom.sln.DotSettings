@@ -2,6 +2,7 @@
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=LoopCanBeConvertedToQuery/@EntryIndexedValue">HINT</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=RedundantIfElseBlock/@EntryIndexedValue">SUGGESTION</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=CD/@EntryIndexedValue">CD</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DAT/@EntryIndexedValue">DAT</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DVD/@EntryIndexedValue">DVD</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=EP/@EntryIndexedValue">EP</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=FLAC/@EntryIndexedValue">FLAC</s:String>

@@ -73,6 +73,15 @@ namespace Bloom.Data.Repositories
             song.Holiday = result.Holiday;
             song.TimeSignature = result.TimeSignature;
 
+            var mediaTable = SongMediaTable(dataSource);
+            var mediaQuery =
+                from media in mediaTable
+                where media.SongId == songId
+                orderby media.MediaType, media.DigitalFormat
+                select media;
+
+            song.Media = mediaQuery.Any() ? mediaQuery.ToList() : null;
+
             var segmentsTable = SongSegmentTable(dataSource);
             var segmentsQuery =
                 from segment in segmentsTable
@@ -282,6 +291,42 @@ namespace Bloom.Data.Repositories
                 return;
 
             songTable.InsertOnSubmit(song);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Adds the song media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songMedia">The song media.</param>
+        public void AddSongMedia(IDataSource dataSource, SongMedia songMedia)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var songMediaTable = SongMediaTable(dataSource);
+            if (songMediaTable == null)
+                return;
+
+            songMediaTable.InsertOnSubmit(songMedia);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes the song media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songMedia">The song media.</param>
+        public void DeleteSongMedia(IDataSource dataSource, SongMedia songMedia)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var songMediaTable = SongMediaTable(dataSource);
+            if (songMediaTable == null)
+                return;
+
+            songMediaTable.DeleteOnSubmit(songMedia);
             dataSource.Save();
         }
 
@@ -502,6 +547,15 @@ namespace Bloom.Data.Repositories
             if (songTable == null)
                 return;
 
+            var songMediaTable = SongMediaTable(dataSource);
+            var songMediaQuery =
+                from sm in songMediaTable
+                where sm.SongId == song.Id
+                select sm;
+
+            songMediaTable.DeleteAllOnSubmit(songMediaQuery.AsEnumerable());
+            dataSource.Save();
+
             var recordingSessionTable = RecordingSessionTable(dataSource);
             var recordingSessionsQuery =
                 from rs in recordingSessionTable
@@ -636,6 +690,11 @@ namespace Bloom.Data.Repositories
         private static Table<SongSegment> SongSegmentTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<SongSegment>() : null;
+        }
+
+        private static Table<SongMedia> SongMediaTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<SongMedia>() : null;
         }
 
         private static Table<SongCollaborator> SongCollaboratorTable(IDataSource dataSource)

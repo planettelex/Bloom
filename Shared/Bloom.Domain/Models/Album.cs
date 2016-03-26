@@ -36,7 +36,6 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                ArtistId = artist.Id,
                 Artist = artist
             };
         }

@@ -46,6 +46,7 @@ namespace Bloom.Data.Tests.Repositories
         private Guid _bandOfGypsysId;
         private Guid _letDownId;
         private Guid _globalUnderground7Id;
+        private Guid _friendId;
 
         /// <summary>
         /// Sets up the tests by creating a test data source and adding data.
@@ -88,6 +89,10 @@ namespace Bloom.Data.Tests.Repositories
             christmas.EndDay = 26;
             christmas.EndMonth = Month.December;
             _holidayRepository.AddHoliday(_dataSource, christmas);
+
+            var friend = Person.Create("Friend");
+            _friendId = friend.Id;
+            _personRepository.AddPerson(_dataSource, friend);
 
             var leadVocals = Role.Create("Lead Vocals");
             _roleRepository.AddRole(_dataSource, leadVocals);
@@ -168,6 +173,7 @@ namespace Bloom.Data.Tests.Repositories
             atomHeartMother.LinerNotes = "Atom Heart Mother Liner Notes";
             atomHeartMother.Length = 123456;
             atomHeartMother.LengthType = LengthType.LP;
+            atomHeartMother.Rating = 5;
             _albumRepository.AddAlbum(_dataSource, atomHeartMother);
             _albumRepository.AddAlbumArtwork(_dataSource, AlbumArtwork.Create(atomHeartMother, "c:\\images\\atom-heart-mother-front.jpg", 1));
             _albumRepository.AddAlbumArtwork(_dataSource, AlbumArtwork.Create(atomHeartMother, "c:\\images\\atom-heart-mother-back.jpg", 2));
@@ -292,6 +298,24 @@ namespace Bloom.Data.Tests.Repositories
             var aDayInTheLife = Song.Create("A Day In the Life", beatles);
             _songRepository.AddSong(_dataSource, aDayInTheLife);
             _albumRepository.AddAlbumTrack(_dataSource, AlbumTrack.Create(sgtPepper, aDayInTheLife, 13, 'B'));
+            var sgtPepperRelease1 = AlbumRelease.Create(sgtPepper, DateTime.Parse("6/1/1967"), MediaTypes.Vinyl, capitol, "SMAS 2653");
+            _albumRepository.AddAlbumRelease(_dataSource, sgtPepperRelease1);
+            var sgtPepperMedia1 = AlbumMedia.Create(sgtPepper, MediaTypes.Vinyl);
+            sgtPepperMedia1.MediaCondition = Condition.GoodPlus;
+            sgtPepperMedia1.PackagingCondition = Condition.Good;
+            sgtPepperMedia1.PurchasedOn = DateTime.Parse("5/5/1985");
+            sgtPepperMedia1.PurchasedPrice = 10.95m;
+            sgtPepperMedia1.ApproximateValue = 15.99m;
+            sgtPepperMedia1.Release = sgtPepperRelease1;
+            sgtPepperMedia1.OnLoanToPersonId = friend.Id;
+            _albumRepository.AddAlbumMedia(_dataSource, sgtPepperMedia1);
+            var sgtPepperRelease2 = AlbumRelease.Create(sgtPepper, DateTime.Parse("11/16/2010"), DigitalFormats.M4A);
+            _albumRepository.AddAlbumRelease(_dataSource, sgtPepperRelease2);
+            var sgtPepperMedia2 = AlbumMedia.Create(sgtPepper, DigitalFormats.M4A);
+            sgtPepperMedia2.Release = sgtPepperRelease2;
+            _albumRepository.AddAlbumMedia(_dataSource, sgtPepperMedia2);
+            var sgtPepperMedia3 = AlbumMedia.Create(sgtPepper, MediaTypes.CD | MediaTypes.DVD);
+            _albumRepository.AddAlbumMedia(_dataSource, sgtPepperMedia3);
 
             var magicalMysteryTour = Album.Create("Magical Mystery Tour", beatles);
             _magicalMysteryTourId = magicalMysteryTour.Id;
@@ -537,6 +561,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(DateTime.Parse("2/10/1970"), atomHeartMother.FirstReleasedOn);
             Assert.AreEqual("Atom Heart Mother Description", atomHeartMother.Description);
             Assert.AreEqual("Atom Heart Mother Liner Notes", atomHeartMother.LinerNotes);
+            Assert.AreEqual(5, atomHeartMother.Rating);
             Assert.AreEqual(123456, atomHeartMother.Length);
             Assert.AreEqual(LengthType.LP, atomHeartMother.LengthType);
             Assert.NotNull(atomHeartMother.Artwork);
@@ -592,6 +617,40 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual("Backing Vocals", atomHeartMother.Credits[4].Roles[0].Name);
             Assert.AreEqual("Bass Guitar", atomHeartMother.Credits[4].Roles[1].Name);
             Assert.AreEqual("Lead Vocals", atomHeartMother.Credits[4].Roles[2].Name);
+
+            var sgtPepper = _albumRepository.GetAlbum(_dataSource, _sgtPepperId);
+            Assert.NotNull(sgtPepper);
+            Assert.AreEqual(_sgtPepperId, sgtPepper.Id);
+            Assert.AreEqual("Sgt. Pepper's Lonely Hearts Club Band", sgtPepper.Name);
+            Assert.AreEqual(DateTime.Parse("6/1/1967"), sgtPepper.FirstReleasedOn);
+            Assert.NotNull(sgtPepper.Artist);
+            Assert.AreEqual(_beatlesId, sgtPepper.ArtistId);
+            Assert.NotNull(sgtPepper.Artwork);
+            Assert.AreEqual(3, sgtPepper.Artwork.Count);
+            Assert.NotNull(sgtPepper.Tracks);
+            Assert.AreEqual(13, sgtPepper.Tracks.Count);
+            Assert.NotNull(sgtPepper.Media);
+            Assert.AreEqual(3, sgtPepper.Media.Count);
+            Assert.AreEqual(MediaTypes.CD | MediaTypes.DVD, sgtPepper.Media[0].MediaType);
+            Assert.IsTrue(sgtPepper.Media[0].MediaType.HasFlag(MediaTypes.CD));
+            Assert.IsTrue(sgtPepper.Media[0].MediaType.HasFlag(MediaTypes.DVD));
+            Assert.IsFalse(sgtPepper.Media[0].MediaType.HasFlag(MediaTypes.BluRay));
+            Assert.AreEqual(MediaTypes.Vinyl, sgtPepper.Media[1].MediaType);
+            Assert.AreEqual(Condition.GoodPlus, sgtPepper.Media[1].MediaCondition);
+            Assert.AreEqual(Condition.Good, sgtPepper.Media[1].PackagingCondition);
+            Assert.AreEqual(DateTime.Parse("5/5/1985"), sgtPepper.Media[1].PurchasedOn);
+            Assert.AreEqual(10.95m, sgtPepper.Media[1].PurchasedPrice);
+            Assert.AreEqual(15.99m, sgtPepper.Media[1].ApproximateValue);
+            Assert.AreEqual(_friendId, sgtPepper.Media[1].OnLoanToPersonId);
+            Assert.NotNull(sgtPepper.Media[1].Release);
+            Assert.AreEqual(DateTime.Parse("6/1/1967"), sgtPepper.Media[1].Release.ReleaseDate);
+            Assert.AreEqual(_capitolId, sgtPepper.Media[1].Release.LabelId);
+            Assert.AreEqual(MediaTypes.Vinyl, sgtPepper.Media[1].Release.MediaTypes);
+            Assert.AreEqual("SMAS 2653", sgtPepper.Media[1].Release.CatalogNumber);
+            Assert.AreEqual(MediaTypes.Digital, sgtPepper.Media[2].MediaType);
+            Assert.AreEqual(DigitalFormats.M4A, sgtPepper.Media[2].DigitalFormat);
+            Assert.NotNull(sgtPepper.Media[2].Release);
+            Assert.AreEqual(DateTime.Parse("11/16/2010"), sgtPepper.Media[2].Release.ReleaseDate);
 
             var whiteAlbum = _albumRepository.GetAlbum(_dataSource, _whiteAlbumId);
             Assert.NotNull(whiteAlbum);
@@ -768,9 +827,10 @@ namespace Bloom.Data.Tests.Repositories
             Assert.IsTrue(helpFromMyFwendsRelease.MediaTypes.HasFlag(MediaTypes.Vinyl));
             Assert.IsTrue(helpFromMyFwendsRelease.MediaTypes.HasFlag(MediaTypes.Digital));
             Assert.IsFalse(helpFromMyFwendsRelease.MediaTypes.HasFlag(MediaTypes.Cassette));
-            Assert.IsTrue(helpFromMyFwendsRelease.DigitalFormats.HasFlag(DigitalFormats.MP3));
-            Assert.IsTrue(helpFromMyFwendsRelease.DigitalFormats.HasFlag(DigitalFormats.WAV));
-            Assert.IsFalse(helpFromMyFwendsRelease.DigitalFormats.HasFlag(DigitalFormats.M4A));
+            Assert.IsNotNull(helpFromMyFwendsRelease.DigitalFormats);
+            Assert.IsTrue(helpFromMyFwendsRelease.DigitalFormats != null && helpFromMyFwendsRelease.DigitalFormats.Value.HasFlag(DigitalFormats.MP3));
+            Assert.IsTrue(helpFromMyFwendsRelease.DigitalFormats.Value.HasFlag(DigitalFormats.WAV));
+            Assert.IsFalse(helpFromMyFwendsRelease.DigitalFormats.Value.HasFlag(DigitalFormats.M4A));
         }
 
         /// <summary>
@@ -810,6 +870,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(DateTime.Parse("2/10/1970"), albums[5].FirstReleasedOn);
             Assert.AreEqual("Atom Heart Mother Description", albums[5].Description);
             Assert.AreEqual("Atom Heart Mother Liner Notes", albums[5].LinerNotes);
+            Assert.AreEqual(5, albums[5].Rating);
             Assert.AreEqual(123456, albums[5].Length);
             Assert.AreEqual(LengthType.LP, albums[5].LengthType);
             Assert.AreEqual(_letDownId, albums[6].Id);
@@ -918,6 +979,35 @@ namespace Bloom.Data.Tests.Repositories
             whiteAlbum = _albumRepository.GetAlbum(_dataSource, _whiteAlbumId);
             Assert.AreEqual(4, whiteAlbum.Tracks.Count);
             Assert.AreEqual("Martha My Dear", whiteAlbum.Tracks[1].Song.Name);
+        }
+
+        /// <summary>
+        /// Tests the delete album media method.
+        /// </summary>
+        [Test]
+        public void DeleteAlbumMediaTest()
+        {
+            var capitol = _labelRepository.GetLabel(_dataSource, _capitolId);
+            Assert.NotNull(capitol);
+            var sgtPepper = _albumRepository.GetAlbum(_dataSource, _sgtPepperId);
+            Assert.NotNull(sgtPepper);
+            Assert.AreEqual(3, sgtPepper.Media.Count);
+            var sgtPepperRelease4 = AlbumRelease.Create(sgtPepper, DateTime.Parse("11/16/1967"), MediaTypes.EightTrack, capitol, "8XT 2653");
+            _albumRepository.AddAlbumRelease(_dataSource, sgtPepperRelease4);
+            var sgtPepperMedia4 = AlbumMedia.Create(sgtPepper, MediaTypes.EightTrack);
+            sgtPepperMedia4.Release = sgtPepperRelease4;
+            _albumRepository.AddAlbumMedia(_dataSource, sgtPepperMedia4);
+
+            sgtPepper = _albumRepository.GetAlbum(_dataSource, _sgtPepperId);
+            Assert.NotNull(sgtPepper);
+            Assert.AreEqual(4, sgtPepper.Media.Count);
+            Assert.AreEqual(MediaTypes.EightTrack, sgtPepper.Media[2].MediaType);
+            _albumRepository.DeleteAlbumMedia(_dataSource, sgtPepper.Media[2]);
+
+            sgtPepper = _albumRepository.GetAlbum(_dataSource, _sgtPepperId);
+            Assert.NotNull(sgtPepper);
+            Assert.AreEqual(3, sgtPepper.Media.Count);
+            Assert.AreEqual(MediaTypes.Digital, sgtPepper.Media[2].MediaType);
         }
 
         /// <summary>
@@ -1073,6 +1163,9 @@ namespace Bloom.Data.Tests.Repositories
         [Test]
         public void DeleteAlbumTest()
         {
+            var harvest = Label.Create("Harvest");
+            _labelRepository.AddLabel(_dataSource, harvest);
+
             var composer = Role.Create("Composer");
             _roleRepository.AddRole(_dataSource, composer);
 
@@ -1151,6 +1244,11 @@ namespace Bloom.Data.Tests.Repositories
             var beatles = _artistRepository.GetArtist(_dataSource, _beatlesId);
             Assert.NotNull(beatles);
             _albumRepository.AddAlbumCollaborator(_dataSource, AlbumCollaborator.Create(darkSideOfTheMoon, beatles));
+            var release = AlbumRelease.Create(darkSideOfTheMoon, DateTime.Parse("3/1/1971"), MediaTypes.Vinyl, harvest, "SHVL 804");
+            _albumRepository.AddAlbumRelease(_dataSource, release);
+            var record = AlbumMedia.Create(darkSideOfTheMoon, MediaTypes.Vinyl);
+            record.Release = release;
+            _albumRepository.AddAlbumMedia(_dataSource, record);
 
             darkSideOfTheMoon = _albumRepository.GetAlbum(_dataSource, darkSideOfTheMoonId);
             Assert.NotNull(darkSideOfTheMoon);
@@ -1167,6 +1265,12 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual("David Gilmour", darkSideOfTheMoon.Credits[0].Person.Name);
             Assert.NotNull(darkSideOfTheMoon.Credits[0].Roles);
             Assert.AreEqual(4, darkSideOfTheMoon.Credits[0].Roles.Count);
+            Assert.NotNull(darkSideOfTheMoon.Media);
+            Assert.AreEqual(MediaTypes.Vinyl, darkSideOfTheMoon.Media[0].MediaType);
+            Assert.NotNull(darkSideOfTheMoon.Media[0].Release);
+            Assert.AreEqual(harvest.Id, darkSideOfTheMoon.Media[0].Release.LabelId);
+            Assert.AreEqual("SHVL 804", darkSideOfTheMoon.Media[0].Release.CatalogNumber);
+            Assert.AreEqual(DateTime.Parse("3/1/1971"), darkSideOfTheMoon.Media[0].Release.ReleaseDate);
 
             _albumRepository.DeleteAlbum(_dataSource, darkSideOfTheMoon);
 

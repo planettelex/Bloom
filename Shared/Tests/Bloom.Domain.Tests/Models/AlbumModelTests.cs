@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using NUnit.Framework;
@@ -322,13 +321,16 @@ namespace Bloom.Domain.Tests.Models
             var album = Album.Create(AlbumName);
             var label = Label.Create("Label Name");
             var releaseDate = DateTime.Parse("01/01/2001");
-            const MediaTypes mediaTypes = MediaTypes.Digital;
-            const DigitalFormats digitalFormats = DigitalFormats.MP3 & DigitalFormats.WAV;
+            const MediaTypes mediaTypes = MediaTypes.CD | MediaTypes.Digital;
+            const DigitalFormats digitalFormats = DigitalFormats.MP3 | DigitalFormats.WAV;
 
             var release1 = AlbumRelease.Create(album, releaseDate);
             var release2 = AlbumRelease.Create(album, releaseDate, mediaTypes);
-            var release3 = AlbumRelease.Create(album, releaseDate, mediaTypes, digitalFormats);
-            var release4 = AlbumRelease.Create(album, releaseDate, mediaTypes, digitalFormats, label, "ABCDEFGHIJKLMNOP");
+            var release3 = AlbumRelease.Create(album, releaseDate, digitalFormats);
+            var release4 = AlbumRelease.Create(album, releaseDate, mediaTypes, digitalFormats);
+            var release5 = AlbumRelease.Create(album, releaseDate, digitalFormats, label, "123456789");
+            var release6 = AlbumRelease.Create(album, releaseDate, mediaTypes, label, "ZYXWVUTSRQPONMLK");
+            var release7 = AlbumRelease.Create(album, releaseDate, mediaTypes, digitalFormats, label, "ABCDEFGHIJKLMNOP");
 
             Assert.AreEqual(release1.AlbumId, album.Id);
             Assert.AreEqual(release1.ReleaseDate, releaseDate);
@@ -336,18 +338,42 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(release2.AlbumId, album.Id);
             Assert.AreEqual(release2.ReleaseDate, releaseDate);
             Assert.AreEqual(release2.MediaTypes, mediaTypes);
+            Assert.IsTrue(release2.MediaTypes.HasFlag(MediaTypes.CD));
+            Assert.IsTrue(release2.MediaTypes.HasFlag(MediaTypes.Digital));
+            Assert.IsFalse(release2.MediaTypes.HasFlag(MediaTypes.EightTrack));
 
             Assert.AreEqual(release3.AlbumId, album.Id);
             Assert.AreEqual(release3.ReleaseDate, releaseDate);
-            Assert.AreEqual(release3.MediaTypes, mediaTypes);
+            Assert.AreEqual(release3.MediaTypes, MediaTypes.Digital);
             Assert.AreEqual(release3.DigitalFormats, digitalFormats);
+            Assert.IsNotNull(release3.DigitalFormats);
+            Assert.IsTrue(release3.DigitalFormats != null && release3.DigitalFormats.Value.HasFlag(DigitalFormats.MP3));
+            Assert.IsTrue(release3.DigitalFormats.Value.HasFlag(DigitalFormats.WAV));
+            Assert.IsFalse(release3.DigitalFormats.Value.HasFlag(DigitalFormats.OGG));
 
             Assert.AreEqual(release4.AlbumId, album.Id);
-            Assert.AreEqual(release4.LabelId, label.Id);
             Assert.AreEqual(release4.ReleaseDate, releaseDate);
             Assert.AreEqual(release4.MediaTypes, mediaTypes);
             Assert.AreEqual(release4.DigitalFormats, digitalFormats);
-            Assert.AreEqual(release4.CatalogNumber, "ABCDEFGHIJKLMNOP");
+
+            Assert.AreEqual(release5.AlbumId, album.Id);
+            Assert.AreEqual(release5.ReleaseDate, releaseDate);
+            Assert.AreEqual(release5.MediaTypes, MediaTypes.Digital);
+            Assert.AreEqual(release5.DigitalFormats, digitalFormats);
+            Assert.AreEqual(release5.CatalogNumber, "123456789");
+
+            Assert.AreEqual(release6.AlbumId, album.Id);
+            Assert.AreEqual(release6.LabelId, label.Id);
+            Assert.AreEqual(release6.ReleaseDate, releaseDate);
+            Assert.AreEqual(release6.MediaTypes, mediaTypes);
+            Assert.AreEqual(release6.CatalogNumber, "ZYXWVUTSRQPONMLK");
+
+            Assert.AreEqual(release7.AlbumId, album.Id);
+            Assert.AreEqual(release7.LabelId, label.Id);
+            Assert.AreEqual(release7.ReleaseDate, releaseDate);
+            Assert.AreEqual(release7.MediaTypes, mediaTypes);
+            Assert.AreEqual(release7.DigitalFormats, digitalFormats);
+            Assert.AreEqual(release7.CatalogNumber, "ABCDEFGHIJKLMNOP");
         }
 
         /// <summary>

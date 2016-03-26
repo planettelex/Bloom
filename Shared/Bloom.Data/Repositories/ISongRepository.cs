@@ -45,6 +45,20 @@ namespace Bloom.Data.Repositories
         void AddSong(IDataSource dataSource, Song song);
 
         /// <summary>
+        /// Adds the song media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songMedia">The song media.</param>
+        void AddSongMedia(IDataSource dataSource, SongMedia songMedia);
+
+        /// <summary>
+        /// Deletes the song media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="songMedia">The song media.</param>
+        void DeleteSongMedia(IDataSource dataSource, SongMedia songMedia);
+
+        /// <summary>
         /// Adds a song segment.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

@@ -55,10 +55,15 @@ namespace Bloom.Data.Tests.Repositories
             var beatles = Artist.Create("The Beatles");
             _beatlesId = beatles.Id;
             beatles.Bio = "Beatles bio";
+            beatles.Notes = "Beatles notes";
             beatles.Twitter = "@thebeatles";
             beatles.StartedOn = DateTime.Parse("2/15/1958");
             beatles.EndedOn = DateTime.Parse("8/20/1969");
-
+            beatles.Rating = 5;
+            beatles.PlayCount = 100;
+            beatles.SkipCount = 10;
+            beatles.RemoveCount = 5;
+            
             _artistRepository.AddArtist(_dataSource, beatles);
             _artistRepository.AddArtistPhoto(_dataSource, beatles, Photo.Create("c:\\images\\beatles-1.jpg"), 1);
             _artistRepository.AddArtistPhoto(_dataSource, beatles, Photo.Create("c:\\images\\beatles-2.jpg"), 2);
@@ -162,9 +167,14 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(_beatlesId, artist.Id);
             Assert.AreEqual("The Beatles", artist.Name);
             Assert.AreEqual("Beatles bio", artist.Bio);
+            Assert.AreEqual("Beatles notes", artist.Notes);
             Assert.AreEqual(DateTime.Parse("2/15/1958"), artist.StartedOn);
             Assert.AreEqual("@thebeatles", artist.Twitter);
             Assert.AreEqual(DateTime.Parse("8/20/1969"), artist.EndedOn);
+            Assert.AreEqual(5, artist.Rating);
+            Assert.AreEqual(100, artist.PlayCount);
+            Assert.AreEqual(10, artist.SkipCount);
+            Assert.AreEqual(5, artist.RemoveCount);
 
             Assert.NotNull(artist.Photos);
             Assert.AreEqual(2, artist.Photos.Count);
@@ -257,12 +267,20 @@ namespace Bloom.Data.Tests.Repositories
             Assert.IsNull(artists[1].StartedOn);
             Assert.IsNull(artists[1].EndedOn);
             Assert.IsNull(artists[1].ProfileImage);
+            Assert.AreEqual(0, artists[1].PlayCount);
+            Assert.AreEqual(0, artists[1].SkipCount);
+            Assert.AreEqual(0, artists[1].RemoveCount);
 
             Assert.AreEqual("The Beatles", artists[2].Name);
             Assert.AreEqual("Beatles bio", artists[2].Bio);
+            Assert.AreEqual("Beatles notes", artists[2].Notes);
             Assert.AreEqual("@thebeatles", artists[2].Twitter);
             Assert.AreEqual(DateTime.Parse("2/15/1958"), artists[2].StartedOn);
             Assert.AreEqual(DateTime.Parse("8/20/1969"), artists[2].EndedOn);
+            Assert.AreEqual(5, artists[2].Rating);
+            Assert.AreEqual(100, artists[2].PlayCount);
+            Assert.AreEqual(10, artists[2].SkipCount);
+            Assert.AreEqual(5, artists[2].RemoveCount);
             Assert.NotNull(artists[2].ProfileImage);
             Assert.AreEqual("c:\\images\\beatles-1.jpg", artists[2].ProfileImage.FilePath);
 

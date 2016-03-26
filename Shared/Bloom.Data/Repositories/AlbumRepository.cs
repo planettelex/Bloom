@@ -105,6 +105,32 @@ namespace Bloom.Data.Repositories
                     album.Tracks.Add(track);
                 }
             }
+
+            var albumMediaTable = AlbumMediaTable(dataSource);
+            var albumReleaseTable = AlbumReleaseTable(dataSource);
+            var mediaQuery =
+                from media in albumMediaTable
+                from release in albumReleaseTable.Where(r => media.ReleaseId == r.Id).DefaultIfEmpty()
+                where media.AlbumId == albumId
+                orderby release.ReleaseDate
+                select new
+                {
+                    Media = media,
+                    Release = release
+                };
+
+            album.Media = null;
+            var mediaResults = mediaQuery.ToList();
+            if (mediaResults.Any())
+            {
+                album.Media = new List<AlbumMedia>();
+                foreach (var mediaResult in mediaResults)
+                {
+                    var albumMedia = mediaResult.Media;
+                    albumMedia.Release = mediaResult.Release;
+                    album.Media.Add(albumMedia);
+                }
+            }
             
             var albumArtworkTable = AlbumArtworkTable(dataSource);
             var artworkQuery =
@@ -391,6 +417,42 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Adds the album media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumMedia">The album media.</param>
+        public void AddAlbumMedia(IDataSource dataSource, AlbumMedia albumMedia)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumMediaTable = AlbumMediaTable(dataSource);
+            if (albumMediaTable == null)
+                return;
+
+            albumMediaTable.InsertOnSubmit(albumMedia);
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Deletes the album media.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="albumMedia">The album media.</param>
+        public void DeleteAlbumMedia(IDataSource dataSource, AlbumMedia albumMedia)
+        {
+            if (!dataSource.IsConnected())
+                return;
+
+            var albumMediaTable = AlbumMediaTable(dataSource);
+            if (albumMediaTable == null)
+                return;
+
+            albumMediaTable.DeleteOnSubmit(albumMedia);
+            dataSource.Save();
+        }
+
+        /// <summary>
         /// Adds album artwork.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -616,6 +678,15 @@ namespace Bloom.Data.Repositories
             albumArtworkTable.DeleteAllOnSubmit(albumArtworkQuery.AsEnumerable());
             dataSource.Save();
 
+            var albumMediaTable = AlbumMediaTable(dataSource);
+            var albumMediaQuery =
+                from am in albumMediaTable
+                where am.AlbumId == album.Id
+                select am;
+
+            albumMediaTable.DeleteAllOnSubmit(albumMediaQuery.AsEnumerable()); 
+            dataSource.Save();
+
             var albumReferenceTable = AlbumReferenceTable(dataSource);
             var albumReferencesQuery =
                 from ar in albumReferenceTable
@@ -750,6 +821,11 @@ namespace Bloom.Data.Repositories
         private static Table<AlbumTrack> AlbumTrackTable(IDataSource dataSource)
         {
             return dataSource != null ? dataSource.Context.GetTable<AlbumTrack>() : null;
+        }
+
+        private static Table<AlbumMedia> AlbumMediaTable(IDataSource dataSource)
+        {
+            return dataSource != null ? dataSource.Context.GetTable<AlbumMedia>() : null;
         }
 
         private static Table<AlbumReference> AlbumReferenceTable(IDataSource dataSource)

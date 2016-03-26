@@ -9,12 +9,15 @@ namespace Bloom.Domain.Enums
     public enum MediaTypes
     {
         None = 0,
-        Digital = 1,
-        CD = 2,
-        Vinyl = 4,
+        Vinyl = 1,
+        ReelToReel = 2,
+        FourTrack = 4,
         EightTrack = 8,
         Cassette = 16,
-        DVD = 32,
-        BluRay = 64
+        DAT = 32,
+        CD = 64,
+        DVD = 128,
+        BluRay = 256,
+        Digital = 512
     }
 }

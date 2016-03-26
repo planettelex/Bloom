@@ -39,6 +39,7 @@ namespace Bloom.Data.Tests.Repositories
         private Guid _fridayImInLoveRemixId;
         private Guid _creepId;
         private Guid _sessionId;
+        private Guid _friendId;
 
         /// <summary>
         /// Sets up the tests by creating a test data source and adding data.
@@ -74,6 +75,10 @@ namespace Bloom.Data.Tests.Repositories
         /// </summary>
         private void PopulateDataSource()
         {
+            var friend = Person.Create("Friend");
+            _friendId = friend.Id;
+            _personRepository.AddPerson(_dataSource, friend);
+            
             var pinkFloyd = Artist.Create("Pink Floyd");
             _pinkFloydId = pinkFloyd.Id;
             _artistRepository.AddArtist(_dataSource, pinkFloyd);
@@ -133,7 +138,25 @@ namespace Bloom.Data.Tests.Repositories
             atomHeartMother.Key = MusicalKeys.C;
             atomHeartMother.Description = "Atom Heart Mother Suite description";
             atomHeartMother.Lyrics = "Silence in the studio!";
+            atomHeartMother.Notes = "Atom Heart Mother Suite Notes";
+            atomHeartMother.Rating = 5;
+            atomHeartMother.PlayCount = 10;
+            atomHeartMother.SkipCount = 2;
+            atomHeartMother.RemoveCount = 1;
+            atomHeartMother.AddedOn = DateTime.Now.AddDays(-1);
+            atomHeartMother.LastPlayed = DateTime.Now;
+            
             _songRepository.AddSong(_dataSource, atomHeartMother);
+
+            var atomHeartMotherMedia1 = SongMedia.Create(atomHeartMother, MediaTypes.Vinyl);
+            _songRepository.AddSongMedia(_dataSource, atomHeartMotherMedia1);
+            var atomHeartMotherMedia2 = SongMedia.Create(atomHeartMother, DigitalFormats.MP3, "c:\\music\\atom-heart-mother.mp3");
+            atomHeartMotherMedia2.IsCompressed = true;
+            atomHeartMotherMedia2.SampleRate = 44000;
+            atomHeartMotherMedia2.BitRate = 128;
+            atomHeartMotherMedia2.VolumeOffset = 4;
+            atomHeartMotherMedia2.ReceivedFromPersonId = _friendId;
+            _songRepository.AddSongMedia(_dataSource, atomHeartMotherMedia2);
 
             var segment1 = SongSegment.Create(atomHeartMother, 0, 170000, "Father's Shout");
             segment1.Bpm = 80;
@@ -272,6 +295,17 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual("Pink Floyd", atomHeartMother.Artist.Name);
             Assert.AreEqual("Atom Heart Mother Suite description", atomHeartMother.Description);
             Assert.AreEqual("Silence in the studio!", atomHeartMother.Lyrics);
+            Assert.AreEqual("Atom Heart Mother Suite Notes", atomHeartMother.Notes);
+            Assert.AreEqual(5, atomHeartMother.Rating);
+            Assert.LessOrEqual(atomHeartMother.RatedOn, DateTime.Now);
+            Assert.Greater(atomHeartMother.RatedOn, DateTime.Now.AddMinutes(-1));
+            Assert.AreEqual(10, atomHeartMother.PlayCount);
+            Assert.AreEqual(2, atomHeartMother.SkipCount);
+            Assert.AreEqual(1, atomHeartMother.RemoveCount);
+            Assert.LessOrEqual(atomHeartMother.AddedOn, DateTime.Now.AddDays(-1));
+            Assert.Greater(atomHeartMother.AddedOn, DateTime.Now.AddDays(-1).AddMinutes(-1));
+            Assert.LessOrEqual(atomHeartMother.LastPlayed, DateTime.Now);
+            Assert.Greater(atomHeartMother.LastPlayed, DateTime.Now.AddMinutes(-1));
             Assert.AreEqual(_classicRockId, atomHeartMother.GenreId);
             Assert.NotNull(atomHeartMother.Genre);
             Assert.AreEqual(_classicRockId, atomHeartMother.Genre.Id);
@@ -286,6 +320,19 @@ namespace Bloom.Data.Tests.Repositories
             Assert.IsNull(atomHeartMother.AboutTimeOfYear);
             Assert.IsNull(atomHeartMother.BestPlayedAtStart);
             Assert.IsNull(atomHeartMother.BestPlayedAtStop);
+            Assert.IsNotNull(atomHeartMother.Media);
+            Assert.AreEqual(2, atomHeartMother.Media.Count);
+            Assert.AreEqual(MediaTypes.Vinyl, atomHeartMother.Media[0].MediaType);
+            Assert.AreEqual(MediaTypes.Digital, atomHeartMother.Media[1].MediaType);
+            Assert.AreEqual(DigitalFormats.MP3, atomHeartMother.Media[1].DigitalFormat);
+            Assert.AreEqual("c:\\music\\atom-heart-mother.mp3", atomHeartMother.Media[1].FilePath);
+            Assert.IsTrue(atomHeartMother.Media[1].IsCompressed);
+            Assert.IsFalse(atomHeartMother.Media[1].IsDamaged);
+            Assert.IsFalse(atomHeartMother.Media[1].IsProtected);
+            Assert.AreEqual(44000, atomHeartMother.Media[1].SampleRate);
+            Assert.AreEqual(128, atomHeartMother.Media[1].BitRate);
+            Assert.AreEqual(4, atomHeartMother.Media[1].VolumeOffset);
+            Assert.AreEqual(_friendId, atomHeartMother.Media[1].ReceivedFromPersonId);
             Assert.NotNull(atomHeartMother.Segments);
             Assert.AreEqual(2, atomHeartMother.Segments.Count);
             Assert.AreEqual("Father's Shout", atomHeartMother.Segments[0].Name);
@@ -453,6 +500,18 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(1424000, songs[1].Length);
             Assert.AreEqual("Atom Heart Mother Suite description", songs[1].Description);
             Assert.AreEqual("Silence in the studio!", songs[1].Lyrics);
+            Assert.AreEqual("Atom Heart Mother Suite Notes", songs[1].Notes);
+            Assert.AreEqual(5, songs[1].Rating);
+            Assert.LessOrEqual(songs[1].RatedOn, DateTime.Now);
+            Assert.Greater(songs[1].RatedOn, DateTime.Now.AddMinutes(-1));
+            Assert.AreEqual(10, songs[1].PlayCount);
+            Assert.AreEqual(2, songs[1].SkipCount);
+            Assert.AreEqual(1, songs[1].RemoveCount);
+            Assert.LessOrEqual(songs[1].AddedOn, DateTime.Now.AddDays(-1));
+            Assert.Greater(songs[1].AddedOn, DateTime.Now.AddDays(-1).AddMinutes(-1));
+            Assert.LessOrEqual(songs[1].LastPlayed, DateTime.Now);
+            Assert.Greater(songs[1].LastPlayed, DateTime.Now.AddMinutes(-1));
+            
             Assert.IsNull(songs[1].BestPlayedAtStart);
             Assert.IsNull(songs[1].BestPlayedAtStop);
             Assert.IsFalse(songs[1].IsHoliday);
@@ -566,6 +625,9 @@ namespace Bloom.Data.Tests.Repositories
             var saucerfulOfSecretsId = saucerfulOfSecrets.Id;
             _songRepository.AddSong(_dataSource, saucerfulOfSecrets);
 
+            var media = SongMedia.Create(saucerfulOfSecrets, DigitalFormats.MP3, "c:\\music\\saucerful-of-secrets.mp3");
+            _songRepository.AddSongMedia(_dataSource, media);
+
             var segment1 = SongSegment.Create(saucerfulOfSecrets, 0, 12034);
             segment1.Bpm = 80;
             _songRepository.AddSongSegment(_dataSource, segment1);
@@ -612,6 +674,28 @@ namespace Bloom.Data.Tests.Repositories
 
             var deletedSong = _songRepository.GetSong(_dataSource, saucerfulOfSecretsId);
             Assert.IsNull(deletedSong);
+        }
+
+        /// <summary>
+        /// Tests the delete song media method.
+        /// </summary>
+        [Test]
+        public void DeleteSongMediaTest()
+        {
+            var lucyInTheSky = _songRepository.GetSong(_dataSource, _lucyInTheSkyId);
+            Assert.IsNull(lucyInTheSky.Media);
+
+            var media = SongMedia.Create(lucyInTheSky, DigitalFormats.WAV, "c:\\music\\lucy-in-the-sky.wav");
+            _songRepository.AddSongMedia(_dataSource, media);
+
+            lucyInTheSky = _songRepository.GetSong(_dataSource, _lucyInTheSkyId);
+            Assert.NotNull(lucyInTheSky.Media);
+            Assert.AreEqual(1, lucyInTheSky.Media.Count);
+
+            _songRepository.DeleteSongMedia(_dataSource, media);
+
+            lucyInTheSky = _songRepository.GetSong(_dataSource, _lucyInTheSkyId);
+            Assert.IsNull(lucyInTheSky.Media);
         }
 
         /// <summary>

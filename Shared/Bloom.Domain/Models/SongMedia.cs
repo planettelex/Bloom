@@ -119,7 +119,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets identifier of the person this media was received from.
         /// </summary>
         [Column(Name = "received_from_person_id")]
-        public Guid ReceivedFromPersonId { get; set; }
+        public Guid? ReceivedFromPersonId { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

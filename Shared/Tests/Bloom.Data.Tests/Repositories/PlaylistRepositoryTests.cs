@@ -245,6 +245,7 @@ namespace Bloom.Data.Tests.Repositories
             _playlist1Id = playlist1.Id;
             playlist1.Description = "Test Playlist Description 1";
             playlist1.Length = 500000;
+            playlist1.Rating = 4;
             _playlistRepository.AddPlaylist(_dataSource, playlist1);
             _playlistRepository.AddPlaylistArtwork(_dataSource, PlaylistArtwork.Create(playlist1, "c:\\images\\playlist-1.jpg", 1));
             _playlistRepository.AddPlaylistArtwork(_dataSource, PlaylistArtwork.Create(playlist1, "c:\\images\\playlist-2.jpg", 2));
@@ -275,6 +276,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual("Test Playlist 1", playlist.Name);
             Assert.AreEqual("Test Playlist Description 1", playlist.Description);
             Assert.AreEqual(500000, playlist.Length);
+            Assert.AreEqual(4, playlist.Rating);
             Assert.LessOrEqual(playlist.CreatedOn, DateTime.Now);
             Assert.Greater(playlist.CreatedOn, DateTime.Now.AddMinutes(-1));
             Assert.NotNull(playlist.CreatedBy);
@@ -315,6 +317,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual("Test Playlist 1", playlists[2].Name);
             Assert.AreEqual("Test Playlist Description 1", playlists[2].Description);
             Assert.AreEqual(500000, playlists[2].Length);
+            Assert.AreEqual(4, playlists[2].Rating);
             Assert.LessOrEqual(playlists[2].CreatedOn, DateTime.Now);
             Assert.Greater(playlists[2].CreatedOn, DateTime.Now.AddMinutes(-1));
             Assert.NotNull(playlists[2].CreatedBy);
