@@ -8,10 +8,19 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.Services
 {
-    public class TabbedStateBaseService : StateBaseService
+    /// <summary>
+    /// Base class for all tabbed application state services.
+    /// </summary>
+    public abstract class TabbedStateBaseService : StateBaseService
     {
+        /// <summary>
+        /// Gets or sets the tab repository.
+        /// </summary>
         protected ITabRepository TabRepository { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tabbed application state.
+        /// </summary>
         protected new TabbedApplicationState State
         {
             get { return _state; }
@@ -27,6 +36,7 @@ namespace Bloom.Services
         /// Adds a tab to state.
         /// </summary>
         /// <param name="tab">The tab.</param>
+        /// <exception cref="System.ArgumentNullException">tab</exception>
         /// <exception cref="System.InvalidOperationException">Tabs cannot be added until state is initialized.</exception>
         public void AddTab(Tab tab)
         {

@@ -8,18 +8,39 @@ using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Services
 {
-    public class StateBaseService
+    /// <summary>
+    /// Base class for all state services.
+    /// </summary>
+    public abstract class StateBaseService
     {
+        /// <summary>
+        /// Gets or sets the state data source.
+        /// </summary>
         protected IDataSource StateDataSource { get; set; }
 
+        /// <summary>
+        /// Gets or sets the suite state repository.
+        /// </summary>
         protected ISuiteStateRepository SuiteStateRepository { get; set; }
 
+        /// <summary>
+        /// Gets or sets the library connection repository.
+        /// </summary>
         protected ILibraryConnectionRepository LibraryConnectionRepository { get; set; }
 
+        /// <summary>
+        /// Gets or sets the event aggregator.
+        /// </summary>
         protected IEventAggregator EventAggregator { get; set; }
 
+        /// <summary>
+        /// Gets or sets the suite state.
+        /// </summary>
         protected SuiteState SuiteState { get; set; }
 
+        /// <summary>
+        /// Gets or sets the application state.
+        /// </summary>
         protected ApplicationState State { get; set; }
 
         /// <summary>
@@ -39,6 +60,9 @@ namespace Bloom.Services
                 StateDataSource.Create();
         }
 
+        /// <summary>
+        /// Gets the last process to access state.
+        /// </summary>
         public ProcessType LastProcessToAccessState()
         {
             var suiteState = SuiteStateRepository.GetSuiteState();
@@ -50,6 +74,10 @@ namespace Bloom.Services
             return process.Type;
         }
 
+        /// <summary>
+        /// Changes the state process.
+        /// </summary>
+        /// <param name="processType">The process type.</param>
         public void ChangeStateProcess(ProcessType processType)
         {
             var suiteState = SuiteStateRepository.GetSuiteState();

@@ -4,6 +4,9 @@ using System.Runtime.InteropServices;
 
 namespace Bloom.Services
 {
+    /// <summary>
+    /// Service for system process operations.
+    /// </summary>
     public class ProcessService : IProcessService
     {
         /// <summary>

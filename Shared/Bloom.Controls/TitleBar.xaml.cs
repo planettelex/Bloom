@@ -60,41 +60,77 @@ namespace Bloom.Controls
                 MaximizeWindow();
         }
 
+        /// <summary>
+        /// Determines whether this instance can toggle window state.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="CanExecuteRoutedEventArgs"/> instance containing the event data.</param>
         private void CanToggleWindowState(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
 
+        /// <summary>
+        /// A minimize button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void MinimizeButtonClick(object sender, RoutedEventArgs e)
         {
             MinimizeWindow();
         }
 
+        /// <summary>
+        /// A maximize button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void MaximizeButtonClick(object sender, RoutedEventArgs e)
         {
             MaximizeWindow();
         }
 
+        /// <summary>
+        /// A restore button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void RestoreButtonClick(object sender, RoutedEventArgs e)
         {
             RestoreWindow();
         }
 
+        /// <summary>
+        /// A close application button click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void CloseButtonClick(object sender, RoutedEventArgs e)
         {
             ExitApplication();
         }
 
+        /// <summary>
+        /// Drags the window.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MouseButtonEventArgs"/> instance containing the event data.</param>
         private void DragWindow(object sender, MouseButtonEventArgs e)
         {
             Application.Current.MainWindow.DragMove();
         }
 
+        /// <summary>
+        /// Minimizes the window.
+        /// </summary>
         private static void MinimizeWindow()
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
+        /// <summary>
+        /// Maximizes the window.
+        /// </summary>
         private void MaximizeWindow()
         {
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
@@ -103,6 +139,9 @@ namespace Bloom.Controls
             RestoreButton.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Restores the window.
+        /// </summary>
         private void RestoreWindow()
         {
             Application.Current.MainWindow.WindowState = WindowState.Normal;
@@ -111,6 +150,9 @@ namespace Bloom.Controls
             RestoreButton.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Exits the application.
+        /// </summary>
         private static void ExitApplication()
         {
             Application.Current.Shutdown();

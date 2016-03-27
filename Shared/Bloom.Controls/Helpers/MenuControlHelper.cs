@@ -3,6 +3,9 @@ using Telerik.Windows.Controls;
 
 namespace Bloom.Controls.Helpers
 {
+    /// <summary>
+    /// Helper methods for the menu control.
+    /// </summary>
     public class MenuControlHelper
     {
         /// <summary>

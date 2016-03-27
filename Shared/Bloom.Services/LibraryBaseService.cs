@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Bloom.Common.ExtensionMethods;
 using Bloom.Data;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
@@ -15,6 +14,9 @@ using Microsoft.Practices.Unity;
 
 namespace Bloom.Services
 {
+    /// <summary>
+    /// Base class for library services.
+    /// </summary>
     public class LibraryBaseService
     {
         /// <summary>
@@ -25,14 +27,12 @@ namespace Bloom.Services
         /// <param name="regionManager">The region manager.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="libraryRepository">The library repository.</param>
-        /// <param name="personRepository">The person repository.</param>
         /// <param name="userRepository">The user repository.</param>
         public LibraryBaseService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
-            ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IPersonRepository personRepository, IUserRepository userRepository)
+            ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
         {
             _container = container;
             _libraryConnectionRepository = libraryConnectionRepository;
-            _personRepository = personRepository;
             _libraryRepository = libraryRepository;
             _userRepository = userRepository;
             EventAggregator = eventAggregator;
@@ -44,25 +44,39 @@ namespace Bloom.Services
         }
         private readonly IUnityContainer _container;
         private readonly ILibraryRepository _libraryRepository;
-        private readonly IPersonRepository _personRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
 
         /// <summary>
-        /// Gets the state.
+        /// Gets the application state.
         /// </summary>
         public ApplicationState ApplicationState { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the event aggregator.
+        /// </summary>
         protected IEventAggregator EventAggregator { get; set; }
 
+        /// <summary>
+        /// Gets or sets the region manager.
+        /// </summary>
         protected IRegionManager RegionManager { get; set; }
 
-        private void SetState(object nothing)
+        /// <summary>
+        /// Sets the application state in the menu region context.
+        /// </summary>
+        /// <param name="nothing">Unused object.</param>
+        private void SetState(object nothing = null)
         {
-            ApplicationState = (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context;
+            ApplicationState = (ApplicationState)RegionManager.Regions[Common.Settings.MenuRegion].Context;
         }
 
-        public void CreateNewLibrary(Library library)
+        /// <summary>
+        /// Creates a new library.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <exception cref="System.ArgumentNullException">library</exception>
+        private void CreateNewLibrary(Library library)
         {
             if (library == null)
                 throw new ArgumentNullException("library");
@@ -80,6 +94,12 @@ namespace Bloom.Services
             EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
         }
 
+        /// <summary>
+        /// Makes a new connection to an existing library file.
+        /// </summary>
+        /// <param name="filePath">The library file path.</param>
+        /// <exception cref="System.ArgumentNullException">filePath</exception>
+        /// <exception cref="System.IO.FileNotFoundException">Library file does not exist</exception>
         public LibraryConnection ConnectNewLibrary(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
@@ -123,6 +143,18 @@ namespace Bloom.Services
             return libraryConnection;
         }
 
+        /// <summary>
+        /// Connects to the given library connection.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
+        /// <param name="user">The connecting user.</param>
+        /// <param name="timestamp">If set to <c>true</c> set the last connected library connection property.</param>
+        /// <param name="setLibrary">If set to <c>true</c> set the library property of the library connection from the library data source.</param>
+        /// <exception cref="System.NullReferenceException">
+        /// Library connection file path cannot be null.
+        /// or
+        /// User cannot be null.
+        /// </exception>
         public bool ConnectLibrary(LibraryConnection libraryConnection, User user, bool timestamp, bool setLibrary)
         {
             if (libraryConnection == null)
@@ -173,6 +205,13 @@ namespace Bloom.Services
             return libraryConnection.IsConnected;
         }
 
+        /// <summary>
+        /// Connects to the given libary connections.
+        /// </summary>
+        /// <param name="libraryConnections">The library connections.</param>
+        /// <param name="user">The connecting user.</param>
+        /// <param name="timestamp">If set to <c>true</c> set the last connected library connection property.</param>
+        /// <param name="setLibrary">If set to <c>true</c> set the library property of the library connection from the library data source.</param>
         public void ConnectLibraries(List<LibraryConnection> libraryConnections, User user, bool timestamp, bool setLibrary)
         {
             if (libraryConnections == null || libraryConnections.Count == 0)
@@ -193,17 +232,27 @@ namespace Bloom.Services
                 libraryConnections.Remove(unsuccessfulConnection);
         }
 
+        /// <summary>
+        /// Lists the library connections.
+        /// </summary>
         public List<LibraryConnection> ListLibraryConnections()
         {
             var allConnections = _libraryConnectionRepository.ListLibraryConnections() ?? new List<LibraryConnection>();
             return allConnections.OrderBy(connection => connection.LibraryName).ToList();
         }
 
+        /// <summary>
+        /// Removes the given library connection.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
         public void RemoveLibraryConnection(LibraryConnection libraryConnection)
         {
             _libraryConnectionRepository.DeleteLibraryConnection(libraryConnection);
         }
 
+        /// <summary>
+        /// Checks the library connections for additions and removals.
+        /// </summary>
         public void CheckLibraryConnections()
         {
             if (ApplicationState == null)
@@ -231,6 +280,11 @@ namespace Bloom.Services
             }
         }
 
+        /// <summary>
+        /// Synchronizes the data between the library owner and provided user.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
+        /// <param name="user">The user.</param>
         public void SyncLibraryOwnerAndUser(LibraryConnection libraryConnection, User user)
         {
             if (libraryConnection == null || libraryConnection.Library.Owner == null || user == null || libraryConnection.OwnerId != user.PersonId)

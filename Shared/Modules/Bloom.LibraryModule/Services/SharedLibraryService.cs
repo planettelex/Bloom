@@ -18,8 +18,8 @@ namespace Bloom.LibraryModule.Services
     public class SharedLibraryService : LibraryBaseService, ISharedLibraryService
     {
         public SharedLibraryService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
-            ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IPersonRepository personRepository, IUserRepository userRepository)
-            : base(container, eventAggregator, regionManager, libraryConnectionRepository, libraryRepository, personRepository, userRepository)
+            ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
+            : base(container, eventAggregator, regionManager, libraryConnectionRepository, libraryRepository, userRepository)
         {
             // Subscribe to events
             EventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Subscribe(ShowConnectedLibrariesModal);

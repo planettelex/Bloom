@@ -1,17 +1,10 @@
 ﻿using System.Collections.Generic;
-using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.LibraryModule.Services
 {
     public interface ISharedLibraryService
     {
-        /// <summary>
-        /// Creates a new library.
-        /// </summary>
-        /// <param name="library">The library.</param>
-        void CreateNewLibrary(Library library);
-
         /// <summary>
         /// Loads a new library from an existing file.
         /// </summary>

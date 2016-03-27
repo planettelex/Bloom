@@ -79,6 +79,9 @@ namespace Bloom.Controls
         /// </summary>
         public UserControl Content { get; set; }
 
+        /// <summary>
+        /// Sets the view menu visiblity.
+        /// </summary>
         private void SetViewMenuVisiblity()
         {
 

@@ -1,7 +1,7 @@
 ﻿namespace Bloom.Services
 {
     /// <summary>
-    /// Service for interfacing with system processes.
+    /// Service for system process operations.
     /// </summary>
     public interface IProcessService
     {
