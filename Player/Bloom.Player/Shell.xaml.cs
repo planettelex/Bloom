@@ -66,6 +66,9 @@ namespace Bloom.Player
 
         private void ChangeUser(User newUser)
         {
+            if (newUser == null)
+                return;
+
             if (State.UserId == newUser.PersonId)
             {
                 _eventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
