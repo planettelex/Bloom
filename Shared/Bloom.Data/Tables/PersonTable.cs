@@ -16,6 +16,7 @@ namespace Bloom.Data.Tables
                        "name VARCHAR NOT NULL , " +
                        "born_on DATETIME , " +
                        "died_on DATETIME , " +
+                       "from_city_id VARCHAR(36) , " +
                        "bio VARCHAR , " +
                        "twitter VARCHAR , " +
                        "follow BOOL NOT NULL DEFAULT FALSE )";

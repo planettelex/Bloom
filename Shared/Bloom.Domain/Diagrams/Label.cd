@@ -4,30 +4,25 @@
     <Position X="5.5" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <AssociationLine Name="Releases" Type="Bloom.Domain.Models.AlbumRelease" FixedFromPoint="true">
-      <Path>
-        <Point X="5.5" Y="1.626" />
-        <Point X="3.25" Y="1.626" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACEAAAAAgAAAAACAAAAAQAAAAgQEAAAAACAABAAAA=</HashCode>
+      <HashCode>AAACNAAAAAAAAAAECAAAEAQAAAAAAEAAAAAAAQFAAAA=</HashCode>
       <FileName>Models\Label.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Property Name="Personel" />
-      <Property Name="Releases" />
+      <Property Name="Personnel" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Bloom.Domain.Models.LabelPersonel">
-    <Position X="9" Y="0.5" Width="1.5" />
+  <Class Name="Bloom.Domain.Models.LabelPersonnel">
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AIACAAAAAAAAAAEEgAAAAAAAAgAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\LabelPersonel.cs</FileName>
+      <HashCode>AIACAAAAAAAAAAEEAAAAABAAAgIAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LabelPersonnel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Person" />
@@ -37,60 +32,56 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Person">
-    <Position X="12.5" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
+      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Bloom.Domain.Models.LabelPersonelRole">
-    <Position X="9" Y="3" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAAAAAg=</HashCode>
-      <FileName>Models\LabelPersonelRole.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Role" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="Bloom.Domain.Models.Role">
-    <Position X="9" Y="5.5" Width="1.5" />
+    <Position X="8.5" Y="4" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Role.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumRelease">
-    <Position X="1.75" Y="0.5" Width="1.5" />
+    <Position X="3" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAKAAAAEAAIAAEAAAAAAAMAgAAAAEAAAAAACAAAAAA=</HashCode>
+      <HashCode>AAAKAAAAAAAIEAEEEAAAAAUAgAAAAEAAACAAAAAAAAQ=</HashCode>
       <FileName>Models\AlbumRelease.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Album" />
-      <Property Name="Label" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Album">
-    <Position X="1.75" Y="3.75" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>pgAGIBWEwGBzAQFFIAKAEQ1AAJggBUEAJQAAwiAcAAQ=</HashCode>
+      <FileName>Models\Album.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.LabelPersonnelRole">
+    <Position X="5.5" Y="4" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>pAAGEFQAAEBjDAEAAAAAEAxAAogwAUEAAQACyAABAAA=</HashCode>
-      <FileName>Models\Album.cs</FileName>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\LabelPersonnelRole.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

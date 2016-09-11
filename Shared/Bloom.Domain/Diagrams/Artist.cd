@@ -7,7 +7,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAA=</HashCode>
+      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -15,7 +15,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Photo">
-    <Position X="5.25" Y="4.25" Width="1.5" />
+    <Position X="5.25" Y="5.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -31,7 +31,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEACIAAAAAAACSAGCAAAAAQEAAAgAGAAAQCEAQAAAQA=</HashCode>
+      <HashCode>AEAiIAQgAAAACSAGCAQAAAQEAAAgAGEAAQCEAQAAAQE=</HashCode>
       <FileName>Models\Artist.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -46,7 +46,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AIACAAQAAAAAAAEEAACAEAAAAgIAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIACAAQAAAAAAAEEAACAEBAAAgIAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ArtistMember.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

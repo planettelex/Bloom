@@ -18,7 +18,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>ogAGIAwAAIAhMYQEAAIAEBzAAqgABUGIJAAAAAAAAQA=</HashCode>
+      <HashCode>ogAmIgwgAJEhMYQEAAYAEBzAAqgABUGIJAAAAAAAAYQ=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,7 +29,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACIAAAAGAgAAEEAAAAAARAAAACAEAgBAAAAAAAAAE=</HashCode>
+      <HashCode>AAACIAAAAGAgAAEEAAAAAARAAAACAEEgBAAAAAAIAAE=</HashCode>
       <FileName>Models\Playlist.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -40,9 +40,10 @@
     <Position X="10.5" Y="4.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAEAAABAAgAAgAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAEAAIBAAgAAgAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\PlaylistTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -56,7 +57,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>pgAGIBWAwEBzAQFFIAKAEQ1AAJggBUEAJQAAwgAUAAA=</HashCode>
+      <HashCode>pgAGIBWEwGBzAQFFIAKAEQ1AAJggBUEAJQAAwiAcAAQ=</HashCode>
       <FileName>Models\Album.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -70,7 +71,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAIAIAABoAAEAAAAIAgIogAAAEAACAQAAAAAAAA=</HashCode>
+      <HashCode>AAACAAIAIAABoAAEAAIAIAgIogAAAEAACAQAAAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

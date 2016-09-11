@@ -64,6 +64,12 @@ namespace Bloom.Domain.Models
         private DateTime? _endedOn;
 
         /// <summary>
+        /// Gets or sets the identifier of the city this artist formed in.
+        /// </summary>
+        [Column(Name = "formed_city_id")]
+        public Guid? FormedCityId { get; set; }
+
+        /// <summary>
         /// Gets or sets the artist's bio.
         /// </summary>
         [Column(Name = "bio")]

@@ -4,23 +4,24 @@
     <Position X="6.25" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <AssociationLine Name="Elements" Type="Bloom.Domain.Models.FiltersetElement" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="8" Y="0.956" />
-        <Point X="10.625" Y="0.956" />
+        <Point X="8" Y="0.886" />
+        <Point X="10.625" Y="0.886" />
         <Point X="10.625" Y="2.5" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Ordering" Type="Bloom.Domain.Models.FiltersetOrdering" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Ordering" Type="Bloom.Domain.Models.FiltersetOrder" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6.25" Y="0.956" />
-        <Point X="3.75" Y="0.956" />
+        <Point X="6.25" Y="0.886" />
+        <Point X="3.75" Y="0.886" />
         <Point X="3.75" Y="2.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAgCAAAAAAABAAAAAAAQAAQAAAAAAEAAAAAAQAAAAAA=</HashCode>
+      <HashCode>AAgCIAAAAAAAAAAEAAAQAAQAAAACAEAgAAAAAAAAAAA=</HashCode>
       <FileName>Models\Filterset.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -28,63 +29,46 @@
       <Property Name="Ordering" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Bloom.Domain.Models.FiltersetStatement">
-    <Position X="9.75" Y="5.75" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAACgAAAAAAAAiAAAAAAAAAAABAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\FiltersetStatement.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Filter" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="Bloom.Domain.Models.FiltersetElement">
     <Position X="9.75" Y="2.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAAgAAAACAAAQAEAEAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAhAAAAAAAAgAEAAgAAAAAABAACMAEAAAAAAAAAAA=</HashCode>
       <FileName>Models\FiltersetElement.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Statement" />
-    </ShowAsAssociation>
   </Class>
-  <Class Name="Bloom.Domain.Models.FiltersetOrdering">
+  <Class Name="Bloom.Domain.Models.FiltersetOrder">
     <Position X="3" Y="2.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>EAEAAAAAAAAAACAEACgAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\FiltersetOrdering.cs</FileName>
+      <HashCode>EAEAAAICAAAAAAAEACgAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FiltersetOrder.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Order" />
-    </ShowAsAssociation>
   </Class>
-  <Interface Name="Bloom.Domain.Interfaces.IFiltersetFilter">
-    <Position X="6.5" Y="5.75" Width="1.5" />
+  <Interface Name="Bloom.Domain.Interfaces.IFilter">
+    <Position X="5.25" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>ACACAAAAEBAAAAAAAAAAAAQAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IFiltersetFilter.cs</FileName>
+      <HashCode>AAACAAAAEAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFilter.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Bloom.Domain.Interfaces.IFiltersetOrder">
-    <Position X="3" Y="5.75" Width="1.75" />
+  <Interface Name="Bloom.Domain.Interfaces.IOrder">
+    <Position X="7.75" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAEBAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IFiltersetOrder.cs</FileName>
+      <HashCode>AAACAAAAEAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IOrder.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

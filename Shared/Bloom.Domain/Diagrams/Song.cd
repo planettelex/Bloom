@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.SongSegment">
-    <Position X="7" Y="7.5" Width="1.5" />
+    <Position X="6.75" Y="9" Width="2" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAgAAAABAAQAAAAAAAAIIAAABEAAAAAAAAAAAQA=</HashCode>
+      <HashCode>AAACAAgAAAABAIQEAAAAAAQIIAAABEAAAAAAAAAAAQA=</HashCode>
       <FileName>Models\SongSegment.cs</FileName>
       <NewMemberFileName>Models\Song.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -15,9 +16,10 @@
     <Position X="13" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEACAEAAAAAAACAACAAAAAQEAQAwAGAAAAAEQAAAAAA=</HashCode>
+      <HashCode>AEAiIAQgAAAACSAGCAQAAAQEAAAgAGEAAQCEAQAAAQE=</HashCode>
       <FileName>Models\Artist.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -25,17 +27,18 @@
     <Position X="1.25" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <AssociationLine Name="ParentGenre" Type="Bloom.Domain.Models.Genre" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="1.25" Y="0.898" />
-        <Point X="0.604" Y="0.898" />
-        <Point X="0.604" Y="1.694" />
-        <Point X="1.25" Y="1.694" />
+        <Point X="1.25" Y="0.819" />
+        <Point X="0.604" Y="0.819" />
+        <Point X="0.604" Y="1.457" />
+        <Point X="1.25" Y="1.457" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAgAIAAAAAAAAQAAAAAIEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACIAAAAAAgAIAEAAAAAAQAAAAAIEAAAAAAAAAAIAA=</HashCode>
       <FileName>Models\Genre.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -48,7 +51,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAABAAAAAAAAAAAAAAAAAEAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAiAAAAAAABAAAEAAAAAAAAAAAAAEAQAAAAAAAAAAA=</HashCode>
       <FileName>Models\RecordingSession.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,9 +59,10 @@
     <Position X="3.75" Y="1.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAEAAAgAAAAAAAAAESAAAAAAEAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAACIAAEAAAgAAAEAAAACESgAAAAAEAAAAAAAAAIAgE=</HashCode>
       <FileName>Models\Holiday.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,9 +70,10 @@
     <Position X="10" Y="1.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAABAAAAAAAAEAAAAIAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACAAAABAAAEAAAAEAAAAIAAAEAAIAAAAAAAAAA=</HashCode>
       <FileName>Models\SongCollaborator.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -79,43 +84,31 @@
     <Position X="6.75" Y="0.5" Width="2" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <AssociationLine Name="OriginalSong" Type="Bloom.Domain.Models.Song" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="6.75" Y="2.272" />
-        <Point X="6.146" Y="2.272" />
-        <Point X="6.146" Y="3.053" />
-        <Point X="6.75" Y="3.053" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.004" Y="-0.397" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>pgAOAEwAAIAhNEYAAAIEEAzAAqgQBUGAIAAACAAAAQA=</HashCode>
+      <HashCode>ogAmIgwgAJEhMYQEAAYAEBzAAqgABUGIJAAAAAAAAYQ=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Artist" />
       <Property Name="Genre" />
-      <Property Name="OriginalSong" />
       <Property Name="Holiday" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Segments" />
-      <Property Name="RecordingSessions" />
       <Property Name="Collaborators" />
       <Property Name="Credits" />
-      <Property Name="References" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.SongCredit">
     <Position X="10" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AIACAACAAAABAAAEgAAAAAAAAgAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIACAACAAAABAAAEAAAAABAAAgAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\SongCredit.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -126,12 +119,13 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Person">
-    <Position X="13" Y="4" Width="1.5" />
+    <Position X="13" Y="5.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
+      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -139,9 +133,10 @@
     <Position X="3.75" Y="7.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAEAAACAAAAQAAAAAAEAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAkAAAEAEAAAAAABAAAAAAEAACAAAAAAAAAA=</HashCode>
       <FileName>Models\Reference.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -151,35 +146,50 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAABAAAAAAAAAAAAAAAEAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAEAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\SongReference.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Reference" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Role">
-    <Position X="13" Y="7.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Role.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Bloom.Domain.Models.SongCreditRole">
     <Position X="10" Y="7.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAABAAEAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongCreditRole">
+    <Position X="10" Y="10" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\SongCreditRole.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Role" />
-    </ShowAsAssociation>
+  </Class>
+  <Class Name="Bloom.Domain.Models.SongLanguage">
+    <Position X="1.25" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SongLanguage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bloom.Domain.Models.Language">
+    <Position X="1.25" Y="8.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Language.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

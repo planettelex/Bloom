@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Bloom.Domain.Models.Review">
-    <Position X="7.25" Y="0.5" Width="1.75" />
+    <Position X="4" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAEAAgAABAAAAAEAAAEAACBEAAEAAAAA=</HashCode>
+      <HashCode>AAACAAABAkAAAEAEgAABAABAAAAAAEAACBEAAAAAAAA=</HashCode>
       <FileName>Models\Review.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Publication" />
       <Property Name="Author" />
+      <Property Name="Source" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumReview">
@@ -20,13 +21,9 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAEACACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAEAAAAAAAAAA=</HashCode>
       <FileName>Models\AlbumReview.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Album" />
-      <Property Name="Review" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.SongReview">
     <Position X="7.25" Y="3.5" Width="1.75" />
@@ -34,21 +31,18 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAgAAAAAAEAAEACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAA=</HashCode>
       <FileName>Models\SongReview.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Song" />
-      <Property Name="Review" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Person">
-    <Position X="14" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAEAAAAAAADAACBAAAAQAAAAQAGAAAAAAQIQAAAA=</HashCode>
+      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,9 +50,10 @@
     <Position X="0.75" Y="6" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>pAAGEFQAAEBjDAEAAAAAEAxAAogwAUEAAQACyAABAAA=</HashCode>
+      <HashCode>pgAGIBWEwGBzAQFFIAKAEQ1AAJggBUEAJQAAwiAcAAQ=</HashCode>
       <FileName>Models\Album.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -69,9 +64,10 @@
     <Position X="4" Y="6" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAABAAAAAAAAIAgIogAAAEAAAAAACAAAAAA=</HashCode>
+      <HashCode>AAACAAIAIAABoAAEAAIAIAgIogAAAEAACAQAAAAAAAA=</HashCode>
       <FileName>Models\AlbumTrack.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -82,20 +78,21 @@
     <Position X="7.25" Y="6" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>pgAOAEwAAIAhNEYAAAIEEAzAAqgQBUGAIAAACAAAAQA=</HashCode>
+      <HashCode>ogAmIgwgAJEhMYQEAAYAEBzAAqgABUGIJAAAAAAAAYQ=</HashCode>
       <FileName>Models\Song.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Bloom.Domain.Models.Publication">
-    <Position X="11" Y="1.75" Width="1.75" />
+  <Class Name="Bloom.Domain.Models.Source">
+    <Position X="10" Y="1.75" Width="1.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQQAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Publication.cs</FileName>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQQAAAAAEAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Source.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

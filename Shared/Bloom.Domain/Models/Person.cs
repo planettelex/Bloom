@@ -65,6 +65,12 @@ namespace Bloom.Domain.Models
         private DateTime? _diedOn;
 
         /// <summary>
+        /// Gets or sets the identifier of the city this person is from.
+        /// </summary>
+        [Column(Name = "from_city_id")]
+        public Guid? FromCityId { get; set; }
+
+        /// <summary>
         /// Gets or sets the person's bio.
         /// </summary>
         [Column(Name = "bio")]

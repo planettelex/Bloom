@@ -16,6 +16,7 @@ namespace Bloom.Data.Tables
                        "name VARCHAR NOT NULL , " +
                        "started_on DATETIME , " +
                        "ended_on DATETIME , " +
+                       "formed_city_id VARCHAR(36) , " +
                        "bio VARCHAR , " +
                        "rating INTEGER , " +
                        "notes VARCHAR , " +

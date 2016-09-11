@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.Linq;
 using Bloom.Domain.Enums;
 using Microsoft.Practices.Prism.Mvvm;
 
@@ -307,6 +308,25 @@ namespace Bloom.Domain.Models
         private bool _isSingleTrack;
 
         /// <summary>
+        /// Gets or sets the total disc count for the album.
+        /// We don't use a query of Tracks for this to allow for partially complete albums in libraries.
+        /// </summary>
+        [Column(Name = "disc_count")]
+        public int DiscCount
+        {
+            get { return _discCount; }
+            set { SetProperty(ref _discCount, value); }
+        }
+        private int _discCount = 1;
+
+        /// <summary>
+        /// Gets or sets the total track counts for each disc separated by a semicolin.  
+        /// We don't use a query of Tracks for this to allow for partially complete albums in libraries.
+        /// </summary>
+        [Column(Name = "track_counts")]
+        public string TrackCounts { get; set; }
+
+        /// <summary>
         /// Gets or sets the album rating.
         /// </summary>
         [Column(Name = "rating")]
@@ -336,6 +356,27 @@ namespace Bloom.Domain.Models
         /// Gets or sets the album artist collaborators.
         /// </summary>
         public List<AlbumCollaborator> Collaborators { get; set; }
+
+        /// <summary>
+        /// Gets the released track count for a given disc number, which may differ from what is in the current library.
+        /// </summary>
+        /// <param name="discNumber">The disc number.</param>
+        public int GetTrackCount(int discNumber)
+        {
+            if (_trackCounts == null && !string.IsNullOrEmpty(TrackCounts))
+            {
+                var tracks = TrackCounts.Split(';');
+                _trackCounts = new List<int>();
+                foreach (var track in tracks)
+                    _trackCounts.Add(int.Parse(track));
+            }
+
+            if (discNumber <= 0 || _trackCounts == null || !_trackCounts.Any() || _trackCounts.Count < discNumber)
+                return 0;
+
+            return _trackCounts[discNumber - 1];
+        }
+        private List<int> _trackCounts;
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

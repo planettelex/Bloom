@@ -67,6 +67,10 @@
     <Compile Include="Enums\FilterComparison.cs" />
     <Compile Include="Enums\SourceType.cs" />
     <Compile Include="Interfaces\IOrder.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\CountryLanguage.cs" />
+    <Compile Include="Models\CountryRegion.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Filterset.cs" />
     <Compile Include="Models\FiltersetElement.cs" />
     <Compile Include="Enums\FiltersetElementType.cs" />
@@ -78,10 +82,13 @@
     <Compile Include="Models\AlbumMood.cs" />
     <Compile Include="Enums\Condition.cs" />
     <Compile Include="Models\Filters\AlbumNameFilter.cs" />
+    <Compile Include="Models\LabelPersonnelRole.cs" />
+    <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\MediaTag.cs" />
+    <Compile Include="Models\SongLanguage.cs" />
     <Compile Include="Models\SongMedia.cs" />
     <Compile Include="Models\AlbumMedia.cs" />
     <Compile Include="Models\Library.cs" />
-    <Compile Include="Models\LabelPersonnelRole.cs" />
     <Compile Include="Models\LabelPersonnel.cs" />
     <Compile Include="Models\AlbumCollaborator.cs" />
     <Compile Include="Enums\DigitalFormats.cs" />
@@ -151,6 +158,7 @@
     <None Include="Diagrams\Album.cd" />
     <None Include="Diagrams\Artist.cd" />
     <None Include="Diagrams\Filterset.cd" />
+    <None Include="Diagrams\Geography.cd" />
     <None Include="Diagrams\Label.cd" />
     <None Include="Diagrams\Library.cd" />
     <None Include="Diagrams\Mood.cd" />
