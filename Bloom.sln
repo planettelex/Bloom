@@ -132,6 +132,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Data.Tests", "Shared\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Data.Tests", "Shared\Tests\Bloom.State.Data.Tests\Bloom.State.Data.Tests.csproj", "{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Services.Tests", "Shared\Tests\Bloom.Services.Tests\Bloom.Services.Tests.csproj", "{60DC12DA-C729-4E4A-9609-F88C9975B2A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -342,6 +344,10 @@ Global
 		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DC12DA-C729-4E4A-9609-F88C9975B2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DC12DA-C729-4E4A-9609-F88C9975B2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DC12DA-C729-4E4A-9609-F88C9975B2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DC12DA-C729-4E4A-9609-F88C9975B2A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -406,6 +412,7 @@ Global
 		{AE37AEBA-FD71-4643-814F-A8E554A337B9} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
 		{65823186-3F94-463C-8F34-FA78CF9CB6D0} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
 		{F1B58A9A-513F-4E5D-B1C9-60BCE18F3C1C} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
+		{60DC12DA-C729-4E4A-9609-F88C9975B2A1} = {F5D06CA3-A8A1-49AF-9BBA-4F5CF6EB11CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45

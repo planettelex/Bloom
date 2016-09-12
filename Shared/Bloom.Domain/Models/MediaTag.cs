@@ -87,7 +87,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets or sets a list of composer names.
         /// </summary>
-        public List<string> Composers { get; set; }
+        public string Composers { get; set; }
 
         /// <summary>
         /// Gets or sets the grouping.
