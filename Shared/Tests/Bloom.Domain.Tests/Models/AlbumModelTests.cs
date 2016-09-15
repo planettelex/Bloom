@@ -62,6 +62,8 @@ namespace Bloom.Domain.Tests.Models
                 UnofficialName = "Unofficial Name",
                 Edition = "Album Edition",
                 Artist = artist,
+                DiscCount = 1,
+                TrackCounts = "13",
                 Description = "Album description",
                 Holiday = holiday,
                 IsBootleg = false,
@@ -87,6 +89,9 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(album.Edition, "Album Edition");
             Assert.AreEqual(album.ArtistId, artist.Id);
             Assert.NotNull(album.Artist);
+            Assert.AreEqual(album.DiscCount, 1);
+            Assert.AreEqual(album.TrackCounts, "13");
+            Assert.AreEqual(album.GetTrackCount(1), 13);
             Assert.AreEqual(album.Description, "Album description");
             Assert.IsFalse(album.IsBootleg);
             Assert.IsTrue(album.IsCompilation);

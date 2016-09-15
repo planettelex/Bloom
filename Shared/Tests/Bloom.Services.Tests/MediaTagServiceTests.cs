@@ -184,6 +184,7 @@ namespace Bloom.Services.Tests
         public void ReadAacTagTest()
         {
             var mediaTag = _mediaTagService.ReadMediaTag(MediaFolder + DiktatorOfTheFreeWorldAac);
+            Assert.NotNull(mediaTag);
             Assert.AreEqual("Diktator of the Free World", mediaTag.Title);
             Assert.AreEqual("Kula Shaker", mediaTag.ArtistName);
             Assert.AreEqual("Kula Shaker", mediaTag.AlbumArtist);
@@ -347,6 +348,7 @@ namespace Bloom.Services.Tests
             var testFlacFilePath = Path.Combine(_testFolder, TestFlac);
 
             var mediaTag = _mediaTagService.ReadMediaTag(testFlacFilePath);
+            Assert.NotNull(mediaTag);
             Assert.AreEqual("Guess Again!", mediaTag.Title);
             Assert.AreEqual("Thom Yorke", mediaTag.ArtistName);
             Assert.IsNull(mediaTag.AlbumArtist);
@@ -425,6 +427,7 @@ namespace Bloom.Services.Tests
             var testFlacFilePath = Path.Combine(_testFolder, TestTagAac);
 
             var mediaTag = _mediaTagService.ReadMediaTag(testFlacFilePath);
+            Assert.NotNull(mediaTag);
             Assert.AreEqual("Diktator of the Free World", mediaTag.Title);
             Assert.AreEqual("Kula Shaker", mediaTag.ArtistName);
             Assert.AreEqual("Kula Shaker", mediaTag.AlbumArtist);

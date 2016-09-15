@@ -48,7 +48,7 @@ namespace Bloom.State.Data.Respositories
 
         public void AddTab(Tab tab)
         {
-            if (!_dataSource.IsConnected() || tab.UserId == Guid.Empty)
+            if (!_dataSource.IsConnected())
                 return;
 
             var existingTabQuery =

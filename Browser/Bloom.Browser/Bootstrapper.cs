@@ -111,6 +111,8 @@ namespace Bloom.Browser
             Container.Resolve<ISkinningService>();
             Container.RegisterType<IProcessService, ProcessService>(new ContainerControlledLifetimeManager());
             Container.Resolve<IProcessService>();
+            Container.RegisterType<IMediaTagService, MediaTagService>(new ContainerControlledLifetimeManager());
+            Container.Resolve<IMediaTagService>();
         }
     }
 }

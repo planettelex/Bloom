@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {

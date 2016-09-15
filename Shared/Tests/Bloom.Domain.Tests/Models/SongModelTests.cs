@@ -30,6 +30,9 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(song.Artist.Name, ArtistName);
         }
 
+        /// <summary>
+        /// Tests the song properties.
+        /// </summary>
         [Test]
         public void SongPropertiesTest()
         {

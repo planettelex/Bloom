@@ -173,6 +173,8 @@ namespace Bloom.Data.Tests.Repositories
             atomHeartMother.LinerNotes = "Atom Heart Mother Liner Notes";
             atomHeartMother.Length = 123456;
             atomHeartMother.LengthType = LengthType.LP;
+            atomHeartMother.DiscCount = 1;
+            atomHeartMother.TrackCounts = "5";
             atomHeartMother.Rating = 5;
             _albumRepository.AddAlbum(_dataSource, atomHeartMother);
             _albumRepository.AddAlbumArtwork(_dataSource, AlbumArtwork.Create(atomHeartMother, "c:\\images\\atom-heart-mother-front.jpg", 1));
@@ -254,6 +256,8 @@ namespace Bloom.Data.Tests.Repositories
 
             var sgtPepper = Album.Create("Sgt. Pepper's Lonely Hearts Club Band", beatles);
             _sgtPepperId = sgtPepper.Id;
+            sgtPepper.DiscCount = 1;
+            sgtPepper.TrackCounts = "13";
             sgtPepper.FirstReleasedOn = DateTime.Parse("6/1/1967");
             _albumRepository.AddAlbum(_dataSource, sgtPepper);
             _albumRepository.AddAlbumArtwork(_dataSource, AlbumArtwork.Create(sgtPepper, "c:\\images\\sgt-pepper-front.jpg", 1));
@@ -558,6 +562,8 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(_pinkFloydId, atomHeartMother.ArtistId);
             Assert.NotNull(atomHeartMother.Artist);
             Assert.AreEqual("Pink Floyd", atomHeartMother.Artist.Name);
+            Assert.AreEqual(1, atomHeartMother.DiscCount);
+            Assert.AreEqual("5", atomHeartMother.TrackCounts);
             Assert.AreEqual(DateTime.Parse("2/10/1970"), atomHeartMother.FirstReleasedOn);
             Assert.AreEqual("Atom Heart Mother Description", atomHeartMother.Description);
             Assert.AreEqual("Atom Heart Mother Liner Notes", atomHeartMother.LinerNotes);
@@ -622,6 +628,8 @@ namespace Bloom.Data.Tests.Repositories
             Assert.NotNull(sgtPepper);
             Assert.AreEqual(_sgtPepperId, sgtPepper.Id);
             Assert.AreEqual("Sgt. Pepper's Lonely Hearts Club Band", sgtPepper.Name);
+            Assert.AreEqual(1, sgtPepper.DiscCount);
+            Assert.AreEqual("13", sgtPepper.TrackCounts);
             Assert.AreEqual(DateTime.Parse("6/1/1967"), sgtPepper.FirstReleasedOn);
             Assert.NotNull(sgtPepper.Artist);
             Assert.AreEqual(_beatlesId, sgtPepper.ArtistId);
