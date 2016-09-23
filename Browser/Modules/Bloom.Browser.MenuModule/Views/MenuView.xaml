@@ -19,7 +19,7 @@
                 <telerik:RadMenuItem Header="File">
                     <telerik:RadMenuItem Header="New Library..." Command="{Binding Path=CreateNewLibraryCommand}" />
                     <telerik:RadMenuItem Header="Connected Libraries..." Command="{Binding Path=ManageConnectedLibrariesCommand}" />
-                    <telerik:RadMenuItem Header="Add Music..." IsEnabled="{Binding Path=HasConnections}" />
+                    <telerik:RadMenuItem Header="Add Music..." IsEnabled="{Binding Path=HasConnections}" Command="{Binding Path=AddMusicCommand}" />
                     <telerik:RadMenuItem Header="Library Operations..." IsEnabled="{Binding Path=HasConnections}" />
                     <telerik:RadMenuItem Header="Exit Browser" Command="{Binding Path=ExitApplicationCommand}" />
                 </telerik:RadMenuItem>

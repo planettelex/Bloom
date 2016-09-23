@@ -32,6 +32,21 @@ namespace Bloom.State.Domain.Models
             
             return user;
         }
+
+        /// <summary>
+        /// Gets the anonymous user.
+        /// </summary>
+        public static User Anonymous
+        {
+            get
+            {
+                return new User
+                {
+                    PersonId = Guid.Empty,
+                    Name = "Anonymous"
+                };
+            }
+        }
         
         /// <summary>
         /// Gets or sets the user's person identifier.

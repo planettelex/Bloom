@@ -42,6 +42,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
             // File Menu
             CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
             ManageConnectedLibrariesCommand = new DelegateCommand<object>(ManageConnectedLibraries, CanManageConnectedLibraries);
+            AddMusicCommand = new DelegateCommand<object>(AddMusic, CanAddMusic);
             ExitApplicationCommand = new DelegateCommand<object>(ExitApplication, CanExitApplication);
             // Edit Menu
             EditLibraryPropertiesCommand = new DelegateCommand<object>(EditLibraryProperties, CanEditLibraryProperties);
@@ -201,6 +202,21 @@ namespace Bloom.Browser.MenuModule.ViewModels
         private void ManageConnectedLibraries(object nothing)
         {
             _eventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Publish(null);
+        }
+
+        /// <summary>
+        /// Gets or sets the add music command.
+        /// </summary>
+        public ICommand AddMusicCommand { get; set; }
+
+        private bool CanAddMusic(object nothing)
+        {
+            return true;
+        }
+
+        private void AddMusic(object nothing)
+        {
+            _eventAggregator.GetEvent<ShowAddMusicModalEvent>().Publish(null);
         }
 
         /// <summary>

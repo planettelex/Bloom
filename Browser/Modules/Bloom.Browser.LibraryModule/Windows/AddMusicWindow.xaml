@@ -1,0 +1,15 @@
+﻿<telerik:RadWindow x:Class="Bloom.Browser.LibraryModule.Windows.AddMusicWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             Style="{DynamicResource RadWindowStyle}"
+             Width="600" MaxWidth="600" MinWidth="600" 
+             Height="200" MaxHeight="200" MinHeight="200"
+             Header="Add Music">
+    <Grid Style="{DynamicResource WindowFrameStyle}">
+            
+    </Grid>
+</telerik:RadWindow>

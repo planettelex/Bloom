@@ -40,6 +40,7 @@ namespace Bloom.Browser.LibraryModule.Services
             
             // Subscribe to events
             _eventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Subscribe(ShowCreateNewLibraryModal);
+            _eventAggregator.GetEvent<ShowAddMusicModalEvent>().Subscribe(ShowAddMusicModal);
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Subscribe(RestoreLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
@@ -82,6 +83,27 @@ namespace Bloom.Browser.LibraryModule.Services
                 Owner = Application.Current.MainWindow
             };
             newLibraryWindow.ShowDialog();
+        }
+
+        /// <summary>
+        /// Shows the add music modal window.
+        /// </summary>
+        public void ShowAddMusicModal(object nothing)
+        {
+            ShowAddMusicModal();
+        }
+
+        /// <summary>
+        /// Shows the add music modal window.
+        /// </summary>
+        public void ShowAddMusicModal()
+        {
+            var addMusicWindowModel = new AddMusicWindowModel(_regionManager, _eventAggregator);
+            var addMusicWindow = new AddMusicWindow(addMusicWindowModel)
+            {
+                Owner = Application.Current.MainWindow
+            };
+            addMusicWindow.ShowDialog();
         }
 
         /// <summary>
