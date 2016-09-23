@@ -23,5 +23,17 @@
     <Setting Name="UserProfilesFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">User Profiles</Value>
     </Setting>
+    <Setting Name="PeopleFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">People</Value>
+    </Setting>
+    <Setting Name="ArtistsFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Artists</Value>
+    </Setting>
+    <Setting Name="MixedArtistFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">_Mixed</Value>
+    </Setting>
+    <Setting Name="PlaylistsFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Playlists</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

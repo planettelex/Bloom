@@ -47,7 +47,7 @@ namespace Bloom.Browser.LibraryModule.Windows
             _folderBrowserDialog.ShowNewFolderButton = true;
             _folderBrowserDialog.Description = "Select a folder for the new library.";
             if (!string.IsNullOrEmpty(WindowModel.LibraryName))
-                _folderBrowserDialog.Description += "\r\nA file named \"" + WindowModel.LibraryName + Bloom.Common.Settings.LibraryFileExtension + "\" will be created at this location.";
+                _folderBrowserDialog.Description += "\r\nA folder named \"" + WindowModel.LibraryName + "\" will be created at this location.";
                 
             var result = _folderBrowserDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
@@ -62,7 +62,8 @@ namespace Bloom.Browser.LibraryModule.Windows
         private void CreateNewLibrary(object nothing)
         {
             var libraryOwner = WindowModel.GetOwner();
-            var newLibrary = Library.Create(libraryOwner, WindowModel.LibraryName, WindowModel.FolderPath);
+            var libraryFolder = WindowModel.FolderPath + "\\" + WindowModel.LibraryName;
+            var newLibrary = Library.Create(libraryOwner, WindowModel.LibraryName, libraryFolder);
             WindowModel.EventAggregator.GetEvent<CreateNewLibraryEvent>().Publish(newLibrary);
             Close();
         }
