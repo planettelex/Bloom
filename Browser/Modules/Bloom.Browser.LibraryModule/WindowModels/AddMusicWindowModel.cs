@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
@@ -55,6 +54,13 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             set { SetProperty(ref _isValid, value); }
         }
         private bool _isValid;
+
+        public bool CopyFiles
+        {
+            get { return _copyFiles; }
+            set { SetProperty(ref _copyFiles, value); }
+        }
+        private bool _copyFiles;
 
         public string FolderPath
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Bloom.Browser.Common;
+using Bloom.Browser.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
@@ -34,5 +35,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="tabId">The tab identifier of the view.</param>
         /// <param name="viewType">The view type to change to.</param>
         void ChangeLibraryTabView(Guid tabId, ViewType viewType);
+
+        void NewAddMusicTab(AddMusicEventModel eventModel);
     }
 }

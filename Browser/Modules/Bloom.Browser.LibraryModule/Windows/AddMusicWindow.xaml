@@ -49,7 +49,8 @@
             </Grid>
         </Border>
 
-        <CheckBox Grid.Row="4" Grid.Column="0" Visibility="{Binding Path=CopyFilesVisibility}" Content="Copy music files to Bloom library folders" />
+        <CheckBox Grid.Row="4" Grid.Column="0" Visibility="{Binding Path=CopyFilesVisibility}" IsChecked="{Binding Path=CopyFiles}"
+                  Content="Copy music files to Bloom library folders" />
         
         <Label Grid.Row="0" Grid.Column="2">Add to Libraries:</Label>
 

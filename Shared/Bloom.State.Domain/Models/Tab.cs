@@ -80,7 +80,7 @@ namespace Bloom.State.Domain.Models
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// Gets or sets the library identifier.
+        /// Gets or sets the tab's library identifier.
         /// </summary>
         [Column(Name = "library_id")]
         public Guid? LibraryId { get; set; }

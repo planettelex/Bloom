@@ -9,6 +9,7 @@ using Bloom.Browser.LibraryModule.Views;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.LibraryModule.Windows;
 using Bloom.Browser.PubSubEvents;
+using Bloom.Browser.PubSubEvents.EventModels;
 using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
@@ -45,6 +46,7 @@ namespace Bloom.Browser.LibraryModule.Services
             _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Subscribe(RestoreLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
             _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
+            _eventAggregator.GetEvent<NewAddMusicTabEvent>().Subscribe(NewAddMusicTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
@@ -117,7 +119,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 throw new NullReferenceException("Library data source cannot be null.");
 
             var library = _libraryRepository.GetLibrary(datasource);
-            var tab = CreateNewTab(library, defaultViewType);
+            var tab = CreateNewLibraryTab(library, defaultViewType);
             var libraryViewModel = new LibraryViewModel(library, defaultViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(defaultViewType, tab, libraryView);
@@ -164,7 +166,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 throw new NullReferenceException("Library datasource cannot be null.");
 
             var library = _libraryRepository.GetLibrary(datasource);
-            var tab = CreateNewTab(library, existingTab.ViewType);
+            var tab = CreateNewLibraryTab(library, existingTab.ViewType);
             var libraryViewModel = new LibraryViewModel(library, existingTab.ViewType, tab.Id);
             var libraryView = new LibraryView(libraryViewModel, _eventAggregator);
             var libraryTab = new ViewMenuTab(tab, libraryView);
@@ -198,7 +200,17 @@ namespace Bloom.Browser.LibraryModule.Services
                 stateTab.View = viewType.ToString();
         }
 
-        private Tab CreateNewTab(Library library, ViewType viewType)
+        public void NewAddMusicTab(AddMusicEventModel eventModel)
+        {
+            var stop = "stop";
+        }
+
+        private Tab CreateNewAddMusicTab()
+        {
+            
+        }
+
+        private Tab CreateNewLibraryTab(Library library, ViewType viewType)
         {
             var libraryBuid = new Buid(library.Id, BloomEntity.Library, library.Id);
             return Tab.Create(ProcessType.Browser, State.User, libraryBuid, State.GetNextTabOrder(), TabType.Library, library.Name, viewType.ToString());

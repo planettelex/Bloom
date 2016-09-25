@@ -12,6 +12,7 @@
         Person,
         Playlist,
         Song,
-        GettingStarted
+        GettingStarted,
+        NewMusic
     }
 }

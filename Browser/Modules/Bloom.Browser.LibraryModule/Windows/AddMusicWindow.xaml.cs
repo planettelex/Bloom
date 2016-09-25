@@ -3,6 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using Bloom.Browser.LibraryModule.WindowModels;
+using Bloom.Browser.PubSubEvents;
+using Bloom.Browser.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
 
@@ -29,7 +31,7 @@ namespace Bloom.Browser.LibraryModule.Windows
         }
         private readonly FolderBrowserDialog _folderBrowserDialog;
 
-        private AddMusicWindowModel WindowModel { get { return (AddMusicWindowModel)DataContext; } }
+        private AddMusicWindowModel WindowModel { get { return (AddMusicWindowModel) DataContext; } }
 
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -73,7 +75,22 @@ namespace Bloom.Browser.LibraryModule.Windows
 
         private void AddMusic(object nothing)
         {
-            var x = Libraries.SelectedItems;
+            if (WindowModel == null)
+                return;
+
+            var selectedSource = MusicSource.SelectedItem as ComboBoxItem;
+            if (selectedSource == null)
+                return;
+
+            var addMusicEventModel = new AddMusicEventModel
+            {
+                Source = selectedSource.Name,
+                FromPath = WindowModel.FolderPath,
+                CopyFiles = WindowModel.CopyFiles,
+                LibraryIds = WindowModel.LibraryIds
+            };
+
+             WindowModel.EventAggregator.GetEvent<NewAddMusicTabEvent>().Publish(addMusicEventModel);
         }
 
         private void SourceSelectionChanged(object sender, SelectionChangedEventArgs e)
