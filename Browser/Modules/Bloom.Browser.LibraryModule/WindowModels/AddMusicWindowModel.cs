@@ -1,4 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Input;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -17,6 +23,10 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         {
             EventAggregator = eventAggregator;
             State = (BrowserState)regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+            FolderSelectVisibility = Visibility.Collapsed;
+            CopyFilesVisibility = Visibility.Collapsed;
+            LibraryIds = new List<Guid>();
         }
 
         /// <summary>
@@ -34,6 +44,8 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// </summary>
         public BrowserState State { get; private set; }
 
+        public List<Guid> LibraryIds { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is valid.
         /// </summary>
@@ -43,6 +55,33 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             set { SetProperty(ref _isValid, value); }
         }
         private bool _isValid;
+
+        public string FolderPath
+        {
+            get { return _folderPath; }
+            set { SetProperty(ref _folderPath, value); }
+        }
+        private string _folderPath;
+
+        public Visibility FolderSelectVisibility
+        {
+            get { return _folderSelectVisibility; }
+            set { SetProperty(ref _folderSelectVisibility, value); }
+        }
+        private Visibility _folderSelectVisibility;
+
+        public Visibility CopyFilesVisibility
+        {
+            get { return _copyFilesVisibility; }
+            set { SetProperty(ref _copyFilesVisibility, value); }
+        }
+        private Visibility _copyFilesVisibility;
+
+        public ICommand BrowseFoldersCommand { get; set; }
+
+        public ICommand AddMusicCommand { get; set; }
+
+        public ICommand CancelCommand { get; set; }
         
         public string this[string columnName]
         {
@@ -52,8 +91,25 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                 if (IsLoading)
                     return null;
 
+                if (columnName == "FolderPath")
+                {
+                    if (string.IsNullOrEmpty(FolderPath))
+                        return "Folder path is required";
+                    if (!Directory.Exists(FolderPath))
+                        return "Specified folder does not exist";
+                }
+
+                IsValid = EvaluateValidity();
+
                 return null;
             }
+        }
+
+        public bool EvaluateValidity()
+        {
+            return !string.IsNullOrEmpty(FolderPath) &&
+                      Directory.Exists(FolderPath) &&
+                      LibraryIds.Count > 0;
         }
 
         public string Error { get { return null; } }

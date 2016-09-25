@@ -193,7 +193,12 @@
     <Style x:Key="WindowFrameStyle" TargetType="Grid">
         <Setter Property="Margin" Value="6" />
     </Style>
-    
+
+    <Style x:Key="BorderStyle" TargetType="Border">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlOuterBorderNormal}"/>
+    </Style>
+
     <ControlTemplate x:Key="ErrorTooltipTemplate" TargetType="ToolTip">
         <Grid x:Name="RootVisual" HorizontalAlignment="Right" RenderTransformOrigin="0 0" Opacity="0" Margin="2 0">
             <VisualStateManager.VisualStateGroups>
@@ -350,11 +355,10 @@
         </Setter>
     </Style>
     <Style TargetType="telerik:GroupBox" BasedOn="{StaticResource GroupBoxStyle}"/>
-    
-    <Style x:Key="LabelStyle" TargetType="telerik:Label">
+
+    <Style x:Key="TelerikLabelStyle" TargetType="telerik:Label">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="5 3"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
@@ -385,7 +389,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="telerik:Label" BasedOn="{StaticResource LabelStyle}"/>
+    <Style TargetType="telerik:Label" BasedOn="{StaticResource TelerikLabelStyle}"/>
 
     <Style x:Key="ThumbBaseStyle" TargetType="Thumb">
         <Setter Property="Background" Value="{StaticResource RangeMiddleThumbBackground}"/>
@@ -2045,8 +2049,8 @@
         </Setter>
     </Style>
     <Style x:Key="TextButtonStyle" TargetType="telerik:RadButton" BasedOn="{StaticResource RadButtonStyle}">
-        <Setter Property="Padding" Value="9 3 9 3" />
-        <Setter Property="Margin" Value="0 3 0 3"/>
+        <Setter Property="Padding" Value="16 4 16 4" />
+        <Setter Property="Margin" Value="0"/>
     </Style>
     <Style x:Key="RadPathButtonPathStyle" TargetType="Path">
         <Setter Property="Fill" Value="{StaticResource ControlElementNormal}"/>
