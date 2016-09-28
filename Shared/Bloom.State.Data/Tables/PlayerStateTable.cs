@@ -3,8 +3,9 @@
 namespace Bloom.State.Data.Tables
 {
     /// <summary>
-    /// The player_state table.
+    /// Represents the player_state table.
     /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class PlayerStateTable : ISqlTable
     {
         /// <summary>
@@ -14,13 +15,13 @@ namespace Bloom.State.Data.Tables
         {
             get
             {
-                return "CREATE TABLE \"player_state\" (" +
-                       "\"process_name\" VARCHAR NOT NULL , " +
-                       "\"person_id\" VARCHAR(36) NOT NULL , " +
-                       "\"skin_name\" VARCHAR NOT NULL , " +
-                       "\"window_state\" INTEGER NOT NULL , " +
-                       "\"recent_width\" INTEGER NOT NULL , " +
-                       "\"upcoming_width\" INTEGER NOT NULL , " +
+                return "CREATE TABLE player_state (" +
+                       "process_name VARCHAR NOT NULL , " +
+                       "person_id VARCHAR(36) NOT NULL , " +
+                       "skin_name VARCHAR NOT NULL , " +
+                       "window_state INTEGER NOT NULL , " +
+                       "recent_width INTEGER NOT NULL , " +
+                       "upcoming_width INTEGER NOT NULL , " +
                        "PRIMARY KEY (process_name, person_id))";
             }
         }

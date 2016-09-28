@@ -10,6 +10,7 @@ namespace Bloom.State.Data.Respositories
     /// <summary>
     /// Access methods for library connection data.
     /// </summary>
+    /// <seealso cref="Bloom.State.Data.Respositories.ILibraryConnectionRepository" />
     public class LibraryConnectionRepository : ILibraryConnectionRepository
     {
         /// <summary>

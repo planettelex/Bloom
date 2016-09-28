@@ -8,6 +8,10 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.State.Data.Respositories
 {
+    /// <summary>
+    /// Access methods for tab data.
+    /// </summary>
+    /// <seealso cref="Bloom.State.Data.Respositories.ITabRepository" />
     public class TabRepository : ITabRepository
     {
         /// <summary>
@@ -51,6 +55,11 @@ namespace Bloom.State.Data.Respositories
             return result;
         }
 
+        /// <summary>
+        /// Lists the tabs.
+        /// </summary>
+        /// <param name="process">The process.</param>
+        /// <param name="userId">The user identifier.</param>
         public List<Tab> ListTabs(ProcessType process, Guid userId)
         {
             if (!_dataSource.IsConnected())
@@ -80,6 +89,10 @@ namespace Bloom.State.Data.Respositories
             return results;
         }
 
+        /// <summary>
+        /// Adds a tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
         public void AddTab(Tab tab)
         {
             if (!_dataSource.IsConnected())
@@ -96,17 +109,26 @@ namespace Bloom.State.Data.Respositories
                 return;
             
             TabTable.InsertOnSubmit(tab);
+            
+            if (tab.Libraries == null) 
+                return;
+            
             foreach (var tabLibrary in tab.Libraries)
                 TabLibraryTable.InsertOnSubmit(tabLibrary);
         }
 
+        /// <summary>
+        /// Deletes a tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
         public void DeleteTab(Tab tab)
         {
             if (!_dataSource.IsConnected())
                 return;
 
-            foreach (var tabLibrary in tab.Libraries)
-                TabLibraryTable.DeleteOnSubmit(tabLibrary);
+            if (tab.Libraries != null)
+                foreach (var tabLibrary in tab.Libraries)
+                    TabLibraryTable.DeleteOnSubmit(tabLibrary);
 
             TabTable.DeleteOnSubmit(tab);
         }

@@ -10,6 +10,7 @@ namespace Bloom.State.Data.Respositories
     /// <summary>
     /// Access methods for analytics state data.
     /// </summary>
+    /// <seealso cref="Bloom.State.Data.Respositories.IAnalyticsStateRepository" />
     public class AnalyticsStateRepository : IAnalyticsStateRepository
     {
         /// <summary>

@@ -152,10 +152,10 @@ namespace Bloom.State.Data.Tests.Repositories
             Assert.AreEqual(2, jonnyAnalyticsTabs.Count);
 
             var nobodyBrowserTabs = _tabRepository.ListTabs(ProcessType.Browser, Guid.NewGuid());
-            Assert.AreEqual(0, nobodyBrowserTabs.Count);
+            Assert.IsNull(nobodyBrowserTabs);
 
             var thomNoApplicationTabs = _tabRepository.ListTabs(ProcessType.None, _thomId);
-            Assert.AreEqual(0, thomNoApplicationTabs.Count);
+            Assert.IsNull(thomNoApplicationTabs);
         }
 
         /// <summary>

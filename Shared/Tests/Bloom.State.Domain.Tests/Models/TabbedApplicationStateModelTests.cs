@@ -20,7 +20,7 @@ namespace Bloom.State.Domain.Tests.Models
         /// Tests the has library tabs method.
         /// </summary>
         [Test]
-        public void HasLibraryTabsTest()
+        public void HasLibraryTabsTests()
         {
             var person = Person.Create("Person Name");
             var user = User.Create(person);
@@ -38,7 +38,32 @@ namespace Bloom.State.Domain.Tests.Models
             var tab2 = Tab.Create(ProcessType.Browser, user, buid2, 3, TabType.Album, "Header");
             
             Assert.IsFalse(tabbedApplicationState.HasLibraryTabs(buid2.LibraryId));
+
             tabbedApplicationState.Tabs.Add(tab2);
+            Assert.IsTrue(tabbedApplicationState.HasLibraryTabs(buid2.LibraryId));
+
+            var libraryIds = new List<Guid>
+            {
+                buid1.LibraryId,
+                buid2.LibraryId
+            };
+
+            tabbedApplicationState = new TestTabbedApplicationState { Tabs = new List<Tab>() };
+            Assert.IsFalse(tabbedApplicationState.HasLibraryTabs(buid1.LibraryId));
+            Assert.IsFalse(tabbedApplicationState.HasLibraryTabs(buid2.LibraryId));
+            
+            var tab3 = Tab.Create(ProcessType.Browser, user, libraryIds, 4, TabType.Home, "Header");
+            tabbedApplicationState.Tabs.Add(tab3);
+            Assert.IsTrue(tabbedApplicationState.HasLibraryTabs(buid1.LibraryId));
+            Assert.IsTrue(tabbedApplicationState.HasLibraryTabs(buid2.LibraryId));
+
+            tabbedApplicationState = new TestTabbedApplicationState { Tabs = new List<Tab>() };
+            Assert.IsFalse(tabbedApplicationState.HasLibraryTabs(buid1.LibraryId));
+            Assert.IsFalse(tabbedApplicationState.HasLibraryTabs(buid2.LibraryId));
+
+            var tab4 = Tab.Create(ProcessType.Browser, user, libraryIds, 5, TabType.NewMusic, "Header", "Grid");
+            tabbedApplicationState.Tabs.Add(tab4);
+            Assert.IsTrue(tabbedApplicationState.HasLibraryTabs(buid1.LibraryId));
             Assert.IsTrue(tabbedApplicationState.HasLibraryTabs(buid2.LibraryId));
         }
 

@@ -157,7 +157,7 @@ namespace Bloom.Domain.Tests.Models
             filtersetElement2.FilterAgainst = "Something";
 
             Assert.AreEqual("(", filtersetElement1.ToString());
-            Assert.AreEqual("Filter Property Is Something", filtersetElement2.ToString());
+            Assert.AreEqual("Test Filter Is Something", filtersetElement2.ToString());
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Bloom.Domain.Tests.Models
             var filterset = Filterset.Create();
             var filtersetOrder = FiltersetOrder.Create(filterset, order, 1);
 
-            Assert.AreEqual("Order Property Ascending", filtersetOrder.ToString());
+            Assert.AreEqual("Test Order Ascending", filtersetOrder.ToString());
         }
     }
 }

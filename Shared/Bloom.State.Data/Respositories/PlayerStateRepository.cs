@@ -9,6 +9,7 @@ namespace Bloom.State.Data.Respositories
     /// <summary>
     /// Access methods for player state data.
     /// </summary>
+    /// <seealso cref="Bloom.State.Data.Respositories.IPlayerStateRepository" />
     public class PlayerStateRepository : IPlayerStateRepository
     {
         /// <summary>

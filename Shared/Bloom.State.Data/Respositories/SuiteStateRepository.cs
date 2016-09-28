@@ -8,6 +8,7 @@ namespace Bloom.State.Data.Respositories
     /// <summary>
     /// Access methods for suite state data.
     /// </summary>
+    /// <seealso cref="Bloom.State.Data.Respositories.ISuiteStateRepository" />
     public class SuiteStateRepository : ISuiteStateRepository
     {
         /// <summary>

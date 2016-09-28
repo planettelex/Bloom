@@ -10,6 +10,7 @@ namespace Bloom.State.Data.Respositories
     /// <summary>
     /// Access methods for browser state data.
     /// </summary>
+    /// <seealso cref="Bloom.State.Data.Respositories.IBrowserStateRepository" />
     public class BrowserStateRepository : IBrowserStateRepository
     {
         /// <summary>
