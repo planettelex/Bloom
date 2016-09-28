@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.Globalization;
 using System.Linq;
 using Bloom.Domain.Enums;
 using Microsoft.Practices.Prism.Mvvm;
@@ -325,6 +326,7 @@ namespace Bloom.Domain.Models
         /// </summary>
         [Column(Name = "track_counts")]
         public string TrackCounts { get; set; }
+        private const char TrackCountDelimiter = ';';
 
         /// <summary>
         /// Gets or sets the album rating.
@@ -365,7 +367,7 @@ namespace Bloom.Domain.Models
         {
             if (_trackCounts == null && !string.IsNullOrEmpty(TrackCounts))
             {
-                var tracks = TrackCounts.Split(';');
+                var tracks = TrackCounts.Split(TrackCountDelimiter);
                 _trackCounts = new List<int>();
                 foreach (var track in tracks)
                     _trackCounts.Add(int.Parse(track));
@@ -377,6 +379,25 @@ namespace Bloom.Domain.Models
             return _trackCounts[discNumber - 1];
         }
         private List<int> _trackCounts;
+
+        /// <summary>
+        /// Sets the track count for a given disc number, which may differ from what is in the current library.
+        /// </summary>
+        /// <param name="discNumber">The disc number.</param>
+        /// <param name="trackCount">The track count.</param>
+        public void SetTrackCount(int discNumber, int trackCount)
+        {
+            if (_trackCounts == null)
+                _trackCounts = new List<int>(discNumber);
+
+            _trackCounts[discNumber - 1] = trackCount;
+
+            TrackCounts = string.Empty;
+            foreach (var count in _trackCounts)
+                TrackCounts += count.ToString(CultureInfo.InvariantCulture) + TrackCountDelimiter;
+
+            TrackCounts = TrackCounts.TrimEnd(TrackCountDelimiter);
+        }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

@@ -11,6 +11,11 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.LibraryModule.WindowModels
 {
+    /// <summary>
+    /// The window model for the add music dialogue window.
+    /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
     public class AddMusicWindowModel : BindableBase, IDataErrorInfo
     {
         /// <summary>
@@ -21,7 +26,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         public AddMusicWindowModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
-            State = (BrowserState)regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
             FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
             FolderSelectVisibility = Visibility.Collapsed;
             CopyFilesVisibility = Visibility.Collapsed;
@@ -43,6 +48,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// </summary>
         public BrowserState State { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the library identifiers.
+        /// </summary>
         public List<Guid> LibraryIds { get; set; }
 
         /// <summary>
@@ -55,6 +63,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private bool _isValid;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to copy the music files to the library folder.
+        /// </summary>
         public bool CopyFiles
         {
             get { return _copyFiles; }
@@ -62,6 +73,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private bool _copyFiles;
 
+        /// <summary>
+        /// Gets or sets the folder path.
+        /// </summary>
         public string FolderPath
         {
             get { return _folderPath; }
@@ -69,6 +83,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private string _folderPath;
 
+        /// <summary>
+        /// Gets or sets the visibility of the folder select area.
+        /// </summary>
         public Visibility FolderSelectVisibility
         {
             get { return _folderSelectVisibility; }
@@ -76,6 +93,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private Visibility _folderSelectVisibility;
 
+        /// <summary>
+        /// Gets or sets the visibility of the copy files checkbox.
+        /// </summary>
         public Visibility CopyFilesVisibility
         {
             get { return _copyFilesVisibility; }
@@ -83,12 +103,25 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private Visibility _copyFilesVisibility;
 
+        /// <summary>
+        /// Gets or sets the browse folders command.
+        /// </summary>
         public ICommand BrowseFoldersCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the add music command.
+        /// </summary>
         public ICommand AddMusicCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the cancel command.
+        /// </summary>
         public ICommand CancelCommand { get; set; }
-        
+
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <param name="columnName">The name of the column.</param>
         public string this[string columnName]
         {
             get
@@ -111,6 +144,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             }
         }
 
+        /// <summary>
+        /// Evaluates the validity of this window.
+        /// </summary>
         public bool EvaluateValidity()
         {
             return !string.IsNullOrEmpty(FolderPath) &&
@@ -118,6 +154,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                       LibraryIds.Count > 0;
         }
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
         public string Error { get { return null; } }
     }
 }

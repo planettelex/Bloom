@@ -9,6 +9,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a song.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "song")]
     public class Song : BindableBase
     {

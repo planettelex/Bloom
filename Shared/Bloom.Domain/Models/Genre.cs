@@ -7,6 +7,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a music genre.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "genre")]
     public class Genre : BindableBase
     {

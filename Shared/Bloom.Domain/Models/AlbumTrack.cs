@@ -7,6 +7,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a song track on an album.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "album_track")]
     public class AlbumTrack : BindableBase
     {

@@ -41,7 +41,7 @@ namespace Bloom.Domain.Models.Filters
         /// <param name="comparison">The filter comparison.</param>
         public List<Song> Apply(List<Song> songs, FilterComparison comparison)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //TODO: Add apply methods to interface.
         }
     }
 }

@@ -2,6 +2,10 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the song_tag table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class SongTagTable : ISqlTable
     {
         /// <summary>

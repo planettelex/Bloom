@@ -15,6 +15,11 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.LibraryModule.WindowModels
 {
+    /// <summary>
+    /// Window model for NewLibraryWindow.xaml.
+    /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
     public class NewLibraryWindowModel : BindableBase, IDataErrorInfo
     {
         /// <summary>
@@ -65,6 +70,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private bool _isValid;
 
+        /// <summary>
+        /// Gets or sets the name of the library.
+        /// </summary>
         public string LibraryName
         {
             get { return _libraryName; }
@@ -72,6 +80,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private string _libraryName;
 
+        /// <summary>
+        /// Gets or sets the name of the library owner.
+        /// </summary>
         public string OwnerName
         {
             get { return _ownerName; }
@@ -79,6 +90,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private string _ownerName;
 
+        /// <summary>
+        /// Gets or sets the owner identifier.
+        /// </summary>
         public Guid OwnerId
         {
             get { return _ownerId; }
@@ -86,6 +100,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private Guid _ownerId;
 
+        /// <summary>
+        /// Gets or sets the folder path for the new library.
+        /// </summary>
         public string FolderPath
         {
             get { return _folderPath; }
@@ -93,14 +110,29 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         }
         private string _folderPath;
 
+        /// <summary>
+        /// Gets or sets the potential owners of the new library.
+        /// </summary>
         public ObservableCollection<User> PotentialOwners { get; set; }
 
+        /// <summary>
+        /// Gets or sets the browse folders command.
+        /// </summary>
         public ICommand BrowseFoldersCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the create new library command.
+        /// </summary>
         public ICommand CreateNewLibraryCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the cancel command.
+        /// </summary>
         public ICommand CancelCommand { get; set; }
 
+        /// <summary>
+        /// Gets the library owner.
+        /// </summary>
         public Person GetOwner()
         {
             Person owner;
@@ -124,6 +156,10 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             return owner;
         }
 
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <param name="columnName">The name of the column.</param>
         public string this[string columnName]
         {
             get
@@ -170,6 +206,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             }
         }
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
         public string Error { get { return null; } }
     }
 }

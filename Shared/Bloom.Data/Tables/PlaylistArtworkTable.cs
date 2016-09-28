@@ -2,6 +2,10 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the playlist_artwork table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class PlaylistArtworkTable : ISqlTable
     {
         /// <summary>

@@ -2,6 +2,10 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the album_collaborator table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class AlbumCollaboratorTable : ISqlTable
     {
         /// <summary>

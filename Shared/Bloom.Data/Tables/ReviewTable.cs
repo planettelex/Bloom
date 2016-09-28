@@ -2,6 +2,10 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the review table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class ReviewTable : ISqlTable
     {
         /// <summary>

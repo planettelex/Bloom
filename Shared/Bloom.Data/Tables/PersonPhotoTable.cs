@@ -2,6 +2,10 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the person_photo table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class PersonPhotoTable : ISqlTable
     {
         /// <summary>

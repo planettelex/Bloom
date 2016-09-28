@@ -46,9 +46,6 @@
   </Class>
   <Class Name="Bloom.State.Domain.Models.ApplicationState">
     <Position X="7.75" Y="4.25" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAABIAIAAAAAAABAAAAAAAAAAAAAAAAAAAABADABAAA=</HashCode>
       <FileName>Models\ApplicationState.cs</FileName>
@@ -72,9 +69,6 @@
   </Class>
   <Class Name="Bloom.State.Domain.Models.TabbedApplicationState">
     <Position X="4" Y="4.25" Width="2" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAgAAAAAAAAAAEAAAAAAAAAAAIA=</HashCode>
       <FileName>Models\TabbedApplicationState.cs</FileName>
@@ -86,7 +80,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAATAAAEAAAAAAQAAAAIAGAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAATAAAEAAAAAAQAAAAIAGABAAAAAAAAAAA=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
   </Class>

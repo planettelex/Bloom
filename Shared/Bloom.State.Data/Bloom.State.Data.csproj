@@ -104,6 +104,7 @@
     <Compile Include="Services\StateTableService.cs" />
     <Compile Include="Tables\AnalyticsStateTable.cs" />
     <Compile Include="Tables\SuiteStateTable.cs" />
+    <Compile Include="Tables\TabLibraryTable.cs" />
     <Compile Include="Tables\TabTable.cs" />
     <Compile Include="Tables\BrowserStateTable.cs" />
     <Compile Include="Tables\LibraryConnectionTable.cs" />

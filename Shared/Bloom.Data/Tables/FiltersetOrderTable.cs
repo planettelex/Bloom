@@ -2,10 +2,14 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the filterset_order table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class FiltersetOrderTable : ISqlTable
     {
         /// <summary>
-        /// Gets the create filterset_element table SQL.
+        /// Gets the create filterset_order table SQL.
         /// </summary>
         public string CreateSql
         {

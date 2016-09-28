@@ -8,6 +8,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a set of filters and orders.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "filterset")]
     public class Filterset : BindableBase
     {

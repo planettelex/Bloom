@@ -5,7 +5,7 @@ using System.Data.Linq.Mapping;
 namespace Bloom.Domain.Models
 {
     /// <summary>
-    /// Represents a person who worked for a label.
+    /// Represents a person who has worked for a label.
     /// </summary>
     [Table(Name = "label_personnel")]
     public class LabelPersonnel

@@ -8,6 +8,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a music library.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "library")]
     public class Library : BindableBase
     {

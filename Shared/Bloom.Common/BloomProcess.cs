@@ -43,9 +43,8 @@ namespace Bloom.Common
         }
 
         /// <summary>
-        /// The namespace.
+        /// The namespace "Bloom".
         /// </summary>
-        /// <value>Bloom</value>
         public const string Namespace = "Bloom";
 
         /// <summary>

@@ -2,10 +2,14 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the source table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class SourceTable : ISqlTable
     {
         /// <summary>
-        /// Gets the create publication table SQL.
+        /// Gets the create source table SQL.
         /// </summary>
         public string CreateSql
         {

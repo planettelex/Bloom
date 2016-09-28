@@ -88,7 +88,7 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            return Order != null ? string.Format("{0} {1}", Order.ToString(), Direction) : Direction.ToString();
+            return Order != null ? string.Format("{0} {1}", Order.Label, Direction) : Direction.ToString();
         }
     }
 }

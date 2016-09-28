@@ -3,14 +3,29 @@ using System.Collections.Generic;
 
 namespace Bloom.Browser.PubSubEvents.EventModels
 {
+    /// <summary>
+    /// Event model for adding new music.
+    /// </summary>
     public class AddMusicEventModel
-    {        
+    {
+        /// <summary>
+        /// Gets or sets the source to add music from.
+        /// </summary>
         public string Source { get; set; }
 
-        public string FromPath { get; set; }
+        /// <summary>
+        /// Gets or sets the path to the music source.
+        /// </summary>
+        public string Path { get; set; }
 
+        /// <summary>
+        /// Gets or sets whether to copy files to the library folder.
+        /// </summary>
         public bool CopyFiles { get; set; }
 
+        /// <summary>
+        /// Gets or sets the library identifiers to add music to.
+        /// </summary>
         public List<Guid> LibraryIds { get; set; } 
     }
 }

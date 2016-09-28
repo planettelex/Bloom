@@ -23,6 +23,7 @@ namespace Bloom.State.Data.Services
                 new BrowserStateTable(),
                 new PlayerStateTable(),
                 new TabTable(),
+                new TabLibraryTable(),
                 new UserTable()
             };
         }

@@ -7,6 +7,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a tag.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "tag")]
     public class Tag : BindableBase
     {

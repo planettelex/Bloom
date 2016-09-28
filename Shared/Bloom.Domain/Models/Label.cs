@@ -8,6 +8,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a recording label.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "label")]
     public class Label : BindableBase
     {

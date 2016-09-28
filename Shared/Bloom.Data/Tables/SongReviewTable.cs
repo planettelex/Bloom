@@ -2,10 +2,14 @@
 
 namespace Bloom.Data.Tables
 {
+    /// <summary>
+    /// Represents the song_review table.
+    /// </summary>
+    /// <seealso cref="Bloom.Data.Interfaces.ISqlTable" />
     public class SongReviewTable : ISqlTable
     {
         /// <summary>
-        /// Gets the create album_review table SQL.
+        /// Gets the create song_review table SQL.
         /// </summary>
         public string CreateSql
         {

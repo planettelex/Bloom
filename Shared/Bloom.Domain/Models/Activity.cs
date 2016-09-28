@@ -7,6 +7,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents an activity (e.g. Workout, Cleaning).
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "activity")]
     public class Activity : BindableBase
     {

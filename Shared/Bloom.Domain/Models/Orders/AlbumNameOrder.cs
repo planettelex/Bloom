@@ -16,14 +16,6 @@ namespace Bloom.Domain.Models.Orders
         public Guid Id { get { return Guid.Parse("be5a0f6d-f0c0-455f-9967-af9c0f947bce"); } }
 
         /// <summary>
-        /// Gets the order name.
-        /// </summary>
-        /// <value>
-        /// AlbumNameOrder
-        /// </value>
-        public string Name { get { return "AlbumNameOrder"; } }
-
-        /// <summary>
         /// Gets the order label.
         /// </summary>
         /// <value>
@@ -39,7 +31,7 @@ namespace Bloom.Domain.Models.Orders
         /// <exception cref="System.NotImplementedException"></exception>
         public void Apply(ref List<Song> songs, OrderDirection direction)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //TODO: Add apply methods to interface.
         }
     }
 }

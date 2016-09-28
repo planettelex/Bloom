@@ -111,7 +111,7 @@ namespace Bloom.Domain.Models
                     return " or ";
                 case FiltersetElementType.Statement:
                     if (Filter != null && Comparison != null)
-                        return string.Format("{0} {1} {2}", Filter.ToString(), Comparison, FilterAgainst);
+                        return string.Format("{0} {1} {2}", Filter.Label, Comparison, FilterAgainst);
                     return FilterAgainst;
                 default:
                     return FilterAgainst;

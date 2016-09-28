@@ -207,7 +207,7 @@ namespace Bloom.Browser.LibraryModule.Services
 
         private Tab CreateNewAddMusicTab()
         {
-            
+            return new Tab();
         }
 
         private Tab CreateNewLibraryTab(Library library, ViewType viewType)

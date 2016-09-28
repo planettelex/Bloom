@@ -49,7 +49,7 @@ namespace Bloom.State.Domain.Models
             if (Tabs == null)
                 return false;
 
-            return Tabs.Any(tab => tab.LibraryId == libraryId);
+            return Tabs.Any(tab => tab.LibraryId == libraryId || tab.Libraries.Any(t => t.LibraryId == libraryId));
         }
     }
 }

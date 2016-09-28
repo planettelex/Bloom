@@ -7,6 +7,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a mood (e.g. Happy, Excited, Brooding)
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "mood")]
     public class Mood : BindableBase
     {
