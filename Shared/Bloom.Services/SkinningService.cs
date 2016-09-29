@@ -5,8 +5,9 @@ using System.Windows;
 namespace Bloom.Services
 {
     /// <summary>
-    /// Service for managing skins, named collections of brushes and icons.
+    /// Service for managing named collections of brushes and icons.
     /// </summary>
+    /// <seealso cref="Bloom.Services.ISkinningService" />
     public class SkinningService : ISkinningService
     {
         /// <summary>

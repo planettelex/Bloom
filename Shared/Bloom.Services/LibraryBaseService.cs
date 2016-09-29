@@ -300,7 +300,7 @@ namespace Bloom.Services
         }
 
         /// <summary>
-        /// Synchronizes the data between the library owner and provided user.
+        /// Synchronizes the data between the library owner and the provided user.
         /// </summary>
         /// <param name="libraryConnection">The library connection.</param>
         /// <param name="user">The user.</param>

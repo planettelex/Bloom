@@ -7,6 +7,7 @@ namespace Bloom.Services
     /// <summary>
     /// Service for system process operations.
     /// </summary>
+    /// <seealso cref="Bloom.Services.IProcessService" />
     public class ProcessService : IProcessService
     {
         /// <summary>

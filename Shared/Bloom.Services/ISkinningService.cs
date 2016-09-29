@@ -1,7 +1,7 @@
 ﻿namespace Bloom.Services
 {
     /// <summary>
-    /// Service for managing skins, named collections of brushes and icons.
+    /// Service for managing named collections of brushes and icons.
     /// </summary>
     public interface ISkinningService
     {

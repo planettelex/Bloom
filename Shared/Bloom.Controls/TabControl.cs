@@ -10,6 +10,7 @@ namespace Bloom.Controls
     /// <summary>
     /// A shell docking control tab.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     public class TabControl : BindableBase
     {
         /// <summary>

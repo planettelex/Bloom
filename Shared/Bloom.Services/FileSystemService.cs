@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Bloom.State.Domain.Models;
 
@@ -7,6 +8,7 @@ namespace Bloom.Services
     /// <summary>
     /// Service for file system operations.
     /// </summary>
+    /// <seealso cref="Bloom.Services.IFileSystemService" />
     public class FileSystemService : IFileSystemService
     {
         /// <summary>
@@ -26,6 +28,7 @@ namespace Bloom.Services
         /// </summary>
         /// <param name="user">A user.</param>
         /// <param name="filePath">The profile image file path.</param>
+        /// <returns>The new file path.</returns>
         public string CopyProfileImage(User user, string filePath)
         {
             var fileExtension = Path.GetExtension(filePath);
@@ -33,6 +36,16 @@ namespace Bloom.Services
             var newPath = Path.Combine(_userProfilesFolder, fileName + fileExtension);
             File.Copy(filePath, newPath, true);
             return newPath;
+        }
+
+        /// <summary>
+        /// Lists all music files under the specified directory, looking in every subdirectory.
+        /// </summary>
+        /// <param name="directoryPath">The directory path.</param>
+        /// <returns>A list of music files.</returns>
+        public List<string> ListMusicFiles(string directoryPath)
+        {
+            return null; //TODO: Implement 
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Bloom.Services
     /// <summary>
     /// Base class for all tabbed application state services.
     /// </summary>
+    /// <seealso cref="Bloom.Services.StateBaseService" />
     public abstract class TabbedStateBaseService : StateBaseService
     {
         /// <summary>
