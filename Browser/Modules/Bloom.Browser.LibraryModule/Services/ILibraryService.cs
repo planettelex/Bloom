@@ -5,6 +5,9 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
+    /// <summary>
+    /// Service for browser library operations.
+    /// </summary>
     public interface ILibraryService
     {
         /// <summary>
@@ -30,12 +33,33 @@ namespace Bloom.Browser.LibraryModule.Services
         void DuplicateLibraryTab(Guid tabId);
 
         /// <summary>
-        /// Changes a library tab view.
+        /// Shows the add music modal window.
+        /// </summary>
+        void ShowAddMusicModal();
+
+        /// <summary>
+        /// Creates a new add music tab.
+        /// </summary>
+        /// <param name="eventModel">The event model.</param>
+        void NewAddMusicTab(AddMusicEventModel eventModel);
+
+        /// <summary>
+        /// Restores the add music tab.
+        /// </summary>
+        /// <param name="tab">The add music tab.</param>
+        void RestoreAddMusicTab(Tab tab);
+
+        /// <summary>
+        /// Duplicates an add music tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
+        void DuplicateAddMusicTab(Guid tabId);
+
+        /// <summary>
+        /// Changes a tab view.
         /// </summary>
         /// <param name="tabId">The tab identifier of the view.</param>
         /// <param name="viewType">The view type to change to.</param>
-        void ChangeLibraryTabView(Guid tabId, ViewType viewType);
-
-        void NewAddMusicTab(AddMusicEventModel eventModel);
+        void ChangeTabView(Guid tabId, ViewType viewType);
     }
 }

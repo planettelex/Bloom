@@ -26,13 +26,13 @@ namespace Bloom.State.Domain.Models
         /// <summary>
         /// Gets or sets the tab identifier.
         /// </summary>
-        [Column(Name = "tab_id")]
+        [Column(Name = "tab_id", IsPrimaryKey = true)]
         public Guid TabId { get; set; }
 
         /// <summary>
         /// Gets or sets the library identifier.
         /// </summary>
-        [Column(Name = "library_id")]
+        [Column(Name = "library_id", IsPrimaryKey = true)]
         public Guid LibraryId { get; set; }
     }
 }

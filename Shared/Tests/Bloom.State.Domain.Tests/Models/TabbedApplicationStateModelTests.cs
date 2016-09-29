@@ -14,6 +14,10 @@ namespace Bloom.State.Domain.Tests.Models
     [TestFixture]
     public class TabbedApplicationStateModelTests
     {
+        /// <summary>
+        /// A test tabbed application state.
+        /// </summary>
+        /// <seealso cref="Bloom.State.Domain.Models.TabbedApplicationState" />
         public class TestTabbedApplicationState : TabbedApplicationState { }
 
         /// <summary>

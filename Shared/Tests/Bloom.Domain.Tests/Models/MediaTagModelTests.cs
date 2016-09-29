@@ -7,7 +7,7 @@ namespace Bloom.Domain.Tests.Models
     /// Tests the media tag model classes.
     /// </summary>
     [TestFixture]
-    public class MediaTagTests
+    public class MediaTagModelTests
     {
         private const string ArtistName = "Test Artist";
         private const string SongName = "Test Song";

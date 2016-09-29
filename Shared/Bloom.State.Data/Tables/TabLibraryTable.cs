@@ -15,8 +15,11 @@ namespace Bloom.State.Data.Tables
             get
             {
                 return "CREATE TABLE tab_library (" +
-                       "tab_id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                       "library_id VARCHAR(36) )";
+                       "tab_id VARCHAR(36) NOT NULL , " +
+                       "library_id VARCHAR(36) NOT NULL , " +
+                       "PRIMARY KEY (tab_id, library_id) , " +
+                       "FOREIGN KEY (tab_id) REFERENCES tab(id) , " +
+                       "FOREIGN KEY (library_id) REFERENCES library_connection(library_id) ) ";
             }
         }
     }

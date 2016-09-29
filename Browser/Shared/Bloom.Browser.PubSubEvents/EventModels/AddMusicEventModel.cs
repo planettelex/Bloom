@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bloom.Domain.Enums;
 
 namespace Bloom.Browser.PubSubEvents.EventModels
 {
@@ -11,7 +12,7 @@ namespace Bloom.Browser.PubSubEvents.EventModels
         /// <summary>
         /// Gets or sets the source to add music from.
         /// </summary>
-        public string Source { get; set; }
+        public MusicSource Source { get; set; }
 
         /// <summary>
         /// Gets or sets the path to the music source.

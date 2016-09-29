@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.PubSubEvents.EventModels;
+using Bloom.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
 
@@ -115,13 +117,14 @@ namespace Bloom.Browser.LibraryModule.Windows
 
             var addMusicEventModel = new AddMusicEventModel
             {
-                Source = selectedSource.Name,
+                Source = (MusicSource) Enum.Parse(typeof(MusicSource), selectedSource.Name),
                 Path = WindowModel.FolderPath,
                 CopyFiles = WindowModel.CopyFiles,
                 LibraryIds = WindowModel.LibraryIds
             };
 
              WindowModel.EventAggregator.GetEvent<NewAddMusicTabEvent>().Publish(addMusicEventModel);
+             Close();
         }
 
         /// <summary>

@@ -142,7 +142,8 @@ namespace Bloom.Browser.HomeModule.Services
 
         private Tab CreateNewHomeTab()
         {
-            return Tab.Create(ProcessType.Browser, State.User, Buid.Empty, State.GetNextTabOrder(), TabType.Home, "Home");
+            var libraryIds = State.Connections.Select(libraryConnection => libraryConnection.LibraryId).ToList();
+            return Tab.Create(ProcessType.Browser, State.User, libraryIds, State.GetNextTabOrder(), TabType.Home, "Home");
         }
 
         private Tab CreateNewGettingStartedTab()

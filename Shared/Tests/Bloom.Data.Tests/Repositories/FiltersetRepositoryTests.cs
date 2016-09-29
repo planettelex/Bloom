@@ -23,31 +23,71 @@ namespace Bloom.Data.Tests.Repositories
 
         #region Test Classes
 
+        /// <summary>
+        /// A test filter.
+        /// </summary>
+        /// <seealso cref="Bloom.Domain.Interfaces.IFilter" />
         private class TestFilter1 : IFilter
         {
+            /// <summary>
+            /// 265e69c3-8d01-47e5-a349-8414abb2de34
+            /// </summary>
             public Guid Id { get { return Guid.Parse("265e69c3-8d01-47e5-a349-8414abb2de34"); } }
-            public string Name { get { return "Test Filter 1"; } }
+
+            /// <summary>
+            /// Test Filter Label 1
+            /// </summary>
             public string Label { get { return "Test Filter Label 1"; } }
         }
 
+        /// <summary>
+        /// Another test filter.
+        /// </summary>
+        /// <seealso cref="Bloom.Domain.Interfaces.IFilter" />
         private class TestFilter2 : IFilter
         {
+            /// <summary>
+            /// 722c0722-9408-4d4b-9416-272c3b61c583
+            /// </summary>
             public Guid Id { get { return Guid.Parse("722c0722-9408-4d4b-9416-272c3b61c583"); } }
-            public string Name { get { return "Test Filter 2"; } }
+
+            /// <summary>
+            /// Test Filter Label 2
+            /// </summary>
             public string Label { get { return "Test Filter Label 2"; } }
         }
 
+        /// <summary>
+        /// A test order.
+        /// </summary>
+        /// <seealso cref="Bloom.Domain.Interfaces.IOrder" />
         private class TestOrder1 : IOrder
         {
+            /// <summary>
+            /// e18e5ab2-6aaf-4bae-8fac-5da2a876f3e8
+            /// </summary>
             public Guid Id { get { return Guid.Parse("e18e5ab2-6aaf-4bae-8fac-5da2a876f3e8"); } }
-            public string Name { get { return "Test Order 1"; } }
+
+            /// <summary>
+            /// Test Order Label 1
+            /// </summary>
             public string Label { get { return "Test Order Label 1"; } }
         }
 
+        /// <summary>
+        /// Another test order.
+        /// </summary>
+        /// <seealso cref="Bloom.Domain.Interfaces.IOrder" />
         private class TestOrder2 : IOrder
         {
+            /// <summary>
+            /// 6e3cb734-d7ce-4043-b2fb-d9480f3601d0
+            /// </summary>
             public Guid Id { get { return Guid.Parse("6e3cb734-d7ce-4043-b2fb-d9480f3601d0"); } }
-            public string Name { get { return "Test Order 2"; } }
+
+            /// <summary>
+            /// Test Order Label 2
+            /// </summary>
             public string Label { get { return "Test Order Label 2"; } }
         }
 

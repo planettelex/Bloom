@@ -111,6 +111,7 @@
     <Compile Include="ViewModels\GridViewModel.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
+    <Compile Include="ViewModels\NewMusicViewModel.cs" />
     <Compile Include="ViewModels\ScatteredViewModel.cs" />
     <Compile Include="ViewModels\ScrollViewModel.cs" />
     <Compile Include="ViewModels\SlideshowViewModel.cs" />
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="Views\ListView.xaml.cs">
       <DependentUpon>ListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewMusicView.xaml.cs">
+      <DependentUpon>NewMusicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScatteredView.xaml.cs">
       <DependentUpon>ScatteredView.xaml</DependentUpon>
@@ -244,6 +248,10 @@
     <Page Include="Views\ListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewMusicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ScatteredView.xaml">
       <Generator>MSBuild:Compile</Generator>

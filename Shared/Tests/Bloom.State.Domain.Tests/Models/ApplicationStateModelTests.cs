@@ -11,6 +11,10 @@ namespace Bloom.State.Domain.Tests.Models
     [TestFixture]
     public class ApplicationStateModelTests
     {
+        /// <summary>
+        /// A test application state.
+        /// </summary>
+        /// <seealso cref="Bloom.State.Domain.Models.ApplicationState" />
         public class TestApplicationState : ApplicationState { }
 
         /// <summary>

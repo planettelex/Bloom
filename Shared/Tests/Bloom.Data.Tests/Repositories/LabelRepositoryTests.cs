@@ -221,6 +221,9 @@ namespace Bloom.Data.Tests.Repositories
             Assert.IsNull(ceo);
         }
 
+        /// <summary>
+        /// Tests the delete label personnel method.
+        /// </summary>
         [Test]
         public void DeleteLabelPersonnelTest()
         {

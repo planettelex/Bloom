@@ -14,32 +14,38 @@ namespace Bloom.Domain.Tests.Models
     {
         #region Test Classes
 
+        /// <summary>
+        /// A test filter class.
+        /// </summary>
+        /// <seealso cref="Bloom.Domain.Interfaces.IFilter" />
         public class TestFilter : IFilter
         {
+            /// <summary>
+            /// 13927ebd-c8bb-4e75-87d7-1fea1a96d220
+            /// </summary>
             public Guid Id { get { return Guid.Parse("13927ebd-c8bb-4e75-87d7-1fea1a96d220"); } }
 
-            public string Name { get { return "TestFilter"; } }
-
+            /// <summary>
+            /// Test Filter
+            /// </summary>
             public string Label { get { return "Test Filter"; } }
-
-            public override string ToString()
-            {
-                return "Filter Property";
-            }
         }
 
+        /// <summary>
+        /// A test order class.
+        /// </summary>
+        /// <seealso cref="Bloom.Domain.Interfaces.IOrder" />
         public class TestOrder : IOrder
         {
+            /// <summary>
+            /// 267fde69-97b1-43c7-a9ec-f488f7554dd5
+            /// </summary>
             public Guid Id { get { return Guid.Parse("267fde69-97b1-43c7-a9ec-f488f7554dd5"); } }
 
-            public string Name { get { return "TestOrder"; } }
-
+            /// <summary>
+            /// Test Order
+            /// </summary>
             public string Label { get { return "Test Order"; } }
-
-            public override string ToString()
-            {
-                return "Order Property";
-            }
         }
 
         #endregion

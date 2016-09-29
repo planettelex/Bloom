@@ -2,6 +2,9 @@
 
 namespace Bloom.Common.Tests
 {
+    /// <summary>
+    /// Tests for the Bloom process class.
+    /// </summary>
     [TestFixture]
     public class BloomProcessTests
     {

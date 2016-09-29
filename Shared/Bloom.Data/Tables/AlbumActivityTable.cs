@@ -17,7 +17,7 @@ namespace Bloom.Data.Tables
             {
                 return "CREATE TABLE album_activity (" +
                        "album_id VARCHAR(36) NOT NULL , " +
-                       "activity_id VARCHAR(36) NOT NULL ," +
+                       "activity_id VARCHAR(36) NOT NULL , " +
                        "PRIMARY KEY (album_id, activity_id) , " +
                        "FOREIGN KEY (album_id) REFERENCES album(id) , " +
                        "FOREIGN KEY (activity_id) REFERENCES activity(id) )";

@@ -11,7 +11,7 @@ namespace Bloom.State.Domain.Tests.Models
     [TestFixture]
     public class UserModelTests
     {
-        const string PersonName = "Test Person";
+        private const string PersonName = "Test Person";
 
         /// <summary>
         /// Tests the user create method.

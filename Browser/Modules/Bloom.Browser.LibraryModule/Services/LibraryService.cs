@@ -22,6 +22,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
+    /// <summary>
+    /// Service for browser library operations.
+    /// </summary>
+    /// <seealso cref="Bloom.Browser.LibraryModule.Services.ILibraryService" />
     public class LibraryService : ILibraryService
     {
         /// <summary>
@@ -45,7 +49,7 @@ namespace Bloom.Browser.LibraryModule.Services
             _eventAggregator.GetEvent<NewLibraryTabEvent>().Subscribe(NewLibraryTab);
             _eventAggregator.GetEvent<RestoreLibraryTabEvent>().Subscribe(RestoreLibraryTab);
             _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateLibraryTab);
-            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
+            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeTabView);
             _eventAggregator.GetEvent<NewAddMusicTabEvent>().Subscribe(NewAddMusicTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
@@ -60,7 +64,6 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
-
         private void SetState(object nothing)
         {
             State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
@@ -111,6 +114,8 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Creates a new library tab.
         /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
+        /// <exception cref="System.NullReferenceException">Library data source cannot be null.</exception>
         public void NewLibraryTab(Guid libraryId)
         {
             const ViewType defaultViewType = ViewType.Grid;
@@ -132,6 +137,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Restores the library tab.
         /// </summary>
         /// <param name="tab">The library tab.</param>
+        /// <exception cref="System.NullReferenceException">Library datasource cannot be null.</exception>
         public void RestoreLibraryTab(Tab tab)
         {
             if (tab == null || tab.EntityId == null)
@@ -155,6 +161,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Duplicates a library tab.
         /// </summary>
         /// <param name="tabId">The tab identifier to duplicate.</param>
+        /// <exception cref="System.NullReferenceException">Library datasource cannot be null.</exception>
         public void DuplicateLibraryTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
@@ -176,44 +183,137 @@ namespace Bloom.Browser.LibraryModule.Services
         }
 
         /// <summary>
-        /// Changes a library tab view.
+        /// Creates a new add music tab.
         /// </summary>
-        /// <param name="libraryViewTuple">The library view tab identifier and view type tuple.</param>
-        public void ChangeLibraryTabView(Tuple<Guid, ViewType> libraryViewTuple)
+        /// <param name="eventModel">The event model.</param>
+        /// <exception cref="System.NullReferenceException">Library data source cannot be null.</exception>
+        public void NewAddMusicTab(AddMusicEventModel eventModel)
         {
-            ChangeLibraryTabView(libraryViewTuple.Item1, libraryViewTuple.Item2);
+            const ViewType defaultViewType = ViewType.Grid;
+            var libraries = new List<Library>();
+            foreach (var libraryId in eventModel.LibraryIds)
+            {
+                var datasource = State.GetConnectionData(libraryId);
+                if (datasource == null)
+                    throw new NullReferenceException("Library data source cannot be null.");
+
+                var library = _libraryRepository.GetLibrary(datasource);
+                libraries.Add(library);
+            }
+
+            var tab = CreateNewAddMusicTab(libraries, defaultViewType);
+            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, defaultViewType, libraries, eventModel.Source, eventModel.Path, eventModel.CopyFiles);
+            var newMusicView = new NewMusicView(newMusicViewModel);
+            var newMusicTab = new ViewMenuTab(defaultViewType, tab, newMusicView);
+
+            _tabs.Add(newMusicTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(newMusicTab);
         }
 
         /// <summary>
-        /// Changes a library tab view.
+        /// Restores the add music tab.
+        /// </summary>
+        /// <param name="tab">The add music tab.</param>
+        /// <exception cref="System.NullReferenceException">Library datasource cannot be null.</exception>
+        public void RestoreAddMusicTab(Tab tab)
+        {
+            if (tab == null || tab.Libraries == null)
+                return;
+
+            var libraries = new List<Library>();
+            foreach (var tabLibrary in tab.Libraries)
+            {
+                var datasource = State.GetConnectionData(tabLibrary.LibraryId);
+                if (datasource == null)
+                    throw new NullReferenceException("Library datasource cannot be null.");
+
+                var library = _libraryRepository.GetLibrary(datasource);
+                libraries.Add(library);
+            }
+            var viewType = (ViewType) Enum.Parse(typeof(ViewType), tab.View);
+            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, viewType, libraries);
+            var newMusicView = new NewMusicView(newMusicViewModel);
+            var newMusicTab = new ViewMenuTab(viewType, tab, newMusicView);
+
+            _tabs.Add(newMusicTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(newMusicTab);
+        }
+
+        /// <summary>
+        /// Duplicates an add music tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
+        /// <exception cref="System.NullReferenceException">Library datasource cannot be null.</exception>
+        public void DuplicateAddMusicTab(Guid tabId)
+        {
+            var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
+            if (existingTab == null || existingTab.Tab == null || existingTab.Tab.EntityId == null)
+                return;
+
+            var libraries = new List<Library>();
+            foreach (var tabLibrary in existingTab.Tab.Libraries)
+            {
+                var datasource = State.GetConnectionData(tabLibrary.LibraryId);
+                if (datasource == null)
+                    throw new NullReferenceException("Library datasource cannot be null.");
+
+                var library = _libraryRepository.GetLibrary(datasource);
+                libraries.Add(library);
+            }
+            var tab = CreateNewAddMusicTab(libraries, existingTab.ViewType);
+            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, existingTab.ViewType, libraries);
+            var newMusicView = new NewMusicView(newMusicViewModel);
+            var newMusicTab = new ViewMenuTab(tab, newMusicView);
+
+            _tabs.Add(newMusicTab);
+            _eventAggregator.GetEvent<AddTabEvent>().Publish(newMusicTab);
+        }
+
+        /// <summary>
+        /// Changes a tab view.
+        /// </summary>
+        /// <param name="viewTuple">The view tab identifier and view type tuple.</param>
+        public void ChangeTabView(Tuple<Guid, ViewType> viewTuple)
+        {
+            ChangeTabView(viewTuple.Item1, viewTuple.Item2);
+        }
+
+        /// <summary>
+        /// Changes a tab view.
         /// </summary>
         /// <param name="tabId">The tab identifier of the view.</param>
         /// <param name="viewType">The view type to change to.</param>
-        public void ChangeLibraryTabView(Guid tabId, ViewType viewType)
+        public void ChangeTabView(Guid tabId, ViewType viewType)
         {
-            var libraryTab = _tabs.SingleOrDefault(tab => tab.TabId == tabId);
-            if (libraryTab != null)
-                libraryTab.ViewType = viewType;
+            var serviceTab = _tabs.SingleOrDefault(tab => tab.TabId == tabId);
+            if (serviceTab != null)
+                serviceTab.ViewType = viewType;
 
             var stateTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
             if (stateTab != null)
                 stateTab.View = viewType.ToString();
         }
 
-        public void NewAddMusicTab(AddMusicEventModel eventModel)
-        {
-            var stop = "stop";
-        }
-
-        private Tab CreateNewAddMusicTab()
-        {
-            return new Tab();
-        }
-
+        /// <summary>
+        /// Creates a new library tab.
+        /// </summary>
+        /// <param name="library">The library the tab pertains to.</param>
+        /// <param name="viewType">The view type.</param>
         private Tab CreateNewLibraryTab(Library library, ViewType viewType)
         {
             var libraryBuid = new Buid(library.Id, BloomEntity.Library, library.Id);
             return Tab.Create(ProcessType.Browser, State.User, libraryBuid, State.GetNextTabOrder(), TabType.Library, library.Name, viewType.ToString());
+        }
+
+        /// <summary>
+        /// Creates a new add music tab.
+        /// </summary>
+        /// <param name="libraries">The libraries the tab pertains to.</param>
+        /// <param name="viewType">The view type.</param>
+        private Tab CreateNewAddMusicTab(IEnumerable<Library> libraries, ViewType viewType)
+        {
+            var libraryIds = libraries.Select(library => library.Id).ToList();
+            return Tab.Create(ProcessType.Browser, State.User, libraryIds, State.GetNextTabOrder(), TabType.NewMusic, "New Music", viewType.ToString());
         }
     }
 }

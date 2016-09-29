@@ -73,7 +73,7 @@
     <Compile Include="Models\HolidayModelTests.cs" />
     <Compile Include="Models\LabelModelTests.cs" />
     <Compile Include="Models\LibraryModelTests.cs" />
-    <Compile Include="Models\MediaTagTests.cs" />
+    <Compile Include="Models\MediaTagModelTests.cs" />
     <Compile Include="Models\MoodModelTests.cs" />
     <Compile Include="Models\PersonModelTests.cs" />
     <Compile Include="Models\PhotoModelTests.cs" />
