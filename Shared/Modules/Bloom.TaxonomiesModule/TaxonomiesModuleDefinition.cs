@@ -5,7 +5,7 @@ using Microsoft.Practices.Prism.Regions;
 namespace Bloom.TaxonomiesModule
 {
     /// <summary>
-    /// Shared taxonomies Prism module.
+    /// Shared taxonomies module.
     /// </summary>
     [Module(ModuleName = "TaxonomiesModule")]
     public class TaxonomiesModuleDefinition : IModule

@@ -7,6 +7,7 @@ namespace Bloom.Browser.LibraryModule
     /// <summary>
     /// Browser library module.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Modularity.IModule" />
     [Module(ModuleName = "LibraryModule")]
     public class LibraryModuleDefinition : IModule
     {

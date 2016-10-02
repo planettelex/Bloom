@@ -81,7 +81,7 @@
 
                 <StackPanel Grid.Column="0">
                     <TextBlock Text="Twitter" />
-                    <TextBox Text="{Binding Path=Twitter, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" KeyUp="OnTwitterUpdated" />
+                    <TextBox Text="{Binding Path=Twitter, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" KeyUp="TwitterUpdated" />
                 </StackPanel>
             </Grid>
 
@@ -98,4 +98,5 @@
             </Grid>
         </Grid>
     </Grid>
+    
 </telerik:RadWindow>

@@ -13,8 +13,18 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.UserModule.WindowModels
 {
+    /// <summary>
+    /// Window model for NewLibraryWindow.xaml
+    /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
     public class UserProfileWindowModel : BindableBase, IDataErrorInfo
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserProfileWindowModel"/> class.
+        /// </summary>
+        /// <param name="regionManager">The region manager.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
         public UserProfileWindowModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
@@ -41,10 +51,19 @@ namespace Bloom.UserModule.WindowModels
         /// </summary>
         public ApplicationState State { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the set profile image command.
+        /// </summary>
         public ICommand SetProfileImageCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the cancel command.
+        /// </summary>
         public ICommand CancelCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the save changes command.
+        /// </summary>
         public ICommand SaveChangesCommand { get; set; }
 
         /// <summary>
@@ -62,6 +81,9 @@ namespace Bloom.UserModule.WindowModels
         }
         private bool _isValid;
 
+        /// <summary>
+        /// Gets or sets the profile image path.
+        /// </summary>
         public string ProfileImagePath
         {
             get { return _profileImagePath; }
@@ -69,6 +91,9 @@ namespace Bloom.UserModule.WindowModels
         }
         private string _profileImagePath;
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
         public string UserName
         {
             get { return _userName; }
@@ -76,6 +101,9 @@ namespace Bloom.UserModule.WindowModels
         }
         private string _userName;
 
+        /// <summary>
+        /// Gets or sets the user's birthday.
+        /// </summary>
         public DateTime? Birthday
         {
             get { return _birthday; }
@@ -83,6 +111,9 @@ namespace Bloom.UserModule.WindowModels
         }
         private DateTime? _birthday;
 
+        /// <summary>
+        /// Gets or sets the user's Twitter username.
+        /// </summary>
         public string Twitter
         {
             get { return _twitter; }
@@ -90,6 +121,11 @@ namespace Bloom.UserModule.WindowModels
         }
         private string _twitter;
 
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <param name="columnName">The name of the column.</param>
+        /// <returns>Null for no error, otherwise the error string.</returns>
         public string this[string columnName]
         {
             get
@@ -119,12 +155,17 @@ namespace Bloom.UserModule.WindowModels
                           (string.IsNullOrEmpty(ProfileImagePath) || File.Exists(ProfileImagePath));
 
                 return null;
-
             }
         }
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
         public string Error { get { return null; } }
 
+        /// <summary>
+        /// Determines whether the user profile window has changes.
+        /// </summary>
         public bool HasChanges()
         {
             if (State.User == null)
@@ -142,6 +183,9 @@ namespace Bloom.UserModule.WindowModels
                    (Birthday != null && Birthday != State.User.Birthday);
         }
 
+        /// <summary>
+        /// Saves the user profile window changes.
+        /// </summary>
         public void SaveChanges()
         {
             if (State.User == null)

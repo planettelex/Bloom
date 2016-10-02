@@ -2,7 +2,6 @@
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Bloom.TaxonomiesModule.ViewModels;
-using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.TaxonomiesModule.Views
 {
@@ -15,32 +14,40 @@ namespace Bloom.TaxonomiesModule.Views
         /// Initializes a new instance of the <see cref="TaxonomiesView" /> class.
         /// </summary>
         /// <param name="viewModel">The view model.</param>
-        /// <param name="eventAggregator">The event aggregator.</param>
-        public TaxonomiesView(TaxonomiesViewModel viewModel, IEventAggregator eventAggregator)
+        public TaxonomiesView(TaxonomiesViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
-            _eventAggregator = eventAggregator;
 
-            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(AddLibrary);
-            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(RemoveLibrary);
-            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SyncWithState);
+            ViewModel.EventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(AddLibrary);
+            ViewModel.EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(RemoveLibrary);
+            ViewModel.EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SyncWithState);
         }
-        private readonly IEventAggregator _eventAggregator;
 
-        private TaxonomiesViewModel Model { get { return (TaxonomiesViewModel) DataContext; } }
+        /// <summary>
+        /// Gets the view model.
+        /// </summary>
+        private TaxonomiesViewModel ViewModel { get { return (TaxonomiesViewModel) DataContext; } }
 
+        /// <summary>
+        /// Adds the library.
+        /// </summary>
+        /// <param name="libraryConnection">The library connection.</param>
         private void AddLibrary(LibraryConnection libraryConnection)
         {
-            var libraryViewModel = new LibraryViewModel(libraryConnection.Library, _eventAggregator);
+            var libraryViewModel = new LibraryViewModel(libraryConnection.Library, ViewModel.EventAggregator);
             TaxonomiesLibraries.Children.Insert(0, new LibraryView(libraryViewModel));
         }
 
+        /// <summary>
+        /// Removes the library.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private void RemoveLibrary(Guid libraryId)
         {
             LibraryView toRemove = null;
             foreach (LibraryView libraryView in TaxonomiesLibraries.Children)
-                if (libraryView.Model.Library.Id == libraryId)
+                if (libraryView.ViewModel.Library.Id == libraryId)
                     toRemove = libraryView;
             
             if (toRemove == null)
@@ -49,20 +56,23 @@ namespace Bloom.TaxonomiesModule.Views
             TaxonomiesLibraries.Children.Remove(toRemove);
         }
 
+        /// <summary>
+        /// Synchronizes with state data.
+        /// </summary>
         private void SyncWithState(object nothing)
         {
-            Model.SetState();
-            if (Model.State.Connections == null || Model.State.Connections.Count == 0)
-                _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
+            ViewModel.SetState();
+            if (ViewModel.State.Connections == null || ViewModel.State.Connections.Count == 0)
+                ViewModel.EventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
             else
             {
                 TaxonomiesLibraries.Children.Clear();
-                foreach (var libraryConnection in Model.State.Connections)
+                foreach (var libraryConnection in ViewModel.State.Connections)
                 {
-                    var libraryViewModel = new LibraryViewModel(libraryConnection.Library, _eventAggregator);
+                    var libraryViewModel = new LibraryViewModel(libraryConnection.Library, ViewModel.EventAggregator);
                     TaxonomiesLibraries.Children.Add(new LibraryView(libraryViewModel));
                 }
-                _eventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
+                ViewModel.EventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
             }
         }
     }

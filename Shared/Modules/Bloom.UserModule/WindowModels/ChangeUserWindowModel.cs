@@ -13,8 +13,19 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.UserModule.WindowModels
 {
+    /// <summary>
+    /// Window model for ChangeUserWindow.xaml
+    /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
     public class ChangeUserWindowModel : BindableBase, IDataErrorInfo
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChangeUserWindowModel"/> class.
+        /// </summary>
+        /// <param name="regionManager">The region manager.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="sharedUserService">The shared user service.</param>
         public ChangeUserWindowModel(IRegionManager regionManager, IEventAggregator eventAggregator, ISharedUserService sharedUserService)
         {
             _sharedUserService = sharedUserService;
@@ -84,6 +95,9 @@ namespace Bloom.UserModule.WindowModels
         }
         private bool _isValid;
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
         public string UserName
         {
             get { return _userName; }
@@ -91,33 +105,26 @@ namespace Bloom.UserModule.WindowModels
         }
         private string _userName;
 
+        /// <summary>
+        /// Gets or sets a list of potential users.
+        /// </summary>
         public ObservableCollection<User> PotentialUsers { get; set; }
 
+        /// <summary>
+        /// Gets or sets the change user command.
+        /// </summary>
         public ICommand ChangeUserCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the cancel command.
+        /// </summary>
         public ICommand CancelCommand { get; set; }
 
-        public void ChangeUser()
-        {
-            var newUser = PotentialUsers.FirstOrDefault(user => user.Name.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
-            var changeUser = false;
-            if (newUser == null)
-            {
-                var newPerson = Person.Create(UserName);
-                newUser = User.Create(newPerson);
-                _sharedUserService.AddUser(newUser);
-                changeUser = true;
-            }
-            else if (State.User == null || State.User.PersonId != newUser.PersonId)
-                changeUser = true;
-            
-            if (changeUser)
-            {
-                newUser.LastLogin = DateTime.Now;
-                EventAggregator.GetEvent<ChangeUserEvent>().Publish(newUser);
-            }
-        }
-
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <param name="columnName">The name of the column.</param>
+        /// <returns>Null for no error, otherwise the error string.</returns>
         public string this[string columnName]
         {
             get
@@ -140,6 +147,33 @@ namespace Bloom.UserModule.WindowModels
             }
         }
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
         public string Error { get { return null; } }
+
+        /// <summary>
+        /// Changes the active user.
+        /// </summary>
+        public void ChangeUser()
+        {
+            var newUser = PotentialUsers.FirstOrDefault(user => user.Name.Equals(UserName, StringComparison.CurrentCultureIgnoreCase));
+            var changeUser = false;
+            if (newUser == null)
+            {
+                var newPerson = Person.Create(UserName);
+                newUser = User.Create(newPerson);
+                _sharedUserService.AddUser(newUser);
+                changeUser = true;
+            }
+            else if (State.User == null || State.User.PersonId != newUser.PersonId)
+                changeUser = true;
+
+            if (changeUser)
+            {
+                newUser.LastLogin = DateTime.Now;
+                EventAggregator.GetEvent<ChangeUserEvent>().Publish(newUser);
+            }
+        }
     }
 }

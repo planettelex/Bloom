@@ -7,7 +7,6 @@ using Bloom.LibraryModule.WindowModels;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Win32;
 using Telerik.Windows.Controls;
 
@@ -22,13 +21,11 @@ namespace Bloom.LibraryModule.Windows
         /// Initializes a new instance of the <see cref="ConnectedLibrariesWindow" /> class.
         /// </summary>
         /// <param name="windowModel">The window model.</param>
-        /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="sharedLibraryService">The shared library service.</param>
-        public ConnectedLibrariesWindow(ConnectedLibrariesWindowModel windowModel, IEventAggregator eventAggregator, ISharedLibraryService sharedLibraryService)
+        public ConnectedLibrariesWindow(ConnectedLibrariesWindowModel windowModel, ISharedLibraryService sharedLibraryService)
         {
             InitializeComponent();
             _findFileDialog = new OpenFileDialog { Multiselect = false, DefaultExt = Common.Settings.LibraryFileExtension };
-            _eventAggregator = eventAggregator;
             _sharedLibraryService = sharedLibraryService;
             _enabledBrush = (Brush) FindResource("ControlBackgroundBrush");
             _disabledBrush = (Brush) FindResource("ControlDisabledBackgroundBrush");
@@ -43,21 +40,26 @@ namespace Bloom.LibraryModule.Windows
             InitializeBackgroundBrushes();
         }
         private readonly OpenFileDialog _findFileDialog;
-        private readonly IEventAggregator _eventAggregator;
         private readonly ISharedLibraryService _sharedLibraryService;
         private LibraryConnection _disconnectingConnection;
         private LibraryConnection _removingConnection;
         private readonly Brush _enabledBrush;
         private readonly Brush _disabledBrush;
 
-        protected ConnectedLibrariesWindowModel Model
+        /// <summary>
+        /// Gets the window model.
+        /// </summary>
+        protected ConnectedLibrariesWindowModel WindowModel
         {
             get { return (ConnectedLibrariesWindowModel) DataContext; }
         }
 
+        /// <summary>
+        /// Initializes the background brushes.
+        /// </summary>
         private void InitializeBackgroundBrushes()
         {
-            foreach (var connection in Model.LibraryConnections)
+            foreach (var connection in WindowModel.LibraryConnections)
             {
                 if (!connection.IsConnected || !File.Exists(connection.FilePath))
                     connection.BackgroundBrush = _disabledBrush;
@@ -66,50 +68,66 @@ namespace Bloom.LibraryModule.Windows
             }
         }
 
+        /// <summary>
+        /// Determines whether this window can use the connect library command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private bool CanConnectLibrary(Guid? libraryId)
         {
-            return Model.State != null;
+            return WindowModel.State != null;
         }
 
+        /// <summary>
+        /// The connect library command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private void ConnectLibrary(Guid? libraryId)
         {
             if (libraryId == null)
                 return;
 
-            var libraryToConnect = Model.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
+            var libraryToConnect = WindowModel.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
             if (libraryToConnect == null)
                 return;
 
-            libraryToConnect.IsConnected = _sharedLibraryService.ConnectLibrary(libraryToConnect, Model.State.User, true, true);
+            libraryToConnect.IsConnected = _sharedLibraryService.ConnectLibrary(libraryToConnect, WindowModel.State.User, true, true);
             libraryToConnect.SetButtonVisibilities();
             if (libraryToConnect.IsConnected)
             {
                 libraryToConnect.BackgroundBrush = _enabledBrush;
-                Model.State.AddConnection(libraryToConnect);
-                _eventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryToConnect);
-                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                WindowModel.State.AddConnection(libraryToConnect);
+                WindowModel.EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryToConnect);
+                WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             }
             else
                 libraryToConnect.BackgroundBrush = _disabledBrush;
         }
 
+        /// <summary>
+        /// Determines whether this window can use the disconnect library command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private bool CanDisconnectLibrary(Guid? libraryId)
         {
-            return Model.State != null;
+            return WindowModel.State != null;
         }
 
+        /// <summary>
+        /// The disconnect library command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private void DisconnectLibrary(Guid? libraryId)
         {
             if (libraryId == null)
                 return;
 
-            _disconnectingConnection = Model.State.GetConnection(libraryId.Value);
-            var tabbedApplicationState = Model.State as TabbedApplicationState;
+            _disconnectingConnection = WindowModel.State.GetConnection(libraryId.Value);
+            var tabbedApplicationState = WindowModel.State as TabbedApplicationState;
             if (tabbedApplicationState != null && tabbedApplicationState.HasLibraryTabs(libraryId.Value))
             {
                 var confirmText = "Are you sure you would like to disconnect the library \"" + _disconnectingConnection.LibraryName + "\"?\r\n";
                 confirmText += "If you do all tabs associated with this library will be closed.";
-                Confirm(confirmText, OnDisconnectConfirmClosed);
+                Confirm(confirmText, DisconnectConfirmClosed);
             }
             else
             {
@@ -118,18 +136,26 @@ namespace Bloom.LibraryModule.Windows
             }
         }
 
+        /// <summary>
+        /// Disconnects the library.
+        /// </summary>
         private void DisconnectLibrary()
         {
             _disconnectingConnection.Disconnect();
             _disconnectingConnection.SetButtonVisibilities();
             _disconnectingConnection.BackgroundBrush = _disabledBrush;
-            Model.State.RemoveConnection(_disconnectingConnection);
+            WindowModel.State.RemoveConnection(_disconnectingConnection);
 
-            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(_disconnectingConnection.LibraryId);
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            WindowModel.EventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(_disconnectingConnection.LibraryId);
+            WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
         }
 
-        private void OnDisconnectConfirmClosed(object sender, WindowClosedEventArgs e)
+        /// <summary>
+        /// Occurs when the disconnect confirm dialogue has closed.
+        /// </summary>
+        /// <param name="sender">The sender control.</param>
+        /// <param name="e">The <see cref="WindowClosedEventArgs"/> instance containing the event data.</param>
+        private void DisconnectConfirmClosed(object sender, WindowClosedEventArgs e)
         {
            if (e.DialogResult != null && e.DialogResult.Value)
                DisconnectLibrary();
@@ -137,17 +163,26 @@ namespace Bloom.LibraryModule.Windows
             _disconnectingConnection = null;
         }
 
+        /// <summary>
+        /// Determines whether this window can use the find library command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private bool CanFindLibrary(Guid? libraryId)
         {
-            return Model.State != null;
+            return WindowModel.State != null;
         }
 
+        /// <summary>
+        /// The find library command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
+        /// <exception cref="System.InvalidOperationException">Library connection for libraryId.Value not found in the observable collection.</exception>
         private void FindLibrary(Guid? libraryId)
         {
             if (libraryId == null)
                 return;
 
-            var lostLibraryConnection = Model.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
+            var lostLibraryConnection = WindowModel.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
             
             if (lostLibraryConnection == null)
                 throw new InvalidOperationException("Library connection for id " + libraryId.Value + " not found in the observable collection.");
@@ -161,7 +196,7 @@ namespace Bloom.LibraryModule.Windows
             if (result != null && result.Value)
             {
                 lostLibraryConnection.FilePath = _findFileDialog.FileName;
-                _sharedLibraryService.ConnectLibrary(lostLibraryConnection, Model.State.User, false, true);
+                _sharedLibraryService.ConnectLibrary(lostLibraryConnection, WindowModel.State.User, false, true);
                 if (lostLibraryConnection.LibraryId != lostLibraryConnection.Library.Id)
                 {
                     lostLibraryConnection.FilePath = brokenFilePath;
@@ -173,59 +208,84 @@ namespace Bloom.LibraryModule.Windows
                 }
                 else
                 {
-                    _sharedLibraryService.SyncLibraryOwnerAndUser(lostLibraryConnection, Model.State.User);
+                    _sharedLibraryService.SyncLibraryOwnerAndUser(lostLibraryConnection, WindowModel.State.User);
                     lostLibraryConnection.Disconnect();
                     lostLibraryConnection.SetButtonVisibilities();
-                    _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                    WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
                 }
             }
         }
 
+        /// <summary>
+        /// Determines whether this window can use the remove connection command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private bool CanRemoveConnection(Guid? libraryId)
         {
-            return Model.State != null;
+            return WindowModel.State != null;
         }
 
+        /// <summary>
+        /// The remove connection command.
+        /// </summary>
+        /// <param name="libraryId">The library identifier.</param>
         private void RemoveConnection(Guid? libraryId)
         {
             if (libraryId == null)
                 return;
 
-            _removingConnection = Model.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
+            _removingConnection = WindowModel.LibraryConnections.SingleOrDefault(library => library.LibraryId == libraryId.Value);
             if (_removingConnection == null)
                 return;
 
             var confirmText = "Are you sure you would like to permanently remove\r\nthe connection to the library: \"" + _removingConnection.LibraryName + "\"?";
-            Confirm(confirmText, OnRemoveConnectionConfirmClosed);
+            Confirm(confirmText, RemoveConnectionConfirmClosed);
         }
 
-        private void OnRemoveConnectionConfirmClosed(object sender, WindowClosedEventArgs e)
+        /// <summary>
+        /// Occurs when the remove connection confirm dialogue has closed.
+        /// </summary>
+        /// <param name="sender">The sender control.</param>
+        /// <param name="e">The <see cref="WindowClosedEventArgs"/> instance containing the event data.</param>
+        private void RemoveConnectionConfirmClosed(object sender, WindowClosedEventArgs e)
         {
             if (e.DialogResult != null && e.DialogResult.Value)
             {
-                Model.LibraryConnections.Remove(_removingConnection);
+                WindowModel.LibraryConnections.Remove(_removingConnection);
                 _sharedLibraryService.RemoveLibraryConnection(_removingConnection);
-                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             }
 
             _removingConnection = null;
         }
 
+        /// <summary>
+        /// Determines whether this window can use the close window command.
+        /// </summary>
         private bool CanCloseWindow(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The close window command.
+        /// </summary>
         private void CloseWindow(object nothing)
         {
             Close();
         }
 
+        /// <summary>
+        /// Determines whether this window can use the connect new library command.
+        /// </summary>
         private bool CanConnectNewLibrary(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The connect new library command.
+        /// </summary>
         private void ConnectNewLibrary(object nothing)
         {
             _findFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
@@ -242,16 +302,16 @@ namespace Bloom.LibraryModule.Windows
                 libraryConnection.SetButtonVisibilities();
                 libraryConnection.BackgroundBrush = libraryConnection.IsConnected ? _enabledBrush : _disabledBrush;
                 var insertAt = 0;
-                for (var i = 0; i < Model.LibraryConnections.Count; i++)
+                for (var i = 0; i < WindowModel.LibraryConnections.Count; i++)
                 {
-                    if (string.Compare(Model.LibraryConnections[i].LibraryName, libraryConnection.LibraryName, StringComparison.Ordinal) > 0)
+                    if (string.Compare(WindowModel.LibraryConnections[i].LibraryName, libraryConnection.LibraryName, StringComparison.Ordinal) > 0)
                     {
                         insertAt = i;
                         break;
                     }
                 }
-                if (!Model.LibraryConnections.Contains(libraryConnection))
-                    Model.LibraryConnections.Insert(insertAt, libraryConnection);
+                if (!WindowModel.LibraryConnections.Contains(libraryConnection))
+                    WindowModel.LibraryConnections.Insert(insertAt, libraryConnection);
             }
         }
     }

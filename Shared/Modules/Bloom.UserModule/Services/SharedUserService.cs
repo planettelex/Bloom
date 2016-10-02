@@ -9,8 +9,20 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.UserModule.Services
 {
+    /// <summary>
+    /// Service for shared user operations.
+    /// </summary>
+    /// <seealso cref="Bloom.Services.UserBaseService" />
+    /// <seealso cref="Bloom.UserModule.Services.ISharedUserService" />
     public class SharedUserService : UserBaseService, ISharedUserService
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SharedUserService"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="regionManager">The region manager.</param>
+        /// <param name="userRepository">The user repository.</param>
+        /// <param name="fileSystemService">The file system service.</param>
         public SharedUserService(IEventAggregator eventAggregator, IRegionManager regionManager, IUserRepository userRepository, IFileSystemService fileSystemService)
             : base(eventAggregator, regionManager, userRepository, fileSystemService)
         {
@@ -19,11 +31,17 @@ namespace Bloom.UserModule.Services
             EventAggregator.GetEvent<ShowUserProfileModalEvent>().Subscribe(ShowUserProfileModal);
         }
 
+        /// <summary>
+        /// Shows the change user modal window.
+        /// </summary>
         public void ShowChangeUserModal(object nothing)
         {
             ShowChangeUserModal();
         }
 
+        /// <summary>
+        /// Shows the change user modal window.
+        /// </summary>
         public void ShowChangeUserModal()
         {
             var changeUserWindowModel = new ChangeUserWindowModel(RegionManager, EventAggregator, this);
@@ -34,11 +52,17 @@ namespace Bloom.UserModule.Services
             changeUserWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Shows the user profile modal window.
+        /// </summary>
         public void ShowUserProfileModal(object nothing)
         {
             ShowUserProfileModal();
         }
 
+        /// <summary>
+        /// Shows the user profile modal window.
+        /// </summary>
         public void ShowUserProfileModal()
         {
             var userProfileWindowModel = new UserProfileWindowModel(RegionManager, EventAggregator);

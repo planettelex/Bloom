@@ -15,8 +15,22 @@ using Microsoft.Practices.Unity;
 
 namespace Bloom.LibraryModule.Services
 {
+    /// <summary>
+    /// Service for shared library operations.
+    /// </summary>
+    /// <seealso cref="Bloom.Services.LibraryBaseService" />
+    /// <seealso cref="Bloom.LibraryModule.Services.ISharedLibraryService" />
     public class SharedLibraryService : LibraryBaseService, ISharedLibraryService
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SharedLibraryService"/> class.
+        /// </summary>
+        /// <param name="container">The DI container.</param>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="regionManager">The region manager.</param>
+        /// <param name="libraryConnectionRepository">The library connection repository.</param>
+        /// <param name="libraryRepository">The library repository.</param>
+        /// <param name="userRepository">The user repository.</param>
         public SharedLibraryService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
             ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
             : base(container, eventAggregator, regionManager, libraryConnectionRepository, libraryRepository, userRepository)
@@ -25,14 +39,21 @@ namespace Bloom.LibraryModule.Services
             EventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Subscribe(ShowConnectedLibrariesModal);
         }
 
+        /// <summary>
+        /// Shows the connected libraries modal window.
+        /// </summary>
         public void ShowConnectedLibrariesModal(object nothing)
         {
             ShowConnectedLibrariesModal();
         }
 
+        /// <summary>
+        /// Shows the connected libraries modal window.
+        /// </summary>
         public void ShowConnectedLibrariesModal()
         {
-            var connectedLibrariesWindowModel = new ConnectedLibrariesWindowModel(RegionManager);
+            // ReSharper disable once UseObjectOrCollectionInitializer
+            var connectedLibrariesWindowModel = new ConnectedLibrariesWindowModel(RegionManager, EventAggregator);
             connectedLibrariesWindowModel.LibraryConnections = new ObservableCollection<LibraryConnection>();
             var allConnections = ListLibraryConnections();
             foreach (var connection in allConnections)
@@ -48,7 +69,7 @@ namespace Bloom.LibraryModule.Services
                 connection.SetButtonVisibilities();
             }
             connectedLibrariesWindowModel.LibraryConnections.AddRange(allConnections);
-            var connectedLibrariesWindow = new ConnectedLibrariesWindow(connectedLibrariesWindowModel, EventAggregator, this)
+            var connectedLibrariesWindow = new ConnectedLibrariesWindow(connectedLibrariesWindowModel, this)
             {
                 Owner = Application.Current.MainWindow
             };
