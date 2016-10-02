@@ -2,7 +2,6 @@
 using Bloom.Browser.MenuModule.ViewModels;
 using Bloom.Controls.Helpers;
 using Bloom.PubSubEvents;
-using Microsoft.Practices.Prism.PubSubEvents;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
 
@@ -17,35 +16,45 @@ namespace Bloom.Browser.MenuModule.Views
         /// Initializes a new instance of the <see cref="MenuView" /> class.
         /// </summary>
         /// <param name="viewModel">The menu view model.</param>
-        /// <param name="eventAggregator">The event aggregator.</param>
-        public MenuView(MenuViewModel viewModel, IEventAggregator eventAggregator)
+        public MenuView(MenuViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
 
-            eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetSkin);
+            ViewModel.EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetSkin);
         }
 
-        private MenuViewModel Model { get { return (MenuViewModel) DataContext; } }
+        /// <summary>
+        /// Gets the view model.
+        /// </summary>
+        private MenuViewModel ViewModel { get { return (MenuViewModel) DataContext; } }
 
+        /// <summary>
+        /// Sets the skin.
+        /// </summary>
         private void SetSkin(object nothing)
         {
-            Model.SetState();
+            ViewModel.SetState();
             // Check the current skin.
             foreach (RadMenuItem menuItem in Skins.Items)
             {
                 var skinName = (string) menuItem.CommandParameter;
-                menuItem.IsChecked = skinName.Equals(Model.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
+                menuItem.IsChecked = skinName.Equals(ViewModel.State.SkinName, StringComparison.InvariantCultureIgnoreCase);
             }
         }
 
+        /// <summary>
+        /// A menu item can fire this event to update mutually exclusive sibling option.
+        /// </summary>
+        /// <param name="sender">The sender control.</param>
+        /// <param name="e">The <see cref="RadRoutedEventArgs"/> instance containing the event data.</param>
         private void OnItemClick(object sender, RadRoutedEventArgs e)
         {
             var currentItem = e.OriginalSource as RadMenuItem;
             if (currentItem == null || !currentItem.IsCheckable || currentItem.Tag == null) 
                 return;
             
-            if ((string) currentItem.CommandParameter == Model.State.SkinName)
+            if ((string) currentItem.CommandParameter == ViewModel.State.SkinName)
             {
                 currentItem.IsChecked = true;
                 return;

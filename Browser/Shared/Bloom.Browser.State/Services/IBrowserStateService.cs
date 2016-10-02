@@ -20,8 +20,15 @@ namespace Bloom.Browser.State.Services
         /// <param name="user">The user.</param>
         BrowserState InitializeState(User user);
 
+        /// <summary>
+        /// Get the last process to access state.
+        /// </summary>
         ProcessType LastProcessToAccessState();
 
+        /// <summary>
+        /// Changes the process using state.
+        /// </summary>
+        /// <param name="processType">The process type using state.</param>
         void ChangeStateProcess(ProcessType processType);
 
         /// <summary>

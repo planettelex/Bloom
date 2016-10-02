@@ -26,6 +26,7 @@ namespace Bloom.Browser
     /// <summary>
     /// The bootstrapper initializes the application and resolves dependencies.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.UnityExtensions.UnityBootstrapper" />
     public class Bootstrapper : UnityBootstrapper
     {
         /// <summary>

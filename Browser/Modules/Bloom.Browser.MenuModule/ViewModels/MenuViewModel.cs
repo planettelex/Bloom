@@ -29,15 +29,15 @@ namespace Bloom.Browser.MenuModule.ViewModels
         {
             _skinningService = skinningService;
             _processService = processService;
-            _eventAggregator = eventAggregator;
             _regionManager = regionManager;
+            EventAggregator = eventAggregator;
 
-            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
-            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
-            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
-            _eventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
-            _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
-            _eventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
+            EventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
+            EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            EventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
+            EventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
+            EventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
+            EventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
             
             // File Menu
             CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
@@ -66,19 +66,29 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
         private readonly ISkinningService _skinningService;
         private readonly IProcessService _processService;
-        private readonly IEventAggregator _eventAggregator;
         private readonly IRegionManager _regionManager;
 
         /// <summary>
-        /// Gets the state.
+        /// Gets the event aggregator.
+        /// </summary>
+        public IEventAggregator EventAggregator { get; private set; }
+
+        /// <summary>
+        /// Gets the browser state.
         /// </summary>
         public BrowserState State { get; private set; }
 
-        public void SetState(object nothing)
+        /// <summary>
+        /// Sets the state.
+        /// </summary>
+        private void SetState(object nothing)
         {
             SetState();
         }
 
+        /// <summary>
+        /// Sets the state.
+        /// </summary>
         public void SetState()
         {
             State = (BrowserState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
@@ -88,8 +98,9 @@ namespace Bloom.Browser.MenuModule.ViewModels
             SetToggleSidebarVisibilityOption(State.SidebarVisible);
         }
 
-        #region Shared Properties
-
+        /// <summary>
+        /// Gets or sets a value indicating whether there are library connections.
+        /// </summary>
         public bool HasConnections
         {
             get { return _hasConnections; }
@@ -97,21 +108,31 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
         private bool _hasConnections;
 
-        public void CheckConnections(object unused)
+        /// <summary>
+        /// Checks the library connections.
+        /// </summary>
+        private void CheckConnections(object unused)
         {
             HasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
             if (!HasConnections)
             {
                 SetToggleSidebarVisibilityOption(false);
-                _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
+                EventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
             }
         }
 
-        public void CheckConnections(Guid unused)
+        /// <summary>
+        /// Checks the library connections.
+        /// </summary>
+        /// <param name="libraryId">A removed library identifier.</param>
+        private void CheckConnections(Guid libraryId)
         {
             CheckConnections(null);
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether there is a non-anonymous user.
+        /// </summary>
         public bool HasUser
         {
             get { return _hasUser; }
@@ -119,6 +140,9 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
         private bool _hasUser;
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
         public string UserName
         {
             get { return _userName; }
@@ -126,7 +150,10 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
         private string _userName;
 
-        public void SetUser(object nothing)
+        /// <summary>
+        /// Sets the user.
+        /// </summary>
+        private void SetUser(object nothing)
         {
             if (State == null || State.User == null || State.User.Name == null)
             {
@@ -140,6 +167,9 @@ namespace Bloom.Browser.MenuModule.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the active tab has a library associated with it.
+        /// </summary>
         public bool HasLibraryContext
         {
             get { return _hasLibraryContext; }
@@ -147,14 +177,25 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
         private bool _hasLibraryContext;
 
+        /// <summary>
+        /// Gets or sets the identifier of the library associated with the active tab.
+        /// </summary>
         public Guid LibraryContext { get; set; }
 
+        /// <summary>
+        /// Sets the library context.
+        /// </summary>
+        /// <param name="tabId">A tab identifier.</param>
         private void SetLibraryContext(Guid? tabId)
         {
             if (tabId != null)
                 SetLibraryContext(tabId.Value);
         }
 
+        /// <summary>
+        /// Sets the library context.
+        /// </summary>
+        /// <param name="tabId">A tab identifier.</param>
         private void SetLibraryContext(Guid tabId)
         {
             var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
@@ -170,8 +211,6 @@ namespace Bloom.Browser.MenuModule.ViewModels
             }
         }
 
-        #endregion
-
         #region File Menu
 
         /// <summary>
@@ -179,14 +218,20 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand CreateNewLibraryCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the create new libary command.
+        /// </summary>
         private bool CanCreateNewLibrary(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The new create new libary command.
+        /// </summary>
         private void CreateNewLibrary(object nothing)
         {
-            _eventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Publish(null);
+            EventAggregator.GetEvent<ShowCreateNewLibraryModalEvent>().Publish(null);
         }
 
         /// <summary>
@@ -194,14 +239,20 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand ManageConnectedLibrariesCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the manage connected libraries command.
+        /// </summary>
         private bool CanManageConnectedLibraries(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The manage connected libraries command.
+        /// </summary>
         private void ManageConnectedLibraries(object nothing)
         {
-            _eventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Publish(null);
+            EventAggregator.GetEvent<ShowConnectedLibrariesModalEvent>().Publish(null);
         }
 
         /// <summary>
@@ -209,14 +260,20 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand AddMusicCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the add music command.
+        /// </summary>
         private bool CanAddMusic(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The add music command.
+        /// </summary>
         private void AddMusic(object nothing)
         {
-            _eventAggregator.GetEvent<ShowAddMusicModalEvent>().Publish(null);
+            EventAggregator.GetEvent<ShowAddMusicModalEvent>().Publish(null);
         }
 
         /// <summary>
@@ -224,11 +281,17 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand ExitApplicationCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the exit application command.
+        /// </summary>
         private bool CanExitApplication(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The exit application command.
+        /// </summary>
         private void ExitApplication(object nothing)
         {
             Application.Current.Shutdown();
@@ -238,16 +301,25 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         #region Edit Menu
 
+        /// <summary>
+        /// Gets or sets the edit library properties command.
+        /// </summary>
         public ICommand EditLibraryPropertiesCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the edit library properties command.
+        /// </summary>
         private bool CanEditLibraryProperties(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The edit library properties command.
+        /// </summary>
         private void EditLibraryProperties(object nothing)
         {
-            _eventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(LibraryContext);
+            EventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(LibraryContext);
         }
 
         #endregion
@@ -259,15 +331,21 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand DuplicateTabCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the duplicate tab command.
+        /// </summary>
         private bool CanDuplicateTab(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The duplicate tab command.
+        /// </summary>
         private void DuplicateTab(object nothing)
         {
             if (State.SelectedTabId != null)
-                _eventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId.Value);
+                EventAggregator.GetEvent<DuplicateTabEvent>().Publish(State.SelectedTabId.Value);
         }
 
         /// <summary>
@@ -275,14 +353,20 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand CloseOtherTabsCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the close other tabs command.
+        /// </summary>
         private bool CanCloseOtherTabs(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The close other tabs command.
+        /// </summary>
         private void CloseOtherTabs(object nothing)
         {
-            _eventAggregator.GetEvent<CloseOtherTabsEvent>().Publish(null);
+            EventAggregator.GetEvent<CloseOtherTabsEvent>().Publish(null);
         }
 
         /// <summary>
@@ -290,14 +374,20 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand CloseAllTabsCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the close all tabs command.
+        /// </summary>
         private bool CanCloseAllTabs(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The close all tabs event.
+        /// </summary>
         private void CloseAllTabs(object nothing)
         {
-            _eventAggregator.GetEvent<CloseAllTabsEvent>().Publish(null);
+            EventAggregator.GetEvent<CloseAllTabsEvent>().Publish(null);
         }
 
         #endregion
@@ -309,11 +399,17 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand GoToPlayerCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the go to player command.
+        /// </summary>
         private bool CanGoToPlayer(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The go to player command.
+        /// </summary>
         private void GoToPlayer(object nothing)
         {
             _processService.GoToPlayerProcess();
@@ -328,11 +424,17 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand GoToAnalyticsCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the go to analytics command.
+        /// </summary>
         private bool CanGoToAnalytics(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The go to analytics command.
+        /// </summary>
         private void GoToAnalytics(object nothing)
         {
             _processService.GoToAnalyticsProcess();
@@ -342,18 +444,30 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         #region View Menu
 
+        /// <summary>
+        /// Gets or sets the open home tab command.
+        /// </summary>
         public ICommand OpenHomeTabCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the open home tab command.
+        /// </summary>
         private bool CanOpenHomeTab(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The open home tab command.
+        /// </summary>
         private void OpenHomeTab(object nothing)
         {
-            _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+            EventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
         }
 
+        /// <summary>
+        /// Gets or sets the toggle sidebar visibility option.
+        /// </summary>
         public string ToggleSidebarVisibilityOption
         {
             get { return _toggleSidebarVisibilityOption; }
@@ -361,25 +475,38 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
         private string _toggleSidebarVisibilityOption;
 
+        /// <summary>
+        /// Sets the toggle sidebar visibility option.
+        /// </summary>
+        /// <param name="isVisible">When set to <c>true</c> the sidebar is visible.</param>
         private void SetToggleSidebarVisibilityOption(bool isVisible)
         {
             ToggleSidebarVisibilityOption = isVisible ? "Hide Sidebar" : "Show Sidebar";
         }
 
+        /// <summary>
+        /// Gets or sets the toggle sidebar visibility command.
+        /// </summary>
         public ICommand ToggleSidebarVisibilityCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the toggle sidebar visibility command.
+        /// </summary>
         private bool CanToggleSidebarVisibility(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The toggle sidebar visibiity command.
+        /// </summary>
         private void ToggleSidebarVisibility(object nothing)
         {
             SetToggleSidebarVisibilityOption(!State.SidebarVisible);
             if (State.SidebarVisible)
-                _eventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
+                EventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
             else
-                _eventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
+                EventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
         }
 
         /// <summary>
@@ -387,11 +514,18 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         public ICommand SetSkinCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the set skin command.
+        /// </summary>
         private bool CanSetSkin(string skinName)
         {
             return true;
         }
 
+        /// <summary>
+        /// The set skin command.
+        /// </summary>
+        /// <param name="skinName">Name of the skin.</param>
         private void SetSkin(string skinName)
         {
             if (State.SkinName == skinName)
@@ -405,47 +539,74 @@ namespace Bloom.Browser.MenuModule.ViewModels
 
         #region Help Menu
 
+        /// <summary>
+        /// Gets or sets the open getting started tab command.
+        /// </summary>
         public ICommand OpenGettingStartedTabCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the open getting started tab event.
+        /// </summary>
         private bool CanOpenGettingStartedTab(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The open getting started tab event.
+        /// </summary>
         private void OpenGettingStartedTab(object nothing)
         {
-            _eventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
+            EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
         }
 
         #endregion
 
         #region User Menu
 
+        /// <summary>
+        /// Gets or sets the change user command.
+        /// </summary>
         public ICommand ChangeUserCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the change user command.
+        /// </summary>
         private bool CanChangeUser(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The change user command.
+        /// </summary>
         private void ChangeUser(object nothing)
         {
-            _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
+            EventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
         }
 
+        /// <summary>
+        /// Gets or sets the user profile command.
+        /// </summary>
         public ICommand UserProfileCommand { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance can use the show user profile command.
+        /// </summary>
         private bool CanShowUserProfile(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// The show user profile command.
+        /// </summary>
         private void ShowUserProfile(object nothing)
         {
             if (State.User == null)
-                _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
+                EventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
             else
-                _eventAggregator.GetEvent<ShowUserProfileModalEvent>().Publish(null);
+                EventAggregator.GetEvent<ShowUserProfileModalEvent>().Publish(null);
         }
 
         #endregion

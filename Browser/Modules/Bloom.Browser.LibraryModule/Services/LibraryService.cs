@@ -64,6 +64,10 @@ namespace Bloom.Browser.LibraryModule.Services
         /// Gets the state.
         /// </summary>
         public BrowserState State { get; private set; }
+
+        /// <summary>
+        /// Sets the browser state.
+        /// </summary>
         private void SetState(object nothing)
         {
             State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;

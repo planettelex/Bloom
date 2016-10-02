@@ -12,6 +12,8 @@ namespace Bloom.Browser.State.Services
     /// <summary>
     /// Service for managing the browser application state.
     /// </summary>
+    /// <seealso cref="Bloom.Services.TabbedStateBaseService" />
+    /// <seealso cref="Bloom.Browser.State.Services.IBrowserStateService" />
     public class BrowserStateService : TabbedStateBaseService, IBrowserStateService
     {
         /// <summary>
@@ -67,6 +69,11 @@ namespace Bloom.Browser.State.Services
             return (BrowserState) State;
         }
 
+        /// <summary>
+        /// Gets a new suite state.
+        /// </summary>
+        /// <param name="process">The process using state.</param>
+        /// <param name="accessedOn">The time that state is accessed on.</param>
         private SuiteState NewSuiteState(string process, DateTime accessedOn)
         {
             var suiteState = new SuiteState
@@ -80,6 +87,10 @@ namespace Bloom.Browser.State.Services
             return suiteState;
         }
 
+        /// <summary>
+        /// Gets a new browser state
+        /// </summary>
+        /// <param name="user">The browser user.</param>
         private BrowserState NewBrowserState(User user)
         {
             var browserState = new BrowserState();
@@ -90,6 +101,9 @@ namespace Bloom.Browser.State.Services
             return browserState;
         }
 
+        /// <summary>
+        /// Saves the state.
+        /// </summary>
         private void SaveState(object nothing)
         {
             SaveState();

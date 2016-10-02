@@ -1,7 +1,7 @@
 ﻿namespace Bloom.Browser.Common
 {
     /// <summary>
-    /// A type of view.
+    /// View types.
     /// </summary>
     public enum ViewType
     {
