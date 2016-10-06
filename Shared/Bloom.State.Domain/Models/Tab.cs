@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.Linq;
 using Bloom.Common;
 using Bloom.State.Domain.Enums;
 
@@ -178,5 +179,13 @@ namespace Bloom.State.Domain.Models
         /// Gets or sets the tab libraries for tabs that reference multiple libraries only.
         /// </summary>
         public List<TabLibrary> Libraries { get; set; }
+
+        /// <summary>
+        /// Determines whether this tab has a library context.
+        /// </summary>
+        public bool HasLibraryContext()
+        {
+            return ((LibraryId != null && LibraryId != Guid.Empty) || (Libraries != null && Libraries.Any()));
+        }
     }
 }

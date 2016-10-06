@@ -66,7 +66,7 @@ namespace Bloom.Browser
             _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(ShowSidebar);
             _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
             _eventAggregator.GetEvent<ChangeUserEvent>().Subscribe(ChangeUser);
-            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetPreferencesForUser);
+            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetupFromState);
         }
         private readonly Dictionary<Guid, RadPane> _tabs;
         private readonly IBrowserStateService _stateService;
@@ -93,23 +93,37 @@ namespace Bloom.Browser
                 return;
 
             if (State.UserId == newUser.PersonId)
-            {
-                _eventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
                 return;
+
+            _sharedUserService.AddUser(newUser);
+
+            // Persist open tabs only when switching from anonymous user.
+            var tabCount = State.Tabs == null ? 0 : State.Tabs.Count;
+            var openTabs = new Tab[tabCount];
+            if (State.UserId == User.Anonymous.PersonId && State.Tabs != null)
+            {
+                State.Tabs.CopyTo(openTabs);
+                _eventAggregator.GetEvent<CloseAllTabsEvent>().Publish(null);
             }
-            
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
-            var state = _stateService.InitializeState(newUser);
-            DataContext = state;
+            else
+                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+
+            DataContext = _stateService.InitializeState(newUser);
+
+            foreach (var tab in openTabs)
+            {
+                if (tab != null)
+                    _stateService.AddTab(Tab.Create(ProcessType.Browser, State.User, Buid.Empty, State.GetNextTabOrder(), tab.Type, tab.Header));
+            }
 
             _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
         }
 
         /// <summary>
-        /// Sets the preferences for the user.
+        /// Sets up application settings and tabs from the active state object.
         /// </summary>
-        private void SetPreferencesForUser(object nothing)
+        private void SetupFromState(object nothing)
         {
             _skinningService.SetSkin(State.SkinName);
 
@@ -124,7 +138,11 @@ namespace Bloom.Browser
                 tab.IsHidden = true;
 
             _tabs.Clear();
+
+            var selectedTabId = State.SelectedTabId;
             _stateService.RestoreTabs();
+            if (selectedTabId != null)
+                SetSelectedTab(selectedTabId.Value);
         }
 
         #endregion
@@ -140,9 +158,11 @@ namespace Bloom.Browser
             base.OnContentRendered(e);
             _loading = false;
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Publish(null);
+
+            var selectedTabId = State.SelectedTabId;
             _stateService.RestoreTabs();
-            if (State.SelectedTabId != null && _tabs.ContainsKey(State.SelectedTabId.Value))
-                Dock.ActivePane = _tabs[State.SelectedTabId.Value];
+            if (selectedTabId != null) 
+                SetSelectedTab(selectedTabId.Value);
         }
 
         /// <summary>
@@ -208,6 +228,8 @@ namespace Bloom.Browser
                 _tabs.Add(tabControl.TabId, newPane);
                 PaneGroup.Items.Add(newPane);
             }
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<TabAddedEvent>().Publish(tabControl.TabId);
         }
 
         /// <summary>
@@ -221,6 +243,9 @@ namespace Bloom.Browser
             var tab = _tabs[tabId];
             if (tab != null)
                 tab.IsHidden = true;
+
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<TabClosedEvent>().Publish(tabId);
         }
 
         /// <summary>
@@ -239,6 +264,8 @@ namespace Bloom.Browser
                     if (selectedTab != null && !Equals(selectedTab, tab))
                         tab.IsHidden = true;
                 }
+                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                _eventAggregator.GetEvent<TabsClosedEvent>().Publish(null);
             }
         }
 
@@ -251,6 +278,9 @@ namespace Bloom.Browser
 
             foreach (var tab in _tabs.Values)
                 tab.IsHidden = true;
+
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<TabsClosedEvent>().Publish(null);
         }
 
         /// <summary>
@@ -260,12 +290,17 @@ namespace Bloom.Browser
         /// <param name="e">The <see cref="ActivePangeChangedEventArgs"/> instance containing the event data.</param>
         private void ActivePaneChanged(object sender, ActivePangeChangedEventArgs e)
         {
+            if (_loading)
+                return;
+
             foreach (var valuePair in _tabs.Where(valuePair => Equals(valuePair.Value, e.NewPane)))
             {
                 State.SelectedTabId = valuePair.Key;
                 _eventAggregator.GetEvent<SelectedTabChangedEvent>().Publish(State.SelectedTabId.Value);
                 break;
             }
+
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
         }
 
         /// <summary>
@@ -275,13 +310,22 @@ namespace Bloom.Browser
         /// <param name="e">The <see cref="StateChangeEventArgs"/> instance containing the event data.</param>
         private void OnClose(object sender, StateChangeEventArgs e)
         {
+            if (_loading)
+                return;
+
             var closingTab = e.Panes.SingleOrDefault();
 
             foreach (var valuePair in _tabs)
             {
                 var match = Equals(valuePair.Value, closingTab);
                 if (match)
-                    _stateService.RemoveTab(valuePair.Key);
+                {
+                    var tabId = valuePair.Key;
+                    _stateService.RemoveTab(tabId);
+                    _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                    _eventAggregator.GetEvent<TabClosedEvent>().Publish(tabId);
+                    break;
+                }
             }
         }
 
@@ -318,7 +362,7 @@ namespace Bloom.Browser
             var menuItem = (RadMenuItem) sender;
             var tabId = (Guid) menuItem.Tag;
             var viewType = (ViewType) Enum.Parse(typeof(ViewType), menuItem.Name);
-            _eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Publish(new Tuple<Guid, ViewType>(tabId, viewType));
+            _eventAggregator.GetEvent<ChangeTabViewEvent>().Publish(new Tuple<Guid, ViewType>(tabId, viewType));
         }
 
         /// <summary>
@@ -348,6 +392,30 @@ namespace Bloom.Browser
                     selectedTab = tab;
             }
             return selectedTab;
+        }
+
+        /// <summary>
+        /// Gets the tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier.</param>
+        private RadPane GetTab(Guid tabId)
+        {
+            RadPane selectedTab = null;
+            foreach (RadPane tab in PaneGroup.Items)
+            {
+                if (((Guid) tab.Tag) == tabId)
+                    selectedTab = tab;
+            }
+            return selectedTab;
+        }
+
+        /// <summary>
+        /// Sets the selected tab.
+        /// </summary>
+        private void SetSelectedTab(Guid tabId)
+        {
+            var selectedTab = GetTab(tabId);
+            Dock.ActivePane = selectedTab;
         }
 
         /// <summary>
@@ -387,6 +455,7 @@ namespace Bloom.Browser
         private void SidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
         {
             State.ResetSidebarWidth();
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
         }
 
         /// <summary>
@@ -396,6 +465,7 @@ namespace Bloom.Browser
         {
             State.SidebarVisible = true;
             SidebarPane.IsHidden = false;
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Publish(true);
         }
 
@@ -406,6 +476,7 @@ namespace Bloom.Browser
         {
             State.SidebarVisible = false;
             SidebarPane.IsHidden = true;
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Publish(false);
         }
 
@@ -415,8 +486,7 @@ namespace Bloom.Browser
         /// <param name="libraryId">The library identifier.</param>
         public void CheckConnections(Guid libraryId)
         {
-            var hasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
-            if (!hasConnections)
+            if (State == null || !State.HasConnections())
                 HideSidebar(null);
         }
 

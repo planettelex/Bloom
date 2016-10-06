@@ -62,9 +62,7 @@ namespace Bloom.TaxonomiesModule.Views
         private void SyncWithState(object nothing)
         {
             ViewModel.SetState();
-            if (ViewModel.State.Connections == null || ViewModel.State.Connections.Count == 0)
-                ViewModel.EventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
-            else
+            if (ViewModel.State.HasConnections())
             {
                 TaxonomiesLibraries.Children.Clear();
                 foreach (var libraryConnection in ViewModel.State.Connections)
@@ -74,6 +72,8 @@ namespace Bloom.TaxonomiesModule.Views
                 }
                 ViewModel.EventAggregator.GetEvent<ShowSidebarEvent>().Publish(null);
             }
+            else
+                ViewModel.EventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
         }
     }
 }

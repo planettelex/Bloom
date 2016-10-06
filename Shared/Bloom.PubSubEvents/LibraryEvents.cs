@@ -19,5 +19,5 @@ namespace Bloom.PubSubEvents
     /// This event is published with a libary identifier to show a new library properties modal.
     /// </summary>
     /// <seealso cref="Guid" />
-    public class ShowLibraryPropertiesModalEvent : PubSubEvent<Guid> { }
+    public class ShowLibraryPropertiesModalEvent : PubSubEvent<object> { }
 }

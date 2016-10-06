@@ -8,7 +8,7 @@
              Style="{DynamicResource RadWindowStyle}"
              Width="500" MaxWidth="500" MinWidth="500" 
              Height="210" MaxHeight="210" MinHeight="210"
-             Header="Edit Profile">
+             Header="{Binding Path=Header}">
     
     <telerik:RadWindow.Resources>
         <ResourceDictionary>
@@ -94,7 +94,7 @@
                 </Grid.ColumnDefinitions>
 
                 <telerik:RadButton Grid.Column="1" Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" />
-                <telerik:RadButton Grid.Column="3" Content="Save Changes" Command="{Binding Path=SaveChangesCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
+                <telerik:RadButton Grid.Column="3" Content="{Binding Path=SaveButtonText}" Command="{Binding Path=SaveChangesCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
             </Grid>
         </Grid>
     </Grid>

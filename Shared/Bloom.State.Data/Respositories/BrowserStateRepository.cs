@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Linq;
+﻿using System.Data.Linq;
 using System.Linq;
 using Bloom.Common;
 using Bloom.Data.Interfaces;
@@ -74,10 +73,28 @@ namespace Bloom.State.Data.Respositories
         /// <param name="browserState">The browser state.</param>
         public void AddBrowserState(BrowserState browserState)
         {
-            if (!_dataSource.IsConnected() || browserState == null || browserState.User == null || browserState.UserId == Guid.Empty || BrowserStateExists(browserState.User))
+            if (!_dataSource.IsConnected() || browserState == null || browserState.User == null || BrowserStateExists(browserState.User))
                 return;
 
             BrowserStateTable.InsertOnSubmit(browserState);
+        }
+
+        /// <summary>
+        /// Deletes the anonymous state data.
+        /// </summary>
+        public void DeleteAnonymousBrowserState()
+        {
+            if (!_dataSource.IsConnected())
+                return;
+
+            var stateQuery =
+                from state in BrowserStateTable
+                where state.UserId == User.Anonymous.PersonId
+                select state;
+
+            var browserState = stateQuery.SingleOrDefault();
+            if (browserState != null)
+                BrowserStateTable.DeleteOnSubmit(browserState);
         }
     }
 }

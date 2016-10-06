@@ -15,10 +15,15 @@ namespace Bloom.Browser.State.Services
         void ConnectDataSource();        
 
         /// <summary>
-        /// Initializes the browser application state.
+        /// Initializes the browser application state for a given user.
         /// </summary>
         /// <param name="user">The user.</param>
         BrowserState InitializeState(User user);
+
+        /// <summary>
+        /// Removes the anonymous browser state if the current user isn't the anonymous user.
+        /// </summary>
+        void RemoveAnonymousState();
 
         /// <summary>
         /// Get the last process to access state.

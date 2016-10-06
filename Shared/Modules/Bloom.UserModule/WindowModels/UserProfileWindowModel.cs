@@ -30,15 +30,21 @@ namespace Bloom.UserModule.WindowModels
             EventAggregator = eventAggregator;
             State = (ApplicationState) regionManager.Regions[Settings.MenuRegion].Context;
 
-            if (State.User != null)
+            if (State.User != null && State.User.PersonId != User.Anonymous.PersonId)
             {
+                Header = "Edit Profile";
+                SaveButtonText = "Save Changes";
                 ProfileImagePath = State.User.ProfileImagePath;
                 UserName = State.User.Name;
                 Birthday = State.User.Birthday;
                 Twitter = State.User.Twitter ?? "@";
             }
             else
+            {
+                Header = "New User";
+                SaveButtonText = "Save New User";
                 Twitter = "@";
+            }
         }
 
         /// <summary>
@@ -70,6 +76,26 @@ namespace Bloom.UserModule.WindowModels
         /// Gets or sets a value indicating whether this instance is loading.
         /// </summary>
         public bool IsLoading { get; set; }
+
+        /// <summary>
+        /// Gets or sets the header.
+        /// </summary>
+        public string Header
+        {
+            get { return _header; }
+            set { SetProperty(ref _header, value); }
+        }
+        private string _header;
+
+        /// <summary>
+        /// Gets or sets the save button text.
+        /// </summary>
+        public string SaveButtonText
+        {
+            get { return _saveButtonText; }
+            set { SetProperty(ref _saveButtonText, value); }
+        }
+        private string _saveButtonText;
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is valid.
@@ -189,15 +215,27 @@ namespace Bloom.UserModule.WindowModels
         public void SaveChanges()
         {
             if (State.User == null)
-                State.User = User.Create(Person.Create(UserName));
+                State.User = User.Anonymous;
 
-            State.User.Name = UserName;
-            State.User.ProfileImagePath = ProfileImagePath;
-            State.User.Birthday = Birthday;
-            State.User.Twitter = Twitter == "@" ? null : Twitter;
+            if (State.User.PersonId == User.Anonymous.PersonId)
+            {
+                var newUser = User.Create(Person.Create(UserName));
+                newUser.ProfileImagePath = ProfileImagePath;
+                newUser.Birthday = Birthday;
+                newUser.Twitter = Twitter == "@" ? null : Twitter;
 
-            EventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
-            EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                EventAggregator.GetEvent<ChangeUserEvent>().Publish(newUser);
+            }
+            else
+            {
+                State.User.Name = UserName;
+                State.User.ProfileImagePath = ProfileImagePath;
+                State.User.Birthday = Birthday;
+                State.User.Twitter = Twitter == "@" ? null : Twitter;
+
+                EventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
+                EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            }
         }
     }
 }

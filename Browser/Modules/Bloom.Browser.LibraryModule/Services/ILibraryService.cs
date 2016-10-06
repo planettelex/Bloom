@@ -1,12 +1,12 @@
 ﻿using System;
 using Bloom.Browser.Common;
-using Bloom.Browser.PubSubEvents.EventModels;
+using Bloom.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
     /// <summary>
-    /// Service for browser library operations.
+    /// Service interface for browser library operations.
     /// </summary>
     public interface ILibraryService
     {

@@ -36,6 +36,14 @@ namespace Bloom.State.Domain.Models
         }
 
         /// <summary>
+        /// Determines whether this instance has any library connections.
+        /// </summary>
+        public bool HasConnections()
+        {
+            return Connections != null && Connections.Any();
+        }
+
+        /// <summary>
         /// Gets the connection.
         /// </summary>
         /// <param name="libraryId">The library identifier.</param>

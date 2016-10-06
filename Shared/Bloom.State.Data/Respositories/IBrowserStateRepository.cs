@@ -24,5 +24,10 @@ namespace Bloom.State.Data.Respositories
         /// </summary>
         /// <param name="browserState">The browser state.</param>
         void AddBrowserState(BrowserState browserState);
+
+        /// <summary>
+        /// Deletes the anonymous state data.
+        /// </summary>
+        void DeleteAnonymousBrowserState();
     }
 }

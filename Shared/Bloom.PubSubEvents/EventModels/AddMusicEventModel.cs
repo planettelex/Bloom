@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Bloom.Domain.Enums;
 
-namespace Bloom.Browser.PubSubEvents.EventModels
+namespace Bloom.PubSubEvents.EventModels
 {
     /// <summary>
     /// Event model for adding new music.

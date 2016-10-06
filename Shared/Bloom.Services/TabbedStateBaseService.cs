@@ -63,7 +63,7 @@ namespace Bloom.Services
         /// <param name="tabId">The tab identifier.</param>
         public void RemoveTab(Guid tabId)
         {
-            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
+            if (State == null || !State.HasTabs())
                 return;
 
             var tab = State.Tabs.SingleOrDefault(t => t.Id == tabId);
@@ -81,7 +81,7 @@ namespace Bloom.Services
         /// </summary>
         public void RemoveAllTabs()
         {
-            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
+            if (State == null || !State.HasTabs())
                 return;
 
             foreach (var tab in State.Tabs)
@@ -96,7 +96,7 @@ namespace Bloom.Services
         /// <param name="tabId">The tab identifier.</param>
         public void RemoveAllTabsExcept(Guid tabId)
         {
-            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
+            if (State == null || !State.HasTabs())
                 return;
 
             var exemptTab = State.Tabs.SingleOrDefault(t => t.Id == tabId);
@@ -119,10 +119,12 @@ namespace Bloom.Services
         /// <param name="libraryId">The library identifier.</param>
         public void CloseLibraryTabs(Guid libraryId)
         {
-            if (State == null || State.Tabs == null || State.Tabs.Count == 0)
+            if (State == null || !State.HasTabs())
                 return;
 
-            var libraryTabs = State.Tabs.Where(tab => tab.LibraryId == libraryId).ToList();
+            var libraryTabs = State.Tabs.Where(tab => tab.LibraryId == libraryId || 
+                (tab.Libraries != null && tab.Libraries.Exists(tabLibrary => tabLibrary.LibraryId == libraryId))).ToList();
+
             foreach (var tab in libraryTabs)
                 EventAggregator.GetEvent<CloseTabEvent>().Publish(tab.Id);
         }
@@ -134,22 +136,49 @@ namespace Bloom.Services
         {
             if (State == null)
                 return;
-            
+
             if (State.User == null)
-                EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
-            else if (State.Tabs == null || State.Tabs.Count == 0)
             {
-                if (State.Connections == null || State.Connections.Count == 0)
-                    EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
-                else
-                    EventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+                State.User = User.Anonymous;
+                EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
             }
-            else
+            else if (!State.HasTabs())
+            {
+                if (State.HasConnections())
+                    EventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
+                else
+                    EventAggregator.GetEvent<NewGettingStartedTabEvent>().Publish(null);
+            }
+            else // Restore state tabs
             {
                 foreach (var tab in State.Tabs)
                 {
-                    // Only open tabs for connected libraries, except home and getting started tabs which doesn't require one.
-                    if (tab.Type == TabType.GettingStarted || tab.Type == TabType.Home || (tab.LibraryId != null && State.IsConnected(tab.LibraryId.Value)))
+                    // Tabs that don't require any connections.
+                    if (tab.Type == TabType.GettingStarted)
+                    {
+                        switch (tab.Type)
+                        {
+                            case TabType.GettingStarted:
+                                EventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Publish(tab);
+                                break;
+                        }
+                    }
+                    // Tabs that require any connection. 
+                    else if ((tab.Type == TabType.Home || tab.Type == TabType.NewMusic) 
+                        && State.HasConnections()) 
+                    {
+                        switch (tab.Type)
+                        {
+                            case TabType.Home:
+                                EventAggregator.GetEvent<RestoreHomeTabEvent>().Publish(tab);
+                                break;
+                            case TabType.NewMusic:
+                                EventAggregator.GetEvent<RestoreAddMusicTabEvent>().Publish(tab);
+                                break;
+                        }
+                    }
+                    // Tabs that reference a library entity.
+                    else if (tab.LibraryId != null && State.IsConnected(tab.LibraryId.Value))
                     {
                         switch (tab.Type)
                         {
@@ -158,9 +187,6 @@ namespace Bloom.Services
                                 break;
                             case TabType.Artist:
                                 EventAggregator.GetEvent<RestoreArtistTabEvent>().Publish(tab);
-                                break;
-                            case TabType.Home:
-                                EventAggregator.GetEvent<RestoreHomeTabEvent>().Publish(tab);
                                 break;
                             case TabType.Library:
                                 EventAggregator.GetEvent<RestoreLibraryTabEvent>().Publish(tab);
@@ -173,9 +199,6 @@ namespace Bloom.Services
                                 break;
                             case TabType.Song:
                                 EventAggregator.GetEvent<RestoreSongTabEvent>().Publish(tab);
-                                break;
-                            case TabType.GettingStarted:
-                                EventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Publish(tab);
                                 break;
                         }
                     }

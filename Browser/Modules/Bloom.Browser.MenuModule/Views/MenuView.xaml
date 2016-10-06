@@ -35,9 +35,9 @@
                     <telerik:RadMenuItem Header="Preferences..." />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Browser">
-                    <telerik:RadMenuItem Header="Duplicate Tab" Command="{Binding Path=DuplicateTabCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
-                    <telerik:RadMenuItem Header="Close Other Tabs" Command="{Binding Path=CloseOtherTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
-                    <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=State.HasTabs}" />
+                    <telerik:RadMenuItem Header="Duplicate Tab" Command="{Binding Path=DuplicateTabCommand}" IsEnabled="{Binding Path=HasTabs}" />
+                    <telerik:RadMenuItem Header="Close Other Tabs" Command="{Binding Path=CloseOtherTabsCommand}" IsEnabled="{Binding Path=HasMultipleTabs}" />
+                    <telerik:RadMenuItem Header="Close All Tabs" Command="{Binding Path=CloseAllTabsCommand}" IsEnabled="{Binding Path=HasTabs}" />
                 </telerik:RadMenuItem>
                 <telerik:RadMenuItem Header="Player">
                     <telerik:RadMenuItem Header="Open Player" Command="{Binding Path=GoToPlayerCommand}" />
@@ -73,9 +73,12 @@
                     <telerik:RadMenuItem.Icon>
                         <Image Source="{DynamicResource ProfileMenuIcon}" Style="{DynamicResource ProfileMenuIconStyle}" />
                     </telerik:RadMenuItem.Icon>
-                    <telerik:RadMenuGroupItem>
+                    <telerik:RadMenuGroupItem Visibility="{Binding Path=NewUserVisibility}">
+                        <telerik:RadMenuItem Header="New User" Command="{Binding UserProfileCommand}" Background="{DynamicResource MenuBackgroundBrush}" />
+                    </telerik:RadMenuGroupItem>
+                    <telerik:RadMenuGroupItem Visibility="{Binding Path=ChangeUserVisibility}">
                         <telerik:RadMenuItem Header="{Binding Path=UserName}" Command="{Binding UserProfileCommand}" Background="{DynamicResource MenuBackgroundBrush}" />
-                        <telerik:RadMenuItem Header="Change User" Command="{Binding ChangeUserCommand}" Background="{DynamicResource MenuBackgroundBrush}" IsEnabled="{Binding Path=HasUser}" />
+                        <telerik:RadMenuItem Header="Change User" Command="{Binding ChangeUserCommand}" Background="{DynamicResource MenuBackgroundBrush}" />
                     </telerik:RadMenuGroupItem>
                 </telerik:RadMenuItem>
             </telerik:RadMenu>

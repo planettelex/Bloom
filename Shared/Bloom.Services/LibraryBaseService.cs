@@ -197,19 +197,14 @@ namespace Bloom.Services
                 if (setLibrary)
                     libraryConnection.Library = _libraryRepository.GetLibrary(libraryConnection.DataSource);
 
-                var userCreated = false;
-                if (user == null && libraryConnection.Library != null)
+                if ((user == null || user.PersonId == User.Anonymous.PersonId) && libraryConnection.Library != null)
                 {
                     user = User.Create(libraryConnection.Library.Owner);
-                    ApplicationState.SetUser(user);
-                    userCreated = true;
+                    EventAggregator.GetEvent<ChangeUserEvent>().Publish(user);
                 }
 
                 if (user == null)
                     throw new NullReferenceException("User cannot be null.");
-
-                if (userCreated)
-                    EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
 
                 if (timestamp)
                 {

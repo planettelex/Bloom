@@ -3,6 +3,9 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.HomeModule.Services
 {
+    /// <summary>
+    /// Service interface for browser home and getting started page operations.
+    /// </summary>
     public interface IHomeService
     {
         /// <summary>
@@ -17,12 +20,6 @@ namespace Bloom.Browser.HomeModule.Services
         void RestoreHomeTab(Tab tab);
 
         /// <summary>
-        /// Duplicates the home tab.
-        /// </summary>
-        /// <param name="tabId">The tab identifier.</param>
-        void DuplicateHomeTab(Guid tabId);
-
-        /// <summary>
         /// Creates a new getting started tab.
         /// </summary>
         void NewGettingStartedTab();
@@ -30,13 +27,13 @@ namespace Bloom.Browser.HomeModule.Services
         /// <summary>
         /// Restores the getting started tab.
         /// </summary>
-        /// <param name="tab">The tab.</param>
+        /// <param name="tab">The getting started tab.</param>
         void RestoreGettingStartedTab(Tab tab);
 
         /// <summary>
-        /// Duplicates the getting started tab.
+        /// Duplicates the selected tab.
         /// </summary>
-        /// <param name="tabId">The tab identifier.</param>
-        void DuplicateGettingStartedTab(Guid tabId);
+        /// <param name="selectedTabId">The selected tab identifier.</param>
+        void DuplicateSelectedTab(Guid selectedTabId);
     }
 }

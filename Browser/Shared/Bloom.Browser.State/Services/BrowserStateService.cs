@@ -38,35 +38,52 @@ namespace Bloom.Browser.State.Services
             _browserStateRepository = browserStateRepository;
             
             EventAggregator.GetEvent<SaveStateEvent>().Subscribe(SaveState);
+            EventAggregator.GetEvent<UserChangedEvent>().Subscribe(RemoveAnonymousState);
             EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CloseLibraryTabs);
         }
         private readonly IBrowserStateRepository _browserStateRepository;
         private readonly ISharedLibraryService _sharedLibraryService;
 
         /// <summary>
-        /// Initializes the browser application state.
+        /// Initializes the browser application state for a given user.
         /// </summary>
         /// <param name="user">The user.</param>
-        public BrowserState InitializeState(User user)
+        public BrowserState  InitializeState(User user)
         {
+            if (user == null)
+                user = User.Anonymous;
+
             State = _browserStateRepository.GetBrowserState(user) ?? NewBrowserState(user);
-            var process = ((BrowserState)State).ProcessName;
+            var process = ((BrowserState) State).ProcessName;
             var now = DateTime.Now;
             SuiteState = SuiteStateRepository.GetSuiteState() ?? NewSuiteState(process, now);
             SuiteState.LastProcessAccess = process;
             SuiteState.ProcessAccessedOn = now;
-
-            if (State.User == null) 
-                return (BrowserState) State;
-
             State.User.LastLogin = DateTime.Now;
-            if (State.Connections == null || State.Connections.Count <= 0)
-                return (BrowserState) State;
+            
+            if (State.HasConnections())
+                _sharedLibraryService.ConnectLibraries(State.Connections, user, false, true);
 
-            _sharedLibraryService.ConnectLibraries(State.Connections, user, false, true);
             SaveState();
 
             return (BrowserState) State;
+        }
+
+        /// <summary>
+        /// Removes the anonymous browser state if the current user isn't the anonymous user.
+        /// </summary>
+        private void RemoveAnonymousState(object nothing)
+        {
+            RemoveAnonymousState();
+        }
+
+        /// <summary>
+        /// Removes the anonymous browser state if the current user isn't the anonymous user.
+        /// </summary>
+        public void RemoveAnonymousState()
+        {
+            if (State.User.PersonId != User.Anonymous.PersonId)
+                _browserStateRepository.DeleteAnonymousBrowserState();
         }
 
         /// <summary>
@@ -93,12 +110,14 @@ namespace Bloom.Browser.State.Services
         /// <param name="user">The browser user.</param>
         private BrowserState NewBrowserState(User user)
         {
-            var browserState = new BrowserState();
-            browserState.SetUser(user);
-            browserState.Connections = LibraryConnectionRepository.ListLibraryConnections(true);
-            _browserStateRepository.AddBrowserState(browserState);
+            var existingBrowserState = (BrowserState) State;
+            var newBrowserState = new BrowserState();
+            newBrowserState.SetUser(user);
+            newBrowserState.Connections = LibraryConnectionRepository.ListLibraryConnections(true);
+            newBrowserState.SidebarVisible = (existingBrowserState != null && existingBrowserState.SidebarVisible) && newBrowserState.HasConnections();
+            _browserStateRepository.AddBrowserState(newBrowserState);
 
-            return browserState;
+            return newBrowserState;
         }
 
         /// <summary>

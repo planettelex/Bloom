@@ -60,7 +60,7 @@ namespace Bloom.Services
         /// Sets the application state in the menu region context.
         /// </summary>
         /// <param name="nothing">Unused object.</param>
-        private void SetState(object nothing = null)
+        private void SetState(object nothing)
         {
             ApplicationState = (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context;
         }

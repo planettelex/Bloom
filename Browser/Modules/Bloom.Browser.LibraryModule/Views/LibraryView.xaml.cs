@@ -22,7 +22,7 @@ namespace Bloom.Browser.LibraryModule.Views
             DataContext = viewModel;
             ShowView(viewModel.ViewType);
 
-            eventAggregator.GetEvent<ChangeLibraryTabViewEvent>().Subscribe(ChangeLibraryTabView);
+            eventAggregator.GetEvent<ChangeTabViewEvent>().Subscribe(ChangeLibraryTabView);
         }
 
         private LibraryViewModel ViewModel

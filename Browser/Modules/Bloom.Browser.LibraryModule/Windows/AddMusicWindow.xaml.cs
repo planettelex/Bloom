@@ -4,9 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using Bloom.Browser.LibraryModule.WindowModels;
-using Bloom.Browser.PubSubEvents;
-using Bloom.Browser.PubSubEvents.EventModels;
 using Bloom.Domain.Enums;
+using Bloom.PubSubEvents;
+using Bloom.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.Commands;
 

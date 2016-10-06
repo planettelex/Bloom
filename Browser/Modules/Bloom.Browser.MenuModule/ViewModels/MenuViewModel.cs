@@ -38,6 +38,9 @@ namespace Bloom.Browser.MenuModule.ViewModels
             EventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
             EventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
             EventAggregator.GetEvent<SelectedTabChangedEvent>().Subscribe(SetLibraryContext);
+            EventAggregator.GetEvent<TabAddedEvent>().Subscribe(SetHasTabs);
+            EventAggregator.GetEvent<TabClosedEvent>().Subscribe(SetHasTabs);
+            EventAggregator.GetEvent<TabsClosedEvent>().Subscribe(SetHasTabs);
             
             // File Menu
             CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
@@ -94,6 +97,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
             State = (BrowserState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
             CheckConnections(null);
             SetUser(null);
+            SetHasTabs();
             SetLibraryContext(State.SelectedTabId);
             SetToggleSidebarVisibilityOption(State.SidebarVisible);
         }
@@ -113,7 +117,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         private void CheckConnections(object unused)
         {
-            HasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+            HasConnections = State != null && State.HasConnections();
             if (!HasConnections)
             {
                 SetToggleSidebarVisibilityOption(false);
@@ -131,14 +135,24 @@ namespace Bloom.Browser.MenuModule.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether there is a non-anonymous user.
+        /// Gets or sets a value indicating whether the change user menu option visibility.
         /// </summary>
-        public bool HasUser
+        public Visibility ChangeUserVisibility
         {
-            get { return _hasUser; }
-            set { SetProperty(ref _hasUser, value); }
+            get { return _changeUserVisibility; }
+            set { SetProperty(ref _changeUserVisibility, value); }
         }
-        private bool _hasUser;
+        private Visibility _changeUserVisibility;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the new user menu option visibility.
+        /// </summary>
+        public Visibility NewUserVisibility
+        {
+            get { return _newUserVisibility; }
+            set { SetProperty(ref _newUserVisibility, value); }
+        }
+        private Visibility _newUserVisibility;
 
         /// <summary>
         /// Gets or sets the name of the user.
@@ -155,15 +169,16 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         private void SetUser(object nothing)
         {
-            if (State == null || State.User == null || State.User.Name == null)
+            if (State == null || State.User == null || State.User.Name == null || State.UserId == User.Anonymous.PersonId)
             {
-                UserName = "Login";
-                HasUser = false;
+                ChangeUserVisibility = Visibility.Collapsed;
+                NewUserVisibility = Visibility.Visible;
             }
             else
             {
                 UserName = State.User.Name;
-                HasUser = true;
+                ChangeUserVisibility = Visibility.Visible;
+                NewUserVisibility = Visibility.Collapsed;
             }
         }
 
@@ -176,11 +191,6 @@ namespace Bloom.Browser.MenuModule.ViewModels
             set { SetProperty(ref _hasLibraryContext, value); }
         }
         private bool _hasLibraryContext;
-
-        /// <summary>
-        /// Gets or sets the identifier of the library associated with the active tab.
-        /// </summary>
-        public Guid LibraryContext { get; set; }
 
         /// <summary>
         /// Sets the library context.
@@ -198,16 +208,66 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// <param name="tabId">A tab identifier.</param>
         private void SetLibraryContext(Guid tabId)
         {
-            var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
-            if (selectedTab == null || selectedTab.LibraryId == null)
-            {
-                LibraryContext = Guid.Empty;
+            if (State.Tabs == null)
                 HasLibraryContext = false;
+            else
+            {
+                var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
+                HasLibraryContext = (selectedTab != null && selectedTab.HasLibraryContext());
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there are any tabs.
+        /// </summary>
+        public bool HasTabs
+        {
+            get { return _hasTabs; }
+            set { SetProperty(ref _hasTabs, value); }
+        }
+        private bool _hasTabs;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there are multiple tabs.
+        /// </summary>
+        public bool HasMultipleTabs
+        {
+            get { return _hasMulipleTabs; }
+            set { SetProperty(ref _hasMulipleTabs, value); }
+        }
+        private bool _hasMulipleTabs;
+
+        /// <summary>
+        /// Sets the tab indicator properties.
+        /// </summary>
+        /// <param name="tabId">A tab identifier that has been added or removed.</param>
+        private void SetHasTabs(Guid tabId)
+        {
+            SetHasTabs();
+        }
+
+        /// <summary>
+        /// Sets the tab indicator properties.
+        /// </summary>
+        private void SetHasTabs(object nothing)
+        {
+            SetHasTabs();
+        }
+
+        /// <summary>
+        /// Sets the tab indicator properties.
+        /// </summary>
+        private void SetHasTabs()
+        {
+            if (State == null || !State.HasTabs())
+            {
+                HasTabs = false;
+                HasMultipleTabs = false;
             }
             else
             {
-                LibraryContext = selectedTab.LibraryId.Value;
-                HasLibraryContext = true;
+                HasTabs = true;
+                HasMultipleTabs = State.Tabs.Count > 1;
             }
         }
 
@@ -319,7 +379,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         private void EditLibraryProperties(object nothing)
         {
-            EventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(LibraryContext);
+            EventAggregator.GetEvent<ShowLibraryPropertiesModalEvent>().Publish(null);
         }
 
         #endregion

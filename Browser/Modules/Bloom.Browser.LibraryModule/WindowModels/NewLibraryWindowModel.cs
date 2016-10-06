@@ -35,7 +35,7 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             var potentialOwners = _sharedUserService.ListUsers();
             State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
 
-            if (State.User != null)
+            if (State.User != null && State.UserId != User.Anonymous.PersonId)
                 OwnerName = State.User.Name;
 
             FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
@@ -146,12 +146,9 @@ namespace Bloom.Browser.LibraryModule.WindowModels
             else
                 owner = ownerUser.AsPerson();
 
-            // If state user is null, set it to the owner.
-            if (State.User == null)
-            {
-                State.SetUser(ownerUser);
-                EventAggregator.GetEvent<UserChangedEvent>().Publish(null);
-            } 
+            // If state user is null or anonymous, set it to the owner.
+            if (State.User == null || State.UserId ==  User.Anonymous.PersonId)
+                EventAggregator.GetEvent<ChangeUserEvent>().Publish(ownerUser); 
 
             return owner;
         }
@@ -168,8 +165,6 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                 if (IsLoading)
                     return null;
 
-                var filePath = FolderPath + "\\" + LibraryName + Bloom.Common.Settings.LibraryFileExtension;
-
                 if (columnName == "FolderPath")
                 {
                     if (string.IsNullOrEmpty(FolderPath))
@@ -181,6 +176,8 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                     LibraryName += " ";
                     LibraryName = LibraryName.Trim();
                 }
+                var libraryFolderPath = FolderPath + "\\" + LibraryName;
+                var filePath = libraryFolderPath + "\\" + LibraryName + Bloom.Common.Settings.LibraryFileExtension;
                 if (columnName == "LibraryName")
                 {
                     if (string.IsNullOrEmpty(LibraryName))

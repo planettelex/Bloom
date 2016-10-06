@@ -20,7 +20,7 @@ namespace Bloom.State.Domain.Models
         /// <returns>The next tab order.</returns>
         public int GetNextTabOrder()
         {
-            if (Tabs == null || Tabs.Count == 0)
+            if (!HasTabs())
                 return 1;
 
             var tabs = Tabs.OrderBy(tab => tab.Order).ToList();
@@ -33,11 +33,20 @@ namespace Bloom.State.Domain.Models
         /// </summary>
         public void CondenseTabOrders()
         {
-            if (Tabs == null || Tabs.Count == 0)
+            if (!HasTabs())
                 return;
 
             for (var i = 0; i < Tabs.Count; i++)
                 Tabs[i].Order = i + 1;
+        }
+
+        /// <summary>
+        /// Determines whether there are any tabs.
+        /// </summary>
+        /// <returns></returns>
+        public bool HasTabs()
+        {
+            return Tabs != null && Tabs.Any();
         }
 
         /// <summary>
