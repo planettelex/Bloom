@@ -1,12 +1,9 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
-
-namespace Bloom.Domain.Models
+﻿namespace Bloom.Domain.Models
 {
     /// <summary>
     /// Represents the metadata tag of a media file or stream.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
-    public class MediaTag : BindableBase
+    public class MediaTag
     {
         /// <summary>
         /// Creates a new media tag instance.

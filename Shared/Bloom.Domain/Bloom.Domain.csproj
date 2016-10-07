@@ -85,6 +85,7 @@
     <Compile Include="Models\Filters\AlbumNameFilter.cs" />
     <Compile Include="Models\LabelPersonnelRole.cs" />
     <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\MediaFile.cs" />
     <Compile Include="Models\MediaTag.cs" />
     <Compile Include="Models\SongLanguage.cs" />
     <Compile Include="Models\SongMedia.cs" />

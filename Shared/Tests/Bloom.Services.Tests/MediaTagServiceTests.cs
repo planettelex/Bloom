@@ -29,7 +29,7 @@ namespace Bloom.Services.Tests
         private const string TestImageAac = "TestImage.m4a";
         
         /// <summary>
-        /// Sets up the tests by instanciating a service.
+        /// Sets up the tests.
         /// </summary>
         [TestFixtureSetUp]
         public void SetUp()

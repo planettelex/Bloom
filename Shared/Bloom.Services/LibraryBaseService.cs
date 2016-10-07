@@ -84,19 +84,19 @@ namespace Bloom.Services
             if (!Directory.Exists(library.FolderPath))
                 Directory.CreateDirectory(library.FolderPath);
 
-            var peopleFolder = library.FolderPath + "\\" + Properties.Settings.Default.PeopleFolder;
+            var peopleFolder = Path.Combine(library.FolderPath, Settings.PeopleLibraryFolder);
             if (!Directory.Exists(peopleFolder))
                 Directory.CreateDirectory(peopleFolder);
 
-            var artistsFolder = library.FolderPath + "\\" + Properties.Settings.Default.ArtistsFolder;
+            var artistsFolder = Path.Combine(library.FolderPath, Settings.ArtistsLibraryFolder);
             if (!Directory.Exists(artistsFolder))
                 Directory.CreateDirectory(artistsFolder);
 
-            var mixedArtistFolder = artistsFolder + "\\" + Properties.Settings.Default.MixedArtistFolder;
+            var mixedArtistFolder = Path.Combine(artistsFolder, Settings.MixedArtistsLibraryFolder);
             if (!Directory.Exists(mixedArtistFolder))
                 Directory.CreateDirectory(mixedArtistFolder);
 
-            var playlistsFolder = library.FolderPath + "\\" + Properties.Settings.Default.PlaylistsFolder;
+            var playlistsFolder = Path.Combine(library.FolderPath, Settings.PlaylistsLibraryFolder);
             if (!Directory.Exists(playlistsFolder))
                 Directory.CreateDirectory(playlistsFolder);
 

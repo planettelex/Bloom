@@ -66,6 +66,7 @@
     <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="FileSystemServiceTests.cs" />
     <Compile Include="MediaTagServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +90,10 @@
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Bloom.State.Domain\Bloom.State.Domain.csproj">
+      <Project>{A624637B-4221-4DC3-963F-2BD02F618B77}</Project>
+      <Name>Bloom.State.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -96,6 +101,8 @@
     <Content Include="TestMedia\Diktator of the Free World.m4a" />
     <Content Include="TestMedia\Guess Again!.flac" />
     <Content Include="TestMedia\Hands in the Rain.m4a" />
+    <Content Include="TestMedia\Non-Media.txt" />
+    <Content Include="TestMedia\Ronald Reagan.jpg" />
     <Content Include="TestMedia\Something.mp3" />
     <Content Include="TestMedia\Jungle Boogie.mp3" />
   </ItemGroup>

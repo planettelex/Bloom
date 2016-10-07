@@ -22,7 +22,7 @@ namespace Bloom.Services
         /// </summary>
         public void GoToBrowserProcess()
         {
-            var browserProcessName = Properties.Settings.Default.BrowserProcessName;
+            var browserProcessName = Settings.BrowserProcessName;
             var runningProcess = Process.GetCurrentProcess();
 
             if (runningProcess.ProcessName.StartsWith(browserProcessName))
@@ -37,7 +37,7 @@ namespace Bloom.Services
                 }
             }
 
-            var executablePath = Properties.Settings.Default.BrowserExecutablePath;
+            var executablePath = Settings.BrowserExecutablePath;
             Process.Start(executablePath);
         }
 
@@ -46,7 +46,7 @@ namespace Bloom.Services
         /// </summary>
         public void GoToPlayerProcess()
         {
-            var playerProcessName = Properties.Settings.Default.PlayerProcessName;
+            var playerProcessName = Settings.PlayerProcessName;
             var runningProcess = Process.GetCurrentProcess();
 
             if (runningProcess.ProcessName.StartsWith(playerProcessName))
@@ -61,7 +61,7 @@ namespace Bloom.Services
                 }
             }
 
-            var executablePath = Properties.Settings.Default.PlayerExecutablePath;
+            var executablePath = Settings.PlayerExecutablePath;
             Process.Start(executablePath);
         }
 
@@ -70,7 +70,7 @@ namespace Bloom.Services
         /// </summary>
         public void GoToAnalyticsProcess()
         {
-            var analyticsProcessName = Properties.Settings.Default.AnalyticsProcessName;
+            var analyticsProcessName = Settings.AnalyticsProcessName;
             var runningProcess = Process.GetCurrentProcess();
 
             if (runningProcess.ProcessName.StartsWith(analyticsProcessName))
@@ -85,7 +85,7 @@ namespace Bloom.Services
                 }
             }
 
-            var executablePath = Properties.Settings.Default.AnalyticsExecutablePath;
+            var executablePath = Settings.AnalyticsExecutablePath;
             Process.Start(executablePath);
         }
     }

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Bloom.Domain.Enums;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Services
@@ -16,8 +19,7 @@ namespace Bloom.Services
         /// </summary>
         public FileSystemService()
         {
-            var localDataFolder = Data.Settings.LocalDataPath;
-            _userProfilesFolder = Path.Combine(localDataFolder, Properties.Settings.Default.UserProfilesFolder);
+            _userProfilesFolder = Settings.UserProfilesPath;
             if(!Directory.Exists(_userProfilesFolder))
                 Directory.CreateDirectory(_userProfilesFolder);
         }
@@ -45,7 +47,30 @@ namespace Bloom.Services
         /// <returns>A list of music files.</returns>
         public List<string> ListMusicFiles(string directoryPath)
         {
-            return null; //TODO: Implement 
+            if (!Directory.Exists(directoryPath))
+                throw new DirectoryNotFoundException(directoryPath + " was not found.");
+
+            var allFiles = Directory.EnumerateFiles(directoryPath, "*.*", SearchOption.AllDirectories);
+            var regEx = MusicFileRegEx();
+            // ReSharper disable once AssignNullToNotNullAttribute
+            var musicFiles = allFiles.Where(file => regEx.IsMatch(Path.GetExtension(file)));
+
+            return musicFiles.ToList();
+        }
+
+        /// <summary>
+        /// Creates a regular expression based on the non-zero values of <see cref="Bloom.Domain.Enums.DigitalFormats"/>.
+        /// </summary>
+        private static Regex MusicFileRegEx()
+        {
+            var allFormats = (DigitalFormats[]) Enum.GetValues(typeof (DigitalFormats));
+            var regExPattern = string.Empty;
+            foreach (var extension in allFormats.Where(format => format != DigitalFormats.Unknown))
+                regExPattern += "\\." + extension + "|";
+            
+            regExPattern = regExPattern.Trim('|');
+
+            return new Regex(regExPattern, RegexOptions.IgnoreCase);
         }
     }
 }
