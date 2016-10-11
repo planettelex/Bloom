@@ -151,7 +151,6 @@ namespace Bloom.Data.Tests.Repositories
             var atomHeartMotherMedia1 = SongMedia.Create(atomHeartMother, MediaTypes.Vinyl);
             _songRepository.AddSongMedia(_dataSource, atomHeartMotherMedia1);
             var atomHeartMotherMedia2 = SongMedia.Create(atomHeartMother, DigitalFormats.MP3, "c:\\music\\atom-heart-mother.mp3");
-            atomHeartMotherMedia2.IsCompressed = true;
             atomHeartMotherMedia2.SampleRate = 44000;
             atomHeartMotherMedia2.BitRate = 128;
             atomHeartMotherMedia2.VolumeOffset = 4;
@@ -326,9 +325,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(MediaTypes.Digital, atomHeartMother.Media[1].MediaType);
             Assert.AreEqual(DigitalFormats.MP3, atomHeartMother.Media[1].DigitalFormat);
             Assert.AreEqual("c:\\music\\atom-heart-mother.mp3", atomHeartMother.Media[1].FilePath);
-            Assert.IsTrue(atomHeartMother.Media[1].IsCompressed);
             Assert.IsFalse(atomHeartMother.Media[1].IsDamaged);
-            Assert.IsFalse(atomHeartMother.Media[1].IsProtected);
             Assert.AreEqual(44000, atomHeartMother.Media[1].SampleRate);
             Assert.AreEqual(128, atomHeartMother.Media[1].BitRate);
             Assert.AreEqual(4, atomHeartMother.Media[1].VolumeOffset);

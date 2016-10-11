@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Bloom.Domain.Enums;
 
 namespace Bloom.Domain.Models
@@ -8,6 +9,19 @@ namespace Bloom.Domain.Models
     /// </summary>
     public class MediaFile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaFile"/> class.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <exception cref="System.IO.FileNotFoundException"></exception>
+        public MediaFile(string path)
+        {
+            if (!File.Exists(path))
+                throw new FileNotFoundException(path + " not found.");
+
+            Path = path;
+        }
+
         /// <summary>
         /// Gets or sets the file path.
         /// </summary>
@@ -34,18 +48,13 @@ namespace Bloom.Domain.Models
         public int Bitrate { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of audio channels.
-        /// </summary>
-        public int Channels { get; set; }
-
-        /// <summary>
         /// Gets or sets the the number of samples of audio carried per second measured in Hz 
         /// </summary>
         public int SampleRate { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of bits per sample.
+        /// Gets or sets the file size in bytes.
         /// </summary>
-        public int BitsPerSample { get; set; }
+        public long Size { get; set; }
     }
 }

@@ -115,6 +115,55 @@ namespace Bloom.Domain.Tests.Models
         }
 
         /// <summary>
+        /// Tests the get and set album methods.
+        /// </summary>
+        [Test]
+        public void AlbumTrackTests()
+        {
+            const string artistName = "Test Artist";
+            var artist = Artist.Create(artistName);
+            var album = Album.Create(AlbumName, artist);
+
+            album.SetTrackCount(1, 12);
+            Assert.AreEqual(12, album.GetTrackCount(1));
+
+            album = Album.Create(AlbumName, artist);
+            album.SetTrackCount(2, 13);
+            Assert.IsNull(album.GetTrackCount(1));
+            Assert.AreEqual(13, album.GetTrackCount(2));
+
+            album = Album.Create(AlbumName, artist);
+            album.SetTrackCount(3, 14);
+            Assert.IsNull(album.GetTrackCount(1));
+            Assert.IsNull(album.GetTrackCount(2));
+            Assert.AreEqual(14, album.GetTrackCount(3));
+
+            album = Album.Create(AlbumName, artist);
+            album.SetTrackCount(1, 10);
+            album.SetTrackCount(2, 11);
+            album.SetTrackCount(3, 12);
+            Assert.AreEqual(10, album.GetTrackCount(1));
+            Assert.AreEqual(11, album.GetTrackCount(2));
+            Assert.AreEqual(12, album.GetTrackCount(3));
+
+            album = Album.Create(AlbumName, artist);
+            album.SetTrackCount(3, 12);
+            album.SetTrackCount(2, 11);
+            album.SetTrackCount(1, 10);
+            Assert.AreEqual(10, album.GetTrackCount(1));
+            Assert.AreEqual(11, album.GetTrackCount(2));
+            Assert.AreEqual(12, album.GetTrackCount(3));
+
+            album = Album.Create(AlbumName, artist);
+            album.SetTrackCount(1, 8);
+            album.SetTrackCount(3, 10);
+            album.SetTrackCount(2, 9);
+            Assert.AreEqual(8, album.GetTrackCount(1));
+            Assert.AreEqual(9, album.GetTrackCount(2));
+            Assert.AreEqual(10, album.GetTrackCount(3));
+        }
+
+        /// <summary>
         /// Tests the album to string method.
         /// </summary>
         [Test]

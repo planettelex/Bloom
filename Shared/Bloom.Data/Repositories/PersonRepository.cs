@@ -83,6 +83,48 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all people with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="personName">A person name.</param>
+        public List<Person> FindPerson(IDataSource dataSource, string personName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var personTable = PersonTable(dataSource);
+            if (personTable == null)
+                return null;
+
+            var photoTable = PhotoTable(dataSource);
+            var personPhotoTable = PersonPhotoTable(dataSource);
+            var personQuery =
+                from p in personTable
+                from pp in personPhotoTable.Where(t => p.Id == t.PersonId && t.Priority == 1).DefaultIfEmpty()
+                from photo in photoTable.Where(h => pp.PhotoId == h.Id).DefaultIfEmpty()
+                where p.Name.ToLower() == personName.ToLower()
+                select new
+                {
+                    Person = p,
+                    Photo = photo
+                };
+
+            var results = personQuery.ToList();
+            if (!results.Any())
+                return null;
+
+            var matchingPeople = new List<Person>();
+            foreach (var result in results)
+            {
+                var person = result.Person;
+                person.ProfileImage = result.Photo;
+                matchingPeople.Add(person);
+            }
+
+            return matchingPeople;
+        }
+
+        /// <summary>
         /// Adds a person.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

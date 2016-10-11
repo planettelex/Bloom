@@ -11,6 +11,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents an album.
     /// </summary>
+    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
     [Table(Name = "album")]
     public class Album : BindableBase
     {
@@ -363,22 +364,25 @@ namespace Bloom.Domain.Models
         /// Gets the released track count for a given disc number, which may differ from what is in the current library.
         /// </summary>
         /// <param name="discNumber">The disc number.</param>
-        public int GetTrackCount(int discNumber)
+        public int? GetTrackCount(int discNumber)
         {
+            if (discNumber < 1)
+                discNumber = 1;
+
             if (_trackCounts == null && !string.IsNullOrEmpty(TrackCounts))
             {
                 var tracks = TrackCounts.Split(TrackCountDelimiter);
-                _trackCounts = new List<int>();
+                _trackCounts = new List<int?>();
                 foreach (var track in tracks)
                     _trackCounts.Add(int.Parse(track));
             }
 
             if (discNumber <= 0 || _trackCounts == null || !_trackCounts.Any() || _trackCounts.Count < discNumber)
-                return 0;
+                return null;
 
             return _trackCounts[discNumber - 1];
         }
-        private List<int> _trackCounts;
+        private List<int?> _trackCounts;
 
         /// <summary>
         /// Sets the track count for a given disc number, which may differ from what is in the current library.
@@ -387,14 +391,35 @@ namespace Bloom.Domain.Models
         /// <param name="trackCount">The track count.</param>
         public void SetTrackCount(int discNumber, int trackCount)
         {
-            if (_trackCounts == null)
-                _trackCounts = new List<int>(discNumber);
+            if (discNumber < 1)
+                discNumber = 1;
 
-            _trackCounts[discNumber - 1] = trackCount;
+            if (_trackCounts == null)
+                _trackCounts = new List<int?>();
+
+            if (discNumber < _trackCounts.Count)
+            {
+                _trackCounts[discNumber - 1] = trackCount;
+            }
+            else
+            {
+                var countDifference = discNumber - _trackCounts.Count;
+                for (var i = 0; i < countDifference - 1; i++)
+                {
+                    // Add placeholders
+                    _trackCounts.Add(null);
+                }
+                    
+
+                _trackCounts.Add(trackCount);
+            }
 
             TrackCounts = string.Empty;
             foreach (var count in _trackCounts)
-                TrackCounts += count.ToString(CultureInfo.InvariantCulture) + TrackCountDelimiter;
+            {
+                var countString = count == null ? string.Empty : count.Value.ToString(CultureInfo.InvariantCulture);
+                TrackCounts += countString + TrackCountDelimiter;
+            }
 
             TrackCounts = TrackCounts.TrimEnd(TrackCountDelimiter);
         }

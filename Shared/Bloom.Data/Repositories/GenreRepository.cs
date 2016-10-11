@@ -10,6 +10,7 @@ namespace Bloom.Data.Repositories
     /// <summary>
     /// Access methods for genre data.
     /// </summary>
+    /// <seealso cref="Bloom.Data.Repositories.IGenreRepository" />
     public class GenreRepository : IGenreRepository
     {
         /// <summary>
@@ -43,10 +44,32 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all genres with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="genreName">A genre name.</param>
+        public List<Genre> FindGenre(IDataSource dataSource, string genreName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var genreTable = GenreTable(dataSource);
+            if (genreTable == null)
+                return null;
+
+            var genreQuery =
+                from g in genreTable
+                where g.Name.ToLower() == genreName.ToLower()
+                select g;
+
+            var results = genreQuery.ToList();
+            return !results.Any() ? null : results;
+        }
+
+        /// <summary>
         /// Lists the genres.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        /// <returns></returns>
         public List<Genre> ListGenres(IDataSource dataSource)
         {
             if (!dataSource.IsConnected())

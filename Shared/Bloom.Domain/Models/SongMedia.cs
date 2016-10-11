@@ -74,18 +74,6 @@ namespace Bloom.Domain.Models
         public string FilePath { get; set; }
 
         /// <summary>
-        /// Gets or sets whether this song media is compressed.
-        /// </summary>
-        [Column(Name = "is_compressed")]
-        public bool IsCompressed { get; set; }
-
-        /// <summary>
-        /// Gets or sets whether this song media is protected.
-        /// </summary>
-        [Column(Name = "is_protected")]
-        public bool IsProtected { get; set; }
-
-        /// <summary>
         /// Gets or sets whether this song media is damaged.
         /// </summary>
         [Column(Name = "is_damaged")]
@@ -95,7 +83,7 @@ namespace Bloom.Domain.Models
         /// Gets or sets the size of the media file, measured in kilobytes (KB).
         /// </summary>
         [Column(Name = "file_size")]
-        public int? FileSize { get; set; }
+        public long? FileSize { get; set; }
 
         /// <summary>
         /// Gets or sets the media sample rate, measured in Hertz (Hz).

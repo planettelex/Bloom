@@ -190,6 +190,14 @@ namespace Bloom.Domain.Models
         }
 
         /// <summary>
+        /// Gets a stub for this artist.
+        /// </summary>
+        public ArtistStub GetStub()
+        {
+            return new ArtistStub(this);
+        }
+
+        /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         public override string ToString()

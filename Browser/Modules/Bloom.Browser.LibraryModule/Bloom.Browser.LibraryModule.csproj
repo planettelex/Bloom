@@ -104,7 +104,9 @@
     </Compile>
     <Compile Include="LibraryModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IImportService.cs" />
     <Compile Include="Services\ILibraryService.cs" />
+    <Compile Include="Services\ImportService.cs" />
     <Compile Include="Services\LibraryService.cs" />
     <Compile Include="ViewModels\AlbumViewModel.cs" />
     <Compile Include="ViewModels\CoverflowViewModel.cs" />

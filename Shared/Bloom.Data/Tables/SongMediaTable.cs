@@ -21,8 +21,6 @@ namespace Bloom.Data.Tables
                        "media_type INTEGER NOT NULL , " +
                        "digital_format INTEGER , " +
                        "file_path VARCHAR , " +
-                       "is_compressed BOOL NOT NULL DEFAULT FALSE , " +
-                       "is_protected BOOL NOT NULL DEFAULT FALSE , " +
                        "is_damaged BOOL NOT NULL DEFAULT FALSE , " +
                        "file_size INTEGER , " +
                        "sample_rate INTEGER , " +

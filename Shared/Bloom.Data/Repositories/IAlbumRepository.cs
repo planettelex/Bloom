@@ -18,6 +18,14 @@ namespace Bloom.Data.Repositories
         Album GetAlbum(IDataSource dataSource, Guid albumId);
 
         /// <summary>
+        /// Finds all albums matching the provided artist and album name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artistName">An artist name.</param>
+        /// <param name="albumName">An album name.</param>
+        List<Album> FindAlbum(IDataSource dataSource, string artistName, string albumName);
+
+        /// <summary>
         /// Gets the album release.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

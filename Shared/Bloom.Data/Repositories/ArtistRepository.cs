@@ -102,6 +102,29 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all artists with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artistName">An artist name.</param>
+        public List<Artist> FindArtist(IDataSource dataSource, string artistName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var artistTable = ArtistTable(dataSource);
+            if (artistTable == null)
+                return null;
+
+            var artistQuery =
+                from a in artistTable
+                where a.Name.ToLower() == artistName.ToLower()
+                select a;
+
+            var results = artistQuery.ToList();
+            return !results.Any() ? null : results;
+        }
+
+        /// <summary>
         /// Lists the artists.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

@@ -41,5 +41,20 @@ namespace Bloom.Domain.Models
         {
             return Name;
         }
+
+        /// <summary>
+        /// Predefined composer role.
+        /// </summary>
+        public static Role Composer
+        {
+            get
+            {
+                return new Role
+                {
+                    Id = Guid.Parse("b243cf18-64a1-4755-9a2c-77e5db89615e"),
+                    Name = "Composer"
+                };
+            }
+        }
     }
 }

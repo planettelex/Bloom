@@ -33,12 +33,15 @@ namespace Bloom.Browser.LibraryModule.Services
         /// </summary>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
+        /// <param name="importService">The import service.</param>
         /// <param name="sharedUserService">The user service.</param>
         /// <param name="libraryRepository">The library repository.</param>
-        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, ISharedUserService sharedUserService, ILibraryRepository libraryRepository)
+        public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, 
+            IImportService importService, ISharedUserService sharedUserService, ILibraryRepository libraryRepository)
         {
             _eventAggregator = eventAggregator;
             _libraryRepository = libraryRepository;
+            _importService = importService;
             _regionManager = regionManager;
             _sharedUserService = sharedUserService;
             _tabs = new List<ViewMenuTab>();
@@ -58,6 +61,7 @@ namespace Bloom.Browser.LibraryModule.Services
         private readonly ILibraryRepository _libraryRepository;
         private readonly IRegionManager _regionManager;
         private readonly ISharedUserService _sharedUserService;
+        private readonly IImportService _importService;
         private readonly List<ViewMenuTab> _tabs;
 
         /// <summary>
@@ -194,19 +198,8 @@ namespace Bloom.Browser.LibraryModule.Services
         public void NewAddMusicTab(AddMusicEventModel eventModel)
         {
             const ViewType defaultViewType = ViewType.Grid;
-            var libraries = new List<Library>();
-            foreach (var libraryId in eventModel.LibraryIds)
-            {
-                var datasource = State.GetConnectionData(libraryId);
-                if (datasource == null)
-                    throw new NullReferenceException("Library data source cannot be null.");
-
-                var library = _libraryRepository.GetLibrary(datasource);
-                libraries.Add(library);
-            }
-
-            var tab = CreateNewAddMusicTab(libraries, defaultViewType);
-            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, defaultViewType, libraries, eventModel.Source, eventModel.Path, eventModel.CopyFiles);
+            var tab = CreateNewAddMusicTab(eventModel.LibraryIds, defaultViewType);
+            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, defaultViewType, eventModel, _importService);
             var newMusicView = new NewMusicView(newMusicViewModel);
             var newMusicTab = new ViewMenuTab(defaultViewType, tab, newMusicView);
 
@@ -224,18 +217,9 @@ namespace Bloom.Browser.LibraryModule.Services
             if (tab == null || tab.Libraries == null)
                 return;
 
-            var libraries = new List<Library>();
-            foreach (var tabLibrary in tab.Libraries)
-            {
-                var datasource = State.GetConnectionData(tabLibrary.LibraryId);
-                if (datasource == null)
-                    throw new NullReferenceException("Library datasource cannot be null.");
-
-                var library = _libraryRepository.GetLibrary(datasource);
-                libraries.Add(library);
-            }
+            var libraryIds = tab.Libraries.Select(l => l.LibraryId).ToList();
             var viewType = (ViewType) Enum.Parse(typeof(ViewType), tab.View);
-            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, viewType, libraries);
+            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, viewType, libraryIds);
             var newMusicView = new NewMusicView(newMusicViewModel);
             var newMusicTab = new ViewMenuTab(viewType, tab, newMusicView);
 
@@ -254,18 +238,9 @@ namespace Bloom.Browser.LibraryModule.Services
             if (existingTab == null || existingTab.Tab == null || existingTab.Tab.EntityId == null)
                 return;
 
-            var libraries = new List<Library>();
-            foreach (var tabLibrary in existingTab.Tab.Libraries)
-            {
-                var datasource = State.GetConnectionData(tabLibrary.LibraryId);
-                if (datasource == null)
-                    throw new NullReferenceException("Library datasource cannot be null.");
-
-                var library = _libraryRepository.GetLibrary(datasource);
-                libraries.Add(library);
-            }
-            var tab = CreateNewAddMusicTab(libraries, existingTab.ViewType);
-            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, existingTab.ViewType, libraries);
+            var libraryIds = existingTab.Tab.Libraries.Select(l => l.LibraryId).ToList();
+            var tab = CreateNewAddMusicTab(libraryIds, existingTab.ViewType);
+            var newMusicViewModel = new NewMusicViewModel(_eventAggregator, State, tab.Id, existingTab.ViewType, libraryIds);
             var newMusicView = new NewMusicView(newMusicViewModel);
             var newMusicTab = new ViewMenuTab(tab, newMusicView);
 
@@ -312,11 +287,10 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Creates a new add music tab.
         /// </summary>
-        /// <param name="libraries">The libraries the tab pertains to.</param>
+        /// <param name="libraryIds">The library identifiers.</param>
         /// <param name="viewType">The view type.</param>
-        private Tab CreateNewAddMusicTab(IEnumerable<Library> libraries, ViewType viewType)
+        private Tab CreateNewAddMusicTab(List<Guid> libraryIds, ViewType viewType)
         {
-            var libraryIds = libraries.Select(library => library.Id).ToList();
             return Tab.Create(ProcessType.Browser, State.User, libraryIds, State.GetNextTabOrder(), TabType.NewMusic, "New Music", viewType.ToString());
         }
     }

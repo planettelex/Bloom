@@ -25,13 +25,15 @@ namespace Bloom.Services
         /// <param name="container">The container.</param>
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
+        /// <param name="fileSystemService">The file system service.</param>
         /// <param name="libraryConnectionRepository">The library connection repository.</param>
         /// <param name="libraryRepository">The library repository.</param>
         /// <param name="userRepository">The user repository.</param>
-        public LibraryBaseService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager,
+        public LibraryBaseService(IUnityContainer container, IEventAggregator eventAggregator, IRegionManager regionManager, IFileSystemService fileSystemService,
             ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
         {
             _container = container;
+            _fileSystemService = fileSystemService;
             _libraryConnectionRepository = libraryConnectionRepository;
             _libraryRepository = libraryRepository;
             _userRepository = userRepository;
@@ -43,6 +45,7 @@ namespace Bloom.Services
             EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IUnityContainer _container;
+        private readonly IFileSystemService _fileSystemService;
         private readonly ILibraryRepository _libraryRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
@@ -68,7 +71,7 @@ namespace Bloom.Services
         /// <param name="nothing">Unused object.</param>
         private void SetState(object nothing = null)
         {
-            ApplicationState = (ApplicationState)RegionManager.Regions[Common.Settings.MenuRegion].Context;
+            ApplicationState = (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context;
         }
 
         /// <summary>
@@ -81,25 +84,7 @@ namespace Bloom.Services
             if (library == null)
                 throw new ArgumentNullException("library");
 
-            if (!Directory.Exists(library.FolderPath))
-                Directory.CreateDirectory(library.FolderPath);
-
-            var peopleFolder = Path.Combine(library.FolderPath, Settings.PeopleLibraryFolder);
-            if (!Directory.Exists(peopleFolder))
-                Directory.CreateDirectory(peopleFolder);
-
-            var artistsFolder = Path.Combine(library.FolderPath, Settings.ArtistsLibraryFolder);
-            if (!Directory.Exists(artistsFolder))
-                Directory.CreateDirectory(artistsFolder);
-
-            var mixedArtistFolder = Path.Combine(artistsFolder, Settings.MixedArtistsLibraryFolder);
-            if (!Directory.Exists(mixedArtistFolder))
-                Directory.CreateDirectory(mixedArtistFolder);
-
-            var playlistsFolder = Path.Combine(library.FolderPath, Settings.PlaylistsLibraryFolder);
-            if (!Directory.Exists(playlistsFolder))
-                Directory.CreateDirectory(playlistsFolder);
-
+            _fileSystemService.CreateFolder(library);
             var dataSource = new LibraryDataSource(_container);
             dataSource.Create(library.FilePath);
             var libraryConnection = LibraryConnection.Create(library);

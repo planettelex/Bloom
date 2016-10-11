@@ -105,7 +105,7 @@ namespace Bloom.Domain.Models
         public List<Photo> Photos { get; set; }
 
         /// <summary>
-        /// Gets the profile image.
+        /// Gets or sets the profile image.
         /// </summary>
         public Photo ProfileImage
         {
@@ -126,7 +126,7 @@ namespace Bloom.Domain.Models
                 else if (Photos.Count == 0)
                     Photos.Add(value);
                 else 
-                    Photos[0] = value;
+                    Photos.Insert(0, value);
             }
         }
 

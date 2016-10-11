@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Bloom.Data.Interfaces;
 using Bloom.Domain.Models;
 
@@ -22,6 +23,13 @@ namespace Bloom.Data.Repositories
         /// <param name="dataSource">The data source.</param>
         /// <param name="personId">The person identifier.</param>
         Person GetPerson(IDataSource dataSource, Guid personId);
+
+        /// <summary>
+        /// Finds all people with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="personName">A person name.</param>
+        List<Person> FindPerson(IDataSource dataSource, string personName);
 
         /// <summary>
         /// Adds a person.

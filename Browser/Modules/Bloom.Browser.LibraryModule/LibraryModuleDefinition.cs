@@ -27,6 +27,8 @@ namespace Bloom.Browser.LibraryModule
         public void Initialize()
         {
             // Register services this module provides
+            _container.RegisterType<IImportService, ImportService>(new ContainerControlledLifetimeManager());
+            _container.Resolve(typeof(IImportService));
             _container.RegisterType<ILibraryService, LibraryService>(new ContainerControlledLifetimeManager());
             _container.Resolve(typeof(ILibraryService));
         }

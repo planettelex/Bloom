@@ -18,6 +18,13 @@ namespace Bloom.Data.Repositories
         Genre GetGenre(IDataSource dataSource, Guid genreId);
 
         /// <summary>
+        /// Finds all genres with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="genreName">A genre name.</param>
+        List<Genre> FindGenre(IDataSource dataSource, string genreName);
+
+        /// <summary>
         /// Lists the genres.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

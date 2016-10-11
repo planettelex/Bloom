@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
+using System.IO;
 using Bloom.Common;
 using Microsoft.Practices.Prism.Mvvm;
 
@@ -91,10 +92,7 @@ namespace Bloom.Domain.Models
         /// </summary>
         public string FilePath
         {
-            get
-            {
-                return FolderPath.TrimEnd('\\') + "\\" + FileName;
-            }
+            get { return Path.Combine(FolderPath, FileName); }
         }
 
         /// <summary>

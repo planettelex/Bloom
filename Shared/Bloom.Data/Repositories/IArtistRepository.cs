@@ -18,6 +18,13 @@ namespace Bloom.Data.Repositories
         Artist GetArtist(IDataSource dataSource, Guid artistId);
 
         /// <summary>
+        /// Finds all artists with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artistName">An artist name.</param>
+        List<Artist> FindArtist(IDataSource dataSource, string artistName);
+
+        /// <summary>
         /// Lists the artists.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

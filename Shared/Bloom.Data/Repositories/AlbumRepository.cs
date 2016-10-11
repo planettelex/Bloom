@@ -213,6 +213,54 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all albums matching the provided artist and album name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="artistName">An artist name.</param>
+        /// <param name="albumName">An album name.</param>
+        public List<Album> FindAlbum(IDataSource dataSource, string artistName, string albumName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var artistTable = ArtistTable(dataSource);
+            var albumTable = AlbumTable(dataSource);
+            if (albumTable == null)
+                return null;
+
+            var albumArtworkTable = AlbumArtworkTable(dataSource);
+            var albumQuery =
+                from a in albumTable
+                from artist in artistTable.Where(r => a.ArtistId == r.Id).DefaultIfEmpty()
+                from artwork in albumArtworkTable.Where(t => a.Id == t.AlbumId && t.Priority == 1).DefaultIfEmpty()
+                where a.Name.ToLower() == albumName.ToLower()
+                select new
+                {
+                    Album = a,
+                    Artist = artist,
+                    Artwork = artwork
+                };
+
+            var results = albumQuery.ToList();
+            if (!results.Any())
+                return null;
+
+            if (!string.IsNullOrEmpty(artistName))
+                results = results.Where(result => result.Artist != null && result.Artist.Name.ToLower() == artistName.ToLower()).ToList();
+
+            var matches = new List<Album>();
+            foreach (var result in results)
+            {
+                var album = result.Album;
+                album.Artist = result.Artist;
+                album.Artwork = new List<AlbumArtwork> { result.Artwork };
+                matches.Add(album);
+            }
+
+            return matches;
+        }
+
+        /// <summary>
         /// Gets the album release.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
