@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.IO;
+using System.Windows.Media;
 using System.Windows.Forms;
 using Bloom.Browser.LibraryModule.WindowModels;
 using Bloom.Domain.Models;
@@ -62,7 +63,7 @@ namespace Bloom.Browser.LibraryModule.Windows
         private void CreateNewLibrary(object nothing)
         {
             var libraryOwner = WindowModel.GetOwner();
-            var libraryFolder = WindowModel.FolderPath + "\\" + WindowModel.LibraryName;
+            var libraryFolder = Path.Combine(WindowModel.FolderPath, WindowModel.LibraryName);
             var newLibrary = Library.Create(libraryOwner, WindowModel.LibraryName, libraryFolder);
             WindowModel.EventAggregator.GetEvent<CreateNewLibraryEvent>().Publish(newLibrary);
             Close();

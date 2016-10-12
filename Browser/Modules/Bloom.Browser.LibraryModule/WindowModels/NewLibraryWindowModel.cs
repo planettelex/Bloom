@@ -176,8 +176,8 @@ namespace Bloom.Browser.LibraryModule.WindowModels
                     LibraryName += " ";
                     LibraryName = LibraryName.Trim();
                 }
-                var libraryFolderPath = FolderPath + "\\" + LibraryName;
-                var filePath = libraryFolderPath + "\\" + LibraryName + Bloom.Common.Settings.LibraryFileExtension;
+                var libraryFolderPath = Path.Combine(FolderPath, LibraryName);
+                var filePath = Path.Combine(libraryFolderPath, LibraryName + Bloom.Common.Settings.LibraryFileExtension);
                 if (columnName == "LibraryName")
                 {
                     if (string.IsNullOrEmpty(LibraryName))

@@ -290,6 +290,7 @@ namespace Bloom.Data.Repositories
             if (songTable == null)
                 return;
 
+            song.AddedOn = DateTime.Now;
             songTable.InsertOnSubmit(song);
             dataSource.Save();
         }

@@ -48,7 +48,7 @@ namespace Bloom.Browser.State.Services
         /// Initializes the browser application state for a given user.
         /// </summary>
         /// <param name="user">The user.</param>
-        public BrowserState  InitializeState(User user)
+        public BrowserState InitializeState(User user)
         {
             if (user == null)
                 user = User.Anonymous;
@@ -123,8 +123,9 @@ namespace Bloom.Browser.State.Services
         /// <summary>
         /// Saves the state.
         /// </summary>
-        private void SaveState(object nothing)
+        private void SaveState(ApplicationState state)
         {
+            State = (BrowserState) state;
             SaveState();
         }
     }

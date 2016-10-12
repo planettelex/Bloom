@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
@@ -31,7 +32,7 @@ namespace Bloom.UserModule.WindowModels
             _sharedUserService = sharedUserService;
             EventAggregator = eventAggregator;
             var potentialOwners = _sharedUserService.ListUsers();
-            State = (ApplicationState) regionManager.Regions[Common.Settings.MenuRegion].Context;
+            State = (ApplicationState) regionManager.Regions[Settings.MenuRegion].Context;
 
             if (State.User != null)
             {

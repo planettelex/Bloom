@@ -39,6 +39,7 @@ namespace Bloom.Data.Tables
                        "is_compilation BOOL NOT NULL DEFAULT FALSE , " +
                        "is_mixed_artist BOOL NOT NULL DEFAULT FALSE , " +
                        "is_single_track BOOL NOT NULL DEFAULT FALSE , " +
+                       "is_complete BOOL NOT NULL DEFAULT FALSE , " +
                        "disc_count INTEGER NOT NULL DEFAULT 1 , " +
                        "track_counts VARCHAR , " +
                        "rating INTEGER , " +

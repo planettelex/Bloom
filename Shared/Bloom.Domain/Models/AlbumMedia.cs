@@ -29,15 +29,15 @@ namespace Bloom.Domain.Models
         /// Creates a new album media instance.
         /// </summary>
         /// <param name="album">The album.</param>
-        /// <param name="digitalFormat">The digital format.</param>
-        public static AlbumMedia Create(Album album, DigitalFormats digitalFormat)
+        /// <param name="digitalFormats">The digital formats.</param>
+        public static AlbumMedia Create(Album album, DigitalFormats digitalFormats)
         {
             return new AlbumMedia
             {
                 Id = Guid.NewGuid(),
                 AlbumId = album.Id,
                 MediaType = MediaTypes.Digital,
-                DigitalFormat = digitalFormat
+                DigitalFormats = digitalFormats
             };
         }
 
@@ -60,10 +60,10 @@ namespace Bloom.Domain.Models
         public MediaTypes MediaType { get; set; }
 
         /// <summary>
-        /// Gets or sets the media digital format.
+        /// Gets or sets the media digital formats.
         /// </summary>
         [Column(Name = "digital_format")]
-        public DigitalFormats? DigitalFormat { get; set; }
+        public DigitalFormats? DigitalFormats { get; set; }
 
         /// <summary>
         /// Gets or sets the media condition.
@@ -126,7 +126,7 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            return MediaType == MediaTypes.Digital ? DigitalFormat.ToString() : MediaType.ToString();
+            return MediaType == MediaTypes.Digital ? DigitalFormats.ToString() : MediaType.ToString();
         }
     }
 }

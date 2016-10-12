@@ -1,6 +1,7 @@
 ﻿ using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+ using System.Linq;
 
 namespace Bloom.Domain.Models
 {
@@ -68,7 +69,12 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            return Person != null ? Person.Name : PersonId.ToString();
+            var personString = Person != null ? Person.Name : PersonId.ToString();
+            if (Roles == null)
+                return personString;
+
+            var rolesString = Roles.Aggregate(string.Empty, (current, role) => current + (role + ", "));
+            return string.Format("{0} ({1})", personString, rolesString.TrimEnd(',', ' '));
         }
     }
 }

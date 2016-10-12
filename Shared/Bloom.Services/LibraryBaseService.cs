@@ -42,7 +42,6 @@ namespace Bloom.Services
 
             // Subscribe to events
             EventAggregator.GetEvent<CreateNewLibraryEvent>().Subscribe(CreateNewLibrary);
-            EventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
         }
         private readonly IUnityContainer _container;
         private readonly IFileSystemService _fileSystemService;
@@ -53,7 +52,7 @@ namespace Bloom.Services
         /// <summary>
         /// Gets the application state.
         /// </summary>
-        public ApplicationState ApplicationState { get; private set; }
+        public ApplicationState ApplicationState { get { return (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context; } }
 
         /// <summary>
         /// Gets or sets the event aggregator.
@@ -64,15 +63,6 @@ namespace Bloom.Services
         /// Gets or sets the region manager.
         /// </summary>
         protected IRegionManager RegionManager { get; set; }
-
-        /// <summary>
-        /// Sets the application state in the menu region context.
-        /// </summary>
-        /// <param name="nothing">Unused object.</param>
-        private void SetState(object nothing = null)
-        {
-            ApplicationState = (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context;
-        }
 
         /// <summary>
         /// Creates a new library.
@@ -94,7 +84,7 @@ namespace Bloom.Services
             libraryConnection.SaveChanges();
             ApplicationState.Connections.Insert(0, libraryConnection);
 
-            EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            EventAggregator.GetEvent<SaveStateEvent>().Publish(ApplicationState);
             EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
         }
 
@@ -140,7 +130,7 @@ namespace Bloom.Services
             if (!alreadyConnected)
             {
                 ApplicationState.Connections.Insert(0, libraryConnection);
-                EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                EventAggregator.GetEvent<SaveStateEvent>().Publish(ApplicationState);
                 EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryConnection);
             }
             

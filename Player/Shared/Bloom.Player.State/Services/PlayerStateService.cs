@@ -86,8 +86,9 @@ namespace Bloom.Player.State.Services
             return playerState;
         }
 
-        private void SaveState(object nothing)
+        private void SaveState(ApplicationState state)
         {
+            State = state;
             SaveState();
         }
     }

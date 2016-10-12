@@ -28,7 +28,7 @@ namespace Bloom.PubSubEvents
     public class UserChangedEvent : PubSubEvent<object> { }
 
     /// <summary>
-    /// This event is published to save the application and suite states.
+    /// This event is published to save application and suite states.
     /// </summary>
-    public class SaveStateEvent : PubSubEvent<object> { }
+    public class SaveStateEvent : PubSubEvent<ApplicationState> { }
 }

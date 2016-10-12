@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
 
@@ -80,5 +81,13 @@ namespace Bloom.Services
         /// <param name="song">The song.</param>
         /// <param name="playlist">A playlist.</param>
         string CopyMediaFile(Library library, MediaFile sourceFile, Song song, Playlist playlist);
+
+        /// <summary>
+        /// Saves the album image.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="album">The album.</param>
+        string SaveAlbumImage(Library library, Image image, Album album);
     }
 }

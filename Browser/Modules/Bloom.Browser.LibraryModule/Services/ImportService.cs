@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Bloom.Common.ExtensionMethods;
 using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.Data.Repositories;
+using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.Services;
@@ -28,18 +30,20 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="eventAggregator">The event aggregator.</param>
         /// <param name="regionManager">The region manager.</param>
         /// <param name="fileSystemService">The file system service.</param>
+        /// <param name="mediaTagService">The media tag service.</param>
         /// <param name="roleRepository">The role repository.</param>
         /// <param name="genreRepository">The genre repository.</param>
         /// <param name="personRepository">The person repository.</param>
         /// <param name="artistRepository">The artist repository.</param>
         /// <param name="albumRepository">The album repository.</param>
         /// <param name="songRepository">The song repository.</param>
-        public ImportService(IEventAggregator eventAggregator, IRegionManager regionManager, IFileSystemService fileSystemService,
+        public ImportService(IEventAggregator eventAggregator, IRegionManager regionManager, IFileSystemService fileSystemService, IMediaTagService mediaTagService,
             IRoleRepository roleRepository, IGenreRepository genreRepository, IPersonRepository personRepository,
             IArtistRepository artistRepository, IAlbumRepository albumRepository, ISongRepository songRepository)
         {
             _eventAggregator = eventAggregator;
             _fileSystemService = fileSystemService;
+            _mediaTagService = mediaTagService;
             _roleRepository = roleRepository;
             _genreRepository = genreRepository;
             _personRepository = personRepository;
@@ -54,6 +58,7 @@ namespace Bloom.Browser.LibraryModule.Services
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IFileSystemService _fileSystemService;
+        private readonly IMediaTagService _mediaTagService;
         private readonly IRoleRepository _roleRepository;
         private readonly IGenreRepository _genreRepository;
         private readonly IPersonRepository _personRepository;
@@ -102,18 +107,23 @@ namespace Bloom.Browser.LibraryModule.Services
             _isRunning = true;
             foreach (var libraryId in libraryIds)
             {
+                var library = State.GetConnection(libraryId).Library;
+                var dataSource = State.GetConnectionData(libraryId);
                 _importedRoles = new Dictionary<string, Role>();
                 _importedGenres = new Dictionary<string, Genre>();
                 _importedPeople = new Dictionary<string, Person>();
                 _importedArtists = new Dictionary<string, Artist>();
                 _importedAlbums = new Dictionary<string, Album>();
                 _importedSongs = new Dictionary<string, Song>();
+                
                 foreach (var filePath in mediaFiles)
                 {
+                    _importState = new ImportState { Library = library };
                     var mediaFile = _fileSystemService.ReadMediaFile(filePath);
-                    _importState = new ImportState { Library = State.GetConnection(libraryId).Library };
-                    ImportFile(mediaFile, State.GetConnectionData(libraryId), copyFiles);
+                    ImportFile(mediaFile, dataSource, copyFiles);
                 }
+
+                AnalyzeImport(dataSource);
             }
             
             _isRunning = false;
@@ -130,7 +140,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="mediaFile">The media file.</param>
         /// <param name="dataSource">The data source.</param>
         /// <param name="copyFile">If set to <c>true</c> copies the media file.</param>
-        private void ImportFile(MediaFile mediaFile, LibraryDataSource dataSource, bool copyFile)
+        private void ImportFile(MediaFile mediaFile, IDataSource dataSource, bool copyFile)
         {
             if (mediaFile == null)
                 return;
@@ -150,7 +160,10 @@ namespace Bloom.Browser.LibraryModule.Services
                     ImportArtist(mediaFile.Metadata.AlbumArtist, ArtistType.Album, dataSource);
 
                 if (!string.IsNullOrEmpty(mediaFile.Metadata.AlbumName))
+                {
                     ImportAlbum(mediaFile.Metadata.AlbumArtist, mediaFile.Metadata.AlbumName, dataSource);
+                    CopyAlbumArtwork(mediaFile.Metadata.AlbumArtist, mediaFile.Metadata.AlbumName, mediaFile, dataSource);
+                }
             }
             ImportSong(mediaFile, copyFile, dataSource);
         }
@@ -162,7 +175,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="dataSource">The data source.</param>
         private void ImportGenre(string genreName, IDataSource dataSource)
         {
-            var genreKey = genreName.ToLowerInvariant();
+            var genreKey = genreName.AsKey();
             Genre genreMatch = null;
             if (_importedGenres.ContainsKey(genreKey))
                 genreMatch = _importedGenres[genreKey];
@@ -217,7 +230,7 @@ namespace Bloom.Browser.LibraryModule.Services
         {
             ImportRole(Role.Composer, dataSource);
 
-            var personKey = personName.ToLowerInvariant();
+            var personKey = personName.AsKey();
             Person personMatch = null;
             if (_importedPeople.ContainsKey(personKey))
                 personMatch = _importedPeople[personKey];
@@ -244,13 +257,13 @@ namespace Bloom.Browser.LibraryModule.Services
         }
 
         /// <summary>
-        /// Imports a role.
+        /// Imports the role.
         /// </summary>
         /// <param name="role">The role.</param>
         /// <param name="dataSource">The data source.</param>
         private void ImportRole(Role role, IDataSource dataSource)
         {
-            var roleKey = role.Name.ToLowerInvariant();
+            var roleKey = role.Name.AsKey();
             if (_importedRoles.ContainsKey(roleKey))
                 return;
 
@@ -268,7 +281,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="dataSource">The data source.</param>
         private void ImportArtist(string artistName, ArtistType artistType, IDataSource dataSource)
         {
-            var artistKey = artistName.ToLowerInvariant();
+            var artistKey = artistName.AsKey();
             Artist artistMatch = null;
             if (_importedArtists.ContainsKey(artistKey))
                 artistMatch = _importedArtists[artistKey];
@@ -305,7 +318,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="dataSource">The data source.</param>
         private void ImportAlbum(string artistName, string albumName, IDataSource dataSource)
         {
-            var albumKey = albumName.ToLowerInvariant();
+            var albumKey = AlbumKey(artistName, albumName);
             Album albumMatch = null;
             if (_importedAlbums.ContainsKey(albumKey))
                 albumMatch = _importedAlbums[albumKey];
@@ -315,7 +328,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 Artist albumArtist = null;
                 if (!string.IsNullOrEmpty(artistName))
                 {
-                    var artistKey = artistName.ToLowerInvariant();
+                    var artistKey = artistName.AsKey();
                     albumArtist = _importedArtists[artistKey];
                 }
 
@@ -324,7 +337,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 {
                     albumMatch = Album.Create(albumName);
                     if (albumArtist != null)
-                        albumMatch.ArtistId = albumArtist.Id;
+                        albumMatch.Artist = albumArtist;
 
                     _albumRepository.AddAlbum(dataSource, albumMatch);
                 }
@@ -349,12 +362,39 @@ namespace Bloom.Browser.LibraryModule.Services
         }
 
         /// <summary>
+        /// Copies the album artwork.
+        /// </summary>
+        /// <param name="artistName">The name of the artist.</param>
+        /// <param name="albumName">The name of the album.</param>
+        /// <param name="mediaFile">The media file.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void CopyAlbumArtwork(string artistName, string albumName, MediaFile mediaFile, IDataSource dataSource)
+        {
+            var albumKey = AlbumKey(artistName, albumName);
+            Album albumMatch = null;
+            if (_importedAlbums.ContainsKey(albumKey))
+                albumMatch = _importedAlbums[albumKey];
+
+            if (albumMatch == null || (albumMatch.Artwork != null && albumMatch.Artwork.Any()))
+                return;
+
+            var albumArtworkImage = _mediaTagService.ReadMediaImage(mediaFile.Path);
+            if (albumArtworkImage == null)
+                return;
+
+            var imageFilePath = _fileSystemService.SaveAlbumImage(_importState.Library, albumArtworkImage, albumMatch);
+            var albumArtwork = AlbumArtwork.Create(albumMatch, imageFilePath, 1);
+            _albumRepository.AddAlbumArtwork(dataSource, albumArtwork);
+            _importedAlbums[albumKey].Artwork = new List<AlbumArtwork> { albumArtwork };
+        }
+
+        /// <summary>
         /// Imports the song.
         /// </summary>
         /// <param name="mediaFile">The media file.</param>
         /// <param name="copyFile">If set to <c>true</c> copies the media file.</param>
         /// <param name="dataSource">The data source.</param>
-        private void ImportSong(MediaFile mediaFile, bool copyFile, LibraryDataSource dataSource)
+        private void ImportSong(MediaFile mediaFile, bool copyFile, IDataSource dataSource)
         {
             var discNumber = 1;
             var trackNumber = 0;
@@ -371,7 +411,7 @@ namespace Bloom.Browser.LibraryModule.Services
             var songMedia = SongMedia.Create(newSong, mediaFile.Format, filePath);
             songMedia.FileSize = mediaFile.Size;
 
-            if (mediaFile.Metadata != null)
+             if (mediaFile.Metadata != null)
             {
                 newSong.Bpm = mediaFile.Metadata.Bpm;
                 newSong.Notes = mediaFile.Metadata.Comments;
@@ -391,11 +431,11 @@ namespace Bloom.Browser.LibraryModule.Services
                     _importState.Album.SetTrackCount(discNumber, mediaFile.Metadata.TrackCount.Value);
             }
             newSong.Media = new List<SongMedia> { songMedia };
-            var track = AlbumTrack.Create(_importState.Album, newSong, trackNumber, discNumber);
+            var albumTrack = AlbumTrack.Create(_importState.Album, newSong, trackNumber, discNumber);
             
             _songRepository.AddSong(dataSource, newSong);
             _songRepository.AddSongMedia(dataSource, songMedia);
-            _albumRepository.AddAlbumTrack(dataSource, track);
+            _albumRepository.AddAlbumTrack(dataSource, albumTrack);
 
             foreach (var composer in _importState.Composers)
             {
@@ -404,9 +444,167 @@ namespace Bloom.Browser.LibraryModule.Services
                 _songRepository.AddSongCreditRole(dataSource, composerCredit, Role.Composer);
             }
 
-            var songKey = newSong.Name.ToLower();
+            var songKey = newSong.Name.AsKey();
             _importedSongs.Add(songKey, newSong);
-            _importState.Album.Tracks.Add(track);
+            var albumKey = AlbumKey(artist.Name, _importState.Album.Name);
+            _importedAlbums[albumKey].Tracks.Add(albumTrack);
+        }
+
+        /// <summary>
+        /// Builds an album key from the provided artist and album names.
+        /// </summary>
+        /// <param name="artistName">The name of the artist.</param>
+        /// <param name="albumName">The name of the album.</param>
+        private static string AlbumKey(string artistName, string albumName)
+        {
+            var albumKey = albumName.AsKey();
+            if (!string.IsNullOrEmpty(artistName))
+                albumKey = string.Format("{0}-{1}", artistName.AsKey(), albumKey);
+
+            return albumKey;
+        }
+
+        /// <summary>
+        /// Analyzes the import.
+        /// </summary>
+        private void AnalyzeImport(IDataSource dataSource)
+        {
+            foreach (var importedAlbum in _importedAlbums.Values.Where(importedAlbum => importedAlbum.Tracks != null && importedAlbum.Tracks.Any()))
+            {
+                if (string.IsNullOrEmpty(importedAlbum.TrackCounts))
+                    importedAlbum.SetTrackCount(1, importedAlbum.Tracks.Count);
+
+                var discCount = importedAlbum.DiscCount;
+                var trackCounts = new Dictionary<int, int>();
+                var totalTracks = 0;
+                for (var i = 1; i <= discCount; i++)
+                {
+                    var discTracks = importedAlbum.GetTrackCount(i);
+                    var trackCount = discTracks == null ? 0 : discTracks.Value;
+                    totalTracks += trackCount;
+                    trackCounts.Add(i, trackCount);
+                }
+
+                var albumArtist = importedAlbum.Artist;
+                var lastSongArtist = importedAlbum.Tracks.First().Song.Artist;
+                var runningLength = 0;
+                var isMixedArtist = false;
+                
+                var digitalFormats = DigitalFormats.Unknown;
+                var albumCredits = new List<AlbumCredit>();
+                foreach (var albumTrack in importedAlbum.Tracks)
+                {
+                    var disc = albumTrack.DiscNumber;
+                    var track = albumTrack.TrackNumber;
+                    var discTrackCount = trackCounts[disc];
+                    if (track > discTrackCount)
+                        importedAlbum.SetTrackCount(disc, track);
+
+                    var song = albumTrack.Song;
+                    var songMedia = song.Media.First();
+
+                    if (song.Artist == null && albumArtist != null)
+                        song.Artist = albumArtist;
+
+                    if (lastSongArtist != null && song.ArtistId != lastSongArtist.Id)
+                        isMixedArtist = true;
+
+                    if (songMedia != null && songMedia.DigitalFormat != null && !digitalFormats.HasFlag(songMedia.DigitalFormat))
+                        digitalFormats = digitalFormats | songMedia.DigitalFormat.Value;
+
+                    foreach (var credit in song.Credits)
+                    {
+                        var songCredit = credit;
+                        var albumCredit = albumCredits.SingleOrDefault(c => c.PersonId == songCredit.PersonId) ??
+                                          AlbumCredit.Create(importedAlbum, songCredit.Person);
+
+                        foreach (var role in songCredit.Roles.Where(role => !albumCredit.Roles.Contains(role)))
+                            albumCredit.Roles.Add(role);
+                    }
+
+                    runningLength += song.Length;
+                    lastSongArtist = song.Artist;
+                }
+                importedAlbum.IsComplete = importedAlbum.Tracks.Count >= totalTracks;
+                importedAlbum.Length = runningLength;
+                importedAlbum.LengthType = DetermineAlbumLengthType(importedAlbum);
+                importedAlbum.IsMixedArtist = isMixedArtist;
+                if (albumArtist == null && !isMixedArtist)
+                    importedAlbum.Artist = lastSongArtist;
+
+                var albumMedia = AlbumMedia.Create(importedAlbum, digitalFormats);
+                _albumRepository.AddAlbumMedia(dataSource, albumMedia);
+
+                foreach (var credit in albumCredits)
+                {
+                    var albumCredit = credit;
+                    _albumRepository.AddAlbumCredit(dataSource, albumCredit);
+                    foreach (var role in albumCredit.Roles)
+                        _albumRepository.AddAlbumCreditRole(dataSource, albumCredit, role);
+                }
+            }
+
+            dataSource.Save();
+        }
+
+        /// <summary>
+        /// Determines the album length type.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        private static LengthType DetermineAlbumLengthType(Album album)
+        {
+            var discLengthTypes = new List<LengthType>();
+            for (var i = 1; i <= album.DiscCount; i++)
+                discLengthTypes.Add(DetermineDiscLengthType(album, i));
+
+            if (album.DiscCount == 1)
+                return DetermineDiscLengthType(album, 1);
+
+            switch (discLengthTypes.Count(lengthType => lengthType == LengthType.LP))
+            {
+                case 0:
+                    return LengthType.Unknown;
+                case 1:
+                    return LengthType.LP;
+                case 2:
+                    return LengthType.DoubleLP;
+                case 3:
+                    return LengthType.TripleLP;
+                default:
+                    return LengthType.BoxSet;
+            }
+        }
+
+        /// <summary>
+        /// Determines the disc length type.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        /// <param name="disc">The disc number.</param>
+        private static LengthType DetermineDiscLengthType(Album album, int disc)
+        {
+            var discTrackCount = album.GetTrackCount(disc);
+            if (discTrackCount == null)
+                return LengthType.Unknown;
+
+            var trackCount = discTrackCount.Value;
+            var length = album.GetLength(disc);
+
+            if (trackCount == 0 || length == 0)
+                return LengthType.Unknown;
+
+            const int singleMaximumMinutes = 20;
+            const int singleMaximumMilliseconds = singleMaximumMinutes * 60 * 1000;
+            const int singleMaximumTracks = 5;
+            if (length <= singleMaximumMilliseconds && trackCount <= singleMaximumTracks)
+                return LengthType.Single;
+
+            const int epMaximumMinutes = 35;
+            const int epMaximumMilliseconds = epMaximumMinutes * 60 * 1000;
+            const int epMaximumTracks = 8;
+            if (length <= epMaximumMilliseconds && trackCount <= epMaximumTracks)
+                return LengthType.EP;
+
+            return LengthType.LP;
         }
 
         /// <summary>

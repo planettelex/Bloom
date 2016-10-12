@@ -125,42 +125,62 @@ namespace Bloom.Domain.Tests.Models
             var album = Album.Create(AlbumName, artist);
 
             album.SetTrackCount(1, 12);
+            Assert.AreEqual("12", album.TrackCounts);
             Assert.AreEqual(12, album.GetTrackCount(1));
 
             album = Album.Create(AlbumName, artist);
             album.SetTrackCount(2, 13);
+            Assert.AreEqual(";13", album.TrackCounts);
             Assert.IsNull(album.GetTrackCount(1));
             Assert.AreEqual(13, album.GetTrackCount(2));
 
             album = Album.Create(AlbumName, artist);
             album.SetTrackCount(3, 14);
+            Assert.AreEqual(";;14", album.TrackCounts);
             Assert.IsNull(album.GetTrackCount(1));
             Assert.IsNull(album.GetTrackCount(2));
             Assert.AreEqual(14, album.GetTrackCount(3));
 
             album = Album.Create(AlbumName, artist);
             album.SetTrackCount(1, 10);
+            Assert.AreEqual("10", album.TrackCounts);
             album.SetTrackCount(2, 11);
+            Assert.AreEqual("10;11", album.TrackCounts);
             album.SetTrackCount(3, 12);
+            Assert.AreEqual("10;11;12", album.TrackCounts);
             Assert.AreEqual(10, album.GetTrackCount(1));
             Assert.AreEqual(11, album.GetTrackCount(2));
             Assert.AreEqual(12, album.GetTrackCount(3));
 
             album = Album.Create(AlbumName, artist);
             album.SetTrackCount(3, 12);
+            Assert.AreEqual(";;12", album.TrackCounts);
             album.SetTrackCount(2, 11);
+            Assert.AreEqual(";11;12", album.TrackCounts);
             album.SetTrackCount(1, 10);
+            Assert.AreEqual("10;11;12", album.TrackCounts);
             Assert.AreEqual(10, album.GetTrackCount(1));
             Assert.AreEqual(11, album.GetTrackCount(2));
             Assert.AreEqual(12, album.GetTrackCount(3));
 
             album = Album.Create(AlbumName, artist);
             album.SetTrackCount(1, 8);
+            Assert.AreEqual("8", album.TrackCounts);
             album.SetTrackCount(3, 10);
+            Assert.AreEqual("8;;10", album.TrackCounts);
             album.SetTrackCount(2, 9);
+            Assert.AreEqual("8;9;10", album.TrackCounts);
             Assert.AreEqual(8, album.GetTrackCount(1));
             Assert.AreEqual(9, album.GetTrackCount(2));
             Assert.AreEqual(10, album.GetTrackCount(3));
+
+            album = Album.Create(AlbumName, artist);
+            album.SetTrackCount(1, 15);
+            Assert.AreEqual("15", album.TrackCounts);
+            Assert.AreEqual(15, album.GetTrackCount(1));
+            album.SetTrackCount(1, 15);
+            Assert.AreEqual("15", album.TrackCounts);
+            Assert.AreEqual(15, album.GetTrackCount(1));
         }
 
         /// <summary>
@@ -586,7 +606,7 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(albumMedia1.MediaType, MediaTypes.CD);
             Assert.AreNotEqual(albumMedia2.Id, Guid.Empty);
             Assert.AreEqual(albumMedia2.MediaType, MediaTypes.Digital);
-            Assert.AreEqual(albumMedia2.DigitalFormat, DigitalFormats.MP3);
+            Assert.AreEqual(albumMedia2.DigitalFormats, DigitalFormats.MP3);
         }
 
         /// <summary>
@@ -605,7 +625,7 @@ namespace Bloom.Domain.Tests.Models
                 Id = id,
                 AlbumId = album.Id,
                 MediaType = MediaTypes.Digital,
-                DigitalFormat = DigitalFormats.FLAC,
+                DigitalFormats = DigitalFormats.FLAC,
                 MediaCondition = Condition.GoodPlus,
                 PackagingCondition = Condition.Good,
                 ApproximateValue = 22.95m,
@@ -618,7 +638,7 @@ namespace Bloom.Domain.Tests.Models
             Assert.AreEqual(id, albumMedia.Id);
             Assert.AreEqual(album.Id, albumMedia.AlbumId);
             Assert.AreEqual(MediaTypes.Digital, albumMedia.MediaType);
-            Assert.AreEqual(DigitalFormats.FLAC, albumMedia.DigitalFormat);
+            Assert.AreEqual(DigitalFormats.FLAC, albumMedia.DigitalFormats);
             Assert.AreEqual(Condition.GoodPlus, albumMedia.MediaCondition);
             Assert.AreEqual(Condition.Good, albumMedia.PackagingCondition);
             Assert.AreEqual(22.95m, albumMedia.ApproximateValue);

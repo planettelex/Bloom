@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Bloom.Common.ExtensionMethods;
 using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
 using Bloom.State.Domain.Models;
@@ -82,10 +85,11 @@ namespace Bloom.Services
             DigitalFormats format;
             if (!Enum.TryParse(fileExtension, true, out format))
                 format = DigitalFormats.Unknown;
+
+            mediaFile.Size = (new FileInfo(filePath)).Length;
             
             if (file.Properties != null)
             {
-                mediaFile.Size = file.Length;
                 mediaFile.Bitrate = file.Properties.AudioBitrate;
                 mediaFile.SampleRate = file.Properties.AudioSampleRate;
                 mediaFile.Duration = file.Properties.Duration;
@@ -242,7 +246,7 @@ namespace Bloom.Services
         /// <param name="library">The library.</param>
         /// <param name="sourceFile">The source file.</param>
         /// <param name="song">The song.</param>
-        /// <param name="playlist">A playlist.</param>
+        /// <param name="playlist">A playlist.</param> 
         public string CopyMediaFile(Library library, MediaFile sourceFile, Song song, Playlist playlist)
         {
             var playlistFolderPath = CreateFolder(library, playlist);
@@ -260,6 +264,26 @@ namespace Bloom.Services
             File.Copy(sourceFile.Path, songFilePath);
 
             return songFilePath;
+        }
+
+        /// <summary>
+        /// Saves the album image.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="album">The album.</param>
+        public string SaveAlbumImage(Library library, Image image, Album album)
+        {
+            if (image == null)
+                return null;
+
+            var albumFolderPath = CreateFolder(library, album);
+            var imageFileName = MakeImageFileName(album);
+            var imageFilePath = Path.Combine(albumFolderPath, imageFileName);
+
+            image.Save(imageFilePath, ImageFormat.Png);
+
+            return imageFilePath;
         }
 
         /// <summary>
@@ -357,7 +381,7 @@ namespace Bloom.Services
         /// <param name="name">The name.</param>
         private static string MakeFolderName(string name)
         {
-            return name;
+            return name.AsFolderName();
         }
 
         /// <summary>
@@ -367,13 +391,33 @@ namespace Bloom.Services
         /// <param name="song">The song.</param>
         private static string MakeFileName(MediaFile sourceFile, Song song)
         {
-            var fileName = string.Empty;
+            var fileName = song.Name.AsFileName();
             if (sourceFile.Metadata != null && sourceFile.Metadata.TrackNumber != null)
-                fileName += sourceFile.Metadata.TrackNumber.Value < 100 ? sourceFile.Metadata.TrackNumber.Value.ToString("D2") : sourceFile.Metadata.TrackNumber.Value.ToString("D3");
+            {
+                var trackNumber = sourceFile.Metadata.TrackNumber.Value < 100 ? sourceFile.Metadata.TrackNumber.Value.ToString("D2") : 
+                                                                                sourceFile.Metadata.TrackNumber.Value.ToString("D3");
 
-            fileName += song.Name;
+                fileName = trackNumber + " " + fileName;
+            }
+
+            var extension = Path.GetExtension(sourceFile.Path);
+            if (!string.IsNullOrEmpty(extension))
+                fileName += extension.ToLower();
 
             return fileName;
+        }
+
+        /// <summary>
+        /// Makes a file name from the provided album.
+        /// </summary>
+        /// <param name="album">The album.</param>
+        private static string MakeImageFileName(Album album)
+        {
+            if (album.Artwork == null || !album.Artwork.Any())
+                return "Cover.png";
+
+            var pageNumber = album.Artwork.Count + 1;
+            return string.Format("Page {0}.png", pageNumber.ToString("D2"));
         }
     }
 }

@@ -90,8 +90,9 @@ namespace Bloom.Analytics.State.Services
             return analyticsState;
         }
 
-        private void SaveState(object nothing)
+        private void SaveState(ApplicationState state)
         {
+            State = (AnalyticsState) state;
             SaveState();
         }
     }

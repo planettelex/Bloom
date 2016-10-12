@@ -234,7 +234,7 @@ namespace Bloom.UserModule.WindowModels
                 State.User.Twitter = Twitter == "@" ? null : Twitter;
 
                 EventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
-                EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                EventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             }
         }
     }

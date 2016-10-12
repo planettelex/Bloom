@@ -656,7 +656,7 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(MediaTypes.Vinyl, sgtPepper.Media[1].Release.MediaTypes);
             Assert.AreEqual("SMAS 2653", sgtPepper.Media[1].Release.CatalogNumber);
             Assert.AreEqual(MediaTypes.Digital, sgtPepper.Media[2].MediaType);
-            Assert.AreEqual(DigitalFormats.M4A, sgtPepper.Media[2].DigitalFormat);
+            Assert.AreEqual(DigitalFormats.M4A, sgtPepper.Media[2].DigitalFormats);
             Assert.NotNull(sgtPepper.Media[2].Release);
             Assert.AreEqual(DateTime.Parse("11/16/2010"), sgtPepper.Media[2].Release.ReleaseDate);
 

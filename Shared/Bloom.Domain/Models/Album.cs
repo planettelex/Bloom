@@ -310,6 +310,17 @@ namespace Bloom.Domain.Models
         private bool _isSingleTrack;
 
         /// <summary>
+        /// Gets or sets a value indicating whether this album has all of its tracks.
+        /// </summary>
+        [Column(Name = "is_complete")]
+        public bool IsComplete
+        {
+            get { return _isComplete; }
+            set { SetProperty(ref _isComplete, value); }
+        }
+        private bool _isComplete;
+
+        /// <summary>
         /// Gets or sets the total disc count for the album.
         /// We don't use a query of Tracks for this to allow for partially complete albums in libraries.
         /// </summary>
@@ -361,6 +372,18 @@ namespace Bloom.Domain.Models
         public List<AlbumCollaborator> Collaborators { get; set; }
 
         /// <summary>
+        /// Gets the album disc length in milliseconds.
+        /// </summary>
+        /// <param name="discNumber">The disc number.</param>
+        public int GetLength(int discNumber)
+        {
+            if (Tracks == null || !Tracks.Any())
+                return 0;
+
+            return Tracks.Where(track => track.DiscNumber == discNumber).Sum(track => track.Song.Length);
+        }
+
+        /// <summary>
         /// Gets the released track count for a given disc number, which may differ from what is in the current library.
         /// </summary>
         /// <param name="discNumber">The disc number.</param>
@@ -397,19 +420,13 @@ namespace Bloom.Domain.Models
             if (_trackCounts == null)
                 _trackCounts = new List<int?>();
 
-            if (discNumber < _trackCounts.Count)
-            {
+            if (discNumber <= _trackCounts.Count)
                 _trackCounts[discNumber - 1] = trackCount;
-            }
             else
             {
                 var countDifference = discNumber - _trackCounts.Count;
                 for (var i = 0; i < countDifference - 1; i++)
-                {
-                    // Add placeholders
-                    _trackCounts.Add(null);
-                }
-                    
+                    _trackCounts.Add(null); // Add placeholders  
 
                 _trackCounts.Add(trackCount);
             }

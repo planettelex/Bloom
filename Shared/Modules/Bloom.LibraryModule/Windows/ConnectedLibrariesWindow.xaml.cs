@@ -97,7 +97,7 @@ namespace Bloom.LibraryModule.Windows
                 libraryToConnect.BackgroundBrush = _enabledBrush;
                 WindowModel.State.AddConnection(libraryToConnect);
                 WindowModel.EventAggregator.GetEvent<ConnectionAddedEvent>().Publish(libraryToConnect);
-                WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(WindowModel.State);
             }
             else
                 libraryToConnect.BackgroundBrush = _disabledBrush;
@@ -147,7 +147,7 @@ namespace Bloom.LibraryModule.Windows
             WindowModel.State.RemoveConnection(_disconnectingConnection);
 
             WindowModel.EventAggregator.GetEvent<ConnectionRemovedEvent>().Publish(_disconnectingConnection.LibraryId);
-            WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(WindowModel.State);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Bloom.LibraryModule.Windows
                     _sharedLibraryService.SyncLibraryOwnerAndUser(lostLibraryConnection, WindowModel.State.User);
                     lostLibraryConnection.Disconnect();
                     lostLibraryConnection.SetButtonVisibilities();
-                    WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                    WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(WindowModel.State);
                 }
             }
         }
@@ -253,7 +253,7 @@ namespace Bloom.LibraryModule.Windows
             {
                 WindowModel.LibraryConnections.Remove(_removingConnection);
                 _sharedLibraryService.RemoveLibraryConnection(_removingConnection);
-                WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                WindowModel.EventAggregator.GetEvent<SaveStateEvent>().Publish(WindowModel.State);
             }
 
             _removingConnection = null;

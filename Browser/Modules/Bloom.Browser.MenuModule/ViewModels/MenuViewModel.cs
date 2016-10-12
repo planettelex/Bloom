@@ -32,8 +32,8 @@ namespace Bloom.Browser.MenuModule.ViewModels
             _regionManager = regionManager;
             EventAggregator = eventAggregator;
 
-            EventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
-            EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            EventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(SetState);
+            EventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(SetState);
             EventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
             EventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
             EventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
@@ -92,11 +92,19 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// <summary>
         /// Sets the state.
         /// </summary>
+        private void SetState(Guid libraryId)
+        {
+            SetState();
+        }
+
+        /// <summary>
+        /// Sets the state.
+        /// </summary>
         public void SetState()
         {
             State = (BrowserState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
-            CheckConnections(null);
-            SetUser(null);
+            CheckConnections();
+            SetUser();
             SetHasTabs();
             SetLibraryContext(State.SelectedTabId);
             SetToggleSidebarVisibilityOption(State.SidebarVisible);
@@ -113,9 +121,9 @@ namespace Bloom.Browser.MenuModule.ViewModels
         private bool _hasConnections;
 
         /// <summary>
-        /// Checks the library connections.
+        /// Checks the connections.
         /// </summary>
-        private void CheckConnections(object unused)
+        private void CheckConnections()
         {
             HasConnections = State != null && State.HasConnections();
             if (!HasConnections)
@@ -123,15 +131,6 @@ namespace Bloom.Browser.MenuModule.ViewModels
                 SetToggleSidebarVisibilityOption(false);
                 EventAggregator.GetEvent<HideSidebarEvent>().Publish(null);
             }
-        }
-
-        /// <summary>
-        /// Checks the library connections.
-        /// </summary>
-        /// <param name="libraryId">A removed library identifier.</param>
-        private void CheckConnections(Guid libraryId)
-        {
-            CheckConnections(null);
         }
 
         /// <summary>
@@ -168,6 +167,14 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// Sets the user.
         /// </summary>
         private void SetUser(object nothing)
+        {
+            SetUser();
+        }
+
+        /// <summary>
+        /// Sets the user.
+        /// </summary>
+        private void SetUser()
         {
             if (State == null || State.User == null || State.User.Name == null || State.UserId == User.Anonymous.PersonId)
             {

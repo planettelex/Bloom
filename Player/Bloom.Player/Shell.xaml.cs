@@ -74,12 +74,12 @@ namespace Bloom.Player
                 _eventAggregator.GetEvent<UserUpdatedEvent>().Publish(null);
                 return;
             }
-                
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             var state = _stateService.InitializeState(newUser);
             DataContext = state;
 
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
         }
 

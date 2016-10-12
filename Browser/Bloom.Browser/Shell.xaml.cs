@@ -106,7 +106,7 @@ namespace Bloom.Browser
                 _eventAggregator.GetEvent<CloseAllTabsEvent>().Publish(null);
             }
             else
-                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
 
             DataContext = _stateService.InitializeState(newUser);
 
@@ -116,7 +116,7 @@ namespace Bloom.Browser
                     _stateService.AddTab(Tab.Create(ProcessType.Browser, State.User, Buid.Empty, State.GetNextTabOrder(), tab.Type, tab.Header));
             }
 
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<UserChangedEvent>().Publish(null);
         }
 
@@ -228,7 +228,7 @@ namespace Bloom.Browser
                 _tabs.Add(tabControl.TabId, newPane);
                 PaneGroup.Items.Add(newPane);
             }
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<TabAddedEvent>().Publish(tabControl.TabId);
         }
 
@@ -244,7 +244,7 @@ namespace Bloom.Browser
             if (tab != null)
                 tab.IsHidden = true;
 
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<TabClosedEvent>().Publish(tabId);
         }
 
@@ -264,7 +264,7 @@ namespace Bloom.Browser
                     if (selectedTab != null && !Equals(selectedTab, tab))
                         tab.IsHidden = true;
                 }
-                _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
                 _eventAggregator.GetEvent<TabsClosedEvent>().Publish(null);
             }
         }
@@ -279,7 +279,7 @@ namespace Bloom.Browser
             foreach (var tab in _tabs.Values)
                 tab.IsHidden = true;
 
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<TabsClosedEvent>().Publish(null);
         }
 
@@ -300,7 +300,7 @@ namespace Bloom.Browser
                 break;
             }
 
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
         }
 
         /// <summary>
@@ -322,7 +322,7 @@ namespace Bloom.Browser
                 {
                     var tabId = valuePair.Key;
                     _stateService.RemoveTab(tabId);
-                    _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+                    _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
                     _eventAggregator.GetEvent<TabClosedEvent>().Publish(tabId);
                     break;
                 }
@@ -455,7 +455,7 @@ namespace Bloom.Browser
         private void SidebarSplitterDoubleClick(object sender, MouseButtonEventArgs e)
         {
             State.ResetSidebarWidth();
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
         }
 
         /// <summary>
@@ -465,7 +465,7 @@ namespace Bloom.Browser
         {
             State.SidebarVisible = true;
             SidebarPane.IsHidden = false;
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Publish(true);
         }
 
@@ -476,7 +476,7 @@ namespace Bloom.Browser
         {
             State.SidebarVisible = false;
             SidebarPane.IsHidden = true;
-            _eventAggregator.GetEvent<SaveStateEvent>().Publish(null);
+            _eventAggregator.GetEvent<SaveStateEvent>().Publish(State);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Publish(false);
         }
 
