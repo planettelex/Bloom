@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Bloom.Browser.State.Domain.Models;
 using Bloom.Common.ExtensionMethods;
-using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Enums;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
@@ -51,10 +50,6 @@ namespace Bloom.Browser.LibraryModule.Services
             _albumRepository = albumRepository;
             _songRepository = songRepository;
             _regionManager = regionManager;
-
-            // Subscribe to events
-            _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
-            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
         private readonly IEventAggregator _eventAggregator;
         private readonly IFileSystemService _fileSystemService;
@@ -66,6 +61,7 @@ namespace Bloom.Browser.LibraryModule.Services
         private readonly IAlbumRepository _albumRepository;
         private readonly ISongRepository _songRepository;
         private readonly IRegionManager _regionManager;
+        private ImportPreferences _importPreferences;
         private Dictionary<string, Role> _importedRoles; 
         private Dictionary<string, Genre> _importedGenres;
         private Dictionary<string, Person> _importedPeople;
@@ -79,15 +75,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
-
-        /// <summary>
-        /// Sets the browser state.
-        /// </summary>
-        private void SetState(object nothing)
-        {
-            State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
-        }
+        public BrowserState State { get { return (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context; } }
 
         /// <summary>
         /// Imports music files at the provided folder to the specified libraries.
@@ -95,7 +83,8 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="folderPath">The folder path.</param>
         /// <param name="libraryIds">The library identifiers to import to.</param>
         /// <param name="copyFiles">If set to <c>true</c> copy media files.</param>
-        public void ImportFiles(string folderPath, List<Guid> libraryIds, bool copyFiles)
+        /// <param name="importPreferences">The import preferences.</param>
+        public void ImportFiles(string folderPath, List<Guid> libraryIds, bool copyFiles, ImportPreferences importPreferences)
         {
             if (string.IsNullOrEmpty(folderPath) || !Directory.Exists(folderPath) || libraryIds == null || !libraryIds.Any())
                 return;
@@ -104,6 +93,7 @@ namespace Bloom.Browser.LibraryModule.Services
             if (mediaFiles == null || !mediaFiles.Any())
                 return;
 
+            _importPreferences = importPreferences;
             _isRunning = true;
             foreach (var libraryId in libraryIds)
             {
@@ -123,11 +113,12 @@ namespace Bloom.Browser.LibraryModule.Services
                     ImportFile(mediaFile, dataSource, copyFiles);
                 }
 
-                AnalyzeImport(dataSource);
+                AnalyzeImport(copyFiles, dataSource);
+                _importState = null;
             }
             
             _isRunning = false;
-            _importState = null;
+            _importPreferences = null;
             _importedGenres = null;
             _importedPeople = null;
             _importedArtists = null;
@@ -154,10 +145,10 @@ namespace Bloom.Browser.LibraryModule.Services
                     ImportComposers(mediaFile.Metadata.Composers, dataSource);
 
                 if (!string.IsNullOrEmpty(mediaFile.Metadata.ArtistName))
-                    ImportArtist(mediaFile.Metadata.ArtistName, ArtistType.Song, dataSource);
+                    ImportArtist(mediaFile.Metadata.ArtistName, ArtistScope.Song, dataSource);
 
                 if (!string.IsNullOrEmpty(mediaFile.Metadata.AlbumArtist))
-                    ImportArtist(mediaFile.Metadata.AlbumArtist, ArtistType.Album, dataSource);
+                    ImportArtist(mediaFile.Metadata.AlbumArtist, ArtistScope.Album, dataSource);
 
                 if (!string.IsNullOrEmpty(mediaFile.Metadata.AlbumName))
                 {
@@ -276,10 +267,10 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Imports the artist.
         /// </summary>
-        /// <param name="artistName">The name of the artist.</param>
+        /// <param name="artistName">The scope of the artist.</param>
         /// <param name="artistType">The artist type.</param>
         /// <param name="dataSource">The data source.</param>
-        private void ImportArtist(string artistName, ArtistType artistType, IDataSource dataSource)
+        private void ImportArtist(string artistName, ArtistScope artistType, IDataSource dataSource)
         {
             var artistKey = artistName.AsKey();
             Artist artistMatch = null;
@@ -304,7 +295,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 _importedArtists.Add(artistKey, artistMatch);
             }
 
-            if (artistType == ArtistType.Album)
+            if (artistType == ArtistScope.Album)
                 _importState.AlbumArtist = artistMatch;
             else
                 _importState.Artist = artistMatch;
@@ -437,16 +428,20 @@ namespace Bloom.Browser.LibraryModule.Services
             _songRepository.AddSongMedia(dataSource, songMedia);
             _albumRepository.AddAlbumTrack(dataSource, albumTrack);
 
+            newSong.Credits = new List<SongCredit>();
             foreach (var composer in _importState.Composers)
             {
                 var composerCredit = SongCredit.Create(newSong, composer);
+                composerCredit.Roles.Add(Role.Composer);
                 _songRepository.AddSongCredit(dataSource, composerCredit);
                 _songRepository.AddSongCreditRole(dataSource, composerCredit, Role.Composer);
+                newSong.Credits.Add(composerCredit);
             }
 
             var songKey = newSong.Name.AsKey();
             _importedSongs.Add(songKey, newSong);
-            var albumKey = AlbumKey(artist.Name, _importState.Album.Name);
+            var artistName = _importState.AlbumArtist != null ? _importState.AlbumArtist.Name : null;
+            var albumKey = AlbumKey(artistName, _importState.Album.Name);
             _importedAlbums[albumKey].Tracks.Add(albumTrack);
         }
 
@@ -467,8 +462,11 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Analyzes the import.
         /// </summary>
-        private void AnalyzeImport(IDataSource dataSource)
+        /// <param name="copyFiles">If set to <c>true</c> copy media files.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void AnalyzeImport(bool copyFiles, IDataSource dataSource)
         {
+            var assignAlbumArtists = new Dictionary<string, Artist>();
             foreach (var importedAlbum in _importedAlbums.Values.Where(importedAlbum => importedAlbum.Tracks != null && importedAlbum.Tracks.Any()))
             {
                 if (string.IsNullOrEmpty(importedAlbum.TrackCounts))
@@ -485,11 +483,10 @@ namespace Bloom.Browser.LibraryModule.Services
                     trackCounts.Add(i, trackCount);
                 }
 
+                Artist lastSongArtist = null;
                 var albumArtist = importedAlbum.Artist;
-                var lastSongArtist = importedAlbum.Tracks.First().Song.Artist;
-                var runningLength = 0;
                 var isMixedArtist = false;
-                
+                var runningLength = 0;
                 var digitalFormats = DigitalFormats.Unknown;
                 var albumCredits = new List<AlbumCredit>();
                 foreach (var albumTrack in importedAlbum.Tracks)
@@ -515,11 +512,18 @@ namespace Bloom.Browser.LibraryModule.Services
                     foreach (var credit in song.Credits)
                     {
                         var songCredit = credit;
-                        var albumCredit = albumCredits.SingleOrDefault(c => c.PersonId == songCredit.PersonId) ??
-                                          AlbumCredit.Create(importedAlbum, songCredit.Person);
-
-                        foreach (var role in songCredit.Roles.Where(role => !albumCredit.Roles.Contains(role)))
-                            albumCredit.Roles.Add(role);
+                        var albumCredit = albumCredits.SingleOrDefault(c => c.PersonId == songCredit.PersonId);
+                        if (albumCredit == null)
+                        {
+                            albumCredit = AlbumCredit.Create(importedAlbum, songCredit.Person);
+                            albumCredit.Roles.AddRange(songCredit.Roles);
+                            albumCredits.Add(albumCredit);
+                        }
+                        else
+                        {
+                            var missingRoles = songCredit.Roles.Where(scr => albumCredit.Roles.Any(acr => acr.Id != scr.Id));
+                            albumCredit.Roles.AddRange(missingRoles);
+                        }
                     }
 
                     runningLength += song.Length;
@@ -530,7 +534,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 importedAlbum.LengthType = DetermineAlbumLengthType(importedAlbum);
                 importedAlbum.IsMixedArtist = isMixedArtist;
                 if (albumArtist == null && !isMixedArtist)
-                    importedAlbum.Artist = lastSongArtist;
+                    assignAlbumArtists.Add(AlbumKey(null, importedAlbum.Name), lastSongArtist); 
 
                 var albumMedia = AlbumMedia.Create(importedAlbum, digitalFormats);
                 _albumRepository.AddAlbumMedia(dataSource, albumMedia);
@@ -544,7 +548,42 @@ namespace Bloom.Browser.LibraryModule.Services
                 }
             }
 
+            foreach (var albumArtist in assignAlbumArtists)
+                ReassignAlbumArtist(albumArtist.Key, albumArtist.Value, copyFiles);
+            
             dataSource.Save();
+        }
+
+        /// <summary>
+        /// Reassigns the album artist.
+        /// </summary>
+        /// <param name="albumKey">The album key.</param>
+        /// <param name="artist">The artist.</param>
+        /// <param name="copyFiles">If set to <c>true</c> copy media files.</param>
+        private void ReassignAlbumArtist(string albumKey, Artist artist, bool copyFiles)
+        {
+            var album = _importedAlbums[albumKey];
+            if (album == null)
+                return;
+
+            album.Artist = artist;
+
+            var newAlbumKey = AlbumKey(artist.Name, album.Name);
+            _importedAlbums.Remove(albumKey);
+            _importedAlbums.Add(newAlbumKey, album);
+
+            if (copyFiles && album.Tracks != null)
+            {
+                foreach (var track in album.Tracks)
+                {
+                    var songMedia = track.Song.Media.FirstOrDefault();
+                    if (songMedia == null)
+                        continue;
+
+                    songMedia.FilePath = _fileSystemService.MoveMediaFile(_importState.Library, songMedia, album);
+                }
+            }
+            _fileSystemService.MoveAlbumArtwork(_importState.Library, album);
         }
 
         /// <summary>
@@ -615,62 +654,5 @@ namespace Bloom.Browser.LibraryModule.Services
         {
             return _isRunning;
         }
-
-        #region Import State Class
-
-        /// <summary>
-        /// Enum to distinguish between a song and album artist.
-        /// </summary>
-        private enum ArtistType
-        {
-            Song,
-            Album
-        }
-
-        /// <summary>
-        /// Represents the state of the import.
-        /// </summary>
-        private class ImportState
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="ImportState"/> class.
-            /// </summary>
-            public ImportState()
-            {
-                Composers = new List<Person>();
-            }
-
-            /// <summary>
-            /// Gets or sets the library being imported to.
-            /// </summary>
-            public Library Library { get; set; }
-
-            /// <summary>
-            /// Gets or sets the composers being imported.
-            /// </summary>
-            public List<Person> Composers { get; private set; }
-
-            /// <summary>
-            /// Gets or sets the genre being imported.
-            /// </summary>
-            public Genre Genre { get; set; }
-
-            /// <summary>
-            /// Gets or sets the artist being imported.
-            /// </summary>
-            public Artist Artist { get; set; }
-
-            /// <summary>
-            /// Gets or sets the album artist being imported.
-            /// </summary>
-            public Artist AlbumArtist { get; set; }
-
-            /// <summary>
-            /// Gets or sets the album being imported.
-            /// </summary>
-            public Album Album { get; set; }
-        }
-
-        #endregion
     }
 }

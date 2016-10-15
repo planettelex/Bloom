@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Bloom.Browser.Common;
 using Bloom.Browser.LibraryModule.Services;
+using Bloom.Browser.State.Domain.Models;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
@@ -14,6 +15,15 @@ namespace Bloom.Browser.LibraryModule.ViewModels
     /// </summary>
     public class NewMusicViewModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewMusicViewModel"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="tabId">The tab identifier.</param>
+        /// <param name="viewType">Type of the view.</param>
+        /// <param name="addMusicEventModel">The add music event model.</param>
+        /// <param name="importService">The import service.</param>
         public NewMusicViewModel(IEventAggregator eventAggregator, BrowserState state, Guid tabId, ViewType viewType, 
             AddMusicEventModel addMusicEventModel, IImportService importService)
         {
@@ -31,6 +41,14 @@ namespace Bloom.Browser.LibraryModule.ViewModels
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewMusicViewModel"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="tabId">The tab identifier.</param>
+        /// <param name="viewType">Type of the view.</param>
+        /// <param name="libraryIds">The library ids.</param>
         public NewMusicViewModel(IEventAggregator eventAggregator, BrowserState state, Guid tabId, ViewType viewType, List<Guid> libraryIds)
         {
             EventAggregator = eventAggregator;
@@ -89,10 +107,12 @@ namespace Bloom.Browser.LibraryModule.ViewModels
             if (_importService == null || _importService.IsRunning())
                 return;
 
+            var preferences = ImportPreferences.Create();
+
             switch (Source)
             {
                 case MusicSource.Files:
-                    _importService.ImportFiles(Path, LibraryIds, CopyFiles);
+                    _importService.ImportFiles(Path, LibraryIds, CopyFiles, preferences);
                     break;
             }
         }

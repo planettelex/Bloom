@@ -64,9 +64,13 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Enums\TaxonomyScope.cs" />
+    <Compile Include="Enums\ArtistScope.cs" />
     <Compile Include="Enums\FilterComparison.cs" />
     <Compile Include="Enums\MusicSource.cs" />
     <Compile Include="Enums\SourceType.cs" />
+    <Compile Include="Enums\TaxonomyType.cs" />
+    <Compile Include="Enums\TextPropertyType.cs" />
     <Compile Include="Interfaces\IOrder.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CountryLanguage.cs" />

@@ -215,6 +215,63 @@ namespace Bloom.Services
         }
 
         /// <summary>
+        /// Moves the media file to the provided album's folder.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="songMedia">The song media.</param>
+        /// <param name="album">The album to move the media to.</param>
+        public string MoveMediaFile(Library library, SongMedia songMedia, Album album)
+        {
+            if (songMedia == null || string.IsNullOrEmpty(songMedia.FilePath) || !File.Exists(songMedia.FilePath))
+                return null;
+
+            var fileName = Path.GetFileName(songMedia.FilePath);
+            if (fileName == null)
+                return null;
+
+            var albumFolderPath = CreateFolder(library, album);
+            var newFilePath = SafeFilePath(albumFolderPath, fileName);
+
+            File.Move(songMedia.FilePath, newFilePath);
+
+            return newFilePath;
+        }
+
+        /// <summary>
+        /// Moves the album artwork from its current location to the one specified by the provided album's data.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="album">An album.</param>
+        public void MoveAlbumArtwork(Library library, Album album)
+        {
+            if (album.Artwork == null || !album.Artwork.Any())
+                return;
+
+            var albumFolderPath = CreateFolder(library, album);
+            var oldAlbumFolderPath = string.Empty;
+            foreach (var albumArtwork in album.Artwork)
+            {
+                var fileName = Path.GetFileName(albumArtwork.FilePath);
+                if (fileName == null)
+                    continue;
+
+                var newFilePath = SafeFilePath(albumFolderPath, fileName);
+
+                oldAlbumFolderPath = Path.GetDirectoryName(albumArtwork.FilePath);
+                File.Move(albumArtwork.FilePath, newFilePath);
+                albumArtwork.FilePath = newFilePath;
+            }
+
+            if (string.IsNullOrEmpty(oldAlbumFolderPath)) 
+                return;
+
+            // Delete the old folder if its empty.
+            var directoryItems = Directory.GetFileSystemEntries(oldAlbumFolderPath);
+            if (!directoryItems.Any())
+                Directory.Delete(oldAlbumFolderPath);
+        }
+
+        /// <summary>
         /// Copies a media file to an album library folder.
         /// </summary>
         /// <param name="library">The library.</param>
@@ -284,6 +341,26 @@ namespace Bloom.Services
             image.Save(imageFilePath, ImageFormat.Png);
 
             return imageFilePath;
+        }
+
+        /// <summary>
+        /// Creates a file path that is safe to move or copy to.
+        /// </summary>
+        /// <param name="folderPath">The folder path.</param>
+        /// <param name="fileName">Name of the file.</param>
+        private static string SafeFilePath(string folderPath, string fileName)
+        {
+            var filePath = Path.Combine(folderPath, fileName);
+
+            var i = 1;
+            while (File.Exists(filePath))
+            {
+                fileName += string.Format("_{0}", i.ToString(CultureInfo.InvariantCulture));
+                filePath = Path.Combine(folderPath, fileName);
+                i++;
+            }
+
+            return filePath;
         }
 
         /// <summary>

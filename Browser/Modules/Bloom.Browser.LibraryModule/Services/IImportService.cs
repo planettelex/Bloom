@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bloom.Browser.State.Domain.Models;
 
 namespace Bloom.Browser.LibraryModule.Services
 {
@@ -14,7 +15,8 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="folderPath">The folder path.</param>
         /// <param name="libraryIds">The library identifiers to import to.</param>
         /// <param name="copyFiles">If set to <c>true</c> copy media files.</param>
-        void ImportFiles(string folderPath, List<Guid> libraryIds, bool copyFiles);
+        /// <param name="importPreferences">The import preferences.</param>
+        void ImportFiles(string folderPath, List<Guid> libraryIds, bool copyFiles, ImportPreferences importPreferences);
 
         /// <summary>
         /// Determines whether this instance is currently running an import.

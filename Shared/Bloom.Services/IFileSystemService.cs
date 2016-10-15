@@ -65,6 +65,21 @@ namespace Bloom.Services
         string CreateFolder(Library library, Playlist playlist);
 
         /// <summary>
+        /// Moves the album artwork from its current location to the one specified by the provided album's data.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="album">An album.</param>
+        void MoveAlbumArtwork(Library library, Album album);
+
+        /// <summary>
+        /// Moves the media file to the provided album's folder.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="songMedia">The song media.</param>
+        /// <param name="album">The album to move the media to.</param>
+        string MoveMediaFile(Library library, SongMedia songMedia, Album album);
+
+        /// <summary>
         /// Copies a media file to an album library folder.
         /// </summary>
         /// <param name="library">The library.</param>

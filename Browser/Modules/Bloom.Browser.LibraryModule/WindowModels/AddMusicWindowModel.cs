@@ -27,10 +27,11 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         {
             EventAggregator = eventAggregator;
             State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            LibraryIds = new List<Guid>();
             FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
             FolderSelectVisibility = Visibility.Collapsed;
             CopyFilesVisibility = Visibility.Collapsed;
-            LibraryIds = new List<Guid>();
+            CopyFiles = true;
         }
 
         /// <summary>
