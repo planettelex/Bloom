@@ -18,6 +18,13 @@ namespace Bloom.Data.Repositories
         Activity GetActivity(IDataSource dataSource, Guid activityId);
 
         /// <summary>
+        /// Finds all activities with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="activityName">The name of the activity.</param>
+        List<Activity> FindActivity(IDataSource dataSource, string activityName);
+
+        /// <summary>
         /// Lists the activities.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

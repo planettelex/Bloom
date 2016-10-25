@@ -35,6 +35,29 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all activities with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="activityName">Name of the activity.</param>
+        public List<Activity> FindActivity(IDataSource dataSource, string activityName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var activityTable = ActivityTable(dataSource);
+            if (activityTable == null)
+                return null;
+
+            var activityQuery =
+                from a in activityTable
+                where a.Name.ToLower() == activityName.ToLower()
+                select a;
+
+            var results = activityQuery.ToList();
+            return !results.Any() ? null : results;
+        }
+
+        /// <summary>
         /// Lists the activities.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -163,6 +186,14 @@ namespace Bloom.Data.Repositories
             if (songActivityTable == null)
                 return;
 
+            var songActivityQuery =
+                from sa in songActivityTable
+                where sa.SongId == song.Id && sa.ActivityId == activity.Id
+                select sa;
+
+            if (songActivityQuery.Any())
+                return;
+
             songActivityTable.InsertOnSubmit(SongActivity.Create(song, activity));
             dataSource.Save();
         }
@@ -182,6 +213,14 @@ namespace Bloom.Data.Repositories
             if (albumActivityTable == null)
                 return;
 
+            var albumActivityQuery =
+                from aa in albumActivityTable
+                where aa.AlbumId == album.Id && aa.ActivityId == activity.Id
+                select aa;
+
+            if (albumActivityQuery.Any())
+                return;
+
             albumActivityTable.InsertOnSubmit(AlbumActivity.Create(album, activity));
             dataSource.Save();
         }
@@ -199,6 +238,14 @@ namespace Bloom.Data.Repositories
 
             var playlistActivityTable = PlaylistActivityTable(dataSource);
             if (playlistActivityTable == null)
+                return;
+
+            var playlistActivityQuery =
+                from pa in playlistActivityTable
+                where pa.PlaylistId == playlist.Id && pa.ActivityId == activity.Id
+                select pa;
+
+            if (playlistActivityQuery.Any())
                 return;
 
             playlistActivityTable.InsertOnSubmit(PlaylistActivity.Create(playlist, activity));

@@ -56,6 +56,12 @@ namespace Bloom.Data
             _container.Resolve<IHolidayRepository>();
             _container.RegisterType<IGenreRepository, GenreRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<IGenreRepository>();
+            _container.RegisterType<IActivityRepository, ActivityRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IActivityRepository>();
+            _container.RegisterType<IMoodRepository, MoodRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<IMoodRepository>();
+            _container.RegisterType<ITagRepository, TagRepository>(new ContainerControlledLifetimeManager());
+            _container.Resolve<ITagRepository>();
             _container.RegisterType<ITimeSignatureRepository, TimeSignatureRepository>(new ContainerControlledLifetimeManager());
             _container.Resolve<ITimeSignatureRepository>();
             _container.RegisterType<ISongRepository, SongRepository>(new ContainerControlledLifetimeManager());

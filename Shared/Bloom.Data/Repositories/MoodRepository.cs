@@ -35,6 +35,29 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all moods with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="moodName">The name of the mood.</param>
+        public List<Mood> FindMood(IDataSource dataSource, string moodName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var moodTable = MoodTable(dataSource);
+            if (moodTable == null)
+                return null;
+
+            var moodQuery =
+                from m in moodTable
+                where m.Name.ToLower() == moodName.ToLower()
+                select m;
+
+            var results = moodQuery.ToList();
+            return !results.Any() ? null : results;
+        }
+
+        /// <summary>
         /// Lists the moods.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -163,6 +186,14 @@ namespace Bloom.Data.Repositories
             if (songMoodTable == null)
                 return;
 
+            var songMoodQuery =
+                from sm in songMoodTable
+                where sm.SongId == song.Id && sm.MoodId == mood.Id
+                select sm;
+
+            if (songMoodQuery.Any())
+                return;
+
             songMoodTable.InsertOnSubmit(SongMood.Create(song, mood));
             dataSource.Save();
         }
@@ -182,6 +213,14 @@ namespace Bloom.Data.Repositories
             if (albumMoodTable == null)
                 return;
 
+            var albumMoodQuery =
+                from am in albumMoodTable
+                where am.AlbumId == album.Id && am.MoodId == mood.Id
+                select am;
+
+            if (albumMoodQuery.Any())
+                return;
+
             albumMoodTable.InsertOnSubmit(AlbumMood.Create(album, mood));
             dataSource.Save();
         }
@@ -199,6 +238,14 @@ namespace Bloom.Data.Repositories
 
             var playlistMoodTable = PlaylistMoodTable(dataSource);
             if (playlistMoodTable == null)
+                return;
+
+            var playlistMoodQuery =
+                from pm in playlistMoodTable
+                where pm.PlaylistId == playlist.Id && pm.MoodId == mood.Id
+                select pm;
+
+            if (playlistMoodQuery.Any())
                 return;
 
             playlistMoodTable.InsertOnSubmit(PlaylistMood.Create(playlist, mood));

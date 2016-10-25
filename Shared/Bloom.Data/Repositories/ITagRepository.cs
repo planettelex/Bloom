@@ -18,6 +18,13 @@ namespace Bloom.Data.Repositories
         Tag GetTag(IDataSource dataSource, Guid tagId);
 
         /// <summary>
+        /// Finds all tags with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tagName">The name of the tag.</param>
+        List<Tag> FindTag(IDataSource dataSource, string tagName);
+
+        /// <summary>
         /// Lists the tags.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

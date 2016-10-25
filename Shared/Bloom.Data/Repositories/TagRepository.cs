@@ -35,6 +35,29 @@ namespace Bloom.Data.Repositories
         }
 
         /// <summary>
+        /// Finds all tags with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="tagName">The name of the tag.</param>
+        public List<Tag> FindTag(IDataSource dataSource, string tagName)
+        {
+            if (!dataSource.IsConnected())
+                return null;
+
+            var tagTable = TagTable(dataSource);
+            if (tagTable == null)
+                return null;
+
+            var tagQuery =
+                from t in tagTable
+                where t.Name.ToLower() == tagName.ToLower()
+                select t;
+
+            var results = tagQuery.ToList();
+            return !results.Any() ? null : results;
+        }
+
+        /// <summary>
         /// Lists the tags.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
@@ -163,6 +186,14 @@ namespace Bloom.Data.Repositories
             if (songTagTable == null)
                 return;
 
+            var songTagQuery =
+                from st in songTagTable
+                where st.SongId == song.Id && st.TagId == tag.Id
+                select st;
+
+            if (songTagQuery.Any())
+                return;
+
             songTagTable.InsertOnSubmit(SongTag.Create(song, tag));
             dataSource.Save();
         }
@@ -182,6 +213,14 @@ namespace Bloom.Data.Repositories
             if (albumTagTable == null)
                 return;
 
+            var albumTagQuery =
+                from at in albumTagTable
+                where at.AlbumId == album.Id && at.TagId == tag.Id
+                select at;
+
+            if (albumTagQuery.Any())
+                return;
+
             albumTagTable.InsertOnSubmit(AlbumTag.Create(album, tag));
             dataSource.Save();
         }
@@ -199,6 +238,14 @@ namespace Bloom.Data.Repositories
 
             var playlistTagTable = PlaylistTagTable(dataSource);
             if (playlistTagTable == null)
+                return;
+
+            var playlistTagQuery =
+                from pt in playlistTagTable
+                where pt.PlaylistId == playlist.Id && pt.TagId == tag.Id
+                select pt;
+
+            if (playlistTagQuery.Any())
                 return;
 
             playlistTagTable.InsertOnSubmit(PlaylistTag.Create(playlist, tag));

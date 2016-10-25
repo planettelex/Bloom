@@ -18,6 +18,13 @@ namespace Bloom.Data.Repositories
         Mood GetMood(IDataSource dataSource, Guid moodId);
 
         /// <summary>
+        /// Finds all moods with the given name.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="moodName">The name of the mood.</param>
+        List<Mood> FindMood(IDataSource dataSource, string moodName);
+
+        /// <summary>
         /// Lists the moods.
         /// </summary>
         /// <param name="dataSource">The data source.</param>

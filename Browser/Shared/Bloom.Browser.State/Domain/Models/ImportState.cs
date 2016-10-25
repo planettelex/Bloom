@@ -45,5 +45,20 @@ namespace Bloom.Browser.State.Domain.Models
         /// Gets or sets the album being imported.
         /// </summary>
         public Album Album { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activity being imported.
+        /// </summary>
+        public Activity Activity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mood being imported.
+        /// </summary>
+        public Mood Mood { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tag being imported.
+        /// </summary>
+        public Tag Tag { get; set; }
     }
 }

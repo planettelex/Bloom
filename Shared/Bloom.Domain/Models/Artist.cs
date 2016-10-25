@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
+using System.Linq;
 using Microsoft.Practices.Prism.Mvvm;
 
 namespace Bloom.Domain.Models
@@ -148,6 +149,18 @@ namespace Bloom.Domain.Models
         /// Gets or sets the artist members.
         /// </summary>
         public List<ArtistMember> Members { get; set; }
+
+        /// <summary>
+        /// Gets the next artist member priority.
+        /// </summary>
+        public int GetNextMemberPriority()
+        {
+            var highestPriority = 0;
+            if (Members != null && Members.Any())
+                highestPriority = Members.OrderByDescending(member => member.Priority).First().Priority;
+
+            return highestPriority + 1;
+        }
 
         /// <summary>
         /// Gets the profile image.

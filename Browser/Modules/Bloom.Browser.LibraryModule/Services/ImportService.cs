@@ -32,19 +32,25 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <param name="mediaTagService">The media tag service.</param>
         /// <param name="roleRepository">The role repository.</param>
         /// <param name="genreRepository">The genre repository.</param>
+        /// <param name="activityRepository">The activity repository.</param>
+        /// <param name="moodRepository">The mood repository.</param>
+        /// <param name="tagRepository">The tag repository.</param>
         /// <param name="personRepository">The person repository.</param>
         /// <param name="artistRepository">The artist repository.</param>
         /// <param name="albumRepository">The album repository.</param>
         /// <param name="songRepository">The song repository.</param>
         public ImportService(IEventAggregator eventAggregator, IRegionManager regionManager, IFileSystemService fileSystemService, IMediaTagService mediaTagService,
-            IRoleRepository roleRepository, IGenreRepository genreRepository, IPersonRepository personRepository,
-            IArtistRepository artistRepository, IAlbumRepository albumRepository, ISongRepository songRepository)
+            IRoleRepository roleRepository, IGenreRepository genreRepository, IActivityRepository activityRepository, IMoodRepository moodRepository, ITagRepository tagRepository,
+            IPersonRepository personRepository, IArtistRepository artistRepository, IAlbumRepository albumRepository, ISongRepository songRepository)
         {
             _eventAggregator = eventAggregator;
             _fileSystemService = fileSystemService;
             _mediaTagService = mediaTagService;
             _roleRepository = roleRepository;
             _genreRepository = genreRepository;
+            _activityRepository = activityRepository;
+            _moodRepository = moodRepository;
+            _tagRepository = tagRepository;
             _personRepository = personRepository;
             _artistRepository = artistRepository;
             _albumRepository = albumRepository;
@@ -56,6 +62,9 @@ namespace Bloom.Browser.LibraryModule.Services
         private readonly IMediaTagService _mediaTagService;
         private readonly IRoleRepository _roleRepository;
         private readonly IGenreRepository _genreRepository;
+        private readonly IActivityRepository _activityRepository;
+        private readonly IMoodRepository _moodRepository;
+        private readonly ITagRepository _tagRepository;
         private readonly IPersonRepository _personRepository;
         private readonly IArtistRepository _artistRepository;
         private readonly IAlbumRepository _albumRepository;
@@ -64,6 +73,9 @@ namespace Bloom.Browser.LibraryModule.Services
         private ImportPreferences _importPreferences;
         private Dictionary<string, Role> _importedRoles; 
         private Dictionary<string, Genre> _importedGenres;
+        private Dictionary<string, Activity> _importedActivities;
+        private Dictionary<string, Mood> _importedMoods;
+        private Dictionary<string, Tag> _importedTags;
         private Dictionary<string, Person> _importedPeople;
         private Dictionary<string, Artist> _importedArtists;
         private Dictionary<string, Album> _importedAlbums;
@@ -101,6 +113,9 @@ namespace Bloom.Browser.LibraryModule.Services
                 var dataSource = State.GetConnectionData(libraryId);
                 _importedRoles = new Dictionary<string, Role>();
                 _importedGenres = new Dictionary<string, Genre>();
+                _importedActivities = new Dictionary<string, Activity>();
+                _importedMoods = new Dictionary<string, Mood>();
+                _importedTags = new Dictionary<string, Tag>();
                 _importedPeople = new Dictionary<string, Person>();
                 _importedArtists = new Dictionary<string, Artist>();
                 _importedAlbums = new Dictionary<string, Album>();
@@ -120,6 +135,9 @@ namespace Bloom.Browser.LibraryModule.Services
             _isRunning = false;
             _importPreferences = null;
             _importedGenres = null;
+            _importedActivities = null;
+            _importedMoods = null;
+            _importedTags = null;
             _importedPeople = null;
             _importedArtists = null;
             _importedAlbums = null;
@@ -140,6 +158,9 @@ namespace Bloom.Browser.LibraryModule.Services
             {
                 if (!string.IsNullOrEmpty(mediaFile.Metadata.GenreName))
                     ImportGenre(mediaFile.Metadata.GenreName, dataSource);
+
+                if (!string.IsNullOrEmpty(mediaFile.Metadata.Grouping))
+                    ImportTaxonomy(mediaFile.Metadata.Grouping, dataSource);
                 
                 if (!string.IsNullOrEmpty(mediaFile.Metadata.Composers))
                     ImportComposers(mediaFile.Metadata.Composers, dataSource);
@@ -189,6 +210,123 @@ namespace Bloom.Browser.LibraryModule.Services
                 _importedGenres.Add(genreKey, genreMatch);
             }
             _importState.Genre = genreMatch;
+        }
+
+        /// <summary>
+        /// Imports the taxonomy.
+        /// </summary>
+        /// <param name="taxonomyName">The taxonomy name.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void ImportTaxonomy(string taxonomyName, IDataSource dataSource)
+        {
+            switch (_importPreferences.MapGroupingTo.Item1)
+            {
+                case TaxonomyType.Activity:
+                    ImportActivity(taxonomyName, dataSource);
+                    break;
+                case TaxonomyType.Mood:
+                    ImportMood(taxonomyName, dataSource);
+                    break;
+                case TaxonomyType.Tag:
+                    ImportTag(taxonomyName, dataSource);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Imports the activity.
+        /// </summary>
+        /// <param name="activityName">The name of the activity.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void ImportActivity(string activityName, IDataSource dataSource)
+        {
+            var activityKey = activityName.AsKey();
+            Activity activityMatch = null;
+            if (_importedActivities.ContainsKey(activityKey))
+                activityMatch = _importedActivities[activityKey];
+
+            if (activityMatch == null)
+            {
+                var activityMatches = _activityRepository.FindActivity(dataSource, activityName);
+                if (activityMatches == null || !activityMatches.Any())
+                {
+                    activityMatch = Activity.Create(activityName);
+                    _activityRepository.AddActivity(dataSource, activityMatch);
+                }
+                else if (activityMatches.Count == 1)
+                    activityMatch = activityMatches.First();
+                else
+                {
+                    activityMatch = activityMatches.Last();
+                    // TODO: Activity Disabiguation Window
+                }
+                _importedActivities.Add(activityKey, activityMatch);
+            }
+            _importState.Activity = activityMatch;
+        }
+
+        /// <summary>
+        /// Imports the mood.
+        /// </summary>
+        /// <param name="moodName">The name of the mood.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void ImportMood(string moodName, IDataSource dataSource)
+        {
+            var moodKey = moodName.AsKey();
+            Mood moodMatch = null;
+            if (_importedMoods.ContainsKey(moodKey))
+                moodMatch = _importedMoods[moodKey];
+
+            if (moodMatch == null)
+            {
+                var moodMatches = _moodRepository.FindMood(dataSource, moodName);
+                if (moodMatches == null || !moodMatches.Any())
+                {
+                    moodMatch = Mood.Create(moodName);
+                    _moodRepository.AddMood(dataSource, moodMatch);
+                }
+                else if (moodMatches.Count == 1)
+                    moodMatch = moodMatches.First();
+                else
+                {
+                    moodMatch = moodMatches.Last();
+                    // TODO: Mood Disabiguation Window
+                }
+                _importedMoods.Add(moodKey, moodMatch);
+            }
+            _importState.Mood = moodMatch;
+        }
+
+        /// <summary>
+        /// Imports the tag.
+        /// </summary>
+        /// <param name="tagName">The name of the tag.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void ImportTag(string tagName, IDataSource dataSource)
+        {
+            var tagKey = tagName.AsKey();
+            Tag tagMatch = null;
+            if (_importedTags.ContainsKey(tagKey))
+                tagMatch = _importedTags[tagKey];
+
+            if (tagMatch == null)
+            {
+                var tagMatches = _tagRepository.FindTag(dataSource, tagName);
+                if (tagMatches == null || !tagMatches.Any())
+                {
+                    tagMatch = Tag.Create(tagName);
+                    _tagRepository.AddTag(dataSource, tagMatch);
+                }
+                else if (tagMatches.Count == 1)
+                    tagMatch = tagMatches.First();
+                else
+                {
+                    tagMatch = tagMatches.Last();
+                    // TODO: Tag Disabiguation Window
+                }
+                _importedTags.Add(tagKey, tagMatch);
+            }
+            _importState.Tag = tagMatch;
         }
 
         /// <summary>
@@ -299,6 +437,32 @@ namespace Bloom.Browser.LibraryModule.Services
                 _importState.AlbumArtist = artistMatch;
             else
                 _importState.Artist = artistMatch;
+
+            if (!_importPreferences.ComposersAlsoArtistMembers) 
+                return;
+
+            foreach (var composer in _importState.Composers)
+                ImportArtistMember(artistMatch, composer, dataSource);
+        }
+
+        /// <summary>
+        /// Imports the artist member.
+        /// </summary>
+        /// <param name="artist">The artist.</param>
+        /// <param name="member">The artist member.</param>
+        /// <param name="dataSource">The data source.</param>
+        private void ImportArtistMember(Artist artist, Person member, IDataSource dataSource)
+        {
+            if (artist.Members == null)
+                artist.Members = new List<ArtistMember>();
+
+            if (artist.Members.Any(m => m.PersonId == member.Id))
+                return;
+
+            var priority = artist.GetNextMemberPriority();
+            var artistMember = ArtistMember.Create(artist, member, priority);
+            _artistRepository.AddArtistMember(dataSource, artistMember);
+            artist.Members.Add(artistMember);
         }
 
         /// <summary>
@@ -326,6 +490,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 var albumMatches = _albumRepository.FindAlbum(dataSource, artistName, albumName);
                 if (albumMatches == null || !albumMatches.Any())
                 {
+                    albumName = _importPreferences.TitleCaseAlbumTitles ? albumName.TitleCase() : albumName;
                     albumMatch = Album.Create(albumName);
                     if (albumArtist != null)
                         albumMatch.Artist = albumArtist;
@@ -342,6 +507,18 @@ namespace Bloom.Browser.LibraryModule.Services
                     albumMatch = albumMatches.Last();
                     albumMatch = _albumRepository.GetAlbum(dataSource, albumMatch.Id);
                     // TODO: Album Disabiguation Window
+                }
+
+                if (_importPreferences.MapGroupingTo.Item2 == TaxonomyScope.Album)
+                {
+                    if (_importState.Activity != null)
+                        _activityRepository.AddActivityTo(dataSource, _importState.Activity, albumMatch);
+
+                    if (_importState.Mood != null)
+                        _moodRepository.AddMoodTo(dataSource, _importState.Mood, albumMatch);
+
+                    if (_importState.Tag != null)
+                        _tagRepository.AddTagTo(dataSource, _importState.Tag, albumMatch);
                 }
 
                 if (albumMatch.Tracks == null)
@@ -390,6 +567,7 @@ namespace Bloom.Browser.LibraryModule.Services
             var discNumber = 1;
             var trackNumber = 0;
             var songName = mediaFile.Metadata != null ? mediaFile.Metadata.Title : Path.GetFileNameWithoutExtension(mediaFile.Path);
+            songName = _importPreferences.TitleCaseSongTitles ? songName.TitleCase() : songName;
             var artist = _importState.Artist ?? _importState.AlbumArtist;
             var newSong = Song.Create(songName, artist);
             newSong.Genre = _importState.Genre;
@@ -402,8 +580,39 @@ namespace Bloom.Browser.LibraryModule.Services
             var songMedia = SongMedia.Create(newSong, mediaFile.Format, filePath);
             songMedia.FileSize = mediaFile.Size;
 
-             if (mediaFile.Metadata != null)
+            if (mediaFile.Metadata != null)
             {
+                if (!string.IsNullOrEmpty(mediaFile.Metadata.Comments))
+                {
+                    if (_importPreferences.MapCommentsTo.Item2 == ArtistScope.Song)
+                    {
+                        switch (_importPreferences.MapCommentsTo.Item1)
+                        {
+                            case TextPropertyType.Description:
+                                newSong.Description = mediaFile.Metadata.Comments;
+                                break;
+                            case TextPropertyType.Notes:
+                                newSong.Notes = mediaFile.Metadata.Comments;
+                                break;
+                            case TextPropertyType.Lyrics:
+                                newSong.Lyrics = mediaFile.Metadata.Comments;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (_importPreferences.MapCommentsTo.Item1)
+                        {
+                            case TextPropertyType.Description:
+                                _importState.Album.Description = mediaFile.Metadata.Comments;
+                                break;
+                            case TextPropertyType.LinerNotes:
+                                _importState.Album.LinerNotes = mediaFile.Metadata.Comments;
+                                break;
+                        }
+                    }
+                }
+
                 newSong.Bpm = mediaFile.Metadata.Bpm;
                 newSong.Notes = mediaFile.Metadata.Comments;
                 songMedia.BitRate = mediaFile.Bitrate;
@@ -427,6 +636,18 @@ namespace Bloom.Browser.LibraryModule.Services
             _songRepository.AddSong(dataSource, newSong);
             _songRepository.AddSongMedia(dataSource, songMedia);
             _albumRepository.AddAlbumTrack(dataSource, albumTrack);
+
+            if (_importPreferences.MapGroupingTo.Item2 == TaxonomyScope.Song)
+            {
+                if (_importState.Activity != null)
+                    _activityRepository.AddActivityTo(dataSource, _importState.Activity, newSong);
+
+                if (_importState.Mood != null)
+                    _moodRepository.AddMoodTo(dataSource, _importState.Mood, newSong);
+
+                if (_importState.Tag != null)
+                    _tagRepository.AddTagTo(dataSource, _importState.Tag, newSong);
+            }
 
             newSong.Credits = new List<SongCredit>();
             foreach (var composer in _importState.Composers)
