@@ -80,6 +80,8 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Interfaces\ISeedData.cs" />
+    <Compile Include="Interfaces\IDataService.cs" />
     <Compile Include="Interfaces\ISqlTable.cs" />
     <Compile Include="Interfaces\IDataSource.cs" />
     <Compile Include="Interfaces\ITableService.cs" />
@@ -128,6 +130,9 @@
     <Compile Include="Repositories\SongRepository.cs" />
     <Compile Include="Repositories\MoodRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="SeedData\HolidaySeedData.cs" />
+    <Compile Include="SeedData\TimeSignatureSeedData.cs" />
+    <Compile Include="Services\LibraryDataService.cs" />
     <Compile Include="Services\LibraryTableService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tables\ActivityTable.cs" />

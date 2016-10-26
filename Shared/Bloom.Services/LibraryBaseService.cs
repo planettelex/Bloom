@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Bloom.Data;
+using Bloom.Data.Interfaces;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -33,6 +34,7 @@ namespace Bloom.Services
             ILibraryConnectionRepository libraryConnectionRepository, ILibraryRepository libraryRepository, IUserRepository userRepository)
         {
             _container = container;
+            _libraryDataService = _container.Resolve<IDataService>("Library");
             _fileSystemService = fileSystemService;
             _libraryConnectionRepository = libraryConnectionRepository;
             _libraryRepository = libraryRepository;
@@ -48,6 +50,7 @@ namespace Bloom.Services
         private readonly ILibraryRepository _libraryRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
+        private readonly IDataService _libraryDataService;
 
         /// <summary>
         /// Gets the application state.
@@ -77,11 +80,15 @@ namespace Bloom.Services
             _fileSystemService.CreateFolder(library);
             var dataSource = new LibraryDataSource(_container);
             dataSource.Create(library.FilePath);
+
             var libraryConnection = LibraryConnection.Create(library);
             ConnectLibrary(libraryConnection, ApplicationState.User, true, false);
+
             _libraryConnectionRepository.AddLibraryConnection(libraryConnection);
             _libraryRepository.AddLibrary(libraryConnection.DataSource, library);
+            _libraryDataService.SeedTables(dataSource);
             libraryConnection.SaveChanges();
+
             ApplicationState.Connections.Insert(0, libraryConnection);
 
             EventAggregator.GetEvent<SaveStateEvent>().Publish(ApplicationState);
