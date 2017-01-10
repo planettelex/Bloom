@@ -113,7 +113,7 @@ namespace Bloom.Services
                     Grouping = file.Tag.Grouping,
                     Year = (int?) file.Tag.Year,
                     Composers = file.Tag.Composers != null && file.Tag.Composers.Any() ? file.Tag.Composers.First() : null,
-                    Bpm = file.Tag.BeatsPerMinute
+                    Bpm = file.Tag.BeatsPerMinute == 0 ? (double?) null : file.Tag.BeatsPerMinute
                 };
             }
 
