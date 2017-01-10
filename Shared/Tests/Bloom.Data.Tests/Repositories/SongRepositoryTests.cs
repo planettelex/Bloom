@@ -143,7 +143,6 @@ namespace Bloom.Data.Tests.Repositories
             atomHeartMother.PlayCount = 10;
             atomHeartMother.SkipCount = 2;
             atomHeartMother.RemoveCount = 1;
-            atomHeartMother.AddedOn = DateTime.Now.AddDays(-1);
             atomHeartMother.LastPlayed = DateTime.Now;
             
             _songRepository.AddSong(_dataSource, atomHeartMother);
@@ -301,8 +300,8 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(10, atomHeartMother.PlayCount);
             Assert.AreEqual(2, atomHeartMother.SkipCount);
             Assert.AreEqual(1, atomHeartMother.RemoveCount);
-            Assert.LessOrEqual(atomHeartMother.AddedOn, DateTime.Now.AddDays(-1));
-            Assert.Greater(atomHeartMother.AddedOn, DateTime.Now.AddDays(-1).AddMinutes(-1));
+            Assert.LessOrEqual(atomHeartMother.AddedOn, DateTime.Now.AddMinutes(1));
+            Assert.Greater(atomHeartMother.AddedOn, DateTime.Now.AddMinutes(-1));
             Assert.LessOrEqual(atomHeartMother.LastPlayed, DateTime.Now);
             Assert.Greater(atomHeartMother.LastPlayed, DateTime.Now.AddMinutes(-1));
             Assert.AreEqual(_classicRockId, atomHeartMother.GenreId);
@@ -504,8 +503,8 @@ namespace Bloom.Data.Tests.Repositories
             Assert.AreEqual(10, songs[1].PlayCount);
             Assert.AreEqual(2, songs[1].SkipCount);
             Assert.AreEqual(1, songs[1].RemoveCount);
-            Assert.LessOrEqual(songs[1].AddedOn, DateTime.Now.AddDays(-1));
-            Assert.Greater(songs[1].AddedOn, DateTime.Now.AddDays(-1).AddMinutes(-1));
+            Assert.LessOrEqual(songs[1].AddedOn, DateTime.Now.AddMinutes(1));
+            Assert.Greater(songs[1].AddedOn, DateTime.Now.AddMinutes(-1));
             Assert.LessOrEqual(songs[1].LastPlayed, DateTime.Now);
             Assert.Greater(songs[1].LastPlayed, DateTime.Now.AddMinutes(-1));
             

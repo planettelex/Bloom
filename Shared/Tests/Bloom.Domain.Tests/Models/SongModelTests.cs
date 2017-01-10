@@ -253,7 +253,7 @@ namespace Bloom.Domain.Tests.Models
         /// Tests the song credit to string method.
         /// </summary>
         [Test]
-        public void AlbumCreditToStringTest()
+        public void SongCreditToStringTest()
         {
             var artist = Artist.Create(ArtistName);
             var song = Song.Create(SongName, artist);

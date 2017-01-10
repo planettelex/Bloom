@@ -61,7 +61,7 @@ namespace Bloom.Common.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a,an,the,at,by,for,in,of,on,to,up,and,as,but,or,nor.
+        ///   Looks up a localized string similar to a,an,the,at,for,of,to,and,as,but,or,nor,vs.
         /// </summary>
         internal static string TitleWordsToLower {
             get {

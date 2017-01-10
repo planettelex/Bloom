@@ -76,7 +76,7 @@ namespace Bloom.Domain.Models
         public override string ToString()
         {
             var personString = Person != null ? Person.Name : PersonId.ToString();
-            if (Roles == null)
+            if (Roles == null || !Roles.Any())
                 return personString;
 
             var rolesString = Roles.Aggregate(string.Empty, (current, role) => current + (role + ", "));

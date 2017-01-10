@@ -25,7 +25,7 @@ namespace Bloom.Services.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PT\\Internal\\Bloom\\Browser\\Bloom.Browser\\bin\\Debug\\Bloom.Browser.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Bloom\\App\\Browser\\Bloom.Browser\\bin\\Debug\\Bloom.Browser.exe")]
         public string BrowserExecutablePath {
             get {
                 return ((string)(this["BrowserExecutablePath"]));
@@ -34,7 +34,7 @@ namespace Bloom.Services.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PT\\Internal\\Bloom\\Player\\Bloom.Player\\bin\\Debug\\Bloom.Player.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Bloom\\App\\Player\\Bloom.Player\\bin\\Debug\\Bloom.Player.exe")]
         public string PlayerExecutablePath {
             get {
                 return ((string)(this["PlayerExecutablePath"]));
@@ -43,7 +43,7 @@ namespace Bloom.Services.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PT\\Internal\\Bloom\\Analytics\\Bloom.Analytics\\bin\\Debug\\Bloom.Analytics.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Bloom\\App\\Analytics\\Bloom.Analytics\\bin\\Debug\\Bloom.Analytics.exe")]
         public string AnalyticsExecutablePath {
             get {
                 return ((string)(this["AnalyticsExecutablePath"]));

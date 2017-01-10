@@ -172,7 +172,7 @@ namespace Bloom.Services.Tests
             Assert.IsNotNull(mediaTag.TrackCount);
             Assert.AreEqual(8, mediaTag.TrackCount);
             Assert.IsNull(mediaTag.Comments);
-            Assert.AreEqual(0.0, mediaTag.Bpm);
+            Assert.IsNull(mediaTag.Bpm);
             Assert.IsNull(mediaTag.Rating);
             Assert.IsNull(mediaTag.PlayCount);
         }
@@ -205,7 +205,7 @@ namespace Bloom.Services.Tests
             Assert.AreEqual(5, mediaTag.TrackCount);
             Assert.IsNotNull(mediaTag.Comments);
             Assert.Greater(mediaTag.Comments.Length, 0);
-            Assert.AreEqual(0.0, mediaTag.Bpm);
+            Assert.IsNull(mediaTag.Bpm);
             Assert.IsNull(mediaTag.Rating);
             Assert.IsNull(mediaTag.PlayCount);
         }
@@ -368,7 +368,7 @@ namespace Bloom.Services.Tests
             Assert.IsNotNull(mediaTag.TrackCount);
             Assert.AreEqual(8, mediaTag.TrackCount);
             Assert.IsNull(mediaTag.Comments);
-            Assert.AreEqual(0.0, mediaTag.Bpm);
+            Assert.IsNull(mediaTag.Bpm);
             Assert.IsNull(mediaTag.Rating);
             Assert.IsNull(mediaTag.PlayCount);
 
@@ -448,7 +448,7 @@ namespace Bloom.Services.Tests
             Assert.AreEqual(5, mediaTag.TrackCount);
             Assert.IsNotNull(mediaTag.Comments);
             Assert.Greater(mediaTag.Comments.Length, 0);
-            Assert.AreEqual(0.0, mediaTag.Bpm);
+            Assert.IsNull(mediaTag.Bpm);
             Assert.IsNull(mediaTag.Rating);
             Assert.IsNull(mediaTag.PlayCount);
 

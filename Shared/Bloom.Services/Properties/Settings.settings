@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="BrowserExecutablePath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\PT\Internal\Bloom\Browser\Bloom.Browser\bin\Debug\Bloom.Browser.exe</Value>
+      <Value Profile="(Default)">C:\Bloom\App\Browser\Bloom.Browser\bin\Debug\Bloom.Browser.exe</Value>
     </Setting>
     <Setting Name="PlayerExecutablePath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\PT\Internal\Bloom\Player\Bloom.Player\bin\Debug\Bloom.Player.exe</Value>
+      <Value Profile="(Default)">C:\Bloom\App\Player\Bloom.Player\bin\Debug\Bloom.Player.exe</Value>
     </Setting>
     <Setting Name="AnalyticsExecutablePath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\PT\Internal\Bloom\Analytics\Bloom.Analytics\bin\Debug\Bloom.Analytics.exe</Value>
+      <Value Profile="(Default)">C:\Bloom\App\Analytics\Bloom.Analytics\bin\Debug\Bloom.Analytics.exe</Value>
     </Setting>
     <Setting Name="BrowserProcessName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Bloom.Browser</Value>
