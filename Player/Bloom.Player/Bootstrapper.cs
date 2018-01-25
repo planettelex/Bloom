@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Bloom.Data;
 using Bloom.Data.Interfaces;
+using Bloom.Data.Services;
 using Bloom.LibraryModule;
 using Bloom.LibraryModule.Services;
 using Bloom.Player.MenuModule;
@@ -86,6 +87,8 @@ namespace Bloom.Player
             Container.RegisterType<IDataSource, LibraryDataSource>("Library", new ContainerControlledLifetimeManager());
             var libraryDataSource = Container.Resolve<IDataSource>("Library");
             libraryDataSource.RegisterRepositories();
+
+            Container.RegisterType<IDataService, LibraryDataService>("Library", new ContainerControlledLifetimeManager());
         }
 
         /// <summary>
