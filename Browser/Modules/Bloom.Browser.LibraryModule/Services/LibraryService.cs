@@ -12,11 +12,11 @@ using Bloom.Browser.PubSubEvents;
 using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
+using Bloom.Modules.UserModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.PubSubEvents.EventModels;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
-using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 

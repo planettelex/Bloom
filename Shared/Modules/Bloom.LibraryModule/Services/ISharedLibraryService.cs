@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.LibraryModule.Services
+namespace Bloom.Modules.LibraryModule.Services
 {
     /// <summary>
     /// Service for shared library operations.

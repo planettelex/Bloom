@@ -7,8 +7,8 @@
     <ProjectGuid>{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.TaxonomiesModule</RootNamespace>
-    <AssemblyName>Bloom.TaxonomiesModule</AssemblyName>
+    <RootNamespace>Bloom.Modules.TaxonomiesModule</RootNamespace>
+    <AssemblyName>Bloom.Modules.TaxonomiesModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Windows;
 using Bloom.Data.Repositories;
-using Bloom.LibraryModule.WindowModels;
-using Bloom.LibraryModule.Windows;
+using Bloom.Modules.LibraryModule.WindowModels;
+using Bloom.Modules.LibraryModule.Windows;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
@@ -13,13 +13,13 @@ using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.LibraryModule.Services
+namespace Bloom.Modules.LibraryModule.Services
 {
     /// <summary>
     /// Service for shared library operations.
     /// </summary>
     /// <seealso cref="Bloom.Services.LibraryBaseService" />
-    /// <seealso cref="Bloom.LibraryModule.Services.ISharedLibraryService" />
+    /// <seealso cref="ISharedLibraryService" />
     public class SharedLibraryService : LibraryBaseService, ISharedLibraryService
     {
         /// <summary>

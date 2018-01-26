@@ -1,8 +1,8 @@
-﻿using Bloom.TaxonomiesModule.Views;
-using Microsoft.Practices.Prism.Modularity;
+﻿using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
+using TaxonomiesView = Bloom.Modules.TaxonomiesModule.Views.TaxonomiesView;
 
-namespace Bloom.TaxonomiesModule
+namespace Bloom.Modules.TaxonomiesModule
 {
     /// <summary>
     /// Shared taxonomies module.

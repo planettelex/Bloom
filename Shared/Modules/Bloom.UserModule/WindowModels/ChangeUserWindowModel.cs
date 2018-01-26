@@ -5,14 +5,14 @@ using System.Linq;
 using System.Windows.Input;
 using Bloom.Common;
 using Bloom.Domain.Models;
+using Bloom.Modules.UserModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
-using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.UserModule.WindowModels
+namespace Bloom.Modules.UserModule.WindowModels
 {
     /// <summary>
     /// Window model for ChangeUserWindow.xaml

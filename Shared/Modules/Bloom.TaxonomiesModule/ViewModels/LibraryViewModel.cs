@@ -6,7 +6,7 @@ using Bloom.PubSubEvents;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.TaxonomiesModule.ViewModels
+namespace Bloom.Modules.TaxonomiesModule.ViewModels
 {
     /// <summary>
     /// View model for LibraryView.xaml

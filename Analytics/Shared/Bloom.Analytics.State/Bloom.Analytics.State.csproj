@@ -103,9 +103,9 @@
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Modules\Bloom.LibraryModule\Bloom.LibraryModule.csproj">
+    <ProjectReference Include="..\..\..\Shared\Modules\Bloom.LibraryModule\Bloom.Modules.LibraryModule.csproj">
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
-      <Name>Bloom.LibraryModule</Name>
+      <Name>Bloom.Modules.LibraryModule</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

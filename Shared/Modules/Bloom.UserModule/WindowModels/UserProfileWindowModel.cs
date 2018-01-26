@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Windows.Input;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -11,7 +11,7 @@ using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.UserModule.WindowModels
+namespace Bloom.Modules.UserModule.WindowModels
 {
     /// <summary>
     /// Window model for NewLibraryWindow.xaml

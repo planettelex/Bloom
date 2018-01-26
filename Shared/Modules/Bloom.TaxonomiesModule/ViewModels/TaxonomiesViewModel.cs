@@ -3,7 +3,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.TaxonomiesModule.ViewModels
+namespace Bloom.Modules.TaxonomiesModule.ViewModels
 {
     /// <summary>
     /// View model for TaxonomiesView.xaml

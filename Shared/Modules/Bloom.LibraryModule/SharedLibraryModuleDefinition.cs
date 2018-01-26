@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Prism.Modularity;
 
-namespace Bloom.LibraryModule
+namespace Bloom.Modules.LibraryModule
 {
     /// <summary>
     /// Shared library module.

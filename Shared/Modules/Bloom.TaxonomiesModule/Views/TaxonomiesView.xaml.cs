@@ -1,9 +1,9 @@
 ﻿using System;
+using Bloom.Modules.TaxonomiesModule.ViewModels;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
-using Bloom.TaxonomiesModule.ViewModels;
 
-namespace Bloom.TaxonomiesModule.Views
+namespace Bloom.Modules.TaxonomiesModule.Views
 {
     /// <summary>
     /// Interaction logic for TaxonomiesView.xaml
@@ -27,7 +27,7 @@ namespace Bloom.TaxonomiesModule.Views
         /// <summary>
         /// Gets the view model.
         /// </summary>
-        private TaxonomiesViewModel ViewModel { get { return (TaxonomiesViewModel) DataContext; } }
+        private TaxonomiesViewModel ViewModel => (TaxonomiesViewModel) DataContext;
 
         /// <summary>
         /// Adds the library.

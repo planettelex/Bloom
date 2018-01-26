@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DDBC521E-2B45-49F2-B9F5-743EEFE9122A}</ProjectGuid>
+    <ProjectGuid>{03CE0198-7E75-47B4-8447-617D1A3E36DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.UserModule</RootNamespace>
-    <AssemblyName>Bloom.UserModule</AssemblyName>
+    <RootNamespace>Bloom.Modules.LibraryModule</RootNamespace>
+    <AssemblyName>Bloom.Modules.LibraryModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -84,10 +84,6 @@
       <HintPath>..\..\..\lib\RCWPF\2018.1.122.45\Telerik.Windows.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
-      <HintPath>..\..\..\lib\RCWPF\2018.1.122.45\Telerik.Windows.Controls.Input.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Telerik.Windows.Controls.Navigation, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <HintPath>..\..\..\lib\RCWPF\2018.1.122.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
       <Private>True</Private>
@@ -103,22 +99,22 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ISharedUserService.cs" />
-    <Compile Include="Services\SharedUserService.cs" />
-    <Compile Include="SharedUserModuleDefinition.cs" />
-    <Compile Include="WindowModels\ChangeUserWindowModel.cs" />
-    <Compile Include="WindowModels\UserProfileWindowModel.cs" />
-    <Compile Include="Windows\ChangeUserWindow.xaml.cs">
-      <DependentUpon>ChangeUserWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\UserProfileWindow.xaml.cs">
-      <DependentUpon>UserProfileWindow.xaml</DependentUpon>
+    <Compile Include="Services\ISharedLibraryService.cs" />
+    <Compile Include="Services\SharedLibraryService.cs" />
+    <Compile Include="SharedLibraryModuleDefinition.cs" />
+    <Compile Include="WindowModels\ConnectedLibrariesWindowModel.cs" />
+    <Compile Include="Windows\ConnectedLibrariesWindow.xaml.cs">
+      <DependentUpon>ConnectedLibrariesWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Browser\Shared\Bloom.Browser.PubSubEvents\Bloom.Browser.PubSubEvents.csproj">
+      <Project>{AFEA27AB-8A29-4AE4-B274-1B3B056A4B76}</Project>
+      <Name>Bloom.Browser.PubSubEvents</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
@@ -128,7 +124,7 @@
       <Name>Bloom.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Bloom.Data\Bloom.Data.csproj">
-      <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
+      <Project>{5904468A-1DF3-400F-BF35-E975C2CA9F6B}</Project>
       <Name>Bloom.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Bloom.Domain\Bloom.Domain.csproj">
@@ -148,7 +144,7 @@
       <Name>Bloom.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Bloom.State.Data\Bloom.State.Data.csproj">
-      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
+      <Project>{059176F6-BECE-46D8-B160-02EF5D897559}</Project>
       <Name>Bloom.State.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Bloom.State.Domain\Bloom.State.Domain.csproj">
@@ -156,13 +152,8 @@
       <Name>Bloom.State.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Page Include="Windows\ChangeUserWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UserProfileWindow.xaml">
+    <Page Include="Windows\ConnectedLibrariesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

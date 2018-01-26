@@ -5,7 +5,7 @@ using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.LibraryModule.WindowModels
+namespace Bloom.Modules.LibraryModule.WindowModels
 {
     /// <summary>
     /// Window model for ConnectedLibrariesWindow.xaml

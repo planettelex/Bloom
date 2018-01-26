@@ -1,19 +1,20 @@
 ﻿using System.Windows;
+using Bloom.Modules.UserModule.WindowModels;
+using Bloom.Modules.UserModule.Windows;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
-using Bloom.UserModule.WindowModels;
-using Bloom.UserModule.Windows;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
+using ChangeUserWindow = Bloom.Modules.UserModule.Windows.ChangeUserWindow;
 
-namespace Bloom.UserModule.Services
+namespace Bloom.Modules.UserModule.Services
 {
     /// <summary>
     /// Service for shared user operations.
     /// </summary>
     /// <seealso cref="Bloom.Services.UserBaseService" />
-    /// <seealso cref="Bloom.UserModule.Services.ISharedUserService" />
+    /// <seealso cref="ISharedUserService" />
     public class SharedUserService : UserBaseService, ISharedUserService
     {
         /// <summary>

@@ -1,6 +1,6 @@
-﻿using Bloom.TaxonomiesModule.ViewModels;
+﻿using Bloom.Modules.TaxonomiesModule.ViewModels;
 
-namespace Bloom.TaxonomiesModule.Views
+namespace Bloom.Modules.TaxonomiesModule.Views
 {
     /// <summary>
     /// Interaction logic for LibraryView.xaml

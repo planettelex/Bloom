@@ -3,12 +3,12 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.Common;
-using Bloom.LibraryModule.Services;
+using Bloom.Modules.LibraryModule.Services;
+using Bloom.Modules.UserModule.Services;
 using Bloom.Player.State.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Bloom.UserModule.Services;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Player

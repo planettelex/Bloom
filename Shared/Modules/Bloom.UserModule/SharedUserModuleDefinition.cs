@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Prism.Modularity;
 
-namespace Bloom.UserModule
+namespace Bloom.Modules.UserModule
 {
     /// <summary>
     /// Shared user module.

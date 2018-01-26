@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.UserModule.Services
+namespace Bloom.Modules.UserModule.Services
 {
     /// <summary>
     /// Service for shared user operations.

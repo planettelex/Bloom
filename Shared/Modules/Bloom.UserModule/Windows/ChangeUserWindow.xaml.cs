@@ -1,8 +1,8 @@
 ﻿using System.Windows.Media;
-using Bloom.UserModule.WindowModels;
+using Bloom.Modules.UserModule.WindowModels;
 using Microsoft.Practices.Prism.Commands;
 
-namespace Bloom.UserModule.Windows
+namespace Bloom.Modules.UserModule.Windows
 {
     /// <summary>
     /// Interaction logic for ChangeUserWindow.xaml

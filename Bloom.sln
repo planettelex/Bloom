@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{57EC0CAF-562A-4E50-BFE0-86827AC9BBAE}"
 	ProjectSection(SolutionItems) = preProject
@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Controls", "Shared\Bl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C7EDF224-02A4-4A92-AA84-490C17D240DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.TaxonomiesModule", "Shared\Modules\Bloom.TaxonomiesModule\Bloom.TaxonomiesModule.csproj", "{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Modules.TaxonomiesModule", "Shared\Modules\Bloom.TaxonomiesModule\Bloom.Modules.TaxonomiesModule.csproj", "{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.PubSubEvents", "Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj", "{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}"
 EndProject
@@ -120,9 +120,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.HomeModule", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.HomeModule", "Analytics\Modules\Bloom.Analytics.HomeModule\Bloom.Analytics.HomeModule.csproj", "{B0B2745D-9DA3-46EE-B20C-6C66598CC84B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.LibraryModule", "Shared\Modules\Bloom.LibraryModule\Bloom.LibraryModule.csproj", "{03CE0198-7E75-47B4-8447-617D1A3E36DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Modules.LibraryModule", "Shared\Modules\Bloom.LibraryModule\Bloom.Modules.LibraryModule.csproj", "{03CE0198-7E75-47B4-8447-617D1A3E36DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.UserModule", "Shared\Modules\Bloom.UserModule\Bloom.UserModule.csproj", "{DDBC521E-2B45-49F2-B9F5-743EEFE9122A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Modules.UserModule", "Shared\Modules\Bloom.UserModule\Bloom.Modules.UserModule.csproj", "{DDBC521E-2B45-49F2-B9F5-743EEFE9122A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Common.Tests", "Shared\Tests\Bloom.Common.Tests\Bloom.Common.Tests.csproj", "{BBCA21F7-7FC6-44EA-971F-00DB55616DE7}"
 EndProject
