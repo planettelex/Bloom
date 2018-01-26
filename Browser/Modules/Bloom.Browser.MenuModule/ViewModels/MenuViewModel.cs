@@ -92,6 +92,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// <summary>
         /// Sets the state.
         /// </summary>
+        /// <param name="libraryId">A library identifier.</param>
         private void SetState(Guid libraryId)
         {
             SetState();
@@ -220,7 +221,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
             else
             {
                 var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
-                HasLibraryContext = (selectedTab != null && selectedTab.HasLibraryContext());
+                HasLibraryContext = selectedTab != null && selectedTab.HasLibraryContext();
             }
         }
 

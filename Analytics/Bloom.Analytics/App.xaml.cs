@@ -5,7 +5,7 @@ namespace Bloom.Analytics
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Application.Startup" /> event.

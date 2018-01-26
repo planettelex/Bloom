@@ -31,8 +31,8 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
 
-            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(CheckConnections);
-            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(CheckConnections);
+            _eventAggregator.GetEvent<ConnectionAddedEvent>().Subscribe(SetState);
+            _eventAggregator.GetEvent<ConnectionRemovedEvent>().Subscribe(SetState);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
             _eventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(SetUser);
             _eventAggregator.GetEvent<SidebarToggledEvent>().Subscribe(SetToggleSidebarVisibilityOption);
@@ -67,19 +67,34 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         private readonly IRegionManager _regionManager;
 
         /// <summary>
-        /// Gets the state.
+        /// Gets the analytics state.
         /// </summary>
         public AnalyticsState State { get; private set; }
 
+        /// <summary>
+        /// Sets the state.
+        /// </summary>
         public void SetState(object nothing)
         {
             SetState();
         }
 
+        /// <summary>
+        /// Sets the state.
+        /// </summary>
+        /// <param name="libraryId">A library identifier.</param>
+        private void SetState(Guid libraryId)
+        {
+            SetState();
+        }
+
+        /// <summary>
+        /// Sets the state.
+        /// </summary>
         public void SetState()
         {
             State = (AnalyticsState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
-            CheckConnections(null);
+            CheckConnections();
             SetUser(null);
             SetLibraryContext(State.SelectedTabId);
             SetToggleSidebarVisibilityOption(State.SidebarVisible);
@@ -87,6 +102,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         #region Shared Properties
 
+        /// <summary>
+        /// Gets or sets a value indicating whether there are library connections.
+        /// </summary>
         public bool HasConnections
         {
             get { return _hasConnections; }
@@ -94,9 +112,12 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         }
         private bool _hasConnections;
 
-        public void CheckConnections(object unused)
+        /// <summary>
+        /// Checks the connections.
+        /// </summary>
+        public void CheckConnections()
         {
-            HasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+            HasConnections = State?.Connections != null && State.Connections.Count > 0;
             if (!HasConnections)
             {
                 SetToggleSidebarVisibilityOption(false);
@@ -104,11 +125,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             }
         }
 
-        public void CheckConnections(Guid unused)
-        {
-            CheckConnections(null);
-        }
-
+        /// <summary>
+        /// Gets or sets whether the application has a user.
+        /// </summary>
         public bool HasUser
         {
             get { return _hasUser; }
@@ -116,6 +135,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         }
         private bool _hasUser;
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
         public string UserName
         {
             get { return _userName; }
@@ -123,9 +145,12 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         }
         private string _userName;
 
+        /// <summary>
+        /// Sets the user.
+        /// </summary>
         public void SetUser(object nothing)
         {
-            if (State == null || State.User == null || State.User.Name == null)
+            if (State?.User?.Name == null)
             {
                 UserName = "Login";
                 HasUser = false;
@@ -137,6 +162,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the active tab has a library associated with it.
+        /// </summary>
         public bool HasLibraryContext
         {
             get { return _hasLibraryContext; }
@@ -144,18 +172,29 @@ namespace Bloom.Analytics.MenuModule.ViewModels
         }
         private bool _hasLibraryContext;
 
+        /// <summary>
+        /// The identifier of the current library context.
+        /// </summary>
         public Guid LibraryContext { get; set; }
 
+        /// <summary>
+        /// Sets the library context.
+        /// </summary>
+        /// <param name="tabId">A tab identifier.</param>
         private void SetLibraryContext(Guid? tabId)
         {
             if (tabId != null)
                 SetLibraryContext(tabId.Value);
         }
 
+        /// <summary>
+        /// Sets the library context.
+        /// </summary>
+        /// <param name="tabId">A tab identifier.</param>
         private void SetLibraryContext(Guid tabId)
         {
             var selectedTab = State.Tabs.SingleOrDefault(tab => tab.Id == tabId);
-            if (selectedTab == null || selectedTab.LibraryId == null)
+            if (selectedTab?.LibraryId == null)
             {
                 LibraryContext = Guid.Empty;
                 HasLibraryContext = false;
@@ -205,6 +244,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         #region Edit Menu
 
+        /// <summary>
+        /// Gets or sets the edit library properties command.
+        /// </summary>
         public ICommand EditLibraryPropertiesCommand { get; set; }
 
         private bool CanEditLibraryProperties(object nothing)
@@ -309,6 +351,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         #region View Menu
 
+        /// <summary>
+        /// Gets or sets the open home tab command.
+        /// </summary>
         public ICommand OpenHomeTabCommand { get; set; }
 
         private bool CanOpenHomeTab(object nothing)
@@ -321,6 +366,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             _eventAggregator.GetEvent<NewHomeTabEvent>().Publish(null);
         }
 
+        /// <summary>
+        /// Gets or sets the sidebar visibility option.
+        /// </summary>
         public string ToggleSidebarVisibilityOption
         {
             get { return _toggleSidebarVisibilityOption; }
@@ -333,6 +381,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             ToggleSidebarVisibilityOption = isVisible ? "Hide Sidebar" : "Show Sidebar";
         }
 
+        /// <summary>
+        /// Gets or sets the toggle sidebar visibility command.
+        /// </summary>
         public ICommand ToggleSidebarVisibilityCommand { get; set; }
 
         private bool CanToggleSidebarVisibility(object nothing)
@@ -372,6 +423,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         #region Help Menu
 
+        /// <summary>
+        /// Gets or sets the open getting started tab command.
+        /// </summary>
         public ICommand OpenGettingStartedTabCommand { get; set; }
 
         private bool CanOpenGettingStartedTab(object nothing)
@@ -388,6 +442,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
 
         #region User Menu
 
+        /// <summary>
+        /// Gets or sets the change user tab command.
+        /// </summary>
         public ICommand ChangeUserCommand { get; set; }
 
         private bool CanChangeUser(object nothing)
@@ -400,6 +457,9 @@ namespace Bloom.Analytics.MenuModule.ViewModels
             _eventAggregator.GetEvent<ShowChangeUserModalEvent>().Publish(null);
         }
 
+        /// <summary>
+        /// Gets or sets the view user profile command.
+        /// </summary>
         public ICommand UserProfileCommand { get; set; }
 
         private bool CanShowUserProfile(object nothing)

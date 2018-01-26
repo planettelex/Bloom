@@ -49,6 +49,10 @@ namespace Bloom.Analytics.ArtistModule.Services
             State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
+        /// <summary>
+        /// Creates a new artist tab.
+        /// </summary>
+        /// <param name="artistBuid">The artist Bloom identifier.</param>
         public void NewArtistTab(Buid artistBuid)
         {
             const ViewType defaultViewType = ViewType.Stats;
@@ -62,9 +66,13 @@ namespace Bloom.Analytics.ArtistModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
         }
 
+        /// <summary>
+        /// Restores the artist tab.
+        /// </summary>
+        /// <param name="tab">The artist tab.</param>
         public void RestoreArtistTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var artist = new Artist { Id = tab.EntityId.Value }; // TODO: Make this data access call
@@ -77,6 +85,10 @@ namespace Bloom.Analytics.ArtistModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(artistTab);
         }
 
+        /// <summary>
+        /// Duplicates an artist tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicateArtistTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);

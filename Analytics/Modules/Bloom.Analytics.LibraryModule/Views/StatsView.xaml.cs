@@ -7,6 +7,10 @@ namespace Bloom.Analytics.LibraryModule.Views
     /// </summary>
     public partial class StatsView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StatsView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public StatsView(StatsViewModel viewModel)
         {
             InitializeComponent();

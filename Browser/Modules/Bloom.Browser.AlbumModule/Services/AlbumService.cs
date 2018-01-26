@@ -15,7 +15,7 @@ using Microsoft.Practices.Prism.Regions;
 namespace Bloom.Browser.AlbumModule.Services
 {
     /// <summary>
-    /// Service for shared library operations.
+    /// Service for browser album operations.
     /// </summary>
     /// <seealso cref="IAlbumService" />
     public class AlbumService : IAlbumService

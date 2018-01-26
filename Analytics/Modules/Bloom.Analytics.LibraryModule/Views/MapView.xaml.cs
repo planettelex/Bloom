@@ -7,6 +7,10 @@ namespace Bloom.Analytics.LibraryModule.Views
     /// </summary>
     public partial class MapView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public MapView(MapViewModel viewModel)
         {
             InitializeComponent();

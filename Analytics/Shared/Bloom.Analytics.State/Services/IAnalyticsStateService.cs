@@ -20,8 +20,15 @@ namespace Bloom.Analytics.State.Services
         /// <returns>The analytics application state.</returns>
         AnalyticsState InitializeState(User user);
 
+        /// <summary>
+        /// Get the last process to access state.
+        /// </summary>
         ProcessType LastProcessToAccessState();
 
+        /// <summary>
+        /// Changes the running process in state data.
+        /// </summary>
+        /// <param name="processType">The process type.</param>
         void ChangeStateProcess(ProcessType processType);
 
         /// <summary>

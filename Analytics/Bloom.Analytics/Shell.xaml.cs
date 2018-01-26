@@ -76,7 +76,7 @@ namespace Bloom.Analytics
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
 
-        private AnalyticsState State { get { return (AnalyticsState) DataContext; } }
+        private AnalyticsState State => (AnalyticsState) DataContext;
 
         #region User Events
 
@@ -342,7 +342,7 @@ namespace Bloom.Analytics
 
         public void CheckConnections(Guid unused)
         {
-            var hasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+            var hasConnections = State?.Connections != null && State.Connections.Count > 0;
             if (!hasConnections)
                 HideSidebar(null);
         }

@@ -14,6 +14,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Analytics.SongModule.Services
 {
+    /// <summary>
+    /// Service for analytics song operations.
+    /// </summary>
+    /// <seealso cref="ISongService" />
     public class SongService : ISongService
     {
         /// <summary>

@@ -4,7 +4,7 @@ using Bloom.State.Domain.Models;
 namespace Bloom.Browser.HomeModule.Services
 {
     /// <summary>
-    /// Service interface for browser home and getting started page operations.
+    /// Service for browser home and getting started page operations.
     /// </summary>
     public interface IHomeService
     {

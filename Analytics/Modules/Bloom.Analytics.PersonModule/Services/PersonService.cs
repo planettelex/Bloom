@@ -15,6 +15,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Analytics.PersonModule.Services
 {
+    /// <summary>
+    /// Service for analytics person operations.
+    /// </summary>
+    /// <seealso cref="IPersonService" />
     public class PersonService : IPersonService
     {
         /// <summary>

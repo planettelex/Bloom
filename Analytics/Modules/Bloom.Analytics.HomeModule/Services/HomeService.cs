@@ -13,6 +13,9 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Analytics.HomeModule.Services
 {
+    /// <summary>
+    /// Service for analytics home and getting started page operations.
+    /// </summary>
     public class HomeService : IHomeService
     {
         public HomeService(IEventAggregator eventAggregator, IRegionManager regionManager)
@@ -67,6 +70,10 @@ namespace Bloom.Analytics.HomeModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(homeTab);
         }
 
+        /// <summary>
+        /// Restores the home tab.
+        /// </summary>
+        /// <param name="tab">The home tab.</param>
         public void RestoreHomeTab(Tab tab)
         {
             var homeViewModel = new HomeViewModel(tab.Id);
@@ -77,6 +84,10 @@ namespace Bloom.Analytics.HomeModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(homeTab);
         }
 
+        /// <summary>
+        /// Duplicates the home tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier.</param>
         public void DuplicateHomeTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
@@ -100,6 +111,9 @@ namespace Bloom.Analytics.HomeModule.Services
             NewGettingStartedTab();
         }
 
+        /// <summary>
+        /// Creates a new getting started tab.
+        /// </summary>
         public void NewGettingStartedTab()
         {
             var tab = CreateNewGettingStartedTab();
@@ -111,6 +125,10 @@ namespace Bloom.Analytics.HomeModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(gettingStartedTab);
         }
 
+        /// <summary>
+        /// Restores the getting started tab.
+        /// </summary>
+        /// <param name="tab">The tab.</param>
         public void RestoreGettingStartedTab(Tab tab)
         {
             var gettingStartedViewModel = new GettingStartedViewModel(tab.Id);
@@ -121,6 +139,10 @@ namespace Bloom.Analytics.HomeModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(gettingStartedTab);
         }
 
+        /// <summary>
+        /// Duplicates the getting started tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier.</param>
         public void DuplicateGettingStartedTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);

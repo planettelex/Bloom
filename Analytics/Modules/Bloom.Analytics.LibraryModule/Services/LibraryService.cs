@@ -17,6 +17,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Analytics.LibraryModule.Services
 {
+    /// <summary>
+    /// Service for analytics library operations.
+    /// </summary>
+    /// <seealso cref="Bloom.Analytics.LibraryModule.Services.ILibraryService" />
     public class LibraryService : ILibraryService
     {
         public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, ILibraryRepository libraryRepository)
@@ -49,6 +53,9 @@ namespace Bloom.Analytics.LibraryModule.Services
             State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
+        /// <summary>
+        /// Creates a new library tab.
+        /// </summary>
         public void NewLibraryTab(Guid libraryId)
         {
             const ViewType defaultViewType = ViewType.Stats;
@@ -66,9 +73,13 @@ namespace Bloom.Analytics.LibraryModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
+        /// <summary>
+        /// Restores the library tab.
+        /// </summary>
+        /// <param name="tab">The library tab.</param>
         public void RestoreLibraryTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var datasource = State.GetConnectionData(tab.EntityId.Value);
@@ -85,10 +96,14 @@ namespace Bloom.Analytics.LibraryModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
+        /// <summary>
+        /// Duplicates a library tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicateLibraryTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
-            if (existingTab == null || existingTab.Tab == null || existingTab.Tab.EntityId == null)
+            if (existingTab?.Tab?.EntityId == null)
                 return;
 
             var datasource = State.GetConnectionData(existingTab.Tab.EntityId.Value);
@@ -105,12 +120,21 @@ namespace Bloom.Analytics.LibraryModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(libraryTab);
         }
 
+        /// <summary>
+        /// Changes a tab view.
+        /// </summary>
+        /// <param name="libraryViewTuple">A tab identifier and view type tuple.</param>
         public void ChangeLibraryTabView(Tuple<Guid, ViewType> libraryViewTuple)
         {
-            ChangeLibraryTabView(libraryViewTuple.Item1, libraryViewTuple.Item2);
+            ChangeTabView(libraryViewTuple.Item1, libraryViewTuple.Item2);
         }
 
-        public void ChangeLibraryTabView(Guid tabId, ViewType viewType)
+        /// <summary>
+        /// Changes a tab view.
+        /// </summary>
+        /// <param name="tabId">The tab identifier of the view.</param>
+        /// <param name="viewType">The view type to change to.</param>
+        public void ChangeTabView(Guid tabId, ViewType viewType)
         {
             var libraryTab = _tabs.SingleOrDefault(tab => tab.TabId == tabId);
             if (libraryTab != null)

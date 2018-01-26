@@ -7,6 +7,10 @@ namespace Bloom.Analytics.HomeModule.Views
     /// </summary>
     public partial class HomeView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public HomeView(HomeViewModel viewModel)
         {
             InitializeComponent();

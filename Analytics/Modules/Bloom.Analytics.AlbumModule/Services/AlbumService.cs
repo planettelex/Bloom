@@ -14,6 +14,9 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Analytics.AlbumModule.Services
 {
+    /// <summary>
+    /// Service for analytics album operations.
+    /// </summary>
     public class AlbumService : IAlbumService
     {
         /// <summary>
@@ -48,6 +51,10 @@ namespace Bloom.Analytics.AlbumModule.Services
             State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
+        /// <summary>
+        /// Creates a new album tab.
+        /// </summary>
+        /// <param name="albumBuid">The album Bloom identifier.</param>
         public void NewAlbumTab(Buid albumBuid)
         {
             var album = new Album { Id = albumBuid.EntityId }; // TODO: Make this data access call
@@ -60,9 +67,13 @@ namespace Bloom.Analytics.AlbumModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
         }
 
+        /// <summary>
+        /// Restores the album tab.
+        /// </summary>
+        /// <param name="tab">The album tab.</param>
         public void RestoreAlbumTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var album = new Album { Id = tab.EntityId.Value }; // TODO: Make this data access call
@@ -74,6 +85,10 @@ namespace Bloom.Analytics.AlbumModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(albumTab);
         }
 
+        /// <summary>
+        /// Duplicates an album tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicateAlbumTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);

@@ -7,6 +7,10 @@ namespace Bloom.Analytics.LibraryModule.Views
     /// </summary>
     public partial class PieChartView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PieChartView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public PieChartView(PieChartViewModel viewModel)
         {
             InitializeComponent();

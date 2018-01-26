@@ -6,7 +6,7 @@ using Bloom.State.Domain.Models;
 namespace Bloom.Browser.LibraryModule.Services
 {
     /// <summary>
-    /// Service interface for browser library operations.
+    /// Service for browser library operations.
     /// </summary>
     public interface ILibraryService
     {

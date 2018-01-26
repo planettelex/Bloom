@@ -22,6 +22,7 @@ namespace Bloom.Analytics.HomeModule
             _eventAggregator = eventAggregator;
         }
         private readonly IUnityContainer _container;
+        // ReSharper disable once NotAccessedField.Local
         private readonly IEventAggregator _eventAggregator;
 
         public void Initialize()
