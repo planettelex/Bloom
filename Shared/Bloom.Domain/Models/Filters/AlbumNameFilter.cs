@@ -13,18 +13,7 @@ namespace Bloom.Domain.Models.Filters
         /// <value>
         /// 59415c93-8032-4478-af70-b619f6a18c20
         /// </value>
-        public Guid Id
-        {
-            get { return Guid.Parse("59415c93-8032-4478-af70-b619f6a18c20"); }
-        }
-
-        /// <summary>
-        /// Gets the filter name.
-        /// </summary>
-        /// <value>
-        /// AlbumNameFilter
-        /// </value>
-        public string Name { get { return "AlbumNameFilter"; } }
+        public Guid Id => Guid.Parse("59415c93-8032-4478-af70-b619f6a18c20");
 
         /// <summary>
         /// Gets the filter label.
@@ -32,7 +21,7 @@ namespace Bloom.Domain.Models.Filters
         /// <value>
         /// Album Name Filter
         /// </value>
-        public string Label { get { return "Album Name Filter"; } }
+        public string Label => "Album Name Filter";
 
         /// <summary>
         /// Applies this filter to the provided songs.

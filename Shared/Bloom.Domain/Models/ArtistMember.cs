@@ -57,7 +57,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _person = value;
-                PersonId = _person == null ? Guid.Empty : _person.Id;
+                PersonId = _person?.Id ?? Guid.Empty;
             }
         }
         private Person _person;

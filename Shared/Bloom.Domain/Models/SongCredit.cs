@@ -54,7 +54,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _person = value;
-                PersonId = _person == null ? Guid.Empty : _person.Id;
+                PersonId = _person?.Id ?? Guid.Empty;
             }
         }
         private Person _person;
@@ -80,7 +80,7 @@ namespace Bloom.Domain.Models
                 return personString;
 
             var rolesString = Roles.Aggregate(string.Empty, (current, role) => current + (role + ", "));
-            return string.Format("{0} ({1})", personString, rolesString.TrimEnd(',', ' '));
+            return $"{personString} ({rolesString.TrimEnd(',', ' ')})";
         }
     }
 }

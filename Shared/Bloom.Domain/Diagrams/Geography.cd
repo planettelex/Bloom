@@ -46,8 +46,8 @@
       <FileName>Models\City.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Country" />
       <Property Name="CountryRegion" />
+      <Property Name="Country" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.Language">

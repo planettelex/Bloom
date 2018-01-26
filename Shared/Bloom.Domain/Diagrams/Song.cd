@@ -19,7 +19,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEAiIAQgAAAACSAGCAQAAAQEAAAgAGEAAQCEAQAAAQE=</HashCode>
+      <HashCode>AEAyIAQgAIAACSAGCAQAAAQEAAAgAGEAAQCEAQAAAQE=</HashCode>
       <FileName>Models\Artist.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -125,7 +125,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
+      <HashCode>AAACIAIAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -156,7 +156,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\Role.cs</FileName>
     </TypeIdentifier>
   </Class>

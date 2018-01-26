@@ -99,7 +99,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _createdById = value;
-                CreatedById = _createdById == null ? Guid.Empty : _createdById.Id;
+                CreatedById = _createdById?.Id ?? Guid.Empty;
             }
         }
         private Person _createdById;

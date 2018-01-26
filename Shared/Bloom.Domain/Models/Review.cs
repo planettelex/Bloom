@@ -88,7 +88,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _source = value;
-                SourceId = _source != null ? _source.Id : Guid.Empty;
+                SourceId = _source?.Id ?? Guid.Empty;
             }
         }
         private Source _source;
@@ -108,7 +108,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _author = value;
-                AuthorId = _author != null ? _author.Id : (Guid?) null;
+                AuthorId = _author?.Id;
             }
         }
         private Person _author;

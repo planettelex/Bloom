@@ -78,7 +78,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _order = value;
-                OrderId = _order != null ? _order.Id : Guid.Empty;
+                OrderId = _order?.Id ?? Guid.Empty;
             }
         }
         private IOrder _order;
@@ -88,7 +88,7 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            return Order != null ? string.Format("{0} {1}", Order.Label, Direction) : Direction.ToString();
+            return Order != null ? $"{Order.Label} {Direction}" : Direction.ToString();
         }
     }
 }

@@ -192,7 +192,7 @@ namespace Bloom.Domain.Tests.Models
             var album1 = Album.Create(AlbumName);
             var album2 = Album.Create("Album 2", Artist.Create("Artist"));
             Assert.AreEqual(album1.ToString(), AlbumName);
-            Assert.AreEqual(album2.ToString(), "Artist: Album 2");
+            Assert.AreEqual(album2.ToString(), "Artist - Album 2");
         }
 
         /// <summary>

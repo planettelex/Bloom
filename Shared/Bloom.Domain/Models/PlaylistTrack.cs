@@ -47,7 +47,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _song = value;
-                SongId = _song != null ? _song.Id : Guid.Empty;
+                SongId = _song?.Id ?? Guid.Empty;
             }
         }
         private Song _song;

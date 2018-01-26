@@ -13,7 +13,7 @@ namespace Bloom.Domain.Models.Orders
         /// <value>
         /// be5a0f6d-f0c0-455f-9967-af9c0f947bce
         /// </value>
-        public Guid Id { get { return Guid.Parse("be5a0f6d-f0c0-455f-9967-af9c0f947bce"); } }
+        public Guid Id => Guid.Parse("be5a0f6d-f0c0-455f-9967-af9c0f947bce");
 
         /// <summary>
         /// Gets the order label.
@@ -21,7 +21,7 @@ namespace Bloom.Domain.Models.Orders
         /// <value>
         /// Album Name Order
         /// </value>
-        public string Label { get { return "Album Name Order"; } }
+        public string Label => "Album Name Order";
 
         /// <summary>
         /// Applies this order to the provided songs.

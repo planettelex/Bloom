@@ -15,23 +15,23 @@
             if (track == null)
                 return null;
 
-            var trackCount = album == null ? 0 : (int?) album.GetTrackCount(track.DiscNumber);
+            var trackCount = album == null ? 0 : album.GetTrackCount(track.DiscNumber);
             return new MediaTag
             {
-                Title = track.Song == null ? null : track.Song.Name,
-                ArtistName = track.Song == null ? null : track.Song.Artist == null ? null : track.Song.Artist.Name,
-                AlbumName = album == null ? null : album.Name,
-                AlbumArtist = album == null ? null : album.Artist == null ? null : album.Artist.Name,
-                MixedArtistAlbum = album == null ? (bool?) null : album.IsMixedArtist,
-                GenreName = track.Song == null ? null : track.Song.Genre == null ? null : track.Song.Genre.Name,
-                Year = album == null ? null : album.FirstReleasedOn == null ? null : (int?) album.FirstReleasedOn.Value.Year,
+                Title = track.Song?.Name,
+                ArtistName = track.Song?.Artist?.Name,
+                AlbumName = album?.Name,
+                AlbumArtist = album?.Artist?.Name,
+                MixedArtistAlbum = album?.IsMixedArtist,
+                GenreName = track.Song?.Genre?.Name,
+                Year = album?.FirstReleasedOn?.Year,
                 DiscNumber = track.DiscNumber,
-                DiscCount = album == null ? 1 : album.DiscCount,
+                DiscCount = album?.DiscCount ?? 1,
                 TrackNumber = track.TrackNumber,
                 TrackCount = trackCount == 0 ? null : trackCount,
-                Bpm = track.Song == null ? null : track.Song.Bpm,
-                Rating = track.Song == null ? null : track.Song.Rating,
-                PlayCount = track.Song == null ? null : (int?) track.Song.PlayCount
+                Bpm = track.Song?.Bpm,
+                Rating = track.Song?.Rating,
+                PlayCount = track.Song?.PlayCount
             };
         }
 
@@ -47,8 +47,8 @@
             return new MediaTag
             {
                 Title = song.Name,
-                ArtistName = song.Artist == null ? null : song.Artist.Name,
-                GenreName = song.Genre == null ? null : song.Genre.Name,
+                ArtistName = song.Artist?.Name,
+                GenreName = song.Genre?.Name,
                 Bpm = song.Bpm,
                 Rating = song.Rating,
                 PlayCount = song.PlayCount

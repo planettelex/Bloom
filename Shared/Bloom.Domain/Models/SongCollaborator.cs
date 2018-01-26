@@ -44,7 +44,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _artist = value;
-                ArtistId = _artist == null ? Guid.Empty : _artist.Id;
+                ArtistId = _artist?.Id ?? Guid.Empty;
             }
         }
         private Artist _artist;

@@ -49,7 +49,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _artist = value;
-                ArtistId = _artist == null ? Guid.Empty : _artist.Id;
+                ArtistId = _artist?.Id ?? Guid.Empty;
             }
         }
         private Artist _artist;
@@ -102,7 +102,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _genre = value;
-                GenreId = _genre == null ? (Guid?) null : _genre.Id;
+                GenreId = _genre?.Id;
             }
         }
         private Genre _genre;
@@ -134,7 +134,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _timeSignature = value;
-                TimeSignatureId = _timeSignature == null ? (Guid?) null : _timeSignature.Id;
+                TimeSignatureId = _timeSignature?.Id;
             }
         }
         private TimeSignature _timeSignature;
@@ -206,7 +206,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _holiday = value;
-                HolidayId = _holiday == null ? (Guid?) null : _holiday.Id;
+                HolidayId = _holiday?.Id;
                 IsHoliday = _holiday != null;
             }
         }

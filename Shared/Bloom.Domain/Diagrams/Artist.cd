@@ -31,7 +31,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEAiIAQgAIAACSAGCAQAAAQEAAAgAGEAAQCEAQAAAQE=</HashCode>
+      <HashCode>AEAyIAQgAIAACSAGCAQAAAQEAAAgAGEAAQCEAQAAAQE=</HashCode>
       <FileName>Models\Artist.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -62,7 +62,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAQAAAAAAEAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\Role.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -64,7 +64,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _artist = value;
-                ArtistId = _artist == null ? (Guid?) null : _artist.Id;
+                ArtistId = _artist?.Id;
             }
         }
         private Artist _artist;
@@ -248,7 +248,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _holiday = value;
-                HolidayId = _holiday == null ? (Guid?) null : _holiday.Id;
+                HolidayId = _holiday?.Id;
                 IsHoliday = _holiday != null;
             }
         }
@@ -434,7 +434,7 @@ namespace Bloom.Domain.Models
             TrackCounts = string.Empty;
             foreach (var count in _trackCounts)
             {
-                var countString = count == null ? string.Empty : count.Value.ToString(CultureInfo.InvariantCulture);
+                var countString = count?.ToString(CultureInfo.InvariantCulture) ?? string.Empty;
                 TrackCounts += countString + TrackCountDelimiter;
             }
 
@@ -446,7 +446,7 @@ namespace Bloom.Domain.Models
         /// </summary>
         public override string ToString()
         {
-            return Artist == null ? Name : Artist.Name + ": " + Name;
+            return Artist == null ? Name : Artist.Name + " - " + Name;
         }
     }
 }

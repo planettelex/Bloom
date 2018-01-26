@@ -56,7 +56,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _countryRegion = value;
-                CountryRegionId = _countryRegion == null ? (Guid?) null : _countryRegion.Id;
+                CountryRegionId = _countryRegion?.Id;
             }
         }
         private CountryRegion _countryRegion;
@@ -76,7 +76,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _country = value;
-                CountryId = _country == null ? Guid.Empty : _country.Id;
+                CountryId = _country?.Id ?? Guid.Empty;
             }
         }
         private Country _country;

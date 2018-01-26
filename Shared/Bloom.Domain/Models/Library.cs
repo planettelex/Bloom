@@ -90,10 +90,7 @@ namespace Bloom.Domain.Models
         /// <summary>
         /// Gets the file path.
         /// </summary>
-        public string FilePath
-        {
-            get { return Path.Combine(FolderPath, FileName); }
-        }
+        public string FilePath => Path.Combine(FolderPath, FileName);
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

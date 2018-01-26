@@ -56,7 +56,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _country = value;
-                CountryId = _country == null ? Guid.Empty : _country.Id;
+                CountryId = _country?.Id ?? Guid.Empty;
             }
         }
         private Country _country;

@@ -116,7 +116,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _release = value;
-                ReleaseId = _release != null ? _release.Id : (Guid?) null;
+                ReleaseId = _release?.Id;
             }
         }
         private AlbumRelease _release;

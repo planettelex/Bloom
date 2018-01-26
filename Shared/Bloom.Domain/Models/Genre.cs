@@ -82,7 +82,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _parentGenre = value;
-                ParentGenreId = _parentGenre == null ? (Guid?) null : _parentGenre.Id;
+                ParentGenreId = _parentGenre?.Id;
             } 
         }
         private Genre _parentGenre;

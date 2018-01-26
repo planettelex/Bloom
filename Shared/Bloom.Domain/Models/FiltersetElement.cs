@@ -89,7 +89,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _filter = value;
-                FilterId = _filter != null ? _filter.Id : (Guid?) null;
+                FilterId = _filter?.Id;
             }
         }
         private IFilter _filter;
@@ -111,7 +111,7 @@ namespace Bloom.Domain.Models
                     return " or ";
                 case FiltersetElementType.Statement:
                     if (Filter != null && Comparison != null)
-                        return string.Format("{0} {1} {2}", Filter.Label, Comparison, FilterAgainst);
+                        return $"{Filter.Label} {Comparison} {FilterAgainst}";
                     return FilterAgainst;
                 default:
                     return FilterAgainst;

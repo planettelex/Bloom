@@ -103,7 +103,7 @@ namespace Bloom.Domain.Models
             set
             {
                 _timeSignature = value;
-                TimeSignatureId = _timeSignature == null ? (Guid?) null : _timeSignature.Id;
+                TimeSignatureId = _timeSignature?.Id;
             } 
         }
         private TimeSignature _timeSignature;

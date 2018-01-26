@@ -11,8 +11,8 @@
       <FileName>Models\Review.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Author" />
       <Property Name="Source" />
+      <Property Name="Author" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Bloom.Domain.Models.AlbumReview">
@@ -42,7 +42,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACIAAAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
+      <HashCode>AAACIAIAQAAAACAGCBAAAAQgAAAAAGAAAACAAQQgAAE=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -53,7 +53,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>pgAGIBWEwGBzAQFFIAKAEQ1AAJggBUEAJQAAwiAcAAQ=</HashCode>
+      <HashCode>pwAGIBWEwGBzAQFFJAKAEQ3ABJggBUEAJQQAwiAcAAQ=</HashCode>
       <FileName>Models\Album.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
