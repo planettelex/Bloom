@@ -20,7 +20,7 @@ namespace Bloom.State.Data.Respositories
             _dataSource = dataSource;
         }
         private readonly IDataSource _dataSource;
-        private Table<SuiteState> SuiteStateTable { get { return _dataSource.Context.GetTable<SuiteState>(); } }
+        private Table<SuiteState> SuiteStateTable => _dataSource.Context.GetTable<SuiteState>();
 
         /// <summary>
         /// Determines whether a suite state exists.

@@ -22,7 +22,7 @@ namespace Bloom.State.Data.Respositories
             _dataSource = dataSource;
         }
         private readonly IDataSource _dataSource;
-        private Table<LibraryConnection> LibraryConnectionTable { get { return _dataSource.Context.GetTable<LibraryConnection>(); } }
+        private Table<LibraryConnection> LibraryConnectionTable => _dataSource.Context.GetTable<LibraryConnection>();
 
         /// <summary>
         /// Gets the library connection.

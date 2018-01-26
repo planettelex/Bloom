@@ -27,7 +27,7 @@ namespace Bloom.State.Domain.Models
             return new Tab
             {
                 Id = Guid.NewGuid(),
-                UserId = user != null ? user.PersonId : Guid.Empty,
+                UserId = user?.PersonId ?? Guid.Empty,
                 Order = order,
                 Type = tabType,
                 Header = header,

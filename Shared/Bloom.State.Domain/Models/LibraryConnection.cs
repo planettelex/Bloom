@@ -21,7 +21,7 @@ namespace Bloom.State.Domain.Models
         /// <param name="library">A library.</param>
         public static LibraryConnection Create(Library library)
         {
-            if (library == null || library.Owner == null)
+            if (library?.Owner == null)
                 return null;
 
             var libraryConnection = new LibraryConnection

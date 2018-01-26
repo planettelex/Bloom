@@ -111,7 +111,7 @@ namespace Bloom.State.Data
             if (string.IsNullOrEmpty(FilePath))
                 throw new InvalidOperationException("The file path to the state database file has not been specified.");
 
-            var connectionString = string.Format("Data Source={0};Version=3;", FilePath);
+            var connectionString = $"Data Source={FilePath};Version=3;";
             var connection = new SQLiteConnection(connectionString);
             Context = new DataContext(connection);
         }
@@ -126,7 +126,7 @@ namespace Bloom.State.Data
             if (IsConnected())
                 throw new InvalidOperationException("Cannot connect to a new state database while connected to an existing one.");
 
-            var connectionString = string.Format("Data Source={0};Version=3;", filePath);
+            var connectionString = $"Data Source={filePath};Version=3;";
             var connection = new SQLiteConnection(connectionString);
             Context = new DataContext(connection);
             FilePath = filePath;

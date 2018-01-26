@@ -28,7 +28,7 @@ namespace Bloom.State.Data.Respositories
         private readonly IDataSource _dataSource;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
         private readonly ITabRepository _tabRepository;
-        private Table<AnalyticsState> AnalyticsStateTable { get { return _dataSource.Context.GetTable<AnalyticsState>(); } }
+        private Table<AnalyticsState> AnalyticsStateTable => _dataSource.Context.GetTable<AnalyticsState>();
 
         /// <summary>
         /// Determines whether the analytics state exists.
@@ -74,7 +74,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="analyticsState">The analytics state.</param>
         public void AddAnalyticsState(AnalyticsState analyticsState)
         {
-            if (!_dataSource.IsConnected() || analyticsState == null || analyticsState.User == null || analyticsState.UserId == Guid.Empty || AnalyticsStateExists(analyticsState.User))
+            if (!_dataSource.IsConnected() || analyticsState?.User == null || analyticsState.UserId == Guid.Empty || AnalyticsStateExists(analyticsState.User))
                 return;
 
             AnalyticsStateTable.InsertOnSubmit(analyticsState);

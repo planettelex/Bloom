@@ -24,7 +24,7 @@ namespace Bloom.State.Data.Respositories
         }
         private readonly IDataSource _dataSource;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
-        private Table<PlayerState> PlayerStateTable { get { return _dataSource.Context.GetTable<PlayerState>(); } }
+        private Table<PlayerState> PlayerStateTable => _dataSource.Context.GetTable<PlayerState>();
 
         /// <summary>
         /// Determines whether the player state exists.
@@ -69,7 +69,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="playerState">The player state.</param>
         public void AddPlayerState(PlayerState playerState)
         {
-            if (!_dataSource.IsConnected() || playerState == null || playerState.User == null || playerState.UserId == Guid.Empty || PlayerStateExists(playerState.User))
+            if (!_dataSource.IsConnected() || playerState?.User == null || playerState.UserId == Guid.Empty || PlayerStateExists(playerState.User))
                 return;
 
             PlayerStateTable.InsertOnSubmit(playerState);

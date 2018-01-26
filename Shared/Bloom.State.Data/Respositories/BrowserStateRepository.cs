@@ -27,7 +27,7 @@ namespace Bloom.State.Data.Respositories
         private readonly IDataSource _dataSource;
         private readonly ILibraryConnectionRepository _libraryConnectionRepository;
         private readonly ITabRepository _tabRepository;
-        private Table<BrowserState> BrowserStateTable { get { return _dataSource.Context.GetTable<BrowserState>(); } }
+        private Table<BrowserState> BrowserStateTable => _dataSource.Context.GetTable<BrowserState>();
 
         /// <summary>
         /// Determines whether the browser state exists.
@@ -73,7 +73,7 @@ namespace Bloom.State.Data.Respositories
         /// <param name="browserState">The browser state.</param>
         public void AddBrowserState(BrowserState browserState)
         {
-            if (!_dataSource.IsConnected() || browserState == null || browserState.User == null || BrowserStateExists(browserState.User))
+            if (!_dataSource.IsConnected() || browserState?.User == null || BrowserStateExists(browserState.User))
                 return;
 
             BrowserStateTable.InsertOnSubmit(browserState);

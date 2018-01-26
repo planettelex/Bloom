@@ -23,8 +23,8 @@ namespace Bloom.State.Data.Respositories
             _dataSource = dataSource;
         }
         private readonly IDataSource _dataSource;
-        private Table<Tab> TabTable { get { return _dataSource.Context.GetTable<Tab>(); } }
-        private Table<TabLibrary> TabLibraryTable { get { return _dataSource.Context.GetTable<TabLibrary>(); } } 
+        private Table<Tab> TabTable => _dataSource.Context.GetTable<Tab>();
+        private Table<TabLibrary> TabLibraryTable => _dataSource.Context.GetTable<TabLibrary>();
 
         /// <summary>
         /// Gets the tab.

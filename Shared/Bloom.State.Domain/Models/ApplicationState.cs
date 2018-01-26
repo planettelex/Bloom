@@ -62,7 +62,7 @@ namespace Bloom.State.Domain.Models
         public LibraryDataSource GetConnectionData(Guid libraryId)
         {
             var connection = GetConnection(libraryId);
-            return connection == null ? null : connection.DataSource;
+            return connection?.DataSource;
         }
 
         /// <summary>

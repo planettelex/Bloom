@@ -21,7 +21,7 @@ namespace Bloom.State.Data.Respositories
             _dataSource = dataSource;
         }
         private readonly IDataSource _dataSource;
-        private Table<User> UserTable { get { return _dataSource.Context.GetTable<User>(); } }
+        private Table<User> UserTable => _dataSource.Context.GetTable<User>();
 
         /// <summary>
         /// Gets the user.
