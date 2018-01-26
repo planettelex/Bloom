@@ -50,11 +50,11 @@ namespace Bloom.Common
         /// <summary>
         /// Gets the process type.
         /// </summary>
-        public ProcessType Type { get; private set; }
+        public ProcessType Type { get; }
 
         /// <summary>
         /// Gets the process name.
         /// </summary>
-        public string Name { get { return Namespace + "." + Type; } }
+        public string Name => Namespace + "." + Type;
     }
 }

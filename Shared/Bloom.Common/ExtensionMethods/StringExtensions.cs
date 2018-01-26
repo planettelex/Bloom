@@ -50,10 +50,7 @@ namespace Bloom.Common.ExtensionMethods
         /// <summary>
         /// Gets a list of words to lowercase if in a title.
         /// </summary>
-        public static IEnumerable<string> TitleWordsToLower
-        {
-            get { return _toLower ?? (_toLower = Resources.TitleWordsToLower.Split(',', ' ')); }
-        }
+        public static IEnumerable<string> TitleWordsToLower => _toLower ?? (_toLower = Resources.TitleWordsToLower.Split(',', ' '));
         private static string[] _toLower;
 
         /// <summary>
@@ -101,11 +98,11 @@ namespace Bloom.Common.ExtensionMethods
         private static string ReplaceAt(string toReplace, int removeStartIndex, int removeCount, string toInsert)
         {
             if (toReplace == null)
-                throw new ArgumentNullException("toReplace");
+                throw new ArgumentNullException(nameof(toReplace));
             if (removeStartIndex >= toReplace.Length)
-                throw new ArgumentOutOfRangeException("removeStartIndex");
+                throw new ArgumentOutOfRangeException(nameof(removeStartIndex));
             if (removeStartIndex + removeCount >= toReplace.Length)
-                throw new ArgumentOutOfRangeException("removeCount");
+                throw new ArgumentOutOfRangeException(nameof(removeCount));
 
             var removed = toReplace.Remove(removeStartIndex, removeCount);
 
