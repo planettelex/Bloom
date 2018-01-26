@@ -97,7 +97,7 @@ namespace Bloom.Data.Repositories
 
         private static Table<TimeSignature> TimeSignatureTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<TimeSignature>() : null;
+            return dataSource?.Context.GetTable<TimeSignature>();
         }
 
         #endregion

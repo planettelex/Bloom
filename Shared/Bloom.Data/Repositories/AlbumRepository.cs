@@ -55,10 +55,7 @@ namespace Bloom.Data.Repositories
 
             var result = albumQuery.SingleOrDefault();
 
-            if (result == null)
-                return null;
-
-            var album = result.Album;
+            var album = result?.Album;
             if (album == null)
                 return null;
 
@@ -838,102 +835,102 @@ namespace Bloom.Data.Repositories
 
         private static Table<Album> AlbumTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Album>() : null;
+            return dataSource?.Context.GetTable<Album>();
         }
 
         private static IEnumerable<Song> SongTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Song>() : null;
+            return dataSource?.Context.GetTable<Song>();
         }
 
         private static Table<Artist> ArtistTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Artist>() : null;
+            return dataSource?.Context.GetTable<Artist>();
         }
 
         private static IEnumerable<Genre> GenreTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Genre>() : null;
+            return dataSource?.Context.GetTable<Genre>();
         }
 
         private static IEnumerable<TimeSignature> TimeSignatureTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<TimeSignature>() : null;
+            return dataSource?.Context.GetTable<TimeSignature>();
         }
 
         private static Table<Holiday> HolidayTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Holiday>() : null;
+            return dataSource?.Context.GetTable<Holiday>();
         }
 
         private static Table<AlbumTrack> AlbumTrackTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumTrack>() : null;
+            return dataSource?.Context.GetTable<AlbumTrack>();
         }
 
         private static Table<AlbumMedia> AlbumMediaTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumMedia>() : null;
+            return dataSource?.Context.GetTable<AlbumMedia>();
         }
 
         private static Table<AlbumReference> AlbumReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumReference>() : null;
+            return dataSource?.Context.GetTable<AlbumReference>();
         }
 
         private static Table<AlbumActivity> AlbumActivityTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumActivity>() : null;
+            return dataSource?.Context.GetTable<AlbumActivity>();
         }
 
         private static Table<AlbumMood> AlbumMoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumMood>() : null;
+            return dataSource?.Context.GetTable<AlbumMood>();
         }
 
         private static Table<AlbumReview> AlbumReviewTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumReview>() : null;
+            return dataSource?.Context.GetTable<AlbumReview>();
         }
 
         private static Table<AlbumTag> AlbumTagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumTag>() : null;
+            return dataSource?.Context.GetTable<AlbumTag>();
         }
 
         private static Table<AlbumArtwork> AlbumArtworkTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumArtwork>() : null;
+            return dataSource?.Context.GetTable<AlbumArtwork>();
         }
 
         private static Table<AlbumCollaborator> AlbumCollaboratorTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumCollaborator>() : null;
+            return dataSource?.Context.GetTable<AlbumCollaborator>();
         }
 
         private static Table<AlbumCredit> AlbumCreditTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumCredit>() : null;
+            return dataSource?.Context.GetTable<AlbumCredit>();
         }
 
         private static Table<AlbumCreditRole> AlbumCreditRoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumCreditRole>() : null;
+            return dataSource?.Context.GetTable<AlbumCreditRole>();
         }
 
         private static Table<AlbumRelease> AlbumReleaseTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumRelease>() : null;
+            return dataSource?.Context.GetTable<AlbumRelease>();
         }
 
         private static Table<Role> RoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
+            return dataSource?.Context.GetTable<Role>();
         }
 
         private static IEnumerable<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         #endregion

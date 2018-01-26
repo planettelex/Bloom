@@ -208,17 +208,17 @@ namespace Bloom.Data.Repositories
 
         private static Table<Filterset> FiltersetTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Filterset>() : null;
+            return dataSource?.Context.GetTable<Filterset>();
         }
 
         private static Table<FiltersetElement> FiltersetElementTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<FiltersetElement>() : null;
+            return dataSource?.Context.GetTable<FiltersetElement>();
         }
 
         private static Table<FiltersetOrder> FiltersetOrderTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<FiltersetOrder>() : null;
+            return dataSource?.Context.GetTable<FiltersetOrder>();
         }
 
         #endregion

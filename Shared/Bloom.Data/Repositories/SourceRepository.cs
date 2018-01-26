@@ -118,7 +118,7 @@ namespace Bloom.Data.Repositories
 
         private static Table<Source> SourceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Source>() : null;
+            return dataSource?.Context.GetTable<Source>();
         }
 
         #endregion

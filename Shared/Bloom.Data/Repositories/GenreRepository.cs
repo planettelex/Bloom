@@ -127,7 +127,7 @@ namespace Bloom.Data.Repositories
 
         private static Table<Genre> GenreTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Genre>() : null;
+            return dataSource?.Context.GetTable<Genre>();
         }
 
         #endregion

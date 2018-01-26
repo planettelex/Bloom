@@ -234,22 +234,22 @@ namespace Bloom.Data.Repositories
 
         private static Table<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         private static Table<PersonPhoto> PersonPhotoTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PersonPhoto>() : null;
+            return dataSource?.Context.GetTable<PersonPhoto>();
         }
 
         private static Table<PersonReference> PersonReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PersonReference>() : null;
+            return dataSource?.Context.GetTable<PersonReference>();
         }
 
         private static IEnumerable<Photo> PhotoTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Photo>() : null;
+            return dataSource?.Context.GetTable<Photo>();
         }
 
         #endregion

@@ -23,9 +23,6 @@ namespace Bloom.Data
         /// <summary>
         /// Gets the tests data path.
         /// </summary>
-        public static string TestsDataPath
-        {
-            get { return Path.Combine(LocalDataPath, Properties.Settings.Default.TestsFolder); }
-        }
+        public static string TestsDataPath => Path.Combine(LocalDataPath, Properties.Settings.Default.TestsFolder);
     }
 }

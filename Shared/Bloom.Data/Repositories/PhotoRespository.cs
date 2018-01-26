@@ -139,7 +139,7 @@ namespace Bloom.Data.Repositories
 
         private static Table<Photo> PhotoTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Photo>() : null;
+            return dataSource?.Context.GetTable<Photo>();
         }
 
         #endregion

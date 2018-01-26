@@ -68,10 +68,7 @@ namespace Bloom.Data.Repositories
 
             var result = referenceQuery.SingleOrDefault();
 
-            if (result == null)
-                return null;
-
-            var reference = result.Reference;
+            var reference = result?.Reference;
             if (reference == null)
                 return null;
 
@@ -623,37 +620,37 @@ namespace Bloom.Data.Repositories
 
         private static Table<Reference> ReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Reference>() : null;
+            return dataSource?.Context.GetTable<Reference>();
         }
 
         private static IEnumerable<Source> SourceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Source>() : null;
+            return dataSource?.Context.GetTable<Source>();
         }
 
         private static Table<SongReference> SongReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongReference>() : null;
+            return dataSource?.Context.GetTable<SongReference>();
         }
 
         private static Table<AlbumReference> AlbumReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumReference>() : null;
+            return dataSource?.Context.GetTable<AlbumReference>();
         }
 
         private static Table<ArtistReference> ArtistReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<ArtistReference>() : null;
+            return dataSource?.Context.GetTable<ArtistReference>();
         }
 
         private static Table<PersonReference> PersonReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PersonReference>() : null;
+            return dataSource?.Context.GetTable<PersonReference>();
         }
 
         private static Table<PlaylistReference> PlaylistReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistReference>() : null;
+            return dataSource?.Context.GetTable<PlaylistReference>();
         }
 
         #endregion

@@ -55,10 +55,7 @@ namespace Bloom.Data.Repositories
 
             var result = reviewQuery.SingleOrDefault();
 
-            if (result == null)
-                return null;
-
-            var review = result.Review;
+            var review = result?.Review;
             if (review == null)
                 return null;
 
@@ -322,27 +319,27 @@ namespace Bloom.Data.Repositories
 
         private static Table<Review> ReviewTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Review>() : null;
+            return dataSource?.Context.GetTable<Review>();
         }
 
         private static Table<SongReview> SongReviewTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongReview>() : null;
+            return dataSource?.Context.GetTable<SongReview>();
         }
 
         private static Table<AlbumReview> AlbumReviewTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumReview>() : null;
+            return dataSource?.Context.GetTable<AlbumReview>();
         }
 
         private static IEnumerable<Source> SourceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Source>() : null;
+            return dataSource?.Context.GetTable<Source>();
         }
 
         private static IEnumerable<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         #endregion

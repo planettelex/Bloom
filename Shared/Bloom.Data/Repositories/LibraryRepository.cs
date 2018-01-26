@@ -45,10 +45,7 @@ namespace Bloom.Data.Repositories
 
             var result = libraryQuery.SingleOrDefault();
 
-            if (result == null)
-                return null;
-
-            var library = result.Library;
+            var library = result?.Library;
             if (library == null)
                 return null;
 
@@ -82,12 +79,12 @@ namespace Bloom.Data.Repositories
 
         private Table<Library> LibraryTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Library>() : null;
+            return dataSource?.Context.GetTable<Library>();
         }
 
         private Table<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         #endregion

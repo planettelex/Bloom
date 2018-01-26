@@ -95,7 +95,7 @@ namespace Bloom.Data.Repositories
 
         private static Table<Holiday> HolidayTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Holiday>() : null;
+            return dataSource?.Context.GetTable<Holiday>();
         }
 
         #endregion

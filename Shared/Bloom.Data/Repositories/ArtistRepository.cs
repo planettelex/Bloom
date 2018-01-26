@@ -390,42 +390,42 @@ namespace Bloom.Data.Repositories
 
         private static Table<Artist> ArtistTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Artist>() : null;
+            return dataSource?.Context.GetTable<Artist>();
         }
 
         private static Table<ArtistPhoto> ArtistPhotoTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<ArtistPhoto>() : null;
+            return dataSource?.Context.GetTable<ArtistPhoto>();
         }
 
         private static Table<ArtistReference> ArtistReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<ArtistReference>() : null;
+            return dataSource?.Context.GetTable<ArtistReference>();
         }
 
         private static Table<ArtistMember> ArtistMemberTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<ArtistMember>() : null;
+            return dataSource?.Context.GetTable<ArtistMember>();
         }
 
         private static Table<ArtistMemberRole> ArtistMemberRoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<ArtistMemberRole>() : null;
+            return dataSource?.Context.GetTable<ArtistMemberRole>();
         }
 
         private static Table<Role> RoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
+            return dataSource?.Context.GetTable<Role>();
         }
 
         private static Table<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         private static IEnumerable<Photo> PhotoTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Photo>() : null;
+            return dataSource?.Context.GetTable<Photo>();
         }
 
         #endregion

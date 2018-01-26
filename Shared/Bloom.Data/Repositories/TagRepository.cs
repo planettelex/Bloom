@@ -385,22 +385,22 @@ namespace Bloom.Data.Repositories
 
         private static Table<Tag> TagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Tag>() : null;
+            return dataSource?.Context.GetTable<Tag>();
         }
 
         private static Table<SongTag> SongTagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongTag>() : null;
+            return dataSource?.Context.GetTable<SongTag>();
         }
 
         private static Table<AlbumTag> AlbumTagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumTag>() : null;
+            return dataSource?.Context.GetTable<AlbumTag>();
         }
 
         private static Table<PlaylistTag> PlaylistTagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistTag>() : null;
+            return dataSource?.Context.GetTable<PlaylistTag>();
         }
 
         #endregion

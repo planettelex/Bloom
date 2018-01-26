@@ -61,10 +61,7 @@ namespace Bloom.Data.Repositories
 
             var result = songQuery.SingleOrDefault();
 
-            if (result == null)
-                return null;
-
-            var song = result.Song;
+            var song = result?.Song;
             if (song == null)
                 return null;
 
@@ -660,92 +657,92 @@ namespace Bloom.Data.Repositories
 
         private static Table<Song> SongTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Song>() : null;
+            return dataSource?.Context.GetTable<Song>();
         }
 
         private static Table<RecordingSession> RecordingSessionTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<RecordingSession>() : null;
+            return dataSource?.Context.GetTable<RecordingSession>();
         }
 
         private static Table<Artist> ArtistTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Artist>() : null;
+            return dataSource?.Context.GetTable<Artist>();
         }
 
         private static IEnumerable<Genre> GenreTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Genre>() : null;
+            return dataSource?.Context.GetTable<Genre>();
         }
 
         private static IEnumerable<Holiday> HolidayTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Holiday>() : null;
+            return dataSource?.Context.GetTable<Holiday>();
         }
 
         private static Table<TimeSignature> TimeSignatureTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<TimeSignature>() : null;
+            return dataSource?.Context.GetTable<TimeSignature>();
         }
 
         private static Table<SongSegment> SongSegmentTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongSegment>() : null;
+            return dataSource?.Context.GetTable<SongSegment>();
         }
 
         private static Table<SongMedia> SongMediaTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongMedia>() : null;
+            return dataSource?.Context.GetTable<SongMedia>();
         }
 
         private static Table<SongCollaborator> SongCollaboratorTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongCollaborator>() : null;
+            return dataSource?.Context.GetTable<SongCollaborator>();
         }
 
         private static Table<SongCredit> SongCreditTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongCredit>() : null;
+            return dataSource?.Context.GetTable<SongCredit>();
         }
 
         private static Table<SongCreditRole> SongCreditRoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongCreditRole>() : null;
+            return dataSource?.Context.GetTable<SongCreditRole>();
         }
 
         private static Table<SongReference> SongReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongReference>() : null;
+            return dataSource?.Context.GetTable<SongReference>();
         }
 
         private static Table<SongActivity> SongActivityTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongActivity>() : null;
+            return dataSource?.Context.GetTable<SongActivity>();
         }
 
         private static Table<SongMood> SongMoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongMood>() : null;
+            return dataSource?.Context.GetTable<SongMood>();
         }
 
         private static Table<SongTag> SongTagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongTag>() : null;
+            return dataSource?.Context.GetTable<SongTag>();
         }
 
         private static Table<SongReview> SongReviewTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongReview>() : null;
+            return dataSource?.Context.GetTable<SongReview>();
         }
 
         private static Table<Role> RoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
+            return dataSource?.Context.GetTable<Role>();
         }
 
         private static IEnumerable<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         #endregion

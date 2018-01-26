@@ -385,22 +385,22 @@ namespace Bloom.Data.Repositories
 
         private static Table<Mood> MoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Mood>() : null;
+            return dataSource?.Context.GetTable<Mood>();
         }
 
         private static Table<SongMood> SongMoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<SongMood>() : null;
+            return dataSource?.Context.GetTable<SongMood>();
         }
 
         private static Table<AlbumMood> AlbumMoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<AlbumMood>() : null;
+            return dataSource?.Context.GetTable<AlbumMood>();
         }
 
         private static Table<PlaylistMood> PlaylistMoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistMood>() : null;
+            return dataSource?.Context.GetTable<PlaylistMood>();
         }
 
         #endregion

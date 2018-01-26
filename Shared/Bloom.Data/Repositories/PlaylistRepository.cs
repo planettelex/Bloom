@@ -49,10 +49,7 @@ namespace Bloom.Data.Repositories
 
             var result = playlistQuery.SingleOrDefault();
 
-            if (result == null)
-                return null;
-
-            var playlist = result.Playlist;
+            var playlist = result?.Playlist;
             if (playlist == null)
                 return null;
 
@@ -321,67 +318,67 @@ namespace Bloom.Data.Repositories
 
         private static Table<Playlist> PlaylistTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Playlist>() : null;
+            return dataSource?.Context.GetTable<Playlist>();
         }
 
         private static Table<PlaylistTrack> PlaylistTrackTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistTrack>() : null;
+            return dataSource?.Context.GetTable<PlaylistTrack>();
         }
 
         private static Table<PlaylistArtwork> PlaylistArtworkTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistArtwork>() : null;
+            return dataSource?.Context.GetTable<PlaylistArtwork>();
         }
 
         private static Table<PlaylistReference> PlaylistReferenceTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistReference>() : null;
+            return dataSource?.Context.GetTable<PlaylistReference>();
         }
 
         private static Table<PlaylistActivity> PlaylistActivityTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistActivity>() : null;
+            return dataSource?.Context.GetTable<PlaylistActivity>();
         }
 
         private static Table<PlaylistMood> PlaylistMoodTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistMood>() : null;
+            return dataSource?.Context.GetTable<PlaylistMood>();
         }
 
         private static Table<PlaylistTag> PlaylistTagTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<PlaylistTag>() : null;
+            return dataSource?.Context.GetTable<PlaylistTag>();
         }
 
         private static IEnumerable<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         private static IEnumerable<Song> SongTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Song>() : null;
+            return dataSource?.Context.GetTable<Song>();
         }
 
         private static Table<Artist> ArtistTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Artist>() : null;
+            return dataSource?.Context.GetTable<Artist>();
         }
 
         private static IEnumerable<Genre> GenreTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Genre>() : null;
+            return dataSource?.Context.GetTable<Genre>();
         }
 
         private static IEnumerable<TimeSignature> TimeSignatureTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<TimeSignature>() : null;
+            return dataSource?.Context.GetTable<TimeSignature>();
         }
 
         private static Table<Holiday> HolidayTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Holiday>() : null;
+            return dataSource?.Context.GetTable<Holiday>();
         }
 
         #endregion

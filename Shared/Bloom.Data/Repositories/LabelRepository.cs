@@ -267,27 +267,27 @@ namespace Bloom.Data.Repositories
 
         private static Table<Label> LabelTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Label>() : null;
+            return dataSource?.Context.GetTable<Label>();
         }
 
         private static Table<LabelPersonnel> LabelPersonnelTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<LabelPersonnel>() : null;
+            return dataSource?.Context.GetTable<LabelPersonnel>();
         }
 
         private static Table<LabelPersonnelRole> LabelPersonnelRoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<LabelPersonnelRole>() : null;
+            return dataSource?.Context.GetTable<LabelPersonnelRole>();
         }
 
         private static Table<Role> RoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
+            return dataSource?.Context.GetTable<Role>();
         }
 
         private static Table<Person> PersonTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Person>() : null;
+            return dataSource?.Context.GetTable<Person>();
         }
 
         #endregion

@@ -139,7 +139,7 @@ namespace Bloom.Data.Repositories
 
         private static Table<Role> RoleTable(IDataSource dataSource)
         {
-            return dataSource != null ? dataSource.Context.GetTable<Role>() : null;
+            return dataSource?.Context.GetTable<Role>();
         }
 
         #endregion

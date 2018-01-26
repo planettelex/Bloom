@@ -130,7 +130,7 @@ namespace Bloom.Data
             if (string.IsNullOrEmpty(FilePath))
                 throw new InvalidOperationException("The file path to the library database file has not been specified.");
 
-            var connectionString = string.Format("Data Source={0};Version=3;Foreign Keys=true;", FilePath);
+            var connectionString = $"Data Source={FilePath};Version=3;Foreign Keys=true;";
             var connection = new SQLiteConnection(connectionString);
             Context = new DataContext(connection);
         }
@@ -145,7 +145,7 @@ namespace Bloom.Data
             if (IsConnected())
                 Disconnect();
 
-            var connectionString = string.Format("Data Source={0};Version=3;Foreign Keys=true;", filePath);
+            var connectionString = $"Data Source={filePath};Version=3;Foreign Keys=true;";
             var connection = new SQLiteConnection(connectionString);
             Context = new DataContext(connection);
             FilePath = filePath;
@@ -194,11 +194,10 @@ namespace Bloom.Data
         /// </summary>
         public void Disconnect()
         {
-            if (IsConnected())
-            {
-                Context.Dispose();
-                Context = null;
-            }
+            if (!IsConnected()) return;
+
+            Context.Dispose();
+            Context = null;
         }
 
         /// <summary>
