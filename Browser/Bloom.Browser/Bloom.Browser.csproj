@@ -151,11 +151,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.LibraryModule\Bloom.Modules.LibraryModule.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Modules\Bloom.Modules.LibraryModule\Bloom.Modules.LibraryModule.csproj">
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
       <Name>Bloom.Modules.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.UserModule\Bloom.Modules.UserModule.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Modules\Bloom.Modules.UserModule\Bloom.Modules.UserModule.csproj">
       <Project>{ddbc521e-2b45-49f2-b9f5-743eefe9122a}</Project>
       <Name>Bloom.Modules.UserModule</Name>
     </ProjectReference>
@@ -243,7 +243,7 @@
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.TaxonomiesModule\Bloom.Modules.TaxonomiesModule.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Modules\Bloom.Modules.TaxonomiesModule\Bloom.Modules.TaxonomiesModule.csproj">
       <Project>{25d7acf0-f4bf-41ba-a751-4cf0b8c79144}</Project>
       <Name>Bloom.Modules.TaxonomiesModule</Name>
     </ProjectReference>

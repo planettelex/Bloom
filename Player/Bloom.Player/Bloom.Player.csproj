@@ -149,11 +149,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.LibraryModule\Bloom.Modules.LibraryModule.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Modules\Bloom.Modules.LibraryModule\Bloom.Modules.LibraryModule.csproj">
       <Project>{03CE0198-7E75-47B4-8447-617D1A3E36DE}</Project>
       <Name>Bloom.Modules.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Modules\Bloom.UserModule\Bloom.Modules.UserModule.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Modules\Bloom.Modules.UserModule\Bloom.Modules.UserModule.csproj">
       <Project>{ddbc521e-2b45-49f2-b9f5-743eefe9122a}</Project>
       <Name>Bloom.Modules.UserModule</Name>
     </ProjectReference>

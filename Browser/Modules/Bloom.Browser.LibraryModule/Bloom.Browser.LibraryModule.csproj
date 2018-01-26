@@ -162,11 +162,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Modules\Bloom.LibraryModule\Bloom.Modules.LibraryModule.csproj">
+    <ProjectReference Include="..\..\..\Shared\Bloom.Modules\Bloom.Modules.LibraryModule\Bloom.Modules.LibraryModule.csproj">
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
       <Name>Bloom.Modules.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Modules\Bloom.UserModule\Bloom.Modules.UserModule.csproj">
+    <ProjectReference Include="..\..\..\Shared\Bloom.Modules\Bloom.Modules.UserModule\Bloom.Modules.UserModule.csproj">
       <Project>{DDBC521E-2B45-49F2-B9F5-743EEFE9122A}</Project>
       <Name>Bloom.Modules.UserModule</Name>
     </ProjectReference>
