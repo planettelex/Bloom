@@ -4,6 +4,9 @@ using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.AlbumModule.Services
 {
+    /// <summary>
+    /// Service for browser album operations.
+    /// </summary>
     public interface IAlbumService
     {
         /// <summary>

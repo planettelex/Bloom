@@ -57,6 +57,7 @@ namespace Bloom.Browser.LibraryModule.Services
             _songRepository = songRepository;
             _regionManager = regionManager;
         }
+        // ReSharper disable once NotAccessedField.Local
         private readonly IEventAggregator _eventAggregator;
         private readonly IFileSystemService _fileSystemService;
         private readonly IMediaTagService _mediaTagService;
@@ -79,6 +80,7 @@ namespace Bloom.Browser.LibraryModule.Services
         private Dictionary<string, Person> _importedPeople;
         private Dictionary<string, Artist> _importedArtists;
         private Dictionary<string, Album> _importedAlbums;
+        // ReSharper disable once CollectionNeverQueried.Local
         private Dictionary<string, Song> _importedSongs; 
         private ImportState _importState;
         private bool _isRunning;
@@ -87,7 +89,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get { return (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context; } }
+        public BrowserState State => (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
 
         /// <summary>
         /// Imports music files at the provided folder to the specified libraries.
@@ -661,7 +663,7 @@ namespace Bloom.Browser.LibraryModule.Services
 
             var songKey = newSong.Name.AsKey();
             _importedSongs.Add(songKey, newSong);
-            var artistName = _importState.AlbumArtist != null ? _importState.AlbumArtist.Name : null;
+            var artistName = _importState.AlbumArtist?.Name;
             var albumKey = AlbumKey(artistName, _importState.Album.Name);
             _importedAlbums[albumKey].Tracks.Add(albumTrack);
         }
@@ -675,7 +677,7 @@ namespace Bloom.Browser.LibraryModule.Services
         {
             var albumKey = albumName.AsKey();
             if (!string.IsNullOrEmpty(artistName))
-                albumKey = string.Format("{0}-{1}", artistName.AsKey(), albumKey);
+                albumKey = $"{artistName.AsKey()}-{albumKey}";
 
             return albumKey;
         }
@@ -699,7 +701,7 @@ namespace Bloom.Browser.LibraryModule.Services
                 for (var i = 1; i <= discCount; i++)
                 {
                     var discTracks = importedAlbum.GetTrackCount(i);
-                    var trackCount = discTracks == null ? 0 : discTracks.Value;
+                    var trackCount = discTracks ?? 0;
                     totalTracks += trackCount;
                     trackCounts.Add(i, trackCount);
                 }
@@ -727,7 +729,7 @@ namespace Bloom.Browser.LibraryModule.Services
                     if (lastSongArtist != null && song.ArtistId != lastSongArtist.Id)
                         isMixedArtist = true;
 
-                    if (songMedia != null && songMedia.DigitalFormat != null && !digitalFormats.HasFlag(songMedia.DigitalFormat))
+                    if (songMedia?.DigitalFormat != null && !digitalFormats.HasFlag(songMedia.DigitalFormat))
                         digitalFormats = digitalFormats | songMedia.DigitalFormat.Value;
 
                     foreach (var credit in song.Credits)

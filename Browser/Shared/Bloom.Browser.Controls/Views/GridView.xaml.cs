@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace Bloom.Browser.Controls.Views
+﻿namespace Bloom.Browser.Controls.Views
 {
     /// <summary>
     /// Interaction logic for GridView.xaml

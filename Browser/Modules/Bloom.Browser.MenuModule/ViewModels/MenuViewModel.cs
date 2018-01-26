@@ -74,7 +74,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// <summary>
         /// Gets the event aggregator.
         /// </summary>
-        public IEventAggregator EventAggregator { get; private set; }
+        public IEventAggregator EventAggregator { get; }
 
         /// <summary>
         /// Gets the browser state.
@@ -176,7 +176,7 @@ namespace Bloom.Browser.MenuModule.ViewModels
         /// </summary>
         private void SetUser()
         {
-            if (State == null || State.User == null || State.User.Name == null || State.UserId == User.Anonymous.PersonId)
+            if (State?.User?.Name == null || State.UserId == User.Anonymous.PersonId)
             {
                 ChangeUserVisibility = Visibility.Collapsed;
                 NewUserVisibility = Visibility.Visible;

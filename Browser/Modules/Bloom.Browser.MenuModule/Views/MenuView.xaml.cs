@@ -27,7 +27,7 @@ namespace Bloom.Browser.MenuModule.Views
         /// <summary>
         /// Gets the view model.
         /// </summary>
-        private MenuViewModel ViewModel { get { return (MenuViewModel) DataContext; } }
+        private MenuViewModel ViewModel => (MenuViewModel) DataContext;
 
         /// <summary>
         /// Sets the skin.

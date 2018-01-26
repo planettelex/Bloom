@@ -25,10 +25,7 @@ namespace Bloom.Browser.LibraryModule.Views
             eventAggregator.GetEvent<ChangeTabViewEvent>().Subscribe(ChangeLibraryTabView);
         }
 
-        private LibraryViewModel ViewModel
-        {
-            get { return (LibraryViewModel) DataContext; }
-        }
+        private LibraryViewModel ViewModel => (LibraryViewModel) DataContext;
 
         private void ChangeLibraryTabView(Tuple<Guid, ViewType> libraryViewTuple)
         {

@@ -148,7 +148,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <exception cref="System.NullReferenceException">Library datasource cannot be null.</exception>
         public void RestoreLibraryTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var datasource = State.GetConnectionData(tab.EntityId.Value);
@@ -173,7 +173,7 @@ namespace Bloom.Browser.LibraryModule.Services
         public void DuplicateLibraryTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
-            if (existingTab == null || existingTab.Tab == null || existingTab.Tab.EntityId == null)
+            if (existingTab?.Tab?.EntityId == null)
                 return;
 
             var datasource = State.GetConnectionData(existingTab.Tab.EntityId.Value);
@@ -214,7 +214,7 @@ namespace Bloom.Browser.LibraryModule.Services
         /// <exception cref="System.NullReferenceException">Library datasource cannot be null.</exception>
         public void RestoreAddMusicTab(Tab tab)
         {
-            if (tab == null || tab.Libraries == null)
+            if (tab?.Libraries == null)
                 return;
 
             var libraryIds = tab.Libraries.Select(l => l.LibraryId).ToList();
@@ -235,7 +235,7 @@ namespace Bloom.Browser.LibraryModule.Services
         public void DuplicateAddMusicTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
-            if (existingTab == null || existingTab.Tab == null || existingTab.Tab.EntityId == null)
+            if (existingTab?.Tab?.EntityId == null)
                 return;
 
             var libraryIds = existingTab.Tab.Libraries.Select(l => l.LibraryId).ToList();

@@ -14,6 +14,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.PlaylistModule.Services
 {
+    /// <summary>
+    /// Service for browser playlist operations.
+    /// </summary>
+    /// <seealso cref="IPlaylistService" />
     public class PlaylistService : IPlaylistService
     {
         /// <summary>
@@ -48,6 +52,10 @@ namespace Bloom.Browser.PlaylistModule.Services
             State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
+        /// <summary>
+        /// Creates a new playlist tab.
+        /// </summary>
+        /// <param name="playlistBuid">The playlist Bloom identifier.</param>
         public void NewPlaylistTab(Buid playlistBuid)
         {
             var playlist = new Playlist { Id = playlistBuid.EntityId };
@@ -60,6 +68,10 @@ namespace Bloom.Browser.PlaylistModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(playlistTab);
         }
 
+        /// <summary>
+        /// Restores the playlist tab.
+        /// </summary>
+        /// <param name="tab">The playlist tab.</param>
         public void RestorePlaylistTab(Tab tab)
         {
             if (tab == null || tab.EntityId == null)
@@ -74,6 +86,10 @@ namespace Bloom.Browser.PlaylistModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(playlistTab);
         }
 
+        /// <summary>
+        /// Duplicates an playlist tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicatePlaylistTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);

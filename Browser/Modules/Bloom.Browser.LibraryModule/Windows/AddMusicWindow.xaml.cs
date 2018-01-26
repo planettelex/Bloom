@@ -36,7 +36,7 @@ namespace Bloom.Browser.LibraryModule.Windows
         /// <summary>
         /// Gets the window model.
         /// </summary>
-        private AddMusicWindowModel WindowModel { get { return (AddMusicWindowModel) DataContext; } }
+        private AddMusicWindowModel WindowModel => (AddMusicWindowModel) DataContext;
 
         /// <summary>
         /// When overridden in a derived class, participates in rendering operations that are directed by the layout system. The rendering instructions for this element are not used directly when this method is invoked, and are instead preserved for later asynchronous use by layout and drawing.
@@ -68,7 +68,7 @@ namespace Bloom.Browser.LibraryModule.Windows
         {
             _folderBrowserDialog.SelectedPath = WindowModel.FolderPath;
             _folderBrowserDialog.ShowNewFolderButton = true;
-            _folderBrowserDialog.Description = "Select a folder containing music files.";
+            _folderBrowserDialog.Description = @"Select a folder containing music files.";
 
             var result = _folderBrowserDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)

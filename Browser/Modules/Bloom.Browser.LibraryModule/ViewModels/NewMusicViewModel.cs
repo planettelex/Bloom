@@ -32,13 +32,13 @@ namespace Bloom.Browser.LibraryModule.ViewModels
             State = state;
             TabId = tabId;
             ViewType = viewType;
-            if (addMusicEventModel != null)
-            {
-                LibraryIds = addMusicEventModel.LibraryIds;
-                Source = addMusicEventModel.Source;
-                Path = addMusicEventModel.Path;
-                CopyFiles = addMusicEventModel.CopyFiles;
-            }
+            if (addMusicEventModel == null)
+                return;
+
+            LibraryIds = addMusicEventModel.LibraryIds;
+            Source = addMusicEventModel.Source;
+            Path = addMusicEventModel.Path;
+            CopyFiles = addMusicEventModel.CopyFiles;
         }
 
         /// <summary>

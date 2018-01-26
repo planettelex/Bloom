@@ -14,6 +14,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.AlbumModule.Services
 {
+    /// <summary>
+    /// Service for shared library operations.
+    /// </summary>
+    /// <seealso cref="IAlbumService" />
     public class AlbumService : IAlbumService
     {
         /// <summary>
@@ -70,7 +74,7 @@ namespace Bloom.Browser.AlbumModule.Services
         /// <param name="tab">The album tab.</param>
         public void RestoreAlbumTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var album = new Album { Id = tab.EntityId.Value }; // TODO: Make this data access call

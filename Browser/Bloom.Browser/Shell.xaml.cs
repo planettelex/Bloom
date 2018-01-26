@@ -79,7 +79,7 @@ namespace Bloom.Browser
         /// <summary>
         /// Gets the browser state.
         /// </summary>
-        public BrowserState State { get { return (BrowserState) DataContext; } }
+        public BrowserState State => (BrowserState) DataContext;
 
         #region User Events
 
@@ -98,7 +98,7 @@ namespace Bloom.Browser
             _sharedUserService.AddUser(newUser);
 
             // Persist open tabs only when switching from anonymous user.
-            var tabCount = State.Tabs == null ? 0 : State.Tabs.Count;
+            var tabCount = State.Tabs?.Count ?? 0;
             var openTabs = new Tab[tabCount];
             if (State.UserId == User.Anonymous.PersonId && State.Tabs != null)
             {
@@ -172,17 +172,17 @@ namespace Bloom.Browser
         protected override void OnActivated(EventArgs e)
         {
             base.OnActivated(e);
-            if (!_loading)
-            {
-                var lastProcessToAccessState = _stateService.LastProcessToAccessState();
-                var processChanged = lastProcessToAccessState != ProcessType.Browser && lastProcessToAccessState != ProcessType.None;
-                if (processChanged)
-                {
-                    _stateService.ChangeStateProcess(ProcessType.Browser);
-                    _sharedLibraryService.CheckLibraryConnections();
-                    _sharedUserService.CheckUser();
-                }
-            }
+            if (_loading)
+                return;
+
+            var lastProcessToAccessState = _stateService.LastProcessToAccessState();
+            var processChanged = lastProcessToAccessState != ProcessType.Browser && lastProcessToAccessState != ProcessType.None;
+            if (!processChanged)
+                return;
+
+            _stateService.ChangeStateProcess(ProcessType.Browser);
+            _sharedLibraryService.CheckLibraryConnections();
+            _sharedUserService.CheckUser();
         }
 
         /// <summary>

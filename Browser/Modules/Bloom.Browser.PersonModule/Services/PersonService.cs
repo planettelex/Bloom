@@ -15,6 +15,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.PersonModule.Services
 {
+    /// <summary>
+    /// Service for browser person operations.
+    /// </summary>
+    /// <seealso cref="IPersonService" />
     public class PersonService : IPersonService
     {
         /// <summary>
@@ -49,6 +53,10 @@ namespace Bloom.Browser.PersonModule.Services
             State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
+        /// <summary>
+        /// Creates a new person tab.
+        /// </summary>
+        /// <param name="personBuid">The person Bloom identifier.</param>
         public void NewPersonTab(Buid personBuid)
         {
             const ViewType defaultViewType = ViewType.Grid;
@@ -62,9 +70,13 @@ namespace Bloom.Browser.PersonModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);
         }
 
+        /// <summary>
+        /// Restores the person tab.
+        /// </summary>
+        /// <param name="tab">The person tab.</param>
         public void RestorePersonTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var person = new Person { Id = tab.EntityId.Value }; // TODO: Make this data access call
@@ -77,6 +89,10 @@ namespace Bloom.Browser.PersonModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(personTab);
         }
 
+        /// <summary>
+        /// Duplicates a person tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicatePersonTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);

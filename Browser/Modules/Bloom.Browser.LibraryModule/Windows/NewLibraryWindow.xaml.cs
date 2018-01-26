@@ -22,44 +22,69 @@ namespace Bloom.Browser.LibraryModule.Windows
             InitializeComponent();
             _folderBrowserDialog = new FolderBrowserDialog();
             windowModel.IsLoading = true;
-            windowModel.BrowseFoldersCommand = new DelegateCommand<object>(BrowserFolders, CanBrowserFolders);
+            windowModel.BrowseFoldersCommand = new DelegateCommand<object>(BrowseFolders, CanBrowseFolders);
             windowModel.CreateNewLibraryCommand = new DelegateCommand<object>(CreateNewLibrary, CanCreateNewLibrary);
             windowModel.CancelCommand = new DelegateCommand<object>(Cancel, CanCancel);
             DataContext = windowModel;
         }
         private readonly FolderBrowserDialog _folderBrowserDialog;
 
-        private NewLibraryWindowModel WindowModel { get { return (NewLibraryWindowModel) DataContext; } }
+        /// <summary>
+        /// Gets the window model.
+        /// </summary>
+        private NewLibraryWindowModel WindowModel => (NewLibraryWindowModel) DataContext;
 
+        /// <summary>
+        /// When overridden in a derived class, participates in rendering operations that are directed by the layout system. The rendering instructions for this element are not used directly when this method is invoked, and are instead preserved for later asynchronous use by layout and drawing.
+        /// </summary>
+        /// <param name="drawingContext">The drawing instructions for a specific element. This context is provided to the layout system.</param>
         protected override void OnRender(DrawingContext drawingContext)
         {
  	        base.OnRender(drawingContext);
             WindowModel.IsLoading = false;
         }
 
-        private bool CanBrowserFolders(object nothing)
+        /// <summary>
+        /// Determines whether this instance can browse folders.
+        /// </summary>
+        /// <param name="nothing">Nothing.</param>
+        private bool CanBrowseFolders(object nothing)
         {
             return true;
         }
 
-        private void BrowserFolders(object nothing)
+        /// <summary>
+        /// Opens a folder browser dialogue.
+        /// </summary>
+        /// <param name="nothing">Nothing.</param>
+        private void BrowseFolders(object nothing)
         {
             _folderBrowserDialog.SelectedPath = WindowModel.FolderPath;
             _folderBrowserDialog.ShowNewFolderButton = true;
-            _folderBrowserDialog.Description = "Select a folder for the new library.";
+            _folderBrowserDialog.Description = @"Select a folder for the new library.";
             if (!string.IsNullOrEmpty(WindowModel.LibraryName))
+                // ReSharper disable LocalizableElement
                 _folderBrowserDialog.Description += "\r\nA folder named \"" + WindowModel.LibraryName + "\" will be created at this location.";
+                // ReSharper restore LocalizableElement
                 
             var result = _folderBrowserDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
                 WindowModel.FolderPath = _folderBrowserDialog.SelectedPath;
         }
 
+        /// <summary>
+        /// Determines whether this instance can create a new library.
+        /// </summary>
+        /// <param name="nothing">Nothing.</param>
         private bool CanCreateNewLibrary(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// Creates a new library.
+        /// </summary>
+        /// <param name="nothing">Nothing.</param>
         private void CreateNewLibrary(object nothing)
         {
             var libraryOwner = WindowModel.GetOwner();
@@ -69,11 +94,19 @@ namespace Bloom.Browser.LibraryModule.Windows
             Close();
         }
 
+        /// <summary>
+        /// Determines whether this instance can be cancelled.
+        /// </summary>
+        /// <param name="nothing">Nothing.</param>
         private bool CanCancel(object nothing)
         {
             return true;
         }
 
+        /// <summary>
+        /// Closes the window without taking any action.
+        /// </summary>
+        /// <param name="nothing">Nothing.</param>
         private void Cancel(object nothing)
         {
             Close();

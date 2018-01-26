@@ -7,6 +7,10 @@ namespace Bloom.Browser.LibraryModule.Views
     /// </summary>
     public partial class AlbumView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AlbumView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public AlbumView(AlbumViewModel viewModel)
         {
             InitializeComponent();

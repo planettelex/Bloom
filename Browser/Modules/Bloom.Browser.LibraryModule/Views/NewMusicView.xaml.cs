@@ -8,6 +8,10 @@ namespace Bloom.Browser.LibraryModule.Views
     /// </summary>
     public partial class NewMusicView
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewMusicView"/> class.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public NewMusicView(NewMusicViewModel viewModel)
         {
             InitializeComponent();
@@ -17,7 +21,7 @@ namespace Bloom.Browser.LibraryModule.Views
         /// <summary>
         /// Gets the view model.
         /// </summary>
-        public NewMusicViewModel ViewModel { get { return (NewMusicViewModel) DataContext; } }
+        public NewMusicViewModel ViewModel => (NewMusicViewModel) DataContext;
 
         /// <summary>
         /// When overridden in a derived class, participates in rendering operations that are directed by the layout system. The rendering instructions for this element are not used directly when this method is invoked, and are instead preserved for later asynchronous use by layout and drawing.

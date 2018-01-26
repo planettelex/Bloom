@@ -48,12 +48,12 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// <summary>
         /// Gets the event aggregator.
         /// </summary>
-        public IEventAggregator EventAggregator { get; private set; }
+        public IEventAggregator EventAggregator { get; }
 
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public BrowserState State { get; private set; }
+        public BrowserState State { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is loading.
@@ -206,6 +206,6 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
         /// </summary>
-        public string Error { get { return null; } }
+        public string Error => null;
     }
 }

@@ -158,6 +158,6 @@ namespace Bloom.Browser.LibraryModule.WindowModels
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
         /// </summary>
-        public string Error { get { return null; } }
+        public string Error => null;
     }
 }

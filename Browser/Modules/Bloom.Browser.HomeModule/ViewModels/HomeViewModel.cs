@@ -2,6 +2,9 @@
 
 namespace Bloom.Browser.HomeModule.ViewModels
 {
+    /// <summary>
+    /// View model for HomeView.xaml
+    /// </summary>
     public class HomeViewModel
     {
         public HomeViewModel(Guid tabId)
@@ -9,6 +12,9 @@ namespace Bloom.Browser.HomeModule.ViewModels
             TabId = tabId;
         }
 
+        /// <summary>
+        /// Gets or sets the tab identifier.
+        /// </summary>
         public Guid TabId { get; set; }
     }
 }

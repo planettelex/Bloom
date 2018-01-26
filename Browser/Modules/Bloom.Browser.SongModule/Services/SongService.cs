@@ -14,6 +14,10 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Bloom.Browser.SongModule.Services
 {
+    /// <summary>
+    /// Service for browser song operations.
+    /// </summary>
+    /// <seealso cref="ISongService" />
     public class SongService : ISongService
     {
         /// <summary>
@@ -48,6 +52,10 @@ namespace Bloom.Browser.SongModule.Services
             State = (BrowserState) _regionManager.Regions[Settings.DocumentRegion].Context;
         }
 
+        /// <summary>
+        /// Creates a new song tab.
+        /// </summary>
+        /// <param name="songBuid">The song Bloom identifier.</param>
         public void NewSongTab(Buid songBuid)
         {
             var song = new Song { Id = songBuid.EntityId }; // TODO: Make this data access call
@@ -60,9 +68,13 @@ namespace Bloom.Browser.SongModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
         }
 
+        /// <summary>
+        /// Restores the song tab.
+        /// </summary>
+        /// <param name="tab">The song tab.</param>
         public void RestoreSongTab(Tab tab)
         {
-            if (tab == null || tab.EntityId == null)
+            if (tab?.EntityId == null)
                 return;
 
             var song = new Song { Id = tab.EntityId.Value }; // TODO: Make this data access call
@@ -74,6 +86,10 @@ namespace Bloom.Browser.SongModule.Services
             _eventAggregator.GetEvent<AddTabEvent>().Publish(songTab);
         }
 
+        /// <summary>
+        /// Duplicates a song tab.
+        /// </summary>
+        /// <param name="tabId">The tab identifier to duplicate.</param>
         public void DuplicateSongTab(Guid tabId)
         {
             var existingTab = _tabs.FirstOrDefault(t => t.TabId == tabId);
