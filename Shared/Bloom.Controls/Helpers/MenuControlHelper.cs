@@ -22,7 +22,7 @@ namespace Bloom.Controls.Helpers
             foreach (var item in parentItem.Items)
             {
                 var container = parentItem.ItemContainerGenerator.ContainerFromItem(item) as RadMenuItem;
-                if (container == null || container.Tag == null)
+                if (container?.Tag == null)
                     continue;
 
                 if (container.Tag.Equals(menuItem.Tag))

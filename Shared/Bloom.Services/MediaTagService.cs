@@ -24,7 +24,7 @@ namespace Bloom.Services
                 return null;
 
             var file = File.Create(filePath);
-            if (file == null || file.Tag == null || file.Tag.IsEmpty)
+            if (file?.Tag == null || file.Tag.IsEmpty)
                 return null;
 
             return new MediaTag
@@ -56,7 +56,7 @@ namespace Bloom.Services
                 return null;
 
             var file = File.Create(filePath);
-            if (file == null || file.Tag == null || file.Tag.IsEmpty || file.Tag.Pictures == null || file.Tag.Pictures.Length == 0)
+            if (file?.Tag == null || file.Tag.IsEmpty || file.Tag.Pictures == null || file.Tag.Pictures.Length == 0)
                 return null;
 
             var imageData = file.Tag.Pictures[0].Data.Data;
@@ -74,7 +74,7 @@ namespace Bloom.Services
                 return;
 
             var file = File.Create(filePath);
-            if (file == null || file.Tag == null)
+            if (file?.Tag == null)
                 return;
 
             file.Tag.Title = mediaTag.Title;
@@ -106,7 +106,7 @@ namespace Bloom.Services
                 return;
 
             var file = File.Create(filePath);
-            if (file == null || file.Tag == null || mediaImage == null)
+            if (file?.Tag == null || mediaImage == null)
                 return;
 
             var imageConverter = new ImageConverter();

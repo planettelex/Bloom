@@ -42,7 +42,7 @@ namespace Bloom.Services
         public void AddTab(Tab tab)
         {
             if (tab == null)
-                throw new ArgumentNullException("tab");
+                throw new ArgumentNullException(nameof(tab));
 
             if (State == null)
                 throw new InvalidOperationException("Tabs cannot be added until state is initialized.");

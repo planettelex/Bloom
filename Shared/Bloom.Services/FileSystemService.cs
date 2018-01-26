@@ -79,9 +79,8 @@ namespace Bloom.Services
 
             var mediaFile = new MediaFile(filePath);
             var fileExtension = Path.GetExtension(filePath);
-            if (fileExtension != null)
-                fileExtension = fileExtension.TrimStart('.');
-            
+            fileExtension = fileExtension?.TrimStart('.');
+
             DigitalFormats format;
             if (!Enum.TryParse(fileExtension, true, out format))
                 format = DigitalFormats.Unknown;
@@ -222,13 +221,10 @@ namespace Bloom.Services
         /// <param name="album">The album to move the media to.</param>
         public string MoveMediaFile(Library library, SongMedia songMedia, Album album)
         {
-            if (songMedia == null || string.IsNullOrEmpty(songMedia.FilePath) || !File.Exists(songMedia.FilePath))
+            if (string.IsNullOrEmpty(songMedia?.FilePath) || !File.Exists(songMedia.FilePath))
                 return null;
 
             var fileName = Path.GetFileName(songMedia.FilePath);
-            if (fileName == null)
-                return null;
-
             var albumFolderPath = CreateFolder(library, album);
             var newFilePath = SafeFilePath(albumFolderPath, fileName);
 
@@ -287,7 +283,7 @@ namespace Bloom.Services
             var i = 1;
             while (File.Exists(songFilePath))
             {
-                songFileName += string.Format("_{0}", i.ToString(CultureInfo.InvariantCulture));
+                songFileName += $"_{i.ToString(CultureInfo.InvariantCulture)}";
                 songFilePath = Path.Combine(albumFolderPath, songFileName);
                 i++;
             }
@@ -313,7 +309,7 @@ namespace Bloom.Services
             var i = 1;
             while (File.Exists(songFilePath))
             {
-                songFileName += string.Format("_{0}", i.ToString(CultureInfo.InvariantCulture));
+                songFileName += $"_{i.ToString(CultureInfo.InvariantCulture)}";
                 songFilePath = Path.Combine(playlistFolderPath, songFileName);
                 i++;
             }
@@ -355,7 +351,7 @@ namespace Bloom.Services
             var i = 1;
             while (File.Exists(filePath))
             {
-                fileName += string.Format("_{0}", i.ToString(CultureInfo.InvariantCulture));
+                fileName += $"_{i.ToString(CultureInfo.InvariantCulture)}";
                 filePath = Path.Combine(folderPath, fileName);
                 i++;
             }
@@ -469,7 +465,7 @@ namespace Bloom.Services
         private static string MakeFileName(MediaFile sourceFile, Song song)
         {
             var fileName = song.Name.AsFileName();
-            if (sourceFile.Metadata != null && sourceFile.Metadata.TrackNumber != null)
+            if (sourceFile.Metadata?.TrackNumber != null)
             {
                 var trackNumber = sourceFile.Metadata.TrackNumber.Value < 100 ? sourceFile.Metadata.TrackNumber.Value.ToString("D2") : 
                                                                                 sourceFile.Metadata.TrackNumber.Value.ToString("D3");
@@ -494,7 +490,7 @@ namespace Bloom.Services
                 return "Cover.png";
 
             var pageNumber = album.Artwork.Count + 1;
-            return string.Format("Page {0}.png", pageNumber.ToString("D2"));
+            return $"Page {pageNumber:D2}.png";
         }
     }
 }

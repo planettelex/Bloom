@@ -70,7 +70,7 @@ namespace Bloom.Controls
                 _tab = value;
                 SetViewMenuVisiblity();
                 Header = _tab != null ? _tab.Header : string.Empty;
-                TabId = _tab != null ? _tab.Id : Guid.Empty;
+                TabId = _tab?.Id ?? Guid.Empty;
             }
         }
         private Tab _tab;

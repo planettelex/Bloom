@@ -66,7 +66,7 @@ namespace Bloom.Services
         public ProcessType LastProcessToAccessState()
         {
             var suiteState = SuiteStateRepository.GetSuiteState();
-            if (suiteState == null || string.IsNullOrEmpty(suiteState.LastProcessAccess))
+            if (string.IsNullOrEmpty(suiteState?.LastProcessAccess))
                 return ProcessType.None;
 
             var process = new BloomProcess(suiteState.LastProcessAccess);

@@ -54,7 +54,7 @@ namespace Bloom.Controls
         /// <param name="e">The <see cref="ExecutedRoutedEventArgs"/> instance containing the event data.</param>
         private void ToggleWindowState(object sender, ExecutedRoutedEventArgs e)
         {
-            if (Application.Current.MainWindow.WindowState == WindowState.Maximized)
+            if (Application.Current.MainWindow != null && Application.Current.MainWindow.WindowState == WindowState.Maximized)
                 RestoreWindow();
             else
                 MaximizeWindow();
@@ -117,7 +117,8 @@ namespace Bloom.Controls
         /// <param name="e">The <see cref="MouseButtonEventArgs"/> instance containing the event data.</param>
         private void DragWindow(object sender, MouseButtonEventArgs e)
         {
-            Application.Current.MainWindow.DragMove();
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.DragMove();
         }
 
         /// <summary>
@@ -125,7 +126,8 @@ namespace Bloom.Controls
         /// </summary>
         private static void MinimizeWindow()
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
         /// <summary>
@@ -133,8 +135,9 @@ namespace Bloom.Controls
         /// </summary>
         private void MaximizeWindow()
         {
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
-            
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.WindowState = WindowState.Maximized;
+
             MaximizeButton.Visibility = Visibility.Collapsed;
             RestoreButton.Visibility = Visibility.Visible;
         }
@@ -144,8 +147,9 @@ namespace Bloom.Controls
         /// </summary>
         private void RestoreWindow()
         {
-            Application.Current.MainWindow.WindowState = WindowState.Normal;
-            
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+
             MaximizeButton.Visibility = Visibility.Visible;
             RestoreButton.Visibility = Visibility.Collapsed;
         }

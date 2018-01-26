@@ -15,7 +15,7 @@ namespace Bloom.Services
         /// </summary>
         /// <param name="hWnd">The window handle.</param>
         [DllImport("user32.dll")]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         /// <summary>
         /// Brings the browser process to the foreground, or starts a new one if one isn't already running.
@@ -30,11 +30,11 @@ namespace Bloom.Services
 
             foreach (var process in Process.GetProcesses())
             {
-                if (process.ProcessName.StartsWith(browserProcessName))
-                {
-                    SetForegroundWindow(process.MainWindowHandle);
-                    return;
-                }
+                if (!process.ProcessName.StartsWith(browserProcessName))
+                    continue;
+
+                SetForegroundWindow(process.MainWindowHandle);
+                return;
             }
 
             var executablePath = Settings.BrowserExecutablePath;
@@ -54,11 +54,11 @@ namespace Bloom.Services
 
             foreach (var process in Process.GetProcesses())
             {
-                if (process.ProcessName.StartsWith(playerProcessName))
-                {
-                    SetForegroundWindow(process.MainWindowHandle);
-                    return;
-                }
+                if (!process.ProcessName.StartsWith(playerProcessName))
+                    continue;
+
+                SetForegroundWindow(process.MainWindowHandle);
+                return;
             }
 
             var executablePath = Settings.PlayerExecutablePath;
@@ -78,11 +78,11 @@ namespace Bloom.Services
 
             foreach (var process in Process.GetProcesses())
             {
-                if (process.ProcessName.StartsWith(analyticsProcessName))
-                {
-                    SetForegroundWindow(process.MainWindowHandle);
-                    return;
-                }
+                if (!process.ProcessName.StartsWith(analyticsProcessName))
+                    continue;
+
+                SetForegroundWindow(process.MainWindowHandle);
+                return;
             }
 
             var executablePath = Settings.AnalyticsExecutablePath;

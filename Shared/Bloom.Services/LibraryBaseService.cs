@@ -55,7 +55,7 @@ namespace Bloom.Services
         /// <summary>
         /// Gets the application state.
         /// </summary>
-        public ApplicationState ApplicationState { get { return (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context; } }
+        public ApplicationState ApplicationState => (ApplicationState) RegionManager.Regions[Common.Settings.MenuRegion].Context;
 
         /// <summary>
         /// Gets or sets the event aggregator.
@@ -75,7 +75,7 @@ namespace Bloom.Services
         private void CreateNewLibrary(Library library)
         {
             if (library == null)
-                throw new ArgumentNullException("library");
+                throw new ArgumentNullException(nameof(library));
 
             _fileSystemService.CreateFolder(library);
             var dataSource = new LibraryDataSource(_container);
@@ -104,7 +104,7 @@ namespace Bloom.Services
         public LibraryConnection ConnectNewLibrary(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
-                throw new ArgumentNullException("filePath");
+                throw new ArgumentNullException(nameof(filePath));
 
             if (!File.Exists(filePath))
                 throw new FileNotFoundException("Library file does not exist", filePath);
@@ -283,7 +283,7 @@ namespace Bloom.Services
         /// <param name="user">The user.</param>
         public void SyncLibraryOwnerAndUser(LibraryConnection libraryConnection, User user)
         {
-            if (libraryConnection == null || libraryConnection.Library.Owner == null || user == null || libraryConnection.OwnerId != user.PersonId)
+            if (libraryConnection?.Library.Owner == null || user == null || libraryConnection.OwnerId != user.PersonId)
                 return;
 
             if (libraryConnection.LastConnected < libraryConnection.Library.OwnerLastConnected)
