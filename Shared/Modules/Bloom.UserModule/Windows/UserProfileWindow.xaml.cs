@@ -43,10 +43,7 @@ namespace Bloom.UserModule.Windows
         /// <summary>
         /// Gets the window model.
         /// </summary>
-        protected UserProfileWindowModel WindowModel
-        {
-            get { return (UserProfileWindowModel) DataContext; }
-        }
+        protected UserProfileWindowModel WindowModel => (UserProfileWindowModel) DataContext;
 
         /// <summary>
         /// When overridden in a derived class, participates in rendering operations that are directed by the layout system. The rendering instructions for this element are not used directly when this method is invoked, and are instead preserved for later asynchronous use by layout and drawing.

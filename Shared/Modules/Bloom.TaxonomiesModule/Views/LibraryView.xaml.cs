@@ -20,9 +20,6 @@ namespace Bloom.TaxonomiesModule.Views
         /// <summary>
         /// Gets the view model.
         /// </summary>
-        public LibraryViewModel ViewModel
-        {
-            get { return (LibraryViewModel) DataContext; }
-        }
+        public LibraryViewModel ViewModel => (LibraryViewModel) DataContext;
     }
 }

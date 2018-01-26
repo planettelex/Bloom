@@ -22,7 +22,7 @@ namespace Bloom.LibraryModule.WindowModels
         {
             State = (ApplicationState) regionManager.Regions[Common.Settings.MenuRegion].Context;
             EventAggregator = eventAggregator;
-            Instructions = string.Format("Connect a library by specifing the path to its Bloom library file (*{0}).", Common.Settings.LibraryFileExtension);
+            Instructions = $"Connect a library by specifing the path to its Bloom library file (*{Common.Settings.LibraryFileExtension}).";
         }
 
         /// <summary>

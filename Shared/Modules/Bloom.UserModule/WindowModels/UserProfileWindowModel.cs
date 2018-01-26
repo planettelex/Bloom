@@ -50,12 +50,12 @@ namespace Bloom.UserModule.WindowModels
         /// <summary>
         /// Gets the event aggregator.
         /// </summary>
-        public IEventAggregator EventAggregator { get; private set; }
+        public IEventAggregator EventAggregator { get; }
 
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public ApplicationState State { get; private set; }
+        public ApplicationState State { get; }
 
         /// <summary>
         /// Gets or sets the set profile image command.
@@ -187,7 +187,7 @@ namespace Bloom.UserModule.WindowModels
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
         /// </summary>
-        public string Error { get { return null; } }
+        public string Error => null;
 
         /// <summary>
         /// Determines whether the user profile window has changes.

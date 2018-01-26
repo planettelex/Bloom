@@ -22,7 +22,7 @@ namespace Bloom.TaxonomiesModule.ViewModels
         public LibraryViewModel(Library library, IEventAggregator eventAggregator)
         {
             if (library == null)
-                throw new ArgumentNullException("library");
+                throw new ArgumentNullException(nameof(library));
 
             EventAggregator = eventAggregator;
             Library = library;
@@ -39,7 +39,7 @@ namespace Bloom.TaxonomiesModule.ViewModels
         /// <summary>
         /// Gets the event aggregator.
         /// </summary>
-        public IEventAggregator EventAggregator { get; private set; }
+        public IEventAggregator EventAggregator { get; }
 
         /// <summary>
         /// Gets or sets the library.

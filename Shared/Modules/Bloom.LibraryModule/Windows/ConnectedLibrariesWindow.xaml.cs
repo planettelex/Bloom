@@ -49,10 +49,7 @@ namespace Bloom.LibraryModule.Windows
         /// <summary>
         /// Gets the window model.
         /// </summary>
-        protected ConnectedLibrariesWindowModel WindowModel
-        {
-            get { return (ConnectedLibrariesWindowModel) DataContext; }
-        }
+        protected ConnectedLibrariesWindowModel WindowModel => (ConnectedLibrariesWindowModel) DataContext;
 
         /// <summary>
         /// Initializes the background brushes.
@@ -188,8 +185,8 @@ namespace Bloom.LibraryModule.Windows
                 throw new InvalidOperationException("Library connection for id " + libraryId.Value + " not found in the observable collection.");
 
             var brokenFilePath = lostLibraryConnection.FilePath;
-            _findFileDialog.InitialDirectory = Path.GetDirectoryName(brokenFilePath);
-            _findFileDialog.FileName = Path.GetFileName(brokenFilePath);
+            _findFileDialog.InitialDirectory = Path.GetDirectoryName(brokenFilePath) ?? brokenFilePath;
+            _findFileDialog.FileName = Path.GetFileName(brokenFilePath) ?? brokenFilePath;
             _findFileDialog.Title = "Locate the *" + Common.Settings.LibraryFileExtension + " file for " + lostLibraryConnection.LibraryName;
 
             var result = _findFileDialog.ShowDialog();
