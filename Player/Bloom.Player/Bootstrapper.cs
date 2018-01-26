@@ -54,7 +54,8 @@ namespace Bloom.Player
             base.InitializeShell();
 
             Application.Current.MainWindow = (Window) Shell;
-            Application.Current.MainWindow.Show();
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.Show();
         }
 
         /// <summary>

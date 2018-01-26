@@ -14,17 +14,24 @@ namespace Bloom.Player.State.Services
         void ConnectDataSource();
 
         /// <summary>
-        /// Initializes the player application state.
+        /// Initializes the player application state for a given user.
         /// </summary>
-        /// <returns>The player application state.</returns>
+        /// <param name="user">The user.</param>
         PlayerState InitializeState(User user);
 
+        /// <summary>
+        /// Gets the last process to access state.
+        /// </summary>
         ProcessType LastProcessToAccessState();
 
+        /// <summary>
+        /// Changes the running process in state data.
+        /// </summary>
+        /// <param name="processType">The process type.</param>
         void ChangeStateProcess(ProcessType processType);
 
         /// <summary>
-        /// Saves the state.
+        /// Saves the application state.
         /// </summary>
         void SaveState();
     }

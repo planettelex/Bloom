@@ -26,7 +26,7 @@ namespace Bloom.Player.MenuModule.Views
             eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetSkin);
         }
 
-        private MenuViewModel Model { get { return (MenuViewModel)DataContext; } }
+        private MenuViewModel Model => (MenuViewModel) DataContext;
 
         private void SetSkin(object nothing)
         {

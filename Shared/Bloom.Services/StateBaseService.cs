@@ -75,7 +75,7 @@ namespace Bloom.Services
         }
 
         /// <summary>
-        /// Changes the state process.
+        /// Changes the running process in state data.
         /// </summary>
         /// <param name="processType">The process type.</param>
         public void ChangeStateProcess(ProcessType processType)

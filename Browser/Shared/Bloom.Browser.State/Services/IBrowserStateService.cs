@@ -31,9 +31,9 @@ namespace Bloom.Browser.State.Services
         ProcessType LastProcessToAccessState();
 
         /// <summary>
-        /// Changes the process using state.
+        /// Changes the running process in state data.
         /// </summary>
-        /// <param name="processType">The process type using state.</param>
+        /// <param name="processType">The process type.</param>
         void ChangeStateProcess(ProcessType processType);
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Bloom.Browser.State.Services
         void RemoveAllTabs();
 
         /// <summary>
-        /// Saves the state.
+        /// Saves the application state.
         /// </summary>
         void SaveState();
     }

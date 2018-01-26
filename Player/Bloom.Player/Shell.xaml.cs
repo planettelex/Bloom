@@ -60,7 +60,7 @@ namespace Bloom.Player
         private readonly IEventAggregator _eventAggregator;
         private bool _loading;
 
-        private PlayerState State { get { return (PlayerState) DataContext; } }
+        private PlayerState State => (PlayerState) DataContext;
 
         #region User Events
 

@@ -81,7 +81,7 @@ namespace Bloom.Player.MenuModule.ViewModels
 
         public void CheckConnections(object unused)
         {
-            HasConnections = State != null && State.Connections != null && State.Connections.Count > 0;
+            HasConnections = State?.Connections != null && State.Connections.Count > 0;
         }
 
         public void CheckConnections(Guid unused)
@@ -105,7 +105,7 @@ namespace Bloom.Player.MenuModule.ViewModels
 
         public void SetUser(object nothing)
         {
-            if (State == null || State.User == null || State.User.Name == null)
+            if (State?.User?.Name == null)
             {
                 UserName = "Login";
                 HasUser = false;
