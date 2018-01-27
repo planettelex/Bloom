@@ -118,10 +118,6 @@
       <Project>{c86fedc7-f553-4de5-85e7-3cfcff2eb333}</Project>
       <Name>Bloom.Analytics.PubSubEvents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
-      <Project>{40d9ac3d-db97-4b31-ac50-21fc82f7459a}</Project>
-      <Name>Bloom.Analytics.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>

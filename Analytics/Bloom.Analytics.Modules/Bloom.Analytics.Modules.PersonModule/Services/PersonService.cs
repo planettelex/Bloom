@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
 using Bloom.Analytics.Modules.PersonModule.ViewModels;
 using Bloom.Analytics.Modules.PersonModule.Views;

@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Analytics.Common;
+using Bloom.Analytics.Controls;
 using Bloom.Domain.Models;
 
 namespace Bloom.Analytics.Modules.PersonModule.ViewModels

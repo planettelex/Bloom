@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Bloom.Analytics.Common;
 using Bloom.State.Domain.Models;
 using TabControl = Bloom.Controls.TabControl;
 

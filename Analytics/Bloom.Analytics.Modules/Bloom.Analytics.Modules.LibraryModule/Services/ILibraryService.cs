@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Analytics.Common;
+using Bloom.Analytics.Controls;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Analytics.Modules.LibraryModule.Services

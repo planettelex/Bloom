@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.Common
+﻿namespace Bloom.Analytics.Controls
 {
     /// <summary>
     /// A type of view.

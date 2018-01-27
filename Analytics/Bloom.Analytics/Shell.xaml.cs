@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.Analytics.Common;
+using Bloom.Analytics.Controls;
 using Bloom.Analytics.PubSubEvents;
 using Bloom.Analytics.State.Services;
 using Bloom.Common;
