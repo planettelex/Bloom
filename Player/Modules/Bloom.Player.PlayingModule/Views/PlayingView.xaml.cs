@@ -1,6 +1,6 @@
-﻿using Bloom.Player.PlayingModule.ViewModels;
+﻿using Bloom.Player.Modules.PlayingModule.ViewModels;
 
-namespace Bloom.Player.PlayingModule.Views
+namespace Bloom.Player.Modules.PlayingModule.Views
 {
     /// <summary>
     /// Interaction logic for PlayingView.xaml

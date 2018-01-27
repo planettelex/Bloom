@@ -1,8 +1,8 @@
-﻿using Bloom.Player.RecentModule.Views;
+﻿using Bloom.Player.Modules.RecentModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.RecentModule
+namespace Bloom.Player.Modules.RecentModule
 {
     /// <summary>
     /// Player recent Prism module.

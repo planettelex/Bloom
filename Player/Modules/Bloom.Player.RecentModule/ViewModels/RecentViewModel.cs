@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.RecentModule.ViewModels
+﻿namespace Bloom.Player.Modules.RecentModule.ViewModels
 {
     /// <summary>
     /// View model for RecentView.xaml

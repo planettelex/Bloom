@@ -1,8 +1,8 @@
-﻿using Bloom.Player.VisualsModule.Views;
+﻿using Bloom.Player.Modules.VisualsModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.VisualsModule
+namespace Bloom.Player.Modules.VisualsModule
 {
     /// <summary>
     /// Player visuals Prism module.

@@ -1,8 +1,8 @@
-﻿using Bloom.Player.VolumeModule.Views;
+﻿using Bloom.Player.Modules.VolumeModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.VolumeModule
+namespace Bloom.Player.Modules.VolumeModule
 {
     /// <summary>
     /// Player volume Prism module.

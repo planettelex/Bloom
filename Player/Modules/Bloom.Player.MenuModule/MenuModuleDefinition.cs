@@ -1,8 +1,8 @@
-﻿using Bloom.Player.MenuModule.Views;
+﻿using Bloom.Player.Modules.MenuModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.MenuModule
+namespace Bloom.Player.Modules.MenuModule
 {
     /// <summary>
     /// Player menu Prism module.
@@ -11,7 +11,7 @@ namespace Bloom.Player.MenuModule
     public class MenuModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MenuModule"/> class.
+        /// Initializes a new instance of the <see cref="Bloom.Player.Modules.MenuModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         public MenuModuleDefinition(IRegionManager regionManager)

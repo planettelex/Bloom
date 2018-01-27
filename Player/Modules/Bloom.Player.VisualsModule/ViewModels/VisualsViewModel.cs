@@ -1,4 +1,4 @@
-﻿namespace Bloom.Player.VisualsModule.ViewModels
+﻿namespace Bloom.Player.Modules.VisualsModule.ViewModels
 {
     /// <summary>
     /// View model for VisualsView.xaml

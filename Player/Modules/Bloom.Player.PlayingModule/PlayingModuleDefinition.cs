@@ -1,8 +1,8 @@
-﻿using Bloom.Player.PlayingModule.Views;
+﻿using Bloom.Player.Modules.PlayingModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Player.PlayingModule
+namespace Bloom.Player.Modules.PlayingModule
 {
     /// <summary>
     /// Player playing Prism module.
@@ -11,7 +11,7 @@ namespace Bloom.Player.PlayingModule
     public class PlayingModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlayingModule"/> class.
+        /// Initializes a new instance of the <see cref="Bloom.Player.Modules.PlayingModule"/> class.
         /// </summary>
         /// <param name="regionManager">The region manager.</param>
         public PlayingModuleDefinition(IRegionManager regionManager)
