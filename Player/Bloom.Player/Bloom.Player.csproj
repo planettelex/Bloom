@@ -157,7 +157,7 @@
       <Project>{ddbc521e-2b45-49f2-b9f5-743eefe9122a}</Project>
       <Name>Bloom.Modules.UserModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shared\Bloom.Player.State\Bloom.Player.State.csproj">
+    <ProjectReference Include="..\Bloom.Player.State\Bloom.Player.State.csproj">
       <Project>{d8539333-b1ef-4153-aab9-552011f9eba3}</Project>
       <Name>Bloom.Player.State</Name>
     </ProjectReference>
@@ -177,27 +177,27 @@
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.MenuModule\Bloom.Player.Modules.MenuModule.csproj">
+    <ProjectReference Include="..\Bloom.Player.Modules\Bloom.Player.Modules.MenuModule\Bloom.Player.Modules.MenuModule.csproj">
       <Project>{fbd9f5a9-4cc2-4a28-a13f-5643a9c8914f}</Project>
       <Name>Bloom.Player.Modules.MenuModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.PlayingModule\Bloom.Player.Modules.PlayingModule.csproj">
+    <ProjectReference Include="..\Bloom.Player.Modules\Bloom.Player.Modules.PlayingModule\Bloom.Player.Modules.PlayingModule.csproj">
       <Project>{145ed76c-790b-4577-9415-b535479f307b}</Project>
       <Name>Bloom.Player.Modules.PlayingModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.RecentModule\Bloom.Player.Modules.RecentModule.csproj">
+    <ProjectReference Include="..\Bloom.Player.Modules\Bloom.Player.Modules.RecentModule\Bloom.Player.Modules.RecentModule.csproj">
       <Project>{48480e58-3ebc-4efc-955a-2970ae41a9b5}</Project>
       <Name>Bloom.Player.Modules.RecentModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.UpcomingModule\Bloom.Player.Moduels.UpcomingModule.csproj">
+    <ProjectReference Include="..\Bloom.Player.Modules\Bloom.Player.Modules.UpcomingModule\Bloom.Player.Modules.UpcomingModule.csproj">
       <Project>{35a90143-62cb-4383-a4ca-3d62eefcd30f}</Project>
-      <Name>Bloom.Player.Moduels.UpcomingModule</Name>
+      <Name>Bloom.Player.Modules.UpcomingModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.VisualsModule\Bloom.Player.Modules.VisualsModule.csproj">
+    <ProjectReference Include="..\Bloom.Player.Modules\Bloom.Player.Modules.VisualsModule\Bloom.Player.Modules.VisualsModule.csproj">
       <Project>{6062a28f-6f28-4b8c-b9b1-3f1a82d12e47}</Project>
       <Name>Bloom.Player.Modules.VisualsModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modules\Bloom.Player.VolumeModule\Bloom.Player.Modules.VolumeModule.csproj">
+    <ProjectReference Include="..\Bloom.Player.Modules\Bloom.Player.Modules.VolumeModule\Bloom.Player.Modules.VolumeModule.csproj">
       <Project>{4b4da9e0-bae1-43d4-91e3-dc34e88eb142}</Project>
       <Name>Bloom.Player.Modules.VolumeModule</Name>
     </ProjectReference>

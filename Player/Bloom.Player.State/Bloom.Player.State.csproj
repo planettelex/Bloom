@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,35 +76,35 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Common\Bloom.Common.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Data\Bloom.Data.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Data\Bloom.Data.csproj">
       <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
       <Name>Bloom.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj">
       <Project>{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}</Project>
       <Name>Bloom.PubSubEvents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Services\Bloom.Services.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
       <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
       <Name>Bloom.State.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Modules\Bloom.Modules.LibraryModule\Bloom.Modules.LibraryModule.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Modules\Bloom.Modules.LibraryModule\Bloom.Modules.LibraryModule.csproj">
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
       <Name>Bloom.Modules.LibraryModule</Name>
     </ProjectReference>
