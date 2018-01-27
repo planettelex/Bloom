@@ -1,8 +1,8 @@
-﻿using Bloom.Analytics.PersonModule.Services;
+﻿using Bloom.Analytics.Modules.PersonModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.PersonModule
+namespace Bloom.Analytics.Modules.PersonModule
 {
     /// <summary>
     /// Analytics person module.

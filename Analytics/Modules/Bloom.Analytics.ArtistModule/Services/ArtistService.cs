@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Analytics.ArtistModule.ViewModels;
-using Bloom.Analytics.ArtistModule.Views;
 using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
+using Bloom.Analytics.Modules.ArtistModule.ViewModels;
+using Bloom.Analytics.Modules.ArtistModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -13,7 +13,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.ArtistModule.Services
+namespace Bloom.Analytics.Modules.ArtistModule.Services
 {
     public class ArtistService : IArtistService
     {

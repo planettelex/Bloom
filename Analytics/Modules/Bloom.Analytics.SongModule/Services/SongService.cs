@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.SongModule.ViewModels;
-using Bloom.Analytics.SongModule.Views;
+using Bloom.Analytics.Modules.SongModule.ViewModels;
+using Bloom.Analytics.Modules.SongModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -12,7 +12,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.SongModule.Services
+namespace Bloom.Analytics.Modules.SongModule.Services
 {
     /// <summary>
     /// Service for analytics song operations.

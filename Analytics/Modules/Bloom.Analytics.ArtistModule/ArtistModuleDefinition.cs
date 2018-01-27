@@ -1,8 +1,8 @@
-﻿using Bloom.Analytics.ArtistModule.Services;
+﻿using Bloom.Analytics.Modules.ArtistModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.ArtistModule
+namespace Bloom.Analytics.Modules.ArtistModule
 {
     /// <summary>
     /// Artist person module.

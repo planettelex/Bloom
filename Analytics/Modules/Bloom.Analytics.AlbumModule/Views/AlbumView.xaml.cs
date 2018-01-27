@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.AlbumModule.ViewModels;
+﻿using Bloom.Analytics.Modules.AlbumModule.ViewModels;
 
-namespace Bloom.Analytics.AlbumModule.Views
+namespace Bloom.Analytics.Modules.AlbumModule.Views
 {
     /// <summary>
     /// Interaction logic for AlbumView.xaml

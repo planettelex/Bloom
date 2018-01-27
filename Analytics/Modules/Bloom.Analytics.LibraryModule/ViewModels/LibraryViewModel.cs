@@ -2,7 +2,7 @@
 using Bloom.Analytics.Common;
 using Bloom.Domain.Models;
 
-namespace Bloom.Analytics.LibraryModule.ViewModels
+namespace Bloom.Analytics.Modules.LibraryModule.ViewModels
 {
     /// <summary>
     /// View model for LibraryView.xaml

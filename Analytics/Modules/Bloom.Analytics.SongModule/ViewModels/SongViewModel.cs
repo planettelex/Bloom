@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Domain.Models;
 
-namespace Bloom.Analytics.SongModule.ViewModels
+namespace Bloom.Analytics.Modules.SongModule.ViewModels
 {
     /// <summary>
     /// View model for SongView.xaml

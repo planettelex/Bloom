@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.HomeModule.ViewModels;
+﻿using Bloom.Analytics.Modules.HomeModule.ViewModels;
 
-namespace Bloom.Analytics.HomeModule.Views
+namespace Bloom.Analytics.Modules.HomeModule.Views
 {
     /// <summary>
     /// Interaction logic for GettingStartedView.xaml

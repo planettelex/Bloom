@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.HomeModule.ViewModels;
-using Bloom.Analytics.HomeModule.Views;
+using Bloom.Analytics.Modules.HomeModule.ViewModels;
+using Bloom.Analytics.Modules.HomeModule.Views;
 using Bloom.Common;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
+using GettingStartedView = Bloom.Analytics.Modules.HomeModule.Views.GettingStartedView;
 
-namespace Bloom.Analytics.HomeModule.Services
+namespace Bloom.Analytics.Modules.HomeModule.Services
 {
     /// <summary>
     /// Service for analytics home and getting started page operations.

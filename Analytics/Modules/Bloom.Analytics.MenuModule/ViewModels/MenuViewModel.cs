@@ -10,7 +10,7 @@ using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.MenuModule.ViewModels
+namespace Bloom.Analytics.Modules.MenuModule.ViewModels
 {
     /// <summary>
     /// View model for MenuView.xaml.

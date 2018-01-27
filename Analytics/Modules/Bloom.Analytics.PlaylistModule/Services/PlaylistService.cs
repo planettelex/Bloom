@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.PlaylistModule.ViewModels;
-using Bloom.Analytics.PlaylistModule.Views;
+using Bloom.Analytics.Modules.PlaylistModule.ViewModels;
+using Bloom.Analytics.Modules.PlaylistModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -12,7 +12,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.PlaylistModule.Services
+namespace Bloom.Analytics.Modules.PlaylistModule.Services
 {
     /// <summary>
     /// Service for analytics playlist operations.

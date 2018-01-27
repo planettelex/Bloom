@@ -1,4 +1,4 @@
-﻿namespace Bloom.Analytics.LibraryModule.ViewModels
+﻿namespace Bloom.Analytics.Modules.LibraryModule.ViewModels
 {
     /// <summary>
     /// View model for BarChartView.xaml

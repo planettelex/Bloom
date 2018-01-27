@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.LibraryModule.ViewModels;
+﻿using Bloom.Analytics.Modules.LibraryModule.ViewModels;
 
-namespace Bloom.Analytics.LibraryModule.Views
+namespace Bloom.Analytics.Modules.LibraryModule.Views
 {
     /// <summary>
     /// Interaction logic for MapView.xaml

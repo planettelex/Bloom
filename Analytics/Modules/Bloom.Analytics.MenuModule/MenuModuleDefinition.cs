@@ -1,8 +1,8 @@
-﻿using Bloom.Analytics.MenuModule.Views;
+﻿using Bloom.Analytics.Modules.MenuModule.Views;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.MenuModule
+namespace Bloom.Analytics.Modules.MenuModule
 {
     /// <summary>
     /// Analytics menu Prism module.

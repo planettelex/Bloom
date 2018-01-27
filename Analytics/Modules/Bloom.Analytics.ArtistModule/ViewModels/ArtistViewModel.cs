@@ -2,7 +2,7 @@
 using Bloom.Analytics.Common;
 using Bloom.Domain.Models;
 
-namespace Bloom.Analytics.ArtistModule.ViewModels
+namespace Bloom.Analytics.Modules.ArtistModule.ViewModels
 {
     /// <summary>
     /// View model for ArtistView.xaml

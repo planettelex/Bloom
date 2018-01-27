@@ -1,8 +1,8 @@
-﻿using Bloom.Analytics.LibraryModule.Services;
+﻿using Bloom.Analytics.Modules.LibraryModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.LibraryModule
+namespace Bloom.Analytics.Modules.LibraryModule
 {
     /// <summary>
     /// Browser library module.

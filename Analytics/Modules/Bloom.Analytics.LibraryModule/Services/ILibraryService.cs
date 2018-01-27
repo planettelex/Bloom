@@ -2,7 +2,7 @@
 using Bloom.Analytics.Common;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.LibraryModule.Services
+namespace Bloom.Analytics.Modules.LibraryModule.Services
 {
     /// <summary>
     /// Service for analytics library operations.

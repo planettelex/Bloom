@@ -2,7 +2,7 @@
 using Bloom.Common;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.PlaylistModule.Services
+namespace Bloom.Analytics.Modules.PlaylistModule.Services
 {
     /// <summary>
     /// Service for analytics playlist operations.

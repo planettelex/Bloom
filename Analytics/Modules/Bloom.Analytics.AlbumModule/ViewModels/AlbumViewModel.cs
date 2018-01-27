@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Domain.Models;
 
-namespace Bloom.Analytics.AlbumModule.ViewModels
+namespace Bloom.Analytics.Modules.AlbumModule.ViewModels
 {
     /// <summary>
     /// View model for AlbumView.xaml

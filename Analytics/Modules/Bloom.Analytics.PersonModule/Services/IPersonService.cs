@@ -2,7 +2,7 @@
 using Bloom.Common;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.PersonModule.Services
+namespace Bloom.Analytics.Modules.PersonModule.Services
 {
     /// <summary>
     /// Service for analytics person operations.

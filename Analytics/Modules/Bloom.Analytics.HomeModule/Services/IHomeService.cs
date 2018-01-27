@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.HomeModule.Services
+namespace Bloom.Analytics.Modules.HomeModule.Services
 {
     /// <summary>
     /// Service for analytics home and getting started page operations.

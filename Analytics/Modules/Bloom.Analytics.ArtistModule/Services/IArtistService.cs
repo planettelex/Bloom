@@ -2,7 +2,7 @@
 using Bloom.Common;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.ArtistModule.Services
+namespace Bloom.Analytics.Modules.ArtistModule.Services
 {
     /// <summary>
     /// Service for analytics artist operations.

@@ -1,10 +1,10 @@
 ﻿using System;
 using Bloom.Analytics.Common;
-using Bloom.Analytics.LibraryModule.ViewModels;
+using Bloom.Analytics.Modules.LibraryModule.ViewModels;
 using Bloom.Analytics.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;
 
-namespace Bloom.Analytics.LibraryModule.Views
+namespace Bloom.Analytics.Modules.LibraryModule.Views
 {
     /// <summary>
     /// Interaction logic for LibraryView.xaml

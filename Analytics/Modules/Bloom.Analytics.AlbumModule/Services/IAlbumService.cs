@@ -2,7 +2,7 @@
 using Bloom.Common;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.AlbumModule.Services
+namespace Bloom.Analytics.Modules.AlbumModule.Services
 {
     /// <summary>
     /// Service for analytics album operations.

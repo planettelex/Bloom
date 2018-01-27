@@ -1,8 +1,8 @@
-﻿using Bloom.Analytics.AlbumModule.Services;
+﻿using Bloom.Analytics.Modules.AlbumModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.AlbumModule
+namespace Bloom.Analytics.Modules.AlbumModule
 {
     /// <summary>
     /// Analytics album module.

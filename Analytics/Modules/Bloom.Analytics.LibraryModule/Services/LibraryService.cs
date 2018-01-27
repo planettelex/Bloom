@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.LibraryModule.ViewModels;
-using Bloom.Analytics.LibraryModule.Views;
+using Bloom.Analytics.Modules.LibraryModule.ViewModels;
 using Bloom.Analytics.PubSubEvents;
 using Bloom.Common;
 using Bloom.Data.Repositories;
@@ -14,13 +13,14 @@ using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
+using LibraryView = Bloom.Analytics.Modules.LibraryModule.Views.LibraryView;
 
-namespace Bloom.Analytics.LibraryModule.Services
+namespace Bloom.Analytics.Modules.LibraryModule.Services
 {
     /// <summary>
     /// Service for analytics library operations.
     /// </summary>
-    /// <seealso cref="Bloom.Analytics.LibraryModule.Services.ILibraryService" />
+    /// <seealso cref="ILibraryService" />
     public class LibraryService : ILibraryService
     {
         public LibraryService(IEventAggregator eventAggregator, IRegionManager regionManager, ILibraryRepository libraryRepository)

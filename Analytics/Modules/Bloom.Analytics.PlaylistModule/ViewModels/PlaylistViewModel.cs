@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Domain.Models;
 
-namespace Bloom.Analytics.PlaylistModule.ViewModels
+namespace Bloom.Analytics.Modules.PlaylistModule.ViewModels
 {
     /// <summary>
     /// View model for PlaylistView.xaml

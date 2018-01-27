@@ -1,8 +1,8 @@
-﻿using Bloom.Analytics.PlaylistModule.Services;
+﻿using Bloom.Analytics.Modules.PlaylistModule.Services;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
 
-namespace Bloom.Analytics.PlaylistModule
+namespace Bloom.Analytics.Modules.PlaylistModule
 {
     /// <summary>
     /// Analytics playlist module.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloom.Analytics.HomeModule.ViewModels
+namespace Bloom.Analytics.Modules.HomeModule.ViewModels
 {
     /// <summary>
     /// View model for HomeView.xaml

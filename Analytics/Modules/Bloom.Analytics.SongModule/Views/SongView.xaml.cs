@@ -1,6 +1,6 @@
-﻿using Bloom.Analytics.SongModule.ViewModels;
+﻿using Bloom.Analytics.Modules.SongModule.ViewModels;
 
-namespace Bloom.Analytics.SongModule.Views
+namespace Bloom.Analytics.Modules.SongModule.Views
 {
     /// <summary>
     /// Interaction logic for SongView.xaml

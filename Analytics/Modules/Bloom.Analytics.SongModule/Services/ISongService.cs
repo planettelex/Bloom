@@ -2,7 +2,7 @@
 using Bloom.Common;
 using Bloom.State.Domain.Models;
 
-namespace Bloom.Analytics.SongModule.Services
+namespace Bloom.Analytics.Modules.SongModule.Services
 {
     /// <summary>
     /// Service for analytics song operations.

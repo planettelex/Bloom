@@ -2,7 +2,7 @@
 using Bloom.Analytics.Common;
 using Bloom.Domain.Models;
 
-namespace Bloom.Analytics.PersonModule.ViewModels
+namespace Bloom.Analytics.Modules.PersonModule.ViewModels
 {
     /// <summary>
     /// View model for PersonView.xaml

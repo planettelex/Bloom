@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.Analytics.AlbumModule.ViewModels;
-using Bloom.Analytics.AlbumModule.Views;
 using Bloom.Analytics.Controls;
+using Bloom.Analytics.Modules.AlbumModule.ViewModels;
+using Bloom.Analytics.Modules.AlbumModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -12,7 +12,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.AlbumModule.Services
+namespace Bloom.Analytics.Modules.AlbumModule.Services
 {
     /// <summary>
     /// Service for analytics album operations.

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Common;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.PersonModule.ViewModels;
-using Bloom.Analytics.PersonModule.Views;
+using Bloom.Analytics.Modules.PersonModule.ViewModels;
+using Bloom.Analytics.Modules.PersonModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
@@ -13,7 +13,7 @@ using Bloom.State.Domain.Models;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Bloom.Analytics.PersonModule.Services
+namespace Bloom.Analytics.Modules.PersonModule.Services
 {
     /// <summary>
     /// Service for analytics person operations.
