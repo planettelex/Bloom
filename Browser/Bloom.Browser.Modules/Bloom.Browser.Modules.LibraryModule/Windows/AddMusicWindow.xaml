@@ -1,0 +1,74 @@
+﻿<telerik:RadWindow x:Class="Bloom.Browser.Modules.LibraryModule.Windows.AddMusicWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             Style="{DynamicResource RadWindowStyle}"
+             Width="600" MaxWidth="600" MinWidth="600" 
+             Height="285" MaxHeight="285" MinHeight="285"
+             Header="Add Music">
+    
+    <Grid Style="{DynamicResource WindowFrameStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="9" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="18" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Name="MusicSource" Grid.Row="0" Grid.Column="0" SelectionChanged="SourceSelectionChanged">
+            <ComboBoxItem Name="Select" IsSelected="True" Content="&lt;- Select Music Source -&gt;" />
+            <ComboBoxItem Name="Files" Content="Files on this Computer" />
+        </ComboBox>
+
+        <Border Grid.Row="2" Grid.Column="0" Visibility="{Binding Path=FolderSelectVisibility}" Style="{DynamicResource BorderStyle}" Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" FontWeight="Bold" Padding="0 0 0 4">Select Folder</Label>
+                <TextBlock Grid.Row="1">
+                    Select a folder that contains music files. Bloom<LineBreak/>
+                    will search all subfolders and add all music <LineBreak/>
+                    files it finds.
+                </TextBlock>
+                <TextBox Grid.Row="2" Text="{Binding Path=FolderPath, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="0 8 0 8" />
+                <telerik:RadButton Grid.Row="3" Content="Browse" Command="{Binding Path=BrowseFoldersCommand}" Style="{DynamicResource TextButtonStyle}" HorizontalAlignment="Right" />
+            </Grid>
+        </Border>
+
+        <CheckBox Grid.Row="4" Grid.Column="0" Visibility="{Binding Path=CopyFilesVisibility}" IsChecked="{Binding Path=CopyFiles}"
+                  Content="Copy music files to Bloom library folders" />
+        
+        <Label Grid.Row="0" Grid.Column="2">Add to Libraries:</Label>
+
+        <ListBox Name="Libraries" Grid.Row="2" Grid.Column="2" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionMode="Multiple"
+                 ItemsSource="{Binding Path=State.Connections}" SelectionChanged="LibrarySelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Name="LibraryCheckBox" Content="{Binding Path=LibraryName}" 
+                              IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <telerik:RadButton Content="Add Music" Command="{Binding Path=AddMusicCommand}" Style="{DynamicResource TextButtonStyle}" IsEnabled="{Binding Path=IsValid}" />
+            <telerik:RadButton Content="Cancel" Command="{Binding Path=CancelCommand}" Style="{DynamicResource TextButtonStyle}" Margin="8 0 0 0"/>
+        </StackPanel>
+        
+    </Grid>
+    
+</telerik:RadWindow>
