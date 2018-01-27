@@ -1,4 +1,4 @@
-﻿namespace Bloom.Browser.Common
+﻿namespace Bloom.Browser.Controls
 {
     /// <summary>
     /// View types.

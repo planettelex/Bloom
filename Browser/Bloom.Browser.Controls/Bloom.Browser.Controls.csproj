@@ -111,6 +111,7 @@
     <Compile Include="Views\SpreadsheetView.xaml.cs">
       <DependentUpon>SpreadsheetView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -119,10 +120,6 @@
     <ProjectReference Include="..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Common\Bloom.Browser.Common.csproj">
-      <Project>{91bfa216-3015-4952-a947-efa897556993}</Project>
-      <Name>Bloom.Browser.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>

@@ -199,10 +199,6 @@
       <Project>{afea27ab-8a29-4ae4-b274-1b3b056a4b76}</Project>
       <Name>Bloom.Browser.PubSubEvents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.Common\Bloom.Browser.Common.csproj">
-      <Project>{91bfa216-3015-4952-a947-efa897556993}</Project>
-      <Name>Bloom.Browser.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bloom.Browser.Modules\Bloom.Browser.Modules.SongModule\Bloom.Browser.Modules.SongModule.csproj">
       <Project>{1cbc7dc6-159e-4f9c-9a5e-4b25afa757f5}</Project>
       <Name>Bloom.Browser.Modules.SongModule</Name>

@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Bloom.Domain.Models;
 
 namespace Bloom.Browser.Modules.PersonModule.ViewModels

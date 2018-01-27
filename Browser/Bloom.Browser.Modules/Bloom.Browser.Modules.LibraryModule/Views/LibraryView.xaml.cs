@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Bloom.Browser.Modules.LibraryModule.ViewModels;
 using Bloom.Browser.PubSubEvents;
 using Microsoft.Practices.Prism.PubSubEvents;

@@ -1,5 +1,5 @@
 ﻿using System;
-using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace Bloom.Browser.PubSubEvents

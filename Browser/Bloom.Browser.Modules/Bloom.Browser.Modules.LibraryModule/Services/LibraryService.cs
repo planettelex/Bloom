@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Bloom.Browser.Common;
 using Bloom.Browser.Controls;
 using Bloom.Browser.Modules.LibraryModule.ViewModels;
 using Bloom.Browser.Modules.LibraryModule.WindowModels;

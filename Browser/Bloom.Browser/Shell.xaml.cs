@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Bloom.Browser.PubSubEvents;
 using Bloom.Browser.State.Services;
 using Bloom.Common;

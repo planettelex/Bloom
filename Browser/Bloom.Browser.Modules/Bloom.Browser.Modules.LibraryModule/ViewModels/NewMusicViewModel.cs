@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bloom.Browser.Common;
+using Bloom.Browser.Controls;
 using Bloom.Browser.Modules.LibraryModule.Services;
 using Bloom.Browser.State.Domain.Models;
 using Bloom.Domain.Enums;
