@@ -49,18 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ViewType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Common\Bloom.Common.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>

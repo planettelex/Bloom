@@ -97,7 +97,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ViewMenuTab.cs" />
@@ -107,7 +107,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
     </ProjectReference>
@@ -115,23 +115,23 @@
       <Project>{40d9ac3d-db97-4b31-ac50-21fc82f7459a}</Project>
       <Name>Bloom.Analytics.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Common\Bloom.Common.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>
       <Name>Bloom.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Controls\Bloom.Controls.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Controls\Bloom.Controls.csproj">
       <Project>{525faace-2c85-44fc-8a08-3674fb57d996}</Project>
       <Name>Bloom.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Resources\Bloom.Resources.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Resources\Bloom.Resources.csproj">
       <Project>{8d643812-f61a-41e0-bde1-b81b3bd80794}</Project>
       <Name>Bloom.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.Services\Bloom.Services.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
     </ProjectReference>

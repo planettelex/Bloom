@@ -96,15 +96,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
+    <ProjectReference Include="..\..\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
       <Project>{d86bec11-b4a6-412f-98b1-ccef05fa839d}</Project>
       <Name>Bloom.Analytics.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
+    <ProjectReference Include="..\..\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
       <Project>{c86fedc7-f553-4de5-85e7-3cfcff2eb333}</Project>
       <Name>Bloom.Analytics.PubSubEvents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
+    <ProjectReference Include="..\..\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
       <Project>{40d9ac3d-db97-4b31-ac50-21fc82f7459a}</Project>
       <Name>Bloom.Analytics.Common</Name>
     </ProjectReference>

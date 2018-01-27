@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{610F519D-44EF-4568-A449-0F317664559A}</ProjectGuid>
+    <ProjectGuid>{F2A36480-9F8C-408D-BAF1-DC3F11A98EAB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bloom.Analytics.Modules.ArtistModule</RootNamespace>
-    <AssemblyName>Bloom.Analytics.Modules.ArtistModule</AssemblyName>
+    <RootNamespace>Bloom.Analytics.Modules.LibraryModule</RootNamespace>
+    <AssemblyName>Bloom.Analytics.Modules.LibraryModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -70,24 +70,83 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\lib\RCWPF\2018.1.122.45\Telerik.Windows.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\lib\RCWPF\2018.1.122.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2018.1.122.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\lib\RCWPF\2018.1.122.45\Telerik.Windows.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ArtistModuleDefinition.cs" />
+    <Compile Include="LibraryModuleDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ArtistService.cs" />
-    <Compile Include="Services\IArtistService.cs" />
-    <Compile Include="ViewModels\ArtistViewModel.cs" />
-    <Compile Include="Views\ArtistView.xaml.cs">
-      <DependentUpon>ArtistView.xaml</DependentUpon>
+    <Compile Include="Services\ILibraryService.cs" />
+    <Compile Include="Services\LibraryService.cs" />
+    <Compile Include="ViewModels\BarChartViewModel.cs" />
+    <Compile Include="ViewModels\LibraryViewModel.cs" />
+    <Compile Include="ViewModels\LineGraphViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\PieChartViewModel.cs" />
+    <Compile Include="ViewModels\StatsViewModel.cs" />
+    <Compile Include="ViewModels\TimelineViewModel.cs" />
+    <Compile Include="Views\BarChartView.xaml.cs">
+      <DependentUpon>BarChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LibraryView.xaml.cs">
+      <DependentUpon>LibraryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LineGraphView.xaml.cs">
+      <DependentUpon>LineGraphView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PieChartView.xaml.cs">
+      <DependentUpon>PieChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatsView.xaml.cs">
+      <DependentUpon>StatsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimelineView.xaml.cs">
+      <DependentUpon>TimelineView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\ArtistView.xaml">
+    <Page Include="Views\BarChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LibraryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LineGraphView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PieChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimelineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,15 +155,27 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
+    <ProjectReference Include="..\..\..\Shared\Bloom.Data\Bloom.Data.csproj">
+      <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
+      <Name>Bloom.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Bloom.State.Data\Bloom.State.Data.csproj">
+      <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
+      <Name>Bloom.State.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Shared\Bloom.Modules\Bloom.Modules.LibraryModule\Bloom.Modules.LibraryModule.csproj">
+      <Project>{03CE0198-7E75-47B4-8447-617D1A3E36DE}</Project>
+      <Name>Bloom.Modules.LibraryModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Bloom.Analytics.Controls\Bloom.Analytics.Controls.csproj">
       <Project>{d86bec11-b4a6-412f-98b1-ccef05fa839d}</Project>
       <Name>Bloom.Analytics.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
+    <ProjectReference Include="..\..\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
       <Project>{c86fedc7-f553-4de5-85e7-3cfcff2eb333}</Project>
       <Name>Bloom.Analytics.PubSubEvents</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
+    <ProjectReference Include="..\..\Bloom.Analytics.Common\Bloom.Analytics.Common.csproj">
       <Project>{40d9ac3d-db97-4b31-ac50-21fc82f7459a}</Project>
       <Name>Bloom.Analytics.Common</Name>
     </ProjectReference>
@@ -135,6 +206,10 @@
     <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
       <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
       <Name>Bloom.State.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Bloom.Analytics.State\Bloom.Analytics.State.csproj">
+      <Project>{1e743b98-cec3-450d-b06f-869245255bc9}</Project>
+      <Name>Bloom.Analytics.State</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
