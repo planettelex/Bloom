@@ -8,8 +8,8 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents an element in a filterset.
     /// </summary>
-    [Table(Name = "filterset_element")]
-    public class FiltersetElement
+    [Table(Name = "filterset_element")] //TODO
+    public class FiltersetExpressionElement
     {
         /// <summary>
         /// Creates a new filterset element instance.
@@ -17,9 +17,9 @@ namespace Bloom.Domain.Models
         /// <param name="filterset">A filterset.</param>
         /// <param name="elementType">The type of element.</param>
         /// <param name="elementNumber">The element number.</param>
-        public static FiltersetElement Create(Filterset filterset, FiltersetElementType elementType, int elementNumber)
+        public static FiltersetExpressionElement Create(Filterset filterset, FiltersetElementType elementType, int elementNumber)
         {
-            return new FiltersetElement
+            return new FiltersetExpressionElement
             {
                 FiltersetId = filterset.Id,
                 ElementType = elementType,
@@ -33,13 +33,13 @@ namespace Bloom.Domain.Models
         /// <param name="filterset">A filterset.</param>
         /// <param name="filter">The filter.</param>
         /// <param name="elementNumber">The element number.</param>
-        public static FiltersetElement Create(Filterset filterset, IFilter filter, int elementNumber)
+        public static FiltersetExpressionElement Create(Filterset filterset, IFilter filter, int elementNumber)
         {
-            return new FiltersetElement
+            return new FiltersetExpressionElement
             {
                 FiltersetId = filterset.Id,
                 Filter = filter,
-                ElementType = FiltersetElementType.Statement,
+                ElementType = FiltersetElementType.Filter,
                 ElementNumber = elementNumber
             };
         }
@@ -109,7 +109,7 @@ namespace Bloom.Domain.Models
                     return " and ";
                 case FiltersetElementType.Or:
                     return " or ";
-                case FiltersetElementType.Statement:
+                case FiltersetElementType.Filter:
                     if (Filter != null && Comparison != null)
                         return $"{Filter.Label} {Comparison} {FilterAgainst}";
                     return FilterAgainst;

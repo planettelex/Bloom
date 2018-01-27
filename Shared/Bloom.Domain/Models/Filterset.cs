@@ -8,7 +8,7 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a set of filters and orders.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     [Table(Name = "filterset")]
     public class Filterset : BindableBase
     {
@@ -20,6 +20,8 @@ namespace Bloom.Domain.Models
             return new Filterset
             {
                 Id = Guid.NewGuid(),
+                AlbumFilterExpression = new List<FiltersetExpressionElement>(),
+                AlbumOrdering = new List<FiltersetOrderingElement>(),
                 CreatedOn = DateTime.Now
             };
         }
@@ -33,6 +35,8 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 Name = name,
+                AlbumFilterExpression = new List<FiltersetExpressionElement>(),
+                AlbumOrdering = new List<FiltersetOrderingElement>(),
                 CreatedOn = DateTime.Now
             };
         }
@@ -66,17 +70,27 @@ namespace Bloom.Domain.Models
         private DateTime _createdOn;
 
         /// <summary>
-        /// Gets or sets the elements of the filterset.
+        /// Gets or sets the elements of the album filterset expression.
         /// </summary>
-        public List<FiltersetElement> Elements { get; set; }
+        public List<FiltersetExpressionElement> AlbumFilterExpression { get; set; }
 
         /// <summary>
-        /// Gets or sets the ordering of the filterset.
+        /// Gets or sets the elements of the song filterset expression.
         /// </summary>
-        public List<FiltersetOrder> Ordering { get; set; }
+        public List<FiltersetExpressionElement> SongFilterExpression { get; set; }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Gets or sets the album ordering of the filterset.
+        /// </summary>
+        public List<FiltersetOrderingElement> AlbumOrdering { get; set; }
+
+        /// <summary>
+        /// Gets or sets the song ordering of the filterset.
+        /// </summary>
+        public List<FiltersetOrderingElement> SongOrdering { get; set; }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         public override string ToString()
         {

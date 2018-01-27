@@ -5,23 +5,23 @@ using Bloom.Domain.Interfaces;
 
 namespace Bloom.Domain.Models.Filters
 {
-    public class AlbumNameFilter : IFilter
+    public class AlbumIsLiveFilter : IFilter
     {
         /// <summary>
         /// Gets the filter identifier.
         /// </summary>
         /// <value>
-        /// 59415c93-8032-4478-af70-b619f6a18c20
+        /// 85698b5f-0e00-4b52-94e1-767683bb4127
         /// </value>
-        public Guid Id => Guid.Parse("59415c93-8032-4478-af70-b619f6a18c20");
+        public Guid Id => Guid.Parse("85698b5f-0e00-4b52-94e1-767683bb4127");
 
         /// <summary>
         /// Gets the filter label.
         /// </summary>
         /// <value>
-        /// Album Name
+        /// Album Is Live
         /// </value>
-        public string Label => "Album Name";
+        public string Label => "Album Is Live";
 
         /// <summary>
         /// Returns a new collection of the specified type which has been filtered using a provided comparison.

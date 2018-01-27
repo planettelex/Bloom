@@ -35,28 +35,28 @@ namespace Bloom.Data.Repositories
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetElement">The filterset element.</param>
-        void AddFiltersetElement(IDataSource dataSource, FiltersetElement filtersetElement);
+        void AddFiltersetElement(IDataSource dataSource, FiltersetExpressionElement filtersetElement);
 
         /// <summary>
         /// Deletes a filterset element.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetElement">The filterset element.</param>
-        void DeleteFiltersetElement(IDataSource dataSource, FiltersetElement filtersetElement);
+        void DeleteFiltersetElement(IDataSource dataSource, FiltersetExpressionElement filtersetElement);
 
         /// <summary>
         /// Adds a filterset order.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetOrder">The filterset order.</param>
-        void AddFiltersetOrder(IDataSource dataSource, FiltersetOrder filtersetOrder);
+        void AddFiltersetOrder(IDataSource dataSource, FiltersetOrderingElement filtersetOrder);
 
         /// <summary>
         /// Deletes a filterset order.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetOrder">The filterset order.</param>
-        void DeleteFiltersetOrder(IDataSource dataSource, FiltersetOrder filtersetOrder);
+        void DeleteFiltersetOrder(IDataSource dataSource, FiltersetOrderingElement filtersetOrder);
 
         /// <summary>
         /// Deletes the filterset.

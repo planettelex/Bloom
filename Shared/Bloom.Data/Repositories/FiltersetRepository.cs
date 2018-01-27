@@ -43,7 +43,7 @@ namespace Bloom.Data.Repositories
                 orderby  element.ElementNumber
                 select element;
 
-            filterset.Elements = filtersetElementsQuery.ToList();
+            filterset.AlbumFilterExpression = filtersetElementsQuery.ToList();
 
             var filtersetOrderTable = FiltersetOrderTable(dataSource);
             var filtersetOrderQuery =
@@ -52,7 +52,7 @@ namespace Bloom.Data.Repositories
                 orderby filtersetOrder.OrderNumber
                 select filtersetOrder;
 
-            filterset.Ordering = filtersetOrderQuery.ToList();
+            filterset.AlbumOrdering = filtersetOrderQuery.ToList();
 
             return filterset;
         }
@@ -101,7 +101,7 @@ namespace Bloom.Data.Repositories
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetElement">The filterset element.</param>
-        public void AddFiltersetElement(IDataSource dataSource, FiltersetElement filtersetElement)
+        public void AddFiltersetElement(IDataSource dataSource, FiltersetExpressionElement filtersetElement)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -119,7 +119,7 @@ namespace Bloom.Data.Repositories
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetElement">The filterset element.</param>
-        public void DeleteFiltersetElement(IDataSource dataSource, FiltersetElement filtersetElement)
+        public void DeleteFiltersetElement(IDataSource dataSource, FiltersetExpressionElement filtersetElement)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -137,7 +137,7 @@ namespace Bloom.Data.Repositories
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetOrder">The filterset order.</param>
-        public void AddFiltersetOrder(IDataSource dataSource, FiltersetOrder filtersetOrder)
+        public void AddFiltersetOrder(IDataSource dataSource, FiltersetOrderingElement filtersetOrder)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -155,7 +155,7 @@ namespace Bloom.Data.Repositories
         /// </summary>
         /// <param name="dataSource">The data source.</param>
         /// <param name="filtersetOrder">The filterset order.</param>
-        public void DeleteFiltersetOrder(IDataSource dataSource, FiltersetOrder filtersetOrder)
+        public void DeleteFiltersetOrder(IDataSource dataSource, FiltersetOrderingElement filtersetOrder)
         {
             if (!dataSource.IsConnected())
                 return;
@@ -211,14 +211,14 @@ namespace Bloom.Data.Repositories
             return dataSource?.Context.GetTable<Filterset>();
         }
 
-        private static Table<FiltersetElement> FiltersetElementTable(IDataSource dataSource)
+        private static Table<FiltersetExpressionElement> FiltersetElementTable(IDataSource dataSource)
         {
-            return dataSource?.Context.GetTable<FiltersetElement>();
+            return dataSource?.Context.GetTable<FiltersetExpressionElement>();
         }
 
-        private static Table<FiltersetOrder> FiltersetOrderTable(IDataSource dataSource)
+        private static Table<FiltersetOrderingElement> FiltersetOrderTable(IDataSource dataSource)
         {
-            return dataSource?.Context.GetTable<FiltersetOrder>();
+            return dataSource?.Context.GetTable<FiltersetOrderingElement>();
         }
 
         #endregion

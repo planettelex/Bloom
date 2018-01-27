@@ -5,7 +5,7 @@
     /// </summary>
     public enum FiltersetElementType
     {
-        Statement,
+        Filter,
         And,
         Or,
         OpenParenthesis,

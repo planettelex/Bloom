@@ -8,8 +8,8 @@ namespace Bloom.Domain.Models
     /// <summary>
     /// Represents a filterset order.
     /// </summary>
-    [Table(Name = "filterset_order")]
-    public class FiltersetOrder
+    [Table(Name = "filterset_order")] //TODO
+    public class FiltersetOrderingElement
     {
         /// <summary>
         /// Creates a new filterset order instance.
@@ -17,9 +17,9 @@ namespace Bloom.Domain.Models
         /// <param name="filterset">A filterset.</param>
         /// <param name="order">The order.</param>
         /// <param name="orderNumber">The order number.</param>
-        public static FiltersetOrder Create(Filterset filterset, IOrder order, int orderNumber)
+        public static FiltersetOrderingElement Create(Filterset filterset, IOrder order, int orderNumber)
         {
-            return new FiltersetOrder
+            return new FiltersetOrderingElement
             {
                 FiltersetId = filterset.Id,
                 Order = order,
@@ -34,9 +34,9 @@ namespace Bloom.Domain.Models
         /// <param name="order">The order.</param>
         /// <param name="orderNumber">The order number.</param>
         /// <param name="direction">The ordering direction.</param>
-        public static FiltersetOrder Create(Filterset filterset, IOrder order, int orderNumber, OrderDirection direction)
+        public static FiltersetOrderingElement Create(Filterset filterset, IOrder order, int orderNumber, OrderDirection direction)
         {
-            return new FiltersetOrder
+            return new FiltersetOrderingElement
             {
                 FiltersetId = filterset.Id,
                 Order = order,
