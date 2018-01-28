@@ -3,7 +3,7 @@
     /// <summary>
     /// Filterset element types.
     /// </summary>
-    public enum FiltersetElementType
+    public enum FiltersetExpressionElementType
     {
         Filter,
         And,

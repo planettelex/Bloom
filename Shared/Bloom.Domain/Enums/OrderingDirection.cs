@@ -3,7 +3,7 @@
     /// <summary>
     /// Ascending or descending.
     /// </summary>
-    public enum OrderDirection
+    public enum OrderingDirection
     {
         Ascending,
         Descending

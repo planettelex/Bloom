@@ -71,8 +71,8 @@ namespace Bloom.Data.Tests.Repositories
         /// <summary>
         /// A test order.
         /// </summary>
-        /// <seealso cref="Bloom.Domain.Interfaces.IOrder" />
-        private class TestOrder1 : IOrder
+        /// <seealso cref="IOrdering" />
+        private class TestOrder1 : IOrdering
         {
             /// <summary>
             /// e18e5ab2-6aaf-4bae-8fac-5da2a876f3e8
@@ -83,13 +83,18 @@ namespace Bloom.Data.Tests.Repositories
             /// Test Order Label 1
             /// </summary>
             public string Label => "Test Order Label 1";
+
+            public List<T> Apply<T>(List<T> items, OrderingDirection direction)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /// <summary>
         /// Another test order.
         /// </summary>
-        /// <seealso cref="Bloom.Domain.Interfaces.IOrder" />
-        private class TestOrder2 : IOrder
+        /// <seealso cref="IOrdering" />
+        private class TestOrder2 : IOrdering
         {
             /// <summary>
             /// 6e3cb734-d7ce-4043-b2fb-d9480f3601d0
@@ -100,6 +105,11 @@ namespace Bloom.Data.Tests.Repositories
             /// Test Order Label 2
             /// </summary>
             public string Label => "Test Order Label 2";
+
+            public List<T> Apply<T>(List<T> items, OrderingDirection direction)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         #endregion
@@ -139,7 +149,7 @@ namespace Bloom.Data.Tests.Repositories
             filterset1Element1.Comparison = FilterComparison.Is;
             filterset1Element1.FilterAgainst = "Filter Element 1 Against";
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset1Element1);
-            var filterset1Element2 = FiltersetExpressionElement.Create(filterset1, FiltersetElementType.And, 2);
+            var filterset1Element2 = FiltersetExpressionElement.Create(filterset1, FiltersetExpressionElementType.And, 2);
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset1Element2);
             var filterset1Element3 = FiltersetExpressionElement.Create(filterset1, new TestFilter2(), 3);
             filterset1Element3.Comparison = FilterComparison.DoesNotContain;
@@ -149,18 +159,18 @@ namespace Bloom.Data.Tests.Repositories
             var filterset1Order1 = FiltersetOrderingElement.Create(filterset1, new TestOrder1(), 1);
             _filtersetRepository.AddFiltersetOrder(_dataSource, filterset1Order1);
             var filterset1Order2 = FiltersetOrderingElement.Create(filterset1, new TestOrder2(), 2);
-            filterset1Order2.Direction = OrderDirection.Descending;
+            filterset1Order2.Direction = OrderingDirection.Descending;
             _filtersetRepository.AddFiltersetOrder(_dataSource, filterset1Order2);
 
             var filterset2 = Filterset.Create("Filterset 2");
             _filtersetRepository.AddFilterset(_dataSource, filterset2);
-            var filterset2Element1 = FiltersetExpressionElement.Create(filterset2, FiltersetElementType.OpenParenthesis, 1);
+            var filterset2Element1 = FiltersetExpressionElement.Create(filterset2, FiltersetExpressionElementType.OpenParenthesis, 1);
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset2Element1);
             var filterset2Element2 = FiltersetExpressionElement.Create(filterset2, new TestFilter1(), 2);
             filterset2Element2.Comparison = FilterComparison.EndsWith;
             filterset2Element2.FilterAgainst = "Filter Element 2 Against";
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset2Element2);
-            var filterset2Element3 = FiltersetExpressionElement.Create(filterset2, FiltersetElementType.CloseParenthesis, 3);
+            var filterset2Element3 = FiltersetExpressionElement.Create(filterset2, FiltersetExpressionElementType.CloseParenthesis, 3);
             _filtersetRepository.AddFiltersetElement(_dataSource, filterset2Element3);
             
             var filterset3 = Filterset.Create("Filterset 3");
@@ -182,24 +192,24 @@ namespace Bloom.Data.Tests.Repositories
             Assert.NotNull(filterset.AlbumFilterExpression);
             Assert.AreEqual(3, filterset.AlbumFilterExpression.Count);
             Assert.AreEqual(1, filterset.AlbumFilterExpression[0].ElementNumber);
-            Assert.AreEqual(FiltersetElementType.Filter, filterset.AlbumFilterExpression[0].ElementType);
+            Assert.AreEqual(FiltersetExpressionElementType.Filter, filterset.AlbumFilterExpression[0].ElementType);
             Assert.AreEqual(FilterComparison.Is, filterset.AlbumFilterExpression[0].Comparison);
             Assert.AreEqual("Filter Element 1 Against", filterset.AlbumFilterExpression[0].FilterAgainst);
             Assert.AreEqual(new TestFilter1().Id, filterset.AlbumFilterExpression[0].FilterId);
             Assert.AreEqual(2, filterset.AlbumFilterExpression[1].ElementNumber);
-            Assert.AreEqual(FiltersetElementType.And, filterset.AlbumFilterExpression[1].ElementType);
+            Assert.AreEqual(FiltersetExpressionElementType.And, filterset.AlbumFilterExpression[1].ElementType);
             Assert.AreEqual(3, filterset.AlbumFilterExpression[2].ElementNumber);
-            Assert.AreEqual(FiltersetElementType.Filter, filterset.AlbumFilterExpression[2].ElementType);
+            Assert.AreEqual(FiltersetExpressionElementType.Filter, filterset.AlbumFilterExpression[2].ElementType);
             Assert.AreEqual(FilterComparison.DoesNotContain, filterset.AlbumFilterExpression[2].Comparison);
             Assert.AreEqual("Filter Element 3 Against", filterset.AlbumFilterExpression[2].FilterAgainst);
             Assert.AreEqual(new TestFilter2().Id, filterset.AlbumFilterExpression[2].FilterId);
             Assert.NotNull(filterset.AlbumOrdering);
             Assert.AreEqual(2, filterset.AlbumOrdering.Count);
             Assert.AreEqual(1, filterset.AlbumOrdering[0].OrderNumber);
-            Assert.AreEqual(OrderDirection.Ascending, filterset.AlbumOrdering[0].Direction);
+            Assert.AreEqual(OrderingDirection.Ascending, filterset.AlbumOrdering[0].Direction);
             Assert.AreEqual(new TestOrder1().Id, filterset.AlbumOrdering[0].OrderId);
             Assert.AreEqual(2, filterset.AlbumOrdering[1].OrderNumber);
-            Assert.AreEqual(OrderDirection.Descending, filterset.AlbumOrdering[1].Direction);
+            Assert.AreEqual(OrderingDirection.Descending, filterset.AlbumOrdering[1].Direction);
             Assert.AreEqual(new TestOrder2().Id, filterset.AlbumOrdering[1].OrderId);
         }
 

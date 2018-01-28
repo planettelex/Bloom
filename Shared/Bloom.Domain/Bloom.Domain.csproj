@@ -71,14 +71,14 @@
     <Compile Include="Enums\SourceType.cs" />
     <Compile Include="Enums\TaxonomyType.cs" />
     <Compile Include="Enums\TextPropertyType.cs" />
-    <Compile Include="Interfaces\IOrder.cs" />
+    <Compile Include="Interfaces\IOrdering.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CountryLanguage.cs" />
     <Compile Include="Models\CountryRegion.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Filterset.cs" />
     <Compile Include="Models\FiltersetExpressionElement.cs" />
-    <Compile Include="Enums\FiltersetElementType.cs" />
+    <Compile Include="Enums\FiltersetExpressionElementType.cs" />
     <Compile Include="Interfaces\IFilter.cs" />
     <Compile Include="Models\AlbumReview.cs" />
     <Compile Include="Models\AlbumTag.cs" />
@@ -157,7 +157,7 @@
     <Compile Include="Models\ArtistMemberRole.cs" />
     <Compile Include="Models\ArtistMember.cs" />
     <Compile Include="Models\Artist.cs" />
-    <Compile Include="Models\Orders\AlbumNameOrder.cs" />
+    <Compile Include="Models\Orderings\AlbumNameOrdering.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonPhoto.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -174,7 +174,7 @@
     <Compile Include="Models\PlaylistActivity.cs" />
     <Compile Include="Models\PlaylistTag.cs" />
     <Compile Include="Models\FiltersetOrderingElement.cs" />
-    <Compile Include="Enums\OrderDirection.cs" />
+    <Compile Include="Enums\OrderingDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Reference.cs" />
     <Compile Include="Models\Role.cs" />

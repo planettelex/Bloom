@@ -5,17 +5,17 @@ using Bloom.Domain.Enums;
 namespace Bloom.Domain.Interfaces
 {
     /// <summary>
-    /// Interface for a filter.
+    /// Interface for an order.
     /// </summary>
-    public interface IFilter
+    public interface IOrdering
     {
         /// <summary>
-        /// Gets the filter identifier.
+        /// Gets the order identifier.
         /// </summary>
         Guid Id { get; }
 
         /// <summary>
-        /// Gets the filter label.
+        /// Gets the order label.
         /// </summary>
         string Label { get; }
 
@@ -24,8 +24,7 @@ namespace Bloom.Domain.Interfaces
         /// </summary>
         /// <typeparam name="T">Domain entity to filter.</typeparam>
         /// <param name="items">The collection to filter.</param>
-        /// <param name="comparison">The comparison statement.</param>
-        /// <param name="compareAgainst">The value to compare against.</param>
-        List<T> Apply<T>(List<T> items, FilterComparison comparison, string compareAgainst);
+        /// <param name="direction">The order direction.</param>
+        List<T> Apply<T>(List<T> items, OrderingDirection direction);
     }
 }

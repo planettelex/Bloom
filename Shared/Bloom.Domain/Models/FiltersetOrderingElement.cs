@@ -17,7 +17,7 @@ namespace Bloom.Domain.Models
         /// <param name="filterset">A filterset.</param>
         /// <param name="order">The order.</param>
         /// <param name="orderNumber">The order number.</param>
-        public static FiltersetOrderingElement Create(Filterset filterset, IOrder order, int orderNumber)
+        public static FiltersetOrderingElement Create(Filterset filterset, IOrdering order, int orderNumber)
         {
             return new FiltersetOrderingElement
             {
@@ -34,7 +34,7 @@ namespace Bloom.Domain.Models
         /// <param name="order">The order.</param>
         /// <param name="orderNumber">The order number.</param>
         /// <param name="direction">The ordering direction.</param>
-        public static FiltersetOrderingElement Create(Filterset filterset, IOrder order, int orderNumber, OrderDirection direction)
+        public static FiltersetOrderingElement Create(Filterset filterset, IOrdering order, int orderNumber, OrderingDirection direction)
         {
             return new FiltersetOrderingElement
             {
@@ -67,12 +67,12 @@ namespace Bloom.Domain.Models
         /// Gets or sets the order direction.
         /// </summary>
         [Column(Name = "order_direction")]
-        public OrderDirection Direction { get; set; }
+        public OrderingDirection Direction { get; set; }
 
         /// <summary>
         /// Gets or sets the filterset order.
         /// </summary>
-        public IOrder Order
+        public IOrdering Order
         {
             get { return _order; }
             set
@@ -81,7 +81,7 @@ namespace Bloom.Domain.Models
                 OrderId = _order?.Id ?? Guid.Empty;
             }
         }
-        private IOrder _order;
+        private IOrdering _order;
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
