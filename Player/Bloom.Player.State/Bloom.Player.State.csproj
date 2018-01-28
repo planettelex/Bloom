@@ -60,11 +60,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\CommonAssemblyInfo.cs">
@@ -83,10 +79,6 @@
     <ProjectReference Include="..\..\Shared\Bloom.Data\Bloom.Data.csproj">
       <Project>{5904468a-1df3-400f-bf35-e975c2ca9f6b}</Project>
       <Name>Bloom.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.Domain\Bloom.Domain.csproj">
-      <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
-      <Name>Bloom.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj">
       <Project>{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}</Project>

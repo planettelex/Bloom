@@ -65,10 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -117,10 +114,6 @@
     <ProjectReference Include="..\..\..\Shared\Bloom.Services\Bloom.Services.csproj">
       <Project>{b14edea5-4480-49ca-9a2c-7f38946f7d5e}</Project>
       <Name>Bloom.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Shared\Bloom.State.Domain\Bloom.State.Domain.csproj">
-      <Project>{a624637b-4221-4dc3-963f-2bd02f618b77}</Project>
-      <Name>Bloom.State.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

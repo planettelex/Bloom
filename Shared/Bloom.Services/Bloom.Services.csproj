@@ -71,11 +71,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
       <Private>True</Private>
@@ -123,10 +119,6 @@
     <ProjectReference Include="..\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj">
       <Project>{a455cc8a-5cff-4855-b268-aa94a7c37c3f}</Project>
       <Name>Bloom.PubSubEvents</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bloom.Resources\Bloom.Resources.csproj">
-      <Project>{8d643812-f61a-41e0-bde1-b81b3bd80794}</Project>
-      <Name>Bloom.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bloom.State.Data\Bloom.State.Data.csproj">
       <Project>{059176f6-bece-46d8-b160-02ef5d897559}</Project>
