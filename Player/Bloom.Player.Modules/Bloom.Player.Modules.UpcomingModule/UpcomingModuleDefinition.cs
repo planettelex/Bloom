@@ -1,6 +1,6 @@
 ﻿using Bloom.Player.UpcomingModule.Views;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Modularity;
+using Prism.Regions;
 
 namespace Bloom.Player.UpcomingModule
 {

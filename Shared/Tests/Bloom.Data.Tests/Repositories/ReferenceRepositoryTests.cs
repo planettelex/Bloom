@@ -35,7 +35,7 @@ namespace Bloom.Data.Tests.Repositories
         /// <summary>
         /// Sets up the tests by creating a test data source and adding data.
         /// </summary>
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _container = new UnityContainer();

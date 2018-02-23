@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
 using Bloom.Domain.Enums;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
     /// Represents an association between an album and a release.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     [Table(Name = "album_release")]
     public class AlbumRelease : BindableBase
     {

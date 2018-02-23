@@ -1,5 +1,5 @@
 ﻿using Bloom.Browser.Modules.PersonModule.Services;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.Browser.Modules.PersonModule

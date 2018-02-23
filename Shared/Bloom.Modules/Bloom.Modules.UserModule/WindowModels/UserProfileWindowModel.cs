@@ -7,17 +7,17 @@ using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Modules.UserModule.WindowModels
 {
     /// <summary>
     /// Window model for NewLibraryWindow.xaml
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
-    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
+    /// <seealso cref="BindableBase" />
+    /// <seealso cref="IDataErrorInfo" />
     public class UserProfileWindowModel : BindableBase, IDataErrorInfo
     {
         /// <summary>

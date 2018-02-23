@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
 using Bloom.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
     /// Represents a person who uses any application.
+    /// <seealso cref="BindableBase" />
     /// </summary>
     [Table(Name = "user")]
     public class User : BindableBase

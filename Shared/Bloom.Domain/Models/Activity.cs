@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
     /// Represents an activity (e.g. Workout, Cleaning).
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     [Table(Name = "activity")]
     public class Activity : BindableBase
     {

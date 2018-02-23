@@ -4,7 +4,7 @@ using System.Windows.Media;
 using Bloom.Browser.Modules.LibraryModule.WindowModels;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 
 namespace Bloom.Browser.Modules.LibraryModule.Windows
 {

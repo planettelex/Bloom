@@ -1,5 +1,5 @@
 ﻿using Bloom.Analytics.Modules.AlbumModule.Services;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.Analytics.Modules.AlbumModule

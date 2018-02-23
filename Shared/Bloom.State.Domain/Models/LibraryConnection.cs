@@ -5,12 +5,13 @@ using System.Windows;
 using System.Windows.Media;
 using Bloom.Data;
 using Bloom.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
     /// Represents a connection to a library database.
+    /// <seealso cref="BindableBase" />
     /// </summary>
     [Table(Name = "library_connection")]
     public class LibraryConnection : BindableBase

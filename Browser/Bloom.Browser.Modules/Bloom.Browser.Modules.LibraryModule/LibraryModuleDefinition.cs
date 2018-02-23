@@ -1,5 +1,5 @@
 ﻿using Bloom.Browser.Modules.LibraryModule.Services;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.Browser.Modules.LibraryModule
@@ -7,7 +7,7 @@ namespace Bloom.Browser.Modules.LibraryModule
     /// <summary>
     /// Browser library module.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Modularity.IModule" />
+    /// <seealso cref="IModule" />
     [Module(ModuleName = "LibraryModule")]
     public class LibraryModuleDefinition : IModule
     {

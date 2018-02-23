@@ -18,16 +18,16 @@ using Bloom.Modules.UserModule;
 using Bloom.Modules.UserModule.Services;
 using Bloom.Services;
 using Bloom.State.Data;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Prism.UnityExtensions;
+using Prism.Unity;
 
 namespace Bloom.Browser
 {
     /// <summary>
     /// The bootstrapper initializes the application and resolves dependencies.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.UnityExtensions.UnityBootstrapper" />
+    /// <seealso cref="UnityBootstrapper" />
     public class Bootstrapper : UnityBootstrapper
     {
         /// <summary>

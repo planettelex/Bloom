@@ -3,14 +3,14 @@ using System.Windows;
 using System.Windows.Controls;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.Controls
 {
     /// <summary>
     /// A shell docking control tab.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     public class TabControl : BindableBase
     {
         /// <summary>

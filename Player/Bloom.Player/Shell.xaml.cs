@@ -9,7 +9,7 @@ using Bloom.Player.State.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.Player
 {

@@ -1,6 +1,6 @@
 ﻿using Bloom.Analytics.Modules.HomeModule.Services;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Modularity;
+using Prism.Events;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.Analytics.Modules.HomeModule

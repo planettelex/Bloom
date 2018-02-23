@@ -40,9 +40,11 @@ namespace Bloom.Services.Tests
         /// <summary>
         /// Sets up the tests.
         /// </summary>
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
+            Directory.SetCurrentDirectory(System.AppDomain.CurrentDomain.BaseDirectory);
+
             _testUser = User.Create(Person.Create("File System Tester"));
 
             _userProfilesFolder = Settings.UserProfilesPath;

@@ -20,7 +20,7 @@ namespace Bloom.State.Data.Tests
         /// <summary>
         /// Sets up the tests by creating a test data source.
         /// </summary>
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _container = new UnityContainer();

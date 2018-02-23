@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
+﻿using Prism.Modularity;
+using Prism.Regions;
 using TaxonomiesView = Bloom.Modules.TaxonomiesModule.Views.TaxonomiesView;
 
 namespace Bloom.Modules.TaxonomiesModule

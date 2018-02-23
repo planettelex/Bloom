@@ -1,6 +1,6 @@
 ﻿using Bloom.Browser.Modules.MenuModule.Views;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Modularity;
+using Prism.Regions;
 
 namespace Bloom.Browser.Modules.MenuModule
 {
@@ -25,7 +25,7 @@ namespace Bloom.Browser.Modules.MenuModule
         /// </summary>
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion(Bloom.Common.Settings.MenuRegion, typeof (MenuView));
+            _regionManager.RegisterViewWithRegion(Common.Settings.MenuRegion, typeof (MenuView));
         }
     }
 }

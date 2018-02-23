@@ -1,5 +1,5 @@
 ﻿using Bloom.Analytics.Modules.SongModule.Services;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.Analytics.Modules.SongModule
@@ -11,7 +11,7 @@ namespace Bloom.Analytics.Modules.SongModule
     public class SongModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bloom.Analytics.SongModule"/> class.
+        /// Initializes a new instance of the <see cref="SongModuleDefinition"/> class.
         /// </summary>
         /// <param name="container">The container.</param>
         public SongModuleDefinition(IUnityContainer container)

@@ -1,6 +1,6 @@
 ﻿using System;
 using Bloom.Browser.Controls;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.Browser.PubSubEvents
 {

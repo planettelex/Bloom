@@ -1,16 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Modules.LibraryModule.WindowModels
 {
     /// <summary>
     /// Window model for ConnectedLibrariesWindow.xaml
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     public class ConnectedLibrariesWindowModel : BindableBase
     {
         /// <summary>

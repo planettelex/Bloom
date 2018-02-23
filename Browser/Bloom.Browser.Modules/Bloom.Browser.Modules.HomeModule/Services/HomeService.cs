@@ -8,8 +8,8 @@ using Bloom.Common;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Events;
+using Prism.Regions;
 using HomeView = Bloom.Browser.Modules.HomeModule.Views.HomeView;
 
 namespace Bloom.Browser.Modules.HomeModule.Services

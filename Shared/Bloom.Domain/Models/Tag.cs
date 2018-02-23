@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data.Linq.Mapping;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
     /// Represents a tag.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     [Table(Name = "tag")]
     public class Tag : BindableBase
     {

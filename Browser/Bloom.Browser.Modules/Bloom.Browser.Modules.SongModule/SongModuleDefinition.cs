@@ -1,5 +1,5 @@
 ﻿using Bloom.Browser.Modules.SongModule.Services;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
 
 namespace Bloom.Browser.Modules.SongModule
@@ -11,7 +11,7 @@ namespace Bloom.Browser.Modules.SongModule
     public class SongModuleDefinition : IModule
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bloom.Browser.SongModule"/> class.
+        /// Initializes a new instance of the <see cref="SongModuleDefinition"/> class.
         /// </summary>
         /// <param name="container">The DI container.</param>
         public SongModuleDefinition(IUnityContainer container)

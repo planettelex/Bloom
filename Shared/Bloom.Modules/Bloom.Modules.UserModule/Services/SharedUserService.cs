@@ -4,8 +4,8 @@ using Bloom.Modules.UserModule.Windows;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Events;
+using Prism.Regions;
 using ChangeUserWindow = Bloom.Modules.UserModule.Windows.ChangeUserWindow;
 
 namespace Bloom.Modules.UserModule.Services

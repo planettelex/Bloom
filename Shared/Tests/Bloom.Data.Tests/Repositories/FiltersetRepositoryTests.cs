@@ -27,7 +27,7 @@ namespace Bloom.Data.Tests.Repositories
         /// <summary>
         /// A test filter.
         /// </summary>
-        /// <seealso cref="Bloom.Domain.Interfaces.IFilter" />
+        /// <seealso cref="IFilter" />
         private class TestFilter1 : IFilter
         {
             /// <summary>
@@ -117,7 +117,7 @@ namespace Bloom.Data.Tests.Repositories
         /// <summary>
         /// Sets up the tests by creating a test data source and adding data.
         /// </summary>
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _container = new UnityContainer();

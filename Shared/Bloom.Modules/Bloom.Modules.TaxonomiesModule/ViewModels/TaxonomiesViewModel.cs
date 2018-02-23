@@ -1,7 +1,7 @@
 ﻿using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Modules.TaxonomiesModule.ViewModels
 {
@@ -26,7 +26,7 @@ namespace Bloom.Modules.TaxonomiesModule.ViewModels
         /// <summary>
         /// Gets the event aggregator.
         /// </summary>
-        public IEventAggregator EventAggregator { get; private set; }
+        public IEventAggregator EventAggregator { get; }
 
         /// <summary>
         /// Gets the state.

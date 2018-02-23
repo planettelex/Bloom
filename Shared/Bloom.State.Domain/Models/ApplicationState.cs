@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bloom.Data;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.State.Domain.Models
 {
     /// <summary>
     /// Represents an application state.
+    /// <seealso cref="BindableBase" />
     /// </summary>
     public abstract class ApplicationState : BindableBase
     {

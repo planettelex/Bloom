@@ -5,17 +5,17 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Browser.Modules.LibraryModule.WindowModels
 {
     /// <summary>
     /// The window model for the add music dialogue window.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
-    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
+    /// <seealso cref="BindableBase" />
+    /// <seealso cref="IDataErrorInfo" />
     public class AddMusicWindowModel : BindableBase, IDataErrorInfo
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace Bloom.Browser.Modules.LibraryModule.WindowModels
         public AddMusicWindowModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             EventAggregator = eventAggregator;
-            State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            State = (BrowserState) regionManager.Regions[Common.Settings.MenuRegion].Context;
             LibraryIds = new List<Guid>();
             FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
             FolderSelectVisibility = Visibility.Collapsed;

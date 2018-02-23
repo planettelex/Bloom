@@ -13,7 +13,7 @@ using Bloom.Modules.UserModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Docking;

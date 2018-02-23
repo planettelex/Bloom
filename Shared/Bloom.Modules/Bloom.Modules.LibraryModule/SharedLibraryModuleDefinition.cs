@@ -1,11 +1,11 @@
-﻿using Microsoft.Practices.Prism.Modularity;
+﻿using Prism.Modularity;
 
 namespace Bloom.Modules.LibraryModule
 {
     /// <summary>
     /// Shared library module.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Modularity.IModule" />
+    /// <seealso cref="IModule" />
     [Module(ModuleName = "SharedLibraryModule")]
     public class SharedLibraryModuleDefinition : IModule
     {

@@ -18,9 +18,9 @@ using Bloom.Modules.UserModule;
 using Bloom.Modules.UserModule.Services;
 using Bloom.Services;
 using Bloom.State.Data;
-using Microsoft.Practices.Prism.Modularity;
+using Prism.Modularity;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Prism.UnityExtensions;
+using Prism.Unity;
 
 namespace Bloom.Analytics
 {

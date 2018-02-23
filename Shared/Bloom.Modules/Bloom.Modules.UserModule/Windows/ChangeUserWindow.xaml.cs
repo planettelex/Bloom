@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 using Bloom.Modules.UserModule.WindowModels;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 
 namespace Bloom.Modules.UserModule.Windows
 {

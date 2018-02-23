@@ -5,7 +5,7 @@ using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.Analytics.State.Services
 {

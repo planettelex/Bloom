@@ -9,17 +9,17 @@ using Bloom.Domain.Models;
 using Bloom.Modules.UserModule.Services;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Browser.Modules.LibraryModule.WindowModels
 {
     /// <summary>
     /// Window model for NewLibraryWindow.xaml.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
-    /// <seealso cref="System.ComponentModel.IDataErrorInfo" />
+    /// <seealso cref="BindableBase" />
+    /// <seealso cref="IDataErrorInfo" />
     public class NewLibraryWindowModel : BindableBase, IDataErrorInfo
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace Bloom.Browser.Modules.LibraryModule.WindowModels
             _sharedUserService = sharedUserService;
             EventAggregator = eventAggregator;
             var potentialOwners = _sharedUserService.ListUsers();
-            State = (BrowserState) regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            State = (BrowserState) regionManager.Regions[Common.Settings.MenuRegion].Context;
 
             if (State.User != null && State.UserId != User.Anonymous.PersonId)
                 OwnerName = State.User.Name;
@@ -177,7 +177,7 @@ namespace Bloom.Browser.Modules.LibraryModule.WindowModels
                     LibraryName = LibraryName.Trim();
                 }
                 var libraryFolderPath = Path.Combine(FolderPath, LibraryName);
-                var filePath = Path.Combine(libraryFolderPath, LibraryName + Bloom.Common.Settings.LibraryFileExtension);
+                var filePath = Path.Combine(libraryFolderPath, LibraryName + Common.Settings.LibraryFileExtension);
                 if (columnName == "LibraryName")
                 {
                     if (string.IsNullOrEmpty(LibraryName))

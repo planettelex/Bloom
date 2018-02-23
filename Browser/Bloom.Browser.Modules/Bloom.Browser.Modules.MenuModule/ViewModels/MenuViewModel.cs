@@ -6,10 +6,10 @@ using Bloom.Browser.PubSubEvents;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Browser.Modules.MenuModule.ViewModels
 {
@@ -103,7 +103,7 @@ namespace Bloom.Browser.Modules.MenuModule.ViewModels
         /// </summary>
         public void SetState()
         {
-            State = (BrowserState) _regionManager.Regions[Bloom.Common.Settings.MenuRegion].Context;
+            State = (BrowserState) _regionManager.Regions[Common.Settings.MenuRegion].Context;
             CheckConnections();
             SetUser();
             SetHasTabs();

@@ -1,6 +1,6 @@
 ﻿using System;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.PubSubEvents
 {

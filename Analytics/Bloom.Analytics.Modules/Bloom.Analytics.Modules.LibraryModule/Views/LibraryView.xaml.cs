@@ -2,7 +2,7 @@
 using Bloom.Analytics.Controls;
 using Bloom.Analytics.Modules.LibraryModule.ViewModels;
 using Bloom.Analytics.PubSubEvents;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.Analytics.Modules.LibraryModule.Views
 {

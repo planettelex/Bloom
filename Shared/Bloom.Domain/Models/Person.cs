@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Bloom.Domain.Models
 {
     /// <summary>
     /// Represents a person.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Mvvm.BindableBase" />
+    /// <seealso cref="BindableBase" />
     [Table(Name = "person")]
     public class Person : BindableBase
     {

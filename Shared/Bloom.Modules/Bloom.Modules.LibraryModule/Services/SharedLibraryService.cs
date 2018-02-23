@@ -8,17 +8,16 @@ using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Modules.LibraryModule.Services
 {
     /// <summary>
     /// Service for shared library operations.
     /// </summary>
-    /// <seealso cref="Bloom.Services.LibraryBaseService" />
+    /// <seealso cref="LibraryBaseService" />
     /// <seealso cref="ISharedLibraryService" />
     public class SharedLibraryService : LibraryBaseService, ISharedLibraryService
     {

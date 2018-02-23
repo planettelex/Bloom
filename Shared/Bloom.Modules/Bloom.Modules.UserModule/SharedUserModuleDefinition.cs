@@ -1,11 +1,11 @@
-﻿using Microsoft.Practices.Prism.Modularity;
+﻿using Prism.Modularity;
 
 namespace Bloom.Modules.UserModule
 {
     /// <summary>
     /// Shared user module.
     /// </summary>
-    /// <seealso cref="Microsoft.Practices.Prism.Modularity.IModule" />
+    /// <seealso cref="IModule" />
     [Module(ModuleName = "SharedUserModule")]
     public class SharedUserModuleDefinition : IModule
     {

@@ -3,8 +3,8 @@ using System.Windows.Input;
 using Bloom.Common;
 using Bloom.Domain.Models;
 using Bloom.PubSubEvents;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Commands;
+using Prism.Events;
 
 namespace Bloom.Modules.TaxonomiesModule.ViewModels
 {

@@ -15,9 +15,9 @@ using Bloom.Player.State.Services;
 using Bloom.Player.UpcomingModule;
 using Bloom.Services;
 using Bloom.State.Data;
-using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Prism.UnityExtensions;
+using Prism.Modularity;
+using Prism.Unity;
 
 namespace Bloom.Player
 {

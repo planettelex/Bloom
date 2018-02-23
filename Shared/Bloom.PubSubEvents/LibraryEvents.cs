@@ -1,6 +1,5 @@
-﻿using System;
-using Bloom.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
+﻿using Bloom.Domain.Models;
+using Prism.Events;
 
 namespace Bloom.PubSubEvents
 {
@@ -18,6 +17,5 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// This event is published with a libary identifier to show a new library properties modal.
     /// </summary>
-    /// <seealso cref="Guid" />
     public class ShowLibraryPropertiesModalEvent : PubSubEvent<object> { }
 }

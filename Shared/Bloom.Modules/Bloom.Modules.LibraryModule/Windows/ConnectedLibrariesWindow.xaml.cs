@@ -6,7 +6,7 @@ using Bloom.Modules.LibraryModule.Services;
 using Bloom.Modules.LibraryModule.WindowModels;
 using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 using Microsoft.Win32;
 using Telerik.Windows.Controls;
 

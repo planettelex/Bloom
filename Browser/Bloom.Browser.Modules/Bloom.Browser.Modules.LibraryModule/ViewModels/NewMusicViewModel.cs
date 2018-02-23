@@ -6,7 +6,7 @@ using Bloom.Browser.State.Domain.Models;
 using Bloom.Domain.Enums;
 using Bloom.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.Browser.Modules.LibraryModule.ViewModels
 {

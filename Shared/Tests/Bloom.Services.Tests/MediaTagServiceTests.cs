@@ -31,9 +31,11 @@ namespace Bloom.Services.Tests
         /// <summary>
         /// Sets up the tests.
         /// </summary>
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
+            Directory.SetCurrentDirectory(System.AppDomain.CurrentDomain.BaseDirectory);
+
             _mediaTagService = new MediaTagService();
             _testFolder = Data.Settings.TestsDataPath;
             if (!Directory.Exists(_testFolder))

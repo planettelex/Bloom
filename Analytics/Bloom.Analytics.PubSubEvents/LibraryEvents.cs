@@ -1,6 +1,6 @@
 ﻿using System;
 using Bloom.Analytics.Controls;
-using Microsoft.Practices.Prism.PubSubEvents;
+using Prism.Events;
 
 namespace Bloom.Analytics.PubSubEvents
 {

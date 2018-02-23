@@ -8,7 +8,7 @@ using Bloom.Domain.Enums;
 using Bloom.PubSubEvents;
 using Bloom.PubSubEvents.EventModels;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 
 namespace Bloom.Browser.Modules.LibraryModule.Windows
 {

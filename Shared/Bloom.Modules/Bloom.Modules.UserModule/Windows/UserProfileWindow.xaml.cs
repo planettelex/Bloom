@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Bloom.Modules.UserModule.WindowModels;
 using Bloom.Services;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 using Microsoft.Win32;
 
 namespace Bloom.Modules.UserModule.Windows

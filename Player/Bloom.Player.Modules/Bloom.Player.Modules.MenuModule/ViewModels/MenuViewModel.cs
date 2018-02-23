@@ -4,10 +4,10 @@ using System.Windows.Input;
 using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Events;
+using Prism.Regions;
 
 namespace Bloom.Player.Modules.MenuModule.ViewModels
 {
