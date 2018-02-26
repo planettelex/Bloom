@@ -1,4 +1,4 @@
-﻿using Bloom.PubSubEvents;
+﻿using Bloom.Events;
 using Bloom.State.Domain.Models;
 using Prism.Events;
 using Prism.Regions;

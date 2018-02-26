@@ -1,7 +1,7 @@
 ﻿using Bloom.Domain.Models;
 using Prism.Events;
 
-namespace Bloom.PubSubEvents
+namespace Bloom.Events
 {
     /// <summary>
     /// This event is published with library information to create a new library database and file system structure.

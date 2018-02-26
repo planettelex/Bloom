@@ -6,7 +6,7 @@ using Bloom.Data;
 using Bloom.Data.Interfaces;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
 using Microsoft.Practices.Unity;

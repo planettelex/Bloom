@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Data.Interfaces;
+using Bloom.Events;
 using Bloom.Modules.LibraryModule.Services;
-using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;

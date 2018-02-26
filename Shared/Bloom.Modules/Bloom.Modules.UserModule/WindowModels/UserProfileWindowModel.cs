@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Bloom.Common;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Domain.Models;
 using Prism.Mvvm;
 using Prism.Events;

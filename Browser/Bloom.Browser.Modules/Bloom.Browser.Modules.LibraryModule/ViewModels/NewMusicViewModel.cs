@@ -4,7 +4,7 @@ using Bloom.Browser.Controls;
 using Bloom.Browser.Modules.LibraryModule.Services;
 using Bloom.Browser.State.Domain.Models;
 using Bloom.Domain.Enums;
-using Bloom.PubSubEvents.EventModels;
+using Bloom.Events.EventModels;
 using Bloom.State.Domain.Models;
 using Prism.Events;
 

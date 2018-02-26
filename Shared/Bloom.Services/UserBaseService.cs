@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;
 using Prism.Events;

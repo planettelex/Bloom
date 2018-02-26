@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Bloom.Browser.Modules.LibraryModule.WindowModels;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Prism.Commands;
 
 namespace Bloom.Browser.Modules.LibraryModule.Windows

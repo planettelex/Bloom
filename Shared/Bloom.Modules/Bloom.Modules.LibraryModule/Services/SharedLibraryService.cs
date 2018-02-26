@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows;
 using Bloom.Data.Repositories;
+using Bloom.Events;
 using Bloom.Modules.LibraryModule.WindowModels;
 using Bloom.Modules.LibraryModule.Windows;
-using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Models;

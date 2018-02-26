@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using Bloom.Events;
 using Bloom.Modules.LibraryModule.Services;
 using Bloom.Modules.LibraryModule.WindowModels;
-using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 using Prism.Commands;
 using Microsoft.Win32;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Analytics.Modules.MenuModule.ViewModels;
 using Bloom.Controls.Helpers;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Prism.Events;
 using Telerik.Windows;
 using Telerik.Windows.Controls;

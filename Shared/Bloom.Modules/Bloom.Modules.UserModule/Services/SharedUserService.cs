@@ -1,7 +1,7 @@
 ﻿using System.Windows;
+using Bloom.Events;
 using Bloom.Modules.UserModule.WindowModels;
 using Bloom.Modules.UserModule.Windows;
-using Bloom.PubSubEvents;
 using Bloom.Services;
 using Bloom.State.Data.Respositories;
 using Prism.Events;

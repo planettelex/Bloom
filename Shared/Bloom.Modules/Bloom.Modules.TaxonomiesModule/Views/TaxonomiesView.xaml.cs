@@ -1,6 +1,6 @@
 ﻿using System;
+using Bloom.Events;
 using Bloom.Modules.TaxonomiesModule.ViewModels;
-using Bloom.PubSubEvents;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Modules.TaxonomiesModule.Views

@@ -5,8 +5,8 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Bloom.Browser.Modules.LibraryModule.WindowModels;
 using Bloom.Domain.Enums;
-using Bloom.PubSubEvents;
-using Bloom.PubSubEvents.EventModels;
+using Bloom.Events;
+using Bloom.Events.EventModels;
 using Bloom.State.Domain.Models;
 using Prism.Commands;
 

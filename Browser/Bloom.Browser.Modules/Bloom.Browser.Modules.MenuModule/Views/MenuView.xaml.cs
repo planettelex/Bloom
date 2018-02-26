@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Browser.Modules.MenuModule.ViewModels;
 using Bloom.Controls.Helpers;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Telerik.Windows;
 using Telerik.Windows.Controls;
 

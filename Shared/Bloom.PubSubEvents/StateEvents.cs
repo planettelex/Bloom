@@ -2,7 +2,7 @@
 using Bloom.State.Domain.Models;
 using Prism.Events;
 
-namespace Bloom.PubSubEvents
+namespace Bloom.Events
 {
     /// <summary>
     /// This event is published with library connection information to add it to the active connections.

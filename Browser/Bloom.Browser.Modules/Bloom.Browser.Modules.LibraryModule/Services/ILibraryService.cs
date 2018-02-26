@@ -1,6 +1,6 @@
 ﻿using System;
 using Bloom.Browser.Controls;
-using Bloom.PubSubEvents.EventModels;
+using Bloom.Events.EventModels;
 using Bloom.State.Domain.Models;
 
 namespace Bloom.Browser.Modules.LibraryModule.Services

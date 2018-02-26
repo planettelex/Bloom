@@ -7,7 +7,7 @@ using Bloom.Analytics.PubSubEvents;
 using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Prism.Events;

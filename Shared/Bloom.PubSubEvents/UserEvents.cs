@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 
-namespace Bloom.PubSubEvents
+namespace Bloom.Events
 {
     /// <summary>
     /// This event is published to show a change user modal.

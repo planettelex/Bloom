@@ -6,7 +6,7 @@ using Bloom.Analytics.Modules.PlaylistModule.ViewModels;
 using Bloom.Analytics.Modules.PlaylistModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Prism.Events;

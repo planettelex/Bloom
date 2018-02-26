@@ -99,9 +99,9 @@
       <Project>{0bde8fd5-458c-4141-bcf6-e76a67e26771}</Project>
       <Name>Bloom.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj">
+    <ProjectReference Include="..\..\Shared\Bloom.PubSubEvents\Bloom.Events.csproj">
       <Project>{a455cc8a-5cff-4855-b268-aa94a7c37c3f}</Project>
-      <Name>Bloom.PubSubEvents</Name>
+      <Name>Bloom.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using Bloom.Analytics.Controls;
 using Bloom.Analytics.Modules.HomeModule.ViewModels;
 using Bloom.Analytics.Modules.HomeModule.Views;
 using Bloom.Common;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Prism.Events;

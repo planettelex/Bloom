@@ -6,7 +6,7 @@ using Bloom.Analytics.Modules.PersonModule.ViewModels;
 using Bloom.Analytics.Modules.PersonModule.Views;
 using Bloom.Common;
 using Bloom.Domain.Models;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;
 using Prism.Events;

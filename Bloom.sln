@@ -48,7 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C7ED
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Modules.TaxonomiesModule", "Shared\Bloom.Modules\Bloom.Modules.TaxonomiesModule\Bloom.Modules.TaxonomiesModule.csproj", "{25D7ACF0-F4BF-41BA-A751-4CF0B8C79144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.PubSubEvents", "Shared\Bloom.PubSubEvents\Bloom.PubSubEvents.csproj", "{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Events", "Shared\Bloom.PubSubEvents\Bloom.Events.csproj", "{A455CC8A-5CFF-4855-B268-AA94A7C37C3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.Modules.LibraryModule", "Browser\Bloom.Browser.Modules\Bloom.Browser.Modules.LibraryModule\Bloom.Browser.Modules.LibraryModule.csproj", "{ABEB129D-326A-472A-9933-66BABB45A2B5}"
 EndProject

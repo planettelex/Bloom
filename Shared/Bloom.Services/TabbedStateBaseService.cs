@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.State.Data.Respositories;
 using Bloom.State.Domain.Enums;
 using Bloom.State.Domain.Models;

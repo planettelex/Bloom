@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.PubSubEvents;
+using Bloom.Events;
 using Bloom.Services;
 using Bloom.State.Domain.Models;
 using Prism.Commands;

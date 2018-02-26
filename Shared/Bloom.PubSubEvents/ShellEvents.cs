@@ -1,11 +1,11 @@
 ﻿using System;
 using Bloom.Common;
 using Bloom.Controls;
-using Bloom.PubSubEvents.EventModels;
+using Bloom.Events.EventModels;
 using Bloom.State.Domain.Models;
 using Prism.Events;
 
-namespace Bloom.PubSubEvents
+namespace Bloom.Events
 {
     /// <summary>
     /// This event is published with a tab control to add a new tab to the docking control.
@@ -157,7 +157,7 @@ namespace Bloom.PubSubEvents
     /// <summary>
     /// This event is published with an event model to create a new add music control and publish the <see cref="AddTabEvent" />.
     /// </summary>
-    /// <seealso cref="Bloom.PubSubEvents.EventModels.AddMusicEventModel" />
+    /// <seealso cref="AddMusicEventModel" />
     public class NewAddMusicTabEvent : PubSubEvent<AddMusicEventModel> { }
 
     /// <summary>
