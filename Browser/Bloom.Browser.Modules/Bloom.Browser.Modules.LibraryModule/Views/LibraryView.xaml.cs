@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Browser.Controls;
+using Bloom.Browser.Events;
 using Bloom.Browser.Modules.LibraryModule.ViewModels;
-using Bloom.Browser.PubSubEvents;
 using Prism.Events;
 
 namespace Bloom.Browser.Modules.LibraryModule.Views

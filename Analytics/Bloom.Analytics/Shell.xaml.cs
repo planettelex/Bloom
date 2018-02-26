@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Bloom.Analytics.Controls;
-using Bloom.Analytics.PubSubEvents;
+using Bloom.Analytics.Events;
 using Bloom.Analytics.State.Services;
 using Bloom.Common;
 using Bloom.Controls;

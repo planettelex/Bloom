@@ -122,9 +122,9 @@
       <Project>{03ce0198-7e75-47b4-8447-617d1a3e36de}</Project>
       <Name>Bloom.Modules.LibraryModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bloom.Browser.PubSubEvents\Bloom.Browser.PubSubEvents.csproj">
+    <ProjectReference Include="..\Bloom.Browser.PubSubEvents\Bloom.Browser.Events.csproj">
       <Project>{AFEA27AB-8A29-4AE4-B274-1B3B056A4B76}</Project>
-      <Name>Bloom.Browser.PubSubEvents</Name>
+      <Name>Bloom.Browser.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

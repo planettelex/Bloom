@@ -1,7 +1,7 @@
 ﻿using System;
 using Bloom.Analytics.Controls;
+using Bloom.Analytics.Events;
 using Bloom.Analytics.Modules.LibraryModule.ViewModels;
-using Bloom.Analytics.PubSubEvents;
 using Prism.Events;
 
 namespace Bloom.Analytics.Modules.LibraryModule.Views

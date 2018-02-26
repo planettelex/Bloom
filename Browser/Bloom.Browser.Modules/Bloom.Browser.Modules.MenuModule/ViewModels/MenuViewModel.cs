@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using Bloom.Browser.PubSubEvents;
+using Bloom.Browser.Events;
 using Bloom.Events;
 using Bloom.Services;
 using Bloom.State.Domain.Models;

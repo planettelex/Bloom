@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bloom.Analytics.Controls;
+using Bloom.Analytics.Events;
 using Bloom.Analytics.Modules.LibraryModule.ViewModels;
-using Bloom.Analytics.PubSubEvents;
 using Bloom.Common;
 using Bloom.Data.Repositories;
 using Bloom.Domain.Models;

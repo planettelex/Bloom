@@ -2,7 +2,7 @@
 using Bloom.Browser.Controls;
 using Prism.Events;
 
-namespace Bloom.Browser.PubSubEvents
+namespace Bloom.Browser.Events
 {
     /// <summary>
     /// This event is published to show a new library modal.

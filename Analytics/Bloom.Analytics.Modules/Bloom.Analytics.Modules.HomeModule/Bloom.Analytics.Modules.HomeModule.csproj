@@ -102,9 +102,9 @@
       <Project>{d86bec11-b4a6-412f-98b1-ccef05fa839d}</Project>
       <Name>Bloom.Analytics.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj">
+    <ProjectReference Include="..\..\Bloom.Analytics.PubSubEvents\Bloom.Analytics.Events.csproj">
       <Project>{c86fedc7-f553-4de5-85e7-3cfcff2eb333}</Project>
-      <Name>Bloom.Analytics.PubSubEvents</Name>
+      <Name>Bloom.Analytics.Events</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Shared\Bloom.Common\Bloom.Common.csproj">
       <Project>{c1f2c1f6-6873-483e-b452-f19d4778ac10}</Project>

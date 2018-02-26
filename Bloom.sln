@@ -88,9 +88,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Data", "Shared\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.State.Domain", "Shared\Bloom.State.Domain\Bloom.State.Domain.csproj", "{A624637B-4221-4DC3-963F-2BD02F618B77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.PubSubEvents", "Analytics\Bloom.Analytics.PubSubEvents\Bloom.Analytics.PubSubEvents.csproj", "{C86FEDC7-F553-4DE5-85E7-3CFCFF2EB333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Analytics.Events", "Analytics\Bloom.Analytics.PubSubEvents\Bloom.Analytics.Events.csproj", "{C86FEDC7-F553-4DE5-85E7-3CFCFF2EB333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.PubSubEvents", "Browser\Bloom.Browser.PubSubEvents\Bloom.Browser.PubSubEvents.csproj", "{AFEA27AB-8A29-4AE4-B274-1B3B056A4B76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.Events", "Browser\Bloom.Browser.PubSubEvents\Bloom.Browser.Events.csproj", "{AFEA27AB-8A29-4AE4-B274-1B3B056A4B76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloom.Browser.Controls", "Browser\Bloom.Browser.Controls\Bloom.Browser.Controls.csproj", "{56DFAA8A-7F8E-4089-B916-4F04DF0E21E5}"
 EndProject
