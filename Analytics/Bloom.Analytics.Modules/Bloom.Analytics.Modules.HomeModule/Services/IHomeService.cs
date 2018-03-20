@@ -20,12 +20,6 @@ namespace Bloom.Analytics.Modules.HomeModule.Services
         void RestoreHomeTab(Tab tab);
 
         /// <summary>
-        /// Duplicates the home tab.
-        /// </summary>
-        /// <param name="tabId">The tab identifier.</param>
-        void DuplicateHomeTab(Guid tabId);
-
-        /// <summary>
         /// Creates a new getting started tab.
         /// </summary>
         void NewGettingStartedTab();
@@ -37,9 +31,9 @@ namespace Bloom.Analytics.Modules.HomeModule.Services
         void RestoreGettingStartedTab(Tab tab);
 
         /// <summary>
-        /// Duplicates the getting started tab.
+        /// Duplicates the selected tab.
         /// </summary>
-        /// <param name="tabId">The tab identifier.</param>
-        void DuplicateGettingStartedTab(Guid tabId);
+        /// <param name="selectedTabId">The selected tab identifier.</param>
+        void DuplicateSelectedTab(Guid selectedTabId);
     }
 }

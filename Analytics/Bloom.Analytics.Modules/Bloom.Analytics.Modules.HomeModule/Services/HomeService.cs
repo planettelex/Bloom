@@ -28,10 +28,9 @@ namespace Bloom.Analytics.Modules.HomeModule.Services
             // Subscribe to events
             _eventAggregator.GetEvent<NewHomeTabEvent>().Subscribe(NewHomeTab);
             _eventAggregator.GetEvent<RestoreHomeTabEvent>().Subscribe(RestoreHomeTab);
-            _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateHomeTab);
             _eventAggregator.GetEvent<NewGettingStartedTabEvent>().Subscribe(NewGettingStartedTab);
             _eventAggregator.GetEvent<RestoreGettingStartedTabEvent>().Subscribe(RestoreGettingStartedTab);
-            _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateGettingStartedTab);
+            _eventAggregator.GetEvent<DuplicateTabEvent>().Subscribe(DuplicateSelectedTab);
             _eventAggregator.GetEvent<ApplicationLoadedEvent>().Subscribe(SetState);
             _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(SetState);
         }
@@ -47,6 +46,27 @@ namespace Bloom.Analytics.Modules.HomeModule.Services
         private void SetState(object nothing)
         {
             State = (AnalyticsState) _regionManager.Regions[Settings.DocumentRegion].Context;
+        }
+
+        /// <summary>
+        /// Duplicates the selected tab.
+        /// </summary>
+        /// <param name="selectedTabId">The selected tab identifier.</param>
+        public void DuplicateSelectedTab(Guid selectedTabId)
+        {
+            var selectedTab = _tabs.SingleOrDefault(tab => tab.TabId == selectedTabId);
+            if (selectedTab == null)
+                return;
+
+            switch (selectedTab.Tab.Type)
+            {
+                case TabType.Home:
+                    NewHomeTab();
+                    break;
+                case TabType.GettingStarted:
+                    NewGettingStartedTab();
+                    break;
+            }
         }
 
         /// <summary>
