@@ -12,9 +12,9 @@ namespace Bloom.Data.Tables
         /// Gets the create filterset_order table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE filterset_order (" +
-                                   "filterset_id VARCHAR(36) NOT NULL , " +
+                                   "filterset_id BLOB NOT NULL , " +
                                    "order_number INTEGER NOT NULL , " +
-                                   "order_id VARCHAR(36) NOT NULL , " +
+                                   "order_id BLOB NOT NULL , " +
                                    "order_direction INTEGER NOT NULL DEFAULT 0 , " +
                                    "PRIMARY KEY (filterset_id, order_number) , " +
                                    "FOREIGN KEY (filterset_id) REFERENCES filterset(id) )";

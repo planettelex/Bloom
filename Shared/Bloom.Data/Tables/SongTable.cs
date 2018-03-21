@@ -12,23 +12,23 @@ namespace Bloom.Data.Tables
         /// Gets the create song table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE song (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                                   "artist_id VARCHAR(36) NOT NULL , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "artist_id BLOB NOT NULL , " +
                                    "name VARCHAR NOT NULL , " +
                                    "version VARCHAR , " +
                                    "length INTEGER NOT NULL , " +
-                                   "genre_id VARCHAR(36) , " +
+                                   "genre_id BLOB , " +
                                    "bpm REAL , " +
                                    "key INTEGER , " +
-                                   "time_signature_id VARCHAR(36) , " +
+                                   "time_signature_id BLOB , " +
                                    "description VARCHAR , " +
                                    "lyrics VARCHAR , " +
                                    "is_live BOOL NOT NULL DEFAULT FALSE , " +
                                    "is_cover BOOL NOT NULL DEFAULT FALSE , " +
                                    "is_remix BOOL NOT NULL DEFAULT FALSE , " +
-                                   "original_song_id VARCHAR(36) , " +
+                                   "original_song_id BLOB , " +
                                    "is_holiday BOOL NOT NULL DEFAULT FALSE , " +
-                                   "holiday_id VARCHAR(36) , " +
+                                   "holiday_id BLOB , " +
                                    "has_explicit_content BOOL NOT NULL DEFAULT FALSE , " +
                                    "about_day_of_week INTEGER , " +
                                    "about_time_of_year INTEGER , " +

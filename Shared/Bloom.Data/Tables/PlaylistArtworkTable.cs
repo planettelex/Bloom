@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create playlist_artwork table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE playlist_artwork (" +
-                                   "playlist_id VARCHAR(36) NOT NULL , " +
+                                   "playlist_id BLOB NOT NULL , " +
                                    "file_path VARCHAR NOT NULL ," +
                                    "priority INTEGER NOT NULL , " +
                                    "PRIMARY KEY (playlist_id, priority) , " +

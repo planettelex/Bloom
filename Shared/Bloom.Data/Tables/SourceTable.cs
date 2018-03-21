@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create source table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE source (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL , " +
                                    "website_url VARCHAR , " +
                                    "type INTEGER NOT NULL )";

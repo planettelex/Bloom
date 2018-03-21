@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create album_track table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE playlist_track (" +
-                                   "playlist_id VARCHAR(36) NOT NULL , " +
-                                   "song_id VARCHAR(36) NOT NULL ," +
+                                   "playlist_id BLOB NOT NULL , " +
+                                   "song_id BLOB NOT NULL ," +
                                    "track_number INTEGER NOT NULL , " +
                                    "PRIMARY KEY (playlist_id, song_id, track_number) , " +
                                    "FOREIGN KEY (playlist_id) REFERENCES playlist(id) , " +

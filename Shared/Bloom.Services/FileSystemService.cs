@@ -85,7 +85,7 @@ namespace Bloom.Services
             if (!Enum.TryParse(fileExtension, true, out format))
                 format = DigitalFormats.Unknown;
 
-            mediaFile.Size = (new FileInfo(filePath)).Length;
+            mediaFile.Size = new FileInfo(filePath).Length;
             
             if (file.Properties != null)
             {

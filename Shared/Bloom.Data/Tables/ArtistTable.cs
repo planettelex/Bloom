@@ -12,11 +12,11 @@ namespace Bloom.Data.Tables
         /// Gets the create artist table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE artist (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL , " +
                                    "started_on DATETIME , " +
                                    "ended_on DATETIME , " +
-                                   "formed_city_id VARCHAR(36) , " +
+                                   "formed_city_id BLOB , " +
                                    "bio VARCHAR , " +
                                    "rating INTEGER , " +
                                    "notes VARCHAR , " +

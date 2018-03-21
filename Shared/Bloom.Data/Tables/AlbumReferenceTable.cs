@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create album_reference table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE album_reference (" +
-                                   "album_id VARCHAR(36) NOT NULL , " +
-                                   "reference_id VARCHAR(36) NOT NULL , " +
+                                   "album_id BLOB NOT NULL , " +
+                                   "reference_id BLOB NOT NULL , " +
                                    "PRIMARY KEY (album_id, reference_id) , " +
                                    "FOREIGN KEY (album_id) REFERENCES album(id) , " +
                                    "FOREIGN KEY (reference_id) REFERENCES reference(id) )";

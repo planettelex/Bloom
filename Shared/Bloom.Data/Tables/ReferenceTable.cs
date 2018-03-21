@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create reference table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE reference (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                                   "source_id VARCHAR(36) , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "source_id BLOB , " +
                                    "url VARCHAR NOT NULL , " +
                                    "title VARCHAR ," +
                                    "FOREIGN KEY (source_id) REFERENCES source(id) )";

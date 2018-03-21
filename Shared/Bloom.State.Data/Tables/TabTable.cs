@@ -11,11 +11,11 @@ namespace Bloom.State.Data.Tables
         /// Gets the create tab table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE tab (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "process INTEGER NOT NULL , " +
-                                   "person_id VARCHAR(36) NOT NULL , " +
-                                   "library_id VARCHAR(36) , " +
-                                   "entity_id VARCHAR(36) , " +
+                                   "person_id BLOB NOT NULL , " +
+                                   "library_id BLOB , " +
+                                   "entity_id BLOB , " +
                                    "type INTEGER NOT NULL , " +
                                    "view VARCHAR , " +
                                    "header VARCHAR , " +

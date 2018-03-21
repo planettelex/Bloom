@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create mood table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE mood (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL )";
     }
 }

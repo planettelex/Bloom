@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create time_signature table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE time_signature (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "beats_per_measure INTEGER NOT NULL , " +
                                    "beat_length INTEGER NOT NULL )";
     }

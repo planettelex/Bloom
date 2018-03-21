@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create holiday table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE holiday (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL , " +
                                    "description VARCHAR , " +
                                    "start_month INTEGER NOT NULL DEFAULT 0 , " +

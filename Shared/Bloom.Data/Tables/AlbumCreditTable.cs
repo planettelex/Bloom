@@ -12,9 +12,9 @@ namespace Bloom.Data.Tables
         /// Gets the create album_credit table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE album_credit (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                                   "album_id VARCHAR(36) NOT NULL , " +
-                                   "person_id VARCHAR(36) NOT NULL , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "album_id BLOB NOT NULL , " +
+                                   "person_id BLOB NOT NULL , " +
                                    "FOREIGN KEY (album_id) REFERENCES album(id) , " +
                                    "FOREIGN KEY (person_id) REFERENCES person(id) )";
     }

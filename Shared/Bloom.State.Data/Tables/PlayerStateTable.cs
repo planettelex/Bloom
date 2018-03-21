@@ -13,7 +13,7 @@ namespace Bloom.State.Data.Tables
         /// </summary>
         public string CreateSql => "CREATE TABLE player_state (" +
                                    "process_name VARCHAR NOT NULL , " +
-                                   "person_id VARCHAR(36) NOT NULL , " +
+                                   "person_id BLOB NOT NULL , " +
                                    "skin_name VARCHAR NOT NULL , " +
                                    "window_state INTEGER NOT NULL , " +
                                    "recent_width INTEGER NOT NULL , " +

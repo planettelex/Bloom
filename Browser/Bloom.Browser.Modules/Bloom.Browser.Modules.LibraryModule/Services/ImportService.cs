@@ -616,7 +616,7 @@ namespace Bloom.Browser.Modules.LibraryModule.Services
                 }
 
                 newSong.Bpm = mediaFile.Metadata.Bpm;
-                newSong.Notes = mediaFile.Metadata.Comments;
+                // newSong.Notes = mediaFile.Metadata.Comments;
                 songMedia.BitRate = mediaFile.Bitrate;
                 songMedia.SampleRate = mediaFile.SampleRate;
 
@@ -662,7 +662,7 @@ namespace Bloom.Browser.Modules.LibraryModule.Services
             }
 
             var songKey = newSong.Name.AsKey();
-            _importedSongs.Add(songKey, newSong);
+            _importedSongs.Add(songKey, newSong); // TODO: If Duplicate Key exists?
             var artistName = _importState.AlbumArtist?.Name;
             var albumKey = AlbumKey(artistName, _importState.Album.Name);
             _importedAlbums[albumKey].Tracks.Add(albumTrack);

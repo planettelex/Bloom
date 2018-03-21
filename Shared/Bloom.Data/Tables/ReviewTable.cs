@@ -12,13 +12,13 @@ namespace Bloom.Data.Tables
         /// Gets the create review table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE review (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "url VARCHAR , " +
                                    "title VARCHAR , " +
                                    "body VARCHAR , " +
                                    "published_on DATETIME ," +
-                                   "source_id VARCHAR(36) , " +
-                                   "author_id VARCHAR(36) , " +
+                                   "source_id BLOB , " +
+                                   "author_id BLOB , " +
                                    "FOREIGN KEY (source_id) REFERENCES source(id) , " +
                                    "FOREIGN KEY (author_id) REFERENCES person(id) )";
     }

@@ -12,7 +12,7 @@ namespace Bloom.State.Data.Tables
         /// Gets the create user table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE user (" +
-                                   "person_id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "person_id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL , " +
                                    "birthday DATETIME , " +
                                    "twitter VARCHAR , " +

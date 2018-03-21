@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create person_photo table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE person_photo (" +
-                                   "person_id VARCHAR(36) NOT NULL , " +
-                                   "photo_id VARCHAR(36) NOT NULL , " +
+                                   "person_id BLOB NOT NULL , " +
+                                   "photo_id BLOB NOT NULL , " +
                                    "priority INTEGER NOT NULL , " +
                                    "PRIMARY KEY (person_id, photo_id, priority) , " +
                                    "FOREIGN KEY (person_id) REFERENCES person(id) , " +

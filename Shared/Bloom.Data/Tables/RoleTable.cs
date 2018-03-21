@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create role table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE role (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL )";
     }
 }

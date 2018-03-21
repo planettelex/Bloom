@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create song_media table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE song_media (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                                   "song_id VARCHAR(36) NOT NULL , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "song_id BLOB NOT NULL , " +
                                    "media_type INTEGER NOT NULL , " +
                                    "digital_format INTEGER , " +
                                    "file_path VARCHAR , " +
@@ -22,7 +22,7 @@ namespace Bloom.Data.Tables
                                    "sample_rate INTEGER , " +
                                    "bit_rate INTEGER , " +
                                    "volume_offset INTEGER , " +
-                                   "received_from_person_id VARCHAR(36) , " +
+                                   "received_from_person_id BLOB , " +
                                    "FOREIGN KEY (received_from_person_id) REFERENCES person(id) , " +
                                    "FOREIGN KEY (song_id) REFERENCES song(id) )";
     }

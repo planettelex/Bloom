@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create photo table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE photo (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "file_path VARCHAR NOT NULL , " +
                                    "caption VARCHAR , " +
                                    "taken_on DATETIME )";

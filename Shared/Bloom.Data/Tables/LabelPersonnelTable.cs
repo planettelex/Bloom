@@ -12,9 +12,9 @@ namespace Bloom.Data.Tables
         /// Gets the create label_personel table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE label_personnel (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                                   "label_id VARCHAR(36) NOT NULL , " +
-                                   "person_id VARCHAR(36) NOT NULL , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "label_id BLOB NOT NULL , " +
+                                   "person_id BLOB NOT NULL , " +
                                    "started DATETIME , " +
                                    "ended DATETIME , " +
                                    "priority INTEGER NOT NULL , " +

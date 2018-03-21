@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create filterset table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE filterset (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR , " +
                                    "created_on DATETIME NOT NULL )";
     }

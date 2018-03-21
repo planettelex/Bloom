@@ -12,7 +12,7 @@ namespace Bloom.Data.Tables
         /// Gets the create tag table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE tag (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
                                    "name VARCHAR NOT NULL )";
     }
 }

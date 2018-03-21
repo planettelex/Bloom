@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create song_mood table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE song_mood (" +
-                                   "song_id VARCHAR(36) NOT NULL , " +
-                                   "mood_id VARCHAR(36) NOT NULL , " +
+                                   "song_id BLOB NOT NULL , " +
+                                   "mood_id BLOB NOT NULL , " +
                                    "PRIMARY KEY (song_id, mood_id) , " +
                                    "FOREIGN KEY (song_id) REFERENCES song(id) , " +
                                    "FOREIGN KEY (mood_id) REFERENCES mood(id) )";

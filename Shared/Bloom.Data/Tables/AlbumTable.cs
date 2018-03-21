@@ -12,8 +12,8 @@ namespace Bloom.Data.Tables
         /// Gets the create album table SQL.
         /// </summary>
         public string CreateSql => "CREATE TABLE album (" +
-                                   "id VARCHAR(36) PRIMARY KEY NOT NULL UNIQUE , " +
-                                   "artist_id VARCHAR(36) , " +
+                                   "id BLOB PRIMARY KEY NOT NULL UNIQUE , " +
+                                   "artist_id BLOB , " +
                                    "name VARCHAR NOT NULL , " +
                                    "unofficial_name VARCHAR , " +
                                    "edition VARCHAR , " +
@@ -24,12 +24,12 @@ namespace Bloom.Data.Tables
                                    "liner_notes VARCHAR , " +
                                    "is_live BOOL NOT NULL DEFAULT FALSE , " +
                                    "is_remix BOOL NOT NULL DEFAULT FALSE , " +
-                                   "original_album_id VARCHAR(36) , " +
+                                   "original_album_id BLOB , " +
                                    "is_tribute BOOL NOT NULL DEFAULT FALSE , " +
-                                   "tribute_artist_id VARCHAR(36) , " +
+                                   "tribute_artist_id BLOB , " +
                                    "is_soundtrack BOOL NOT NULL DEFAULT FALSE , " +
                                    "is_holiday BOOL NOT NULL DEFAULT FALSE , " +
-                                   "holiday_id VARCHAR(36) , " +
+                                   "holiday_id BLOB , " +
                                    "is_bootleg BOOL NOT NULL DEFAULT FALSE , " +
                                    "is_promotional BOOL NOT NULL DEFAULT FALSE , " +
                                    "is_compilation BOOL NOT NULL DEFAULT FALSE , " +
