@@ -15,11 +15,11 @@ namespace Bloom.Browser.State.Domain.Models
         {
             return new ImportPreferences
             {
-                TitleCaseSongTitles = true,
-                TitleCaseAlbumTitles = true,
+                TitleCaseSongTitles = false,
+                TitleCaseAlbumTitles = false,
                 ComposersAlsoArtistMembers = false,
-                MapGroupingTo = new Tuple<TaxonomyType, TaxonomyScope>(TaxonomyType.Tag, TaxonomyScope.Song),
-                MapCommentsTo = new Tuple<TextPropertyType, ArtistScope>(TextPropertyType.Notes, ArtistScope.Song)
+                MapGroupingTo = new Tuple<TaxonomyType, TaxonomyScope>(TaxonomyType.Tag, TaxonomyScope.Album),
+                MapCommentsTo = new Tuple<TextPropertyType, ArtistScope>(TextPropertyType.Description, ArtistScope.Album)
             };
         }
         

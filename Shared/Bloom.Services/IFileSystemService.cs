@@ -31,38 +31,72 @@ namespace Bloom.Services
         MediaFile ReadMediaFile(string filePath);
 
         /// <summary>
-        /// Creates a library folder.
+        /// Creates a library folder and returns the path.
         /// </summary>
         /// <param name="library">The library.</param>
         string CreateFolder(Library library);
 
         /// <summary>
-        /// Creates a library folder.
+        /// Creates an artist folder and returns the path.
         /// </summary>
         /// <param name="library">The library.</param>
         /// <param name="artist">An artist.</param>
         string CreateFolder(Library library, Artist artist);
 
         /// <summary>
-        /// Creates a library folder.
+        /// Creates an album folder and returns the path.
         /// </summary>
         /// <param name="library">The library.</param>
         /// <param name="album">An album.</param>
         string CreateFolder(Library library, Album album);
 
         /// <summary>
-        /// Creates a library folder.
+        /// Creates a person folder and returns the path.
         /// </summary>
         /// <param name="library">The library.</param>
         /// <param name="person">A person.</param>
         string CreateFolder(Library library, Person person);
 
         /// <summary>
-        /// Creates the folder.
+        /// Creates a playlist folder and returns the path.
         /// </summary>
         /// <param name="library">The library.</param>
         /// <param name="playlist">A playlist.</param>
         string CreateFolder(Library library, Playlist playlist);
+
+        /// <summary>
+        /// Gets the library folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        string GetFolder(Library library);
+
+        /// <summary>
+        /// Gets the artist folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="artist">An artist.</param>
+        string GetFolder(Library library, Artist artist);
+
+        /// <summary>
+        /// Gets the album folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="album">An album.</param>
+        string GetFolder(Library library, Album album);
+
+        /// <summary>
+        /// Gets the person folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="person">A person.</param>
+        string GetFolder(Library library, Person person);
+
+        /// <summary>
+        /// Gets the playlist folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="playlist">A playlist.</param>
+        string GetFolder(Library library, Playlist playlist);
 
         /// <summary>
         /// Moves the album artwork from its current location to the one specified by the provided album's data.
@@ -98,11 +132,18 @@ namespace Bloom.Services
         string CopyMediaFile(Library library, MediaFile sourceFile, Song song, Playlist playlist);
 
         /// <summary>
-        /// Saves the album image.
+        /// Saves the album artwork.
         /// </summary>
         /// <param name="library">The library.</param>
         /// <param name="image">The image.</param>
         /// <param name="album">The album.</param>
-        string SaveAlbumImage(Library library, Image image, Album album);
+        string SaveAlbumArtwork(Library library, Image image, Album album);
+
+        /// <summary>
+        /// Gets the album cover art file path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="album">The album.</param>
+        string GetAlbumCoverArtFile(Library library, Album album);
     }
 }

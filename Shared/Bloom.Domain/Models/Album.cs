@@ -24,7 +24,8 @@ namespace Bloom.Domain.Models
             return new Album
             {
                 Id = Guid.NewGuid(),
-                Name = name
+                Name = name,
+                Tracks = new List<AlbumTrack>()
             };
         }
 
@@ -39,7 +40,8 @@ namespace Bloom.Domain.Models
             {
                 Id = Guid.NewGuid(),
                 Name = name,
-                Artist = artist
+                Artist = artist,
+                Tracks = new List<AlbumTrack>()
             };
         }
         

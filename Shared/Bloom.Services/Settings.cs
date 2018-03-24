@@ -71,5 +71,15 @@ namespace Bloom.Services
         /// Gets the playlists library folder.
         /// </summary>
         public static string PlaylistsLibraryFolder => Properties.Settings.Default.PlaylistsFolder;
+
+        /// <summary>
+        /// Gets the cover artwork file name.
+        /// </summary>
+        public static string CoverArtFileName => Properties.Settings.Default.CoverArtFileName;
+
+        /// <summary>
+        /// Gets the name of an unknown entity.
+        /// </summary>
+        public static string UnknownName => Properties.Settings.Default.UnknownName;
     }
 }

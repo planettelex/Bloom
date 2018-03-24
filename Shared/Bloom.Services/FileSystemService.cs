@@ -29,6 +29,7 @@ namespace Bloom.Services
                 Directory.CreateDirectory(_userProfilesFolder);
         }
         private readonly string _userProfilesFolder;
+        
 
         /// <summary>
         /// Copies a user's profile image to local storage.
@@ -59,7 +60,7 @@ namespace Bloom.Services
             var regEx = MusicFileRegEx();
             // ReSharper disable once AssignNullToNotNullAttribute
             var musicFiles = allFiles.Where(file => regEx.IsMatch(Path.GetExtension(file)) && 
-                !new FileInfo (file).Attributes.HasFlag(FileAttributes.Hidden | FileAttributes.System));
+                !new FileInfo (file).Attributes.HasFlag(FileAttributes.Hidden) && !new FileInfo(file).Attributes.HasFlag(FileAttributes.System));
 
             return musicFiles.ToList();
         }
@@ -72,6 +73,7 @@ namespace Bloom.Services
         {
             if (!File.Exists(filePath))
                 return null;
+
 
             var file = TagLib.File.Create(filePath);
             if (file == null)
@@ -143,9 +145,7 @@ namespace Bloom.Services
         public string CreateFolder(Library library, Artist artist)
         {
             CreateLibraryArtistsFolders(library);
-            var artistsFolder = LibraryArtistsFolderPath(library);
-            var artistFolderName = MakeFolderName(artist.Name);
-            var artistFolderPath = Path.Combine(artistsFolder, artistFolderName);
+            var artistFolderPath = GetFolder(library, artist);
 
             if (!Directory.Exists(artistFolderPath))
                 Directory.CreateDirectory(artistFolderPath);
@@ -160,16 +160,10 @@ namespace Bloom.Services
         /// <param name="album">An album.</param>
         public string CreateFolder(Library library, Album album)
         {
-            string albumsFolder;
-            if (album.Artist != null)
-                albumsFolder = CreateFolder(library, album.Artist);
-            else
-            {
-                CreateLibraryArtistsFolders(library);
-                albumsFolder = LibraryMixedArtistsFolderPath(library);
-            }
-            var albumFolderName = MakeFolderName(album.Name);
-            var albumFolderPath = Path.Combine(albumsFolder, albumFolderName);
+            CreateLibraryArtistsFolders(library);
+            if (album.Artist != null && !album.IsMixedArtist)
+                CreateFolder(library, album.Artist);
+            var albumFolderPath = GetFolder(library, album);
 
             if (!Directory.Exists(albumFolderPath))
                 Directory.CreateDirectory(albumFolderPath);
@@ -185,9 +179,7 @@ namespace Bloom.Services
         public string CreateFolder(Library library, Person person)
         {
             CreateLibraryPeopleFolder(library);
-            var peopleFolder = LibraryPeopleFolderPath(library);
-            var personFolderName = MakeFolderName(person.Name);
-            var personFolderPath = Path.Combine(peopleFolder, personFolderName);
+            var personFolderPath = GetFolder(library, person);
 
             if (!Directory.Exists(personFolderPath))
                 Directory.CreateDirectory(personFolderPath);
@@ -203,14 +195,74 @@ namespace Bloom.Services
         public string CreateFolder(Library library, Playlist playlist)
         {
             CreateLibraryPlaylistFolder(library);
-            var playlistsFolder = LibraryPlaylistsFolderPath(library);
-            var playlistFolderName = MakeFolderName(playlist.Name);
-            var playlistFolderPath = Path.Combine(playlistsFolder, playlistFolderName);
+            var playlistFolderPath = GetFolder(library, playlist);
 
             if (!Directory.Exists(playlistFolderPath))
                 Directory.CreateDirectory(playlistFolderPath);
 
             return playlistFolderPath;
+        }
+
+        /// <summary>
+        /// Gets the library folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        public string GetFolder(Library library)
+        {
+            return library.FolderPath;
+        }
+
+        /// <summary>
+        /// Gets the artist folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="artist">An artist.</param>
+        public string GetFolder(Library library, Artist artist)
+        {
+            var artistsFolder = LibraryArtistsFolderPath(library);
+            var artistFolderName = artist.Name.AsFolderName();
+            return Path.Combine(artistsFolder, artistFolderName);
+        }
+
+        /// <summary>
+        /// Gets the album folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="album">An album.</param>
+        public string GetFolder(Library library, Album album)
+        {
+            string albumParentFolder;
+            if (album.Artist != null && !album.IsMixedArtist)
+                albumParentFolder = GetFolder(library, album.Artist);
+            else
+                albumParentFolder = LibraryMixedArtistsFolderPath(library);
+            
+            var albumFolderName = album.Name.AsFolderName();
+            return Path.Combine(albumParentFolder, albumFolderName);
+        }
+
+        /// <summary>
+        /// Gets the person folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="person">A person.</param>
+        public string GetFolder(Library library, Person person)
+        {
+            var peopleFolder = LibraryPeopleFolderPath(library);
+            var personFolderName = person.Name.AsFolderName();
+            return Path.Combine(peopleFolder, personFolderName);
+        }
+
+        /// <summary>
+        /// Gets the playlist folder path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="playlist">A playlist.</param>
+        public string GetFolder(Library library, Playlist playlist)
+        {
+            var playlistsFolder = LibraryPlaylistsFolderPath(library);
+            var playlistFolderName = playlist.Name.AsFolderName();
+            return Path.Combine(playlistsFolder, playlistFolderName);
         }
 
         /// <summary>
@@ -231,6 +283,16 @@ namespace Bloom.Services
             File.Move(songMedia.FilePath, newFilePath);
 
             return newFilePath;
+        }
+
+        /// <summary>
+        /// Gets the album cover art file path.
+        /// </summary>
+        /// <param name="library">The library.</param>
+        /// <param name="album">The album.</param>
+        public string GetAlbumCoverArtFile(Library library, Album album)
+        {
+            return Path.Combine(GetFolder(library, album), Settings.CoverArtFileName);
         }
 
         /// <summary>
@@ -325,16 +387,23 @@ namespace Bloom.Services
         /// <param name="library">The library.</param>
         /// <param name="image">The image.</param>
         /// <param name="album">The album.</param>
-        public string SaveAlbumImage(Library library, Image image, Album album)
+        public string SaveAlbumArtwork(Library library, Image image, Album album)
         {
             if (image == null)
                 return null;
 
             var albumFolderPath = CreateFolder(library, album);
-            var imageFileName = MakeImageFileName(album);
-            var imageFilePath = Path.Combine(albumFolderPath, imageFileName);
+            var imageFilePath = Path.Combine(albumFolderPath, Settings.CoverArtFileName);
 
-            image.Save(imageFilePath, ImageFormat.Png);
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var fileStream = new FileStream(imageFilePath, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    image.Save(memoryStream, ImageFormat.Png);
+                    var bytes = memoryStream.ToArray();
+                    fileStream.Write(bytes, 0, bytes.Length);
+                }
+            }
 
             return imageFilePath;
         }
@@ -449,15 +518,6 @@ namespace Bloom.Services
         }
 
         /// <summary>
-        /// Makes a folder name from a provided name.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        private static string MakeFolderName(string name)
-        {
-            return name.AsFolderName();
-        }
-
-        /// <summary>
         /// Makes a file name from the provided media file and song.
         /// </summary>
         /// <param name="sourceFile">The source file.</param>
@@ -478,19 +538,6 @@ namespace Bloom.Services
                 fileName += extension.ToLower();
 
             return fileName;
-        }
-
-        /// <summary>
-        /// Makes a file name from the provided album.
-        /// </summary>
-        /// <param name="album">The album.</param>
-        private static string MakeImageFileName(Album album)
-        {
-            if (album.Artwork == null || !album.Artwork.Any())
-                return "Cover.png";
-
-            var pageNumber = album.Artwork.Count + 1;
-            return $"Page {pageNumber:D2}.png";
         }
     }
 }

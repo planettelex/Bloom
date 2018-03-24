@@ -26,14 +26,20 @@
     <Setting Name="PeopleFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">People</Value>
     </Setting>
-    <Setting Name="ArtistsFolder" Type="System.String" Scope="User">
+    <Setting Name="ArtistsFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Artists</Value>
     </Setting>
-    <Setting Name="MixedArtistFolder" Type="System.String" Scope="User">
+    <Setting Name="MixedArtistFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">_Mixed</Value>
     </Setting>
-    <Setting Name="PlaylistsFolder" Type="System.String" Scope="User">
+    <Setting Name="PlaylistsFolder" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Playlists</Value>
+    </Setting>
+    <Setting Name="CoverArtFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Cover.png</Value>
+    </Setting>
+    <Setting Name="UnknownName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Unknown</Value>
     </Setting>
   </Settings>
 </SettingsFile>

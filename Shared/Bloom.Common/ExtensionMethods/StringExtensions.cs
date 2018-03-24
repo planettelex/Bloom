@@ -19,12 +19,12 @@ namespace Bloom.Common.ExtensionMethods
         /// <summary>
         /// The strong word separators
         /// </summary>
-        public static IEnumerable<char> StrongWordSeparators = new List<char> { '.', '?', '!', '(', ')', '{', '}', '[', ']', '<', '>', '/', '&' };
+        public static IEnumerable<char> StrongWordSeparators = new List<char> { ',', '.', '?', '!', '(', ')', '{', '}', '[', ']', '<', '>', '/', '&' };
 
         /// <summary>
         /// The weak word separators
         /// </summary>
-        public static IEnumerable<char> WeakWordSeparators = new List<char> { ' ', ',' };
+        public static IEnumerable<char> WeakWordSeparators = new List<char> { ' ' };
 
         /// <summary>
         /// The file system reserved characters
@@ -190,7 +190,7 @@ namespace Bloom.Common.ExtensionMethods
             if (FilesystemReservedCharacters.Any(fileName.Contains))
                 fileName = ReplaceFilesystemReservedCharacters(fileName);
 
-            return fileName;
+            return fileName.Trim();
         }
 
         /// <summary>

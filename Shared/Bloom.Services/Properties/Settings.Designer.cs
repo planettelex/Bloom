@@ -95,39 +95,48 @@ namespace Bloom.Services.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Artists")]
         public string ArtistsFolder {
             get {
                 return ((string)(this["ArtistsFolder"]));
             }
-            set {
-                this["ArtistsFolder"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("_Mixed")]
         public string MixedArtistFolder {
             get {
                 return ((string)(this["MixedArtistFolder"]));
             }
-            set {
-                this["MixedArtistFolder"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Playlists")]
         public string PlaylistsFolder {
             get {
                 return ((string)(this["PlaylistsFolder"]));
             }
-            set {
-                this["PlaylistsFolder"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Cover.png")]
+        public string CoverArtFileName {
+            get {
+                return ((string)(this["CoverArtFileName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Unknown")]
+        public string UnknownName {
+            get {
+                return ((string)(this["UnknownName"]));
             }
         }
     }
